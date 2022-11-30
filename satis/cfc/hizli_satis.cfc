@@ -278,7 +278,7 @@
                 <cfdump  var="#arguments#">
                 <cfdump  var="#cfcatch#">
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\saveVirtualTube.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\cfcatch2223.html" output="#control5#"></cffile>
             </cfcatch>
         </cftry>
         <cfsavecontent  variable="control5">
@@ -307,6 +307,8 @@
                 MARJ=#Filternum(arguments.marj)#,
                 PRODUCT_TYPE=1,
                 IS_PRODUCTION=1,
+                PRODUCT_CATID=#arguments.PRODUCT_CATID#,
+                PRODUCT_DESCRIPTION='#arguments.PRODUCT_DESCRIPTION#'
                 UPDATE_EMP=#arguments.employee_id#,
                 UPDATE_DATE=#now()# 
             WHERE VIRTUAL_PRODUCT_ID=#arguments.vp_id#
