@@ -7,3 +7,10 @@ errorvariable="local.err">
 <cfdump var="#local#">
 
 
+<cfoutput>
+ <cfscript>
+ 	findNoCase("it_is_runing", local.out)
+ </cfscript>
+</cfoutput>
+
+
