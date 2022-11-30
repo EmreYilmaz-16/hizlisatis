@@ -4,7 +4,9 @@
 
 <cfif getPo.IS_FROM_VIRTUAL eq 1>
 	<cfquery name="gets" datasource="#dsn3#">
-		        SELECT VIRTUAL_PRODUCT_ID,PRODUCT_NAME,PRODUCT_CATID,PRICE,MARJ,PRODUCT_DESCRIPTION,PRODUCT_TYPE,IS_CONVERT_REAL,#dsn#.getEmployeeWithId(RECORD_EMP) RECORD_EMP,RECORD_DATE,#dsn#.getEmployeeWithId(UPDATE_EMP) UPDATE_EMP,UPDATE_DATE FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT where VIRTUAL_PRODUCT_ID=#getPo.STOCK_ID#
+		        SELECT VIRTUAL_PRODUCT_ID,PRODUCT_NAME,PRODUCT_CATID,PRICE,MARJ,PRODUCT_DESCRIPTION,PRODUCT_TYPE,IS_CONVERT_REAL,#dsn#.getEmployeeWithId(RECORD_EMP) RECORD_EMP,RECORD_DATE,#dsn#.getEmployeeWithId(UPDATE_EMP) UPDATE_EMP,UPDATE_DATE,PC.PRODUCT_CAT FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT 
+		        LEFT JOIN workcube_metosan_1.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=VIRTUAL_PRODUCTS_PRT.PRODUCT_CATID
+		        where VIRTUAL_PRODUCT_ID=#getPo.STOCK_ID#
 	</cfquery>
 	<cfquery name="getsTree" datasource="#dsn3#">
 	            SELECT S.PRODUCT_NAME,S.STOCK_CODE,S.STOCK_ID,VPT.AMOUNT,VPQ.QUESTION,PU.MAIN_UNIT,VP_ID,VPQ.QUESTION_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS VPT
@@ -31,6 +33,10 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 <cf_box title="Üretim Emri #getPo.V_P_ORDER_NO#">
 	<cfoutput>
 	<table style="width:100%">
+		<tr>
+			<th colspan="2">Ürün Gurubu</th>
+			<th>#gets.PRODUCT_CAT#</th>
+		</tr>
 		<tr>
 			<th style="font-size:14pt">
 				Ürün Adı
