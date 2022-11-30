@@ -29,3 +29,6 @@ function pencereac(tip,idd){
 }
 ///objects.popup_rekactions_prt
 </script>
+
+
+merhaba dünya
