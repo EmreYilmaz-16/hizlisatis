@@ -4,6 +4,6 @@ variable="local.out"
 errorvariable="local.err"> 
 </cfexecute>
 
-<cfdump var="#local.err#">
+<cfdump var="#local#">
 
 
