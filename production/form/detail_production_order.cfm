@@ -34,8 +34,8 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 	<cfoutput>
 	<table style="width:100%">
 		<tr>
-			<th style="font-size:14pt" colspan="2">Ürün Gurubu</th>
-			<th style="font-size:14pt" >#gets.PRODUCT_CAT#</th>
+			<th style="font-size:13pt" colspan="2">Ürün Gurubu</th>
+			<th style="font-size:13pt" colspan="2" >#gets.PRODUCT_CAT#</th>
 		</tr>
 		<tr>
 			<th style="font-size:14pt">
