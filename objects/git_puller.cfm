@@ -11,6 +11,7 @@ errorvariable="local.err">
  <cfscript>
  	son_Satir=findNoCase("it_is_runing", local.out);
  	writeDump(son_Satir);
+ 	writeDump(left(local.out, son_Satir));
  </cfscript>
 </cfoutput>
 
