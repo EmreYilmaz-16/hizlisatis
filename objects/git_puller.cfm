@@ -4,12 +4,13 @@ variable="local.out"
 errorvariable="local.err"> 
 </cfexecute>
 
-<cfdump var="#local#">
+
 
 
 <cfoutput>
  <cfscript>
- 	findNoCase("it_is_runing", local.out)
+ 	son_Satir=findNoCase("it_is_runing", local.out);
+ 	writeDump(son_Satir);
  </cfscript>
 </cfoutput>
 
