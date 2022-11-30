@@ -46,11 +46,11 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 			</td>
 		</tr>
 		<tr>
-			<th>
-				
-				Açıklama
-			</th>
-			<td colspan="3">
+			<th colspan="4" style="font-size:14pt">Açıklama</th>
+		</tr>
+		<tr>
+		
+			<td colspan="4">
 				<div class="alert alert-success">
 					#gets.PRODUCT_DESCRIPTION#
 				</div>
