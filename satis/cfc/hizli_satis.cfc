@@ -240,34 +240,34 @@
         <cfargument name="IsProduction" default="0">
         <cftry>
         <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
-            INSERT INTO VIRTUAL_PRODUCTS_PRT(PRODUCT_NAME,PRODUCT_CATID,PRICE,IS_CONVERT_REAL,MARJ,PRODUCT_TYPE,IS_PRODUCTION,RECORD_EMP,RECORD_DATE) VALUES('#arguments.product_name#',0,#Filternum(arguments.maliyet)#,0,#Filternum(arguments.marj)#,1,#arguments.IsProduction#,#arguments.employee_id#,#now()#)
+            INSERT INTO VIRTUAL_PRODUCTS_PRT(PRODUCT_NAME,PRODUCT_CATID,PRICE,IS_CONVERT_REAL,MARJ,PRODUCT_TYPE,IS_PRODUCTION,RECORD_EMP,RECORD_DATE) VALUES('#arguments.product_name#',#arguments.PRODUCT_CATID#,#Filternum(arguments.maliyet)#,0,#Filternum(arguments.marj)#,1,#arguments.IsProduction#,#arguments.employee_id#,#now()#)
         </cfquery>
-        <cfif isDefined("arguments.LRekor_PId") and len(arguments.LRekor_PId)>
+        <cfif isDefined('arguments.LRekor_PId') and len(arguments.LRekor_PId)>
         <cfquery name="InsertTree" datasource="#arguments.dsn3#">
             INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.LRekor_PId#,#arguments.LRekor_SId#,#Filternum(arguments.LRekor_Qty)#,1)
         </cfquery>
         </cfif>
-        <cfif isDefined("arguments.Tube_PId") and len(arguments.Tube_PId)>
+        <cfif isDefined('arguments.Tube_PId') and len(arguments.Tube_PId)>
          <cfquery name="InsertTree" datasource="#arguments.dsn3#">
             INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.Tube_PId#,#arguments.Tube_SId#,#Filternum(arguments.Tube_Qty)#,2)
         </cfquery>
         </cfif>
-        <cfif isDefined("arguments.RRekor_PId") and len(arguments.RRekor_PId)>
+        <cfif isDefined('arguments.RRekor_PId') and len(arguments.RRekor_PId)>
          <cfquery name="InsertTree" datasource="#arguments.dsn3#">
             INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.RRekor_PId#,#arguments.RRekor_SId#,#Filternum(arguments.RRekor_Qty)#,3)
         </cfquery>  
         </cfif>
-        <cfif isDefined("arguments.AdditionalProduct_PId") and len(arguments.AdditionalProduct_PId)>
+        <cfif isDefined('arguments.AdditionalProduct_PId') and len(arguments.AdditionalProduct_PId)>
          <cfquery name="InsertTree" datasource="#arguments.dsn3#">
             INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.AdditionalProduct_PId#,#arguments.AdditionalProduct_SId#,#Filternum(arguments.AdditionalProduct_Qty)#,4)
         </cfquery> 
         </cfif>
-        <cfif isDefined("arguments.Kabuk_PId") and len(arguments.Kabuk_PId)>
+        <cfif isDefined('arguments.Kabuk_PId') and len(arguments.Kabuk_PId)>
             <cfquery name="InsertTree" datasource="#arguments.dsn3#">
                INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.Kabuk_PId#,#arguments.Kabuk_SId#,#Filternum(arguments.Kabukr_Qty)#,5)
            </cfquery> 
         </cfif> 
-        <cfif isDefined("arguments.working_PId") and len(arguments.working_PId)>
+        <cfif isDefined('arguments.working_PId') and len(arguments.working_PId)>
             <cfquery name="InsertTree" datasource="#arguments.dsn3#">
                INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.working_PId#,#arguments.working_SId#,#Filternum(arguments.working_Qty)#,6)
            </cfquery> 
@@ -283,17 +283,17 @@
         </cftry>
         <cfsavecontent  variable="control5">
             <cfdump  var="#CGI#">
-            
+
             <cfdump  var="#arguments#">
-            
+
            </cfsavecontent>
            <cffile action="write" file = "c:\cfcatch22234.html" output="#control5#"></cffile>
-           <CFSET RETURN_VAL.PID=Res.IDENTITYCOL>
-           <CFSET RETURN_VAL.IS_VIRTUAL=1>
-           <CFSET RETURN_VAL.PRICE=arguments.maliyet>
-           <CFSET RETURN_VAL.QTY=1>
-           <CFSET RETURN_VAL.NAME=arguments.product_name>
-           <cfreturn Replace(SerializeJSON(RETURN_VAL),'//','')>
+           <CFSET RETURN_VAL.PID = Res.IDENTITYCOL>
+           <CFSET RETURN_VAL.IS_VIRTUAL = 1>
+           <CFSET RETURN_VAL.PRICE = arguments.maliyet>
+           <CFSET RETURN_VAL.QTY = 1>
+           <CFSET RETURN_VAL.NAME = arguments.product_name>
+           <cfreturn replace(serializeJSON(RETURN_VAL), '//', '')>
     </cffunction>
     
     <cffunction name="UpdVirtualTube" access="remote" returntype="any" returnFormat="json">
