@@ -1,5 +1,5 @@
 <cf_box title="Üretim Emirleri">
-	<cfquery name="getProductionOrders">
+	<cfquery name="getProductionOrders" datasource="#dsn3#">
 		SELECT * FROM VIRTUAL_PRODUCTION_ORDERS
 	</cfquery>
 	<table>
