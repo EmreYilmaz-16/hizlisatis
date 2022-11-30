@@ -22,7 +22,7 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     if (elemanAtt == "Tube") {
         //var q=wrk_query()
     }
-    if ((ev.keyCode == 13 || ev.type == 'change') and keyword.length>5 ) {
+    if ((ev.keyCode == 13 || ev.type == 'change') && keyword.length>5 ) {
 
         var Product = getProductMultiUse(keyword, comp_id, price_catid);
         if (Product.RECORDCOUNT != 0) {
