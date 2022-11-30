@@ -240,7 +240,7 @@
         <cfargument name="IsProduction" default="0">
         <cftry>
         <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
-            INSERT INTO VIRTUAL_PRODUCTS_PRT(PRODUCT_NAME,PRODUCT_CATID,PRICE,IS_CONVERT_REAL,MARJ,PRODUCT_TYPE,IS_PRODUCTION,RECORD_EMP,RECORD_DATE) VALUES('#arguments.product_name#',#arguments.PRODUCT_CATID#,#Filternum(arguments.maliyet)#,0,#Filternum(arguments.marj)#,1,#arguments.IsProduction#,#arguments.employee_id#,#now()#)
+            INSERT INTO VIRTUAL_PRODUCTS_PRT(PRODUCT_NAME,PRODUCT_CATID,PRICE,IS_CONVERT_REAL,MARJ,PRODUCT_TYPE,IS_PRODUCTION,RECORD_EMP,RECORD_DATE,PRODUCT_DESCRIPTION) VALUES('#arguments.product_name#',#arguments.PRODUCT_CATID#,#Filternum(arguments.maliyet)#,0,#Filternum(arguments.marj)#,1,#arguments.IsProduction#,#arguments.employee_id#,#now()#,'#arguments.PRODUCT_DESCRIPTION#')
         </cfquery>
         <cfif isDefined('arguments.LRekor_PId') and len(arguments.LRekor_PId)>
         <cfquery name="InsertTree" datasource="#arguments.dsn3#">
