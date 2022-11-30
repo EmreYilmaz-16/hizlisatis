@@ -4,7 +4,7 @@
 
 <cfif getPo.IS_FROM_VIRTUAL eq 1>
 	<cfquery name="gets" datasource="#dsn3#">
-		        SELECT VIRTUAL_PRODUCT_ID,PRODUCT_NAME,PRODUCT_CATID,PRICE,MARJ,PRODUCT_TYPE,IS_CONVERT_REAL,#dsn#.getEmployeeWithId(RECORD_EMP) RECORD_EMP,RECORD_DATE,#dsn#.getEmployeeWithId(UPDATE_EMP) UPDATE_EMP,UPDATE_DATE FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT where VIRTUAL_PRODUCT_ID=#getPo.STOCK_ID#
+		        SELECT VIRTUAL_PRODUCT_ID,PRODUCT_NAME,PRODUCT_CATID,PRICE,MARJ,PRODUCT_DESCRIPTION,PRODUCT_TYPE,IS_CONVERT_REAL,#dsn#.getEmployeeWithId(RECORD_EMP) RECORD_EMP,RECORD_DATE,#dsn#.getEmployeeWithId(UPDATE_EMP) UPDATE_EMP,UPDATE_DATE FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT where VIRTUAL_PRODUCT_ID=#getPo.STOCK_ID#
 	</cfquery>
 	<cfquery name="getsTree" datasource="#dsn3#">
 	            SELECT S.PRODUCT_NAME,S.STOCK_CODE,S.STOCK_ID,VPT.AMOUNT,VPQ.QUESTION,PU.MAIN_UNIT,VP_ID,VPQ.QUESTION_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS VPT
@@ -43,6 +43,17 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 			</th>
 			<td style="font-size:14pt">
 				#getPo.QUANTITY#
+			</td>
+		</tr>
+		<tr>
+			<th>
+				
+				<textarea readonly>#gets.PRODUCT_DESCRIPTION#</textarea>
+			</th>
+			<td>
+				<div class="alert alert-success">
+					#gets.PRODUCT_DESCRIPTION#
+				</div>
 			</td>
 		</tr>
 	</table>
