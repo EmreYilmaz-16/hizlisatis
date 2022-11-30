@@ -31,4 +31,3 @@ function pencereac(tip,idd){
 </script>
 
 
-merhaba dünya
