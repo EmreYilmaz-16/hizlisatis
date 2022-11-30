@@ -6,13 +6,16 @@ errorvariable="local.err">
 
 
 
-
+<cf_box title="Gİt">
 <cfoutput>
  <cfset st=left(local.out,findNoCase("it_is_runing", local.out))>
- #st#
 <cfset git =findNoCase("pull",st)>
 <cfset stlen =len(st)>
 <cfset stgit=stlen-git >
-<h3>Git Durumu</h3>
-<h2>#mid(st,git,stgit-15)#</h2>
+<div class="alert alert-success">
+<code>Git Durumu</code>
+<code>#mid(st,git,stgit-15)#</code>
+</div>
 </cfoutput>
+
+</cf_box>
