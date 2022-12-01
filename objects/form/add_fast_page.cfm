@@ -24,7 +24,7 @@
 		var sel=document.getElementById("solution");
 		for(let i=0;i<a.recordcount;i++){
 			var opt=document.createElement("option");
-			opt.setAttribute("value",a.WRK_FAMILY_ID[i]);
+			opt.setAttribute("value",a.WRK_SOLUTION_ID[i]);
 			opt.innerText=a.SOLUTION[i]
 			sel.appendChild(opt);
 		}
@@ -36,7 +36,7 @@
 			var sel=document.getElementById("family");
 		for(let i=0;i<a.recordcount;i++){
 			var opt=document.createElement("option");
-			opt.setAttribute("value",a.WRK_SOLUTION_ID[i]);
+			opt.setAttribute("value",a.WRK_FAMILY_ID[i]);
 			opt.innerText=a.FAMILY[i]
 			sel.appendChild(opt);
 		}
@@ -44,7 +44,7 @@
 
 		function loadModules(id,a,b){
 		var a=wrk_query("select * from WRK_MODULE WHERE FAMILY_ID="+id,"DSN")
-			var sel=document.getElementById("family");
+			var sel=document.getElementById("module");
 		for(let i=0;i<a.recordcount;i++){
 			var opt=document.createElement("option");
 			opt.setAttribute("value",a.MODULE_NO[i]);
