@@ -11,6 +11,8 @@
                                         <option value="draggable">draggable</option>
                                     </select>
                                     <select id="solution" name="solution" onchange="loadFamilies(this.value,'family','module')" required=""></select>
+                                    <select id="family" name="family" onchange="loadModules(this.value,'module')" required=""></select>
+                                    <select id="module" name="module" required=""></select>
 <input type="text" name="head" placeholder="Head">
 </cfform>
 
@@ -22,9 +24,32 @@
 		var sel=document.getElementById("solution");
 		for(let i=0;i<a.recordcount;i++){
 			var opt=document.createElement("option");
-			opt.setAttribute("value",a.WRK_SOLUTION_ID[i]);
+			opt.setAttribute("value",a.WRK_FAMILY_ID[i]);
+			opt.innerText=a.SOLUTION[i]
 			sel.appendChild(opt);
 		}
 
 	})
+
+	function loadFamilies(id,a,b){
+		var a=wrk_query("select * from WRK_FAMILY WHERE WRK_SOLUTION_ID="+id,"DSN")
+			var sel=document.getElementById("family");
+		for(let i=0;i<a.recordcount;i++){
+			var opt=document.createElement("option");
+			opt.setAttribute("value",a.WRK_SOLUTION_ID[i]);
+			opt.innerText=a.FAMILY[i]
+			sel.appendChild(opt);
+		}
+	}
+
+		function loadModules(id,a,b){
+		var a=wrk_query("select * from WRK_MODULE WHERE FAMILY_ID="+id,"DSN")
+			var sel=document.getElementById("family");
+		for(let i=0;i<a.recordcount;i++){
+			var opt=document.createElement("option");
+			opt.setAttribute("value",a.MODULE_NO[i]);
+			opt.innerText=a.MODULE[i]
+			sel.appendChild(opt);
+		}
+	}
 </script>
