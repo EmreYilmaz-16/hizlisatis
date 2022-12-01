@@ -5,19 +5,21 @@
 <input type="hidden" name="type" value="0">
 <input type="hidden" name="licence" value="2">
 <input type="hidden" name="status" value="Deployment">
-Head <input type="text" name="head" placeholder="Head"><br>
-FUSEACTION <input type="text" name="fuseaction_name" placeholder="Full Fuseaction"><BR>
+<div class="form-group"> Head <input type="text" name="head" placeholder="Head"></div>
+<div class="form-group">FUSEACTION <input type="text" name="fuseaction_name" placeholder="Full Fuseaction"></div>
 PENCERE
-<select name="window_type" id="window_type" required=""><option value="">Seçiniz </option><option value="normal" selected="selected">normal</option><option value="popup">popup</option><option value="draggable">draggable</option></select><BR>
-SOLUTION <select id="solution" name="solution" onchange="loadFamilies(this.value,'family','module')" required=""></select><BR>
-FAMILY<select id="family" name="family" onchange="loadModules(this.value,'module')" required=""></select><BR>
-MODULE<select id="module" name="module" required=""></select><BR>
-DOSYAYOLU<input type="text" name="file_path" placeholder="file_path"><BR>
-<select name="is_menu">
+<div class="form-group"><select name="window_type" id="window_type" required=""><option value="">Seçiniz </option><option value="normal" selected="selected">normal</option><option value="popup">popup</option><option value="draggable">draggable</option></select></div>
+<div class="form-group">SOLUTION <select id="solution" name="solution" onchange="loadFamilies(this.value,'family','module')" required=""></select></div>
+<div class="form-group">FAMILY<select id="family" name="family" onchange="loadModules(this.value,'module')" required=""></select></div>
+<div class="form-group">MODULE<select id="module" name="module" required=""></select></div>
+<div class="form-group">DOSYAYOLU<input type="text" name="file_path" placeholder="file_path"></div>
+<div class="form-group"><select name="is_menu">
 	<option value="Menü" disabled>Menüde Gör</option>
 	<option value="0">Hayır</option>
 	<option value="1">Evet</option>
-</select>
+</select></div>
+<br>
+<input type="submit">
 </cfform>
 
 
