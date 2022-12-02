@@ -42,9 +42,14 @@ CalculatehydrolicRow    ----Hidrolik Satır Tutarını Hesaplar
 CalculateHydSub         ----Hidrolik Basket Toplamını Hesaplar
 SetName                 ----Genel Sanal Ürün İsmi Verme
 saveOrder               ----Siparişi Kayıt Etme ve Güncelleme
+
 */
 
-
+/**
+ * 
+ *@description {closeBoxDraggable} Kapator
+ *@function {closeBoxDraggable} kapatmaya yarar
+ */
 
 
 $(document).ready(function () {
@@ -68,15 +73,38 @@ $(document).ready(function () {
 
 })
 
+/**
+ * 
+ * @param {*} id 
+ * @param {*} row_id 
+ */
 function openHose(id = "", row_id = "") {
     var comp_id = document.getElementById("company_id").value;
     var price_catid = document.getElementById("PRICE_CATID").value;
     openBoxDraggable("index.cfm?fuseaction=product.emptypopup_virtual_main_partner&page=3&id=" + id + "&price_catid=" + price_catid + "&comp_id=" + comp_id + "&type=1&row_id=" + row_id)
 }
 
+
+/**
+ * Finds a product.
+ *
+ * @class      FindProduct (name)
+ * @param      {<type>}  ev           { parameter_description }
+ * @param      {<type>}  el           { parameter_description }
+ * @param      {<type>}  userid       The userid
+ * @param      {<type>}  dsn2         The dsn 2
+ * @param      {<type>}  dsn1         The dsn 1
+ * @param      {<type>}  dsn3         The dsn 3
+ * @param      {<type>}  price_catid  The price catid
+ * @param      {<type>}  comp_id      The component identifier
+ */
 function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     var keyword = el.value;
     var elemanAtt = el.getAttribute("data-type");
+    /**
+     * Ürün Id Elemanı 
+     * @type HTMLELEMENT
+     */
     var pidElem = document.getElementById(elemanAtt + "_PId")
     var sidElem = document.getElementById(elemanAtt + "_SId")
     var NameElem = document.getElementById(elemanAtt + "_lbs")
@@ -115,6 +143,12 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     }
 }
 
+
+/**
+ * Calculates the tube.
+ *
+ * @class      CalculateTube (name)
+ */
 function CalculateTube() {
     //LRekor_Prc,Tube_Prc,RRekor_Prc,AdditionalProduct_Prc,Kabuk_Prc,working_Prc
     //LRekor_Qty,Tube_Qty,RRekor_Qty,AdditionalProduct_Qty,marj,Kabuk_Qty,working_Qty
@@ -164,6 +198,7 @@ function saveVirtualTube(dsn3, modal_id) {
             console.log(retDat)
             var obj = JSON.parse(retDat)
             AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 1, '', "TL", obj.PRICE, "-5");
+          
             closeBoxDraggable(modal_id)
 
         }
