@@ -88,6 +88,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 					<cfelse>				
 					<td><div class="form-group"><input type="text" name="PRODUCT_NAME#QUESTION_ID#" value=''></div>
 							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" value=""></td>
+					<td><div class="form-group"><input type="text" name="BARKODE#QUESTION_ID#" value=""></div></td>
 					<td><div class="form-group"><input type="text" name="AMOUNT#QUESTION_ID#" value=""></div></td>
 					<td><span id="MAIN_UNIT_#QUESTION_ID#"></span></td>
 					</cfif>
