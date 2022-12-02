@@ -15,6 +15,7 @@
 <cfparam name="attributes.max_row" default="10">
 <cfparam name="attributes.price_catid" default="">
 <cfparam name="attributes.keyword" default="">
+<cfparam name="attributes.company_id" default="">
 <cfif isDefined("attributes.sayfa")>
 <cfif attributes.sayfa neq 0>
 <cfset attributes.start_row=attributes.sayfa * attributes.max_row+1>
@@ -34,7 +35,7 @@
     attributes.hiearchy,
     attributes.brand_id
     )>
-
+<cfdump var="#cgi#">
 <cf_big_list>
     <thead>
         <tr>

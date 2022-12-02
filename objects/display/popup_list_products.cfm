@@ -1,3 +1,4 @@
+<cf_box title="Ürün Listesi">
 
 <table>
 <tr>
@@ -118,3 +119,5 @@ function sayfaYukle() {
 
 
 </script>
+
+</cf_box>
