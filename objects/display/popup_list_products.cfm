@@ -1,4 +1,4 @@
-<cf_box title="Ürün Listesi">
+<cf_box title="Ürün Listesi" scroll="1" collapsable="1" resize="1" popup_box="1">
 
 <table>
 <tr>
