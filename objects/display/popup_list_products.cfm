@@ -61,9 +61,8 @@
 </table>
 <div id="product_list"></div>
 
+<button class="btn btn-danger" onclick="closeBoxDraggable(getModalId())">Kapat</button>
 
-<input type="hidden" name="company_id" value="#attributes.company_id#">
-<input type="hidden" name="price_catid" value="#attributes.price_catid#">
 <script>
 var currentProductPage = 0;
 function nextPage(syf) {
@@ -117,7 +116,11 @@ function sayfaYukle() {
     AjaxPageLoad("index.cfm?fuseaction=product.emptypopup_list_pbs_product_ajax" + uri + "&sayfa=" + syf, "product_list", 1, "Yükleniyor");
 }
 
-
+function getModalId(){
+var e=document.getElementsByClassName("ui-draggable-box")[0]
+	var modal_id=list_last(e.getAttribute("id"),"_")
+	return modal_id
+}
 </script>
 
 </cf_box>

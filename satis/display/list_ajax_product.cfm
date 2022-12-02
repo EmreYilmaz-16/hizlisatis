@@ -63,7 +63,7 @@
             <td>#it.PRODUCT_CODE_2#</td>
             <td><cfif findNoCase("emptypopup_list_products_partner", getHTTPRequestData().headers.referer)>
             <cfelse>
-                pbvs
+                
                 <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,0,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#')">#it.PRODUCT_NAME#</a>
 </cfif>
             </td>
