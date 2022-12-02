@@ -35,7 +35,7 @@
     attributes.hiearchy,
     attributes.brand_id
     )>
-<cfdump var="#cgi#">
+<cfdump var="#getHTTPRequestData()#">
 <cf_big_list>
     <thead>
         <tr>
