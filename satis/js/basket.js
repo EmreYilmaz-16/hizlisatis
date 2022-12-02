@@ -114,6 +114,7 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
 
     }
 }
+
 function CalculateTube() {
     //LRekor_Prc,Tube_Prc,RRekor_Prc,AdditionalProduct_Prc,Kabuk_Prc,working_Prc
     //LRekor_Qty,Tube_Qty,RRekor_Qty,AdditionalProduct_Qty,marj,Kabuk_Qty,working_Qty
@@ -158,17 +159,36 @@ function saveVirtualTube(dsn3, modal_id) {
     var d = $("#TubeForm").serialize();
     $.ajax({
         url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=saveVirtualTube",
-        data: d + "&product_name=" + p_name + "&dsn3=" + generalParamsSatis.dataSources.dsn3+"&employee_id="+generalParamsSatis.userData.user_id,
+        data: d + "&product_name=" + p_name + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&employee_id=" + generalParamsSatis.userData.user_id,
         success: function (retDat) {
             console.log(retDat)
             var obj = JSON.parse(retDat)
             AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 1, '', "TL", obj.PRICE, "-5");
             closeBoxDraggable(modal_id)
+
         }
     })
 
 }
 
+/**
+ * 
+ * @param {*} pid Ürün Idsi
+ * @param {*} sid Stok Idsi
+ * @param {*} is_virtual Sanal Ürünmü
+ * @param {*} qty Miktar
+ * @param {*} price Fiyat
+ * @param {*} p_name Ürün Adı
+ * @param {*} tax Vergi
+ * @param {*} discount_rate İndirim Orano
+ * @param {*} poduct_type Ürün Tipi 1-Hortum  2-Hidrolik 3-Pompa
+ * @param {*} shelf_code Raf Kodu
+ * @param {*} omoney Doviz 
+ * @param {*} price_other Doviz Fiyat
+ * @param {*} currency Satır Aşaması
+ * @param {*} is_manuel Manuelmi
+ * @param {*} cost Maliyet
+ */
 function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, poduct_type = 0, shelf_code = '', omoney = 'TL', price_other, currency = "-6", is_manuel = 0, cost = 0) {
     row_count++;
     rowCount = row_count;
@@ -456,19 +476,26 @@ function selectRow(row) {
 function getProductMultiUse(keyword, comp_id, price_catid) {
     var new_query = new Object();
     var req;
+
     function callpage(url) {
         req = false;
         if (window.XMLHttpRequest)
-            try { req = new XMLHttpRequest(); }
-            catch (e) { req = false; }
-        else if (window.ActiveXObject)
+            try {
+                req = new XMLHttpRequest();
+            }
+        catch (e) {
+            req = false;
+        } else if (window.ActiveXObject)
             try {
                 req = new ActiveXObject("Msxml2.XMLHTTP");
             }
-            catch (e) {
-                try { req = new ActiveXObject("Microsoft.XMLHTTP"); }
-                catch (e) { req = false; }
+        catch (e) {
+            try {
+                req = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                req = false;
             }
+        }
         if (req) {
             function return_function_() {
                 console.log(req)
@@ -591,11 +618,16 @@ function ShelfControl(pid, RafCode) {
     q += " LEFT JOIN " + generalParamsSatis.dataSources.dsn + ".STOCKS_LOCATION AS SL ON  SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID "
     q += "WHERE PPR.PRODUCT_ID=" + pid + " AND SHELF_CODE='" + RafCode + "'"
     var rafData = wrk_query(q, 'dsn3')
-    if (rafData.recordcount != 0) { return true } else {
+    if (rafData.recordcount != 0) {
+        return true
+    } else {
         if (generalParamsSatis.workingParams.IS_RAFSIZ == 0) {
             alert("Ürün Bu Rafta Tanımlı Değildir Veya Raf Kodu Bulunamamıştır");
             return false;
-        } else { alert("Ürün Bu Rafta Tanımlı Değildir Veya Raf Kodu Bulunamamıştır Rafsız Kayıt Yapılacaktır"); return true }
+        } else {
+            alert("Ürün Bu Rafta Tanımlı Değildir Veya Raf Kodu Bulunamamıştır Rafsız Kayıt Yapılacaktır");
+            return true
+        }
     }
 }
 
@@ -708,8 +740,7 @@ function hesapla(input, sira) {
     $("#qs_basket tbody tr[data-rc='" + sira + "']").css("background-color", "white");
     if (list_find("price,other_money", input)) {
         price_other_ = (price_ * r1) / r2;
-    }
-    else if (input == "price_other") {
+    } else if (input == "price_other") {
         price_ = (price_other_ * r2) / r1;
     }
     var newNettotal = (price_ * (100 - indirim1_) / 100) * amount_;
@@ -763,6 +794,7 @@ function toplamHesapla() {
     $("#subTaxTotal").val(commaSplit(tax_total_, 2));
     $("#subWTax").val(commaSplit(tax_price_total_, 2));
 }
+
 function toplamHesapla_2() {
     var rows = document.getElementsByClassName("sepetRow")
     var netT = 0;
@@ -839,7 +871,7 @@ function UpdVirtualTube(dsn3, modal_id) {
     var d = $("#TubeForm").serialize();
     $.ajax({
         url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=UpdVirtualTube",
-        data: d + "&dsn3=" + generalParamsSatis.dataSources.dsn3+"&employee_id="+generalParamsSatis.userData.user_id,
+        data: d + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&employee_id=" + generalParamsSatis.userData.user_id,
         success: function (retDat) {
             console.log(retDat)
             var obj = JSON.parse(retDat)
@@ -961,7 +993,9 @@ function SaveTube(dsn3, modal_id, tip = 0) {
     var p_name = ""
     if (tip == 0) {
         var p_name = window.prompt("Ürün Adı")
-        if (p_name.length > 0) { } else { SaveTube(dsn3, modal_id) }
+        if (p_name.length > 0) {} else {
+            SaveTube(dsn3, modal_id)
+        }
     }
     var qs = TubeControl();
     if (qs) {
@@ -984,6 +1018,7 @@ function SaveTube(dsn3, modal_id, tip = 0) {
     }
 
 }
+
 function TubeControl() {
     HataArr = [];
     var LRekor_PId = document.getElementById("LRekor_PId").value
@@ -1004,37 +1039,49 @@ function TubeControl() {
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 1)
     console.log(Q);
     if (Q.IS_REQUIRED == 1) {
-        if (parseInt(LRekor_PId) == 0 || LRekor_PId.length == 0) { HataArr.push("Sol Rekor Seçmediniz !") }
+        if (parseInt(LRekor_PId) == 0 || LRekor_PId.length == 0) {
+            HataArr.push("Sol Rekor Seçmediniz !")
+        }
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 2)
     console.log(Q);
     if (Q.IS_REQUIRED == 1) {
-        if (parseInt(Tube_PId) == 0 || Tube_PId.length == 0) { HataArr.push("Hortum Seçmediniz !") }
+        if (parseInt(Tube_PId) == 0 || Tube_PId.length == 0) {
+            HataArr.push("Hortum Seçmediniz !")
+        }
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 3)
     console.log(Q);
     if (Q.IS_REQUIRED == 1) {
-        if (parseInt(RRekor_PId) == 0 || RRekor_PId.length == 0) { HataArr.push("Sağ Rekor Seçmediniz !") }
+        if (parseInt(RRekor_PId) == 0 || RRekor_PId.length == 0) {
+            HataArr.push("Sağ Rekor Seçmediniz !")
+        }
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 4)
     console.log(Q);
     if (Q.IS_REQUIRED == 1) {
-        if (parseInt(AdditionalProduct_PId || AdditionalProduct_PId.length == 0) == 0) { HataArr.push("Ek İşlem Seçiniz !") }
+        if (parseInt(AdditionalProduct_PId || AdditionalProduct_PId.length == 0) == 0) {
+            HataArr.push("Ek İşlem Seçiniz !")
+        }
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 5)
     console.log(Q);
     if (Q.IS_REQUIRED == 1) {
-        if (parseInt(Kabuk_PId) == 0 || Kabuk_PId.length == 0) { HataArr.push("Kabuk Seçmediniz !") }
+        if (parseInt(Kabuk_PId) == 0 || Kabuk_PId.length == 0) {
+            HataArr.push("Kabuk Seçmediniz !")
+        }
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 6)
     console.log(Q);
     if (Q.IS_REQUIRED == 1) {
-        if (parseInt(working_PId) == 0 || working_PId.length == 0) { HataArr.push("İşçilik Seçiniz !") }
+        if (parseInt(working_PId) == 0 || working_PId.length == 0) {
+            HataArr.push("İşçilik Seçiniz !")
+        }
     }
 
     var jString = JSON.stringify(HataArr)
@@ -1047,10 +1094,14 @@ function TubeControl() {
         return true;
     }
 }
+
 function HataGosterClick(modal_id, type) {
-    if (type == 1) { closeBoxDraggable(modal_id) }
+    if (type == 1) {
+        closeBoxDraggable(modal_id)
+    }
 
 }
+
 function openHydrolic(id = "", row_id = "", tr = 0) {
     var comp_id = document.getElementById("company_id").value;
     var price_catid = document.getElementById("PRICE_CATID").value;
@@ -1061,6 +1112,7 @@ function openHydrolic(id = "", row_id = "", tr = 0) {
     }
 
 }
+
 function findHydrolic(ev, el) {
     var keyword = el.value;
     var comp_id = document.getElementById("company_id").value;
@@ -1092,6 +1144,7 @@ function findHydrolic(ev, el) {
         $(el).focus();
     }
 }
+
 function addHydrolicRow(Product) {
     hydRowCount++
     var Tbl = document.getElementById("tblBaskHyd")
@@ -1199,8 +1252,9 @@ function addHydrolicRow(Product) {
 
     Tbl.appendChild(tr)
 }
+
 function saveVirtualHydrolic(modal_id) {
-    var pname = SetName(2)//prompt("Ürün Adı");
+    var pname = SetName(2) //prompt("Ürün Adı");
     $("#hydRwc").val(hydRowCount);
     $("#hydProductName").val(pname);
     var formData = getFormData($("#HydrolicForm"));
@@ -1216,6 +1270,7 @@ function saveVirtualHydrolic(modal_id) {
     })
 
 }
+
 function UpdateVirtualHydrolic(modal_id) {
     $("#hydRwc").val(hydRowCount);
 
@@ -1258,6 +1313,7 @@ function getFormData($form) {
 
     return indexed_array;
 }
+
 function CalculatehydrolicRow(rw_id) {
     var dovv_ = $('input[name=_rd_money]:checked').val();
     var dow = document.getElementById("_hidden_rd_money_" + dovv_).value
@@ -1280,6 +1336,7 @@ function CalculatehydrolicRow(rw_id) {
     document.getElementById("netT_" + rw_id).value = commaSplit(netPrc);
     CalculateHydSub();
 }
+
 function CalculateHydSub() {
     var total = 0;
     var marj = document.getElementById("marjHyd").value;
@@ -1296,6 +1353,7 @@ function CalculateHydSub() {
     total = total + ((total * marj) / 100)
     $("#hydSubTotal").val(commaSplit(total));
 }
+
 function SetName(type, message = "Ürün Adı", old_name = "") {
     let name = old_name;
     var newName = ""
@@ -1452,7 +1510,7 @@ function saveOrder() {
     var basket_rate_2 = document.getElementById("_txt_rate2_" + checkedValue).value
     var BASKET_RATE_1 = filterNum(basket_rate_1, 4);
     var BASKET_RATE_2 = filterNum(basket_rate_2, 4);
-    var Fs=getParameterByName("fuseaction");
+    var Fs = getParameterByName("fuseaction");
     var OrderHeader = {
         COMPANY_ID: COMPANY_ID,
         PAYMETHOD: PAYMETHOD,
@@ -1472,7 +1530,7 @@ function saveOrder() {
         CITY_ID: CITY_ID,
         COUNTY_ID: COUNTY_ID,
         ISLEM_TIPI_PBS: ISLEM_TIPI_PBS,
-        FACT:Fs
+        FACT: Fs
     }
 
     var OrderFooter = {
@@ -1528,7 +1586,9 @@ function RowControlForVirtual() {
     for (let i = 1; i <= elems.length; i++) {
         var vi = document.getElementById("is_virtual_" + i)
         console.log(vi.value)
-        if (parseInt(vi.value) == 1) { sanal_varmı = true }
+        if (parseInt(vi.value) == 1) {
+            sanal_varmı = true
+        }
     }
     if (sanal_varmı) {
         document.getElementById("siparis").setAttribute("disabled", "true");
@@ -1536,14 +1596,17 @@ function RowControlForVirtual() {
         $(document.getElementById("snl_teklif")).click()
     }
 }
+
 function pencere_ac_product(no) {
 
 
 }
+
 function sellinputAllVal(el) {
     //el.setSelectionRange(0, el.value.length)
     el.select();
 }
+
 function discountControl() {
 
     toplamHesapla();
