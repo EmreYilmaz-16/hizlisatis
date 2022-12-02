@@ -79,17 +79,21 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 						#QUESTION#
 					</th>					
 					<cfif isDefined("Eleman#QUESTION_ID#.STOCK_ID")>
-						<td><div class="form-group"><input type="text" name="PRODUCT_NAME#QUESTION_ID#" value='#evaluate("Eleman#QUESTION_ID#.PRODUCT_NAME")#'></div>
+						<td><div class="form-group"><input type="text" name="PRODUCT_NAME#QUESTION_ID#" value='#evaluate("Eleman#QUESTION_ID#.PRODUCT_NAME")#'>
+<button class="btn btn-succes" onclick='openProductPopup(#QUESTION_ID#)'>O</button>
+						</div>
 							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.STOCK_ID")#">
 						</td>
-						<td><div class="form-group"><input type="text" name="BARKODE#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.BARCOD")#"></div></td>
+						<td><div class="form-group"><input type="text"  name="BARKODE#QUESTION_ID#" id="BARKODE#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.BARCOD")#"></div></td>
 						<td><div class="form-group"><input type="text" name="AMOUNT#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.AMOUNT")#"></div></td>
 						<td><span id="MAIN_UNIT_#QUESTION_ID#">#evaluate("Eleman#QUESTION_ID#.MAIN_UNIT")#</span></td>
 					<cfelse>				
-					<td><div class="form-group"><input type="text" name="PRODUCT_NAME#QUESTION_ID#" value=''></div>
-							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" value=""></td>
-					<td><div class="form-group"><input type="text" name="BARKODE#QUESTION_ID#" value=""></div></td>
-					<td><div class="form-group"><input type="text" name="AMOUNT#QUESTION_ID#" value=""></div></td>
+					<td><div class="form-group"><input type="text" name="PRODUCT_NAME#QUESTION_ID#" value=''>
+						<button class="btn btn-succes" onclick='openProductPopup(#QUESTION_ID#)'>O</button>
+					</div>
+							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#" value=""></td>
+					<td><div class="form-group"><input type="text" name="BARKODE#QUESTION_ID#" id="BARKODE#QUESTION_ID#" value=""></div></td>
+					<td><div class="form-group"><input type="text" name="AMOUNT#QUESTION_ID#" id="AMOUNT#QUESTION_ID#" value=""></div></td>
 					<td><span id="MAIN_UNIT_#QUESTION_ID#"></span></td>
 					</cfif>
 					
