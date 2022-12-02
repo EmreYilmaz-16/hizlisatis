@@ -46,6 +46,9 @@ function filtreleriAl() {
     AddRess += "&miktar=" + miktar;
     return AddRess
 }
+$(document).ready(function(){
+	sayfaYukle();
+})
 function sayfaYukle() {
     var uri = filtreleriAl();
     var syf = 0;
