@@ -7,7 +7,7 @@
 	<input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="#attributes.price_catid#">
 	<input type="hidden" name="company_name" id="company_name" value="#attributes.company_name#">
 	<input type="hidden" name="company_id" id="company_id" value="#attributes.company_id#">
-	<input type="hidden" name="QuestionId" id="QuestionId" value="#attributes.QuestionId#">
+	<input type="hidden" name="question_id" id="question_id" value="#attributes.question_id#">
 	</cfoutput>
 
     <td>
