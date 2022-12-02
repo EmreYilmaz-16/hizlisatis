@@ -1,3 +1,4 @@
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
@@ -17,16 +18,17 @@
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.4/css/dx.common.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.4/css/dx.light.css" />
     <script src="https://cdn3.devexpress.com/jslib/20.2.4/js/dx.all.js"></script>
-
-<div class="demo-container">
-      <div id="gridContainer"></div>
-      <div class="options">
-        <div class="caption">Options</div>
-        <div class="option">
-          <div id="autoExpand"></div>
-        </div>
+<cf_box title="DevExtreme Test">
+  <div class="demo-container">
+    <div id="gridContainer"></div>
+    <div class="options">
+      <div class="caption">Options</div>
+      <div class="option">
+        <div id="autoExpand"></div>
       </div>
     </div>
+  </div>
+</cf_box>
 <script>
   const customers = [{
   ID: 1,
