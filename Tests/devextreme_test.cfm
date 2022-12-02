@@ -18,13 +18,17 @@
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.4/css/dx.light.css" />
     <script src="https://cdn3.devexpress.com/jslib/20.2.4/js/dx.all.js"></script>
 
-    <div class="demo-container">
+<div class="demo-container">
       <div id="gridContainer"></div>
+      <div class="options">
+        <div class="caption">Options</div>
+        <div class="option">
+          <div id="autoExpand"></div>
+        </div>
+      </div>
     </div>
-
-
-    <script>
-const customers = [{
+<script>
+  const customers = [{
   ID: 1,
   CompanyName: 'Super Mart of the West',
   Address: '702 SW 8th Street',
@@ -36,16 +40,6 @@ const customers = [{
   Website: 'http://www.nowebsitesupermart.com',
 }, {
   ID: 2,
-  CompanyName: 'Electronics Depot',
-  Address: '2455 Paces Ferry Road NW',
-  City: 'Atlanta',
-  State: 'Georgia',
-  Zipcode: 30339,
-  Phone: '(800) 595-3232',
-  Fax: '(800) 595-3231',
-  Website: 'http://www.nowebsitedepot.com',
-}, {
-  ID: 3,
   CompanyName: 'K&S Music',
   Address: '1000 Nicllet Mall',
   City: 'Minneapolis',
@@ -55,7 +49,7 @@ const customers = [{
   Fax: '(612) 304-6074',
   Website: 'http://www.nowebsitemusic.com',
 }, {
-  ID: 4,
+  ID: 3,
   CompanyName: "Tom's Club",
   Address: '999 Lake Drive',
   City: 'Issaquah',
@@ -65,7 +59,7 @@ const customers = [{
   Fax: '(800) 955-2293',
   Website: 'http://www.nowebsitetomsclub.com',
 }, {
-  ID: 5,
+  ID: 4,
   CompanyName: 'E-Mart',
   Address: '3333 Beverly Rd',
   City: 'Hoffman Estates',
@@ -75,7 +69,7 @@ const customers = [{
   Fax: '(847) 286-2501',
   Website: 'http://www.nowebsiteemart.com',
 }, {
-  ID: 6,
+  ID: 5,
   CompanyName: 'Walters',
   Address: '200 Wilmot Rd',
   City: 'Deerfield',
@@ -85,7 +79,7 @@ const customers = [{
   Fax: '(847) 940-2501',
   Website: 'http://www.nowebsitewalters.com',
 }, {
-  ID: 7,
+  ID: 6,
   CompanyName: 'StereoShack',
   Address: '400 Commerce S',
   City: 'Fort Worth',
@@ -95,7 +89,7 @@ const customers = [{
   Fax: '(817) 820-0742',
   Website: 'http://www.nowebsiteshack.com',
 }, {
-  ID: 8,
+  ID: 7,
   CompanyName: 'Circuit Town',
   Address: '2200 Kensington Court',
   City: 'Oak Brook',
@@ -105,7 +99,7 @@ const customers = [{
   Fax: '(800) 955-9392',
   Website: 'http://www.nowebsitecircuittown.com',
 }, {
-  ID: 9,
+  ID: 8,
   CompanyName: 'Premier Buy',
   Address: '7601 Penn Avenue South',
   City: 'Richfield',
@@ -115,7 +109,7 @@ const customers = [{
   Fax: '(612) 291-2001',
   Website: 'http://www.nowebsitepremierbuy.com',
 }, {
-  ID: 10,
+  ID: 9,
   CompanyName: 'ElectrixMax',
   Address: '263 Shuman Blvd',
   City: 'Naperville',
@@ -125,7 +119,7 @@ const customers = [{
   Fax: '(630) 438-7801',
   Website: 'http://www.nowebsiteelectrixmax.com',
 }, {
-  ID: 11,
+  ID: 10,
   CompanyName: 'Video Emporium',
   Address: '1201 Elm Street',
   City: 'Dallas',
@@ -135,7 +129,7 @@ const customers = [{
   Fax: '(214) 854-3001',
   Website: 'http://www.nowebsitevideoemporium.com',
 }, {
-  ID: 12,
+  ID: 11,
   CompanyName: 'Screen Shop',
   Address: '1000 Lowes Blvd',
   City: 'Mooresville',
@@ -144,15 +138,138 @@ const customers = [{
   Phone: '(800) 445-6937',
   Fax: '(800) 445-6938',
   Website: 'http://www.nowebsitescreenshop.com',
+}, {
+  ID: 12,
+  CompanyName: 'Braeburn',
+  Address: '1 Infinite Loop',
+  City: 'Cupertino',
+  State: 'California',
+  Zipcode: 95014,
+  Phone: '(408) 996-1010',
+  Fax: '(408) 996-1012',
+  Website: 'http://www.nowebsitebraeburn.com',
+}, {
+  ID: 13,
+  CompanyName: 'PriceCo',
+  Address: '30 Hunter Lane',
+  City: 'Camp Hill',
+  State: 'Pennsylvania',
+  Zipcode: 17011,
+  Phone: '(717) 761-2633',
+  Fax: '(717) 761-2334',
+  Website: 'http://www.nowebsitepriceco.com',
+}, {
+  ID: 14,
+  CompanyName: 'Ultimate Gadget',
+  Address: '1557 Watson Blvd',
+  City: 'Warner Robbins',
+  State: 'Georgia',
+  Zipcode: 31093,
+  Phone: '(995) 623-6785',
+  Fax: '(995) 623-6786',
+  Website: 'http://www.nowebsiteultimategadget.com',
+}, {
+  ID: 15,
+  CompanyName: 'Electronics Depot',
+  Address: '2455 Paces Ferry Road NW',
+  City: 'Atlanta',
+  State: 'Georgia',
+  Zipcode: 30339,
+  Phone: '(800) 595-3232',
+  Fax: '(800) 595-3231',
+  Website: 'http://www.nowebsitedepot.com',
+}, {
+  ID: 16,
+  CompanyName: 'EZ Stop',
+  Address: '618 Michillinda Ave.',
+  City: 'Arcadia',
+  State: 'California',
+  Zipcode: 91007,
+  Phone: '(626) 265-8632',
+  Fax: '(626) 265-8633',
+  Website: 'http://www.nowebsiteezstop.com',
+}, {
+  ID: 17,
+  CompanyName: 'Clicker',
+  Address: '1100 W. Artesia Blvd.',
+  City: 'Compton',
+  State: 'California',
+  Zipcode: 90220,
+  Phone: '(310) 884-9000',
+  Fax: '(310) 884-9001',
+  Website: 'http://www.nowebsiteclicker.com',
+}, {
+  ID: 18,
+  CompanyName: 'Store of America',
+  Address: '2401 Utah Ave. South',
+  City: 'Seattle',
+  State: 'Washington',
+  Zipcode: 98134,
+  Phone: '(206) 447-1575',
+  Fax: '(206) 447-1576',
+  Website: 'http://www.nowebsiteamerica.com',
+}, {
+  ID: 19,
+  CompanyName: 'Zone Toys',
+  Address: '1945 S Cienega Boulevard',
+  City: 'Los Angeles',
+  State: 'California',
+  Zipcode: 90034,
+  Phone: '(310) 237-5642',
+  Fax: '(310) 237-5643',
+  Website: 'http://www.nowebsitezonetoys.com',
+}, {
+  ID: 20,
+  CompanyName: 'ACME',
+  Address: '2525 E El Segundo Blvd',
+  City: 'El Segundo',
+  State: 'California',
+  Zipcode: 90245,
+  Phone: '(310) 536-0611',
+  Fax: '(310) 536-0612',
+  Website: 'http://www.nowebsiteacme.com',
 }];
 
-    	$(() => {
-  $('#gridContainer').dxDataGrid({
+</script>
+    <script>
+      $(() => {
+  const dataGrid = $('#gridContainer').dxDataGrid({
     dataSource: customers,
     keyExpr: 'ID',
-    columns: ['CompanyName', 'City', 'State', 'Phone', 'Fax'],
+    allowColumnReordering: true,
     showBorders: true,
+    grouping: {
+      autoExpandAll: true,
+    },
+    searchPanel: {
+      visible: true,
+    },
+    paging: {
+      pageSize: 10,
+    },
+    groupPanel: {
+      visible: true,
+    },
+    columns: [
+      'CompanyName',
+      'Phone',
+      'Fax',
+      'City',
+      {
+        dataField: 'State',
+        groupIndex: 0,
+      },
+    ],
+  }).dxDataGrid('instance');
+
+  $('#autoExpand').dxCheckBox({
+    value: true,
+    text: 'Expand All Groups',
+    onValueChanged(data) {
+      dataGrid.option('grouping.autoExpandAll', data.value);
+    },
   });
 });
 
     </script>
+
