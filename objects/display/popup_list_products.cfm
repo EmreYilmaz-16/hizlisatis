@@ -1,10 +1,10 @@
 
 <table>
 <tr>
-	<input type="hidden" name="price_cat">
-	<input type="hidden" name="price_cat_id">
-	<input type="hidden" name="company_name">
-	<input type="hidden" name="company_id">
+	<input type="hidden" name="price_cat" id="price_cat">
+	<input type="hidden" name="price_cat_id" id="price_cat_id">
+	<input type="hidden" name="company_name" id="company_name">
+	<input type="hidden" name="company_id" id="company_id">
     <td>
         <div class="form-group">
             
