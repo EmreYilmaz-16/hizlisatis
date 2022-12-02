@@ -1,8 +1,8 @@
 
 <table>
 <tr>
-	<input type="hidden" name="price_cat" id="price_cat">
-	<input type="hidden" name="price_cat_id" id="price_cat_id">
+	<input type="hidden" name="PRICE_CAT" id="PRICE_CAT">
+	<input type="hidden" name="PRICE_CATID" id="PRICE_CATID">
 	<input type="hidden" name="company_name" id="company_name">
 	<input type="hidden" name="company_id" id="company_id">
     <td>
