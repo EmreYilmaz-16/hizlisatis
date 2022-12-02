@@ -114,7 +114,7 @@
 </cfif>
 </cfoutput>
 </cf_big_list>
-<cfdump var="#attributes#">
+
 <!---
 AddRow(
     product_id,
