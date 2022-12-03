@@ -244,32 +244,32 @@
         </cfquery>
         <cfif isDefined('arguments.LRekor_PId') and len(arguments.LRekor_PId)>
         <cfquery name="InsertTree" datasource="#arguments.dsn3#">
-            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.LRekor_PId#,#arguments.LRekor_SId#,#Filternum(arguments.LRekor_Qty)#,1)
+            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE) VALUES(#Res.IDENTITYCOL#,#arguments.LRekor_PId#,#arguments.LRekor_SId#,#Filternum(arguments.LRekor_Qty)#,1,#arguments.LRekor_Prc#)
         </cfquery>
         </cfif>
         <cfif isDefined('arguments.Tube_PId') and len(arguments.Tube_PId)>
          <cfquery name="InsertTree" datasource="#arguments.dsn3#">
-            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.Tube_PId#,#arguments.Tube_SId#,#Filternum(arguments.Tube_Qty)#,2)
+            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE) VALUES(#Res.IDENTITYCOL#,#arguments.Tube_PId#,#arguments.Tube_SId#,#Filternum(arguments.Tube_Qty)#,2,#arguments.Tube_Prc#)
         </cfquery>
         </cfif>
         <cfif isDefined('arguments.RRekor_PId') and len(arguments.RRekor_PId)>
          <cfquery name="InsertTree" datasource="#arguments.dsn3#">
-            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.RRekor_PId#,#arguments.RRekor_SId#,#Filternum(arguments.RRekor_Qty)#,3)
+            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE) VALUES(#Res.IDENTITYCOL#,#arguments.RRekor_PId#,#arguments.RRekor_SId#,#Filternum(arguments.RRekor_Qty)#,3,#arguments.RRekor_Prc#)
         </cfquery>  
         </cfif>
         <cfif isDefined('arguments.AdditionalProduct_PId') and len(arguments.AdditionalProduct_PId)>
          <cfquery name="InsertTree" datasource="#arguments.dsn3#">
-            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.AdditionalProduct_PId#,#arguments.AdditionalProduct_SId#,#Filternum(arguments.AdditionalProduct_Qty)#,4)
+            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE) VALUES(#Res.IDENTITYCOL#,#arguments.AdditionalProduct_PId#,#arguments.AdditionalProduct_SId#,#Filternum(arguments.AdditionalProduct_Qty)#,4,#arguments.AdditionalProduct_Prc#)
         </cfquery> 
         </cfif>
         <cfif isDefined('arguments.Kabuk_PId') and len(arguments.Kabuk_PId)>
             <cfquery name="InsertTree" datasource="#arguments.dsn3#">
-               INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.Kabuk_PId#,#arguments.Kabuk_SId#,#Filternum(arguments.Kabukr_Qty)#,5)
+               INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE) VALUES(#Res.IDENTITYCOL#,#arguments.Kabuk_PId#,#arguments.Kabuk_SId#,#Filternum(arguments.Kabukr_Qty)#,5,#arguments.Kabuk_Prc#))
            </cfquery> 
         </cfif> 
         <cfif isDefined('arguments.working_PId') and len(arguments.working_PId)>
             <cfquery name="InsertTree" datasource="#arguments.dsn3#">
-               INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID) VALUES(#Res.IDENTITYCOL#,#arguments.working_PId#,#arguments.working_SId#,#Filternum(arguments.working_Qty)#,6)
+               INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE) VALUES(#Res.IDENTITYCOL#,#arguments.working_PId#,#arguments.working_SId#,#Filternum(arguments.working_Qty)#,6,#arguments.working_Prc#))
            </cfquery> 
         </cfif>            
         <cfcatch>
@@ -308,7 +308,7 @@
                 PRODUCT_TYPE=1,
                 IS_PRODUCTION=1,
                 PRODUCT_CATID=#arguments.PRODUCT_CATID#,
-                PRODUCT_DESCRIPTION='#arguments.PRODUCT_DESCRIPTION#'
+                PRODUCT_DESCRIPTION='#arguments.PRODUCT_DESCRIPTION#',
                 UPDATE_EMP=#arguments.employee_id#,
                 UPDATE_DATE=#now()# 
             WHERE VIRTUAL_PRODUCT_ID=#arguments.vp_id#
