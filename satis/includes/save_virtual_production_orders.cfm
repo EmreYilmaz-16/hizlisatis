@@ -1,6 +1,7 @@
 <cfquery name="ishvprodorders" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE UNIQUE_RELATION_ID='#evaluate("attributes.row_unique_relation_id#i#")#'
 </cfquery>
+
 <cfif not ishvprodorders.recordcount and evaluate("attributes.is_production_pbs#i#") eq 1>
 	<cfquery name="get_p_order_number" datasource="#dsn3#">
 		EXEC GET_PAPER_NUMBER 2
