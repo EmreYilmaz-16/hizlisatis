@@ -180,7 +180,7 @@ AddRow(
         END    
     </cfquery>
     <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
-    <cfquery name="get_productsss" datasource="#arguments.dsn1#">
+    <cfquery name="get_productsss" datasource="#arguments.dsn1#" result="getproducts_result">
         SELECT
             STOCKS.STOCK_ID,
             STOCKS.PRODUCT_ID,
@@ -289,7 +289,7 @@ AddRow(
     </cfquery>
 
          <cfsavecontent  variable="control5">
-                <cfdump  var="#get_productsss#">                
+                <cfdump  var="#getproducts_result#">                
                </cfsavecontent>
                <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
 <cfquery name="get_products" datasource="#dsn3#">
