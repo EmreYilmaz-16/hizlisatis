@@ -1,4 +1,24 @@
 <cfinclude template="/AddOns/Partner/satis/Includes/virtual_offer_parameters.cfm">
+<cfquery name="getMoney" datasource="#dsn#">
+    SELECT MONEY,RATE1, EFFECTIVE_SALE AS RATE2 FROM SETUP_MONEY WHERE PERIOD_ID = #session.ep.period_id# ORDER BY MONEY_ID
+</cfquery>
+<script>
+    var moneyArr=[
+        <cfoutput query="getMoney">
+            {
+                MONEY:"#MONEY#",
+                RATE1:"#RATE1#",
+                RATE2:"#RATE2#",
+            },
+        </cfoutput>
+    ]
+</script>
+<cfoutput query="getMoney">
+    <input type="hidden" id="hidden_rd_money_#CurrentRow#" name="hidden_rd_money_#CurrentRow#" value="#MONEY#">
+    <input type="hidden" id="txt_rate1_#CurrentRow#" name="txt_rate1_#CurrentRow#" value="#RATE1#">
+    <input type="hidden" id="txt_rate2_#CurrentRow#" name="txt_rate2_#CurrentRow#" value="#RATE2#">
+</cfoutput>
+
 
 	<cfquery name="getProductionOrders" datasource="#dsn3#">
 		SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.VP_ORDER_ID#
