@@ -124,6 +124,12 @@ var e=document.getElementsByClassName("ui-draggable-box")[0]
 	var modal_id=list_last(e.getAttribute("id"),"_")
 	return modal_id
 }
+
+function Filtrele(el, ev) {
+    if (ev.keyCode == 13) {
+        sayfaYukle();
+    }
+}
 </script>
 
 </cf_box>
