@@ -1395,7 +1395,7 @@ function SetName(type, message = "Ürün Adı", old_name = "") {
     if (generalParamsSatis.workingParams.IS_RANDOM_UNIQE_NAME == 1) {
 
         var d = new Date()
-        var t = parseInt((d - 1) / 1000000)
+        var t = parseInt((d - 1) / 1)
         if (type == 1) {
             name = "Hortum-" + t
         }
