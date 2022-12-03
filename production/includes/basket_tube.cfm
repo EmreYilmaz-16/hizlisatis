@@ -82,7 +82,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 						<td>
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" name="PRODUCT_NAME#QUESTION_ID#" value='#evaluate("Eleman#QUESTION_ID#.PRODUCT_NAME")#'>
+										<input type="text" name="PRODUCT_NAME_#QUESTION_ID#" value='#evaluate("Eleman#QUESTION_ID#.PRODUCT_NAME")#'>
 										<span class="input-group-addon btnPointer icon-ellipsis"  onclick='openProductPopup(#QUESTION_ID#)'>O</span>
 									</div>
 								</div>
@@ -112,7 +112,8 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 							</div>
 						</div>
 						<input type="hidden" name="STOCK_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#" value="">
-						<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#" value="">		
+						<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#" value="">	
+						<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="">	
 					</td>
 					<td>
 						<div class="form-group">

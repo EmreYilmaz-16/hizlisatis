@@ -33,5 +33,13 @@
 
 	function setRow(product_id,stock_id,product_name,question_id,barcode,main_unit,price,quantity){
 		console.log(arguments);
+		$("#PRODUCT_NAME_"+question_id).val(product_name);
+		$("#STOCK_ID_"+question_id).val(stock_id);
+		$("#PRODUCT_ID_"+question_id).val(product_id);
+		$("#PRICE_"+question_id).val(price);
+		$("#BARKODE_"+question_id).val(barcode);
+		$("#AMOUNT_"+question_id).val(quantity);
+		$("#MAIN_UNIT_"+question_id).innerText(main_unit)
+
 	}
 </script>
