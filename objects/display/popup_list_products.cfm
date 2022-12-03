@@ -105,7 +105,7 @@ function filtreleriAl() {
     miktar = filterNum(miktar);
 
     if (kw.length > 0) AddRess += "&Keyword=" + kw; else AddRess += "&Keyword=";
-    if(question_id.length>0) AddRess+="&question_id="+question_id else AddRess+="&question_id=0";
+    if(question_id.length>0) AddRess+="&question_id="+question_id; else AddRess+="&question_id=0";
     if (cni.length > 0 && cn.length > 0) AddRess += "&getCompId=" + cni; else AddRess += "&getCompId=";
     if (product_cat.length > 0 && search_product_catid.length > 0) AddRess += "&hiearchy=" + search_product_catid; else AddRess += "&hiearchy=";
     if (brand_name.length > 0 && brand_id.length > 0) AddRess += "&brand_id=" + brand_id; else AddRess += "&brand_id=";
