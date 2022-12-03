@@ -179,7 +179,13 @@ AddRow(
             DROP TABLE #dsn#.TempProductList_#arguments.userid#
         END    
     </cfquery>
+    <cfset argkv=arguments.keyword>
     <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
+             <cfsavecontent  variable="control5">
+                <cfdump  var="#argkv#">   
+                <cfdump  var="#arguments.keyword#">                
+               </cfsavecontent>
+               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
     <cfquery name="get_productsss" datasource="#arguments.dsn1#" result="getproducts_result">
         SELECT
             STOCKS.STOCK_ID,
