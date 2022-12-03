@@ -151,6 +151,8 @@ select count(*) AS RC from PBS_OFFER
         queryAddRow(wrq,O);
    </cfscript>
 </cfloop>
+<cfdump var="#attributes#">
+<cfabort>
 <cfquery name="get_ProcessTypeEshipping" datasource="#dsn#">
 	SELECT
     	TOP (1)
