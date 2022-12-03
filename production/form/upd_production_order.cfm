@@ -39,7 +39,7 @@
 		$("#PRICE_"+question_id).val(price);
 		$("#BARKODE_"+question_id).val(barcode);
 		$("#AMOUNT_"+question_id).val(quantity);
-		$("#MAIN_UNIT_"+question_id).innerText(main_unit)
+		$("#MAIN_UNIT_"+question_id).text(main_unit)
 
 	}
 </script>
