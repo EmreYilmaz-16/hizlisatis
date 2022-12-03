@@ -92,7 +92,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 						</td>
 						<td>
 							<div class="form-group">
-								<input type="text"  name="BARKODE_#QUESTION_ID#" id="BARKODE#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.BARCOD")#">
+								<input type="text"  name="BARKODE_#QUESTION_ID#" id="BARKODE_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.BARCOD")#">
 							</div>
 						</td>
 						<td>
@@ -117,7 +117,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 					</td>
 					<td>
 						<div class="form-group">
-							<input type="text" name="BARKODE_#QUESTION_ID#" id="BARKODE#QUESTION_ID#" value="">
+							<input type="text" name="BARKODE_#QUESTION_ID#" id="BARKODE_#QUESTION_ID#" value="">
 						</div>
 					</td>
 					<td>

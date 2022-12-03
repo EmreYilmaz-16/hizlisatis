@@ -1,3 +1,5 @@
+<cfinclude template="/AddOns/Partner/satis/Includes/virtual_offer_parameters.cfm">
+
 	<cfquery name="getProductionOrders" datasource="#dsn3#">
 		SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.VP_ORDER_ID#
 	</cfquery>
@@ -40,6 +42,11 @@
 		$("#BARKODE_"+question_id).val(barcode);
 		$("#AMOUNT_"+question_id).val(quantity);
 		$("#MAIN_UNIT_"+question_id).text(main_unit)
+
+	}
+
+
+	function hesapla(type){
 
 	}
 </script>
