@@ -172,6 +172,7 @@ AddRow(
     <cfargument name="get_company" default="">
     <cfargument name="product_hierarchy" default="">
     <cfargument name="brand_id" default="">
+
     <cfquery name="DelTempTable" datasource="#arguments.dsn1#">
         IF EXISTS(SELECT * FROM tempdb.sys.tables where name = '####TempProductList_#arguments.userid#')
         BEGIN
@@ -179,7 +180,7 @@ AddRow(
         END    
     </cfquery>
     <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
-    <cfquery name="get_products" datasource="#arguments.dsn1#">
+    <cfquery name="get_productsss" datasource="#arguments.dsn1#">
         SELECT
             STOCKS.STOCK_ID,
             STOCKS.PRODUCT_ID,
@@ -288,7 +289,7 @@ AddRow(
     </cfquery>
 
          <cfsavecontent  variable="control5">
-                <cfdump  var="#get_products#">                
+                <cfdump  var="#get_productsss#">                
                </cfsavecontent>
                <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
 <cfquery name="get_products" datasource="#dsn3#">
