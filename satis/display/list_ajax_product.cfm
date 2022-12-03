@@ -62,6 +62,7 @@
             <td>#it.STOCK_CODE#</td>
             <td>#it.PRODUCT_CODE_2#</td>
             <td><cfif findNoCase("emptypopup_list_products_partner", getHTTPRequestData().headers.referer)>
+                <a onclick="setRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.PRODUCT_NAME#',#attributes.question_id#,'#it.BARCOD#','#it.MAIN_UNIT#',#it.PRICE#,1)">#it.PRODUCT_NAME#</a>
             <cfelse>
                 
                 <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,0,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#')">#it.PRODUCT_NAME#</a>
@@ -79,7 +80,7 @@
                 <cfloop array="#PSBV#" item="it2" index="iy">
                 <li style="border-bottom: solid 1px ##858b9359;padding-bottom:3px">
 <cfif findNoCase("emptypopup_list_products_partner", getHTTPRequestData().headers.referer)>
-    pbws
+    <a onclick="setRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.PRODUCT_NAME#',#attributes.question_id#,'#it2.BARCOD#','#it2.MAIN_UNIT#',#it2.PRICE#,1)">#it2.PRODUCT_NAME#</a>
 <cfelse>
                     <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,0,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#')">#it2.PRODUCT_NAME#</a></li>
 </cfif>        
@@ -415,6 +416,7 @@ AddRow(
                 PRODUCT_CODE_2=PRODUCT_CODE_2,
                 MANUFACT_CODE=MANUFACT_CODE,
                 TAX=TAX,
+                BARCOD=BARCOD,
                 IS_PRODUCTION=IS_PRODUCTION,
                 STOCK_COUNT=AMOUNT,
                 LAST_COST=lastCost,
