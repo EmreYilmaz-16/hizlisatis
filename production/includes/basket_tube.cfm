@@ -122,7 +122,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 					</td>
 					<td>
 						<div class="form-group">
-							<input type="text" name="AMOUNT_#QUESTION_ID#" id="AMOUNT#QUESTION_ID#" value="">
+							<input type="text" name="AMOUNT_#QUESTION_ID#" id="AMOUNT_#QUESTION_ID#" value="">
 						</div>
 					</td>
 					<td>
