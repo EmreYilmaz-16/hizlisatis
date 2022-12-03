@@ -152,7 +152,9 @@ select count(*) AS RC from PBS_OFFER
    </cfscript>
 </cfloop>
 <cfdump var="#attributes#">
+<cfif session.ep.USERID eq 1146>
 <cfabort>
+</cfif>
 <cfquery name="get_ProcessTypeEshipping" datasource="#dsn#">
 	SELECT
     	TOP (1)
