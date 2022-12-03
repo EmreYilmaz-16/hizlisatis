@@ -286,6 +286,11 @@ AddRow(
             </cfif>
     
     </cfquery>
+
+         <cfsavecontent  variable="control5">
+                <cfdump  var="#get_products#">                
+               </cfsavecontent>
+               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
 <cfquery name="get_products" datasource="#dsn3#">
   WITH CTE1 AS   (  SELECT
         *
