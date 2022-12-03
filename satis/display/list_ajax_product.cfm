@@ -281,7 +281,7 @@ AddRow(
                             PRODUCT_CAT.PRODUCT_CAT LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS
                         </cfif>
                         )
-                        <cfif ListLast(attributes.keyword,';') neq kw>AND</cfif>
+                        <cfif ListLast(arguments.keyword,';') neq kw>AND</cfif>
                     </cfloop>
                 )
             </cfif>
