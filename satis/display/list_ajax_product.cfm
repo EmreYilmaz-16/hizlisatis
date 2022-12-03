@@ -173,10 +173,10 @@ AddRow(
     <cfargument name="product_hierarchy" default="">
     <cfargument name="brand_id" default="">
 
-    <cfquery name="DelTempTable" datasource="#arguments.dsn#">
+    <cfquery name="DelTempTable" datasource="#arguments.dsn1#">
         IF EXISTS(SELECT * FROM sys.tables where name = 'TempProductList_#arguments.userid#')
         BEGIN
-            DROP TABLE TempProductList_#arguments.userid#
+            DROP TABLE #dsn#.TempProductList_#arguments.userid#
         END    
     </cfquery>
     <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
@@ -204,7 +204,7 @@ AddRow(
             PRODUCT_UNIT.MULTIPLIER,
             PRODUCT_BRANDS.BRAND_NAME
         INTO
-            TempProductList_#arguments.userid# 
+            #dsn#.TempProductList_#arguments.userid# 
         FROM
             PRODUCT
             LEFT JOIN STOCKS ON STOCKS.PRODUCT_ID = PRODUCT.PRODUCT_ID
@@ -292,11 +292,11 @@ AddRow(
                 <cfdump  var="#getproducts_result#">                
                </cfsavecontent>
                <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
-<cfquery name="get_products" datasource="#dsn#">
+<cfquery name="get_products" datasource="#arguments.dsn1#">
   WITH CTE1 AS   (  SELECT
         *
     FROM
-        TempProductList_#session.ep.userid#     
+        #dsn#.TempProductList_#session.ep.userid#     
         ),CTE2 AS 
 		(
 		SELECT
