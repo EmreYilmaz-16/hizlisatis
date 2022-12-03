@@ -153,7 +153,7 @@ select count(*) AS RC from PBS_OFFER
 </cfloop>
 <cfdump var="#attributes#">
 <cfif session.ep.USERID eq 1146>
-<cfabort>
+
 </cfif>
 <cfquery name="get_ProcessTypeEshipping" datasource="#dsn#">
 	SELECT
@@ -413,7 +413,9 @@ pos 2 <br>
 <cfelse>
     window.opener.location.href="/index.cfm?fuseaction=sales.emptypopup_form_add_upd_fast_sale_partner&event=upd&offer_id=<cfoutput>#offfr_id#</cfoutput>"
     </cfif>
+    <cfif session.ep.userid neq 1146> 
     this.close();
+</cfif>
 </script>
 <!----------
     PRICE=ROW_PRICE
