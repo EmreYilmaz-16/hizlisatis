@@ -28,13 +28,14 @@
 		SELECT * FROM  PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#getProductionOrders.UNIQUE_RELATION_ID#'
 	</cfquery>
 
-<cfform method="post">
+<cfform method="post" name="production_form" id="production_form">
 	<cfoutput>
 		<input type="hidden" name="offer_row_id" value="#getOffer.OFFER_ROW_ID#"> 
 		<cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
 		<cfquery name="getVirtualProduct"  datasource="#dsn3#">
 			SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#
 		</cfquery>
+		<input type="hidden" name="product_type" id="product_type" value="#getVirtualProduct.product_type#">
 			<cfif getVirtualProduct.product_type eq 1>
 				<cfinclude template="../includes/basket_tube.cfm">
 			<cfelseif getVirtualProduct.product_type eq 2>
@@ -47,6 +48,8 @@
 		</cfif>		
 <input type="hidden" name="total_price" id="total_price">
 	</cfoutput>
+	<button type="button" class="btn btn-warning" onclick="SaveVirtual()">Kaydet</button>
+	<button type="button" class="btn btn-success" onclick="CloseProductionOrders()">Üretimi Sonlandır</button>
 </cfform>
 <script>
 	function openProductPopup(question_id,from_row=0){
@@ -100,5 +103,10 @@ function DegerLeriHesapla(p,d,q){
     var tutar=indirimli_fiyat*d
    //return p+" ** "+q+" ** "+d+" ** "+indirim_tutari+" ** "+indirimli_fiyat+" ** "+tutar;
     return tutar;
+}
+
+function SaveVirtual(){
+	var form_data=$("#production_form").serialize();
+	console.log(form_data);
 }
 </script>
