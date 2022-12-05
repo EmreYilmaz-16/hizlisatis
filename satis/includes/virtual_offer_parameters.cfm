@@ -39,7 +39,7 @@
                       QUESTION_ID:#QUESTION_ID#,
                       QUESTION:'#QUESTION#',
                       IS_REQUIRED:#IS_REQUIRED#,
-                      QUESTION_PRODUCT_TYPE:QUESTION_PRODUCT_TYPE
+                      QUESTION_PRODUCT_TYPE:#QUESTION_PRODUCT_TYPE#
                   },
               </cfloop>
           ],
