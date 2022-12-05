@@ -37,7 +37,7 @@
 </div>
 <script>
     function getLocation(id){
-        var q=wrk_query("SELECT DEPARTMENT_ID,LOCATION_ID,COMMENT FROM workcube_metosan.STOCKS_LOCATION where DEPARTMENT_ID="+id,"dsn")
+        var q=wrk_query("SELECT DEPARTMENT_ID,LOCATION_ID,COMMENT FROM STOCKS_LOCATION where DEPARTMENT_ID="+id,"dsn")
         console.log(q)
         var sel=document.getElementById("loc");
         sel.innerHTML="";

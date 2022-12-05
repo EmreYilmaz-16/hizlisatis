@@ -31,11 +31,15 @@
 <cfform method="post" name="production_form" id="production_form">
 	<cfoutput>
 		<input type="hidden" name="offer_row_id" value="#getOffer.OFFER_ROW_ID#"> 
+		<input type="hidden" name="main_product_id" id="main_product_id" value="#getProductionOrders.STOCK_ID#">
+		<input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#getProductionOrders.UNIQUE_RELATION_ID#">
 		<cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
 		<cfquery name="getVirtualProduct"  datasource="#dsn3#">
 			SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#
 		</cfquery>
 		<input type="hidden" name="product_type" id="product_type" value="#getVirtualProduct.product_type#">
+		
+		
 			<cfif getVirtualProduct.product_type eq 1>
 				<cfinclude template="../includes/basket_tube.cfm">
 			<cfelseif getVirtualProduct.product_type eq 2>

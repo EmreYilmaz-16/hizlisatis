@@ -9,12 +9,12 @@
             <cfif listFind(session.ep.USER_LEVEL,MODULE_NO)>
             <cf_box title="#getf.MODULE#" collapsed="1">
                 <cfquery name="getO" datasource="#dsn#">
-                select * from workcube_metosan.workcube_metosan.WRK_OBJECTS where MODULE_NO=#getF.MODULE_NO#  and IS_LIVESTOCK=1 ORDER BY CONVERT(INT,left(HEAD,2))
+                select * from WRK_OBJECTS where MODULE_NO=#getF.MODULE_NO#  and IS_LIVESTOCK=1 ORDER BY CONVERT(INT,left(HEAD,2))
                 </cfquery>
                 <div style="display:flex;flex-wrap: wrap;">
                 <cfloop query="getO">
                     <cfquery name="gets" datasource="#dsn#">
-                        select * from workcube_metosan.USER_GROUP_OBJECT where USER_GROUP_ID=(select USER_GROUP_ID from workcube_metosan.EMPLOYEE_POSITIONS where EMPLOYEE_ID=#session.ep.userid#) AND OBJECT_NAME='#FULL_FUSEACTION#'
+                        select * from USER_GROUP_OBJECT where USER_GROUP_ID=(select USER_GROUP_ID from EMPLOYEE_POSITIONS where EMPLOYEE_ID=#session.ep.userid#) AND OBJECT_NAME='#FULL_FUSEACTION#'
                     </cfquery>
                     <cfif NOT gets.recordCount>
                     <cfoutput><a href="/index.cfm?fuseaction=#FULL_FUSEACTION#"  style="margin-right:2px;margin-top:1px;width: 20%;display: block;padding: 10px;text-align: center;border: solid;border-radius: 10px;"><img src="/images/e-pd/#ICON#" style="width:35px"><br>#HEAD#</cfoutput></a>
