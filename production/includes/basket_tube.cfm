@@ -136,6 +136,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 					</cfif>
 					
 				</tr>
+			
 			</CFLOOP>
 		</cf_grid_list>
 	</cf_box>
@@ -171,3 +172,9 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 
 
 </cf_box>
+
+<script>
+	$(document).ready(function(){
+		Hesapla(1);
+	})
+</script>

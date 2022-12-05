@@ -45,7 +45,7 @@
 		<cfelse>
 			<cfinclude template="../includes/bakset_normal.cfm">
 		</cfif>		
-
+<input type="hidden" name="total_price" id="total_price">
 	</cfoutput>
 </cfform>
 <script>
@@ -63,11 +63,42 @@
 		$("#AMOUNT_"+question_id).val(quantity);
 		$("#MAIN_UNIT_"+question_id).text(main_unit)
 		$("#DISCOUNT_"+question_id).text(discount)
-
+		Hesapla(1)
 	}
 
 
-	function hesapla(type){
+function Hesapla(type){
+    var TotalPrice=0;
+   if(type==1){
+    var questions=generalParamsSatis.Questions.filter(p=>p.QUESTION_PRODUCT_TYPE==0)
+    questions.forEach(function(el,ix){
+    console.log(el.QUESTION_ID)
+    console.log("PRICE_"+el.QUESTION_ID)
+    var price=document.getElementById("PRICE_"+el.QUESTION_ID).value
+    var quantity=document.getElementById("AMOUNT_"+el.QUESTION_ID).value
+    var discount=document.getElementById("DISCOUNT_"+el.QUESTION_ID).value
+    if(price.length ==0) price=0;
+    if(quantity.length ==0) quantity=0;
+    if(discount.length ==0) discount=0;
 
-	}
+    price=parseFloat(price)
+    quantity=parseFloat(quantity)
+    discount=parseFloat(discount)
+    console.log("Price="+price+" Quantity="+quantity+" Discount="+discount)
+    TotalPrice+=DegerLeriHesapla(price,quantity,discount)  
+    console.log(DegerLeriHesapla(price,quantity,discount))
+
+
+})}
+
+document.getElementById("total_price").value=TotalPrice;
+}
+function DegerLeriHesapla(p,d,q){
+    var indirim_tutari=0;
+    indirim_tutari=(p*q)/100
+    var indirimli_fiyat=p-indirim_tutari
+    var tutar=indirimli_fiyat*d
+   //return p+" ** "+q+" ** "+d+" ** "+indirim_tutari+" ** "+indirimli_fiyat+" ** "+tutar;
+    return tutar;
+}
 </script>
