@@ -89,7 +89,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 									</div>
 								</div>
 							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#"  value="#evaluate("Eleman#QUESTION_ID#.STOCK_ID")#">
-							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRODUCT_ID_")#">	
+							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRODUCT_ID")#">	
 							<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRICE")#">	
 						</td>
 						<td>
