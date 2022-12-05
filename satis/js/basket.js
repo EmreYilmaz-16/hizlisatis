@@ -109,6 +109,7 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     var sidElem = document.getElementById(elemanAtt + "_SId")
     var NameElem = document.getElementById(elemanAtt + "_lbs")
     var priceElem = document.getElementById(elemanAtt + "_Prc")
+    var discountElem = document.getElementById(elemanAtt + "_DSC")
     var PC_ELEM = document.getElementById("PRODUCT_CAT")
     var PCID_ELEM = document.getElementById("PRODUCT_CATID")
     var PCHIE_ELEM = document.getElementById("HIEARCHY")
@@ -126,6 +127,7 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
         if (Product.RECORDCOUNT != 0) {
             pidElem.value = Product.PRODUCT.PRODUCT_ID;
             sidElem.value = Product.PRODUCT.STOCK_ID;
+            discountElem.value = Product.PRODUCT.DISCOUNT_RATE;
             NameElem.innerText = Product.PRODUCT.PRODUCT_NAME;
             priceElem.value = Product.PRODUCT.PRICE;
             if (elemanAtt == "Tube") {
@@ -156,12 +158,16 @@ function CalculateTube() {
     var Tube_Prc = document.getElementById("Tube_Prc").value
     var RRekor_Prc = document.getElementById("RRekor_Prc").value
     var AdditionalProduct_Prc = document.getElementById("AdditionalProduct_Prc").value
-
     var working_Prc = document.getElementById("working_Prc").value
     var Kabuk_Prc = document.getElementById("Kabuk_Prc").value
 
 
-
+    var LRekor_DSC = document.getElementById("LRekor_DSC").value
+    var Tube_DSC = document.getElementById("Tube_DSC").value
+    var RRekor_DSC = document.getElementById("RRekor_DSC").value
+    var AdditionalProduct_DSC = document.getElementById("AdditionalProduct_DSC").value
+    var working_DSC = document.getElementById("working_DSC").value
+    var Kabuk_DSC = document.getElementById("Kabuk_DSC").value
 
 
 
@@ -174,10 +180,31 @@ function CalculateTube() {
     var marj = document.getElementById("marj").value
 
     var maliyet = document.getElementById("maliyet")
-    var Tf = (parseFloat(LRekor_Prc) * parseFloat(LRekor_Qty)) + (parseFloat(RRekor_Prc) * parseFloat(RRekor_Qty)) + (parseFloat(Tube_Prc) * parseFloat(Tube_Qty)) + (parseFloat(AdditionalProduct_Prc) * parseFloat(AdditionalProduct_Qty));
-    Tf = Tf + (parseFloat(working_Prc) * parseFloat(working_Qty)) + (parseFloat(Kabuk_Prc) * parseFloat(Kabuk_Qty))
+    var TotalValue=0;
+    
+    var TotalValue+=DegerLeriHesapla(LRekor_Prc,LRekor_DSC,LRekor_Qty);
+    var TotalValue+=DegerLeriHesapla(RRekor_Prc,RRekor_Qty,RRekor_DSC);
+    var TotalValue+=DegerLeriHesapla(Tube_Prc,Tube_DSC,Tube_Qty);
+    var TotalValue+=DegerLeriHesapla(AdditionalProduct_Prc,AdditionalProduct_DSC,AdditionalProduct_Qty);
+    var TotalValue+=DegerLeriHesapla(working_Prc,working_DSC,working_Qty);
+    var TotalValue+=DegerLeriHesapla(Kabuk_Prc,Kabuk_DSC,Kabuk_Qty);
+
+   // var Tf = (parseFloat(LRekor_Prc) * parseFloat(LRekor_Qty)) + (parseFloat(RRekor_Prc) * parseFloat(RRekor_Qty)) + (parseFloat(Tube_Prc) * parseFloat(Tube_Qty)) + (parseFloat(AdditionalProduct_Prc) * parseFloat(AdditionalProduct_Qty));
+    
+    var Tf=TotalValue;
+    //Tf = Tf + (parseFloat(working_Prc) * parseFloat(working_Qty)) + (parseFloat(Kabuk_Prc) * parseFloat(Kabuk_Qty))
     Tf = Tf + ((Tf * parseFloat(marj)) / 100)
     maliyet.value = commaSplit(Tf, 2);
+}
+
+function DegerLeriHesapla(p,d,q){
+   var price=parseFloat(p);
+   var discount=parseFloat(d);
+   var quantity=parseFloat(q);
+
+   var a=price-((price*discount)/100);
+   var b=a*quantity;
+   return b;
 }
 
 function calculateTubeRow(el) {

@@ -34,6 +34,7 @@
     <input type="hidden" name="LRekor_PId" id="LRekor_PId">
     <input type="hidden" name="LRekor_SId" id="LRekor_SId">
     <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="0">
+    <input type="hidden" name="LRekor_DSC" id="LRekor_DSC" value="0">
     <label style="width: 100%;font-size:6pt;color:red" id="LRekor_lbs"></label>
 </div>
 
@@ -44,6 +45,7 @@
     <input type="hidden" name="Tube_PId" id="Tube_PId">
     <input type="hidden" name="Tube_SId" id="Tube_SId">
     <input type="hidden" name="Tube_Prc" id="Tube_Prc" value="0">
+    <input type="hidden" name="Tube_DSC" id="Tube_DSC" value="0">
     <label style="width: 100%;font-size:6pt;color:red" id="Tube_lbs"></label>
 </div>
 
@@ -54,6 +56,7 @@
     <input type="hidden" name="RRekor_PId" id="RRekor_PId">
     <input type="hidden" name="RRekor_SId" id="RRekor_SId">
     <input type="hidden" name="RRekor_Prc" id="RRekor_Prc" value="0">
+    <input type="hidden" name="RRekor_DSC" id="RRekor_DSC" value="0">
     <label style="width: 100%;font-size:6pt;color:red" id="RRekor_lbs"></label>
 </div>
 
@@ -64,6 +67,7 @@
     <input type="hidden" name="Kabuk_PId" id="Kabuk_PId">
     <input type="hidden" name="Kabuk_SId" id="Kabuk_SId">
     <input type="hidden" name="Kabuk_Prc" id="Kabuk_Prc" value="0">
+    <input type="hidden" name="Kabuk_DSC" id="Kabuk_DSC" value="0">
     <label style="width: 100%;font-size:6pt;color:red" id="Kabuk_lbs"></label>
 </div>
 
@@ -74,6 +78,7 @@
     <input type="hidden" name="AdditionalProduct_PId" id="AdditionalProduct_PId">
     <input type="hidden" name="AdditionalProduct_SId" id="AdditionalProduct_SId">
     <input type="hidden" name="RRekor_Prc" id="AdditionalProduct_Prc" value="0">
+    <input type="hidden" name="RRekor_DSC" id="AdditionalProduct_DSC" value="0">
     <label style="width: 100%;font-size:6pt;color:red" id="AdditionalProduct_lbs"></label>
 </div>
 <div class="form-group">
@@ -83,6 +88,7 @@
     <input type="hidden" name="working_PId" id="working_PId">
     <input type="hidden" name="working_SId" id="working_SId">
     <input type="hidden" name="working_Prc" id="working_Prc" value="0">
+    <input type="hidden" name="working_DSC" id="working_DSC" value="0">
     <label style="width: 100%;font-size:6pt;color:red" id="working_lbs"></label>
 </div>
 <div class="form-group">
