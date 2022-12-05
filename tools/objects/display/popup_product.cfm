@@ -1,6 +1,6 @@
 <cfquery name="GETp" datasource="#DSN3#">
-select S.PRODUCT_NAME,S.PRODUCT_CODE_2,S.PRODUCT_ID,S.STOCK_ID from workcube_metosan_product.SETUP_COMPANY_STOCK_CODE  SCS
-LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=SCS.STOCK_ID
+select S.PRODUCT_NAME,S.PRODUCT_CODE_2,S.PRODUCT_ID,S.STOCK_ID from #dsn1#.SETUP_COMPANY_STOCK_CODE  SCS
+LEFT JOIN #dsn3#.STOCKS AS S ON S.STOCK_ID=SCS.STOCK_ID
 where SCS.COMPANY_ID=#attributes.cp_id#
 </cfquery>
 

@@ -8,7 +8,7 @@
 	</cfquery>
 	<cfset paper_p_order_no=get_p_order_number.PAPER_NO>
 	<cfquery name="insertvirtualporder" datasource="#dsn3#">
-		INSERT INTO [workcube_metosan_1].[VIRTUAL_PRODUCTION_ORDERS]
+		INSERT INTO [#dsn3#].[VIRTUAL_PRODUCTION_ORDERS]
 			(
 				[STOCK_ID],
 				[IS_FROM_VIRTUAL],

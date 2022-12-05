@@ -79,7 +79,7 @@
                 PC.PRICE_CAT
         </cfquery>
          <cfquery name="GETnOTES" datasource="#DSN#">
-            SELECT COUNT(*) AS NOTE_COUNT FROM workcube_metosan.NOTES where ACTION_SECTION='COMPANY_ID' AND ACTION_ID=#attributes.type_id#
+            SELECT COUNT(*) AS NOTE_COUNT FROM #dsn#.NOTES where ACTION_SECTION='COMPANY_ID' AND ACTION_ID=#attributes.type_id#
         </cfquery>
         <cfset CompInfoStruct = StructNew()>
         <cfset CompInfoStruct.CITY = GetCompInfo.CITY_NAME>
@@ -115,54 +115,7 @@
         
         <cfset InfoArray[1] = CompInfoStruct>
     <cfelseif attributes.q_type eq "SaleableStock">
-        <cfquery name="getSaleableStock" datasource="#dsn2#">
-      <!-----      SELECT TOP 1
-                SUM(T1.STOK) AS LAST_STOCK,
-                T1.DEPT,
-                T1.LOCATION,
-                SL.DEPARTMENT_LOCATION,
-                CONCAT(D.DEPARTMENT_HEAD,' - ',SL.COMMENT) AS DEPT_NAME,
-                CASE WHEN SUM(T1.STOK) > 0 THEN 1 ELSE 0 END AS STATUS
-            FROM
-                (
-                    SELECT
-                        ISNULL(SR.STOCK_IN-SR.STOCK_OUT,0) AS STOK,
-                        SR.STORE AS DEPT,
-                        SR.STORE_LOCATION AS LOCATION
-                    FROM
-                        STOCKS_ROW SR
-                    WHERE
-                        SR.PRODUCT_ID = <cfqueryparam cfsqltype = "cf_sql_integer" value = "#attributes.type_id#">
-                        AND CONCAT(SR.STORE,'-',SR.STORE_LOCATION) != '41-1' <!--- Mal Kabul Depo --->
-                        AND CONCAT(SR.STORE,'-',SR.STORE_LOCATION) != '43-1'<!---Proje depo gelmemesi için --->
-                        AND CONCAT(SR.STORE,'-',SR.STORE_LOCATION) != '40-1'<!---Teslim depo gelmemesi için --->
-                    UNION ALL
-                    SELECT
-                        ISNULL(STOCK_ARTIR-STOCK_AZALT,0) AS STOK,
-                        SRR.DEPARTMENT_ID AS DEPT,
-                        SRR.LOCATION_ID AS LOCATION
-                    FROM
-                        #dsn3_alias#.GET_STOCK_RESERVED_ROW_LOCATION SRR
-                    WHERE
-                        SRR.PRODUCT_ID = <cfqueryparam cfsqltype = "cf_sql_integer" value = "#attributes.type_id#">
-                        AND CONCAT(SRR.DEPARTMENT_ID,'-',SRR.LOCATION_ID) != '41-1' <!--- Mal Kabul Depo --->
-                        AND CONCAT(SRR.DEPARTMENT_ID,'-',SRR.LOCATION_ID) != '43-1'<!---Proje depo gelmemesi için --->
-                        AND CONCAT(SRR.DEPARTMENT_ID,'-',SRR.LOCATION_ID) != '40-1'<!---Teslim depo gelmemesi için --->
-                ) AS T1
-                LEFT JOIN #dsn#.DEPARTMENT D ON D.DEPARTMENT_ID = T1.DEPT
-                LEFT JOIN #dsn#.STOCKS_LOCATION SL ON SL.LOCATION_ID = T1.LOCATION AND SL.DEPARTMENT_ID = D.DEPARTMENT_ID
-            WHERE
-                T1.DEPT IS NOT NULL AND
-                T1.LOCATION IS NOT NULL
-            GROUP BY
-                T1.DEPT,
-                T1.LOCATION,
-                SL.DEPARTMENT_LOCATION,
-                D.DEPARTMENT_HEAD,
-                SL.COMMENT
-            ORDER BY
-                SUM(T1.STOK) DESC+------->
-
+        <cfquery name="getSaleableStock" datasource="#dsn2#">   
                 SELECT D.DEPARTMENT_HEAD,SL.COMMENT,D.DEPARTMENT_ID,SL.LOCATION_ID,CONVERT(nvarchar,D.DEPARTMENT_ID)+'-'+CONVERT(nvarchar,SL.LOCATION_ID) DEPT FROM (
 select * from #dsn3#.PRODUCT_PLACE where PRODUCT_PLACE_ID IN(
 select PRODUCT_PLACE_ID from #dsn3#.PRODUCT_PLACE_ROWS  where PRODUCT_ID=#attributes.type_id#)
