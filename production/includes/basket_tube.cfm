@@ -9,7 +9,7 @@
 		        where VIRTUAL_PRODUCT_ID=#getPo.STOCK_ID#
 	</cfquery>
 	<cfquery name="getsTree" datasource="#dsn3#">
-	            SELECT S.PRODUCT_NAME,S.STOCK_CODE,S.STOCK_ID,VPT.AMOUNT,VPQ.QUESTION,PU.MAIN_UNIT,VP_ID,VPQ.QUESTION_ID,S.BARCOD,VPT.PRICE FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS VPT
+	            SELECT S.PRODUCT_NAME,S.STOCK_CODE,S.STOCK_ID,S.PRODUCT_ID,VPT.AMOUNT,VPQ.QUESTION,PU.MAIN_UNIT,VP_ID,VPQ.QUESTION_ID,S.BARCOD,VPT.PRICE FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS VPT
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON VPT.STOCK_ID=S.STOCK_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCT_TREE_QUESTIONS AS VPQ ON VPQ.QUESTION_ID=VPT.QUESTION_ID
 LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UNIT_STATUS=1
@@ -25,6 +25,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 </cfif>
 <cfloop query="getsTree">
 <cfset "Eleman#QUESTION_ID#.STOCK_ID"=STOCK_ID>
+<cfset "Eleman#QUESTION_ID#.PRODUCT_ID"=PRODUCT_ID>
 <cfset "Eleman#QUESTION_ID#.PRODUCT_NAME"=PRODUCT_NAME>
 <cfset "Eleman#QUESTION_ID#.AMOUNT"=AMOUNT>
 <cfset "Eleman#QUESTION_ID#.MAIN_UNIT"=MAIN_UNIT>
@@ -88,8 +89,8 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AN
 									</div>
 								</div>
 							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#"  value="#evaluate("Eleman#QUESTION_ID#.STOCK_ID")#">
-							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.STOCK_ID")#">	
-							<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.STOCK_ID")#">	
+							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRODUCT_ID_")#">	
+							<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRICE")#">	
 						</td>
 						<td>
 							<div class="form-group">
