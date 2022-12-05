@@ -31,23 +31,7 @@
         </script>
     <cfabort>
 </cfif>
-<!----
-<cfif session.ep.userid eq 1136>
-    <cfquery name="getp" datasource="#dsn3#">
-        SELECT TOP 20 S.BARCOD,PP.SHELF_CODE FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR
-LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
-LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PPR.STOCK_ID
-    </cfquery>
-    <table>
-<cfoutput query="getp">
-    <tr>
-        <td>
-<cf_workcube_barcode type="code128" value="#BARCOD#" show="1" width="40" height="20">
-</td><td> <cf_workcube_barcode type="code128" value="#SHELF_CODE#" show="1" width="50" height="40"></td>
-</tr>
-</cfoutput>
-</table>    
-</cfif>---->
+
 <style>
 td{
     border-bottom:solid 0.5px black;

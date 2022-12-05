@@ -35,7 +35,7 @@
 		<input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#getProductionOrders.UNIQUE_RELATION_ID#">
 		<cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
 		<cfquery name="getVirtualProduct"  datasource="#dsn3#">
-			SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#
+			SELECT * FROM #dsn3#.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#
 		</cfquery>
 		<input type="hidden" name="product_type" id="product_type" value="#getVirtualProduct.product_type#">
 		
