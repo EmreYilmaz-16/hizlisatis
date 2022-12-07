@@ -21,7 +21,7 @@ UPDATE VIRTUAL_PRODUCTS_PRT SET PRICE=#FormData.TotalPrice#,UPDATE_EMP=#session.
 DELETE FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#FormData.main_product_id#
 </cfquery>
 <CFLOOP array="#RowData#" item="it" index="ix">
-      <cfquery name="InsertTree" datasource="#arguments.dsn3#">
+      <cfquery name="InsertTree" datasource="#dsn3#">
             INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE,DISCOUNT) 
             VALUES(
             #FormData.main_product_id#,
