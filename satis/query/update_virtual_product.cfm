@@ -193,7 +193,7 @@ TAX_TOTAL=taxT;
 
 <cfdump var="#attributes#">
 
-
+<cfinclude template="/AddOns/Partner/satis/Includes/upd_offer_tv.cfm">
 
 
 <!----  $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3))---->
