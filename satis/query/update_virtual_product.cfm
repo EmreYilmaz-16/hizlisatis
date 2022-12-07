@@ -13,7 +13,29 @@ SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#FormData.UNIQUE_RE
 <cfset RowData=FormData.ROW_DATA>
 
 <cfdump var="#RowData#">
-<cfabort>
+<cfquery name="UPD" datasource="#DSN3#">
+UPDATE VIRTUAL_PRODUCTS_PRT SET PRICE=#FormData.TotalPrice#,UPDATE_EMP=#session.ep.userid#,UPDATE_DATE=#now()# where VIRTUAL_PRODUCT_ID=#FormData.main_product_id#
+</cfquery>
+
+<cfquery name="DEL" datasource="#DSN3#">
+DELETE FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#FormData.main_product_id#
+</cfquery>
+<CFLOOP array="#RowData#" item="it" index="ix">
+      <cfquery name="InsertTree" datasource="#arguments.dsn3#">
+            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE,DISCOUNT) 
+            VALUES(
+            #FormData.main_product_id#,
+            #it.ROW_DATA.PRODUCT_ID#,
+            #it.ROW_DATA.STOCK_ID#,
+            #it.ROW_DATA.AMOUNT#,
+            #it.QUESTION_ID#,
+            #it.ROW_DATA.PRICE#,
+            #it.ROW_DATA.DISCOUNT#)
+        </cfquery>
+</CFLOOP>
+
+
+
 
 
 <cfquery name="getOrderMain" datasource="#dsn3#">
