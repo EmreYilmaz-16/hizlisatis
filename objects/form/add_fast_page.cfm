@@ -63,7 +63,7 @@ PENCERE
 
 <cfif isDefined("attributes.is_submit")>
 <cfquery name="ins" datasource="#dsn#" result="RES">
-INSERT INTO [#dsn3#].[WRK_OBJECTS]
+INSERT INTO [#dsn#].[WRK_OBJECTS]
            ([IS_ACTIVE]
            ,[MODULE_NO]
            ,[HEAD]
