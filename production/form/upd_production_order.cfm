@@ -111,7 +111,7 @@ function DegerLeriHesapla(p,d,q){
 
 function SaveVirtual(){
 var questions =generalParamsSatis.Questions.filter(p=>p.QUESTION_PRODUCT_TYPE==0)
-var form_data=new Array();
+var row_data=new Array();
 questions.forEach(function(value,key){
     console.log(value)
     var question_id=value.QUESTION_ID
@@ -134,9 +134,15 @@ questions.forEach(function(value,key){
                 DISCOUNT:discount
             }
         }
-        form_data.push(obj)
+        row_data.push(obj)
     }
 })
+var tprice=document.getElementById("total_price").value;
+tprice=parseFloat(filterNum(commaSplit(tprice)))
+var form_data={
+	TotalPrice:tprice,
+	row_data:row_data
+}
 console.log(form_data);
 }
 </script>
