@@ -1,5 +1,65 @@
-TARIH,ACIKLAMA,DURUM
-07-12-22,SATIR HESAPLAMALARI YAPILACAK,TAMAMLANDI;
-07-12-22,hidrolik için teklifi kontroll et,Başlamadı
-07-12-22,hidrolik için güncelleme yapılacak,Başlamadı
-07-12-22,
+----------------			HORTUM			----------------
+
+**	Sanal Üretim Emri Sonuçlandır
+**	Gerçek Ürün Oluştur
+**	Teklifi Gerçek Ürünle Güncelle
+**	Gerçek Üretim Emri Oluştur
+**	Gerçek Üretim Emrini Sonlandır
+**	Ambar Fişlerini Yap
+**	Üretim tamamlandı bildirimi gönder
+
+
+----------------	HİDROLİK		----------------
+
+**	Sanal Üretim Emri İçin Basketi Yap
+**	Sanal Üretim Emrinden Sanal Ürün Kaydını Yap
+**	Sanal Üretim Emri Oluştur
+**	Sanal Üretim Emri Sonuçlandır
+**	Gerçek Ürün Oluştur
+**	Teklifi Gerçek Ürünle Güncelle
+**	Gerçek Üretim Emri Oluştur
+**	Gerçek Üretim Emrini Sonlandır
+**	Ambar Fişlerini Yap
+**	Üretim tamamlandı bildirimi gönder
+
+
+----------------	POMPA		----------------
+
+**	Sanal Ürün Oluşturma Kayıt Ekranı
+**	Sanal Ürün Oluşturma Güncelle Ekranı
+**	Basket Fonksiyonlarını Yaz (PDA)
+**	Basket Fonksiyonlarını Yaz (PC)
+**	Sanal Üretim Emri İçin Basketi Yap
+**	Sanal Üretim Emrinden Sanal Ürün Kaydını Yap
+**	Sanal Üretim Emri Oluştur
+**	Sanal Üretim Emri Sonuçlandır
+**	Gerçek Ürün Oluştur
+**	Teklifi Gerçek Ürünle Güncelle
+**	Gerçek Üretim Emri Oluştur
+**	Gerçek Üretim Emrini Sonlandır
+**	Ambar Fişlerini Yap
+**	Üretim tamamlandı bildirimi gönder
+
+
+----------------	 MAMÜL		----------------
+
+**	Sana Üretim Detay Ekranını Yap (Sanal Ürünlerde Olduğu Gibi Güncellemeye İzin Vermeyecek)
+**	Sanal Üretim Emri Oluştur
+**	Sanal Üretim Emri Sonuçlandır
+**	Gerçek Üretim Emri Oluştur
+**	Gerçek Üretim Emrini Sonlandır
+**	Ambar Fişlerini Yap
+**	Üretim tamamlandı bildirimi gönder
+
+
+----------------	GENEL		----------------
+
+
+
+----------------	NOTLAR		----------------
+
+**	Sanal Üretim Emri Sonuçlandırma Tek Ekran
+**	Gerçek Üretim Emri Oluşturma Tek Ekran
+**	Gerçek Üretim Emri Sonlandır Tek Ekran
+**	Ambar Fişlerini Yap Tek Ekran
+**	Bildirim Gönder Tek Ekran
