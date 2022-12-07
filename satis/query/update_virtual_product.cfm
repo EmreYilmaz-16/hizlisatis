@@ -33,6 +33,7 @@ SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#FormData.UNIQUE_RE
 <cfquery name="getofferMoney" datasource="#dsn3#">
 select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.OFFER_ID#
 </cfquery>
+<cfset i=1>
 <cfloop query="getofferMoney">
     <cfset 'attributes._hidden_rd_money_#i#' = MONEY_TYPE>
     <cfset 'attributes._txt_rate1_#i#' = RATE1>
@@ -41,6 +42,7 @@ select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.OFFER_ID#
     <cfset 'attributes.hidden_rd_money_#i#' = MONEY_TYPE>
     <cfset 'attributes.txt_rate1_#i#' = RATE1>
     <cfset 'attributes.txt_rate2_#i#' = RATE2>
+    <cfset i=i+1>
 </cfloop>
 
 <cfquery name="getofferMoney3" datasource="#dsn3#">
