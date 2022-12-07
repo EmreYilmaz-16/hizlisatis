@@ -69,7 +69,7 @@
 		$("#BARKODE_"+question_id).val(barcode);
 		$("#AMOUNT_"+question_id).val(quantity);
 		$("#MAIN_UNIT_"+question_id).text(main_unit)
-		$("#DISCOUNT_"+question_id).text(discount)
+		$("#DISCOUNT_"+question_id).val(discount)
 		Hesapla(1)
 	}
 
@@ -110,7 +110,33 @@ function DegerLeriHesapla(p,d,q){
 }
 
 function SaveVirtual(){
-	var form_data=$("#production_form").serialize();
-	console.log(form_data);
+var questions =generalParamsSatis.Questions.filter(p=>p.QUESTION_PRODUCT_TYPE==0)
+var form_data=new Array();
+questions.forEach(function(value,key){
+    console.log(value)
+    var question_id=value.QUESTION_ID
+    var product_id=$("#PRODUCT_ID_"+question_id).val()
+    var stock_id=$("#STOCK_ID_"+question_id).val()
+    var amount=$("#AMOUNT_"+question_id).val()
+    var price=$("#PRICE_"+question_id).val()
+    var discount=$("#DISCOUNT_"+question_id).val()
+    if(product_id.length>0){
+        amount=parseFloat(filterNum(commaSplit(amount)))
+        price=parseFloat(filterNum(commaSplit(price)))   
+        discount=parseFloat(filterNum(commaSplit(discount)))   
+        var obj={
+            QUESTION_ID:question_id,
+            ROW_DATA:{
+                PRODUCT_ID:product_id,
+                STOCK_ID:stock_id,
+                AMOUNT:amount,
+                PRICE:price,
+                DISCOUNT:discount
+            }
+        }
+        form_data.push(obj)
+    }
+})
+
 }
 </script>
