@@ -87,7 +87,7 @@ function Hesapla(type){
     if(price.length ==0) price=0;
     if(quantity.length ==0) quantity=0;
     if(discount.length ==0) discount=0;
-
+	quantity=filterNum(quantity);
     price=parseFloat(price)
     quantity=parseFloat(quantity)
     discount=parseFloat(discount)

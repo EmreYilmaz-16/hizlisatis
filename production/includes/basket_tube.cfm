@@ -102,7 +102,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 						</td>
 						<td>
 							<div class="form-group">
-								<input type="text" name="AMOUNT_#QUESTION_ID#" id="AMOUNT_#QUESTION_ID#"  value="#evaluate("Eleman#QUESTION_ID#.AMOUNT")#">
+								<input type="text" name="AMOUNT_#QUESTION_ID#" onchange="this.value=commaSplit(this.value)" id="AMOUNT_#QUESTION_ID#"  value="#tlformat(evaluate("Eleman#QUESTION_ID#.AMOUNT"))#">
 							</div>
 						</td>
 						<td>
@@ -128,7 +128,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 					</td>
 					<td>
 						<div class="form-group">
-							<input type="text" name="AMOUNT_#QUESTION_ID#" id="AMOUNT_#QUESTION_ID#" value="">
+							<input type="text" name="AMOUNT_#QUESTION_ID#" onchange="this.value=commaSplit(this.value)"  id="AMOUNT_#QUESTION_ID#" value="#tlformat(0)#">
 						</div>
 					</td>
 					<td>
