@@ -1,5 +1,6 @@
 <cfdump var="#attributes#">
-
+<cfset FORM.ACTIVE_COMPANY=session.ep.company_id>
+<cfset ATTRIBUTES.ACTIVE_COMPANY=session.ep.company_id>
 <cfset FormData = deserializeJSON(attributes.data)>
 
 <cfdump var="#FormData#">

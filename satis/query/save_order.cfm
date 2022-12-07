@@ -88,6 +88,7 @@ select count(*) AS RC from PBS_OFFER
     <cfquery name="getUnit" datasource="#dsn3#">
         select PRODUCT_UNIT_ID,MAIN_UNIT from #dsn3#.PRODUCT_UNIT where PRODUCT_ID=#it.product_id#
     </cfquery>
+    
     <cfset "attributes.product_id#i#"=it.product_id>
     <cfif len(it.stock_id)><cfset "attributes.stock_id#i#"=it.stock_id><cfelse><cfset "attributes.stock_id#i#"=0></cfif>
     
