@@ -123,7 +123,7 @@ TOTAL_WITH_KDV=netT+taxT;
 TAX_TOTAL=taxT;
 
 </cfscript>
-<cfdump var="attributes">
+<cfdump var="#attributes#">
 
 <!----  $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3))---->
 
