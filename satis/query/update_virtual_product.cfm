@@ -12,7 +12,7 @@ SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#FormData.UNIQUE_RE
 
 
 <cfquery name="getOrderMain" datasource="#dsn3#">
-	SELECT * FROM PBS_OFFER where OFFER_ID=#getOrder.ORDER_ID#
+	SELECT * FROM PBS_OFFER where OFFER_ID=#getOrder.OFFER_ID#
 </cfquery>
 
 <cfquery name="UpdateRow" datasource="#DSN3#">
@@ -20,7 +20,7 @@ SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#FormData.UNIQUE_RE
 </cfquery>
 
 <cfquery name="getOrderRows" datasource="#dsn3#">
-	SELECT * FROM PBS_OFFER_ROW where OFFER_ID=#getOrder.ORDER_ID#
+	SELECT * FROM PBS_OFFER_ROW where OFFER_ID=#getOrder.OFFER_ID#
 </cfquery>
 
 
@@ -31,7 +31,7 @@ SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#FormData.UNIQUE_RE
 				---------------------------->
 
 <cfquery name="getofferMoney" datasource="#dsn3#">
-select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.ORDER_ID#
+select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.OFFER_ID#
 </cfquery>
 <cfloop query="getofferMoney">
     <cfset 'attributes._hidden_rd_money_#i#' = MONEY_TYPE>
@@ -44,11 +44,11 @@ select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.ORDER_ID#
 </cfloop>
 
 <cfquery name="getofferMoney3" datasource="#dsn3#">
-select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.ORDER_ID# AND IS_SELECTED=1
+select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.OFFER_ID# AND IS_SELECTED=1
 </cfquery>
 
 <cfset attributes.KUR_SAY = getofferMoney.recordcount>
-<cfset attributes.offer_id = getOrder.ORDER_ID>
+<cfset attributes.offer_id = getOrder.OFFER_ID>
 <cfset attributes.offer_date = getOrderMain.OFFER_DATE>
 <cfset attributes.deliverdate = getOrderMain.DELIVERDATE>
 <cfset attributes.ship_date = getOrderMain.SHIP_DATE>
