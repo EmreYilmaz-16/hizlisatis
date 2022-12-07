@@ -137,6 +137,6 @@ questions.forEach(function(value,key){
         form_data.push(obj)
     }
 })
-
+console.log(form_data);
 }
 </script>
