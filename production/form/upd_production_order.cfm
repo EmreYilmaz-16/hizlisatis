@@ -138,10 +138,18 @@ questions.forEach(function(value,key){
     }
 })
 var tprice=document.getElementById("total_price").value;
+var main_product_id=$("#main_product_id").val();
+var UNIQUE_RELATION_ID=$("#UNIQUE_RELATION_ID").val();
+var product_type=$("#product_type").val();
+var offer_row_id=$("#offer_row_id").val();
 tprice=parseFloat(filterNum(commaSplit(tprice)))
 var form_data={
 	TotalPrice:tprice,
-	row_data:row_data
+	row_data:row_data,
+	main_product_id:main_product_id,
+	UNIQUE_RELATION_ID:UNIQUE_RELATION_ID,
+	product_type:product_type,
+	offer_row_id:offer_row_id
 }
 return form_data;
 }
