@@ -10,6 +10,10 @@ SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#FormData.UNIQUE_RE
 </cfquery>
 
 <cfdump var="#getOrder#">
+<cfset RowData=FormData.ROW_DATA>
+
+<cfdump var="#RowData#">
+<cfabort>
 
 
 <cfquery name="getOrderMain" datasource="#dsn3#">
