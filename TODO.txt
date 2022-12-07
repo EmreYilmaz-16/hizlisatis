@@ -1,2 +1,5 @@
 TARIH,ACIKLAMA,DURUM
-07-12-22,SATIR HESAPLAMALARI YAPILACAK,DEVAM EDİYORi;
+07-12-22,SATIR HESAPLAMALARI YAPILACAK,TAMAMLANDI;
+07-12-22,hidrolik için teklifi kontroll et,Başlamadı
+07-12-22,hidrolik için güncelleme yapılacak,Başlamadı
+07-12-22,
