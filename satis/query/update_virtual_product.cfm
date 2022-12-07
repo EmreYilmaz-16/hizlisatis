@@ -125,6 +125,77 @@ TAX_TOTAL=taxT;
 </cfscript>
 <cfdump var="#attributes#">
 
+<cfset attributes.basket_net_total=TOTAL_WITH_KDV>
+<cfset attributes.basket_tax_total=TAX_TOTAL>
+<cfset attributes.price=TOTAL_WITH_KDV>
+
+<cfset i=1>
+<cfloop query="getOrderRows">
+
+    <cfquery name="getUnit" datasource="#dsn3#">
+        select PRODUCT_UNIT_ID,MAIN_UNIT from #dsn3#.PRODUCT_UNIT where PRODUCT_ID=#PRODUCT_ID#
+    </cfquery>
+
+    <cfset "attributes.product_id#i#"=PRODUCT_ID>
+    <cfif len(STOCK_ID)><cfset "attributes.stock_id#i#"=STOCK_ID><cfelse><cfset "attributes.stock_id#i#"=0></cfif>
+    
+    <cfset "attributes.amount#i#"=QUANTITY>
+    <cfset "attributes.is_virtual#i#"=IS_VIRTUAL>
+    <cfset "attributes.is_production_pbs#i#"=1>
+    <cfset "attributes.unit#i#"=UNIT>
+    <cfset "attributes.unit_id#i#"=UNIT_ID>
+    <cfset "attributes.price#i#"=PRICE>
+    <cfset "attributes.tax#i#"=TAX>
+    <cfset "attributes.product_name#i#"=PRODUCT_NAME>
+    <cfset "attributes.indirim1#i#"=DISCOUNT_1>
+    <cfset "attributes.other_money_#i#"=OTHER_MONEY>
+    <cfset "attributes.other_money_value_#i#"=(PRICE_OTHER*QUANTITY)-((PRICE_OTHER*QUANTITY)*DISCOUNT_1)/100>
+    <cfset "attributes.price_other#i#"=filternum(PRICE_OTHER)>
+    <cfif isDefined("UNIQUE_RELATION_ID") and len(UNIQUE_RELATION_ID)>
+        <cfset "attributes.row_unique_relation_id#i#"=UNIQUE_RELATION_ID>
+    <cfelse>
+        <cfset "attributes.row_unique_relation_id#i#"="PBS#session.ep.userid##dateFormat(now(),"yyyymmdd")##timeFormat(now(),"hhmmnnl")#">
+    </cfif>
+    <cfset "attributes.RELATED_ACTION_TABLE#i#"="PBS_OFFER_ROW">
+    <cfset "attributes.PBS_OFFER_ROW_CURRENCY#i#"=PBS_OFFER_ROW_CURRENCY>
+    <cfset "attributes.order_currency#i#"=PBS_OFFER_ROW_CURRENCY>
+<cfif not isDefined("DETAIL_INFO_EXTRA")>
+    <cfset "attributes.detail_info_extra#i#"=''>
+<cfelse>
+    <cfset "attributes.detail_info_extra#i#"='#DETAIL_INFO_EXTRA#'>
+</cfif>
+<cfif not isDefined("PRODUCT_NAME2")>
+    <cfset "attributes.product_name_other#i#"=''>
+<cfelse>
+    <cfset "attributes.product_name_other#i#"='#PRODUCT_NAME2#'>
+</cfif>
+<cfif  isDefined("DELIVER_DATE") and len(DELIVER_DATE)>
+    
+    <cfset "attributes.deliver_date#i#"='#createODBCdatetime(DELIVER_DATE)#'>
+<cfelse>
+    <cfset "attributes.deliver_date#i#"=''>
+</cfif>
+    <cfset "attributes.SHELF_CODE#i#"=SHELF_CODE>
+    <cfquery name="getS" datasource="#dsn3#">
+    select STORE_ID,LOCATION_ID,PRODUCT_PLACE_ID from PRODUCT_PLACE where SHELF_CODE='#SHELF_CODE#'
+    </cfquery>
+    <CFSET RAF='#getS.STORE_ID#_#getS.LOCATION_ID#'>
+    <cfset "attributes.deliver_dept#i#"='#getS.STORE_ID#-#getS.LOCATION_ID#'>
+    <!----<cfset "attributes.deliver_loc_id#i#"=getS.LOCATION_ID>
+    <cfif isdefined("attributes.raflar.sl_#RAF#")>
+        <cfset "attributes.raflar.sl_#RAF#"="#evaluate("attributes.raflar.sl_#RAF#")#,#it.stock_id#_#filternum(it.amount)#">
+    <cfelse>
+        <cfset "attributes.raflar.sl_#RAF#"="#it.stock_id#_#filternum(it.amount)#">
+    </cfif>----->
+ 
+   <cfset i=i+1>
+</cfloop>
+
+<cfdump var="#attributes#">
+
+
+
+
 <!----  $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3))---->
 
 
