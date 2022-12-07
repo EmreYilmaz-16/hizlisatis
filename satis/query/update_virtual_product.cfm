@@ -60,7 +60,7 @@ select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.OFFER_ID# AND IS_SELECTE
 <cfset attributes.company_id = getOrderMain.COMPANY_ID>
 <cfset attributes.partner_id = getOrderMain.PARTNER_ID>
 <cfset attributes.member_id = getOrderMain.PARTNER_ID>
-<cfset attributes.sales_emp_id = getOrderMain.RECORD_EMP>
+<cfset attributes.sales_emp_id = getOrderMain.RECORD_MEMBER>
 <cfset attributes.sales_emp = '#session.ep.NAME# #session.ep.SURNAME#'>
 <cfset attributes.process_stage = getOrderMain.PROCESS_STAGE>
 
