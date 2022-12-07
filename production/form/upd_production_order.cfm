@@ -109,7 +109,7 @@ function DegerLeriHesapla(p,d,q){
     return tutar;
 }
 
-function SaveVirtual(){
+function GetBasketData(){
 var questions =generalParamsSatis.Questions.filter(p=>p.QUESTION_PRODUCT_TYPE==0)
 var row_data=new Array();
 questions.forEach(function(value,key){
@@ -143,7 +143,7 @@ var form_data={
 	TotalPrice:tprice,
 	row_data:row_data
 }
-console.log(form_data);
+return form_data;
 }
 
 
@@ -152,7 +152,7 @@ function saveVirtual(){
 	 var mapForm = document.createElement("form");
         mapForm.target = "Map";
         mapForm.method = "POST"; // or "post" if appropriate
-        mapForm.action = "/index.cfm?fuseaction=sales.emptypopup_query_save_order";
+        mapForm.action = "/index.cfm?fuseaction=sales.emptypopup_update_virtual_product";
 
         var mapInput = document.createElement("input");
         mapInput.type = "hidden";
@@ -163,7 +163,7 @@ function saveVirtual(){
 
         document.body.appendChild(mapForm);
 
-        map = window.open("/index.cfm?fuseaction=sales.emptypopup_query_save_order", "Map", "status=0,title=0,height=600,width=800,scrollbars=1");
+        map = window.open("/index.cfm?fuseaction=sales.emptypopup_update_virtual_product", "Map", "status=0,title=0,height=600,width=800,scrollbars=1");
 
         if (map) {
             mapForm.submit();
