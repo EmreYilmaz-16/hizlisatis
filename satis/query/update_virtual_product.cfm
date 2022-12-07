@@ -41,7 +41,7 @@ select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.ORDER_ID#
     <cfset 'attributes.hidden_rd_money_#i#' = MONEY_TYPE>
     <cfset 'attributes.txt_rate1_#i#' = RATE1>
     <cfset 'attributes.txt_rate2_#i#' = RATE2>
-</cfloop
+</cfloop>
 
 <cfquery name="getofferMoney3" datasource="#dsn3#">
 select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.ORDER_ID# AND IS_SELECTED=1
