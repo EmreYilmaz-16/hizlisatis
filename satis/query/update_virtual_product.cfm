@@ -86,6 +86,8 @@ select * from PBS_OFFER_MONEY where ACTION_ID=#getOrder.ORDER_ID# AND IS_SELECTE
 <cfset attributes.consumer_id = ''>
 <cfset attributes.rows_ = getOrderRows.RECORDCOUNT>
 
+<cfset attributes.genel_indirim=getOrderMain.SA_DISCOUNT>
+<cfset form.genel_indirim=getOrderMain.SA_DISCOUNT>
 
 <cfset attributes.price = 0>
 <cfset attributes.basket_net_total = 0>
@@ -111,60 +113,39 @@ cfloop(query='getOrderRows' ){
 	grosT+=tts;
 }
 
+discT+=attributes.genel_indirim;
+netT=grosT-discT;
+taxT=(netT*18)/100;
+
+TOTAL_WITH_KDV=netT+taxT;
+TAX_TOTAL=taxT;
+
 </cfscript>
+<cfdump var="attributes">
 
-<cfloop query="getOrderRows">
-
-
-
-
-</cfloop>
+<!----  $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3))---->
 
 
 
 
 <!-----------------------------
-	    var rows = document.getElementsByClassName("sepetRow")
-    var netT = 0;
-    var taxT = 0;
-    var discT = 0;
-    var grosT = 0;
-    var kdv_matrah = 0;
-    for (let i = 1; i <= rows.length; i++) {
-        var prc = filterNum(document.getElementById("price_" + i).value)
-        var qty = filterNum(document.getElementById("amount_" + i).value)
-        var dsc = filterNum(document.getElementById("indirim1_" + i).value)
-        var tax = filterNum(document.getElementById("Tax_" + i).value)
-        //   console.log("%c Fiyat "+ prc,"color:green;font-size:10pt")
-        //  console.log("%c Miktar "+qty,"color:red;font-size:10pt")
-        // console.log("%c Tax "+tax,"color:orange;font-size:10pt")
-        var tts = prc * qty;
-        var ds = (tts * dsc) / 100
-        var ttr = tts - ds
-        //   console.log("%c Tutar "+commaSplit(ttr,2),"color:blue;font-size:10pt")
-        var tx = (ttr * tax) / 100
-        netT += ttr
-        taxT += tx;
-        discT += ds
-        grosT += tts;
+    var SUBTOTAL = document.getElementById("subTotal").value;
+    var SUBTAXTOTAL = document.getElementById("subTaxTotal").value;
+    var SUBNETTOTAL = document.getElementById("subWTax").value;
+
+    var GROSS_TOTAL = document.getElementById("txt_total").value;
+    var AFTER_DISCOUNT = document.getElementById("txt_disc").value;
+    var DISCOUNT_TOTAL = document.getElementById("txt_disc_total").value;
+    var TOTAL_WITHOUT_KDV = document.getElementById("txt_nokdv_total").value;
+    var TAX_TOTAL = document.getElementById("txt_kdv_total").value;
+    var TOTAL_WITH_KDV = document.getElementById("txt_withkdv_total").value;
+
+    <cfset attributes.basket_net_total=FormData.OrderFooter.TOTAL_WITH_KDV>
+<cfset attributes.basket_tax_total=FormData.OrderFooter.TAX_TOTAL>
 
 
 
-    }
-    console.log("%c Genel Toplam " + commaSplit(netT, 2), "color:purple;font-size:10pt")
-    console.log("%c Vergi Toplam " + commaSplit(taxT, 2), "color:violet;font-size:10pt")
-    console.log("%c İndirim Toplam " + commaSplit(discT, 2), "color:lightgreen;font-size:10pt")
-    console.log("%c Gros Total " + commaSplit(grosT, 2), "color:#cad13d;font-size:10pt")
-    var d = parseFloat(filterNum($("#txt_disc").val()))
-    $("#txt_disc").val(commaSplit(d, 3))
-    var udc = (netT * generalParamsSatis.workingParams.MAX_DISCOINT) / 100
-    console.log(udc)
-    if (d > udc) {
-        alert("Genel İndirim İşlem Tutarının %" + generalParamsSatis.workingParams.MAX_DISCOINT + "'ndan büyük Olmaz İndirim 0'lanacaktır")
-        $("#txt_disc").val(commaSplit(0, 3))
-        d = 0;
-    }
-
+   
     console.log("%c İndirim Toplam " + commaSplit(d, 2), "color:lightgreen;font-size:10pt")
     $("#txt_total").val(commaSplit(grosT, 3))
     discT += d
@@ -176,4 +157,20 @@ cfloop(query='getOrderRows' ){
     $("#txt_kdv_total").val(commaSplit(taxT, 3))
     $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3))
     $("#basket_bottom_total").val(commaSplit(netT + taxT, 3))
+
+
+     var OrderFooter = {
+        SUBTOTAL: SUBTOTAL,
+        SUBTAXTOTAL: SUBTAXTOTAL,
+        SUBNETTOTAL: SUBNETTOTAL,
+        BASKET_MONEY: BASKET_MONEY,
+        BASKET_RATE_1: BASKET_RATE_1,
+        BASKET_RATE_2: BASKET_RATE_2,
+        GROSS_TOTAL: GROSS_TOTAL,
+        AFTER_DISCOUNT: AFTER_DISCOUNT,
+        DISCOUNT_TOTAL: DISCOUNT_TOTAL,
+        TOTAL_WITHOUT_KDV: TOTAL_WITHOUT_KDV,
+        TAX_TOTAL: TAX_TOTAL,
+        TOTAL_WITH_KDV: TOTAL_WITH_KDV,
+    }
 }--------------->
