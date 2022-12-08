@@ -23,4 +23,5 @@
 
 <script src="/AddOns/Partner/satis/js/basket_pc.js"></script>
 <script src="/AddOns/Partner/satis/js/hizli_satis_pc.js"></script>
-<script src="/AddOns/Partner/satis/js/virtual_operations.js"></script>
+<script src="/AddOns/Partner/satis/js/tube_functions.js"></script>
+<script src="/AddOns/Partner/satis/js/hydrolic_functions.js"></script>
