@@ -185,3 +185,70 @@ function UpdateVirtualHydrolic(modal_id) {
         }
     })
 }
+
+function saveRealHydrolic(modal_id) {
+    $("#hydRwc").val(hydRowCount);
+
+    var formData = getFormData($("#HydrolicForm"));
+    $.ajax({
+        url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=SaveRealHydrolic",
+        data: formData,
+        success: function (retDat) {
+
+            var obj = JSON.parse(retDat)
+            UpdRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+            closeBoxDraggable(modal_id)
+        }
+    })
+}
+
+function getFormData($form) {
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function (n, i) {
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+
+function CalculatehydrolicRow(rw_id) {
+    var dovv_ = $('input[name=_rd_money]:checked').val();
+    var dow = document.getElementById("_hidden_rd_money_" + dovv_).value
+    /* var rate2 = filterNum($("#_txt_rate2_" + dovv_).val(), 4)*/
+    var rate2 = moneyArr.find(p => p.MONEY == dow).RATE2;
+    console.log("RATE2=" + parseFloat(rate2))
+
+    var qty = document.getElementById("quantity_" + rw_id).value;
+    var prc = document.getElementById("price_" + rw_id).value;
+    var mny = document.getElementById("money_" + rw_id).value;
+
+    var a = moneyArr.filter(p => p.MONEY == mny)
+    console.log(netPrc)
+
+    var netPrc = (parseFloat(filterNum(qty)) * parseFloat(filterNum(prc)))
+    document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
+    document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
+    console.log(netPrc)
+
+    document.getElementById("netT_" + rw_id).value = commaSplit(netPrc);
+    CalculateHydSub();
+}
+
+function CalculateHydSub() {
+    var total = 0;
+    var marj = document.getElementById("marjHyd").value;
+    document.getElementById("marjHyd").value = commaSplit(marj)
+    marj = filterNum(marj);
+    marj = parseFloat(marj);
+    for (let i = 1; i <= hydRowCount; i++) {
+        var netT = document.getElementById("netT_" + i).value;
+        var mny = document.getElementById("money_" + i).value;
+        var a = moneyArr.filter(p => p.MONEY == mny)
+        total = total + (parseFloat(filterNum(netT)) * a[0].RATE2)
+
+    }
+    total = total + ((total * marj) / 100)
+    $("#hydSubTotal").val(commaSplit(total));
+}
