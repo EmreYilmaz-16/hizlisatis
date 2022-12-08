@@ -182,12 +182,12 @@ function CalculateTube() {
     var maliyet = document.getElementById("maliyet")
     var TotalValue=0;
     
-    var TotalValue+=DegerLeriHesapla(LRekor_Prc,LRekor_DSC,LRekor_Qty);
-    var TotalValue+=DegerLeriHesapla(RRekor_Prc,RRekor_Qty,RRekor_DSC);
-    var TotalValue+=DegerLeriHesapla(Tube_Prc,Tube_DSC,Tube_Qty);
-    var TotalValue+=DegerLeriHesapla(AdditionalProduct_Prc,AdditionalProduct_DSC,AdditionalProduct_Qty);
-    var TotalValue+=DegerLeriHesapla(working_Prc,working_DSC,working_Qty);
-    var TotalValue+=DegerLeriHesapla(Kabuk_Prc,Kabuk_DSC,Kabuk_Qty);
+     TotalValue+=DegerLeriHesapla(LRekor_Prc,LRekor_DSC,LRekor_Qty);
+     TotalValue+=DegerLeriHesapla(RRekor_Prc,RRekor_Qty,RRekor_DSC);
+     TotalValue+=DegerLeriHesapla(Tube_Prc,Tube_DSC,Tube_Qty);
+     TotalValue+=DegerLeriHesapla(AdditionalProduct_Prc,AdditionalProduct_DSC,AdditionalProduct_Qty);
+     TotalValue+=DegerLeriHesapla(working_Prc,working_DSC,working_Qty);
+     TotalValue+=DegerLeriHesapla(Kabuk_Prc,Kabuk_DSC,Kabuk_Qty);
 
    // var Tf = (parseFloat(LRekor_Prc) * parseFloat(LRekor_Qty)) + (parseFloat(RRekor_Prc) * parseFloat(RRekor_Qty)) + (parseFloat(Tube_Prc) * parseFloat(Tube_Qty)) + (parseFloat(AdditionalProduct_Prc) * parseFloat(AdditionalProduct_Qty));
     
