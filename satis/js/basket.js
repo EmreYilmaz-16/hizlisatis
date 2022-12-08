@@ -1525,7 +1525,7 @@ function saveOrder() {
     var SUBTOTAL = document.getElementById("subTotal").value;
     var SUBTAXTOTAL = document.getElementById("subTaxTotal").value;
     var SUBNETTOTAL = document.getElementById("subWTax").value;
-
+    var PRICE_CATID=document.getElementById("PRICE_CATID").value;
     var GROSS_TOTAL = document.getElementById("txt_total").value;
     var AFTER_DISCOUNT = document.getElementById("txt_disc").value;
     var DISCOUNT_TOTAL = document.getElementById("txt_disc_total").value;
@@ -1592,6 +1592,7 @@ function saveOrder() {
         CITY_ID: CITY_ID,
         COUNTY_ID: COUNTY_ID,
         ISLEM_TIPI_PBS: ISLEM_TIPI_PBS,
+        PRICE_CATID:PRICE_CATID,
         FACT: Fs
     }
 

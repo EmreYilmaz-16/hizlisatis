@@ -27,12 +27,16 @@
 	<cfquery name="getOffer" datasource="#dsn3#">
 		SELECT * FROM  PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#getProductionOrders.UNIQUE_RELATION_ID#'
 	</cfquery>
+	<cfquery name="getOfferMain" datasource="#dsn3#">
+		SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
+	</cfquery>
 
 <cfform method="post" name="production_form" id="production_form">
 	<cfoutput>
 		<input type="hidden" name="offer_row_id" value="#getOffer.OFFER_ROW_ID#"> 
 		<input type="hidden" name="main_product_id" id="main_product_id" value="#getProductionOrders.STOCK_ID#">
 		<input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#getProductionOrders.UNIQUE_RELATION_ID#">
+		<input type="hidden" name="price_cat" id="price_cat" value="#getOfferMain.UNIQUE_RELATION_ID#">
 		<cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
 		<cfquery name="getVirtualProduct"  datasource="#dsn3#">
 			SELECT * FROM #dsn3#.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#

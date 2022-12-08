@@ -115,7 +115,8 @@
                 SZ_ID,
 				PROBABILITY ,
                 EVENT_PLAN_ROW_ID,
-                SA_DISCOUNT
+                SA_DISCOUNT,
+                PRICE_CAT_ID
 			)
 			VALUES 
 			(
@@ -183,7 +184,8 @@
             <cfif isdefined("attributes.sales_zone_id") and len(attributes.sales_zone_id)>#attributes.sales_zone_id#<cfelseif isdefined("get_country") and len(get_country.sales_id)>#get_country.sales_id#<cfelse>NULL</cfif>,
 			<cfif isdefined("attributes.probability")>#attributes.probability#<cfelse>NULL</cfif>,
             <cfif isdefined('attributes.event_plan_row_id') and len(attributes.event_plan_row_id)>#event_plan_row_id#<cfelse>NULL</cfif>,
-            <cfif isdefined("attributes.genel_indirim") and len(attributes.genel_indirim)>#attributes.genel_indirim#<cfelse>NULL</cfif>
+            <cfif isdefined("attributes.genel_indirim") and len(attributes.genel_indirim)>#attributes.genel_indirim#<cfelse>NULL</cfif>,
+            <cfif isdefined("attributes.price_catid") and len(attributes.price_catid)>#attributes.price_catid#<cfelse>NULL</cfif>
 			)
 		</cfquery>
 		<cfset GET_MAX_OFFER.max_id = GET_MAX_OFFER.IDENTITYCOL>

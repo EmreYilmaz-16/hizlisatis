@@ -690,6 +690,7 @@ function GetBasketData() {
     var CITY_ID = document.getElementById("city_id").value;
     var COUNTY_ID = document.getElementById("county_id").value;
 
+    var PRICE_CATID=document.getElementById("PRICE_CATID").value;
     SUBTOTAL = filterNum(SUBTOTAL, 4)
     SUBTAXTOTAL = filterNum(SUBTAXTOTAL, 4)
     SUBNETTOTAL = filterNum(SUBNETTOTAL, 4)
@@ -742,6 +743,7 @@ function GetBasketData() {
         CITY_ID: CITY_ID,
         COUNTY_ID: COUNTY_ID,
         ISLEM_TIPI_PBS: ISLEM_TIPI_PBS,
+        PRICE_CATID:PRICE_CATID,
         FACT: Fs
     }
 
