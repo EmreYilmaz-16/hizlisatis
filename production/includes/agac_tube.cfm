@@ -1,3 +1,4 @@
+<cfoutput>
 <cfloop query="getsTree">
 	<cfset "Eleman#QUESTION_ID#.STOCK_ID"=STOCK_ID>
 	<cfset "Eleman#QUESTION_ID#.PRODUCT_NAME"=PRODUCT_NAME>
@@ -21,3 +22,4 @@
 
 	</tr>
 </CFLOOP>
+</cfoutput>
