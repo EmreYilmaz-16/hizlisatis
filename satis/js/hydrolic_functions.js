@@ -163,7 +163,35 @@ function saveVirtualHydrolic(modal_id) {
         success: function (retDat) {
 
             var obj = JSON.parse(retDat)
-            AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 2, '', 'TL', obj.PRICE);
+          //  AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 2, '', 'TL', obj.PRICE);
+
+         AddRow(
+            obj.PID,
+            0,
+            '',
+            '',
+            1,
+            1,
+            obj.PRICE,
+            obj.NAME,
+            18,
+            0,
+            2,
+            '',
+            'TL',
+            obj.PRICE,
+            "-5",
+             0,
+             0,
+            'Adet',
+            '',
+            '',
+             1,
+             '',
+             '',
+             1
+        )
+
             closeBoxDraggable(modal_id)
         }
     })

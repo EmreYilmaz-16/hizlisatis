@@ -144,7 +144,7 @@ function saveVirtualTube(dsn3, modal_id) {
              1,
              '',
              '',
-            is_production = 1
+             1
         )
 
             closeBoxDraggable(modal_id)
