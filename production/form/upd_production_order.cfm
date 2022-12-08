@@ -36,7 +36,10 @@
 		<input type="hidden" name="offer_row_id" value="#getOffer.OFFER_ROW_ID#"> 
 		<input type="hidden" name="main_product_id" id="main_product_id" value="#getProductionOrders.STOCK_ID#">
 		<input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#getProductionOrders.UNIQUE_RELATION_ID#">
-		<input type="hidden" name="price_cat" id="price_cat" value="#getOfferMain.UNIQUE_RELATION_ID#">
+		<input type="hidden" name="price_cat" id="price_cat" value="#getOfferMain.PRICE_CAT_ID#">
+        <input type="hidden" name="price_cat_id" id="price_cat_id" value="#getOfferMain.PRICE_CAT_ID#">
+        <input type="hidden" name="company_id" id="company_id" value="#getOfferMain.COMPANY_ID#">
+        <input type="hidden" name="company_name" id="company_name" value="#getOfferMain.COMPANY_ID#">
 		<cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
 		<cfquery name="getVirtualProduct"  datasource="#dsn3#">
 			SELECT * FROM #dsn3#.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#
@@ -61,7 +64,12 @@
 </cfform>
 <script>
 	function openProductPopup(question_id,from_row=0){
-		openBoxDraggable("http://erp.metosan.com.tr/index.cfm?fuseaction=objects.emptypopup_list_products_partner&price_cat=METOSAN%20SATICI%20F%C4%B0YAT%20L%C4%B0STES%C4%B0%20A&PRICE_CATID=19&company_id=22143&company_name=pbs&question_id="+question_id)
+		  var cp_id=document.getElementById("company_id").value;
+          var cp_name=document.getElementById("company_id").value;
+
+          var p_cat=document.getElementById("price_cat_id").value;
+          var p_cat_id=document.getElementById("price_cat_id").value;
+        openBoxDraggable("http://erp.metosan.com.tr/index.cfm?fuseaction=objects.emptypopup_list_products_partner&price_cat="+p_cat+"&PRICE_CATID="+p_cat_id+"&company_id="+cp_id+"&company_name="+cp_name+"&question_id="+question_id)
 	}
 
 	function setRow(product_id,stock_id,product_name,question_id,barcode,main_unit,price,quantity,discount){
