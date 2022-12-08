@@ -77,7 +77,7 @@
 function Hesapla(type){
     var TotalPrice=0;
    if(type==1){
-    var questions=generalParamsSatis.Questions.filter(p=>p.QUESTION_PRODUCT_TYPE==0)
+    var questions=generalParamsSatis.Questions.filter(p=>p.QUESTION_PRODUCT_TYPE==1)
     questions.forEach(function(el,ix){
     console.log(el.QUESTION_ID)
     console.log("PRICE_"+el.QUESTION_ID)
@@ -110,7 +110,7 @@ function DegerLeriHesapla(p,d,q){
 }
 
 function GetBasketData(){
-var questions =generalParamsSatis.Questions.filter(p=>p.QUESTION_PRODUCT_TYPE==0)
+var questions =generalParamsSatis.Questions.filter(p=>p.QUESTION_PRODUCT_TYPE==1)
 var row_data=new Array();
 questions.forEach(function(value,key){
     console.log(value)
