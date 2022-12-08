@@ -84,7 +84,7 @@
 				<th>Miktar</th>
 				<th>Birim</th>
 			</tr>
-			<cfset QUESTION_ID=1>
+			<cfset QUESTION_ID_=1>
 			<CFLOOP query="getsTree">
 				<tr>
 					<th style="text-align:left;">
@@ -94,32 +94,32 @@
 						<td>
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" name="PRODUCT_NAME_#QUESTION_ID#" id="PRODUCT_NAME_#QUESTION_ID#"  value='PRODUCT_NAME'>
-										<span class="input-group-addon btnPointer icon-ellipsis"  onclick='openProductPopup(#QUESTION_ID#)'></span>
+										<input type="text" name="PRODUCT_NAME_#QUESTION_ID_#" id="PRODUCT_NAME_#QUESTION_ID_#"  value='PRODUCT_NAME'>
+										<span class="input-group-addon btnPointer icon-ellipsis"  onclick='openProductPopup(#QUESTION_ID_#)'></span>
 									</div>
 								</div>
-							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#"  value="#STOCK_ID#">
-							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="#PRODUCT_ID#">	
-							<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="#PRICE#">	
-							<input type="hidden" name="DISCOUNT_#QUESTION_ID#" id="DISCOUNT_#QUESTION_ID#" value="#DISCOUNT#">	
+							<input type="hidden" name="STOCK_ID_#QUESTION_ID_#" id="STOCK_ID_#QUESTION_ID_#"  value="#STOCK_ID#">
+							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID_#" id="PRODUCT_ID_#QUESTION_ID_#" value="#PRODUCT_ID#">	
+							<input type="hidden" name="PRICE_#QUESTION_ID_#" id="PRICE_#QUESTION_ID_#" value="#PRICE#">	
+							<input type="hidden" name="DISCOUNT_#QUESTION_ID_#" id="DISCOUNT_#QUESTION_ID_#" value="#DISCOUNT#">	
 						</td>
 						<td>
 							<div class="form-group">
-								<input type="text"  name="BARKODE_#QUESTION_ID#" id="BARKODE_#QUESTION_ID#" value="#BARCOD#">
+								<input type="text"  name="BARKODE_#QUESTION_ID_#" id="BARKODE_#QUESTION_ID_#" value="#BARCOD#">
 							</div>
 						</td>
 						<td>
 							<div class="form-group">
-								<input type="text" name="AMOUNT_#QUESTION_ID#" onchange="this.value=commaSplit(this.value)" id="AMOUNT_#QUESTION_ID#"  value="#tlformat(AMOUNT)#">
+								<input type="text" name="AMOUNT_#QUESTION_ID_#" onchange="this.value=commaSplit(this.value)" id="AMOUNT_#QUESTION_ID_#"  value="#tlformat(AMOUNT)#">
 							</div>
 						</td>
 						<td>
-							<span id="MAIN_UNIT_#QUESTION_ID#">#MAIN_UNIT#</span>
+							<span id="MAIN_UNIT_#QUESTION_ID_#">#MAIN_UNIT#</span>
 						</td>
 					
 					
 				</tr>
-			<cfset QUESTION_ID=QUESTION_ID+1>
+			<cfset QUESTION_ID_=QUESTION_ID_+1>
 			</CFLOOP>
 		</cf_grid_list>
 	</cf_box>
