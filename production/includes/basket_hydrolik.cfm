@@ -123,3 +123,4 @@
 			</CFLOOP>
 		</cf_grid_list>
 	</cf_box>
+</cfoutput>
