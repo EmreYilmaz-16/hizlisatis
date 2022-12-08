@@ -94,7 +94,11 @@ select count(*) AS RC from PBS_OFFER
     
     <cfset "attributes.amount#i#"=filternum(it.amount)>
     <cfset "attributes.is_virtual#i#"=it.is_virtual>
+    <cfif isDefined("it.is_production>")>
     <cfset "attributes.is_production_pbs#i#"=it.is_production>
+<cfelse>
+    <cfset "attributes.is_production_pbs#i#"=0>
+</cfif>
     <cfset "attributes.unit#i#"=getUnit.MAIN_UNIT>
     <cfset "attributes.unit_id#i#"=getUnit.PRODUCT_UNIT_ID>
     <cfset "attributes.price#i#"=filternum(it.price)>
