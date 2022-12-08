@@ -1,3 +1,4 @@
+<cfoutput>
 <cfloop query="getsTree">
 <tr>
 	<th>#QUESTION#</th>
@@ -6,3 +7,4 @@
 	<td>#MAIN_UNIT#</td>
 </tr>
 </cfloop>
+</cfoutput>
