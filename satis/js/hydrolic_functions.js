@@ -257,16 +257,24 @@ function CalculatehydrolicRow(rw_id) {
     var rate2 = moneyArr.find(p => p.MONEY == dow).RATE2;
     console.log("RATE2=" + parseFloat(rate2))
 
-    var qty = document.getElementById("quantity_" + rw_id).value;
-    var prc = document.getElementById("price_" + rw_id).value;
-    var mny = document.getElementById("money_" + rw_id).value;
-
+    //var qty = document.getElementById("quantity_" + rw_id).value;
+    var qty=$("#tblBaskHyd").find("#quantity_"+rw_id).val()
+    qty=parseFloat(filterNum(commaSplit(qty)))
+    
+    //var prc = document.getElementById("price_" + rw_id).value;
+    var prc=$("#tblBaskHyd").find("#price_"+rw_id).val()
+    prc=parseFloat(filterNum(commaSplit(prc)))
+    //var mny = document.getElementById("money_" + rw_id).value;
+    var mny=$("#tblBaskHyd").find("#money_"+rw_id).val()
     var a = moneyArr.filter(p => p.MONEY == mny)
+    
     console.log(netPrc)
 
-    var netPrc = (parseFloat(filterNum(qty)) * parseFloat(filterNum(prc)))
-    document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
-    document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
+    var netPrc = qty * prc;
+   //document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
+    $("#tblBaskHyd").find("#quantity_"+rw_id).val(commaSplit(qty))
+    //document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
+    $("#tblBaskHyd").find("#price_"+rw_id).val(commaSplit(prc))
     console.log(netPrc)
 
     document.getElementById("netT_" + rw_id).value = commaSplit(netPrc);
