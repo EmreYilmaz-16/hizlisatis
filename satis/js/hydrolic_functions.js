@@ -142,6 +142,20 @@ function addHydrolicRow(Product) {
     td.appendChild(div)
     tr.appendChild(td)
 
+  var td = document.createElement("td")
+    td.setAttribute("style", "width:17%")
+    var input = document.createElement("input")
+    var div = document.createElement("div");
+    div.setAttribute("class", "form-group");
+    input.setAttribute("type", "text")
+    input.setAttribute("readonly", "true")
+    input.setAttribute("name", "netTDv_" + hydRowCount)
+    input.setAttribute("id", "netTDv_" + hydRowCount)
+    input.setAttribute("class", "prtMoneyBox")
+    input.setAttribute("value", Product.PRODUCT.PRICE)
+    div.appendChild(input)
+    td.appendChild(div)
+    tr.appendChild(td)
 
     var td = document.createElement("td")
     td.setAttribute("style", "width:17%")
@@ -159,6 +173,7 @@ function addHydrolicRow(Product) {
     tr.appendChild(td)
 
     Tbl.appendChild(tr)
+    CalculatehydrolicRow(hydRowCount);
 }
 
 function saveVirtualHydrolic(modal_id) {
@@ -271,6 +286,7 @@ function CalculatehydrolicRow(rw_id) {
    
 
     var netPrc = (qty * prc)*parseFloat(a[0].RATE2);
+    var netPrcDV = (qty * prc);
    //document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
     $("#tblBaskHyd").find("#quantity_"+rw_id).val(commaSplit(qty))
     //document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
@@ -278,6 +294,7 @@ function CalculatehydrolicRow(rw_id) {
     console.log(netPrc)
 
     document.getElementById("netT_" + rw_id).value = commaSplit(netPrc);
+    document.getElementById("netTDv_" + rw_id).value = commaSplit(netPrcDV);
     CalculateHydSub();
 }
 
@@ -291,7 +308,7 @@ function CalculateHydSub() {
         var netT = document.getElementById("netT_" + i).value;
         var mny = document.getElementById("money_" + i).value;
         var a = moneyArr.filter(p => p.MONEY == mny)
-        total = total + (parseFloat(filterNum(netT)) * a[0].RATE2)
+        total = total + (parseFloat(filterNum(netT)) * 1)
 
     }
     total = total + ((total * marj) / 100)

@@ -19,7 +19,17 @@
             <input type="checkbox" name="IsProduction" checked value="1">
         </div>
         <div style="height:50vh;overflow-y: scroll;">
-            <cf_big_list id="tblBaskHyd"></cf_big_list>
+            <cf_big_list id="tblBaskHyd">
+            <tr>
+                <th></th>
+                <th>Ürün</th>
+                <th>Miktar</th>
+                <th>Fiyat</th>
+                <th>Doviz</th>
+                <th>Doviz T</th>
+                <th>Tutar</th>
+            </tr>
+            </cf_big_list>
         </div>
         <input type="hidden" name="hydRwc" id="hydRwc" value="">
         <input type="hidden" name="hydProductName" id="hydProductName" value="" onchange="">
