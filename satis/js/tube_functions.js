@@ -133,7 +133,7 @@ function CalculateTube() {
     maliyet.value = commaSplit(Tf, 2);
 }
 
-function DegerLeriHesapla(p,d,q,m){
+function DegerLeriHesapla(p,d,q,m="TL"){
     var price=parseFloat(p);
     var discount=parseFloat(d);
     var quantity=parseFloat(q);
