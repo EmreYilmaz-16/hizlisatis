@@ -677,7 +677,7 @@
        <cffile action="write" file = "c:\saveVirtualHydrolic.html" output="#control5#"></cffile>
        <CFSET RETURN_VAL.PID=Res.IDENTITYCOL>
        <CFSET RETURN_VAL.IS_VIRTUAL=1>
-       <CFSET RETURN_VAL.PRICE=arguments.hydSubTotal>
+       <CFSET RETURN_VAL.PRICE=Filternum(arguments.hydSubTotal)>
        <CFSET RETURN_VAL.QTY=1>
        <CFSET RETURN_VAL.NAME=arguments.hydProductName>
        <cfreturn Replace(SerializeJSON(RETURN_VAL),'//','')>
