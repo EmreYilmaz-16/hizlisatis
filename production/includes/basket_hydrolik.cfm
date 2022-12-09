@@ -142,6 +142,7 @@ function findHydrolic(ev, el) {
     if (ev.keyCode == 13) {
         var Product = getProductMultiUse(keyword, comp_id, price_catid);     
         el.value = '';
+        addHydrolikRow(Product);
         $(el).focus();
     }
 }
@@ -186,5 +187,10 @@ function getProductMultiUse(keyword, comp_id, price_catid) {
     //alert(new_query);
 
     return new_query;
+}
+
+
+function addHydrolikRow(Product){
+console.log(Product)
 }
 </script>

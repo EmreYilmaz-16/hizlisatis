@@ -37,7 +37,7 @@
 		<input type="hidden" name="main_product_id" id="main_product_id" value="#getProductionOrders.STOCK_ID#">
 		<input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#getProductionOrders.UNIQUE_RELATION_ID#">
 		<input type="hidden" name="price_cat" id="price_cat" value="#getOfferMain.PRICE_CAT_ID#">
-        <input type="hidden" name="price_cat_id" id="price_cat_id" value="#getOfferMain.PRICE_CAT_ID#">
+        <input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="#getOfferMain.PRICE_CAT_ID#">
         <input type="hidden" name="company_id" id="company_id" value="#getOfferMain.COMPANY_ID#">
         <input type="hidden" name="company_name" id="company_name" value="#getOfferMain.COMPANY_ID#">
 		<cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
@@ -67,8 +67,8 @@
 		  var cp_id=document.getElementById("company_id").value;
           var cp_name=document.getElementById("company_id").value;
 
-          var p_cat=document.getElementById("price_cat_id").value;
-          var p_cat_id=document.getElementById("price_cat_id").value;
+          var p_cat=document.getElementById("PRICE_CATID").value;
+          var p_cat_id=document.getElementById("PRICE_CATID").value;
         openBoxDraggable("http://erp.metosan.com.tr/index.cfm?fuseaction=objects.emptypopup_list_products_partner&price_cat="+p_cat+"&PRICE_CATID="+p_cat_id+"&company_id="+cp_id+"&company_name="+cp_name+"&question_id="+question_id)
 	}
 
