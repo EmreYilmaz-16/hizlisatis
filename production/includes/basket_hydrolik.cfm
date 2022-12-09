@@ -79,7 +79,7 @@
 	<div class="form-group">
 		<input type="text" name="barcodex" id="barcodex" onkeyup="findHydrolic(event,this)">
 	</div>
-		<cf_grid_list >
+		<cf_grid_list id="basketim">
 			<tr>
 				<th></th>
 				<th>Ürün</th>
@@ -190,7 +190,85 @@ function getProductMultiUse(keyword, comp_id, price_catid) {
 }
 
 
-function addHydrolikRow(Product){
-console.log(Product)
+function addHydrolikRow(product){
+
+var basket=document.getElementById("basketim")
+if(product.RECORDCOUNT >0){
+    hyd_basket_rows++;
+    var tr=document.createElement("tr")
+    var td=document.createElement("td")
+    tr.appendChild(td)
+    var td=document.createElement("td")
+    
+    var div1=document.createElement("div");
+        div1.setAttribute("class","form-group")
+    var div2=document.createElement("div");
+        div2.setAttribute("class","input-group")
+    var input1=document.createElement("input")
+        input1.value=product.PRODUCT.PRODUCT_NAME;
+        input1.setAttribute("id","PRODUCT_NAME_"+hyd_basket_rows);
+        input1.setAttribute("name","PRODUCT_NAME_"+hyd_basket_rows);
+        input1.setAttribute("type","text")
+    var spn=document.createElement("span");
+        spn.setAttribute("class","input-group-addon btnPointer icon-ellipsis")
+        spn.setAttribute("onclick","openProductPopup("+hyd_basket_rows+")")
+    var input2=document.createElement("input")
+        input2.setAttribute("type","hidden")
+        input2.setAttribute("name","PRODUCT_ID_"+hyd_basket_rows)
+        input2.setAttribute("id","PRODUCT_ID_"+hyd_basket_rows)
+        input2.value=product.PRODUCT.PRODUCT_ID
+    var input3=document.createElement("input")
+        input3.setAttribute("type","hidden")
+        input3.setAttribute("name","STOCK_ID_"+hyd_basket_rows)
+        input3.setAttribute("id","STOCK_ID_"+hyd_basket_rows)
+        input3.value=product.PRODUCT.STOCK_ID
+    var input4=document.createElement("input")
+        input4.setAttribute("type","hidden")
+        input4.setAttribute("name","PRICE_"+hyd_basket_rows)
+        input4.setAttribute("id","PRICE_"+hyd_basket_rows)
+        input4.value=product.PRODUCT.PRICE  
+    var input5=document.createElement("input")
+        input5.setAttribute("type","hidden")
+        input5.setAttribute("name","DISCOUNT_"+hyd_basket_rows)
+        input5.setAttribute("id","DISCOUNT_"+hyd_basket_rows)
+        input5.value=product.PRODUCT.DISCOUNT_RATE 
+        div2.appendChild(input1)
+        div2.appendChild(input2)
+        div2.appendChild(input3)
+        div2.appendChild(input4)
+        div2.appendChild(input5)
+        div1.append(div2)
+        td.appendChild(div1)
+        tr.appendChild(td)
+    var td=document.createElement("td")
+    var div1=document.createElement("div");
+        div1.setAttribute("class","form-group")
+    var input1=document.createElement("input")
+        input1.value='2001270000101'; //  fonksiyonYapıldığında fonksiyondaki keyword gelecek
+        input1.setAttribute("id","BARKODE_"+hyd_basket_rows);
+        input1.setAttribute("name","BARKODE_"+hyd_basket_rows);
+        input1.setAttribute("type","text")
+        div1.appendChild(input1)
+        td.appendChild(div1)
+        tr.appendChild(td)
+        var td=document.createElement("td")
+    var div1=document.createElement("div");
+        div1.setAttribute("class","form-group")
+    var input1=document.createElement("input")
+        input1.value=commaSplit(1); 
+        input1.setAttribute("id","AMOUNT_"+hyd_basket_rows);
+        input1.setAttribute("name","AMOUNT_"+hyd_basket_rows);
+        input1.setAttribute("type","text")
+        div1.appendChild(input1)
+        td.appendChild(div1)
+        tr.appendChild(td)
+    var td=document.createElement("td")
+      var spn=document.createElement("span");
+    spn.innerText=product.PRODUCT.MAIN_UNIT;
+    td.appendChild(spn)
+    tr.appendChild(td)
+    console.log(tr)
+    basketim.appendChild(tr)
+}
 }
 </script>
