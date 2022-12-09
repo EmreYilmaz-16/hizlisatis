@@ -142,7 +142,7 @@ function findHydrolic(ev, el) {
     if (ev.keyCode == 13) {
         var Product = getProductMultiUse(keyword, comp_id, price_catid);     
         el.value = '';
-        addHydrolikRow(Product);
+        addHydrolikRow(Product,keyword);
         $(el).focus();
     }
 }
@@ -190,7 +190,7 @@ function getProductMultiUse(keyword, comp_id, price_catid) {
 }
 
 
-function addHydrolikRow(product){
+function addHydrolikRow(product,barcode){
 
 var basket=document.getElementById("basketim")
 if(product.RECORDCOUNT >0){
@@ -237,6 +237,7 @@ if(product.RECORDCOUNT >0){
         div2.appendChild(input3)
         div2.appendChild(input4)
         div2.appendChild(input5)
+        div2.appendChild(spn)
         div1.append(div2)
         td.appendChild(div1)
         tr.appendChild(td)
@@ -244,7 +245,7 @@ if(product.RECORDCOUNT >0){
     var div1=document.createElement("div");
         div1.setAttribute("class","form-group")
     var input1=document.createElement("input")
-        input1.value='2001270000101'; //  fonksiyonYapıldığında fonksiyondaki keyword gelecek
+        input1.value=barcode; //  fonksiyonYapıldığında fonksiyondaki keyword gelecek
         input1.setAttribute("id","BARKODE_"+hyd_basket_rows);
         input1.setAttribute("name","BARKODE_"+hyd_basket_rows);
         input1.setAttribute("type","text")
