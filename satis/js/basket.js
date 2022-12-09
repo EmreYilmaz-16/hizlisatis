@@ -1394,9 +1394,9 @@ function CalculatehydrolicRow(rw_id) {
     var mny=$("#tblBaskHyd").find("#money_"+rw_id).val()
     var a = moneyArr.filter(p => p.MONEY == mny)
     
-    console.log(netPrc)
+   
 
-    var netPrc = (qty * prc)*parseFloat(a.RATE2);
+    var netPrc = (qty * prc)*parseFloat(a[0].RATE2);
    //document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
     $("#tblBaskHyd").find("#quantity_"+rw_id).val(commaSplit(qty))
     //document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
