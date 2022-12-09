@@ -81,7 +81,16 @@ function addHydrolicRow(Product) {
     input.setAttribute("id", "product_name_" + hydRowCount)
     input.setAttribute("value", Product.PRODUCT.PRODUCT_NAME)
     input.setAttribute("readonly", "true")
+
+    var input2 = document.createElement("input")
+    input2.setAttribute("type", "hidden")
+    input2.setAttribute("name", "discount_" + hydRowCount)
+    input2.setAttribute("id", "discount_" + hydRowCount)
+    input2.setAttribute("value", Product.PRODUCT.DISCOUNT_RATE)
+    input2.setAttribute("readonly", "true")
+
     div.appendChild(input)
+    div.appendChild(input2)
     td.appendChild(div)
     tr.appendChild(td)
 

@@ -655,14 +655,16 @@
     </cfquery>
     <cfloop from="1" to="#arguments.hydRwc#" index="i">
         <cfquery name="InsertTree" datasource="#arguments.dsn3#">
-            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE) 
+            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE,DISCOUNT) 
             VALUES(
             #Res.IDENTITYCOL#,
             #evaluate("arguments.product_id_#i#")#,
             #evaluate("arguments.stock_id_#i#")#,
             #Filternum(evaluate("arguments.quantity_#i#"))#,
             0,
-            #Filternum(evaluate("arguments.price_#i#"))#)
+            #Filternum(evaluate("arguments.price_#i#"))#,
+            #Filternum(evaluate("arguments.discount_#i#"))#
+            )
         </cfquery>
     </cfloop>
 

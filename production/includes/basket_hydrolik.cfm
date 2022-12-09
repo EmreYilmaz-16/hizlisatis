@@ -262,6 +262,7 @@ if(product.RECORDCOUNT >0){
         input1.setAttribute("id","AMOUNT_"+hyd_basket_rows);
         input1.setAttribute("name","AMOUNT_"+hyd_basket_rows);
         input1.setAttribute("type","text")
+        input1.setAttribute("onchange","this.value=commaSplit(this.value)");
         div1.appendChild(input1)
         td.appendChild(div1)
         tr.appendChild(td)
