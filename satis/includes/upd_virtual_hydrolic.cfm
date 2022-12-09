@@ -254,7 +254,15 @@ var hydRowCount = 0;
     <div style="height:40vh;overflow-y: scroll;">
         
         <cf_big_list id="tblBaskHyd">
-                
+            <tr>
+                <th></th>
+                <th>Ürün</th>
+                <th>Miktar</th>
+                <th>Fiyat</th>
+                <th>Doviz</th>
+                <th>Doviz T</th>
+                <th>Tutar</th>
+            </tr>        
         </cf_big_list>
     </div>
     <input type="hidden" name="hydRwc" id="hydRwc" value="">
@@ -301,7 +309,7 @@ var hydRowCount = 0;
         RECORDCOUNT:1
     }
     console.log(Prd);
-    addHydrolicRow(Prd)
+    addHydrolicRow(Prd,#AMOUNT#)
    CalculatehydrolicRow(hydRowCount)
     CalculateHydSub()
     </script>

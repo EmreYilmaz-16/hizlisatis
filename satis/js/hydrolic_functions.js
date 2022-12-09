@@ -44,7 +44,7 @@ function findHydrolic(ev, el) {
     }
 }
 
-function addHydrolicRow(Product) {
+function addHydrolicRow(Product,qty=1) {
     hydRowCount++
     var Tbl = document.getElementById("tblBaskHyd")
     var tr = document.createElement("tr")
@@ -103,7 +103,7 @@ function addHydrolicRow(Product) {
     input.setAttribute("type", "text")
     input.setAttribute("name", "quantity_" + hydRowCount)
     input.setAttribute("id", "quantity_" + hydRowCount)
-    input.setAttribute("value", commaSplit(1))
+    input.setAttribute("value", commaSplit(qty))
     input.setAttribute("class", "prtMoneyBox")
     input.setAttribute("onchange", "CalculatehydrolicRow(" + hydRowCount + ")")
     input.setAttribute("onClick", "sellinputAllVal(this)")
