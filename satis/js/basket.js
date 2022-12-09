@@ -1207,7 +1207,7 @@ function findHydrolic(ev, el) {
     }
 }
 
-function addHydrolicRow(Product) {
+function addHydrolicRow(Product,qty=1) {
     hydRowCount++
     var Tbl = document.getElementById("tblBaskHyd")
     var tr = document.createElement("tr")
@@ -1257,7 +1257,7 @@ function addHydrolicRow(Product) {
     input.setAttribute("type", "text")
     input.setAttribute("name", "quantity_" + hydRowCount)
     input.setAttribute("id", "quantity_" + hydRowCount)
-    input.setAttribute("value", commaSplit(1))
+    input.setAttribute("value", commaSplit(qty))
     input.setAttribute("class", "prtMoneyBox")
     input.setAttribute("onchange", "CalculatehydrolicRow(" + hydRowCount + ")")
     input.setAttribute("onClick", "sellinputAllVal(this)")
@@ -1433,7 +1433,7 @@ function CalculateHydSub() {
     marj = parseFloat(marj);
     for (let i = 1; i <= hydRowCount; i++) {
         var netT = document.getElementById("netT_" + i).value;
-      //  var mny = document.getElementById("money_" + i).value;
+        var mny = document.getElementById("money_" + i).value;
         var a = moneyArr.filter(p => p.MONEY == mny)
         total = total + (parseFloat(filterNum(netT)) * 1)
 
