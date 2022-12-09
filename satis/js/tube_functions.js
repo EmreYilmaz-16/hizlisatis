@@ -12,9 +12,12 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     var NameElem = document.getElementById(elemanAtt + "_lbs")
     var priceElem = document.getElementById(elemanAtt + "_Prc")
     var discountElem = document.getElementById(elemanAtt + "_DSC")
+    var money_elem = document.getElementById(elemanAtt + "_MNY")
+
     var PC_ELEM = document.getElementById("PRODUCT_CAT")
     var PCID_ELEM = document.getElementById("PRODUCT_CATID")
     var PCHIE_ELEM = document.getElementById("HIEARCHY")
+
     console.log(pidElem);
     console.log(sidElem);
     console.log(NameElem);
@@ -31,6 +34,7 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
             sidElem.value = Product.PRODUCT.STOCK_ID;
             NameElem.innerText = Product.PRODUCT.PRODUCT_NAME;
             discountElem.value = Product.PRODUCT.DISCOUNT_RATE;
+            money_elem.value = Product.PRODUCT.MONEY;
             priceElem.value = Product.PRODUCT.PRICE;
             if (elemanAtt == "Tube") {
                 console.log(Product.PRODUCT.REL_CATNAME)
@@ -46,6 +50,7 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
 
     }
 }
+
 function CalculateTube() {
     //LRekor_Prc,Tube_Prc,RRekor_Prc,AdditionalProduct_Prc,Kabuk_Prc,working_Prc
     //LRekor_Qty,Tube_Qty,RRekor_Qty,AdditionalProduct_Qty,marj,Kabuk_Qty,working_Qty
@@ -72,17 +77,53 @@ function CalculateTube() {
     var AdditionalProduct_Qty = document.getElementById("AdditionalProduct_Qty").value
     var Kabuk_Qty = document.getElementById("Kabuk_Qty").value
     var working_Qty = document.getElementById("working_Qty").value
+
+    var LRekor_DSC = document.getElementById("LRekor_DSC").value
+    var Tube_DSC = document.getElementById("Tube_DSC").value
+    var RRekor_DSC = document.getElementById("RRekor_DSC").value
+    var AdditionalProduct_DSC = document.getElementById("AdditionalProduct_DSC").value
+    var Kabuk_DSC = document.getElementById("Kabuk_DSC").value
+    var working_DSC = document.getElementById("working_DSC").value
+
+    var LRekor_MNY = document.getElementById("LRekor_MNY").value
+    var Tube_MNY = document.getElementById("Tube_MNY").value
+    var RRekor_MNY = document.getElementById("RRekor_MNY").value
+    var AdditionalProduct_MNY = document.getElementById("AdditionalProduct_MNY").value
+    var Kabuk_MNY = document.getElementById("Kabuk_MNY").value
+    var working_MNY = document.getElementById("working_MNY").value
+
     var marj = document.getElementById("marj").value
 
     var maliyet = document.getElementById("maliyet")
     var TotalValue=0;
-    
-     TotalValue+=DegerLeriHesapla(LRekor_Prc,LRekor_DSC,LRekor_Qty);
-     TotalValue+=DegerLeriHesapla(RRekor_Prc,RRekor_Qty,RRekor_DSC);
-     TotalValue+=DegerLeriHesapla(Tube_Prc,Tube_DSC,Tube_Qty);
-     TotalValue+=DegerLeriHesapla(AdditionalProduct_Prc,AdditionalProduct_DSC,AdditionalProduct_Qty);
-     TotalValue+=DegerLeriHesapla(working_Prc,working_DSC,working_Qty);
-     TotalValue+=DegerLeriHesapla(Kabuk_Prc,Kabuk_DSC,Kabuk_Qty);
+        var ax=DegerLeriHesapla(LRekor_Prc,LRekor_DSC,LRekor_Qty,LRekor_MNY);
+        document.getElementById("LRekor_TTL").value=ax;
+        TotalValue+=ax;
+
+        var ax=DegerLeriHesapla(RRekor_Prc,RRekor_Qty,RRekor_DSC,RRekor_MNY);
+        document.getElementById("RRekor_TTL").value=ax;
+        TotalValue+=ax;
+
+        var ax=DegerLeriHesapla(Tube_Prc,Tube_DSC,Tube_Qty,Tube_MNY);
+        document.getElementById("Tube_TTL").value=ax;
+        TotalValue+=ax;
+
+        var ax=DegerLeriHesapla(AdditionalProduct_Prc,AdditionalProduct_DSC,AdditionalProduct_Qty,AdditionalProduct_MNY);
+        document.getElementById("AdditionalProduct_TTL").value=ax;
+        TotalValue+=ax;
+
+        var ax=DegerLeriHesapla(working_Prc,working_DSC,working_Qty,working_MNY);
+        document.getElementById("working_TTL").value=ax;
+        TotalValue+=ax;
+
+        var ax=DegerLeriHesapla(Kabuk_Prc,Kabuk_DSC,Kabuk_Qty,Kabuk_MNY);
+        document.getElementById("Kabuk_TTL").value=ax;
+        TotalValue+=ax;        
+    // TotalValue+=DegerLeriHesapla(RRekor_Prc,RRekor_Qty,RRekor_DSC,RRekor_MNY);
+    // TotalValue+=DegerLeriHesapla(Tube_Prc,Tube_DSC,Tube_Qty,Tube_MNY);
+     //TotalValue+=DegerLeriHesapla(AdditionalProduct_Prc,AdditionalProduct_DSC,AdditionalProduct_Qty,AdditionalProduct_MNY);
+    // TotalValue+=DegerLeriHesapla(working_Prc,working_DSC,working_Qty,working_MNY);
+    // TotalValue+=DegerLeriHesapla(Kabuk_Prc,Kabuk_DSC,Kabuk_Qty,Kabuk_MNY);
 
    // var Tf = (parseFloat(LRekor_Prc) * parseFloat(LRekor_Qty)) + (parseFloat(RRekor_Prc) * parseFloat(RRekor_Qty)) + (parseFloat(Tube_Prc) * parseFloat(Tube_Qty)) + (parseFloat(AdditionalProduct_Prc) * parseFloat(AdditionalProduct_Qty));
     
@@ -92,14 +133,14 @@ function CalculateTube() {
     maliyet.value = commaSplit(Tf, 2);
 }
 
-function DegerLeriHesapla(p,d,q){
-   var price=parseFloat(p);
-   var discount=parseFloat(d);
-   var quantity=parseFloat(q);
-
-   var a=price-((price*discount)/100);
-   var b=a*quantity;
-   return b;
+function DegerLeriHesapla(p,d,q,m){
+    var price=parseFloat(p);
+    var discount=parseFloat(d);
+    var quantity=parseFloat(q);
+    var mn=moneyArr.find(p=>p.MONEY==m)
+    var a=price-((price*discount)/100);
+    var b=(a*quantity)*mn.RATE2;
+    return b;
 }
 
 function calculateTubeRow(el) {

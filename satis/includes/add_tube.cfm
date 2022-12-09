@@ -35,6 +35,8 @@
     <input type="hidden" name="LRekor_SId" id="LRekor_SId">
     <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="0">
     <input type="hidden" name="LRekor_DSC" id="LRekor_DSC" value="0">
+    <input type="hidden" name="LRekor_MNY" id="LRekor_MNY" value="">
+    <input type="hidden" name="LRekor_TTL" id="LRekor_TTL" value="0">
     <label style="width: 100%;font-size:6pt;color:red" id="LRekor_lbs"></label>
 </div>
 
@@ -46,6 +48,8 @@
     <input type="hidden" name="Tube_SId" id="Tube_SId">
     <input type="hidden" name="Tube_Prc" id="Tube_Prc" value="0">
     <input type="hidden" name="Tube_DSC" id="Tube_DSC" value="0">
+    <input type="hidden" name="Tube_MNY" id="Tube_MNY" value="">
+    <input type="hidden" name="Tube_TTL" id="Tube_TTL" value="">
     <label style="width: 100%;font-size:6pt;color:red" id="Tube_lbs"></label>
 </div>
 
@@ -57,6 +61,8 @@
     <input type="hidden" name="RRekor_SId" id="RRekor_SId">
     <input type="hidden" name="RRekor_Prc" id="RRekor_Prc" value="0">
     <input type="hidden" name="RRekor_DSC" id="RRekor_DSC" value="0">
+    <input type="hidden" name="RRekor_MNY" id="RRekor_MNY" value="">
+    <input type="hidden" name="RRekor_TTL" id="RRekor_TTL" value="">
     <label style="width: 100%;font-size:6pt;color:red" id="RRekor_lbs"></label>
 </div>
 
@@ -68,6 +74,8 @@
     <input type="hidden" name="Kabuk_SId" id="Kabuk_SId">
     <input type="hidden" name="Kabuk_Prc" id="Kabuk_Prc" value="0">
     <input type="hidden" name="Kabuk_DSC" id="Kabuk_DSC" value="0">
+    <input type="hidden" name="Kabuk_MNY" id="Kabuk_MNY" value="">
+    <input type="hidden" name="Kabuk_TTL" id="Kabuk_TTL" value="">
     <label style="width: 100%;font-size:6pt;color:red" id="Kabuk_lbs"></label>
 </div>
 
@@ -77,8 +85,10 @@
     <input type="text" name="AdditionalProduct_Qty" id="AdditionalProduct_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="AdditionalProduct_PId" id="AdditionalProduct_PId">
     <input type="hidden" name="AdditionalProduct_SId" id="AdditionalProduct_SId">
-    <input type="hidden" name="RRekor_Prc" id="AdditionalProduct_Prc" value="0">
-    <input type="hidden" name="RRekor_DSC" id="AdditionalProduct_DSC" value="0">
+    <input type="hidden" name="AdditionalProduct_Prc" id="AdditionalProduct_Prc" value="0">
+    <input type="hidden" name="AdditionalProduct_DSC" id="AdditionalProduct_DSC" value="0">
+    <input type="hidden" name="AdditionalProduct_MNY" id="AdditionalProduct_MNY" value="">
+    <input type="hidden" name="AdditionalProduct_TTL" id="AdditionalProduct_TTL" value="">
     <label style="width: 100%;font-size:6pt;color:red" id="AdditionalProduct_lbs"></label>
 </div>
 <div class="form-group">
@@ -89,6 +99,8 @@
     <input type="hidden" name="working_SId" id="working_SId">
     <input type="hidden" name="working_Prc" id="working_Prc" value="0">
     <input type="hidden" name="working_DSC" id="working_DSC" value="0">
+    <input type="hidden" name="working_MNY" id="working_MNY" value="">
+    <input type="hidden" name="working_TTL" id="working_TTL" value="">
     <label style="width: 100%;font-size:6pt;color:red" id="working_lbs"></label>
 </div>
 <div class="form-group">
