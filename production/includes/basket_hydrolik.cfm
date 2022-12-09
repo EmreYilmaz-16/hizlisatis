@@ -194,7 +194,7 @@ function addHydrolikRow(product,barcode){
 
 var basket=document.getElementById("basketim")
 if(product.RECORDCOUNT >0){
-    hyd_basket_rows++;
+    
     var tr=document.createElement("tr")
     var td=document.createElement("td")
     tr.appendChild(td)
@@ -266,10 +266,12 @@ if(product.RECORDCOUNT >0){
     var td=document.createElement("td")
       var spn=document.createElement("span");
     spn.innerText=product.PRODUCT.MAIN_UNIT;
+    spn.setAttribute("id","MAIN_UNIT_"+hyd_basket_rows)
     td.appendChild(spn)
     tr.appendChild(td)
     console.log(tr)
     basketim.appendChild(tr)
+    hyd_basket_rows++;
 }
 }
 </script>
