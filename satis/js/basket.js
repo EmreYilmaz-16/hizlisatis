@@ -1396,7 +1396,7 @@ function CalculatehydrolicRow(rw_id) {
     
     console.log(netPrc)
 
-    var netPrc = qty * prc;
+    var netPrc = (qty * prc)*parseFloat(a.RATE2);
    //document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
     $("#tblBaskHyd").find("#quantity_"+rw_id).val(commaSplit(qty))
     //document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
