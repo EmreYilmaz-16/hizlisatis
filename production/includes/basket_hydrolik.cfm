@@ -79,7 +79,7 @@
 	<div class="form-group">
 		<input type="text" name="barcodex" id="barcodex" onkeyup="findHydrolic(event,this)">
 	</div>
-		<cf_grid_list id="basketim">
+		<cf_grid_list id="basketim2">
 			<tr>
 				<th></th>
 				<th>Ürün</th>
@@ -91,6 +91,7 @@
 			<script>
 				hyd_basket_rows=1;
 			</script>
+			<tbody id="basketim">
 			<CFLOOP query="getsTree">
 				<tr>
 					<th style="text-align:left;">
@@ -130,6 +131,7 @@
 				hyd_basket_rows++;
 			</script>
 			</CFLOOP>
+		</tbody>
 		</cf_grid_list>
 	</cf_box>
 </cfoutput>
