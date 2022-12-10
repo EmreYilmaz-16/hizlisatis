@@ -293,10 +293,9 @@ var hydRowCount = 0;
             LAST_COST:#PR.PRODUCT.LAST_COST#,
             MONEY:'#PR.PRODUCT.MONEY#',
             IS_MANUEL:#PR.PRODUCT.IS_MANUEL#,
-            PRICE:<cfif len(PRICE)>#PRICE#<cfelse>0</cfif>,
-         
-            DISCOUNT_RATE:#PR.PRODUCT.DISCOUNT_RATE#,
-         
+            PRICE:<cfif len(PRICE)>#PRICE#<cfelse>0</cfif>,         
+            DISCOUNT_RATE:#DISCOUNT#,
+            MONEY:<cfif len(MONEY)>'#MONEY#'<cfelse>'TL'</cfif>,         
             STOCK_ID:#PR.PRODUCT.STOCK_ID#,
             PRODUCT_ID:#PR.PRODUCT.PRODUCT_ID#,
             PRODUCT_NAME:'#PR.PRODUCT.PRODUCT_NAME#',
