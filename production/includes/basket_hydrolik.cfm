@@ -32,6 +32,7 @@
 		,S.BARCOD
 		,VPT.PRICE
 		,VPT.DISCOUNT
+		,VPT.MONEY
 	FROM #dsn3#.VIRTUAL_PRODUCT_TREE_PRT AS VPT
 	LEFT JOIN #dsn3#.STOCKS AS S ON VPT.STOCK_ID = S.STOCK_ID
 	LEFT JOIN #dsn3#.VIRTUAL_PRODUCT_TREE_QUESTIONS AS VPQ ON VPQ.QUESTION_ID = VPT.QUESTION_ID
@@ -108,7 +109,8 @@
 							<input type="hidden" name="STOCK_ID_#QUESTION_ID_#" id="STOCK_ID_#QUESTION_ID_#"  value="#STOCK_ID#">
 							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID_#" id="PRODUCT_ID_#QUESTION_ID_#" value="#PRODUCT_ID#">	
 							<input type="hidden" name="PRICE_#QUESTION_ID_#" id="PRICE_#QUESTION_ID_#" value="#PRICE#">	
-							<input type="hidden" name="DISCOUNT_#QUESTION_ID_#" id="DISCOUNT_#QUESTION_ID_#" value="#DISCOUNT#">	
+							<input type="hidden" name="DISCOUNT_#QUESTION_ID_#" id="DISCOUNT_#QUESTION_ID_#" value="#DISCOUNT#">
+							<input type="hidden" name="MONEY_#QUESTION_ID_#" id="MONEY_#QUESTION_ID_#" value="#MONEY#">	
 						</td>
 						<td>
 							<div class="form-group">
@@ -234,11 +236,19 @@ if(product.RECORDCOUNT >0){
         input5.setAttribute("name","DISCOUNT_"+hyd_basket_rows)
         input5.setAttribute("id","DISCOUNT_"+hyd_basket_rows)
         input5.value=product.PRODUCT.DISCOUNT_RATE 
+        var input6=document.createElement("input")
+        input6.setAttribute("type","hidden")
+        input6.setAttribute("name","MONEY_"+hyd_basket_rows)
+        input6.setAttribute("id","MONEY_"+hyd_basket_rows)
+        input6.value=product.PRODUCT.MONEY; 
+
         div2.appendChild(input1)
         div2.appendChild(input2)
         div2.appendChild(input3)
         div2.appendChild(input4)
         div2.appendChild(input5)
+        div2.appendChild(input6)
+        
         div2.appendChild(spn)
         div1.append(div2)
         td.appendChild(div1)

@@ -9,7 +9,7 @@
 		        where VIRTUAL_PRODUCT_ID=#getPo.STOCK_ID#
 	</cfquery>
 	<cfquery name="getsTree" datasource="#dsn3#">
-	            SELECT S.PRODUCT_NAME,S.STOCK_CODE,S.STOCK_ID,S.PRODUCT_ID,VPT.AMOUNT,VPQ.QUESTION,PU.MAIN_UNIT,VP_ID,VPQ.QUESTION_ID,S.BARCOD,VPT.PRICE,VPT.DISCOUNT FROM #dsn3#.VIRTUAL_PRODUCT_TREE_PRT AS VPT
+	            SELECT S.PRODUCT_NAME,S.STOCK_CODE,S.STOCK_ID,S.PRODUCT_ID,VPT.AMOUNT,VPQ.QUESTION,PU.MAIN_UNIT,VP_ID,VPQ.QUESTION_ID,S.BARCOD,VPT.PRICE,VPT.DISCOUNT,VPT.MONEY FROM #dsn3#.VIRTUAL_PRODUCT_TREE_PRT AS VPT
 LEFT JOIN #dsn3#.STOCKS AS S ON VPT.STOCK_ID=S.STOCK_ID
 LEFT JOIN #dsn3#.VIRTUAL_PRODUCT_TREE_QUESTIONS AS VPQ ON VPQ.QUESTION_ID=VPT.QUESTION_ID
 LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UNIT_STATUS=1
@@ -32,6 +32,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 <cfset "Eleman#QUESTION_ID#.BARCOD"=BARCOD>
 <cfset "Eleman#QUESTION_ID#.PRICE"=PRICE>
 <cfset "Eleman#QUESTION_ID#.DISCOUNT"=DISCOUNT>
+<cfset "Eleman#QUESTION_ID#.MONEY"=MONEY>
 </cfloop>
 
 <cf_box title="Üretim Emri #getPo.V_P_ORDER_NO#">
@@ -94,6 +95,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRODUCT_ID")#">	
 							<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRICE")#">	
 							<input type="hidden" name="DISCOUNT_#QUESTION_ID#" id="DISCOUNT_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.DISCOUNT")#">	
+							<input type="hidden" name="MONEY_#QUESTION_ID#" id="MONEY_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.MONEY")#">	
 						</td>
 						<td>
 							<div class="form-group">
@@ -120,6 +122,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 						<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="">	
 						<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="">	
 						<input type="hidden" name="DISCOUNT_#QUESTION_ID#" id="DISCOUNT_#QUESTION_ID#" value="">	
+						<input type="hidden" name="MONEY_#QUESTION_ID#" id="MONEY_#QUESTION_ID#" value="">	
 					</td>
 					<td>
 						<div class="form-group">

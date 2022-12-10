@@ -72,7 +72,7 @@
         openBoxDraggable("http://erp.metosan.com.tr/index.cfm?fuseaction=objects.emptypopup_list_products_partner&price_cat="+p_cat+"&PRICE_CATID="+p_cat_id+"&company_id="+cp_id+"&company_name="+cp_name+"&question_id="+question_id)
 	}
 
-	function setRow(product_id,stock_id,product_name,question_id,barcode,main_unit,price,quantity,discount){
+	function setRow(product_id,stock_id,product_name,question_id,barcode,main_unit,price,quantity,discount,money){
 		console.log(arguments);
 		$("#PRODUCT_NAME_"+question_id).val(product_name);
 		$("#STOCK_ID_"+question_id).val(stock_id);
@@ -82,6 +82,7 @@
 		$("#AMOUNT_"+question_id).val(quantity);
 		$("#MAIN_UNIT_"+question_id).text(main_unit)
 		$("#DISCOUNT_"+question_id).val(discount)
+        $("#MONEY_"+question_id).val(discount)
 		Hesapla(1)
 	}
 
