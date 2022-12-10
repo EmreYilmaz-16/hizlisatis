@@ -134,18 +134,19 @@ function CalculateTube() {
 }
 
 function DegerLeriHesapla(p,d,q,m="TL"){
-  console.log("Prıce="+p)
-  console.log("Discount="+d)
-  console.log("quantity="+q)
-  console.log("Money="+m);
-  return 0;
-   /* var price=parseFloat(p);
+    var prm="";
+    if(m.trim().length==0){
+        prm="TL";
+    }else{
+        prm=m;
+    }
+    var price=parseFloat(p);
     var discount=parseFloat(d);
     var quantity=parseFloat(q);
-    var mn=moneyArr.find(p=>p.MONEY==m)
+    var mn=moneyArr.find(p=>p.MONEY==prm)
     var a=price-((price*discount)/100);
     var b=(a*quantity)*mn.RATE2;
-    return b;*/
+    return b;
 }
 
 function calculateTubeRow(el) {
