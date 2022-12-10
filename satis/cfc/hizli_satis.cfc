@@ -290,7 +290,7 @@
            <cffile action="write" file = "c:\cfcatch22234.html" output="#control5#"></cffile>
            <CFSET RETURN_VAL.PID = Res.IDENTITYCOL>
            <CFSET RETURN_VAL.IS_VIRTUAL = 1>
-           <CFSET RETURN_VAL.PRICE = arguments.maliyet>
+           <CFSET RETURN_VAL.PRICE = Filternum(arguments.maliyet)>
            <CFSET RETURN_VAL.QTY = 1>
            <CFSET RETURN_VAL.NAME = arguments.product_name>
            <cfreturn replace(serializeJSON(RETURN_VAL), '//', '')>
@@ -374,7 +374,7 @@
            <cffile action="write" file = "c:\cfcatch22234.html" output="#control5#"></cffile>
            <CFSET RETURN_VAL.PID=arguments.vp_id>
            <CFSET RETURN_VAL.IS_VIRTUAL=1>
-           <CFSET RETURN_VAL.PRICE=arguments.maliyet>
+           <CFSET RETURN_VAL.PRICE=Filternum(arguments.maliyet)>
            <CFSET RETURN_VAL.QTY=1>
            <CFSET RETURN_VAL.ROW_ID=arguments.row_id>
            <CFSET RETURN_VAL.NAME=arguments.product_name>
