@@ -286,14 +286,19 @@ function CalculatehydrolicRow(rw_id) {
     //var prc = document.getElementById("price_" + rw_id).value;
     var prc=$("#tblBaskHyd").find("#price_"+rw_id).val()
     prc=parseFloat(filterNum(commaSplit(prc)))
+
+    var dsc=$("#tblBaskHyd").find("#discount_"+rw_id).val()
+    dsc=parseFloat(filterNum(commaSplit(dsc)))
+
     //var mny = document.getElementById("money_" + rw_id).value;
     var mny=$("#tblBaskHyd").find("#money_"+rw_id).val()
     var a = moneyArr.filter(p => p.MONEY == mny)
     
    
-
-    var netPrc = (qty * prc)*parseFloat(a[0].RATE2);
-    var netPrcDV = (qty * prc);
+    var rt_2=a[0].RATE2;
+    
+    var netPrc = TutarHesapla(prc,qty,dsc,rt_2) //(qty * prc)*parseFloat(a[0].RATE2);
+    var netPrcDV = TutarHesapla(prc,qty,dsc,1) 
    //document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
     $("#tblBaskHyd").find("#quantity_"+rw_id).val(commaSplit(qty))
     //document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
@@ -320,4 +325,13 @@ function CalculateHydSub() {
     }
     total = total + ((total * marj) / 100)
     $("#hydSubTotal").val(commaSplit(total));
+}
+
+function TutarHesapla(price,quantity,discount,rate2){
+
+var return_value=price*quantity;
+return_value=return_value-((return_value*discount)/100);
+return_value=return_value*rate2;
+return return_value;
+
 }

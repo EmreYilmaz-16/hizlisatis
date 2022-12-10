@@ -54,13 +54,8 @@ saveOrder               ----Siparişi Kayıt Etme ve Güncelleme
 
 $(document).ready(function () {
     $("#barcode").focus()
-    /* var w = window.innerWidth
-     var x = (w / 3) - 31;
-     $(".pbs_v").attr("style", "width:" + x + "px !important")*/
     RowControlForVirtual()
     var page_event = getParameterByName("event");
-
-    console.log(page_event);
     if (page_event == 'add' || page_event == null) {
         if (generalParamsSatis.workingParams.IS_ALL_SEVK == 1) {
             document.getElementById("sales_type_1").setAttribute("checked", "true");
@@ -113,14 +108,6 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     var PC_ELEM = document.getElementById("PRODUCT_CAT")
     var PCID_ELEM = document.getElementById("PRODUCT_CATID")
     var PCHIE_ELEM = document.getElementById("HIEARCHY")
-    console.log(pidElem);
-    console.log(sidElem);
-    console.log(NameElem);
-    console.log(priceElem);
-    console.log(ev)
-    if (elemanAtt == "Tube") {
-        //var q=wrk_query()
-    }
     if (ev.keyCode == 13 || ev.type == 'change') {
 
         var Product = getProductMultiUse(keyword, comp_id, price_catid);
@@ -130,8 +117,7 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
             discountElem.value = Product.PRODUCT.DISCOUNT_RATE;
             NameElem.innerText = Product.PRODUCT.PRODUCT_NAME;
             priceElem.value = Product.PRODUCT.PRICE;
-            if (elemanAtt == "Tube") {
-                console.log(Product.PRODUCT.REL_CATNAME)
+            if (elemanAtt == "Tube") {                
                 PC_ELEM.value = Product.PRODUCT.REL_CATNAME
                 PCID_ELEM.value = Product.PRODUCT.REL_CATID
                 PCHIE_ELEM.value = Product.PRODUCT.REL_HIERARCHY
@@ -222,7 +208,6 @@ function saveVirtualTube(dsn3, modal_id) {
         url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=saveVirtualTube",
         data: d + "&product_name=" + p_name + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&employee_id=" + generalParamsSatis.userData.user_id,
         success: function (retDat) {
-            console.log(retDat)
             var obj = JSON.parse(retDat)
             AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 1, '', "TL", obj.PRICE, "-5");
           
@@ -254,16 +239,9 @@ function saveVirtualTube(dsn3, modal_id) {
 function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, poduct_type = 0, shelf_code = '', omoney = 'TL', price_other, currency = "-6", is_manuel = 0, cost = 0) {
     row_count++;
     rowCount = row_count;
-    console.log(arguments)
     var form = $(document);
     var checkedValue = form.find("input[name=_rd_money]:checked").val();
     var BASKET_MONEY = document.getElementById("_hidden_rd_money_" + checkedValue).value
-    console.log(BASKET_MONEY)
-    /*if (omoney != BASKET_MONEY) {
-        price_other = price;
-        var rsss = moneyArr.find(p => p.MONEY == omoney)
-        price = price * rsss.RATE2
-    }*/
     var rsss = moneyArr.find(p => p.MONEY == omoney)
     var prc = price_other * rsss.RATE2
 
@@ -276,48 +254,39 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     tr.setAttribute("data-rc", row_count)
     tr.setAttribute("data-ProductType", poduct_type)
     tr.setAttribute("class", "sepetRow");
-    //tr.setAttribute("onclick", "consoı('ÇiftTıklandı')")
     var td = document.createElement("td");
     var i_1 = document.createElement("input");
     i_1.setAttribute("name", "product_id_" + row_count);
     i_1.setAttribute("id", "product_id_" + row_count);
     i_1.setAttribute("type", "hidden");
     i_1.setAttribute("value", pid);
-
     var i_2 = document.createElement("input");
     i_2.setAttribute("name", "stock_id_" + row_count);
     i_2.setAttribute("id", "stock_id_" + row_count);
     i_2.setAttribute("type", "hidden");
     i_2.setAttribute("value", sid);
-
     var i_3 = document.createElement("input");
     i_3.setAttribute("name", "is_virtual_" + row_count);
     i_3.setAttribute("id", "is_virtual_" + row_count);
     i_3.setAttribute("type", "hidden");
     i_3.setAttribute("value", is_virtual);
-
     var i_4 = document.createElement("input");
     i_4.setAttribute("name", "shelf_code_" + row_count);
     i_4.setAttribute("id", "shelf_code_" + row_count);
     i_4.setAttribute("type", "hidden");
     i_4.setAttribute("value", shelf_code);
-
     var i_5 = document.createElement("input");
     i_5.setAttribute("name", "cost_" + row_count);
     i_5.setAttribute("id", "cost_" + row_count);
     i_5.setAttribute("type", "hidden");
     i_5.setAttribute("value", cost);
-
     var cbx = document.createElement("input");
     cbx.setAttribute("type", "checkbox");
     cbx.setAttribute("data-row", row_count);
     cbx.setAttribute("onclick", "selectrw(this)");
-    //<span class="icn-md icon-search"></span>
-
     var spn = document.createElement("span");
     spn.innerText = row_count;
     spn.setAttribute("id", "spn_" + row_count)
-    // td.innerText = row_count;
     td.appendChild(spn);
     td.appendChild(i_1);
     td.appendChild(i_2);
@@ -325,31 +294,25 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     td.appendChild(i_4);
     td.appendChild(i_5);
     td.appendChild(cbx);
-    // td.appendChild(span);
     tr.appendChild(td);
     var td = document.createElement("td");
-
     var i_4 = document.createElement("input");
     i_4.setAttribute("name", "product_name_" + row_count);
     i_4.setAttribute("id", "product_name_" + row_count);
     i_4.setAttribute("type", "text");
-    // i_4.setAttribute("class", "box");
     i_4.setAttribute("style", "width:40px")
     i_4.setAttribute("value", p_name);
-
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(i_4);
     td.appendChild(div);
     tr.appendChild(td);
-
     var td = document.createElement("td");
     td.setAttribute("style", "width:15%")
     var i_5 = document.createElement("input");
     i_5.setAttribute("name", "amount_" + row_count);
     i_5.setAttribute("id", "amount_" + row_count);
     i_5.setAttribute("type", "text");
-    // i_5.setAttribute("class", "box");
     i_5.setAttribute("style", "width:20px")
     i_5.setAttribute("value", commaSplit(qty, 2));
     i_5.setAttribute("onchange", "hesapla('price'," + row_count + ")");
@@ -357,10 +320,8 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(i_5);
-
     td.appendChild(div);
     tr.appendChild(td);
-
     var td = document.createElement("td");
     td.setAttribute("style", "width:15%")
     var i_6 = document.createElement("input");
@@ -369,41 +330,31 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     i_6.setAttribute("type", "text");
     i_6.setAttribute("onchange", "hesapla('price'," + row_count + ")");
     i_6.setAttribute("onClick", "sellinputAllVal(this)")
-    // i_6.setAttribute("class", "box");
     i_6.setAttribute("style", "width:30px")
     i_6.setAttribute("value", commaSplit(prc, 2));
-
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(i_6);
-
     td.appendChild(div);
     tr.appendChild(td);
-
     var td = document.createElement("td");
     td.setAttribute("style", "display:none");
     td.setAttribute("class", "hiddenR");
-
     var i_10 = document.createElement("input");
     i_10.setAttribute("name", "price_other_" + row_count);
     i_10.setAttribute("id", "price_other_" + row_count);
     i_10.setAttribute("type", "text");
     i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
-    // i_6.setAttribute("class", "box");
     i_10.setAttribute("style", "width:30px")
     i_10.setAttribute("value", commaSplit(price_other));
-
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(i_10);
-
     td.appendChild(div);
     tr.appendChild(td);
-
     var td = document.createElement("td");
     td.setAttribute("style", "display:none");
     td.setAttribute("class", "hiddenR");
-
     var sel = document.createElement("select");
     sel.setAttribute("name", "other_money_" + row_count)
     sel.setAttribute("id", "other_money_" + row_count)
@@ -420,21 +371,16 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(sel);
-
     td.appendChild(div);
     tr.appendChild(td);
-
     var td = document.createElement("td");
     td.setAttribute("style", "width:20%")
     var i_7 = document.createElement("input");
     i_7.setAttribute("name", "row_nettotal_" + row_count);
     i_7.setAttribute("id", "row_nettotal_" + row_count);
     i_7.setAttribute("type", "text");
-    // i_7.setAttribute("class", "box");
-    // i_7.setAttribute("style", "width:30px")
     var tutar = parseFloat(filterNum(price)) * qty;
     i_7.setAttribute("value", commaSplit(tutar, 2));
-
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(i_7);
@@ -442,49 +388,36 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     span.setAttribute("class", "icon-search");
     span.setAttribute("onclick", "showData(this)");
     span.setAttribute("data-row", row_count);
-
     div.appendChild(span);
     td.appendChild(div);
     tr.appendChild(td);
-
     var td = document.createElement("td");
     td.setAttribute("style", "display:none");
     td.setAttribute("class", "hiddenR");
-
     var i_8 = document.createElement("input");
     i_8.setAttribute("name", "Tax_" + row_count);
     i_8.setAttribute("id", "Tax_" + row_count);
     i_8.setAttribute("value", commaSplit(tax))
-
-
-
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(i_8);
     td.appendChild(div);
     tr.appendChild(td);
-
     var td = document.createElement("td");
     td.setAttribute("style", "display:none");
     td.setAttribute("class", "hiddenR");
-
     var i_9 = document.createElement("input");
     i_9.setAttribute("name", "indirim1_" + row_count);
     i_9.setAttribute("id", "indirim1_" + row_count);
     i_9.setAttribute("value", commaSplit(discount_rate))
-
-
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(i_9);
     td.appendChild(div);
     tr.appendChild(td);
-
-
     var td = document.createElement("td");
     td.setAttribute("style", "display:none");
     td.setAttribute("class", "hiddenR");
-
     var sel_1 = document.createElement("select");
     sel_1.setAttribute("name", "orderrow_currency_" + row_count);
     sel_1.setAttribute("id", "orderrow_currency_" + row_count);
@@ -492,18 +425,14 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     opt.setAttribute("value", -5);
     opt.innerText = "Üretim";
     sel_1.appendChild(opt)
-
     var opt = document.createElement("option");
     opt.setAttribute("value", -6);
     opt.innerText = "Sevk";
-
     sel_1.appendChild(opt)
-
     var opt = document.createElement("option");
     opt.setAttribute("value", -2);
     opt.innerText = "Tedarik";
     sel_1.appendChild(opt)
-
     var opt = document.createElement("option");
     opt.setAttribute("value", -10);
     opt.innerText = "Kapatıldı";
@@ -514,7 +443,6 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     div.appendChild(sel_1);
     td.appendChild(div);
     tr.appendChild(td);
-
     var bask = document.getElementById("tbl_basket");
     bask.appendChild(tr);
     hesapla("other_money", rowCount)
@@ -560,7 +488,6 @@ function getProductMultiUse(keyword, comp_id, price_catid) {
         }
         if (req) {
             function return_function_() {
-                console.log(req)
                 if (req.readyState == 4 && req.status == 200) {
 
                     JSON.parse(req.responseText.replace(/\u200B/g, ''));
@@ -601,15 +528,13 @@ function getProductAjx(keyword, comp_id, price_catid) {
             comp_id: comp_id
         }
     }).done(function (a) {
-        returnData = a
-        console.log(returnData)
+        returnData = a;
     });
     return returnData
 }
 
 function getProductWithBarcode(ev, el, userid, dsn2, dsn1, dsn3) {
     var keyword = el.value;
-    console.log(ev);
     var comp_id = document.getElementById("company_id").value;
     var price_catid = document.getElementById("PRICE_CATID").value;
     if (ev.keyCode == 13 || ev.type == 'change' || ev.key == '*') {
@@ -617,13 +542,11 @@ function getProductWithBarcode(ev, el, userid, dsn2, dsn1, dsn3) {
             keyword = keyword.slice(0, keyword.length - 1)
         }
         var Product = getProductMultiUse(keyword, comp_id, price_catid);
-        console.log(Product)
         if (Product.RECORDCOUNT != 0) {
             var q = "SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR"
             q += " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID"
             q += " WHERE STOCK_ID=" + Product.PRODUCT.STOCK_ID;
             var res = wrk_query(q, "dsn3")
-            console.log(res)
             if (res.recordcount > 1) {
                 var str = "";
                 for (let i = 0; i < res.recordcount; i++) {
@@ -730,7 +653,6 @@ function BasketSelControl() {
     for (let i = 0; i < sepetRows.length; i++) {
         var sepetRow = sepetRows[i];
         var isSelected = sepetRow.getAttribute("data-selected")
-        console.log(isSelected)
         if (parseInt(isSelected) == 1) {
             selectedArr.push(sepetRow)
         }
@@ -806,11 +728,6 @@ function hesapla(input, sira) {
         price_ = (price_other_ * r2) / r1;
     }
     var newNettotal = (price_ * (100 - indirim1_) / 100) * amount_;
-    console.log("%c ------", "color:red")
-    console.log(newNettotal)
-    console.log(parseFloat((price_ * (100 - indirim1_) / 100)))
-    console.log(cost_)
-    console.log("%c ------", "color:red")
     if (generalParamsSatis.workingParams.MALIYET_CONTROL) {
         if (parseFloat((price_ * (100 - indirim1_) / 100)) < parseFloat(cost_)) {
             document.getElementById("row_" + sira).setAttribute("style", "background-color:#ff06005c")
@@ -826,7 +743,6 @@ function hesapla(input, sira) {
 }
 
 function toplamHesapla() {
-    console.log("%c Toplam Hesapla", "color:red;font-size:10pt")
     var price_total_ = 0;
     var nettotal_total_ = 0;
     var tax_total_ = 0
@@ -849,9 +765,6 @@ function toplamHesapla() {
             tax_price_total_ += parseFloat(nettotal_) * (1 + (parseInt(tax_) / 100));
         }
     }
-    /* var discTe=$("#discountallt");
-     var discT=$("#discountallt").val();
-     discTe.val(commaSplit(discT,2))*/
     $("#subTotal").val(commaSplit(nettotal_total_, 2));
     $("#subTaxTotal").val(commaSplit(tax_total_, 2));
     $("#subWTax").val(commaSplit(tax_price_total_, 2));
@@ -869,13 +782,9 @@ function toplamHesapla_2() {
         var qty = filterNum(document.getElementById("amount_" + i).value)
         var dsc = filterNum(document.getElementById("indirim1_" + i).value)
         var tax = filterNum(document.getElementById("Tax_" + i).value)
-        //   console.log("%c Fiyat "+ prc,"color:green;font-size:10pt")
-        //  console.log("%c Miktar "+qty,"color:red;font-size:10pt")
-        // console.log("%c Tax "+tax,"color:orange;font-size:10pt")
         var tts = prc * qty;
         var ds = (tts * dsc) / 100
         var ttr = tts - ds
-        //   console.log("%c Tutar "+commaSplit(ttr,2),"color:blue;font-size:10pt")
         var tx = (ttr * tax) / 100
         netT += ttr
         taxT += tx;
@@ -885,24 +794,17 @@ function toplamHesapla_2() {
 
 
     }
-    console.log("%c Genel Toplam " + commaSplit(netT, 2), "color:purple;font-size:10pt")
-    console.log("%c Vergi Toplam " + commaSplit(taxT, 2), "color:violet;font-size:10pt")
-    console.log("%c İndirim Toplam " + commaSplit(discT, 2), "color:lightgreen;font-size:10pt")
-    console.log("%c Gros Total " + commaSplit(grosT, 2), "color:#cad13d;font-size:10pt")
+
     var d = parseFloat(filterNum($("#txt_disc").val()))
     $("#txt_disc").val(commaSplit(d, 3))
     var udc = (netT * generalParamsSatis.workingParams.MAX_DISCOINT) / 100
-    console.log(udc)
     if (d > udc) {
         alert("Genel İndirim İşlem Tutarının %" + generalParamsSatis.workingParams.MAX_DISCOINT + "'ndan büyük Olmaz İndirim 0'lanacaktır")
         $("#txt_disc").val(commaSplit(0, 3))
         d = 0;
     }
-
-    console.log("%c İndirim Toplam " + commaSplit(d, 2), "color:lightgreen;font-size:10pt")
     $("#txt_total").val(commaSplit(grosT, 3))
     discT += d
-
     $("#txt_disc_total").val(commaSplit(discT, 3))
     netT = grosT - discT
     $("#txt_nokdv_total").val(commaSplit(netT, 3))
@@ -918,10 +820,7 @@ function GetShelves(Pid) {
             dsn3: generalParamsSatis.dataSources.dsn3,
             dsn: generalParamsSatis.dataSources.dsn,
             product_id: Pid,
-            success: function (retDat) {
-                console.log(retDat)
-                //  var obj = JSON.parse(retDat)
-                //console.log(obj)
+            success: function (retDat) {             
             }
         }
     })
@@ -935,7 +834,6 @@ function UpdVirtualTube(dsn3, modal_id) {
         url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=UpdVirtualTube",
         data: d + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&employee_id=" + generalParamsSatis.userData.user_id,
         success: function (retDat) {
-            console.log(retDat)
             var obj = JSON.parse(retDat)
             UpdRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
             closeBoxDraggable(modal_id)
@@ -974,9 +872,6 @@ function rowArrange() {
         var NeWid = i + 1;
         var row = rows[i];
         var Old_rw_id = row.getAttribute("data-rc")
-        console.log(Old_rw_id)
-
-
         row.setAttribute("id", "row_" + NeWid)
         row.setAttribute("data-selected", "0")
         row.setAttribute("data-rc", NeWid)
@@ -1066,8 +961,7 @@ function SaveTube(dsn3, modal_id, tip = 0) {
         $.ajax({
             url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=saveTube",
             data: d + "&product_name=" + p_name + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&dsn1=" + generalParamsSatis.dataSources.dsn1 + "&dsn=" + generalParamsSatis.dataSources.dsn,
-            success: function (retDat) {
-                console.log(retDat)
+            success: function (retDat) {                
                 var obj = JSON.parse(retDat)
                 if (obj.ROW_ID.length > 0) {
                     UpdRow(obj.PID, obj.SID, 0, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
@@ -1090,16 +984,7 @@ function TubeControl() {
 
     var working_PId = document.getElementById("working_PId").value
     var Kabuk_PId = document.getElementById("Kabuk_PId").value
-
-    console.log(LRekor_PId);
-    console.log(Tube_PId);
-    console.log(RRekor_PId);
-    console.log(AdditionalProduct_PId);
-    console.log(working_PId);
-    console.log(Kabuk_PId);
-
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 1)
-    console.log(Q);
     if (Q.IS_REQUIRED == 1) {
         if (parseInt(LRekor_PId) == 0 || LRekor_PId.length == 0) {
             HataArr.push("Sol Rekor Seçmediniz !")
@@ -1107,7 +992,6 @@ function TubeControl() {
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 2)
-    console.log(Q);
     if (Q.IS_REQUIRED == 1) {
         if (parseInt(Tube_PId) == 0 || Tube_PId.length == 0) {
             HataArr.push("Hortum Seçmediniz !")
@@ -1115,7 +999,6 @@ function TubeControl() {
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 3)
-    console.log(Q);
     if (Q.IS_REQUIRED == 1) {
         if (parseInt(RRekor_PId) == 0 || RRekor_PId.length == 0) {
             HataArr.push("Sağ Rekor Seçmediniz !")
@@ -1123,7 +1006,6 @@ function TubeControl() {
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 4)
-    console.log(Q);
     if (Q.IS_REQUIRED == 1) {
         if (parseInt(AdditionalProduct_PId || AdditionalProduct_PId.length == 0) == 0) {
             HataArr.push("Ek İşlem Seçiniz !")
@@ -1131,7 +1013,6 @@ function TubeControl() {
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 5)
-    console.log(Q);
     if (Q.IS_REQUIRED == 1) {
         if (parseInt(Kabuk_PId) == 0 || Kabuk_PId.length == 0) {
             HataArr.push("Kabuk Seçmediniz !")
@@ -1139,7 +1020,6 @@ function TubeControl() {
     }
 
     var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 6)
-    console.log(Q);
     if (Q.IS_REQUIRED == 1) {
         if (parseInt(working_PId) == 0 || working_PId.length == 0) {
             HataArr.push("İşçilik Seçiniz !")
@@ -1394,36 +1274,33 @@ function getFormData($form) {
 function CalculatehydrolicRow(rw_id) {
     var dovv_ = $('input[name=_rd_money]:checked').val();
     var dow = document.getElementById("_hidden_rd_money_" + dovv_).value
-    /* var rate2 = filterNum($("#_txt_rate2_" + dovv_).val(), 4)*/
     var rate2 = moneyArr.find(p => p.MONEY == dow).RATE2;
-    console.log("RATE2=" + parseFloat(rate2))
-
-    //var qty = document.getElementById("quantity_" + rw_id).value;
     var qty=$("#tblBaskHyd").find("#quantity_"+rw_id).val()
     qty=parseFloat(filterNum(commaSplit(qty)))
-    
-    //var prc = document.getElementById("price_" + rw_id).value;
     var prc=$("#tblBaskHyd").find("#price_"+rw_id).val()
-    prc=parseFloat(filterNum(commaSplit(prc)))
-    //var mny = document.getElementById("money_" + rw_id).value;
+    prc=parseFloat(filterNum(commaSplit(prc)))    
+    var dsc=$("#tblBaskHyd").find("#discount_"+rw_id).val()
+    dsc=parseFloat(filterNum(commaSplit(dsc)))
     var mny=$("#tblBaskHyd").find("#money_"+rw_id).val()
     var a = moneyArr.filter(p => p.MONEY == mny)
-    
-   
-
-    var netPrc = (qty * prc)*parseFloat(a[0].RATE2);
-    var netPrcDV = (qty * prc);
-   //document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
+    var rt_2=a[0].RATE2;    
+    var netPrc = TutarHesapla(prc,qty,dsc,rt_2);
+    var netPrcDV = TutarHesapla(prc,qty,dsc,1) 
     $("#tblBaskHyd").find("#quantity_"+rw_id).val(commaSplit(qty))
-    //document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
     $("#tblBaskHyd").find("#price_"+rw_id).val(commaSplit(prc))
-    console.log(netPrc)
-
     document.getElementById("netT_" + rw_id).value = commaSplit(netPrc);
     document.getElementById("netTDv_" + rw_id).value = commaSplit(netPrcDV);
     CalculateHydSub();
 }
 
+function TutarHesapla(price,quantity,discount,rate2){
+
+var return_value=price*quantity;
+return_value=return_value-((return_value*discount)/100);
+return_value=return_value*rate2;
+return return_value;
+
+}
 
 function CalculateHydSub() {
     var total = 0;
@@ -1673,8 +1550,7 @@ function RowControlForVirtual() {
     var elems = document.getElementsByClassName("sepetRow")
     var sanal_varmı = false;
     for (let i = 1; i <= elems.length; i++) {
-        var vi = document.getElementById("is_virtual_" + i)
-        console.log(vi.value)
+        var vi = document.getElementById("is_virtual_" + i)        
         if (parseInt(vi.value) == 1) {
             sanal_varmı = true
         }
