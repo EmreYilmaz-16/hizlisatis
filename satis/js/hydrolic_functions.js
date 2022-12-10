@@ -65,12 +65,12 @@ function addHydrolicRow(Product,qty=1) {
     input.setAttribute("id", "product_id_" + hydRowCount)
     input.setAttribute("value", Product.PRODUCT.PRODUCT_ID)
     td.appendChild(input)
-    var input = document.createElement("input")
+   /* var input = document.createElement("input")
     input.setAttribute("type", "hidden")
     input.setAttribute("name", "money_" + hydRowCount)
     input.setAttribute("id", "money_" + hydRowCount)
     input.setAttribute("value", Product.PRODUCT.MONEY)
-    td.appendChild(input)
+    td.appendChild(input)*/
 
     var input = document.createElement("input")
     input.setAttribute("type", "hidden")
