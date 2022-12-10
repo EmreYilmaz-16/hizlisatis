@@ -138,6 +138,7 @@ function DegerLeriHesapla(p,d,q,m="TL"){
   console.log("Discount="+d)
   console.log("quantity="+q)
   console.log("Money="+m);
+  return 0;
    /* var price=parseFloat(p);
     var discount=parseFloat(d);
     var quantity=parseFloat(q);
