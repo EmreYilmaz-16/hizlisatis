@@ -29,7 +29,7 @@ DELETE FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#FormData.main_product_id#
             #it.ROW_DATA.PRODUCT_ID#,
             #it.ROW_DATA.STOCK_ID#,
             #it.ROW_DATA.AMOUNT#,
-            #it.QUESTION_ID#,
+            <cfif len(it.QUESTION_ID)>#it.QUESTION_ID#<cfelse>NULL</cfif>,
             #it.ROW_DATA.PRICE#,
             #it.ROW_DATA.DISCOUNT#,
             '#it.ROW_DATA.MONEY#')
