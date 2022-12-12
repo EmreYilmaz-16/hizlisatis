@@ -59,7 +59,7 @@
         </cfif>     
 <input type="hidden" name="total_price" id="total_price">
     </cfoutput>
-    <button type="button" class="btn btn-warning" onclick="saveVirtual()">Kaydet</button>
+    <button type="button" class="btn btn-warning" onclick="saveVirtual(<cfoutput>#getVirtualProduct.product_type#</cfoutput>)">Kaydet</button>
     <button type="button" class="btn btn-success" onclick="CloseProductionOrders()">Üretimi Sonlandır</button>
 </cfform>
 <script src="/AddOns/Partner/production/js/production_order.js"></script>
