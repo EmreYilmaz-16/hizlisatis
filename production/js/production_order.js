@@ -97,6 +97,7 @@ function GetBasketData() {
         var stock_id = $("#STOCK_ID_" + question_id).val()
         var amount = $("#AMOUNT_" + question_id).val()
         var price = $("#PRICE_" + question_id).val()
+        var MONEY = $("#MONEY_" + question_id).val()
         var discount = $("#DISCOUNT_" + question_id).val()
         if (product_id.length > 0) {
             amount = parseFloat(filterNum(commaSplit(amount)))
@@ -109,7 +110,9 @@ function GetBasketData() {
                     STOCK_ID: stock_id,
                     AMOUNT: amount,
                     PRICE: price,
-                    DISCOUNT: discount
+                    DISCOUNT: discount,
+                    MONEY: MONEY,
+                    
                 }
             }
             row_data.push(obj)
