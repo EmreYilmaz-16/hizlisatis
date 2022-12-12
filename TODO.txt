@@ -11,9 +11,7 @@
 
 ----------------	HİDROLİK		----------------
 
-**	Sanal Üretim Emri İçin Basketi Yap
-**	Sanal Üretim Emrinden Sanal Ürün Kaydını Yap
-**	Sanal Üretim Emri Oluştur
+
 **	Sanal Üretim Emri Sonuçlandır
 **	Gerçek Ürün Oluştur
 **	Teklifi Gerçek Ürünle Güncelle
