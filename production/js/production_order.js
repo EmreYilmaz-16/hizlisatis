@@ -36,9 +36,12 @@ function Hesapla(type) {
             if (price.length == 0) price = 0;
             if (quantity.length == 0) quantity = 0;
             if (discount.length == 0) discount = 0;
-            var RATE2 = moneyArr.find(p => p.MONEY == money).RATE2
+            var RATE2 = moneyArr.find(p => p.MONEY == money)
+            
             if(RATE2==undefined){
                 RATE2=1;
+            }else{
+                RATE2=RATE2.RATE2
             }
             quantity = filterNum(quantity);
             price = parseFloat(price)
