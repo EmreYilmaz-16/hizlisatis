@@ -164,7 +164,7 @@ function GetBasketDataHydrolik() {
         UNIQUE_RELATION_ID: UNIQUE_RELATION_ID,
         product_type: product_type,
         offer_row_id: offer_row_id,
-        product_type: 1,
+        product_type: 2,
         rows: hyd_basket_rows - 1
 
     }

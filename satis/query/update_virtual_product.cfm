@@ -13,6 +13,8 @@ SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#FormData.UNIQUE_RE
 <cfset RowData=FormData.ROW_DATA>
 
 <cfdump var="#RowData#">
+<cfabort>
+
 <cfquery name="UPD" datasource="#DSN3#">
 UPDATE VIRTUAL_PRODUCTS_PRT SET PRICE=#FormData.TotalPrice#,UPDATE_EMP=#session.ep.userid#,UPDATE_DATE=#now()# where VIRTUAL_PRODUCT_ID=#FormData.main_product_id#
 </cfquery>
