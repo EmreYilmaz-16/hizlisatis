@@ -43,7 +43,7 @@ function Hesapla(type) {
             discount = parseFloat(discount)
             console.log("Price=" + price + " Quantity=" + quantity + " Discount=" + discount)
             TotalPrice += TutarHesapla(price, quantity, discount, RATE2)
-            console.log(DegerLeriHesapla(price, quantity, discount))
+           // console.log(DegerLeriHesapla(price, quantity, discount))
 
 
         })
@@ -63,8 +63,9 @@ function Hesapla(type) {
             TotalPrice += TOTAL_PRICE
         }
 
-        document.getElementById("total_price").value = TotalPrice;
+        
     }
+    document.getElementById("total_price").value = TotalPrice;
 }
 
 
