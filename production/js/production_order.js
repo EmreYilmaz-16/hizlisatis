@@ -17,7 +17,7 @@ function setRow(product_id, stock_id, product_name, question_id, barcode, main_u
     $("#AMOUNT_" + question_id).val(quantity);
     $("#MAIN_UNIT_" + question_id).text(main_unit)
     $("#DISCOUNT_" + question_id).val(discount)
-    $("#MONEY_" + question_id).val(discount)
+    $("#MONEY_" + question_id).val(money)
     Hesapla(1)
 }
 
