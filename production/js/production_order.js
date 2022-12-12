@@ -37,6 +37,9 @@ function Hesapla(type) {
             if (quantity.length == 0) quantity = 0;
             if (discount.length == 0) discount = 0;
             var RATE2 = moneyArr.find(p => p.MONEY == money).RATE2
+            if(RATE2==undefined){
+                RATE2=1;
+            }
             quantity = filterNum(quantity);
             price = parseFloat(price)
             quantity = parseFloat(quantity)
@@ -59,6 +62,9 @@ function Hesapla(type) {
             PRICE = parseFloat(filterNum(commaSplit(PRICE)))
             var RATE2 = moneyArr.find(p => p.MONEY == MONEY).RATE2
             console.log(RATE2)
+            if(RATE2==undefined){
+                RATE2=1;
+            }
             var TOTAL_PRICE = TutarHesapla(PRICE, AMOUNT, DISCOUNT, RATE2)
             TotalPrice += TOTAL_PRICE
         }
