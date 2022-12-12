@@ -274,98 +274,109 @@ function addHydrolikRow(product, barcode) {
     var basket = document.getElementById("basketim")
 
     if (product.RECORDCOUNT > 0) {
-
-        if(generalParamsSatis.workingParams.IS_ADD_QUANTITY){
-
+        var st = false;
+        if (generalParamsSatis.workingParams.IS_ADD_QUANTITY) {
+            var ex = $(basket).find("[data-stock_id='" + product.PRODUCT.STOCK_ID + "']");
+            if (ex.length > 0) {
+                var rw_id = ex.parent().parent().parent().parent().attr("data-row_id");
+                var m = $("#AMOUNT_" + rw_id).val();
+                m = parseFloat(filterNum(commaSplit(m)));
+                m++;
+                $("#AMOUNT_" + rw_id).val(commaSplit(m));
+                st = true;
+            }
         }
-        var tr = document.createElement("tr")
-        var td = document.createElement("td")
-        tr.appendChild(td)
-        var td = document.createElement("td")
+        if (!st) {
+            var tr = document.createElement("tr")
+            tr.setAttribute("data-row_id", hyd_basket_rows);
+            var td = document.createElement("td")
+            tr.appendChild(td)
+            var td = document.createElement("td")
 
-        var div1 = document.createElement("div");
-        div1.setAttribute("class", "form-group")
-        var div2 = document.createElement("div");
-        div2.setAttribute("class", "input-group")
-        var input1 = document.createElement("input")
-        input1.value = product.PRODUCT.PRODUCT_NAME;
-        input1.setAttribute("id", "PRODUCT_NAME_" + hyd_basket_rows);
-        input1.setAttribute("name", "PRODUCT_NAME_" + hyd_basket_rows);
-        input1.setAttribute("type", "text")
-        var spn = document.createElement("span");
-        spn.setAttribute("class", "input-group-addon btnPointer icon-ellipsis")
-        spn.setAttribute("onclick", "openProductPopup(" + hyd_basket_rows + ")")
-        var input2 = document.createElement("input")
-        input2.setAttribute("type", "hidden")
-        input2.setAttribute("name", "PRODUCT_ID_" + hyd_basket_rows)
-        input2.setAttribute("id", "PRODUCT_ID_" + hyd_basket_rows)
+            var div1 = document.createElement("div");
+            div1.setAttribute("class", "form-group")
+            var div2 = document.createElement("div");
+            div2.setAttribute("class", "input-group")
+            var input1 = document.createElement("input")
+            input1.value = product.PRODUCT.PRODUCT_NAME;
+            input1.setAttribute("id", "PRODUCT_NAME_" + hyd_basket_rows);
+            input1.setAttribute("name", "PRODUCT_NAME_" + hyd_basket_rows);
+            input1.setAttribute("type", "text")
+            var spn = document.createElement("span");
+            spn.setAttribute("class", "input-group-addon btnPointer icon-ellipsis")
+            spn.setAttribute("onclick", "openProductPopup(" + hyd_basket_rows + ")")
+            var input2 = document.createElement("input")
+            input2.setAttribute("type", "hidden")
+            input2.setAttribute("name", "PRODUCT_ID_" + hyd_basket_rows)
+            input2.setAttribute("id", "PRODUCT_ID_" + hyd_basket_rows)
 
-        input2.value = product.PRODUCT.PRODUCT_ID
-        var input3 = document.createElement("input")
-        input3.setAttribute("type", "hidden")
-        input3.setAttribute("name", "STOCK_ID_" + hyd_basket_rows)
-        input3.setAttribute("id", "STOCK_ID_" + hyd_basket_rows)
-        input3.setAttribute("data-stock_id",product.PRODUCT.STOCK_ID)
-        input3.value = product.PRODUCT.STOCK_ID
-        var input4 = document.createElement("input")
-        input4.setAttribute("type", "hidden")
-        input4.setAttribute("name", "PRICE_" + hyd_basket_rows)
-        input4.setAttribute("id", "PRICE_" + hyd_basket_rows)
-        input4.value = product.PRODUCT.PRICE
-        var input5 = document.createElement("input")
-        input5.setAttribute("type", "hidden")
-        input5.setAttribute("name", "DISCOUNT_" + hyd_basket_rows)
-        input5.setAttribute("id", "DISCOUNT_" + hyd_basket_rows)
-        input5.value = product.PRODUCT.DISCOUNT_RATE
-        var input6 = document.createElement("input")
-        input6.setAttribute("type", "hidden")
-        input6.setAttribute("name", "MONEY_" + hyd_basket_rows)
-        input6.setAttribute("id", "MONEY_" + hyd_basket_rows)
-        input6.value = product.PRODUCT.MONEY;
+            input2.value = product.PRODUCT.PRODUCT_ID
+            var input3 = document.createElement("input")
+            input3.setAttribute("type", "hidden")
+            input3.setAttribute("name", "STOCK_ID_" + hyd_basket_rows)
+            input3.setAttribute("id", "STOCK_ID_" + hyd_basket_rows)
+            input3.setAttribute("data-stock_id", product.PRODUCT.STOCK_ID)
+            input3.value = product.PRODUCT.STOCK_ID
+            var input4 = document.createElement("input")
+            input4.setAttribute("type", "hidden")
+            input4.setAttribute("name", "PRICE_" + hyd_basket_rows)
+            input4.setAttribute("id", "PRICE_" + hyd_basket_rows)
+            input4.value = product.PRODUCT.PRICE
+            var input5 = document.createElement("input")
+            input5.setAttribute("type", "hidden")
+            input5.setAttribute("name", "DISCOUNT_" + hyd_basket_rows)
+            input5.setAttribute("id", "DISCOUNT_" + hyd_basket_rows)
+            input5.value = product.PRODUCT.DISCOUNT_RATE
+            var input6 = document.createElement("input")
+            input6.setAttribute("type", "hidden")
+            input6.setAttribute("name", "MONEY_" + hyd_basket_rows)
+            input6.setAttribute("id", "MONEY_" + hyd_basket_rows)
+            input6.value = product.PRODUCT.MONEY;
 
-        div2.appendChild(input1)
-        div2.appendChild(input2)
-        div2.appendChild(input3)
-        div2.appendChild(input4)
-        div2.appendChild(input5)
-        div2.appendChild(input6)
+            div2.appendChild(input1)
+            div2.appendChild(input2)
+            div2.appendChild(input3)
+            div2.appendChild(input4)
+            div2.appendChild(input5)
+            div2.appendChild(input6)
 
-        div2.appendChild(spn)
-        div1.append(div2)
-        td.appendChild(div1)
-        tr.appendChild(td)
-        var td = document.createElement("td")
-        var div1 = document.createElement("div");
-        div1.setAttribute("class", "form-group")
-        var input1 = document.createElement("input")
-        input1.value = barcode; //  fonksiyonYapıldığında fonksiyondaki keyword gelecek
-        input1.setAttribute("id", "BARKODE_" + hyd_basket_rows);
-        input1.setAttribute("name", "BARKODE_" + hyd_basket_rows);
-        input1.setAttribute("type", "text")
-        div1.appendChild(input1)
-        td.appendChild(div1)
-        tr.appendChild(td)
-        var td = document.createElement("td")
-        var div1 = document.createElement("div");
-        div1.setAttribute("class", "form-group")
-        var input1 = document.createElement("input")
-        input1.value = commaSplit(1);
-        input1.setAttribute("id", "AMOUNT_" + hyd_basket_rows);
-        input1.setAttribute("name", "AMOUNT_" + hyd_basket_rows);
-        input1.setAttribute("type", "text")
-        input1.setAttribute("onchange", "this.value=commaSplit(this.value)");
-        div1.appendChild(input1)
-        td.appendChild(div1)
-        tr.appendChild(td)
-        var td = document.createElement("td")
-        var spn = document.createElement("span");
-        spn.innerText = product.PRODUCT.MAIN_UNIT;
-        spn.setAttribute("id", "MAIN_UNIT_" + hyd_basket_rows)
-        td.appendChild(spn)
-        tr.appendChild(td)
-        console.log(tr)
-        basketim.appendChild(tr)
-        hyd_basket_rows++;
+            div2.appendChild(spn)
+            div1.append(div2)
+            td.appendChild(div1)
+            tr.appendChild(td)
+            var td = document.createElement("td")
+            var div1 = document.createElement("div");
+            div1.setAttribute("class", "form-group")
+            var input1 = document.createElement("input")
+            input1.value = barcode; //  fonksiyonYapıldığında fonksiyondaki keyword gelecek
+            input1.setAttribute("id", "BARKODE_" + hyd_basket_rows);
+            input1.setAttribute("name", "BARKODE_" + hyd_basket_rows);
+            input1.setAttribute("type", "text")
+            div1.appendChild(input1)
+            td.appendChild(div1)
+            tr.appendChild(td)
+            var td = document.createElement("td")
+            var div1 = document.createElement("div");
+            div1.setAttribute("class", "form-group")
+            var input1 = document.createElement("input")
+            input1.value = commaSplit(1);
+            input1.setAttribute("id", "AMOUNT_" + hyd_basket_rows);
+            input1.setAttribute("name", "AMOUNT_" + hyd_basket_rows);
+            input1.setAttribute("type", "text")
+            input1.setAttribute("onchange", "this.value=commaSplit(this.value)");
+            div1.appendChild(input1)
+            td.appendChild(div1)
+            tr.appendChild(td)
+            var td = document.createElement("td")
+            var spn = document.createElement("span");
+            spn.innerText = product.PRODUCT.MAIN_UNIT;
+            spn.setAttribute("id", "MAIN_UNIT_" + hyd_basket_rows)
+            td.appendChild(spn)
+            tr.appendChild(td)
+            console.log(tr)
+            basketim.appendChild(tr)
+            hyd_basket_rows++;
+        }
     }
     Hesapla(2);
 }
