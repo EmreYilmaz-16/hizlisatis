@@ -127,6 +127,7 @@ function GetBasketData() {
 
 function GetBasketDataHydrolik() {
     var row_data = new Array();
+    Hesapla(2);
     for (let i = 1; i < hyd_basket_rows; i++) {
         var PRODUCT_NAME = $("#PRODUCT_NAME_" + i).val()
         var STOCK_ID = $("#STOCK_ID_" + i).val()

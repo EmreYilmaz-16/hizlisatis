@@ -138,7 +138,3 @@
 	</cf_box>
 </cfoutput>
 
-<script>
-
-
-</script>

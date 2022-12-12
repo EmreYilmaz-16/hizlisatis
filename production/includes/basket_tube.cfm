@@ -177,9 +177,3 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 
 </cf_box>
 
-<script>
-	$(document).ready(function(){
-	//	Hesapla(1);
-	})
-</script>
-
