@@ -248,7 +248,7 @@ if(product.RECORDCOUNT >0){
         div2.appendChild(input4)
         div2.appendChild(input5)
         div2.appendChild(input6)
-        
+
         div2.appendChild(spn)
         div1.append(div2)
         td.appendChild(div1)
@@ -287,4 +287,6 @@ if(product.RECORDCOUNT >0){
     hyd_basket_rows++;
 }
 }
+
+
 </script>
