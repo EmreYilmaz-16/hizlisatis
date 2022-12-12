@@ -357,4 +357,5 @@ function addHydrolikRow(product, barcode) {
         basketim.appendChild(tr)
         hyd_basket_rows++;
     }
+    Hesapla(2);
 }
