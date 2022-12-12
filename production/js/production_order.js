@@ -140,13 +140,16 @@ function GetBasketDataHydrolik() {
         DISCOUNT = parseFloat(filterNum(commaSplit(DISCOUNT)))
         PRICE = parseFloat(filterNum(commaSplit(PRICE)))
         obj = {
-            PRODUCT_NAME: PRODUCT_NAME,
-            STOCK_ID: STOCK_ID,
-            PRODUCT_ID: PRODUCT_ID,
-            PRICE: PRICE,
-            DISCOUNT: DISCOUNT,
-            MONEY: MONEY,
-            AMOUNT: AMOUNT
+            ROW_DATA: {
+                PRODUCT_NAME: PRODUCT_NAME,
+                STOCK_ID: STOCK_ID,
+                PRODUCT_ID: PRODUCT_ID,
+                PRICE: PRICE,
+                DISCOUNT: DISCOUNT,
+                MONEY: MONEY,
+                AMOUNT: AMOUNT
+            },
+            QUESTION_ID: ""
         }
         row_data.push(obj)
         //console.log(obj)
