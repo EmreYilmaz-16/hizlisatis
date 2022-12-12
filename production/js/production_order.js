@@ -272,8 +272,12 @@ function getProductMultiUse(keyword, comp_id, price_catid) {
 function addHydrolikRow(product, barcode) {
 
     var basket = document.getElementById("basketim")
+
     if (product.RECORDCOUNT > 0) {
 
+        if(generalParamsSatis.workingParams.IS_ADD_QUANTITY){
+
+        }
         var tr = document.createElement("tr")
         var td = document.createElement("td")
         tr.appendChild(td)
@@ -295,11 +299,13 @@ function addHydrolikRow(product, barcode) {
         input2.setAttribute("type", "hidden")
         input2.setAttribute("name", "PRODUCT_ID_" + hyd_basket_rows)
         input2.setAttribute("id", "PRODUCT_ID_" + hyd_basket_rows)
+
         input2.value = product.PRODUCT.PRODUCT_ID
         var input3 = document.createElement("input")
         input3.setAttribute("type", "hidden")
         input3.setAttribute("name", "STOCK_ID_" + hyd_basket_rows)
         input3.setAttribute("id", "STOCK_ID_" + hyd_basket_rows)
+        input3.setAttribute("data-stock_id",product.PRODUCT.STOCK_ID)
         input3.value = product.PRODUCT.STOCK_ID
         var input4 = document.createElement("input")
         input4.setAttribute("type", "hidden")
