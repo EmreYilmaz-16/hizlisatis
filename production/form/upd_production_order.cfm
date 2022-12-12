@@ -31,7 +31,7 @@
         SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
     </cfquery>
 
-<cfform method="post" name="production_form" id="production_form">
+<cfform method="post" name="production_form" id="production_form" onsubmit="event.preventDefault()">
     <cfoutput>
         <input type="hidden" name="offer_row_id" value="#getOffer.OFFER_ROW_ID#"> 
         <input type="hidden" name="main_product_id" id="main_product_id" value="#getProductionOrders.STOCK_ID#">
