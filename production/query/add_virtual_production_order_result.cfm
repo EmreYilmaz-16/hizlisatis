@@ -16,5 +16,5 @@
 	Gerçek Üretim Sonucu Oluştur
 	Teklifi Güncelle
 	Bildirim Gönder
-	----->
+----->
 
