@@ -85,7 +85,7 @@ $(d).css("height",(v-t)/1.5+"px")
     matchBrackets : true,
     autofocus: true,
     extraKeys: {"Ctrl-Space": "autocomplete"},
-    hintOptions:hintOptions_,
+    
 
   });
 })
