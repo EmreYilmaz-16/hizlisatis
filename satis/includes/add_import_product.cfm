@@ -49,6 +49,9 @@
 		<cfset short_code = "">
 	</cfif>
 </cfif>
+<cfdump var="#attributes#">
+<cfabort>
+
 
 <cfquery name="ADD_PRODUCT" datasource="#DSN1#">
 	INSERT INTO
