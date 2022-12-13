@@ -83,7 +83,7 @@
 
             <cfset barcode=getBarcode()>
             <cfset UrunAdi=getVirtualProduct.PRODUCT_NAME>
-            <cfif len(getVirtualProduct.PRODUCT_CATID)><cfset kategori_id=getVirtualProduct.PRODUCT_CATID><cfelse><cfset kategori_id=4084></cfif>
+            <cfif len(getVirtualProduct.PRODUCT_CATID) and getVirtualProduct.PRODUCT_CATID neq 0><cfset kategori_id=getVirtualProduct.PRODUCT_CATID><cfelse><cfset kategori_id=4084></cfif>
 <cfquery name="getCat" datasource="#dsn1#">
 SELECT * FROM PRODUCT_CAT WHERE PRODUCT_CATID=#kategori_id#
 </cfquery>
