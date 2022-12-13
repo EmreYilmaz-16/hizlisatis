@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="/JS/codemirror-5.65.0/lib/codemirror.css">
+﻿    <link rel="stylesheet" href="/JS/codemirror-5.65.0/lib/codemirror.css">
     <script src="/JS/codemirror-5.65.0/lib/codemirror.js"></script>
     <script src="/JS/codemirror-5.65.0/addon/edit/matchbrackets.js"></script>
     <script src="/JS/codemirror-5.65.0/mode/sql/sql.js"></script>
@@ -11,7 +11,7 @@
         SELECT  name FROM sys.TABLES
     </cfquery>
 <div style="display:flex;">
-    <div style="width:25%">
+    <div style="width:25%;height: 100vh;overflow: scroll;">
     <cf_big_list>
         <cfoutput query="getT">
         <tr><td>#name#</td></tr>
