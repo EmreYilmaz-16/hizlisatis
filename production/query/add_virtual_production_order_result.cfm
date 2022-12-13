@@ -73,7 +73,7 @@
 	INNER JOIN STOCKS AS SS ON SS.PRODUCT_ID=S.PRODUCT_ID                     
 	WHERE PRODUCT_CATID=#pcatid# AND PRODUCT_DETAIL2='MASTER'
 	</cfquery>
-
+<cfdump var="#getMaster#">
       <cfquery name="get_purchase_price_info" datasource="#dsn1#">
                 SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_STATUS = 1 AND PURCHASESALES = 1 AND PRODUCT_ID = #getMaster.PRODUCT_ID#
             </cfquery>
