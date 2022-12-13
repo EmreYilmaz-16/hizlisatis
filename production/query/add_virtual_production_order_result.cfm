@@ -85,8 +85,9 @@
             <cfset UrunAdi=getVirtualProduct.PRODUCT_NAME>
             <cfif len(getVirtualProduct.PRODUCT_CATID)><cfset kategori_id=getVirtualProduct.PRODUCT_CATID><cfelse><cfset kategori_id=4084></cfif>
 <cfquery name="getCat" datasource="#dsn1#">
-SELECT * FROM workcube_metosan_product.PRODUCT_CAT WHERE PRODUCT_CATID=#kategori_id#
+SELECT * FROM PRODUCT_CAT WHERE PRODUCT_CATID=#kategori_id#
 </cfquery>
+<cfdump var="#getCat#">
 <CFSET attributes.hierarchy=getCat.HIERARCHY>
 <CFOUTPUT query="getMaster">	
 	<cfscript>
