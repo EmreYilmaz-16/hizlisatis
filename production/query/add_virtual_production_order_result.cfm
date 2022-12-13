@@ -84,7 +84,11 @@
             <cfset barcode=getBarcode()>
             <cfset UrunAdi=getVirtualProduct.PRODUCT_NAME>
             <cfif len(getVirtualProduct.PRODUCT_CATID)><cfset kategori_id=getVirtualProduct.PRODUCT_CATID><cfelse><cfset kategori_id=4084></cfif>
-<CFOUTPUT query="getMaster">
+<cfquery name="getCat" datasource="#dsn1#">
+SELECT * FROM workcube_metosan_product.PRODUCT_CAT WHERE PRODUCT_CATID=#kategori_id#
+</cfquery>
+<CFSET attributes.hierarchy=getCat.HIERARCHY>
+<CFOUTPUT query="getMaster">	
 	<cfscript>
 		
 		urun_adi=UrunAdi; 
@@ -126,6 +130,7 @@
 		purchase_money = get_purchase_price_info.MONEY;
 	</cfscript>
 </CFOUTPUT>
+
 <cfinclude template="/AddOns/Partner/satis/Includes/add_import_product.cfm">
         <cfscript>
             main_stock_id = GET_MAX_STCK.MAX_STCK;
