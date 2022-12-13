@@ -7,61 +7,18 @@
 
 
 <cfparam  name="attributes.sql_sorgu" default="">
-<div class="row">
-<div class="cell-3">
-<cfscript>
-    hintoptions=structNew();
-    hintoptions.tables=structNew();
-</cfscript>
     <cfquery name="getT" datasource="#dsn#">
-        SELECT * FROM sys.TABLES
+        SELECT  name FROM sys.TABLES
     </cfquery>
-    <div data-role="accordion" data-one-frame="true" data-show-active="true">
- <cfoutput query="getT">
-        <div class="frame">
-             <div class="heading">#NAME#</div>
-              
-            <div class="content">
-                <div class="p-2">
-                    <cfquery name="getinf" datasource="#dsn#">
-                    select st.name as tipi,sc.name,sc.max_length,SC.is_identity from sys.columns as sc left join sys.systypes as st on sc.system_type_id=st.xusertype
-                    where sc.object_id=#object_id#
-                    </cfquery>
-                    <table class="table striped compact">
-                        <tr>
-                        <th>Kolon</th>
-                        <th>Tipi</th>
-                        <th>Max length</th>
-                        <th>identity</th>
-                        </tr>
-                        <cfloop query="getinf">
-                        <tr>
-                        <td>#name#</td>
-                        <td>#tipi#</td>
-                        <td>#max_length#</td>
-                        <td>#is_identity#</td>
-                        </tr>
-                           <cfscript>
-                        
-                    </cfscript> 
-                        </cfloop>
-                        </table>
-                     <cfscript>
-      //StructInsert(hintoptions.tables, NAME, evaluate("#NAME#"));
-      
-  </cfscript>
-                </div>
-            </div>             
-        </div>
-     
- </cfoutput>
- </div>
+<div style="width:25%">
+<table>
+    <cfoutput query="getT">
+    <tr><td>#name#</td></tr>
+    </cfoutput>
+</table>
 </div>
-<cfset hhopt=replace(serializeJSON(hintoptions),"//","")>
-<script>
-var hintOptions_=<cfoutput>#LCase(hhopt)#</cfoutput>;
-</script>
-<!---<cfdump  var="#hhopt#">--->
+
+
 <div class="cell-9">
 <cfform method="post" action="#request.self#?page=#attributes.page#"> 
 
