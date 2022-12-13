@@ -20,7 +20,7 @@
  <cfoutput query="getT">
         <div class="frame">
              <div class="heading">#NAME#</div>
-              <cfset "#NAME#"=arrayNew(1)>
+              
             <div class="content">
                 <div class="p-2">
                     <cfquery name="getinf" datasource="#dsn#">
@@ -42,7 +42,7 @@
                         <td>#is_identity#</td>
                         </tr>
                            <cfscript>
-                        arrayAppend(evaluate("#getT.NAME#"), name);
+                        
                     </cfscript> 
                         </cfloop>
                         </table>
