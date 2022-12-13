@@ -1,3 +1,4 @@
+<cfdump var="#attributes#">
 <cfquery name="getVirtualProductionOrder" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#
 </cfquery>
@@ -20,6 +21,7 @@
 <cfquery name="getVirtualProductTREE" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#getVirtualProductionOrder.STOCK_ID#
 </cfquery>
+<cfif len(getVirtualProduct.PRODUCT_CATID)><cfset pcatid=getVirtualProduct.PRODUCT_CATID><cfelse><cfset pcatid=4084></cfif>
 <cfset sidArr=arrayNew(1)>
 <cfloop query="getVirtualProductTREE">
 	<cfscript>
@@ -69,7 +71,7 @@
 	FROM PRODUCT AS S 
 	LEFT JOIN PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID     
 	INNER JOIN STOCKS AS SS ON SS.PRODUCT_ID=S.PRODUCT_ID                     
-	WHERE PRODUCT_CATID=#getVirtualProduct.PRODUCT_CATID# AND PRODUCT_DETAIL2='MASTER'
+	WHERE PRODUCT_CATID=#pcatid# AND PRODUCT_DETAIL2='MASTER'
 	</cfquery>
 
       <cfquery name="get_purchase_price_info" datasource="#dsn1#">
