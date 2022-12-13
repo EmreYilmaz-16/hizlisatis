@@ -86,7 +86,7 @@
             <cfif len(getVirtualProduct.PRODUCT_CATID)><cfset kategori_id=getVirtualProduct.PRODUCT_CATID><cfelse><cfset kategori_id=4084></cfif>
 <CFOUTPUT query="getMaster">
 	<cfscript>
-		kategori_id=arguments.PRODUCT_CATID;   
+		
 		urun_adi=UrunAdi; 
 		detail=''; 
 		detail_2='';
