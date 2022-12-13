@@ -20,7 +20,7 @@
 
 
 <div class="cell-9">
-<cfform method="post" action="#request.self#?page=#attributes.page#"> 
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#"> 
 
 
 <BR>
