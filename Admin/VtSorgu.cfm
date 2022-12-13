@@ -47,7 +47,7 @@
                         </cfloop>
                         </table>
                      <cfscript>
-      StructInsert(hintoptions.tables, NAME, evaluate("#NAME#"));
+      //StructInsert(hintoptions.tables, NAME, evaluate("#NAME#"));
       
   </cfscript>
                 </div>
