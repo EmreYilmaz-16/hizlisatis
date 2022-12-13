@@ -21,7 +21,7 @@
 <cfquery name="getVirtualProductTREE" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#getVirtualProductionOrder.STOCK_ID#
 </cfquery>
-<cfif len(getVirtualProduct.PRODUCT_CATID)><cfset pcatid=getVirtualProduct.PRODUCT_CATID><cfelse><cfset pcatid=4084></cfif>
+<cfif len(getVirtualProduct.PRODUCT_CATID) and getVirtualProduct.PRODUCT_CATID neq 0><cfset pcatid=getVirtualProduct.PRODUCT_CATID><cfelse><cfset pcatid=4084></cfif>
 <cfset sidArr=arrayNew(1)>
 <cfloop query="getVirtualProductTREE">
 	<cfscript>
