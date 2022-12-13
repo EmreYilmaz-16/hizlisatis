@@ -40,6 +40,7 @@ PENCERE
 	function loadFamilies(id,a,b){
 		var a=wrk_query("select * from WRK_FAMILY WHERE WRK_SOLUTION_ID="+id,"DSN")
 			var sel=document.getElementById("family");
+                  sel.html='';
 		for(let i=0;i<a.recordcount;i++){
 			var opt=document.createElement("option");
 			opt.setAttribute("value",a.WRK_FAMILY_ID[i]);
@@ -51,6 +52,7 @@ PENCERE
 		function loadModules(id,a,b){
 		var a=wrk_query("select * from WRK_MODULE WHERE FAMILY_ID="+id,"DSN")
 			var sel=document.getElementById("module");
+                  sel.html='';
 		for(let i=0;i<a.recordcount;i++){
 			var opt=document.createElement("option");
 			opt.setAttribute("value",a.MODULE_NO[i]);

@@ -393,3 +393,7 @@ function addHydrolikRow(product, barcode) {
     }
     Hesapla(2);
 }
+
+function CloseProductionOrders() {
+    
+}

@@ -1,6 +1,6 @@
 ﻿----------------			HORTUM			----------------
 
-**	Sanal Üretim Emri Sonuçlandır
+
 **	Gerçek Ürün Oluştur
 **	Teklifi Gerçek Ürünle Güncelle
 **	Gerçek Üretim Emri Oluştur
@@ -12,7 +12,7 @@
 ----------------	HİDROLİK		----------------
 
 
-**	Sanal Üretim Emri Sonuçlandır
+
 **	Gerçek Ürün Oluştur
 **	Teklifi Gerçek Ürünle Güncelle
 **	Gerçek Üretim Emri Oluştur
