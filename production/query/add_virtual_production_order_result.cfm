@@ -132,6 +132,7 @@ SELECT * FROM workcube_metosan_product.PRODUCT_CAT WHERE PRODUCT_CATID=#kategori
 </CFOUTPUT>
 
 <cfinclude template="/AddOns/Partner/satis/Includes/add_import_product.cfm">
+ürünü import etmiş olmam lazım
         <cfscript>
             main_stock_id = GET_MAX_STCK.MAX_STCK;
             main_product_id =GET_PID.PRODUCT_ID;
@@ -152,6 +153,7 @@ SELECT * FROM workcube_metosan_product.PRODUCT_CAT WHERE PRODUCT_CATID=#kategori
        <cfinclude template="/AddOns/Partner/satis/Includes/PARTNERTREEPORT.cfm">
         <cfset SPEC_MAIN_ID_LIST= listAppend(SPEC_MAIN_ID_LIST, getStock_Info.STOCK_ID)> 
 </cfloop>
+buraya kadar geldim sanırım
 <cfquery name="insertOpp" datasource="#dsn3#">
     INSERT INTO PRODUCT_TREE (
         IS_TREE
