@@ -394,6 +394,6 @@ function addHydrolikRow(product, barcode) {
     Hesapla(2);
 }
 
-function CloseProductionOrders() {
-    
+function CloseProductionOrders(p_order_id) {
+    windowopen("index.cfm?fuseaction=production.emptypopup_add_prod_order_result&V_P_ORDER_ID=")
 }
