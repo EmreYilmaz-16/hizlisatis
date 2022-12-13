@@ -10,62 +10,54 @@
     <cfquery name="getT" datasource="#dsn#">
         SELECT  name FROM sys.TABLES
     </cfquery>
-<div style="width:25%">
-<table>
-    <cfoutput query="getT">
-    <tr><td>#name#</td></tr>
-    </cfoutput>
-</table>
-</div>
+<div style="display:flex;">
+    <div style="width:25%">
+    <cf_big_list>
+        <cfoutput query="getT">
+        <tr><td>#name#</td></tr>
+        </cfoutput>
+    </cf_big_list>
+    </div>
+    <div style="width:74%">
+        <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#"> 
+            <textarea name="sql_sorgu" id="sql_sorgu"><cfoutput>#attributes.sql_sorgu#</cfoutput></textarea>
+            <input type="hidden" name="is_submit" value="1">
+            <input type="submit">
+        </cfform>
+        <cfif isDefined("attributes.is_submit")>
+            <cfif len(attributes.sql_sorgu)>
+                <cfquery name="getSorgu" datasource="#dsn#" result="res">
+                    #preserveSingleQuotes(attributes.sql_sorgu)#
+                </cfquery>
 
-
-<div class="cell-9">
-<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#"> 
-
-
-<BR>
-<textarea name="sql_sorgu" id="sql_sorgu"><cfoutput>#attributes.sql_sorgu#</cfoutput></textarea>
-<input type="hidden" name="is_submit" value="1">
-<input type="submit">
-</cfform>
-<cfif isDefined("attributes.is_submit")>
-    <cfif len(attributes.sql_sorgu)>
-<cfquery name="getSorgu" datasource="#dsn#" result="res">
-    #preserveSingleQuotes(attributes.sql_sorgu)#
-</cfquery>
-
-<div style="overflow:auto" id="sonuc_div">
-<cfif isDefined("res.COLUMNLIST")>
-<table class="table striped compact" >
-<thead>
-<tr>
-<th>#</th>
-<cfloop list="#res.COLUMNLIST#" item="item">
-
-<th><cfoutput>
-#item#
-</cfoutput></th>
-</cfloop>
-</tr>
-</thead>
-<tbody>
-<cfoutput query="getSorgu">
-<tr>
-<td>#currentrow#</td>
-<cfloop list="#res.COLUMNLIST#" item="item">
-<td>#evaluate(item)#</td>
-</cfloop>
-</tr>
-</cfoutput>
-</tbody>
-</table>
-</cfif>
-</div>
-<p>Kayıt Sayısı:<code><cfoutput>#res.recordcount#</cfoutput></p>
-</cfif>
-</cfif>
+            <div style="overflow:auto" id="sonuc_div">
+                <cfif isDefined("res.COLUMNLIST")>
+                    <table class="table striped compact" >
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <cfloop list="#res.COLUMNLIST#" item="item"><th><cfoutput>#item#</cfoutput></th></cfloop>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <cfoutput query="getSorgu">
+                            <tr>
+                                <td>#currentrow#</td>
+                                <cfloop list="#res.COLUMNLIST#" item="item">
+                                    <td>#evaluate(item)#</td>
+                                </cfloop>
+                            </tr>
+                        </cfoutput>
+                        </tbody>
+                    </table>
+                </cfif>
+            </div>
+                <p>Kayıt Sayısı:<code><cfoutput>#res.recordcount#</cfoutput></p></code>
+        </cfif>
+    </cfif>
 </div>
 </div>
+
 <script>
 $(document).ready(function(){
 var d=document.getElementById("sonuc_div")
