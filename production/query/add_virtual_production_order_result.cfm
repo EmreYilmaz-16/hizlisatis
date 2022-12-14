@@ -221,6 +221,9 @@ buraya kadar geldim sanırım
     </cfquery>
 </cfif>
 
+<cfquery name="upd" datasource="#dsn3#">
+	UPDATE PBS_OFFER_ROW set PRODUCT_ID=#main_product_id#,STOCK_ID=#main_stock_id#,IS_VIRTUAL=0 WHERE UNIQUE_RELATION_ID='#getVirtualProductionOrder.UNIQUE_RELATION_ID#'
+</cfquery>
 
     <cffunction name="getBarcode">
       

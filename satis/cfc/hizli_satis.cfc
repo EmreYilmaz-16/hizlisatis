@@ -239,6 +239,7 @@
     <cffunction name="saveVirtualTube" access="remote" returntype="any" returnFormat="json">
         <cfargument name="IsProduction" default="0">
         <cftry>
+            <cfif not isdefined(arguments.employee_id)> <cfset arguments.EMPLOYEE_ID=1></cfif>
         <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
             INSERT INTO VIRTUAL_PRODUCTS_PRT(PRODUCT_NAME,PRODUCT_CATID,PRICE,IS_CONVERT_REAL,MARJ,PRODUCT_TYPE,IS_PRODUCTION,RECORD_EMP,RECORD_DATE,PRODUCT_DESCRIPTION) VALUES('#arguments.product_name#',#arguments.PRODUCT_CATID#,#Filternum(arguments.maliyet)#,0,#Filternum(arguments.marj)#,1,#arguments.IsProduction#,#arguments.employee_id#,#now()#,'#arguments.PRODUCT_DESCRIPTION#')
         </cfquery>
@@ -288,6 +289,7 @@
 
            </cfsavecontent>
            <cffile action="write" file = "c:\cfcatch22234.html" output="#control5#"></cffile>
+
            <CFSET RETURN_VAL.PID = Res.IDENTITYCOL>
            <CFSET RETURN_VAL.IS_VIRTUAL = 1>
            <CFSET RETURN_VAL.PRICE = Filternum(arguments.maliyet)>

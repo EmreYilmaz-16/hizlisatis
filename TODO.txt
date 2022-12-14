@@ -1,8 +1,6 @@
 ﻿----------------			HORTUM			----------------
 
 
-**	Gerçek Ürün Oluştur
-**	Teklifi Gerçek Ürünle Güncelle
 **	Gerçek Üretim Emri Oluştur
 **	Gerçek Üretim Emrini Sonlandır
 **	Ambar Fişlerini Yap
@@ -12,9 +10,6 @@
 ----------------	HİDROLİK		----------------
 
 
-
-**	Gerçek Ürün Oluştur
-**	Teklifi Gerçek Ürünle Güncelle
 **	Gerçek Üretim Emri Oluştur
 **	Gerçek Üretim Emrini Sonlandır
 **	Ambar Fişlerini Yap
@@ -22,6 +17,7 @@
 
 
 ----------------	POMPA		----------------
+
 
 **	Sanal Ürün Oluşturma Kayıt Ekranı
 **	Sanal Ürün Oluşturma Güncelle Ekranı
@@ -32,7 +28,6 @@
 **	Sanal Üretim Emri Oluştur
 **	Sanal Üretim Emri Sonuçlandır
 **	Gerçek Ürün Oluştur
-**	Teklifi Gerçek Ürünle Güncelle
 **	Gerçek Üretim Emri Oluştur
 **	Gerçek Üretim Emrini Sonlandır
 **	Ambar Fişlerini Yap
@@ -56,8 +51,12 @@
 
 ----------------	NOTLAR		----------------
 
-**	Sanal Üretim Emri Sonuçlandırma Tek Ekran
+
 **	Gerçek Üretim Emri Oluşturma Tek Ekran
 **	Gerçek Üretim Emri Sonlandır Tek Ekran
 **	Ambar Fişlerini Yap Tek Ekran
 **	Bildirim Gönder Tek Ekran
+**	Gerçek Üretim Sonucuna Sanal Teklifle Bağlantılı Biryer Yap
+**	Gerçek Ürünle Sanal Ürün Bağlantısını Yap
+** 	Üretim Tamamlandı Bildirimi Workcube Standar Üretim Sonucu Sürecinden Gelecek
+**	Takım Oluşturma Kodlarını Yaz (Karma Koli Yapmayı Öğren) Hortum veya Hidrolik Takımı Olabiler
