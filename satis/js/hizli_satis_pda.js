@@ -74,8 +74,6 @@ function setCompany(id, name, partner_id, partner_name) {
     }
     CompanyData.COMPANY_ID = id;
     CompanyData.NICK_NAME = name;
-
-    // console.log(compInfo);
     HideCustomerDiv();
     setAddress(id)
     ShowMessage(id);
@@ -121,12 +119,13 @@ function TabCntFunction(a, b, c, d, e, f) {
         alert("Müşteri Seçmediniz");
         hata = true
     }
- /*   if (s.length > 0) {
+   if (s.length > 0) {
 
     } else {
-        alert("Sevk Yöntemi Seçmediniz");
-        hata = true;
-    }*/
+     /*   alert("Sevk Yöntemi Seçmediniz");
+        hata = true;*/
+        setSevkYontem(8,'Elden Teslim');
+    }
     if (o.length > 0) {
 
     } else {
