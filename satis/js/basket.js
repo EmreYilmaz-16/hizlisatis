@@ -280,11 +280,11 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     i_5.setAttribute("id", "cost_" + row_count);
     i_5.setAttribute("type", "hidden");
     i_5.setAttribute("value", cost);
-        var i7 = document.createElement("input");
-    i7.setAttribute("name", "row_uniq_id_" + row_count);
-    i7.setAttribute("id", "row_uniq_id_" + row_count);
-    i7.setAttribute("type", "hidden");
-    i7.setAttribute("value", row_uniq_id);
+        var i_7 = document.createElement("input");
+    i_7.setAttribute("name", "row_uniq_id_" + row_count);
+    i_7.setAttribute("id", "row_uniq_id_" + row_count);
+    i_7.setAttribute("type", "hidden");
+    i_7.setAttribute("value", row_uniq_id);
 
     var cbx = document.createElement("input");
     cbx.setAttribute("type", "checkbox");
