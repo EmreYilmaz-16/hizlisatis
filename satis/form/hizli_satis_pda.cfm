@@ -40,6 +40,7 @@ SELECT S.STOCK_CODE
 	,POR.DELIVER_DATE
 	,POR.IS_VIRTUAL
 	,POR.UNIT
+    ,POR.UNIQUE_RELATION_ID
 FROM #dsn3#.PBS_OFFER_ROW AS POR
 LEFT JOIN #dsn3#.STOCKS AS S ON S.STOCK_ID = POR.STOCK_ID
 LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID
@@ -139,7 +140,32 @@ background:white;
                     $("##sales_type_m").show();
                 </cfif>
             <cfloop query="getOfferRow">
-                AddRow(#PRODUCT_ID#, #STOCK_ID#, #IS_VIRTUAL#, #QUANTITY#, #PRICE#, '#PRODUCT_NAME#', #TAX#, #DISCOUNT_1#, #PRODUCT_TYPE#, '#SHELF_CODE#','#OTHER_MONEY#',#PRICE_OTHER#,#PBS_OFFER_ROW_CURRENCY#) 
+
+                <CFSET EMANUEL=0>
+                <cfset lastCost = 0>
+                <cfset Pname="">                        
+                <CFIF getOfferRow.IS_VIRTUAL neq 1>                    
+                    <cfquery name="getLastCost" datasource="#dsn2#">
+                        SELECT TOP 1
+                            IR.PRICE-(IR.DISCOUNTTOTAL/2) AS PRICE
+                        FROM
+                            INVOICE I
+                        LEFT JOIN INVOICE_ROW IR ON IR.INVOICE_ID = I.INVOICE_ID
+                        WHERE
+                            ISNULL(I.PURCHASE_SALES,0) = 0 AND
+                            IR.PRODUCT_ID = #PRODUCT_ID#
+                            AND I.PROCESS_CAT<>35
+                        ORDER BY
+                            I.INVOICE_DATE DESC
+                    </cfquery>
+                    <cfif getLastCost.RecordCount AND Len(getLastCost.PRICE)>
+                        <cfset lastCost = getLastCost.PRICE>
+                    </cfif>                    
+                     <CFIF getOfferRow.PROPERTY1 EQ "MANUEL">
+                        <CFSET EMANUEL=1>
+                    </CFIF>
+                </cfif>
+                AddRow(#PRODUCT_ID#, #STOCK_ID#, #IS_VIRTUAL#, #QUANTITY#, #PRICE#, '#PRODUCT_NAME#', #TAX#, #DISCOUNT_1#, #PRODUCT_TYPE#, '#SHELF_CODE#','#OTHER_MONEY#',#PRICE_OTHER#,#PBS_OFFER_ROW_CURRENCY#,#EMANUEL#,#lastCost#,'#UNIQUE_RELATION_ID#') 
             </cfloop>
             RowControlForVirtual() 
             

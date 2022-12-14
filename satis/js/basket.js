@@ -236,7 +236,7 @@ function saveVirtualTube(dsn3, modal_id) {
  * @param {*} is_manuel Manuelmi
  * @param {*} cost Maliyet
  */
-function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, poduct_type = 0, shelf_code = '', omoney = 'TL', price_other, currency = "-6", is_manuel = 0, cost = 0) {
+function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, poduct_type = 0, shelf_code = '', omoney = 'TL', price_other, currency = "-6", is_manuel = 0, cost = 0,row_uniq_id='') {
     row_count++;
     rowCount = row_count;
     var form = $(document);
@@ -280,6 +280,12 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     i_5.setAttribute("id", "cost_" + row_count);
     i_5.setAttribute("type", "hidden");
     i_5.setAttribute("value", cost);
+        var i7 = document.createElement("input");
+    i7.setAttribute("name", "row_uniq_id_" + row_count);
+    i7.setAttribute("id", "row_uniq_id_" + row_count);
+    i7.setAttribute("type", "hidden");
+    i7.setAttribute("value", row_uniq_id);
+
     var cbx = document.createElement("input");
     cbx.setAttribute("type", "checkbox");
     cbx.setAttribute("data-row", row_count);
@@ -293,6 +299,7 @@ function AddRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, po
     td.appendChild(i_3);
     td.appendChild(i_4);
     td.appendChild(i_5);
+    td.appendChild(i_7);
     td.appendChild(cbx);
     tr.appendChild(td);
     var td = document.createElement("td");
