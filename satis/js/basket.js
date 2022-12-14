@@ -1396,6 +1396,7 @@ function saveOrder() {
         var indirim1 = document.getElementById("indirim1_" + Old_rw_id).value;
         var price_other = document.getElementById("price_other_" + Old_rw_id).value;
         var orderrow_currency = document.getElementById("orderrow_currency_" + Old_rw_id).value;
+        var row_uniq_id = document.getElementById("row_uniq_id_" + Old_rw_id).value;
         if (!generalParamsSatis.workingParams.IS_ZERO_QUANTITY) {
             var p = filterNum(price);
             if (p <= 0) {
@@ -1416,7 +1417,8 @@ function saveOrder() {
             Tax: Tax,
             indirim1: indirim1,
             price_other: price_other,
-            orderrow_currency: orderrow_currency
+            orderrow_currency: orderrow_currency,            
+            row_uniq_id:row_uniq_id
         }
         OrderRows.push(Obj)
     }

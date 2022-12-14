@@ -565,8 +565,7 @@ function GetBasketData() {
         var product_name = document.getElementById("product_name_" + Old_rw_id).value;
         var product_id = document.getElementById("product_id_" + Old_rw_id).value;
         var stock_id = document.getElementById("stock_id_" + Old_rw_id).value;
-        var is_virtual = document.getElementById("is_virtual_" + Old_rw_id).value;
-        var is_production = document.getElementById("is_production_" + Old_rw_id).value;
+        var is_virtual = document.getElementById("is_virtual_" + Old_rw_id).value;        
         var amount = document.getElementById("amount_" + Old_rw_id).value;
         var price = document.getElementById("price_" + Old_rw_id).value;
         var other_money = document.getElementById("other_money_" + Old_rw_id).value;
@@ -579,6 +578,7 @@ function GetBasketData() {
         var product_name_other = document.getElementById("product_name_other_" + Old_rw_id).value;
         var detail_info_extra = document.getElementById("detail_info_extra_" + Old_rw_id).value;
         var deliver_date_bask = document.getElementById("deliver_date_" + Old_rw_id).value;
+        var is_production = document.getElementById("is_production_" + Old_rw_id).value;
         var row_uniq_id = document.getElementById("row_uniq_id_" + Old_rw_id).value;
         if (!generalParamsSatis.workingParams.IS_ZERO_QUANTITY) {
             var p = filterNum(price);
