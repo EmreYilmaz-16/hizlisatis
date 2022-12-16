@@ -11,7 +11,7 @@
 
 
 <cfquery name="GETSWS" datasource="#DSN3#">
-SELECT * FROM WORKSTATIONS_PRODUCTS WHERE STOCK_ID=main_stock_id
+SELECT * FROM WORKSTATIONS_PRODUCTS WHERE STOCK_ID=#main_stock_id#
 </cfquery>
 
 <cfset pws_id=GETSWS.WS_ID>
