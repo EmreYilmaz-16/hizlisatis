@@ -693,7 +693,7 @@
 								<cfset amount_ = _AMOUNT_ * get_max.AMOUNT>
 							</cfif>
 							<cfset wrk_id_new_sarf = 'WRK#round(rand()*65)##dateformat(now(),'YYYYMMDD')##timeformat(now(),'HHmmssL')##session.ep.userid##round(rand()*100)#U#get_max.pid#S#STOCK_ID#'>
-							<cfstoredproc procedure="ADD_PRODUCTION_ORDERS_STOCKS" datasource="#dsn3#">
+							<cfstoredproc procedure="ADD_PRODUCTION_ORDERS_STOCKS_PBS" datasource="#dsn3#">
 								<cfprocparam cfsqltype="cf_sql_integer" value="#get_max.pid#">
 								<cfprocparam cfsqltype="cf_sql_integer" value="#PRODUCT_ID#">
 								<cfprocparam cfsqltype="cf_sql_integer" value="#STOCK_ID#">
