@@ -341,7 +341,7 @@
 					<!--- ÜRETİM EMRİ EKLENİYOR --->
 
 
-					<cfstoredproc procedure="ADD_PRODUCTION_ORDER" datasource="#dsn3#">
+					<cfstoredproc procedure="ADD_PRODUCTION_ORDER_PBS" datasource="#dsn3#">
 						<cfif production_level eq 0 and isdefined('attributes.po_related_id_main') and len(attributes.po_related_id_main)><!--- Bir üretimin detayından ilişkili bir üretim ekleniyorsa --->
 							<cfprocparam cfsqltype="cf_sql_integer" value="#attributes.po_related_id_main#">
 						<cfelseif len(____po_related_id____)><!--- Verilen Üretim emrinde seçilen ürünün ağacında bulunan üretilen ürünler için siparişi verilen ürün ile ilgili bağlantıları kuruyoruz. --->
