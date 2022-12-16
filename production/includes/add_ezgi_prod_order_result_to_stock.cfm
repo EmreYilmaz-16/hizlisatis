@@ -110,7 +110,7 @@
 	<!--- üretimden giriş --->
 	<cf_papers paper_type="stock_fis">
 	<cfscript>
-		value_finish_date = createdatetime(year(get_row_result.finish_date),month(get_row_result.finish_date),day(get_row_result.finish_date),0,0,0);
+		value_finish_date = now();
 		attributes.system_paper_no = paper_code & '-' & paper_number;
 		attributes.system_paper_no_add = paper_number;
 		attributes.fis_no = attributes.system_paper_no;
