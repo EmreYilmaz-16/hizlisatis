@@ -225,6 +225,19 @@ buraya kadar geldim sanırım
 	UPDATE PBS_OFFER_ROW set PRODUCT_ID=#main_product_id#,STOCK_ID=#main_stock_id#,IS_VIRTUAL=0 WHERE UNIQUE_RELATION_ID='#getVirtualProductionOrder.UNIQUE_RELATION_ID#'
 </cfquery>
 
+
+
+
+<cfquery name="ivs" datasource="#dsn3#">
+
+INSERT INTO WORKSTATIONS_PRODUCTS(WS_ID, STOCK_ID, CAPACITY, PRODUCTION_TIME, PRODUCTION_TIME_TYPE, SETUP_TIME, MIN_PRODUCT_AMOUNT, PRODUCTION_TYPE )
+                 VALUES (1,#main_stock_id#,60,1,1,0,1,0)
+</cfquery>
+
+<cfquery name="getspekmain" datasource="#dsn3#">
+SELECT top 1 * FROM SPECT_MAIN WHERE STOCK_ID=#main_stock_id#
+</cfquery>
+<cfseset smain_pbs=getspekmain.SPECT_MAIN_ID>
     <cffunction name="getBarcode">
       
         <cfif  1 eq 1>
@@ -268,6 +281,12 @@ buraya kadar geldim sanırım
         
   
     </cffunction>
+
+
+
+
+
+
 
 <!-------
 	//Sanal Sonuç Tablosunu Oluştur

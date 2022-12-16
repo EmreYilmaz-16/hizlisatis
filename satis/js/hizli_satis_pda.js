@@ -293,3 +293,5 @@ function setOdemeYontem(id, txt, due) {
 function ShowMessage(company_id){
     openBoxDraggable('index.cfm?fuseaction=objects.emptypopup_show_company_notes&style=1&design_id=1&is_special=0&action_type=0&is_delete=1&action_section=COMPANY_ID&action_id='+company_id+'&is_open_det=1');
 }
+
+
