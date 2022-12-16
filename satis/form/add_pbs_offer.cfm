@@ -25,3 +25,4 @@
 <script src="/AddOns/Partner/satis/js/hizli_satis_pc.js"></script>
 <script src="/AddOns/Partner/satis/js/tube_functions.js"></script>
 <script src="/AddOns/Partner/satis/js/hydrolic_functions.js"></script>
+<script src="/AddOns/Partner/satis/js/virtual_product_functions.js"></script>
