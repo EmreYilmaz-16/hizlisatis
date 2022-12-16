@@ -10,8 +10,10 @@ var v=window.innerHeight
 var t=$(document.getElementById("PRODUCT_DESCRIPTION")).css("height")
 t=parseInt(t)
 v=parseInt(v)
-$(d).css("height",(v-t)/1.5+"px")
-$(d).css("width",(v-t)/1.5+"px")
+d.setAttribute("style","height:"+(v-t)/1.5+"px;width:"+(v-t)/3.5)
+
+//$(d).css("height",(v-t)/1.5+"px")
+//$(d).css("width",(v-t)/1.5+"px")
   var mime = 'text/x-mssql';
   // get mime type
 
