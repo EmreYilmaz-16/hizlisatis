@@ -237,7 +237,11 @@ INSERT INTO WORKSTATIONS_PRODUCTS(WS_ID, STOCK_ID, CAPACITY, PRODUCTION_TIME, PR
 <cfquery name="getspekmain" datasource="#dsn3#">
 SELECT top 1 * FROM SPECT_MAIN WHERE STOCK_ID=#main_stock_id#
 </cfquery>
-<cfseset smain_pbs=getspekmain.SPECT_MAIN_ID>
+<cfset smain_pbs=getspekmain.SPECT_MAIN_ID>
+
+
+
+
     <cffunction name="getBarcode">
       
         <cfif  1 eq 1>
