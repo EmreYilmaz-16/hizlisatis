@@ -24,7 +24,7 @@
 </cfif>
 <cfparam name="prod_ind" default="1">
 <cfif not isdefined('is_ok')><!--- Çoklu sayfadan da gelse sadece 1 kere include edilsin.. --->
-	<cfinclude template="../../workdata/get_main_spect_id.cfm">
+	<cfinclude template="/v16/workdata/get_main_spect_id.cfm">
 	<cfset is_ok = 1>
 </cfif>
 <cfparam name="attributes.total_production_product" default="1">
@@ -960,7 +960,7 @@
 		<cfset attributes.lot_no = "">
 		<cfset attributes.product_id = get_product_guaranty.product_id>
 		<cfset attributes.order_type_ = 1> <!--- Ana Emir --->
-		<cfinclude template="../../objects/query/add_stock_serial_no.cfm">
+		<cfinclude template="/v16/objects/query/add_stock_serial_no.cfm">
 	</cfif>
 	<!---İlişkili Üretm Emri için --->
 	<cfset attributes.p_order_id = Evaluate('po_related_id_#prod_ind#_0')>
@@ -1030,7 +1030,7 @@
 				<cfset attributes.product_id = get_product_guaranty2.product_id>
 				<cfset attributes.order_type_ = 2> 
 				<cfset attributes.product_id = get_product_guaranty2.product_id>
-				<cfinclude template="../../objects/query/add_stock_serial_no.cfm">
+				<cfinclude template="/v16/objects/query/add_stock_serial_no.cfm">
 			</cfif>
 		</cfoutput>
 	 </cfif>
