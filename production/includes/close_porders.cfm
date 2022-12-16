@@ -11,9 +11,6 @@
 
 
 
-<cfquery name="getNextPOrders" datasource="#dsn#">
-    select * from #dsn3#.PRODUCTION_ORDERS where START_DATE>='#DATEFORMAT(REAL_START_DATE,"yyyy-mm-dd")# #timeformat(REAL_START_DATE,"HH:nn")#' AND STATION_ID=#data.ev.STATION_ID#
-</cfquery>
 
 
 
