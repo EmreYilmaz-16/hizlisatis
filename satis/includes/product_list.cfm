@@ -55,7 +55,7 @@
             <button class="btn btn-primary" onclick="openHose('')" type="button">T</button>
             <button class="btn btn-danger" onclick="openHydrolic('')" type="button">H</button>
             <button class="btn btn-warning" type="button">P</button>
-            
+            <button class="btn btn-success" onclick="openVirtualProduct('')" type="button">VP</button>
         </div>
     </td>
     <td>
