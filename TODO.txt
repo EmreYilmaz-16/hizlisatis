@@ -1,4 +1,10 @@
-﻿----------------			HORTUM			----------------
+----------------			SORULAR		----------------
+
+** Gerçek Üretim Emrini Sanal Üretim Emri Bittiği Anda Oluşturup Sonlandırabilirim Ancak Şöyle Bir Sıkıtıyla Karşılaşabiliriz
+
+
+
+----------------			HORTUM			----------------
 
 
 **	Gerçek Üretim Emri Oluştur
@@ -60,3 +66,34 @@
 **	Gerçek Ürünle Sanal Ürün Bağlantısını Yap
 ** 	Üretim Tamamlandı Bildirimi Workcube Standar Üretim Sonucu Sürecinden Gelecek
 **	Takım Oluşturma Kodlarını Yaz (Karma Koli Yapmayı Öğren) Hortum veya Hidrolik Takımı Olabiler
+
+
+
+
+
+---toplanti
+
+sanal tedarik ürünü için buton oluşacak
+
+ilişkili belgeler eklenecek
+
+pc tarafında butona çevrilecek
+
+sanal ürüne siparişe gidiyor
+
+üretim çentiği tikli değilse iş emri açma
+
+save tube seçilirse de üretim emri oluşacak
+
+Daha öncesinde yapılmış malzeme seçilirse üretime düşecek (Ürün Kartında Üretiliyorsa Üretime Düşecek)
+
+hortum hidrolik üretimde yazma ile arama yapılacak (pc tarafında)
+
+Satır Aşamaları Gelecek O Aşamaya Göre İşlem Yapılacak (
+	Üretim  	--Otomatirk Üretim Emri
+	Tedarik		--Otomatik Olarak Sanal Satınalma Oluşsun
+	Sevk		--Bişey Yapılmayacak
+	Kapatıldı	--Bişey Yapılmayacak
+
+)
+
