@@ -45,7 +45,7 @@
 <cfset attributes.START_H_1="#hour(REAL_START_DATE)#">
 <cfset attributes.START_M_1="#minute(REAL_START_DATE)#">
  <cfset attributes.DELIVER_DATE_1=NEW_FINISH_DATE_>
-<cfset attributes.PRODUCT_VALUES_1_0="#getOperationTime.main_stock_id#,0,0,0,#smain_pbs#">
+<cfset attributes.PRODUCT_VALUES_1_0="#main_stock_id#,0,0,0,#smain_pbs#">
 
 <cfinclude  template="add_production_ordel_all_2.cfm">
 
