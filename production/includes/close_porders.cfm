@@ -10,9 +10,11 @@
 <cfif 1 eq 1> <!----Öncesine Yıkama Ekle---->
 
 
+<cfquery name="GETSWS" datasource="#DSN3#">
+SELECT * FROM WORKSTATIONS_PRODUCTS WHERE STOCK_ID=main_stock_id
+</cfquery>
 
-
-
+<cfset pws_id=GETSWS.WS_ID>
 
 
 <CFSET NEW_FINISH_DATE_=dateAdd("n", 30, REAL_START_DATE)>
@@ -32,12 +34,12 @@
 <cfset attributes.PRODUCT_AMOUNT_1_0="1">
 <cfset attributes.IS_STAGE="4">
 <cfset attributes.PROJECT_ID_1="">
-<cfset attributes.PROCESS_STAGE="59">
+<cfset attributes.PROCESS_STAGE="25">
 <cfset attributes.IS_TIME_CALCULATION_1="0">
 <cfset attributes.LOT_NO="#getLot.PRODUCTION_LOT_NO#-#getLot.PRODUCTION_LOT_NUMBER+1#">
 <cfset attributes.FINISH_DATE_1="#dateformat(NEW_FINISH_DATE_,'yyyy-mm-dd')#">
 <cfset attributes.START_DATE_1="#dateformat(REAL_START_DATE,'yyyy-mm-dd')#">
-<cfset attributes.station_id_1_0="1,0,0,0,-1,4,4,4,4">
+<cfset attributes.station_id_1_0="#GETSWS.WS_ID#,0,0,0,-1,4,4,4,4">
 
 
 <cfset attributes.FINISH_H_1="#hour(NEW_FINISH_DATE_)#">

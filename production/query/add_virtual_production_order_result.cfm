@@ -230,9 +230,21 @@ buraya kadar geldim sanırım
 
 <cfquery name="ivs" datasource="#dsn3#">
 
-INSERT INTO WORKSTATIONS_PRODUCTS(WS_ID, STOCK_ID, CAPACITY, PRODUCTION_TIME, PRODUCTION_TIME_TYPE, SETUP_TIME, MIN_PRODUCT_AMOUNT, PRODUCTION_TYPE )
-                 VALUES (1,#main_stock_id#,60,1,1,0,1,0)
-</cfquery>
+  INSERT INTO 
+            WORKSTATIONS_PRODUCTS
+            (
+            WS_ID, STOCK_ID, CAPACITY, PRODUCTION_TIME, PRODUCTION_TIME_TYPE, SETUP_TIME, MIN_PRODUCT_AMOUNT, PRODUCTION_TYPE, PROCESS, MAIN_STOCK_ID, OPERATION_TYPE_ID, 
+            DEFAULT_STATUS, ASSET_ID, RECORD_EMP, RECORD_IP, RECORD_DATE
+            )
+        SELECT        
+            TOP (1) 
+            WS_ID, #main_stock_id#,CAPACITY, PRODUCTION_TIME, PRODUCTION_TIME_TYPE, SETUP_TIME, MIN_PRODUCT_AMOUNT, PRODUCTION_TYPE, PROCESS, MAIN_STOCK_ID, OPERATION_TYPE_ID, 
+            DEFAULT_STATUS, ASSET_ID, #session.ep.userid#, '#CGI.REMOTE_ADDR#', #now()#
+        FROM            
+            WORKSTATIONS_PRODUCTS AS WORKSTATIONS_PRODUCTS_1
+        WHERE        
+            STOCK_ID = #getMaster.STOCK_ID#
+    </cfquery>
 
 <cfquery name="getspekmain" datasource="#dsn3#">
 SELECT top 1 * FROM SPECT_MAIN WHERE STOCK_ID=#main_stock_id#
