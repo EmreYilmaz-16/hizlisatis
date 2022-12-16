@@ -8,5 +8,5 @@
 <cfset attributes.upd_id=PARTNER_P_ORDER_ID>
 <cfinclude template="/AddOns/Partner/production/Includes/add_prod_order_result.cfm">
 
-<cfset attributes.pr_order_id =PARTNER_P_ORDER_ID>
+<cfset attributes.pr_order_id =ADD_PRODUCTION_ORDER.MAX_ID>
 <cfinclude template="/AddOns/Partner/production/Includes/add_ezgi_prod_order_result_stock.cfm">
