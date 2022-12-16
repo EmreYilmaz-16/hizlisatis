@@ -26,3 +26,11 @@
 <script src="/AddOns/Partner/satis/js/tube_functions.js"></script>
 <script src="/AddOns/Partner/satis/js/hydrolic_functions.js"></script>
 <script src="/AddOns/Partner/satis/js/virtual_product_functions.js"></script>
+
+
+    <link rel="stylesheet" href="/JS/codemirror-5.65.0/lib/codemirror.css">
+    <script src="/JS/codemirror-5.65.0/lib/codemirror.js"></script>
+    <script src="/JS/codemirror-5.65.0/addon/edit/matchbrackets.js"></script>
+    <script src="/JS/codemirror-5.65.0/mode/sql/sql.js"></script>
+    <script src="/JS/codemirror-5.65.0/addon/hint/show-hint.js"></script>
+    <script src="/JS/codemirror-5.65.0/addon/hint/sql-hint.js"></script>
