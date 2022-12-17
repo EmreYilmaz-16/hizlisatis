@@ -71,9 +71,10 @@ function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
         for(let i=0;i<Product.PRODUCTS.length;i++){
             var tr=document.createElement("tr")
             var td=document.createElement("td");
-            td.innerText=Product.PRODUCTS[i].PRODUCT_NAME;
+            //td.innerText=Product.PRODUCTS[i].PRODUCT_NAME;
             var a=document.createElement("a");
             a.setAttribute("onclick","setRwTube('"+elemanAtt+"','"+Product.PRODUCTS[i].PRODUCT_NAME+"',"+Product.PRODUCTS[i].PRODUCT_ID+","+Product.PRODUCTS[i].STOCK_ID+","+Product.PRODUCTS[i].DISCOUNT_RATE+","+Product.PRODUCTS[i].PRICE+",'"+Product.PRODUCTS[i].REL_CATNAME+"','"+Product.PRODUCTS[i].REL_HIERARCHY+"','"+Product.PRODUCTS[i].MONEY+"',"+Product.PRODUCTS[i].REL_CATID+")")
+            td.appendChild(a);
             tr.appendChild(td)
             tbl.appendChild(tr)    
         }
