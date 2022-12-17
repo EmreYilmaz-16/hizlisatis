@@ -253,7 +253,7 @@
     <cfquery name="DelTempTable" datasource="#arguments.dsn1#">
         IF EXISTS(SELECT * FROM sys.tables where name = 'TempProductList_#arguments.userid#')
         BEGIN
-            DROP TABLE #dsn#.TempProductList_#arguments.userid#
+            DROP TABLE #arguments.dsn#.TempProductList_#arguments.userid#
         END    
     </cfquery>
     <cfset argkv=arguments.keyword>
