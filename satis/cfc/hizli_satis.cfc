@@ -261,8 +261,9 @@
                </cfsavecontent>
                <cffile action="write" file = "c:\PBS\listajaxproductstart.html" output="#control5#"></cffile>
 
-    <cfset argkv=arguments.keyword>
+    
     <cfset arguments.keyword=urlDecode(arguments.keyword)>
+    <cfset argkv=arguments.keyword>
     <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
              <cfsavecontent  variable="control5">
                <cfdump  var="#arguments#">   
