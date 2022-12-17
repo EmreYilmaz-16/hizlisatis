@@ -87,7 +87,7 @@ var tbl=document.createElement("table")
 for(let i=0;i<Product.PRODUCTS.length;i++){
     var tr=document.createElement("tr")
     var td=document.createElement("td");
-    td.innerText=prod.PRODUCTS[i].PRODUCT_NAME;
+    td.innerText=Product.PRODUCTS[i].PRODUCT_NAME;
     tr.appendChild(td)
     tbl.appendChild(tr)
     
