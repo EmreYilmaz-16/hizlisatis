@@ -1,4 +1,4 @@
-var HataArr = [];
+﻿var HataArr = [];
 var row_count = 0;
 var rwww = "";
 var rwwwx = "";
