@@ -117,7 +117,7 @@ function setRwTube(elemanAtt,product_name,product_id,stock_id,discount,price,REL
     var PC_ELEM = document.getElementById("PRODUCT_CAT")
     var PCID_ELEM = document.getElementById("PRODUCT_CATID")
     var PCHIE_ELEM = document.getElementById("HIEARCHY")
-
+    var kwelem=document.getElementById(elemanAtt);
 
        pidElem.value = product_id;
             sidElem.value =stock_id;
@@ -125,6 +125,7 @@ function setRwTube(elemanAtt,product_name,product_id,stock_id,discount,price,REL
             discountElem.value = discount;
             money_elem.value = MONEY;
             priceElem.value = price;
+            kwelem.value=product_name;
             if (elemanAtt == "Tube") {
                 
                 PC_ELEM.value = REL_CATNAME;
