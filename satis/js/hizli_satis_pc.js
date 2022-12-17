@@ -507,3 +507,12 @@ function openPriceList(type, pid_, sid_, tax, cost, manuel, product_name, stock_
 function ShowMessage(company_id) {
     openBoxDraggable('index.cfm?fuseaction=objects.emptypopup_show_company_notes&style=1&design_id=1&is_special=0&action_type=0&is_delete=1&action_section=COMPANY_ID&action_id=' + company_id + '&is_open_det=1');
 }
+
+function openCariExtre(){
+    var cp_id=$("#company_id").val();
+    if(cp_id.length>0){
+        windowopen('http://erp.metosan.com.tr/index.cfm?fuseaction=objects.popup_list_comp_extre&member_type=partner&member_id='+cp_id);
+    }else{
+        alert("Müşteri Seçmediniz")
+    }
+}

@@ -28,6 +28,7 @@
                 <label>Müşteri</label> 
                 <input type="text" onkeyup="getCustomer(event,this)" name="company_name" id="company_name" autocomplete="off" >
                 <input type="hidden" name="company_id" id="company_id">
+                <button id="btncari" onclick="openCariExtre()" type="button" class="btn btn-primary">Cari Extre</button>
             </div>
         </td>
         <td>
