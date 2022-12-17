@@ -333,6 +333,7 @@
         FROM
             ####TempProductList_#session.ep.userid#        
     </cfquery>
+    <cfset product_arr=arrayNew(1)>
     <cfif get_products.RecordCount>
         <cfoutput query="get_products">
             <cfset lastCost = 0>
@@ -438,6 +439,7 @@
 
 
                 };
+                arrayAppend(product_arr, Product);
             </cfscript>
             <cfsavecontent  variable="control5">
                 <cfdump  var="#CGI#">                
@@ -450,7 +452,7 @@
                 '#TLFormat(PRICE,4)#','#MONEY#','#TLFormat(PRICE,4)#','','',0,0,0);">#PRODUCT_NAME#</a>----->
         </cfoutput>
     <CFSET ReturnVal.RecordCount=1>
-    <CFSET ReturnVal.PRODUCT=Product>
+    <CFSET ReturnVal.PRODUCTS=product_arr>
     <cfelse>
         <CFSET ReturnVal.RecordCount=0>
         
