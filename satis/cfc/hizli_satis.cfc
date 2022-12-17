@@ -1,4 +1,4 @@
-<cfcomponent>
+﻿<cfcomponent>
     <cfscript>
         if(isdefined("session.pda") and isDefined("session.pda.userid"))
         {
@@ -245,7 +245,7 @@
     <cfargument name="price_catid">
     <cfargument name="comp_id">
     <cfargument name="startrow" default="1">
-    <cfargument name="maxrows" default="10">
+    <cfargument name="maxrows" default="20">
     <cfargument name="get_company" default="">
     <cfargument name="product_hierarchy" default="">
     <cfargument name="brand_id" default="">
@@ -259,6 +259,8 @@
     <cfset argkv=arguments.keyword>
     <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
              <cfsavecontent  variable="control5">
+               <cfdump  var="#arguments#">   
+                <br>
                 <cfdump  var="#argkv#">   
                 <br>
                 <cfdump  var="#arguments.keyword#">         
@@ -378,7 +380,7 @@
          <cfsavecontent  variable="control5">
                 <cfdump  var="#getproducts_result#">                
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\listajaxproductaf.html" output="#control5#"></cffile>
 <cfquery name="get_products" datasource="#arguments.dsn1#">
   WITH CTE1 AS   (  SELECT
         *
