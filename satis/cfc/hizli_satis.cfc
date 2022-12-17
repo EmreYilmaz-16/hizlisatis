@@ -321,9 +321,9 @@
                 AND PRICE_STANDART.PURCHASESALES = 1
                 AND 
                 (
-                    PRODUCT.BARCOD LIKE '%#arguments.keyword#%' OR
-                    PRODUCT.PRODUCT_NAME LIKE '%#arguments.keyword#%'   OR
-                    PRODUCT.PRODUCT_CODE LIKE '%#arguments.keyword#%'
+                    PRODUCT.BARCOD LIKE '%#arguments.keyword#%'  COLLATE Turkish_CI_AS OR
+                    PRODUCT.PRODUCT_NAME LIKE '%#arguments.keyword#%'  COLLATE Turkish_CI_AS OR
+                    PRODUCT.PRODUCT_CODE LIKE '%#arguments.keyword#%'  COLLATE Turkish_CI_AS
                 )
         
         </cfquery>
