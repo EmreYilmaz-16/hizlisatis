@@ -186,11 +186,11 @@ sales
 			<cfelse>
 				AND 1=0
 			</cfif>
-                   <cfloop index="Yil" from="2018" to="#session.ep.period_year-1#" > <!--- bulunduğun perioddan öncekileri rapora dahil etmek için --->
+                   <cfloop index="Yil" from="2021" to="#session.ep.period_year-1#" > <!--- bulunduğun perioddan öncekileri rapora dahil etmek için --->
                          union all
 			SELECT IR.PRICE, IR.PRICE_OTHER, I.INVOICE_DATE, I.COMPANY_ID, I.SALE_EMP, I.CONSUMER_ID, IR.UNIT, IR.OTHER_MONEY
-			  FROM catalystTest_#Yil#_#session.ep.company_id#.INVOICE I, 
-                               catalystTest_#Yil#_#session.ep.company_id#.INVOICE_ROW IR
+			  FROM #dsn#_#Yil#_#session.ep.company_id#.INVOICE I, 
+                               #dsn#_#Yil#_#session.ep.company_id#.INVOICE_ROW IR
                           WHERE	I.INVOICE_ID = IR.INVOICE_ID AND
 				I.INVOICE_CAT NOT IN (54,55,62) AND <!--- 49,51,54,55,59,60,601,62,63 --->
 				IR.STOCK_ID = #attributes.stock_id#
