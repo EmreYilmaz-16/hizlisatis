@@ -1,4 +1,5 @@
-﻿<!--- 
+﻿<cf_box title="Fiyat Detay" scroll="1" collapsable="1" resize="1" popup_box="1">
+	<!--- 
 	/* Popup Basket Sayfasinda acilan Ürün Fiyati secme popup sayfasi*/
 	// Yazan       : Arzu BT
 	// Tarih       : 05/12/2003
@@ -459,3 +460,4 @@ function find_serial_no()
 
 }
 </script>
+</cf_box>
