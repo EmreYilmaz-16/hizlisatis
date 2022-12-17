@@ -1053,4 +1053,43 @@ function getProductMultiUse(keyword, comp_id, price_catid) {
 
 
 
-function inputCreator(){}
+function getProductMultiUseA(keyword, comp_id, price_catid) {
+    var new_query = new Object();
+    var req;
+    function callpage(url) {
+        req = false;
+        if (window.XMLHttpRequest)
+            try { req = new XMLHttpRequest(); }
+            catch (e) { req = false; }
+        else if (window.ActiveXObject)
+            try {
+                req = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch (e) {
+                try { req = new ActiveXObject("Microsoft.XMLHTTP"); }
+                catch (e) { req = false; }
+            }
+        if (req) {
+            function return_function_() {
+                if (req.readyState == 4 && req.status == 200) {
+
+                    JSON.parse(req.responseText.replace(/\u200B/g, ''));
+                    new_query = JSON.parse(req.responseText.replace(/\u200B/g, ''));
+                }
+            }
+            req.open("post", url + '&xmlhttp=1', false);
+            req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            req.setRequestHeader('pragma', 'nocache');
+
+            req.send("keyword=" + keyword + "&userid=" + generalParamsSatis.userData.user_id + "&dsn2=" + generalParamsSatis.dataSources.dsn2 + "&dsn1=" + generalParamsSatis.dataSources.dsn1 + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&price_catid=" + price_catid + "&comp_id=" + comp_id);
+            return_function_();
+        }
+
+    }
+
+    //TolgaS 20070124 objects yetkisi olmayan partnerlar var diye fuseaction objects2 yapildi
+    callpage('/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=getProductListpbs');
+    //alert(new_query);
+
+    return new_query;
+}

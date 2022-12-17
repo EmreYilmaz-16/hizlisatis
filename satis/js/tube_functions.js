@@ -51,6 +51,74 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     }
 }
 
+function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
+    var keyword = el.value;
+    var elemanAtt = el.getAttribute("data-type");
+    var pidElem = document.getElementById(elemanAtt + "_PId")
+    var sidElem = document.getElementById(elemanAtt + "_SId")
+    var NameElem = document.getElementById(elemanAtt + "_lbs")
+    var priceElem = document.getElementById(elemanAtt + "_Prc")
+    var discountElem = document.getElementById(elemanAtt + "_DSC")
+    var money_elem = document.getElementById(elemanAtt + "_MNY")
+
+    var PC_ELEM = document.getElementById("PRODUCT_CAT")
+    var PCID_ELEM = document.getElementById("PRODUCT_CATID")
+    var PCHIE_ELEM = document.getElementById("HIEARCHY")
+
+    console.log(pidElem);
+    console.log(sidElem);
+    console.log(NameElem);
+    console.log(priceElem);
+    console.log(ev)
+    if (elemanAtt == "Tube") {
+        //var q=wrk_query()
+    }
+    if ((ev.keyCode == 13 || ev.type == 'change') && keyword.length>5 ) {
+
+       // var Product = getProductMultiUse(keyword, comp_id, price_catid);
+        var Product=getProductMultiUseA(keyword,comp_id,price_catid)
+        if (Product.RECORDCOUNT != 0) {
+        $("#sildiv").remove();
+
+var el=document.getElementById("LRekor")
+var div=document.createElement("div")
+div.setAttribute("style","display:none;position: fixed;z-index: 99999; background: whitesmoke;padding: 17px;border: solid 1px #ad6d6d;")
+var tbl=document.createElement("table")
+for(let i=0;i<Product.PRODUCTS.length;i++){
+    var tr=document.createElement("tr")
+    var td=document.createElement("td");
+    td.innerText=prod.PRODUCTS[i].PRODUCT_NAME;
+    tr.appendChild(td)
+    tbl.appendChild(tr)
+    
+    
+}
+div.appendChild(tbl)
+div.setAttribute("id","sildiv")
+el.parentElement.appendChild(div)
+$(div).show(500)
+
+          /*  pidElem.value = Product.PRODUCT.PRODUCT_ID;
+            sidElem.value = Product.PRODUCT.STOCK_ID;
+            NameElem.innerText = Product.PRODUCT.PRODUCT_NAME;
+            discountElem.value = Product.PRODUCT.DISCOUNT_RATE;
+            money_elem.value = Product.PRODUCT.MONEY;
+            priceElem.value = Product.PRODUCT.PRICE;
+            if (elemanAtt == "Tube") {
+                console.log(Product.PRODUCT.REL_CATNAME)
+                PC_ELEM.value = Product.PRODUCT.REL_CATNAME
+                PCID_ELEM.value = Product.PRODUCT.REL_CATID
+                PCHIE_ELEM.value = Product.PRODUCT.REL_HIERARCHY
+            }
+            CalculateTube()*/
+        } else {
+            NameElem.innerText = "Ürün Bulunamadı";
+        }
+
+
+    }
+}
+
 function CalculateTube() {
     //LRekor_Prc,Tube_Prc,RRekor_Prc,AdditionalProduct_Prc,Kabuk_Prc,working_Prc
     //LRekor_Qty,Tube_Qty,RRekor_Qty,AdditionalProduct_Qty,marj,Kabuk_Qty,working_Qty

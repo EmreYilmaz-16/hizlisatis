@@ -28,7 +28,7 @@
 
     <div class="form-group">
     <label style="width: 100%;">Sol Rekor</label>
-    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" onkeydown="FindProduct_NEW(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"> 
+    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"> 
     
     <input type="text" name="LRekor_Qty" id="LRekor_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="LRekor_PId" id="LRekor_PId">
@@ -42,7 +42,7 @@
 
 <div class="form-group">
     <label style="width: 100%;">Tube</label>
-    <input data-type="Tube" type="text" name="Tube" id="Tube"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
+    <input data-type="Tube" type="text" name="Tube" id="Tube"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
     <input type="text" name="Tube_Qty" id="Tube_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="Tube_PId" id="Tube_PId">
     <input type="hidden" name="Tube_SId" id="Tube_SId">
@@ -55,7 +55,7 @@
 
 <div class="form-group">
     <label style="width: 100%;">Sağ Rekor</label>
-    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
+    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
     <input type="text" name="RRekor_Qty" id="RRekor_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="RRekor_PId" id="RRekor_PId">
     <input type="hidden" name="RRekor_SId" id="RRekor_SId">
@@ -68,7 +68,7 @@
 
 <div class="form-group">
     <label style="width: 100%;">Kabuk</label>
-    <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
+    <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
     <input type="text" name="Kabukr_Qty" id="Kabuk_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="Kabuk_PId" id="Kabuk_PId">
     <input type="hidden" name="Kabuk_SId" id="Kabuk_SId">
@@ -81,7 +81,7 @@
 
 <div class="form-group">
     <label style="width: 100%;">Ek Malzeme</label>
-    <input data-type="AdditionalProduct" type="text" name="AdditionalProduct" id="AdditionalProduct"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
+    <input data-type="AdditionalProduct" type="text" name="AdditionalProduct" id="AdditionalProduct"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
     <input type="text" name="AdditionalProduct_Qty" id="AdditionalProduct_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="AdditionalProduct_PId" id="AdditionalProduct_PId">
     <input type="hidden" name="AdditionalProduct_SId" id="AdditionalProduct_SId">
@@ -93,7 +93,7 @@
 </div>
 <div class="form-group">
     <label style="width: 100%;">İşçilik</label>
-    <input  data-type="working" type="text" name="working" id="working"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
+    <input  data-type="working" type="text" name="working" id="working"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
     <input type="text" name="working_Qty" id="working_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="working_PId" id="working_PId">
     <input type="hidden" name="working_SId" id="working_SId">
