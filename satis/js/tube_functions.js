@@ -80,7 +80,7 @@ function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
         if (Product.RECORDCOUNT != 0) {
         $("#sildiv").remove();
 
-var el=document.getElementById("LRekor")
+var el=document.getElementById(elemanAtt)
 var div=document.createElement("div")
 div.setAttribute("style","display:none;position: fixed;z-index: 99999; background: whitesmoke;padding: 17px;border: solid 1px #ad6d6d;")
 var tbl=document.createElement("table")
