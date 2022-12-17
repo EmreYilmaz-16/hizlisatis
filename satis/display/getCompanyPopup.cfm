@@ -27,9 +27,9 @@ LEFT JOIN workcube_metosan.SETUP_CITY AS SC ON SC.CITY_ID=C.CITY
             <td>#CITY_NAME#</td>
             <td>
                 <cfif COMPANY_STATUS EQ 1>
-                    <div class="alert alert-success" style="padding:5px"><span class="icn-md fa fa-eye"></span></div>
+                    <div class="alert alert-success" style="padding:5px;margin-bottom:1px"><span class="icn-md fa fa-eye"></span></div>
                 <cfelse>
-                    <div class="alert alert-danger" style="padding:5px"><span class="icn-md fa fa-eye-slash"></span></div>
+                    <div class="alert alert-danger" style="padding:5px;margin-bottom:1px"><span class="icn-md fa fa-eye-slash"></span></div>
                 </cfif>
             </td>
         </tr>
