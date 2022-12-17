@@ -365,8 +365,11 @@ function AddRow(
     i_4.setAttribute("name", "deliver_date_" + row_count);
     i_4.setAttribute("id", "deliver_date_" + row_count);
     i_4.setAttribute("type", "date");
-    i_4.setAttribute("value",dtd.toISOString().split("T")[0])
-    i_4.setAttribute("value", deliver_date);
+    
+    if(deliver_date.length>0){
+    i_4.setAttribute("value", deliver_date);}else{
+        i_4.setAttribute("value",dtd.toISOString().split("T")[0])
+    }
 
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
