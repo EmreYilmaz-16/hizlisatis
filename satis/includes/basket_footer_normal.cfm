@@ -159,6 +159,6 @@
     </tr>
 </table>
 <div>
-<button class="btn btn-success" onclick="SaveOrder()" type="button">Kaydet</button>
+<button class="btn btn-success" id="btnsave" onclick="SaveOrder()" type="button">Kaydet</button>
 </div>
 </div>
