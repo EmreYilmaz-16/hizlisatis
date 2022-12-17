@@ -358,13 +358,14 @@ function AddRow(
     td.appendChild(div);
     tr.appendChild(td);
 
+    var dtd=new Date();
     var td = document.createElement("td");
     td.setAttribute("style", "width:10%")
     var i_4 = document.createElement("input");
     i_4.setAttribute("name", "deliver_date_" + row_count);
     i_4.setAttribute("id", "deliver_date_" + row_count);
     i_4.setAttribute("type", "date");
-
+    i_4.setAttribute("value",dtd.toISOString().split("T")[0])
     i_4.setAttribute("value", deliver_date);
 
     var div = document.createElement("div");
