@@ -321,7 +321,7 @@
                 AND PRICE_STANDART.PURCHASESALES = 1
                 AND 
                 (
-                    PRODUCT.BARCOD='#arguments.keyword#' OR
+                    PRODUCT.BARCOD LIKE '%#arguments.keyword#%' OR
                     PRODUCT.PRODUCT_NAME LIKE '%#arguments.keyword#%'   OR
                     PRODUCT.PRODUCT_CODE LIKE '%#arguments.keyword#%'
                 )
