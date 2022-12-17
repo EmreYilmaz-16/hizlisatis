@@ -447,7 +447,7 @@
                 <cfdump  var="#Product#">
                 <cfdump var="#get_products#">
                </cfsavecontent>
-               <cffile action="write" file = "c:\product.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\product_partner_2.html" output="#control5#"></cffile>
             <!----<a href="javascript://" onclick="addRow(#PRODUCT_ID#,#STOCK_ID#,'#TAX#','#lastCost#','#is_manuel#','#PRODUCT_NAME#','#STOCK_CODE#','#BRAND_NAME#','#discountRate#','','','','','#MAIN_UNIT#',
                 '#TLFormat(PRICE,4)#','#MONEY#','#TLFormat(PRICE,4)#','','',0,0,0);">#PRODUCT_NAME#</a>----->
         </cfoutput>
