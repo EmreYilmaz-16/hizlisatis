@@ -238,88 +238,104 @@
 
  <cffunction name="getProductListpbs" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
         <cfargument name="keyword">
-        <cfargument name="userid">
-        <cfargument name="dsn2">
-        <cfargument name="dsn1">
-        <cfargument name="dsn3">
-        <cfargument name="price_catid">
-        <cfargument name="comp_id">
-        <cfquery name="DelTempTable" datasource="#arguments.dsn1#">
-            IF EXISTS(SELECT * FROM tempdb.sys.tables where name = '####TempProductList_#arguments.userid#')
-            BEGIN
-                DROP TABLE ####TempProductList_#arguments.userid#
-            END    
-        </cfquery>
-        <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
-        <cfquery name="get_products" datasource="#arguments.dsn1#">
-            SELECT
-                STOCKS.STOCK_ID,
-                STOCKS.PRODUCT_ID,
-                STOCKS.STOCK_CODE,
-                PRODUCT.PRODUCT_NAME,
-                PRODUCT.PRODUCT_CODE_2,
-                PRODUCT_CAT.PRODUCT_CAT,
-                PRODUCT_CAT.PRODUCT_CATID,
-                PRODUCT_CAT.HIERARCHY,
-                PRODUCT.BARCOD,
-                PRODUCT_CAT.DETAIL AS PC_DETAIL,
-                PRODUCT.MANUFACT_CODE,
-                ISNULL(GPA.PRICE,0) AS PRICE,
-                PRICE_STANDART.MONEY,
-                PRODUCT.TAX,
-                (SELECT SUM(STOCK_IN-STOCK_OUT) FROM #arguments.dsn2#.STOCKS_ROW WHERE PRODUCT_ID = PRODUCT.PRODUCT_ID AND STORE <> 43) AS AMOUNT,
-                PRODUCT_UNIT.ADD_UNIT,
-                PRODUCT_UNIT.UNIT_ID,
-                PRODUCT_UNIT.MAIN_UNIT,
-                PRODUCT_UNIT.MULTIPLIER,
-                PRODUCT_BRANDS.BRAND_NAME
-            INTO
-                ####TempProductList_#arguments.userid# 
-            FROM
-                PRODUCT
-                LEFT JOIN STOCKS ON STOCKS.PRODUCT_ID = PRODUCT.PRODUCT_ID
-                LEFT JOIN PRODUCT_OUR_COMPANY ON PRODUCT_OUR_COMPANY.PRODUCT_ID = PRODUCT.PRODUCT_ID
-                LEFT JOIN #arguments.dsn3#.PRODUCT_UNIT ON PRODUCT_UNIT.PRODUCT_ID = PRODUCT.PRODUCT_ID
-                LEFT JOIN PRICE_STANDART ON PRODUCT_UNIT.PRODUCT_UNIT_ID = PRICE_STANDART.UNIT_ID AND PRICE_STANDART.PRODUCT_ID = STOCKS.PRODUCT_ID
-                LEFT JOIN #arguments.dsn3#.PRODUCT_BRANDS ON PRODUCT_BRANDS.BRAND_ID    = PRODUCT.BRAND_ID
-                LEFT JOIN #arguments.dsn3#.PRODUCT_CAT ON PRODUCT_CAT.PRODUCT_CATID = PRODUCT.PRODUCT_CATID
-                LEFT JOIN
-                (
-                    SELECT
-                        P.UNIT,
-                        P.PRICE,
-                        P.PRICE_KDV,
-                        P.PRODUCT_ID,
-                        P.MONEY,
-                        P.PRICE_CATID,
-                        P.CATALOG_ID,
-                        P.PRICE_DISCOUNT
-                    FROM
-                        #arguments.dsn3#.PRICE P,
-                        #arguments.dsn3#.PRODUCT PR
-                    WHERE
-                        P.PRODUCT_ID = PR.PRODUCT_ID
-                        AND P.PRICE_CATID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.price_catid#">
+    <cfargument name="userid">
+    <cfargument name="dsn2">
+    <cfargument name="dsn1">
+    <cfargument name="dsn3">
+    <cfargument name="price_catid">
+    <cfargument name="comp_id">
+    <cfargument name="startrow" default="1">
+    <cfargument name="maxrows" default="10">
+    <cfargument name="get_company" default="">
+    <cfargument name="product_hierarchy" default="">
+    <cfargument name="brand_id" default="">
+
+    <cfquery name="DelTempTable" datasource="#arguments.dsn1#">
+        IF EXISTS(SELECT * FROM sys.tables where name = 'TempProductList_#arguments.userid#')
+        BEGIN
+            DROP TABLE #dsn#.TempProductList_#arguments.userid#
+        END    
+    </cfquery>
+    <cfset argkv=arguments.keyword>
+    <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
+             <cfsavecontent  variable="control5">
+                <cfdump  var="#argkv#">   
+                <br>
+                <cfdump  var="#arguments.keyword#">         
+                <br>
+                <cfdump  var="#listLast(arguments.keyword,";")#">                
+               </cfsavecontent>
+               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
+    <cfquery name="get_productsss" datasource="#arguments.dsn1#" result="getproducts_result">
+        SELECT
+            STOCKS.STOCK_ID,
+            STOCKS.PRODUCT_ID,
+            STOCKS.STOCK_CODE,
+            PRODUCT.PRODUCT_NAME,
+            PRODUCT.IS_PRODUCTION,
+            PRODUCT.PRODUCT_CODE_2,
+            PRODUCT_CAT.PRODUCT_CAT,
+            PRODUCT_CAT.PRODUCT_CATID,
+            PRODUCT_CAT.HIERARCHY,
+            PRODUCT.BARCOD,
+            PRODUCT_CAT.DETAIL AS PC_DETAIL,
+            PRODUCT.MANUFACT_CODE,
+            ISNULL(GPA.PRICE,0) AS PRICE,
+            PRICE_STANDART.MONEY,
+            PRODUCT.TAX,
+            (SELECT SUM(STOCK_IN-STOCK_OUT) FROM #arguments.dsn2#.STOCKS_ROW WHERE PRODUCT_ID = PRODUCT.PRODUCT_ID AND STORE <> 43) AS AMOUNT,
+            PRODUCT_UNIT.ADD_UNIT,
+            PRODUCT_UNIT.UNIT_ID,
+            PRODUCT_UNIT.MAIN_UNIT,
+            PRODUCT_UNIT.MULTIPLIER,
+            PRODUCT_BRANDS.BRAND_NAME
+        INTO
+            #dsn#.TempProductList_#arguments.userid# 
+        FROM
+            PRODUCT
+            LEFT JOIN STOCKS ON STOCKS.PRODUCT_ID = PRODUCT.PRODUCT_ID
+            LEFT JOIN PRODUCT_OUR_COMPANY ON PRODUCT_OUR_COMPANY.PRODUCT_ID = PRODUCT.PRODUCT_ID
+            LEFT JOIN #arguments.dsn3#.PRODUCT_UNIT ON PRODUCT_UNIT.PRODUCT_ID = PRODUCT.PRODUCT_ID
+            LEFT JOIN PRICE_STANDART ON PRODUCT_UNIT.PRODUCT_UNIT_ID = PRICE_STANDART.UNIT_ID AND PRICE_STANDART.PRODUCT_ID = STOCKS.PRODUCT_ID
+            LEFT JOIN #arguments.dsn3#.PRODUCT_BRANDS ON PRODUCT_BRANDS.BRAND_ID    = PRODUCT.BRAND_ID
+            LEFT JOIN #arguments.dsn3#.PRODUCT_CAT ON PRODUCT_CAT.PRODUCT_CATID = PRODUCT.PRODUCT_CATID
+            LEFT JOIN
+            (
+                SELECT
+                    P.UNIT,
+                    P.PRICE,
+                    P.PRICE_KDV,
+                    P.PRODUCT_ID,
+                    P.MONEY,
+                    P.PRICE_CATID,
+                    P.CATALOG_ID,
+                    P.PRICE_DISCOUNT
+                FROM
+                    #arguments.dsn3#.PRICE P,
+                    #arguments.dsn3#.PRODUCT PR
+                WHERE
+                    P.PRODUCT_ID = PR.PRODUCT_ID
+                    AND P.PRICE_CATID = #arguments.price_catid#
+                    AND
+                    (
+                        P.STARTDATE <= #Now()#
                         AND
                         (
-                            P.STARTDATE <= #Now()#
-                            AND
-                            (
-                                P.FINISHDATE >= #Now()# OR
-                                P.FINISHDATE IS NULL
-                            )
+                            P.FINISHDATE >= #Now()# OR
+                            P.FINISHDATE IS NULL
                         )
-                        AND ISNULL(P.SPECT_VAR_ID, 0) = 0 
-                ) AS GPA ON GPA.PRODUCT_ID = PRODUCT.PRODUCT_ID AND GPA.UNIT = PRODUCT_UNIT.PRODUCT_UNIT_ID
-            WHERE
-                PRODUCT_OUR_COMPANY.OUR_COMPANY_ID = 1
-                AND PRODUCT.PRODUCT_STATUS = 1
-                AND STOCKS.STOCK_STATUS = 1
-                AND PRODUCT_UNIT.PRODUCT_UNIT_STATUS = 1
-                AND PRODUCT.IS_SALES=1
-                AND PRICE_STANDART.PRICESTANDART_STATUS = 1
-                AND PRICE_STANDART.PURCHASESALES = 1
-                    <cfif Len(arguments.keyword)>
+                    )
+                    AND ISNULL(P.SPECT_VAR_ID, 0) = 0 
+            ) AS GPA ON GPA.PRODUCT_ID = PRODUCT.PRODUCT_ID AND GPA.UNIT = PRODUCT_UNIT.PRODUCT_UNIT_ID
+        WHERE
+            PRODUCT_OUR_COMPANY.OUR_COMPANY_ID = 1
+            AND PRODUCT.PRODUCT_STATUS = 1
+            AND STOCKS.STOCK_STATUS = 1
+            AND PRODUCT_UNIT.PRODUCT_UNIT_STATUS = 1
+            AND PRODUCT.IS_SALES=1
+            AND PRICE_STANDART.PRICESTANDART_STATUS = 1
+            AND PRICE_STANDART.PURCHASESALES = 1
+            <cfif Len(arguments.keyword)>
                 AND
                 (
                     <cfloop list="#arguments.keyword#" index="kw" delimiters=";">
@@ -331,8 +347,7 @@
                             PRODUCT.PRODUCT_DETAIL LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
                             PRODUCT.MANUFACT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
                             PRODUCT_BRANDS.BRAND_NAME LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
-                            PRODUCT_CAT.PRODUCT_CAT LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
-                            PRODUCT.BARCOD LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS
+                            PRODUCT_CAT.PRODUCT_CAT LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS
                         <cfelse>
                             PRODUCT.PRODUCT_NAME LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
                             STOCKS.STOCK_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
@@ -340,146 +355,180 @@
                             PRODUCT.PRODUCT_DETAIL LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
                             PRODUCT.MANUFACT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
                             PRODUCT_BRANDS.BRAND_NAME LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
-                            PRODUCT_CAT.PRODUCT_CAT LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
-                            PRODUCT.BARCOD LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS
+                            PRODUCT_CAT.PRODUCT_CAT LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS
                         </cfif>
                         )
                         <cfif ListLast(arguments.keyword,';') neq kw>AND</cfif>
                     </cfloop>
                 )
             </cfif>
-        
-        </cfquery>
-    <cfquery name="get_products" datasource="#dsn3#">
-        SELECT
-            *
-        FROM
-            ####TempProductList_#session.ep.userid#        
+            <cfif Len(arguments.get_company)>
+                AND PRODUCT.COMPANY_ID = #attributes.get_company#
+            </cfif>
+            <cfif Len(arguments.product_hierarchy)>
+                AND PRODUCT.PRODUCT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#attributes.product_hierarchy#%">
+            </cfif>
+            <cfif Len(arguments.brand_id)>
+                AND PRODUCT_BRANDS.BRAND_ID = #attributes.brand_id#
+            </cfif>
+    
     </cfquery>
-    <cfset product_arr=arrayNew(1)>
-    <cfif get_products.RecordCount>
-        <cfoutput query="get_products">
-            <cfset lastCost = 0>
-            <cfquery name="getLastCost" datasource="#dsn2#">
-                SELECT TOP 1
-                    IR.PRICE-(IR.DISCOUNTTOTAL/2) AS PRICE
-                FROM
-                    INVOICE I
-                    LEFT JOIN INVOICE_ROW IR ON IR.INVOICE_ID = I.INVOICE_ID
-                WHERE
-                    ISNULL(I.PURCHASE_SALES,0) = 0 AND
-                    IR.PRODUCT_ID = #PRODUCT_ID#
-                    AND I.PROCESS_CAT<>35
-                ORDER BY
-                    I.INVOICE_DATE DESC
-            </cfquery>
-            <cfif getLastCost.RecordCount AND Len(getLastCost.PRICE)>
-                <cfset lastCost = getLastCost.PRICE>
-            </cfif>
-            <cfset discountRate = 0>
-            <cfquery name="getDiscount" datasource="#dsn3#">
-                SELECT TOP 1
-                    PCE.DISCOUNT_RATE
-                FROM
-                    PRODUCT P,
-                    PRICE_CAT_EXCEPTIONS PCE
-                    LEFT JOIN PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
-                WHERE
-                    (
-                        PCE.PRODUCT_ID = P.PRODUCT_ID OR
-                        PCE.PRODUCT_ID IS NULL
-                    ) AND
-                    (
-                        PCE.BRAND_ID = P.BRAND_ID OR
-                        PCE.BRAND_ID IS NULL
-                    ) AND
-                    (
-                        PCE.PRODUCT_CATID = P.PRODUCT_CATID OR
-                        PCE.PRODUCT_CATID IS NULL
-                    ) AND
-                    (
-                        PCE.COMPANY_ID = #arguments.comp_id# OR
-                        PCE.COMPANY_ID IS NULL
-                    ) AND
-                    P.PRODUCT_ID = #PRODUCT_ID# AND
-                    ISNULL(PC.IS_SALES,0) = 1 AND
-                    PCE.ACT_TYPE NOT IN (2,4) AND 
-                    PC.PRICE_CATID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.price_catid#">
-                ORDER BY
-                    PCE.COMPANY_ID DESC,
-                    PCE.PRODUCT_CATID DESC
-            </cfquery>
-            <cfif getDiscount.RecordCount AND Len(getDiscount.DISCOUNT_RATE)>
-                <cfset discountRate = getDiscount.DISCOUNT_RATE>
-            </cfif>
-            <cfquery name="getParams" datasource="#dsn3#">
-                SELECT MANUEL_CONTROL_AREA FROM VIRTUAL_OFFER_SETTINGS
-            </cfquery>
-            <cfset is_manuel = 0>
-            <cfquery name="getManuel" datasource="#dsn3#">
-                SELECT TOP 1
-                    #getParams.MANUEL_CONTROL_AREA#
-                FROM
-                    PRODUCT_INFO_PLUS
-                WHERE
-                    PRODUCT_INFO_PLUS.PRODUCT_ID = #PRODUCT_ID#
-                ORDER BY
-                #getParams.MANUEL_CONTROL_AREA# DESC
-            </cfquery>
-            <cfif getManuel.RecordCount AND evaluate("getManuel.#getParams.MANUEL_CONTROL_AREA#") eq 'MANUEL'>
-                <cfset is_manuel = 1>
-            </cfif> 
-            <cfset REL_CATID="" >
-            <cfset REL_CATNAME="" >
-            <cfset REL_HIERARCHY="" >
-            <cfif len(PC_DETAIL)>
-                <cfquery name="getRelProductCat" datasource="#arguments.dsn1#">
-                    SELECT PRODUCT_CAT,PRODUCT_CATID,HIERARCHY FROM PRODUCT_CAT WHERE PRODUCT_CATID=#PC_DETAIL#
-                </cfquery>
-                 <cfset REL_CATID="#getRelProductCat.PRODUCT_CATID#" >
-                 <cfset REL_CATNAME="#getRelProductCat.PRODUCT_CAT#" >
-                 <cfset REL_HIERARCHY="#getRelProductCat.HIERARCHY#" >
-            </cfif>    
-            <cfscript>
-                Product={
-                    PRODUCT_ID=PRODUCT_ID,
-                    STOCK_ID=STOCK_ID,
-                    PRODUCT_CATID=PRODUCT_CATID,
-                    TAX=TAX,
-                    LAST_COST=lastCost,
-                    IS_MANUEL=is_manuel,
-                    PRODUCT_NAME=PRODUCT_NAME,
-                    STOCK_CODE=STOCK_CODE,
-                    BRAND_NAME=BRAND_NAME,
-                    DISCOUNT_RATE=discountRate,
-                    MAIN_UNIT=MAIN_UNIT,
-                    PRICE=PRICE,
-                    HIERARCHY=HIERARCHY,
-                    REL_CATID=REL_CATID,
-                    REL_CATNAME=REL_CATNAME,
-                    REL_HIERARCHY=REL_HIERARCHY,
-                    MONEY=MONEY
 
-
-                };
-                arrayAppend(product_arr, Product);
-            </cfscript>
-            <cfsavecontent  variable="control5">
-                <cfdump  var="#CGI#">                
-                <cfdump  var="#arguments#">
-                <cfdump  var="#Product#">
-                <cfdump var="#get_products#">
+         <cfsavecontent  variable="control5">
+                <cfdump  var="#getproducts_result#">                
                </cfsavecontent>
-               <cffile action="write" file = "c:\product_partner_2.html" output="#control5#"></cffile>
-            <!----<a href="javascript://" onclick="addRow(#PRODUCT_ID#,#STOCK_ID#,'#TAX#','#lastCost#','#is_manuel#','#PRODUCT_NAME#','#STOCK_CODE#','#BRAND_NAME#','#discountRate#','','','','','#MAIN_UNIT#',
-                '#TLFormat(PRICE,4)#','#MONEY#','#TLFormat(PRICE,4)#','','',0,0,0);">#PRODUCT_NAME#</a>----->
-        </cfoutput>
-    <CFSET ReturnVal.RecordCount=1>
-    <CFSET ReturnVal.PRODUCTS=product_arr>
-    <cfelse>
-        <CFSET ReturnVal.RecordCount=0>
+               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
+<cfquery name="get_products" datasource="#arguments.dsn1#">
+  WITH CTE1 AS   (  SELECT
+        *
+    FROM
+        #dsn#.TempProductList_#session.ep.userid#     
+        ),CTE2 AS 
+        (
+        SELECT
+                CTE1.*,
+                ROW_NUMBER() OVER (ORDER BY AMOUNT DESC) AS RowNum,(SELECT COUNT(*) FROM CTE1) AS QUERY_COUNT
+            FROM
+                CTE1
+        )
+        SELECT
+            CTE2.*
+        FROM
+            CTE2
+        WHERE
+            RowNum BETWEEN #arguments.startrow# and #arguments.maxrows#   
+</cfquery>
+
+<cfset returnArr=arrayNew(1)>
+<cfif get_products.RecordCount>
+    <cfoutput query="get_products">
+        <cfset lastCost = 0>
+        <cfquery name="getLastCost" datasource="#dsn2#">
+            SELECT TOP 1
+                IR.PRICE-(IR.DISCOUNTTOTAL/2) AS PRICE
+            FROM
+                INVOICE I
+                LEFT JOIN INVOICE_ROW IR ON IR.INVOICE_ID = I.INVOICE_ID
+            WHERE
+                ISNULL(I.PURCHASE_SALES,0) = 0 AND
+                IR.PRODUCT_ID = #PRODUCT_ID#
+                AND I.PROCESS_CAT<>35
+            ORDER BY
+                I.INVOICE_DATE DESC
+        </cfquery>
+        <cfif getLastCost.RecordCount AND Len(getLastCost.PRICE)>
+            <cfset lastCost = getLastCost.PRICE>
+        </cfif>
+        <cfset discountRate = 0>
+        <cfquery name="getDiscount" datasource="#dsn3#">
+            SELECT TOP 1
+                PCE.DISCOUNT_RATE
+            FROM
+                PRODUCT P,
+                PRICE_CAT_EXCEPTIONS PCE
+                LEFT JOIN PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
+            WHERE
+                (
+                    PCE.PRODUCT_ID = P.PRODUCT_ID OR
+                    PCE.PRODUCT_ID IS NULL
+                ) AND
+                (
+                    PCE.BRAND_ID = P.BRAND_ID OR
+                    PCE.BRAND_ID IS NULL
+                ) AND
+                (
+                    PCE.PRODUCT_CATID = P.PRODUCT_CATID OR
+                    PCE.PRODUCT_CATID IS NULL
+                ) AND
+                (
+                    PCE.COMPANY_ID = #arguments.comp_id# OR
+                    PCE.COMPANY_ID IS NULL
+                ) AND
+                P.PRODUCT_ID = #PRODUCT_ID# AND
+                ISNULL(PC.IS_SALES,0) = 1 AND
+                PCE.ACT_TYPE NOT IN (2,4) AND 
+                PC.PRICE_CATID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.price_catid#">
+            ORDER BY
+                PCE.COMPANY_ID DESC,
+                PCE.PRODUCT_CATID DESC
+        </cfquery>
+        <cfif getDiscount.RecordCount AND Len(getDiscount.DISCOUNT_RATE)>
+            <cfset discountRate = getDiscount.DISCOUNT_RATE>
+        </cfif>
+        <cfquery name="getParams" datasource="#dsn3#">
+            SELECT MANUEL_CONTROL_AREA FROM VIRTUAL_OFFER_SETTINGS
+        </cfquery>
+        <cfset is_manuel = 0>
+        <cfquery name="getManuel" datasource="#dsn3#">
+            SELECT TOP 1
+                #getParams.MANUEL_CONTROL_AREA#
+            FROM
+                PRODUCT_INFO_PLUS
+            WHERE
+                PRODUCT_INFO_PLUS.PRODUCT_ID = #PRODUCT_ID#
+            ORDER BY
+            #getParams.MANUEL_CONTROL_AREA# DESC
+        </cfquery>
+        <cfif getManuel.RecordCount AND evaluate("getManuel.#getParams.MANUEL_CONTROL_AREA#") eq 'MANUEL'>
+            <cfset is_manuel = 1>
+        </cfif> 
+        <cfset REL_CATID="" >
+        <cfset REL_CATNAME="" >
+        <cfset REL_HIERARCHY="" >
+        <cfif len(PC_DETAIL)>
+            <cfquery name="getRelProductCat" datasource="#arguments.dsn1#">
+                SELECT PRODUCT_CAT,PRODUCT_CATID,HIERARCHY FROM PRODUCT_CAT WHERE PRODUCT_CATID=#PC_DETAIL#
+            </cfquery>
+             <cfset REL_CATID="#getRelProductCat.PRODUCT_CATID#" >
+             <cfset REL_CATNAME="#getRelProductCat.PRODUCT_CAT#" >
+             <cfset REL_HIERARCHY="#getRelProductCat.HIERARCHY#" >
+        </cfif>    
+        <cfscript>
+            Product={
+                PRODUCT_ID=PRODUCT_ID,
+                STOCK_ID=STOCK_ID,
+                PRODUCT_CATID=PRODUCT_CATID,
+                PRODUCT_CAT=PRODUCT_CAT,
+                PRODUCT_CODE_2=PRODUCT_CODE_2,
+                MANUFACT_CODE=MANUFACT_CODE,
+                TAX=TAX,
+                BARCOD=BARCOD,
+                IS_PRODUCTION=IS_PRODUCTION,
+                STOCK_COUNT=AMOUNT,
+                LAST_COST=lastCost,
+                IS_MANUEL=is_manuel,
+                PRODUCT_NAME=PRODUCT_NAME,
+                STOCK_CODE=STOCK_CODE,
+                BRAND_NAME=BRAND_NAME,
+                DISCOUNT_RATE=discountRate,
+                MAIN_UNIT=MAIN_UNIT,
+                PRICE=PRICE,
+                HIERARCHY=HIERARCHY,
+                REL_CATID=REL_CATID,
+                REL_CATNAME=REL_CATNAME,
+                REL_HIERARCHY=REL_HIERARCHY,
+                MONEY=MONEY,
+                ROWNUM=ROWNUM,
+                QUERY_COUNT=QUERY_COUNT
+               
+
+
+            };
+            arrayAppend(returnArr,Product);
+        </cfscript>
         
-    </cfif>
+        <!----<a href="javascript://" onclick="addRow(#PRODUCT_ID#,#STOCK_ID#,'#TAX#','#lastCost#','#is_manuel#','#PRODUCT_NAME#','#STOCK_CODE#','#BRAND_NAME#','#discountRate#','','','','','#MAIN_UNIT#',
+            '#TLFormat(PRICE,4)#','#MONEY#','#TLFormat(PRICE,4)#','','',0,0,0);">#PRODUCT_NAME#</a>----->
+    </cfoutput>
+<CFSET ReturnVal.RecordCount=1>
+<CFSET ReturnVal.PRODUCTS=returnArr>
+<cfelse>
+    <CFSET ReturnVal.RecordCount=0>
+    
+</cfif>
+
+
+
     <cfreturn Replace(SerializeJSON(ReturnVal),'//','')>
     </cffunction>
 

@@ -73,21 +73,31 @@
 
 ---toplanti
 
+
 sanal tedarik ürünü için buton oluşacak
+
 
 ilişkili belgeler eklenecek
 
+
 pc tarafında butona çevrilecek
+
 
 sanal ürüne siparişe gidiyor
 
+
 üretim çentiği tikli değilse iş emri açma
+
 
 save tube seçilirse de üretim emri oluşacak
 
+
 Daha öncesinde yapılmış malzeme seçilirse üretime düşecek (Ürün Kartında Üretiliyorsa Üretime Düşecek)
 
+
 hortum hidrolik üretimde yazma ile arama yapılacak (pc tarafında)
+
+
 
 Satır Aşamaları Gelecek O Aşamaya Göre İşlem Yapılacak (
 	Üretim  	--Otomatirk Üretim Emri
