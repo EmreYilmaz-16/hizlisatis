@@ -1104,7 +1104,7 @@
 	                                #DELIVER_PAPER_NO#
                                 </a>
 							</td>
-                            <td style="text-align:center">#DateFormat(OUT_DATE,'DD/MM/YYYY')#</td>
+                            <td style="text-align:center">#DateFormat(OUT_DATE,'dd/mm/yyyy')#</td>
                             <td>
                             	<cfif len(company_id)>
                                 	#get_par_info(COMPANY_ID,1,1,0)#
@@ -1301,7 +1301,7 @@
                                         </a>
                                     </cfif>        
                                 </td>
-                                <td style="text-align:center">#DateFormat(OUT_DATE,'DD/MM/YYYY')#</td>
+                                <td style="text-align:center">#DateFormat(OUT_DATE,'dd/mm/yyyy')#</td>
                                 <td>
                                     <cfif IS_TYPE eq 1>
                                         #UNVAN#
