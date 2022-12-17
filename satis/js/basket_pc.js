@@ -1105,5 +1105,5 @@ function openPriceListPartner(PRODUCT_ID,STOCK_ID,MAIN_UNIT,company_id){
         MoneyList+=item.MONEY+"="+item.RATE2+"&"
     })
     var uri="index.cfm?fuseaction=objects.emptypopup_price_history_partner"+MoneyList+"&sepet_process_type=-1&product_id="+PRODUCT_ID+"&stock_id="+STOCK_ID+"&pid="+PRODUCT_ID+"&product_name=&unit="+MAIN_UNIT+"&row_id=0&company_id="+company_id;
-    openBoxDraggable(uri)
+    windowopen(uri)
 }
