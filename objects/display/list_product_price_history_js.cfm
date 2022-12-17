@@ -7,9 +7,9 @@
 	// Amaç        : Basketlerde ki ürün fiyatini degistirebilmeyi saglamak
 	// Js : Javascript versiyonu uyarlayan Ergün KOÇAK 20040209
 --->
-<cfinclude template="../../../../objects/query/get_rival_prices.cfm">
+<cfinclude template="/v16/objects/query/get_rival_prices.cfm">
 rival
-<cfinclude template="../../../../objects/query/get_product_price_sales.cfm">
+<cfinclude template="/v16/objects/query/get_product_price_sales.cfm">
 sales
 <cfquery name="GET_COMPETITIVE_LIST" datasource="#DSN3#">
 	SELECT
@@ -31,7 +31,7 @@ sales
 <cfform name="list_price_history">
 <cf_popup_box title="#getLang('objects',626)#:#get_product_name(attributes.pid)# - (#attributes.unit#)">
       <!--- Ürün Bilgileri --->
-	<cfinclude template="../../../../objects/query/get_product_prices_sa_ss.cfm">
+	<cfinclude template="/v16/objects/query/get_product_prices_sa_ss.cfm">
 
       <!--- Satış Fiyatları --->
 	  <cf_medium_list>

@@ -102,9 +102,10 @@
             </a>
         </td>
         <td>
-            <a href="javascript://" onclick="openPriceListPartner(#it.PRODUCT_ID#)">
+            <a href="javascript://" onclick="openPriceListPartner(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.MAIN_UNIT#',#attributes.company_id#)">
                 <i class="fa fa-map-marker" title="FiyatDetay"></i>
-                <!----objects.popup_product_price_history_js&sepet_process_type=-1&product_id=16536&stock_id=16536&pid=16536&product_name=&unit=LT&row_id=0&company_id=493&TL=1&USD=18.6602&EUR=19.8706&JPY=0.138377&CHF=20.1598&GBP=23.1367---->
+                <!----objects.popup_product_price_history_js
+                    &sepet_process_type=-1&product_id=16536&stock_id=16536&pid=16536&product_name=&unit=LT&row_id=0&company_id=493&TL=1&USD=18.6602&EUR=19.8706&JPY=0.138377&CHF=20.1598&GBP=23.1367---->
             </a>
         </td>
         </tr>
