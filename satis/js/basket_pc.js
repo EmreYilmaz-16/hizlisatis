@@ -1081,7 +1081,7 @@ function getProductMultiUseA(keyword, comp_id, price_catid) {
             req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             req.setRequestHeader('pragma', 'nocache');
 
-            req.send("keyword=" + keyword + "&userid=" + generalParamsSatis.userData.user_id + "&dsn2=" + generalParamsSatis.dataSources.dsn2 + "&dsn1=" + generalParamsSatis.dataSources.dsn1 + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&price_catid=" + price_catid + "&comp_id=" + comp_id);
+            req.send("keyword=" + keyword + "&userid=" + generalParamsSatis.userData.user_id + "&dsn2=" + generalParamsSatis.dataSources.dsn2 + "&dsn1=" + generalParamsSatis.dataSources.dsn1 + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&price_catid=" + price_catid + "&comp_id=" + comp_id+"&dsn="+generalParamsSatis.dataSources.dsn);
             return_function_();
         }
 
