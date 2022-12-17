@@ -132,6 +132,8 @@ function setRwTube(elemanAtt,product_name,product_id,stock_id,discount,price,REL
                 PCHIE_ELEM.value = REL_HIERARCHY;
             }
             CalculateTube()
+
+               $("#sildiv").remove();
 }
 
 function CalculateTube() {
