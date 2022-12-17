@@ -336,6 +336,7 @@
             AND PRICE_STANDART.PRICESTANDART_STATUS = 1
             AND PRICE_STANDART.PURCHASESALES = 1
             <cfif Len(arguments.keyword)>
+            AND PRODUCT.PRODUCT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#argkv#%"> COLLATE Turkish_CI_AS OR
                 AND
                 (
                     <cfloop list="#arguments.keyword#" index="kw" delimiters=";">
