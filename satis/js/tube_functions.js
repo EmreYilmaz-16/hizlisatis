@@ -55,7 +55,7 @@ function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     var keyword = el.value;
     var elemanAtt = el.getAttribute("data-type");
  var NameElem = document.getElementById(elemanAtt + "_lbs")
-keyword=keyword.toLowerCase()
+keyword=urlencode(keyword.toLowerCase())
     if ((ev.keyCode == 13 || ev.type == 'change') && keyword.length>5 ) {
 
        // var Product = getProductMultiUse(keyword, comp_id, price_catid);
