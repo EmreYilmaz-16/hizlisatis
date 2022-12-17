@@ -1,10 +1,11 @@
+<cf_box title="Ürünler" scroll="1" collapsable="1" resize="1" popup_box="1">
 <cfparam name="attributes.start_row" default="1">
 <cfparam name="attributes.getCompId" default="">
 <cfparam name="attributes.hiearchy" default="">
 <cfparam name="attributes.brand_id" default="">
 <cfparam name="attributes.end_row" default="10">
 <cfparam name="attributes.max_row" default="10">
-<cfparam name="attributes.price_catid" default="">
+<cfparam name="attributes.price_catid" default="19">
 <cfparam name="attributes.keyword" default="">
 <cfparam name="attributes.company_id" default="">
 <cfif isDefined("attributes.sayfa")>
@@ -107,7 +108,7 @@
 </cfoutput>
 </cf_big_list>
 
-
+</cf_box>
 
 <cffunction name="getProducts" >
     <cfargument name="keyword">
