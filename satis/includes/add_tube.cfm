@@ -28,7 +28,7 @@
 
     <div class="form-group">
     <label style="width: 100%;">Sol Rekor</label>
-    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"> 
+    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" onkeydown="FindProduct_NEW(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"> 
     
     <input type="text" name="LRekor_Qty" id="LRekor_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="LRekor_PId" id="LRekor_PId">
