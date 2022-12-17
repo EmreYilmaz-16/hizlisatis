@@ -117,9 +117,9 @@ sales
 
 		<cfquery name="get_offer_list" datasource="#DSN3#">
 			SELECT O.OFFER_DATE, O.OFFER_NUMBER, ORW.PRICE, ORW.OTHER_MONEY, ORW.PRICE_OTHER, 
-                              SIPARIS = case when (Select count(*) from ORDER_ROW ORD(nolock) where ORD.WRK_ROW_RELATION_ID = ORW.WRK_ROW_ID ) = 0 then 'Teklif' else 'Sipariş' end 
-			  FROM OFFER O,
-			       OFFER_ROW ORW
+                              SIPARIS = case when (Select count(*) from ORDER_ROW ORD(nolock) where ORD.UNIQUE_RELATION_ID = ORW.UNIQUE_RELATION_ID ) = 0 then 'Teklif' else 'Sipariş' end 
+			  FROM PBS_OFFER O,
+			  PBS_OFFER_ROW ORW
                          where O.OFFER_ID = ORW.OFFER_ID
 			 AND ORW.STOCK_ID = #attributes.stock_id#
 				
