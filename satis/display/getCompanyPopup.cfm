@@ -1,8 +1,9 @@
 
 
 <cfquery name="getCompany" datasource="#dsn#">
-SELECT *,CP.PARTNER_ID PARTNER_ID_,CP.COMPANY_PARTNER_NAME,CP.COMPANY_PARTNER_SURNAME,C.COMPANY_STATUS FROM COMPANY  AS C
+SELECT *,CP.PARTNER_ID PARTNER_ID_,CP.COMPANY_PARTNER_NAME,CP.COMPANY_PARTNER_SURNAME,C.COMPANY_STATUS,SC.CITY_NAME FROM COMPANY  AS C
 LEFT JOIN COMPANY_PARTNER AS CP ON CP.PARTNER_ID=C.MANAGER_PARTNER_ID
+LEFT JOIN workcube_metosan.SETUP_CITY AS SC ON SC.CITY_ID=C.CITY
      WHERE 1=1 AND (
         LOWER(C.NICKNAME) LIKE '%#lCase(attributes.keyword)#%' OR
         LOWER(C.FULLNAME) LIKE '%#lCase(attributes.keyword)#%' OR
@@ -22,6 +23,8 @@ LEFT JOIN COMPANY_PARTNER AS CP ON CP.PARTNER_ID=C.MANAGER_PARTNER_ID
                    <a onclick="ShowMessage(#COMPANY_ID#)"> #NICKNAME#</a>
             </cfif>
             </td>
+            <td>#TAXNO#</td>
+            <td>#CITY_NAME#</td>
             <td>
                 <cfif COMPANY_STATUS EQ 1>
                     <div class="alert alert-success" style="padding:5px"><span class="icn-md fa fa-eye"></span></div>
