@@ -290,7 +290,7 @@
             PRODUCT_UNIT.MULTIPLIER,
             PRODUCT_BRANDS.BRAND_NAME
         INTO
-            #dsn#.TempProductList_#arguments.userid# 
+            #arguments.dsn#.TempProductList_#arguments.userid# 
         FROM
             PRODUCT
             LEFT JOIN STOCKS ON STOCKS.PRODUCT_ID = PRODUCT.PRODUCT_ID
@@ -403,7 +403,7 @@
 <cfif get_products.RecordCount>
     <cfoutput query="get_products">
         <cfset lastCost = 0>
-        <cfquery name="getLastCost" datasource="#dsn2#">
+        <cfquery name="getLastCost" datasource="#arguments.dsn2#">
             SELECT TOP 1
                 IR.PRICE-(IR.DISCOUNTTOTAL/2) AS PRICE
             FROM
@@ -420,7 +420,7 @@
             <cfset lastCost = getLastCost.PRICE>
         </cfif>
         <cfset discountRate = 0>
-        <cfquery name="getDiscount" datasource="#dsn3#">
+        <cfquery name="getDiscount" datasource="#arguments.dsn3#">
             SELECT TOP 1
                 PCE.DISCOUNT_RATE
             FROM
@@ -455,11 +455,11 @@
         <cfif getDiscount.RecordCount AND Len(getDiscount.DISCOUNT_RATE)>
             <cfset discountRate = getDiscount.DISCOUNT_RATE>
         </cfif>
-        <cfquery name="getParams" datasource="#dsn3#">
+        <cfquery name="getParams" datasource="#arguments.dsn3#">
             SELECT MANUEL_CONTROL_AREA FROM VIRTUAL_OFFER_SETTINGS
         </cfquery>
         <cfset is_manuel = 0>
-        <cfquery name="getManuel" datasource="#dsn3#">
+        <cfquery name="getManuel" datasource="#arguments.dsn3#">
             SELECT TOP 1
                 #getParams.MANUEL_CONTROL_AREA#
             FROM
