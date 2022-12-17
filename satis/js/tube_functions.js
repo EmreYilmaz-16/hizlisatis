@@ -54,25 +54,8 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
 function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
     var keyword = el.value;
     var elemanAtt = el.getAttribute("data-type");
-    var pidElem = document.getElementById(elemanAtt + "_PId")
-    var sidElem = document.getElementById(elemanAtt + "_SId")
-    var NameElem = document.getElementById(elemanAtt + "_lbs")
-    var priceElem = document.getElementById(elemanAtt + "_Prc")
-    var discountElem = document.getElementById(elemanAtt + "_DSC")
-    var money_elem = document.getElementById(elemanAtt + "_MNY")
+ var NameElem = document.getElementById(elemanAtt + "_lbs")
 
-    var PC_ELEM = document.getElementById("PRODUCT_CAT")
-    var PCID_ELEM = document.getElementById("PRODUCT_CATID")
-    var PCHIE_ELEM = document.getElementById("HIEARCHY")
-
-    console.log(pidElem);
-    console.log(sidElem);
-    console.log(NameElem);
-    console.log(priceElem);
-    console.log(ev)
-    if (elemanAtt == "Tube") {
-        //var q=wrk_query()
-    }
     if ((ev.keyCode == 13 || ev.type == 'change') && keyword.length>5 ) {
 
        // var Product = getProductMultiUse(keyword, comp_id, price_catid);
@@ -80,23 +63,24 @@ function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
         if (Product.RECORDCOUNT != 0) {
         $("#sildiv").remove();
 
-var el=document.getElementById(elemanAtt)
-var div=document.createElement("div")
-div.setAttribute("style","display:none;position: fixed;z-index: 99999; background: whitesmoke;padding: 17px;border: solid 1px #ad6d6d;")
-var tbl=document.createElement("table")
-for(let i=0;i<Product.PRODUCTS.length;i++){
-    var tr=document.createElement("tr")
-    var td=document.createElement("td");
-    td.innerText=Product.PRODUCTS[i].PRODUCT_NAME;
-    tr.appendChild(td)
-    tbl.appendChild(tr)
-    
-    
-}
-div.appendChild(tbl)
-div.setAttribute("id","sildiv")
-el.parentElement.appendChild(div)
-$(div).show(500)
+        var el=document.getElementById(elemanAtt)
+        var div=document.createElement("div")
+        div.setAttribute("style","display:none;position: fixed;z-index: 99999; background: whitesmoke;padding: 17px;border: solid 1px #ad6d6d;")
+        var tbl=document.createElement("table");
+        tbl.setAttribute("class","table");
+        for(let i=0;i<Product.PRODUCTS.length;i++){
+            var tr=document.createElement("tr")
+            var td=document.createElement("td");
+            td.innerText=Product.PRODUCTS[i].PRODUCT_NAME;
+            var a=document.createElement("a");
+            a.setAttribute("onclick","setRwTube('"+elemanAtt+"','"+Product.PRODUCTS[i].PRODUCT_NAME+"',"+Product.PRODUCTS[i].PRODUCT_ID+","+Product.PRODUCTS[i].STOCK_ID+","+Product.PRODUCTS[i].DISCOUNT_RATE+","+Product.PRODUCTS[i].PRICE+",'"+Product.PRODUCTS[i].REL_CATNAME+"','"+Product.PRODUCTS[i].REL_HIERARCHY+"','"+Product.PRODUCTS[i].MONEY+"',"+Product.PRODUCTS[i].REL_CATID+")")
+            tr.appendChild(td)
+            tbl.appendChild(tr)    
+        }
+            div.appendChild(tbl)
+            div.setAttribute("id","sildiv")
+            el.parentElement.appendChild(div)
+            $(div).show(500)
 
           /*  pidElem.value = Product.PRODUCT.PRODUCT_ID;
             sidElem.value = Product.PRODUCT.STOCK_ID;
@@ -117,6 +101,35 @@ $(div).show(500)
 
 
     }
+}
+
+function setRwTube(elemanAtt,product_name,product_id,stock_id,discount,price,REL_CATNAME,REL_HIERARCHY,MONEY,REL_CATID){
+
+    var pidElem = document.getElementById(elemanAtt + "_PId")
+    var sidElem = document.getElementById(elemanAtt + "_SId")
+    var NameElem = document.getElementById(elemanAtt + "_lbs")
+    var priceElem = document.getElementById(elemanAtt + "_Prc")
+    var discountElem = document.getElementById(elemanAtt + "_DSC")
+    var money_elem = document.getElementById(elemanAtt + "_MNY")
+
+    var PC_ELEM = document.getElementById("PRODUCT_CAT")
+    var PCID_ELEM = document.getElementById("PRODUCT_CATID")
+    var PCHIE_ELEM = document.getElementById("HIEARCHY")
+
+
+       pidElem.value = product_id;
+            sidElem.value =stock_id;
+            NameElem.innerText = product_name;
+            discountElem.value = discount;
+            money_elem.value = MONEY;
+            priceElem.value = price;
+            if (elemanAtt == "Tube") {
+                
+                PC_ELEM.value = REL_CATNAME;
+                PCID_ELEM.value = REL_CATID;
+                PCHIE_ELEM.value = REL_HIERARCHY;
+            }
+            CalculateTube()
 }
 
 function CalculateTube() {
