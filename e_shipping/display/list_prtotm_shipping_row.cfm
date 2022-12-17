@@ -103,7 +103,7 @@
                                     	</a>
                                     </cfif>    	
                               	</td>
-                             	<td style="text-align:center;">#DateFormat(DELIVER_DATE,'DD/MM/YYYY')#</td>
+                             	<td style="text-align:center;">#DateFormat(DELIVER_DATE,'dd/mm/yyyy')#</td>
                               	<td>#UNVAN#</td>
                              	<td style="text-align:right;">#TLFormat(bekleyen)#</td>
                            	</tr>

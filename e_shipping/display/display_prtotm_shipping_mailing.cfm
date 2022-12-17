@@ -371,7 +371,7 @@
                             <tr>
                                 <td style="font-size:12px;border-right:1px solid ##dddddd;border-bottom:1px solid ##dddddd;text-align:left;padding:7px">
                                     <b>Sipariş Numarası:</b> #get_order_info.order_number#<br>
-                                    <b>Sipariş Tarihi:</b> #DateFormat(get_order_info.ORDER_DATE,'DD/MM/YYYY')#<br>
+                                    <b>Sipariş Tarihi:</b> #DateFormat(get_order_info.ORDER_DATE,'dd/mm/yyyy')#<br>
                                 </td>
                                 <td style="font-size:12px;border-right:1px solid ##dddddd;border-bottom:1px solid ##dddddd;text-align:left;padding:7px">
                                     <b>E-Posta:</b> <a href="#get_cons_info.email#" target="_blank">#get_cons_info.email#</a><br>

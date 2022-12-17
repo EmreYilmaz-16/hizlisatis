@@ -222,14 +222,14 @@
                 	<tr>
                         <td style="text-align:right;" nowrap="nowrap">#currentrow#</td>
                         <td style="text-align:left;" nowrap="nowrap">#unvan#</td>
-                        <td style="text-align:center;" nowrap="nowrap">#DateFormat(ORDER_DATE,'DD/MM/YYYY')#</td>
+                        <td style="text-align:center;" nowrap="nowrap">#DateFormat(ORDER_DATE,'dd/mm/yyyy')#</td>
                         <td style="text-align:left;" nowrap="nowrap">#ORDER_NUMBER#</td>
                         <td style="text-align:center;" nowrap="nowrap">
                         	 <a href="#request.self#?fuseaction=sales.popup_list_PRTOTM_packing_packets&ship_id=#SHIP_RESULT_ID#&deliver_paper_no=#DELIVER_PAPER_NO#&type=#TYPE#" class="tableyazi">
                             	#DELIVER_PAPER_NO#
                         	</a>
                         </td>
-                        <td style="text-align:center;" nowrap="nowrap">#DateFormat(RECORD_DATE,'DD/MM/YYYY')#</td>
+                        <td style="text-align:center;" nowrap="nowrap">#DateFormat(RECORD_DATE,'dd/mm/yyyy')#</td>
                         <td style="text-align:left;" nowrap="nowrap">#get_emp_info(RECORD_EMP,0,0)# </td>
                         <td style="text-align:center;" nowrap="nowrap">#PACKING_NO#</td>
                         

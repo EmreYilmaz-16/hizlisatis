@@ -225,7 +225,7 @@
                         <td style="text-align:right;" nowrap="nowrap">#currentrow#</td>
                         <td style="text-align:left;" nowrap="nowrap">#unvan#</td>
                         <td style="text-align:center;" nowrap="nowrap">#DELIVER_PAPER_NO#</td>
-                        <td style="text-align:center;" nowrap="nowrap">#DateFormat(RECORD_DATE,'DD/MM/YYYY')#</td>
+                        <td style="text-align:center;" nowrap="nowrap">#DateFormat(RECORD_DATE,'dd/mm/yyyy')#</td>
                         <td style="text-align:left;" nowrap="nowrap">#get_emp_info(RECORD_EMP,0,0)# </td>
                         <td style="text-align:center;" nowrap="nowrap">#PACKING_NO#</td>
                         <td style="text-align:center;" nowrap="nowrap">#STOCK_CODE#</td>

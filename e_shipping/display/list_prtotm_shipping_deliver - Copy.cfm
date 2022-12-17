@@ -285,8 +285,8 @@
 								#ORDER_NUMBER#
 							</a>
                         </td>
-                        <td style="text-align:center">#DateFormat(ORDER_DATE,'DD/MM/YYYY')#</td>
-                        <td style="text-align:center">#DateFormat(DELIVERDATE,'DD/MM/YYYY')#</td>
+                        <td style="text-align:center">#DateFormat(ORDER_DATE,'dd/mm/yyyy')#</td>
+                        <td style="text-align:center">#DateFormat(DELIVERDATE,'dd/mm/yyyy')#</td>
                         <td style="text-align:left">
                         	<cfif len(COMPANY_ID)>
                            		<a href="javascript://"  class="tableyazi" onclick"window.open('#request.self#?fuseaction=objects.popup_com_det&company_id=#COMPANY_ID#')">

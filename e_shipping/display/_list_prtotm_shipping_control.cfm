@@ -7,7 +7,7 @@
 <cfparam name="attributes.employee" default="">
 <cfparam name="attributes.employee_id" default="">
 <cfparam name="attributes.department_id" default="">
-<cfparam name="attributes.date1" default="#DateFormat(now(),'DD/MM/YYYY')#">
+<cfparam name="attributes.date1" default="#DateFormat(now(),'dd/mm/yyyy')#">
 <cfparam name="attributes.date2" default="">
 <cfparam name="attributes.customer_value_id" default="">
 <cfparam name="attributes.zone_id" default="">

@@ -284,7 +284,7 @@
                             #DELIVER_PAPER_NO#
                         </a>
                     </td>
-                    <td align="center">#DateFormat(OUT_DATE, 'DD/MM/YYYY')#</td>
+                    <td align="center">#DateFormat(OUT_DATE, 'dd/mm/yyyy')#</td>
                     <td>
                     	#unvan#
                         <cfif type eq 2>

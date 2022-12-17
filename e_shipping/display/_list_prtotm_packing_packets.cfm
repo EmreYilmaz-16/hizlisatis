@@ -114,7 +114,7 @@
                   <tr height="20" onMouseOver="this.className='color-light';" onMouseOut="this.className='color-row';" class="color-row">
                     <td align="center">#currentrow#</td>
                     <td align="center">#PACKING_NO#</td> 
-                    <td align="center">#Dateformat(RECORD_DATE,'DD/MM/YYYY')#</td>
+                    <td align="center">#Dateformat(RECORD_DATE,'dd/mm/yyyy')#</td>
                     <td align="center">#get_emp_info(RECORD_EMP,0,0)#</td> 
                     <td align="right">#AMOUNT# Ad.</td>
                     <td align="right"></td>

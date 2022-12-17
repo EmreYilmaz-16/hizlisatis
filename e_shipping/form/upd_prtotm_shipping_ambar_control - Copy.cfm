@@ -164,7 +164,7 @@
 		<td class="dpht">Ambar Fişi Hazırlama Kontrol Listesi</td>
         <td style="text-align:right"><strong>Son Okutma Tarih ve Saati : </strong>
         <!---<cfif get_record_date.recordcount and len(get_record_date.RECORD_DATE)>
-			<cfoutput>#get_emp_info(get_record_date.RECORD_EMP,0,0)# - #Dateformat(get_record_date.RECORD_DATE,'DD/MM/YYYY')# #timeformat(dateadd('h',session.ep.time_zone,get_record_date.RECORD_DATE),'HH:MM')#</cfoutput>
+			<cfoutput>#get_emp_info(get_record_date.RECORD_EMP,0,0)# - #Dateformat(get_record_date.RECORD_DATE,'dd/mm/yyyy')# #timeformat(dateadd('h',session.ep.time_zone,get_record_date.RECORD_DATE),'HH:MM')#</cfoutput>
        	<cfelse>
         	
         </cfif>--->

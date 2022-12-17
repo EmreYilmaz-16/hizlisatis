@@ -577,7 +577,7 @@
                                 <tr style="height:30px" <cfif get_shipping_clear.SEVK_EMP gt 0>class="color-row"<cfelse>class="color-light"</cfif>>
                                     <td style="text-align:right">#currentrow#</td>
                                     <td style="text-align:center">#DELIVER_PAPER_NO#</td>
-                                    <td style="text-align:center">#DateFormat(OUT_DATE,'DD/MM/YYYY')#</td>
+                                    <td style="text-align:center">#DateFormat(OUT_DATE,'dd/mm/yyyy')#</td>
                                     <td><cfif IS_TYPE eq 1>#UNVAN#<cfelse><strong>#DEPARTMENT_HEAD#</strong>-(#UNVAN#)</cfif></td>
                                     <td>#get_emp_info(order_employee_id,0,0)#</td>
                                     <td>#SHIP_METHOD#</td>

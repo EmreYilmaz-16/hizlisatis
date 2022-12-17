@@ -942,7 +942,7 @@
 	                                #DELIVER_PAPER_NO#
                                 </a>
 							</td>
-                            <td style="text-align:center">#DateFormat(OUT_DATE,'DD/MM/YYYY')#</td>
+                            <td style="text-align:center">#DateFormat(OUT_DATE,'dd/mm/yyyy')#</td>
                             <td>
                             	<cfif len(company_id)>
                                 	#get_par_info(COMPANY_ID,1,1,0)#
@@ -1063,7 +1063,7 @@
                             </td>
                             <td style="text-align:center">
                             	 <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_PRTOTM_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#&type=1','page');" class="tableyazi" title="Detay Göster">
-                            		#DateFormat(OUT_DATE,'DD/MM/YYYY')#
+                            		#DateFormat(OUT_DATE,'dd/mm/yyyy')#
                             	</a>
                             </td>
                             <td>

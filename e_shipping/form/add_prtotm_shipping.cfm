@@ -164,7 +164,7 @@
                                     <img id="siparis_gizle#currentrow#" src="/images/listele_down.gif" title="<cf_get_lang_main no='1216.Gizle'>" style="display:none">
                                 </td>
                                 <td>#DELIVER_PAPER_NO#</td>
-                                <td>#Dateformat(OUT_DATE, 'DD/MM/YYYY')#</td> 
+                                <td>#Dateformat(OUT_DATE, 'dd/mm/yyyy')#</td> 
                                 <td>#SHIP_METHOD#</td>
                                 <td>#get_emp_info(DELIVER_EMP,0,0)#</td>
                                 <td>#REFERENCE_NO#</td>
