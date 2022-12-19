@@ -69,7 +69,7 @@ function AddRow(
     var res = wrk_query(q, "dsn3")
     var RafKodu = "";
     if (res.recordcount > 0) {
-        if (res.recordcount > 1) {
+        if (res.recordcount > 1 && fc==0) {
             var calculate_params = "&pid_=" + product_id + "&sid_=" + stock_id + "&tax=" + tax + "&cost=" + cost + "&manuel=" + is_manuel + "&product_name=" + product_name + "&stock_code=" + stock_code + "&brand=" + brand_name + "&indirim1=" + discount_rate + "&amount=" + quantity + "&unit=" + product_unit + "&price=" + price + "&other_money=" + other_money + "&price_other=" + price_other;
             calculate_params += "&is_virtual=" + is_virtual;
             calculate_params += "&product_type=" + poduct_type;
