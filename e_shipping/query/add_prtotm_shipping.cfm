@@ -135,6 +135,11 @@
 <cfdump var="#getHTTPRequestData()#">
 <script type="text/javascript">
 	alert('Kayıt Tamamlandı');
-	wrk_opener_reload();
-	//window.close();
+	<cfif isDefined("attributes.reffferr") and findNoCase("list_pbs_offer", attributes.reffferr)>
+		window.opener.location.href="<cfoutput>#attributes.reffferr#</cfoutput>&defaultOpen=sayfa_4"
+	<cfelse>
+wrk_opener_reload();
+	</cfif>
+	
+	window.close();
 </script>
