@@ -30,8 +30,10 @@
         <tr style="position: sticky;top: 0;z-index: 1;background: white;">
             <th>#</th>            
             <th></th>
-            <th>Stok Kodu</th>       
-            <th>Ürün Adı<input type="text" id="filter1" class="ui-form"></th>
+            <th>Stok Kodu
+                <input type="text" onkeyup="searchCode(this,event)" class="ui-form" placeholder="search">
+            </th>       
+            <th>Ürün Adı<input type="text" id="filter1" onkeyup="searchName(this,event)" class="ui-form" placeholder="search"></th>
             <th>Marka</th>
             <th style="text-align:right">Miktar</th>
             <th>Birim</th>

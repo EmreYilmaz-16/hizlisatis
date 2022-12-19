@@ -169,6 +169,7 @@ function AddRow(
     i_4.setAttribute("type", "text");
     i_4.setAttribute("readonly", "");
     i_4.setAttribute("style", "width:40px")
+    i_4.setAttribute("class","stockkodu")
     i_4.setAttribute("value", stock_code);
 
     var div = document.createElement("div");
@@ -182,6 +183,7 @@ function AddRow(
     var i_4 = document.createElement("input");
     i_4.setAttribute("name", "product_name_" + row_count);
     i_4.setAttribute("id", "product_name_" + row_count);
+    i_4.setAttribute("class","urunadi")
     i_4.setAttribute("type", "text");
     i_4.setAttribute("style", "width:40px")
     i_4.setAttribute("value", product_name);
@@ -792,6 +794,13 @@ function BasketSelControl() {
         evnt: "return true",
         att: "disabled"
     }
+    var searchButton={
+        icon: "icn-md fa fa-history",
+        txt: "Filtrele",
+        evntType: "onclick",
+        evnt: "filterBasket()",
+        att: ""
+    }
     var buttonGroups = [];
     var sepetRows = document.getElementsByClassName("sepetRow")
     for (let i = 0; i < sepetRows.length; i++) {
@@ -848,6 +857,8 @@ function rowaListener(tr) {
         div3.setAttribute("style", "border-top: solid 5px black;border-left: solid 5px black;width: 10px;height: 10px;")
         var div2 = document.createElement("div")
         div2.setAttribute("class", "list-group")
+
+
         var buttons = BasketSelControl();
         for (let i = 0; i < buttons.length; i++) {
             var ee = buttons[i]
@@ -1107,4 +1118,18 @@ function openPriceListPartner(PRODUCT_ID,STOCK_ID,MAIN_UNIT,company_id){
     })
     var uri="index.cfm?fuseaction=objects.emptypopup_price_history_partner&"+MoneyList+"sepet_process_type=-1&product_id="+PRODUCT_ID+"&stock_id="+STOCK_ID+"&pid="+PRODUCT_ID+"&product_name=&unit="+MAIN_UNIT+"&row_id=0&company_id="+company_id;
     openBoxDraggable(uri)
+}
+
+function searchCode(el,ev){
+    //urunadi stockkodu
+    var kw=el.value
+$("#tbl_basket .stockkodu").filter(function() {
+   return $(this).val().toLowerCase().indexOf(kw.toLowerCase()) >-1
+}).parent().parent().parent().toggle()
+}
+function searchName(el,ev) {
+    var kw=el.value
+    $("#tbl_basket .urunadi").filter(function() {
+   return $(this).val().toLowerCase().indexOf(kw.toLowerCase()) >-1
+}).parent().parent().parent().toggle()
 }
