@@ -480,7 +480,8 @@ function TubeControl() {
 
 
     if (HataArr.length > 0) {
-        openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_partner_testpage&page=6&data=" + jString, 'small')
+        //openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_partner_testpage&page=6&data=" + jString, 'small')
+        console.log(HataArr);
         return false;
     } else {
         return true;
