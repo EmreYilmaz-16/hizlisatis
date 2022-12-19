@@ -8,7 +8,7 @@ SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FRO
 	LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
 WHERE PPR.STOCK_ID=#attributes.sid_#
 </cfquery>
-<table>
+<cf_grid_list>
 	<tr>
 		<th>Raf</th>
 		<th>Lokasyon</th>
@@ -22,7 +22,7 @@ WHERE PPR.STOCK_ID=#attributes.sid_#
 		</tr>
 	</cfoutput>
 	
-</table>
+</cf_grid_list>
 <button onclick="closeBoxDraggable(<cfoutput>'#attributes.modal_id#'</cfoutput>)">Kapa
 </button>
 <cf_box>
