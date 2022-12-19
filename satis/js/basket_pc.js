@@ -209,7 +209,7 @@ function AddRow(
     td.appendChild(div);
     tr.appendChild(td);
 
-var rff=getRafSml(stock_id,shelf_code);
+var rff=getRafSml(stock_id,RafKodu);
  var td = document.createElement("td");
     td.setAttribute("style", "width:5%")
     var i_4 = document.createElement("input");
