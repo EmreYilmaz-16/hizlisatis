@@ -385,32 +385,36 @@ function SaveTube(dsn3, modal_id, tip = 0) {
                 if (obj.ROW_ID.length > 0) {
                     UpdRow(obj.PID, obj.SID, 0, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
                 } else {
-                    AddRow(
-            obj.PID,
+                  //  AddRow(obj.PID, obj.SID, 0, 1, obj.PRICE, obj.NAME, 18, 0, 1, '', 'TL', obj.PRICE, "-5");
+ AddRow(
+            obj.PRODUCT_ID,
+            obj.STOCK_ID,
+            obj.STOCK_CODE,
+            obj.BRAND_NAME,
             0,
-            '',
-            '',
-            1,
-            1,
+            obj.QUANTITY,
             obj.PRICE,
-            obj.NAME,
-            18,
-            0,
-            1,
-            '',
-            'TL',
-            obj.PRICE,
-            "-5",
-             0,
-             0,
-            'Adet',
-            '',
-            '',
-             1,
-             '',
-             '',
-             1
+            obj.PRODUCT_NAME,
+            obj.TAX,
+            obj.DISCOUNT_RATE,
+            obj.PRODUCT_TYPE,
+            obj.SHELF_CODE,
+            obj.OTHER_MONEY,
+            obj.PRICE_OTHER,
+            obj.OFFER_ROW_CURRENCY,
+            obj.IS_MANUEL,
+            obj.COST,
+            obj.MAIN_UNIT,
+            obj.PRODUCT_NAME_OTHER,
+            obj.DETAIL_INFO_EXTRA,
+            obj.FC,
+            obj.ROW_NUM,
+            obj.DELIVERDATE,
+            obj.IS_PRODUCTION,
+            obj.ROW_UNIQ_ID
+
         )
+
                 }
                 closeBoxDraggable(modal_id)
             }
@@ -418,3 +422,6 @@ function SaveTube(dsn3, modal_id, tip = 0) {
     }
 
 }
+
+
+
