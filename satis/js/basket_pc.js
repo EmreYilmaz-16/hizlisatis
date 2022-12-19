@@ -1124,12 +1124,12 @@ function searchCode(el,ev){
     //urunadi stockkodu
     var kw=el.value
 $("#tbl_basket .stockkodu").filter(function() {
-   return $(this).val().toLowerCase().indexOf(kw.toLowerCase()) >-1
+   return $(this).val().toLowerCase().indexOf(kw.toLowerCase())  !== -1
 }).parent().parent().parent().toggle()
 }
 function searchName(el,ev) {
     var kw=el.value
     $("#tbl_basket .urunadi").filter(function() {
-   return $(this).val().toLowerCase().indexOf(kw.toLowerCase()) >-1
+   return $(this).val().toLowerCase().indexOf(kw.toLowerCase()) !== -1
 }).parent().parent().parent().toggle()
 }
