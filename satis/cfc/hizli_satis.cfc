@@ -695,6 +695,10 @@
     </cffunction>
     <cffunction name="saveTube" access="remote" returntype="any" returnFormat="json">
        
+      <cfif len(arguments.PRODUCT_CATID) and arguments.PRODUCT_CATID neq 0>
+      <cfelse>
+      <cfset arguments.PRODUCT_CATID=4084>
+      </cfif>
         <cfquery name="getMaster" datasource="#arguments.dsn1#">
                         SELECT S.PRODUCT_ID
                     ,S.PRODUCT_CODE

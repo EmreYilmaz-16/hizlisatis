@@ -364,3 +364,57 @@ function UpdRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, ro
     $("#indirim1_" + row_id).val(discount_rate)
     hesapla("price", row_id)
 }
+
+function SaveTube(dsn3, modal_id, tip = 0) {
+    var p_name = ""
+    if (tip == 0) {
+        var p_name = window.prompt("Ürün Adı")
+        if (p_name.length > 0) {} else {
+            SaveTube(dsn3, modal_id)
+        }
+    }
+    var qs = TubeControl();
+    if (qs) {
+
+        var d = $("#TubeForm").serialize();
+        $.ajax({
+            url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=saveTube",
+            data: d + "&product_name=" + p_name + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&dsn1=" + generalParamsSatis.dataSources.dsn1 + "&dsn=" + generalParamsSatis.dataSources.dsn,
+            success: function (retDat) {                
+                var obj = JSON.parse(retDat)
+                if (obj.ROW_ID.length > 0) {
+                    UpdRow(obj.PID, obj.SID, 0, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+                } else {
+                    AddRow(
+            obj.PID,
+            0,
+            '',
+            '',
+            1,
+            1,
+            obj.PRICE,
+            obj.NAME,
+            18,
+            0,
+            1,
+            '',
+            'TL',
+            obj.PRICE,
+            "-5",
+             0,
+             0,
+            'Adet',
+            '',
+            '',
+             1,
+             '',
+             '',
+             1
+        )
+                }
+                closeBoxDraggable(modal_id)
+            }
+        })
+    }
+
+}
