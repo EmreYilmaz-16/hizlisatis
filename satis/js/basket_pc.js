@@ -1123,13 +1123,9 @@ function openPriceListPartner(PRODUCT_ID,STOCK_ID,MAIN_UNIT,company_id){
 function searchCode(el,ev){
     //urunadi stockkodu
     var kw=el.value
-$("#tbl_basket .stockkodu").filter(function() {
-   return $(this).val().toLowerCase().indexOf(kw.toLowerCase())  !== -1
-}).parent().parent().parent().toggle()
+$(".stockkodu").filter(function(){$(this).parent().parent().parent().toggle($(this).val().toLowerCase().indexOf(kw.toLowerCase()) > -1)})
 }
 function searchName(el,ev) {
     var kw=el.value
-    $("#tbl_basket .urunadi").filter(function() {
-   return $(this).val().toLowerCase().indexOf(kw.toLowerCase()) !== -1
-}).parent().parent().parent().toggle()
+  $(".urunadi").filter(function(){$(this).parent().parent().parent().toggle($(this).val().toLowerCase().indexOf(kw.toLowerCase()) > -1)})
 }
