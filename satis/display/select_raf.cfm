@@ -1,5 +1,5 @@
 <cf_box title="Make Tube" scroll="1" collapsable="1" resize="1" popup_box="1">
-<cfdump var="#attributes#">
+
 
 <cfquery name="getShelves" datasource="#dsn3#">
 SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR 
