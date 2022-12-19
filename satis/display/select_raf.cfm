@@ -62,7 +62,7 @@ WHERE PPR.STOCK_ID=#attributes.sid_#
     stock_code,
     brand_name,
     is_virtual,
-    newQ,
+    quantity,
     price,
     product_name,
     tax,
