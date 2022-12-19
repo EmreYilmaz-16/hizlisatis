@@ -345,7 +345,7 @@
             AND PRICE_STANDART.PRICESTANDART_STATUS = 1
             AND PRICE_STANDART.PURCHASESALES = 1
             <cfif Len(arguments.keyword)>
-            AND LOWER(PRODUCT.PRODUCT_CODE) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#argkv#%"> COLLATE Turkish_CI_AS 
+            AND 1=1
                 AND
                 (
                     <cfloop list="#arguments.keyword#" index="kw" delimiters=";">
@@ -357,6 +357,8 @@
                             LOWER(PRODUCT.PRODUCT_DETAIL) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
                             LOWER(PRODUCT.MANUFACT_CODE) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
                             LOWER(PRODUCT_BRANDS.BRAND_NAME) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
+                            LOWER(PRODUCT.PRODUCT_CODE) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#argkv#%"> COLLATE Turkish_CI_AS OR
+                            LOWER(PRODUCT.BARCOD) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#argkv#%"> COLLATE Turkish_CI_AS OR
                             LOWER(PRODUCT_CAT.PRODUCT_CAT) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS
                         <cfelse>
                             LOWER(PRODUCT.PRODUCT_NAME) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
@@ -365,6 +367,8 @@
                             LOWER(PRODUCT.PRODUCT_DETAIL) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
                             LOWER(PRODUCT.MANUFACT_CODE) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
                             LOWER(PRODUCT_BRANDS.BRAND_NAME) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
+                            LOWER(PRODUCT.PRODUCT_CODE) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#argkv#%"> COLLATE Turkish_CI_AS OR
+                            LOWER(PRODUCT.BARCOD) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#argkv#%"> COLLATE Turkish_CI_AS OR
                             LOWER(PRODUCT_CAT.PRODUCT_CAT) LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS
                         </cfif>
                         )
