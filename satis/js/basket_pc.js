@@ -193,6 +193,7 @@ function AddRow(
     div.appendChild(i_4);
     td.appendChild(div);
     tr.appendChild(td);
+   
     var td = document.createElement("td");
     td.setAttribute("style", "width:5%")
     var i_4 = document.createElement("input");
@@ -207,6 +208,25 @@ function AddRow(
     div.appendChild(i_4);
     td.appendChild(div);
     tr.appendChild(td);
+
+var rff=getRafSml(stock_id,shelf_code);
+ var td = document.createElement("td");
+    td.setAttribute("style", "width:5%")
+    var i_4 = document.createElement("input");
+    i_4.setAttribute("name", "department_name" + row_count);
+    i_4.setAttribute("id", "department_name" + row_count);
+    i_4.setAttribute("type", "text");
+    i_4.setAttribute("disabled", "");
+    i_4.setAttribute("value", rff);
+
+    var div = document.createElement("div");
+    div.setAttribute("class", "form-group");
+    div.appendChild(i_4);
+    td.appendChild(div);
+    tr.appendChild(td);
+
+
+
 
     var td = document.createElement("td");
     td.setAttribute("style", "width:3%")
@@ -449,6 +469,16 @@ function ShelfControl(pid, RafCode) {
             return false;
         } else { alert("Ürün Bu Rafta Tanımlı Değildir Veya Raf Kodu Bulunamamıştır Rafsız Kayıt Yapılacaktır"); return true }
     }
+}
+
+function getRafSml(stock_id,rafcode){
+   var q="SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR "
+    q+=" LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID=PP.PRODUCT_PLACE_ID"
+    q+=" LEFT JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID"
+    q+=" LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID"
+    q+=" WHERE PPR.STOCK_ID="+stock_id+" AND PP.SHELF_CODE='"+rafcode+"'" 
+    var res=wrk_query(q);
+    return res.DEPARTMENT_HEAD[0]+" "+res.COMMENT[0]
 }
 
 function hesapla(input, sira) {
