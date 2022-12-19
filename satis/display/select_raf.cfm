@@ -1,4 +1,4 @@
-<cf_box title="Make Tube" scroll="1" collapsable="1" resize="1" popup_box="1">
+<cf_box title="Raf Seç" scroll="1" collapsable="1" resize="1" popup_box="1">
 
 
 <cfquery name="getShelves" datasource="#dsn3#">
@@ -16,7 +16,7 @@ WHERE PPR.STOCK_ID=#attributes.sid_#
 	</tr>
 	<cfoutput query="getShelves">
 		<tr>
-			<td>#SHELF_CODE#</td>
+			<td><a onClick="selectRafP(<cfoutput>#attributes.pid_#,#attributes.sid_#,'#attributes.stock_code#','#attributes.brand#',#attributes.is_virtual#,#attributes.amount#,#attributes.price#,'#attributes.product_name#',#attributes.tax#,#attributes.indirim1#,#attributes.product_type#,'#SHELF_CODE#','#attributes.other_money#',#attributes.price_other#,-6,#attributes.manuel#,#attributes.cost#,'#attributes.unit#','','',1,'#attributes.modal_id#',#attributes.rowNum#</cfoutput>);">#SHELF_CODE#</a></td>
 			<td>#COMMENT#</td>
 			<td>#DEPARTMENT_HEAD#</td>
 		</tr>
@@ -26,3 +26,61 @@ WHERE PPR.STOCK_ID=#attributes.sid_#
 <button onclick="closeBoxDraggable(<cfoutput>'#attributes.modal_id#'</cfoutput>)">Kapa
 </button>
 <cf_box>
+
+<script>
+	 function selectRafP(
+    product_id,
+    stock_id,
+    stock_code,
+    brand_name,
+    is_virtual,
+    quantity,
+    price,
+    product_name,
+    tax,
+    discount_rate,
+    poduct_type = 0,
+    shelf_code = '',
+    other_money = 'TL',
+    price_other,
+    currency = "-6",
+    is_manuel = 0,
+    cost = 0,
+    product_unit = 'Adet',
+    product_name_other='',
+    detail_info_extra='',
+    fc=1,
+    modal_id,
+    rowNum
+    ){
+        
+        console.log(rowNum)
+
+        AddRow(
+        product_id,
+    stock_id,
+    stock_code,
+    brand_name,
+    is_virtual,
+    newQ,
+    price,
+    product_name,
+    tax,
+    discount_rate,
+    poduct_type,
+    shelf_code ,
+    other_money ,
+    price_other,
+    currency,
+    is_manuel,
+    cost,
+    product_unit,
+    product_name_other,
+    '',
+    fc,
+    rowNum)
+    
+    closeBoxDraggable(modal_id);
+}
+
+</script>
