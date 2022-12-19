@@ -478,7 +478,10 @@ function getRafSml(stock_id,rafcode){
     q+=" LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID"
     q+=" WHERE PPR.STOCK_ID="+stock_id+" AND PP.SHELF_CODE='"+rafcode+"'" 
     var res=wrk_query(q);
-    return res.DEPARTMENT_HEAD[0]+" "+res.COMMENT[0]
+    if(res.recordcount >0){
+    return res.DEPARTMENT_HEAD[0]+" "+res.COMMENT[0]}else{
+        return '';
+    }
 }
 
 function hesapla(input, sira) {
