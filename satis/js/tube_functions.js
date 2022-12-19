@@ -425,3 +425,66 @@ function SaveTube(dsn3, modal_id, tip = 0) {
 
 
 
+function TubeControl() {
+    HataArr = [];
+    var LRekor_PId = document.getElementById("LRekor_PId").value
+    var Tube_PId = document.getElementById("Tube_PId").value
+    var RRekor_PId = document.getElementById("RRekor_PId").value
+    var AdditionalProduct_PId = document.getElementById("AdditionalProduct_PId").value
+
+    var working_PId = document.getElementById("working_PId").value
+    var Kabuk_PId = document.getElementById("Kabuk_PId").value
+    var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 1)
+    if (Q.IS_REQUIRED == 1) {
+        if (parseInt(LRekor_PId) == 0 || LRekor_PId.length == 0) {
+            HataArr.push("Sol Rekor Seçmediniz !")
+        }
+    }
+
+    var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 2)
+    if (Q.IS_REQUIRED == 1) {
+        if (parseInt(Tube_PId) == 0 || Tube_PId.length == 0) {
+            HataArr.push("Hortum Seçmediniz !")
+        }
+    }
+
+    var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 3)
+    if (Q.IS_REQUIRED == 1) {
+        if (parseInt(RRekor_PId) == 0 || RRekor_PId.length == 0) {
+            HataArr.push("Sağ Rekor Seçmediniz !")
+        }
+    }
+
+    var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 4)
+    if (Q.IS_REQUIRED == 1) {
+        if (parseInt(AdditionalProduct_PId || AdditionalProduct_PId.length == 0) == 0) {
+            HataArr.push("Ek İşlem Seçiniz !")
+        }
+    }
+
+    var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 5)
+    if (Q.IS_REQUIRED == 1) {
+        if (parseInt(Kabuk_PId) == 0 || Kabuk_PId.length == 0) {
+            HataArr.push("Kabuk Seçmediniz !")
+        }
+    }
+
+    var Q = generalParamsSatis.Questions.find(p => p.QUESTION_ID == 6)
+    if (Q.IS_REQUIRED == 1) {
+        if (parseInt(working_PId) == 0 || working_PId.length == 0) {
+            HataArr.push("İşçilik Seçiniz !")
+        }
+    }
+
+    var jString = JSON.stringify(HataArr)
+
+
+    if (HataArr.length > 0) {
+        openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_partner_testpage&page=6&data=" + jString, 'small')
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
