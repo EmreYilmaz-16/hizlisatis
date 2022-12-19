@@ -132,7 +132,7 @@
 	action_page='#request.self#?fuseaction=sales.popup_add_PRTOTM_shipping&order_id=#attributes.order_id#'
 	warning_description = 'Sevkiyat Plan No : #attributes.transport_no1#'>
 <!---<cflocation url="#request.self#?fuseaction=sales.popup_add_PRTOTM_shipping&order_id=#attributes.order_id#" addtoken="No">--->
-<cfdump var="#getHTTPRequestData()#">
+
 <script type="text/javascript">
 	alert('Kayıt Tamamlandı');
 	<cfif isDefined("attributes.reffferr") and findNoCase("list_pbs_offer", attributes.reffferr)>

@@ -438,4 +438,3 @@
 		AjaxPageLoad(load_url_,'DISPLAY_ORDER_STOCK_INFO'+crtrow,1);
 	}
 </script>
-<cfdump var="#getHTTPRequestData()#">
