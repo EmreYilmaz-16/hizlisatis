@@ -189,6 +189,7 @@
 
 <cf_popup_box title="Sevkiyat Planı Ekle">
 	<cfform name="add_packet_ship" id="add_packet_ship" method="post" action="#request.self#?fuseaction=eshipping.emptypopup_qadd_prtotm_shipping&order_id=#url.order_id#">
+		<input type="hidden" name="reffferr" value="<cfoutput>#getHTTPRequestData().referer#</cfoutput>">
 		<table>
 			<cf_papers paper_type="ship_fis" form_name="add_packet_ship" form_field="transport_no1">
             <cfinput type="hidden" name="order_row_id_list" value="#order_row_id_list#">
