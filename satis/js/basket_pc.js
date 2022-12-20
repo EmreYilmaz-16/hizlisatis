@@ -1208,6 +1208,9 @@ function searchName(el, ev) {
 function moveRow(from_row_id, to_row_id) {
     if (from_row_id != 1) {
 
+        var product_type_1=$("#row_"+from_row_id).attr("data-producttype")
+        var product_type_2=$("#row_"+to_row_id).attr("data-producttype")
+
         var product_id_1 = $("#product_id_" + from_row_id).val()
         var stock_id_1 = $("#stock_id_" + from_row_id).val()
         var is_virtual_1 = $("#is_virtual_" + from_row_id).val()
@@ -1298,6 +1301,9 @@ function moveRow(from_row_id, to_row_id) {
         $("#deliver_date_" + from_row_id).val(deliver_date_2)
         $("#orderrow_currency_" + to_row_id).val(orderrow_currency_1)
         $("#orderrow_currency_" + from_row_id).val(orderrow_currency_2)
+
+        document.getElementById("row_"+to_row_id).setAttribute("data-producttype",product_type_1)
+        document.getElementById("row_"+from_row_id).setAttribute("data-producttype",product_type_2)
         
         hesapla("price", from_row_id)
         hesapla("price", to_row_id)
