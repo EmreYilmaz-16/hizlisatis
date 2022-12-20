@@ -20,9 +20,11 @@ function setDoom() {
     document.body.addEventListener("click", hideP)
 
 }
+
 function hideP() {
     $(".pbsContex").remove()
 }
+
 function AddRow(
     product_id,
     stock_id,
@@ -48,7 +50,7 @@ function AddRow(
     rowNum = '',
     deliver_date = '',
     is_production = 0,
-    row_uniq_id=''
+    row_uniq_id = ''
 ) {
 
     var form = $(document);
@@ -69,7 +71,7 @@ function AddRow(
     var res = wrk_query(q, "dsn3")
     var RafKodu = "";
     if (res.recordcount > 0) {
-        if (res.recordcount > 1 && fc==0) {
+        if (res.recordcount > 1 && fc == 0) {
             var calculate_params = "&pid_=" + product_id + "&sid_=" + stock_id + "&tax=" + tax + "&cost=" + cost + "&manuel=" + is_manuel + "&product_name=" + product_name + "&stock_code=" + stock_code + "&brand=" + brand_name + "&indirim1=" + discount_rate + "&amount=" + quantity + "&unit=" + product_unit + "&price=" + price + "&other_money=" + other_money + "&price_other=" + price_other;
             calculate_params += "&is_virtual=" + is_virtual;
             calculate_params += "&product_type=" + poduct_type;
@@ -99,7 +101,8 @@ function AddRow(
 
     var td = document.createElement("td");
     var spn = document.createElement("span");
-    spn.innerText = row_count;1
+    spn.innerText = row_count;
+    1
     spn.setAttribute("id", "spn_" + row_count)
     td.appendChild(spn);
     tr.appendChild(td);
@@ -169,7 +172,7 @@ function AddRow(
     i_4.setAttribute("type", "text");
     i_4.setAttribute("readonly", "");
     i_4.setAttribute("style", "width:40px")
-    i_4.setAttribute("class","stockkodu")
+    i_4.setAttribute("class", "stockkodu")
     i_4.setAttribute("value", stock_code);
 
     var div = document.createElement("div");
@@ -183,7 +186,7 @@ function AddRow(
     var i_4 = document.createElement("input");
     i_4.setAttribute("name", "product_name_" + row_count);
     i_4.setAttribute("id", "product_name_" + row_count);
-    i_4.setAttribute("class","urunadi")
+    i_4.setAttribute("class", "urunadi")
     i_4.setAttribute("type", "text");
     i_4.setAttribute("style", "width:40px")
     i_4.setAttribute("value", product_name);
@@ -193,7 +196,7 @@ function AddRow(
     div.appendChild(i_4);
     td.appendChild(div);
     tr.appendChild(td);
-   
+
     var td = document.createElement("td");
     td.setAttribute("style", "width:5%")
     var i_4 = document.createElement("input");
@@ -209,8 +212,8 @@ function AddRow(
     td.appendChild(div);
     tr.appendChild(td);
 
-var rff=getRafSml(stock_id,RafKodu);
- var td = document.createElement("td");
+    var rff = getRafSml(stock_id, RafKodu);
+    var td = document.createElement("td");
     td.setAttribute("style", "width:5%")
     var i_4 = document.createElement("input");
     i_4.setAttribute("name", "department_name" + row_count);
@@ -381,17 +384,18 @@ var rff=getRafSml(stock_id,RafKodu);
     td.appendChild(div);
     tr.appendChild(td);
 
-    var dtd=new Date();
+    var dtd = new Date();
     var td = document.createElement("td");
     td.setAttribute("style", "width:10%")
     var i_4 = document.createElement("input");
     i_4.setAttribute("name", "deliver_date_" + row_count);
     i_4.setAttribute("id", "deliver_date_" + row_count);
     i_4.setAttribute("type", "date");
-    
-    if(deliver_date.length>0){
-    i_4.setAttribute("value", deliver_date);}else{
-        i_4.setAttribute("value",dtd.toISOString().split("T")[0])
+
+    if (deliver_date.length > 0) {
+        i_4.setAttribute("value", deliver_date);
+    } else {
+        i_4.setAttribute("value", dtd.toISOString().split("T")[0])
     }
 
     var div = document.createElement("div");
@@ -463,23 +467,29 @@ function ShelfControl(pid, RafCode) {
     q += " LEFT JOIN " + generalParamsSatis.dataSources.dsn + ".STOCKS_LOCATION AS SL ON  SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID "
     q += "WHERE PPR.PRODUCT_ID=" + pid + " AND SHELF_CODE='" + RafCode + "'"
     var rafData = wrk_query(q, 'dsn3')
-    if (rafData.recordcount != 0) { return true } else {
+    if (rafData.recordcount != 0) {
+        return true
+    } else {
         if (generalParamsSatis.workingParams.IS_RAFSIZ == 0) {
             alert("Ürün Bu Rafta Tanımlı Değildir Veya Raf Kodu Bulunamamıştır");
             return false;
-        } else { alert("Ürün Bu Rafta Tanımlı Değildir Veya Raf Kodu Bulunamamıştır Rafsız Kayıt Yapılacaktır"); return true }
+        } else {
+            alert("Ürün Bu Rafta Tanımlı Değildir Veya Raf Kodu Bulunamamıştır Rafsız Kayıt Yapılacaktır");
+            return true
+        }
     }
 }
 
-function getRafSml(stock_id,rafcode){
-   var q="SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR "
-    q+=" LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID=PP.PRODUCT_PLACE_ID"
-    q+=" LEFT JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID"
-    q+=" LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID"
-    q+=" WHERE PPR.STOCK_ID="+stock_id+" AND PP.SHELF_CODE='"+rafcode+"'" 
-    var res=wrk_query(q);
-    if(res.recordcount >0){
-    return res.DEPARTMENT_HEAD[0]+" "+res.COMMENT[0]}else{
+function getRafSml(stock_id, rafcode) {
+    var q = "SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR "
+    q += " LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID=PP.PRODUCT_PLACE_ID"
+    q += " LEFT JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID"
+    q += " LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID"
+    q += " WHERE PPR.STOCK_ID=" + stock_id + " AND PP.SHELF_CODE='" + rafcode + "'"
+    var res = wrk_query(q);
+    if (res.recordcount > 0) {
+        return res.DEPARTMENT_HEAD[0] + " " + res.COMMENT[0]
+    } else {
         return '';
     }
 }
@@ -499,8 +509,7 @@ function hesapla(input, sira) {
     $("#qs_basket tbody tr[data-rc='" + sira + "']").css("background-color", "white");
     if (list_find("price,other_money", input)) {
         price_other_ = (price_ * r1) / r2;
-    }
-    else if (input == "price_other") {
+    } else if (input == "price_other") {
         price_ = (price_other_ * r2) / r1;
     }
     var newNettotal = (price_ * (100 - indirim1_) / 100) * amount_;
@@ -547,6 +556,7 @@ function toplamHesapla() {
     $("#subTaxTotal").val(commaSplit(tax_total_, 2));
     $("#subWTax").val(commaSplit(tax_price_total_, 2));
 }
+
 function toplamHesapla_2() {
     var rows = document.getElementsByClassName("sepetRow")
     var netT = 0;
@@ -605,7 +615,7 @@ function GetBasketData() {
         var product_name = document.getElementById("product_name_" + Old_rw_id).value;
         var product_id = document.getElementById("product_id_" + Old_rw_id).value;
         var stock_id = document.getElementById("stock_id_" + Old_rw_id).value;
-        var is_virtual = document.getElementById("is_virtual_" + Old_rw_id).value;        
+        var is_virtual = document.getElementById("is_virtual_" + Old_rw_id).value;
         var amount = document.getElementById("amount_" + Old_rw_id).value;
         var price = document.getElementById("price_" + Old_rw_id).value;
         var other_money = document.getElementById("other_money_" + Old_rw_id).value;
@@ -644,8 +654,8 @@ function GetBasketData() {
             product_name_other: product_name_other,
             detail_info_extra: detail_info_extra,
             deliver_date_bask: deliver_date_bask,
-            is_production:is_production,
-            row_uniq_id:row_uniq_id
+            is_production: is_production,
+            row_uniq_id: row_uniq_id
         }
         OrderRows.push(Obj)
     }
@@ -679,7 +689,7 @@ function GetBasketData() {
     var CITY_ID = document.getElementById("city_id").value;
     var COUNTY_ID = document.getElementById("county_id").value;
 
-    var PRICE_CATID=document.getElementById("PRICE_CATID").value;
+    var PRICE_CATID = document.getElementById("PRICE_CATID").value;
     SUBTOTAL = filterNum(SUBTOTAL, 4)
     SUBTAXTOTAL = filterNum(SUBTAXTOTAL, 4)
     SUBNETTOTAL = filterNum(SUBNETTOTAL, 4)
@@ -732,7 +742,7 @@ function GetBasketData() {
         CITY_ID: CITY_ID,
         COUNTY_ID: COUNTY_ID,
         ISLEM_TIPI_PBS: ISLEM_TIPI_PBS,
-        PRICE_CATID:PRICE_CATID,
+        PRICE_CATID: PRICE_CATID,
         FACT: Fs
     }
 
@@ -757,7 +767,7 @@ function GetBasketData() {
         OrderMoney: moneyArr,
         OrderFooter: OrderFooter,
         WORKING_PARAMS: generalParamsSatis.workingParams
-    }    
+    }
     return Order
 }
 
@@ -786,6 +796,7 @@ function SaveOrder() {
         }
     }
 }
+
 function selectrw(el) {
     rwwwx = el
     if ($(rwwwx).is(":checked")) {
@@ -827,7 +838,7 @@ function BasketSelControl() {
         evnt: "return true",
         att: "disabled"
     }
-    var searchButton={
+    var searchButton = {
         icon: "icn-md fa fa-history",
         txt: "Filtrele",
         evntType: "onclick",
@@ -1045,12 +1056,15 @@ function rowArrange() {
     row_count = rows.length;
     rowCount = rows.length;
 }
+
 function RowControlForVirtual() {
     var elems = document.getElementsByClassName("sepetRow")
     var sanal_varmı = false;
     for (let i = 1; i <= elems.length; i++) {
         var vi = document.getElementById("is_virtual_" + i)
-        if (parseInt(vi.value) == 1) { sanal_varmı = true }
+        if (parseInt(vi.value) == 1) {
+            sanal_varmı = true
+        }
     }
     if (sanal_varmı) {
         document.getElementById("siparis").setAttribute("disabled", "true");
@@ -1062,19 +1076,26 @@ function RowControlForVirtual() {
 function getProductMultiUse(keyword, comp_id, price_catid) {
     var new_query = new Object();
     var req;
+
     function callpage(url) {
         req = false;
         if (window.XMLHttpRequest)
-            try { req = new XMLHttpRequest(); }
-            catch (e) { req = false; }
-        else if (window.ActiveXObject)
+            try {
+                req = new XMLHttpRequest();
+            }
+        catch (e) {
+            req = false;
+        } else if (window.ActiveXObject)
             try {
                 req = new ActiveXObject("Msxml2.XMLHTTP");
             }
-            catch (e) {
-                try { req = new ActiveXObject("Microsoft.XMLHTTP"); }
-                catch (e) { req = false; }
+        catch (e) {
+            try {
+                req = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                req = false;
             }
+        }
         if (req) {
             function return_function_() {
                 if (req.readyState == 4 && req.status == 200) {
@@ -1105,19 +1126,26 @@ function getProductMultiUse(keyword, comp_id, price_catid) {
 function getProductMultiUseA(keyword, comp_id, price_catid) {
     var new_query = new Object();
     var req;
+
     function callpage(url) {
         req = false;
         if (window.XMLHttpRequest)
-            try { req = new XMLHttpRequest(); }
-            catch (e) { req = false; }
-        else if (window.ActiveXObject)
+            try {
+                req = new XMLHttpRequest();
+            }
+        catch (e) {
+            req = false;
+        } else if (window.ActiveXObject)
             try {
                 req = new ActiveXObject("Msxml2.XMLHTTP");
             }
-            catch (e) {
-                try { req = new ActiveXObject("Microsoft.XMLHTTP"); }
-                catch (e) { req = false; }
+        catch (e) {
+            try {
+                req = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                req = false;
             }
+        }
         if (req) {
             function return_function_() {
                 if (req.readyState == 4 && req.status == 200) {
@@ -1130,7 +1158,7 @@ function getProductMultiUseA(keyword, comp_id, price_catid) {
             req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             req.setRequestHeader('pragma', 'nocache');
 
-            req.send("keyword=" + keyword + "&userid=" + generalParamsSatis.userData.user_id + "&dsn2=" + generalParamsSatis.dataSources.dsn2 + "&dsn1=" + generalParamsSatis.dataSources.dsn1 + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&price_catid=" + price_catid + "&comp_id=" + comp_id+"&dsn="+generalParamsSatis.dataSources.dsn);
+            req.send("keyword=" + keyword + "&userid=" + generalParamsSatis.userData.user_id + "&dsn2=" + generalParamsSatis.dataSources.dsn2 + "&dsn1=" + generalParamsSatis.dataSources.dsn1 + "&dsn3=" + generalParamsSatis.dataSources.dsn3 + "&price_catid=" + price_catid + "&comp_id=" + comp_id + "&dsn=" + generalParamsSatis.dataSources.dsn);
             return_function_();
         }
 
@@ -1143,22 +1171,123 @@ function getProductMultiUseA(keyword, comp_id, price_catid) {
     return new_query;
 }
 
-function openPriceListPartner(PRODUCT_ID,STOCK_ID,MAIN_UNIT,company_id){
-    var MoneyList="";
-    moneyArr.forEach(function(item,ix){
+function openPriceListPartner(PRODUCT_ID, STOCK_ID, MAIN_UNIT, company_id) {
+    var MoneyList = "";
+    moneyArr.forEach(function (item, ix) {
         console.log(item.MONEY)
-        MoneyList+=item.MONEY+"="+item.RATE2+"&"
+        MoneyList += item.MONEY + "=" + item.RATE2 + "&"
     })
-    var uri="index.cfm?fuseaction=objects.emptypopup_price_history_partner&"+MoneyList+"sepet_process_type=-1&product_id="+PRODUCT_ID+"&stock_id="+STOCK_ID+"&pid="+PRODUCT_ID+"&product_name=&unit="+MAIN_UNIT+"&row_id=0&company_id="+company_id;
+    var uri = "index.cfm?fuseaction=objects.emptypopup_price_history_partner&" + MoneyList + "sepet_process_type=-1&product_id=" + PRODUCT_ID + "&stock_id=" + STOCK_ID + "&pid=" + PRODUCT_ID + "&product_name=&unit=" + MAIN_UNIT + "&row_id=0&company_id=" + company_id;
     openBoxDraggable(uri)
 }
 
-function searchCode(el,ev){
+function searchCode(el, ev) {
     //urunadi stockkodu
-    var kw=el.value
-$(".stockkodu").filter(function(){$(this).parent().parent().parent().toggle($(this).val().toLowerCase().indexOf(kw.toLowerCase()) > -1)})
+    var kw = el.value
+    $(".stockkodu").filter(function () {
+        $(this).parent().parent().parent().toggle($(this).val().toLowerCase().indexOf(kw.toLowerCase()) > -1)
+    })
 }
-function searchName(el,ev) {
-    var kw=el.value
-  $(".urunadi").filter(function(){$(this).parent().parent().parent().toggle($(this).val().toLowerCase().indexOf(kw.toLowerCase()) > -1)})
+
+function searchName(el, ev) {
+    var kw = el.value
+    $(".urunadi").filter(function () {
+        $(this).parent().parent().parent().toggle($(this).val().toLowerCase().indexOf(kw.toLowerCase()) > -1)
+    })
+}
+
+function moveRow(from_row_id, to_row_id) {
+    if (from_row_id != 1) {
+
+        var product_id_1 = $("#product_id_" + from_row_id).val()
+        var stock_id_1 = $("#stock_id_" + from_row_id).val()
+        var is_virtual_1 = $("#is_virtual_" + from_row_id).val()
+        var shelf_code_1 = $("#shelf_code_" + from_row_id).val()
+        var cost_1 = $("#cost_" + from_row_id).val()
+        var is_production_1 = $("#is_production_" + from_row_id).val()
+        var row_uniq_id_1 = $("#row_uniq_id_" + from_row_id).val()
+        var stock_code_1 = $("#stock_code_" + from_row_id).val()
+        var product_name_1 = $("#product_name_" + from_row_id).val()
+        var brand_name_1 = $("#brand_name_" + from_row_id).val()
+        var department_name1 = $("#department_name" + from_row_id).val()
+        var amount_1 = $("#amount_" + from_row_id).val()
+        var main_unit_1 = $("#main_unit_" + from_row_id).val()
+        var other_money_1 = $("#other_money_" + from_row_id).val()
+        var price_other_1 = $("#price_other_" + from_row_id).val()
+        var price_1 = $("#price_" + from_row_id).val()
+        var indirim1_1 = $("#indirim1_" + from_row_id).val()
+        var row_nettotal_1 = $("#row_nettotal_" + from_row_id).val()
+        var detail_info_extra_1 = $("#detail_info_extra_" + from_row_id).val()
+        var deliver_date_1 = $("#deliver_date_" + from_row_id).val()
+        var Tax_1 = $("#Tax_" + from_row_id).val()
+        var orderrow_currency_1 = $("#orderrow_currency_" + from_row_id).val()
+
+        var product_id_2 = $("#product_id_" + to_row_id).val()
+        var stock_id_2 = $("#stock_id_" + to_row_id).val()
+        var is_virtual_2 = $("#is_virtual_" + to_row_id).val()
+        var shelf_code_2 = $("#shelf_code_" + to_row_id).val()
+        var cost_2 = $("#cost_" + to_row_id).val()
+        var is_production_2 = $("#is_production_" + to_row_id).val()
+        var row_uniq_id_2 = $("#row_uniq_id_" + to_row_id).val()
+        var stock_code_2 = $("#stock_code_" + to_row_id).val()
+        var product_name_2 = $("#product_name_" + to_row_id).val()
+        var brand_name_2 = $("#brand_name_" + to_row_id).val()
+        var department_name2 = $("#department_name" + to_row_id).val()
+        var amount_2 = $("#amount_" + to_row_id).val()
+        var main_unit_2 = $("#main_unit_" + to_row_id).val()
+        var other_money_2 = $("#other_money_" + to_row_id).val()
+        var price_other_2 = $("#price_other_" + to_row_id).val()
+        var price_2 = $("#price_" + to_row_id).val()
+        var indirim1_2 = $("#indirim1_" + to_row_id).val()
+        var row_nettotal_2 = $("#row_nettotal_" + to_row_id).val()
+        var detail_info_extra_2 = $("#detail_info_extra_" + to_row_id).val()
+        var deliver_date_2 = $("#deliver_date_" + to_row_id).val()
+        var Tax_2 = $("#Tax_" + to_row_id).val()
+        var orderrow_currency_2 = $("#orderrow_currency_" + to_row_id).val()
+
+        $("#product_id_" + to_row_id).val(product_id_1)
+        $("#product_id_" + from_row_id).val(product_id_2)
+        $("#stock_id_" + to_row_id).val(stock_id_1)
+        $("#stock_id_" + from_row_id).val(stock_id_2)
+        $("#is_virtual_" + to_row_id).val(is_virtual_1)
+        $("#is_virtual_" + from_row_id).val(is_virtual_2)
+        $("#shelf_code_" + to_row_id).val(shelf_code_1)
+        $("#shelf_code_" + from_row_id).val(shelf_code_2)
+        $("#cost_" + to_row_id).val(cost_1)
+        $("#cost_" + from_row_id).val(cost_2)
+        $("#is_production_" + to_row_id).val(is_production_1)
+        $("#is_production_" + from_row_id).val(is_production_2)
+        $("#row_uniq_id_" + to_row_id).val(row_uniq_id_1)
+        $("#row_uniq_id_" + from_row_id).val(row_uniq_id_2)
+        $("#stock_code_" + to_row_id).val(stock_code_1)
+        $("#stock_code_" + from_row_id).val(stock_code_2)
+        $("#product_name_" + to_row_id).val(product_name_1)
+        $("#product_name_" + from_row_id).val(product_name_2)
+        $("#brand_name_" + to_row_id).val(brand_name_1)
+        $("#brand_name_" + from_row_id).val(brand_name_2)
+        $("#department_name" + to_row_id).val(department_name1)
+        $("#department_name" + from_row_id).val(department_name2)
+        $("#amount_" + to_row_id).val(amount_1)
+        $("#amount_" + from_row_id).val(amount_2)
+        $("#main_unit_" + to_row_id).val(main_unit_1)
+        $("#main_unit_" + from_row_id).val(main_unit_2)
+        $("#other_money_" + to_row_id).val(other_money_1)
+        $("#other_money_" + from_row_id).val(other_money_2)
+        $("#price_other_" + to_row_id).val(price_other_1)
+        $("#price_other_" + from_row_id).val(price_other_2)
+        $("#price_" + to_row_id).val(price_1)
+        $("#price_" + from_row_id).val(price_2)
+        $("#indirim1_" + to_row_id).val(indirim1_1)
+        $("#indirim1_" + from_row_id).val(indirim1_2)
+        $("#row_nettotal_" + to_row_id).val(row_nettotal_1)
+        $("#row_nettotal_" + from_row_id).val(row_nettotal_2)
+        $("#detail_info_extra_" + to_row_id).val(detail_info_extra_1)
+        $("#detail_info_extra_" + from_row_id).val(detail_info_extra_2)
+        $("#Tax_" + to_row_id).val(Tax_1)
+        $("#Tax_" + from_row_id).val(Tax_2)
+        $("#deliver_date_" + to_row_id).val(deliver_date_1)
+        $("#deliver_date_" + from_row_id).val(deliver_date_2)
+        $("#orderrow_currency_" + to_row_id).val(orderrow_currency_1)
+        $("#orderrow_currency_" + from_row_id).val(orderrow_currency_2)
+    }
 }
