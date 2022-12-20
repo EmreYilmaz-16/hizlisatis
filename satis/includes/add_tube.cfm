@@ -47,12 +47,12 @@
             <td>
                 <div class="form-group">
                     
-                    <input type="text" name="LRekor_Qty" id="LRekor_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
+                    <input type="text" name="LRekor_Qty" id="LRekor_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onchange="this.value=commaSplit(this.value);CalculateTube()">
                 </div>
             </td>
             <td>
                 <div class="form-group">
-                    <input type="text" name="LRekor_DSC" id="LRekor_DSC" value="#tlformat(0)#">
+                    <input type="text" name="LRekor_DSC" id="LRekor_DSC" style="padding-right: 1px;text-align:right" value="#tlformat(0)#" onchange="this.value=commaSplit(this.value);CalculateTube()">
                 </div>
             </td>
         </tr>
@@ -74,7 +74,7 @@
                 <label style="width: 100%;font-size:6pt;color:red" id="Tube_lbs"></label>
             </div></td>
             <td><div class="form-group"><input type="text" name="Tube_Qty" id="Tube_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)"></div></td>
-            <td><div class="form-group"><input type="text" name="Tube_DSC" id="Tube_DSC" value="#tlformat(0)#"></div></td>
+            <td><div class="form-group"><input type="text" name="Tube_DSC" id="Tube_DSC" style="padding-right: 1px;text-align:right" value="#tlformat(0)#" onkeyup="calculateTubeRow(this)"></div></td>
         </tr>
           <tr>
             <th>Sağ Rekor</th>
@@ -93,8 +93,8 @@
     <label style="width: 100%;font-size:6pt;color:red" id="RRekor_lbs"></label>
 </div></td>
             
-            <td><div class="form-group"><input type="text" name="RRekor_Qty" id="RRekor_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)"></div></td>
-            <td><div class="form-group"><input type="text" name="RRekor_DSC" id="RRekor_DSC" value="#tlformat(0)#"></div></td>
+            <td><div class="form-group"><input type="text" name="RRekor_Qty" id="RRekor_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
+            <td><div class="form-group"><input type="text" name="RRekor_DSC" id="RRekor_DSC" style="padding-right: 1px;text-align:right" value="#tlformat(0)#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
         </tr>
          <tr>
             <th>Kabuk</th>
@@ -114,8 +114,8 @@
     <input type="hidden" name="Kabuk_TTL" id="Kabuk_TTL" value="">
     <label style="width: 100%;font-size:6pt;color:red" id="Kabuk_lbs"></label>
 </div></td>
-            <td><div class="form-group"><input type="text" name="Kabukr_Qty" id="Kabuk_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)"></div></td>
-            <td><div class="form-group"><input type="text" name="Kabuk_DSC" id="Kabuk_DSC" value="#tlformat(0)#"></div></td>
+            <td><div class="form-group"><input type="text" name="Kabukr_Qty" id="Kabuk_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onchange="this.value=commaSplit(this.value);CalculateTube()"</div></td>
+            <td><div class="form-group"><input type="text" name="Kabuk_DSC" id="Kabuk_DSC"  style="padding-right: 1px;text-align:right" value="#tlformat(0)#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
         </tr>
          <tr>
             <th>Ek Malzeme</th>
@@ -135,8 +135,8 @@
     <input type="hidden" name="AdditionalProduct_TTL" id="AdditionalProduct_TTL" value="">
     <label style="width: 100%;font-size:6pt;color:red" id="AdditionalProduct_lbs"></label>
 </div></td>
-            <td><div class="form-group"><input type="text" name="AdditionalProduct_Qty" id="AdditionalProduct_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)"></div></td>
-            <td><div class="form-group"><input type="text" name="AdditionalProduct_DSC" id="AdditionalProduct_DSC" value="#tlformat(0)#"></div></td>
+            <td><div class="form-group"><input type="text" name="AdditionalProduct_Qty" id="AdditionalProduct_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
+            <td><div class="form-group"><input type="text" name="AdditionalProduct_DSC" id="AdditionalProduct_DSC" style="padding-right: 1px;text-align:right" value="#tlformat(0)#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
         </tr>
          <tr>
             <th>İşçilik</th>
@@ -154,8 +154,8 @@
     <input type="hidden" name="working_TTL" id="working_TTL" value="">
     <label style="width: 100%;font-size:6pt;color:red" id="working_lbs"></label>
 </div></td>
-            <td><div class="form-group"><input type="text" name="working_Qty" id="working_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)"></div></td>
-            <td><div class="form-group"><input type="text" name="working_DSC" id="working_DSC" value="#tlformat(0)#"></div></td>
+            <td><div class="form-group"><input type="text" name="working_Qty" id="working_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
+            <td><div class="form-group"><input type="text" name="working_DSC" id="working_DSC" style="padding-right: 1px;text-align:right" value="#tlformat(0)#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
         </tr>                               
     </table>
 

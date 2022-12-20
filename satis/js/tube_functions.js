@@ -122,7 +122,7 @@ function setRwTube(elemanAtt,product_name,product_id,stock_id,discount,price,REL
        pidElem.value = product_id;
             sidElem.value =stock_id;
             NameElem.innerText = product_name;
-            discountElem.value = discount;
+            discountElem.value = comaSplit(discount);
             money_elem.value = MONEY;
             priceElem.value = price;
             kwelem.value=product_name;
@@ -182,26 +182,38 @@ function CalculateTube() {
 
     var maliyet = document.getElementById("maliyet")
     var TotalValue=0;
+
+        LRekor_Qty=parseFloat(filterNum(commaSplit(LRekor_Qty)))
+        LRekor_DSC=parseFloat(filterNum(commaSplit(LRekor_DSC)))
         var ax=DegerLeriHesapla(LRekor_Prc,LRekor_DSC,LRekor_Qty,LRekor_MNY);
         document.getElementById("LRekor_TTL").value=ax;
         TotalValue+=ax;
+
+        RRekor_Qty=parseFloat(filterNum(commaSplit(RRekor_Qty)))
+        RRekor_DSC=parseFloat(filterNum(commaSplit(RRekor_DSC)))
 
         var ax=DegerLeriHesapla(RRekor_Prc,RRekor_Qty,RRekor_DSC,RRekor_MNY);
         document.getElementById("RRekor_TTL").value=ax;
         TotalValue+=ax;
 
+        Tube_Qty=parseFloat(filterNum(commaSplit(Tube_Qty)))
+        Tube_DSC=parseFloat(filterNum(commaSplit(Tube_DSC)))
         var ax=DegerLeriHesapla(Tube_Prc,Tube_DSC,Tube_Qty,Tube_MNY);
         document.getElementById("Tube_TTL").value=ax;
         TotalValue+=ax;
 
+        AdditionalProduct_Qty=parseFloat(filterNum(commaSplit(AdditionalProduct_Qty)))
+        AdditionalProduct_DSC=parseFloat(filterNum(commaSplit(AdditionalProduct_DSC)))
         var ax=DegerLeriHesapla(AdditionalProduct_Prc,AdditionalProduct_DSC,AdditionalProduct_Qty,AdditionalProduct_MNY);
         document.getElementById("AdditionalProduct_TTL").value=ax;
         TotalValue+=ax;
-
+        working_Qty=parseFloat(filterNum(commaSplit(working_Qty)))
+        working_DSC=parseFloat(filterNum(commaSplit(working_DSC)))
         var ax=DegerLeriHesapla(working_Prc,working_DSC,working_Qty,working_MNY);
         document.getElementById("working_TTL").value=ax;
         TotalValue+=ax;
-
+        Kabuk_Qty=parseFloat(filterNum(commaSplit(Kabuk_Qty)))
+        Kabuk_DSC=parseFloat(filterNum(commaSplit(Kabuk_DSC)))
         var ax=DegerLeriHesapla(Kabuk_Prc,Kabuk_DSC,Kabuk_Qty,Kabuk_MNY);
         document.getElementById("Kabuk_TTL").value=ax;
         TotalValue+=ax;        
