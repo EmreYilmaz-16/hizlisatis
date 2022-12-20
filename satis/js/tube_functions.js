@@ -122,7 +122,7 @@ function setRwTube(elemanAtt,product_name,product_id,stock_id,discount,price,REL
        pidElem.value = product_id;
             sidElem.value =stock_id;
             NameElem.innerText = product_name;
-            discountElem.value = comaSplit(discount);
+            discountElem.value = commaSplit(discount);
             money_elem.value = MONEY;
             priceElem.value = price;
             kwelem.value=product_name;
