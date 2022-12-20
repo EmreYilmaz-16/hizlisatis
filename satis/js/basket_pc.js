@@ -107,10 +107,11 @@ function AddRow(
     td.appendChild(spn);
     var spn2 = document.createElement("span");
     if (row_count != 1) {
-        spn2.setAttribute("class", "")
-    } else {
         spn2.setAttribute("class", "fa fa-arrow-up")
         spn2.setAttribute("onclick", "moveRow("+row_count+","+(row_count-1)+")")
+        
+    } else {
+        spn2.setAttribute("class", "")
     }
     td.appendChild(spn2);
     tr.appendChild(td);
