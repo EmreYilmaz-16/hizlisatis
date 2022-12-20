@@ -26,19 +26,35 @@
         <input type="hidden" name="HIEARCHY" id="HIEARCHY" value="">
     </div>
 
-    <div class="form-group">
-    <label style="width: 100%;">Sol Rekor</label>
-    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"> 
-    
-    <input type="text" name="LRekor_Qty" id="LRekor_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
-    <input type="hidden" name="LRekor_PId" id="LRekor_PId">
-    <input type="hidden" name="LRekor_SId" id="LRekor_SId">
-    <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="0">
-    <input type="hidden" name="LRekor_DSC" id="LRekor_DSC" value="0">
-    <input type="hidden" name="LRekor_MNY" id="LRekor_MNY" value="">
-    <input type="hidden" name="LRekor_TTL" id="LRekor_TTL" value="0">
-    <label style="width: 100%;font-size:6pt;color:red" id="LRekor_lbs"></label>
-</div>
+    <table>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label style="width: 100%;">Sol Rekor</label>
+                    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"> 
+                                        
+                    <input type="hidden" name="LRekor_PId" id="LRekor_PId">
+                    <input type="hidden" name="LRekor_SId" id="LRekor_SId">
+                    <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="0">
+                    
+                    <input type="hidden" name="LRekor_MNY" id="LRekor_MNY" value="">
+                    <input type="hidden" name="LRekor_TTL" id="LRekor_TTL" value="0">
+                    <label style="width: 100%;font-size:6pt;color:red" id="LRekor_lbs"></label>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input type="hidden" name="LRekor_DSC" id="LRekor_DSC" value="0">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input type="text" name="LRekor_Qty" id="LRekor_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
+                </div>
+            </td>
+        </tr>
+    </table>
+   
 
 <div class="form-group">
     <label style="width: 100%;">Tube</label>
