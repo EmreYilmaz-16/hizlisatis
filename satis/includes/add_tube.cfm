@@ -42,14 +42,16 @@
 
 <div class="form-group">
     <label style="width: 100%;">Tube</label>
+   <div class="input-group">
     <input data-type="Tube" type="text" name="Tube" id="Tube"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
     <input type="text" name="Tube_Qty" id="Tube_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">
     <input type="hidden" name="Tube_PId" id="Tube_PId">
     <input type="hidden" name="Tube_SId" id="Tube_SId">
     <input type="hidden" name="Tube_Prc" id="Tube_Prc" value="0">
-    <input type="hidden" name="Tube_DSC" id="Tube_DSC" value="0">
+    <input type="text" name="Tube_DSC" id="Tube_DSC" value="0">
     <input type="hidden" name="Tube_MNY" id="Tube_MNY" value="">
     <input type="hidden" name="Tube_TTL" id="Tube_TTL" value="">
+</div>
     <label style="width: 100%;font-size:6pt;color:red" id="Tube_lbs"></label>
 </div>
 
