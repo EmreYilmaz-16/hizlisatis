@@ -105,6 +105,14 @@ function AddRow(
     1
     spn.setAttribute("id", "spn_" + row_count)
     td.appendChild(spn);
+    var spn2 = document.createElement("span");
+    if (row_count != 1) {
+        spn2.setAttribute("class", "")
+    } else {
+        spn2.setAttribute("class", "fa fa-arrow-up")
+        spn2.setAttribute("onclick", "moveRow("+row_count+","+(row_count-1)+")")
+    }
+    td.appendChild(spn2);
     tr.appendChild(td);
 
     var td = document.createElement("td");
