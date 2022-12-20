@@ -1298,5 +1298,8 @@ function moveRow(from_row_id, to_row_id) {
         $("#deliver_date_" + from_row_id).val(deliver_date_2)
         $("#orderrow_currency_" + to_row_id).val(orderrow_currency_1)
         $("#orderrow_currency_" + from_row_id).val(orderrow_currency_2)
+        
+        hesapla("price", from_row_id)
+        hesapla("price", to_row_id)
     }
 }
