@@ -556,7 +556,7 @@
         </cfquery>
         <cfif isDefined('arguments.LRekor_PId') and len(arguments.LRekor_PId)>
         <cfquery name="InsertTree" datasource="#arguments.dsn3#">
-            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE,DISCOUNT,MONEY) VALUES(#Res.IDENTITYCOL#,#arguments.LRekor_PId#,#arguments.LRekor_SId#,#Filternum(arguments.LRekor_Qty)#,1,#arguments.LRekor_Prc#,#Filternum(arguments.LRekor_DS)#,'#arguments.LRekor_MNY#')
+            INSERT INTO VIRTUAL_PRODUCT_TREE_PRT(VP_ID,PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,PRICE,DISCOUNT,MONEY) VALUES(#Res.IDENTITYCOL#,#arguments.LRekor_PId#,#arguments.LRekor_SId#,#Filternum(arguments.LRekor_Qty)#,1,#arguments.LRekor_Prc#,#Filternum(arguments.LRekor_DSC)#,'#arguments.LRekor_MNY#')
         </cfquery>
         </cfif>
         <cfif isDefined('arguments.Tube_PId') and len(arguments.Tube_PId)>
