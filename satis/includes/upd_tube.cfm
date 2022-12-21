@@ -270,12 +270,9 @@ ORDER BY VP_ID
             <td><div class="form-group"></div></td>
         </tr>    
     ------>
-    <cfquery name="get1" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=1</cfquery>
-    <CFSET PRODUCT=getProduct(get1.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-    <cfdump var="#PRODUCT.PRODUCT#">
-    <cfdump var="#get1#">
-    <cfdump var="#getVirtualTree#">
-    <cfabort>
+
+   
+    
     <cfquery name="get2" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=2</cfquery>
     <CFSET PRODUCT2=getProduct(get2.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
     <cfquery name="get3" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=3</cfquery>
@@ -296,6 +293,8 @@ ORDER BY VP_ID
         <tr></tr>
             <td>    
                 <div class="form-group">
+                    <cfquery name="get1" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=1</cfquery>
+                    <CFSET PRODUCT=getProduct(get1.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
                     <input data-type="LRekor" type="text" name="LRekor" id="LRekor" value="#PRODUCT.PRODUCT.PRODUCT_NAME#" onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                                        
                     <input type="hidden" name="LRekor_PId" id="LRekor_PId" value="#PRODUCT.PRODUCT.PRODUCT_ID#">
                     <input type="hidden" name="LRekor_SId" id="LRekor_SId" value="#PRODUCT.PRODUCT.STOCK_ID#">           
