@@ -127,6 +127,7 @@ function addHydrolicRow(Product, qty = 1) {
     div.appendChild(input)
     td.appendChild(div)
     tr.appendChild(td)
+
     var td = document.createElement("td");
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
@@ -135,6 +136,7 @@ function addHydrolicRow(Product, qty = 1) {
     input2.setAttribute("name", "discount_" + hydRowCount)
     input2.setAttribute("id", "discount_" + hydRowCount)
     input2.setAttribute("value", commaSplit(Product.PRODUCT.DISCOUNT_RATE))
+    input2.setAttribute("class", "prtMoneyBox")
     input2.setAttribute("onchange", "CalculatehydrolicRow(" + hydRowCount + ")")
     div.appendChild(input2);
     td.appendChild(div);
