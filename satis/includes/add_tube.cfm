@@ -159,29 +159,6 @@
         </tr>                               
     </table>
 
-
-<!----
-    Taslak 
-
-         <tr>
-            <th>Sağ Rekor</th>
-            <th>Miktar</th>
-            <th >İndirim</th>
-        </tr>
-        <tr>
-            <td></td>
-            <td><div class="form-group"></div></td>
-            <td><div class="form-group"></div></td>
-        </tr>    
-    ------>
-
-
-
-
-
-
-
-
 <div class="form-group">
     <label>Açıklama</label>
     <textarea name="PRODUCT_DESCRIPTION" id="PRODUCT_DESCRIPTION"></textarea>
