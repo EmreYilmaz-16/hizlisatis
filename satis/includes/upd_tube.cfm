@@ -256,116 +256,177 @@ ORDER BY VP_ID
         
     <input type="hidden" name="vp_id" value="#attributes.id#">
     <input type="hidden" name="row_id" value="#attributes.row_id#">
-    <div class="form-group">
-        <cfquery name="get1" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=1</cfquery>
-        <CFSET PRODUCT=getProduct(get1.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-     <!----PRICE DISCOUNT MONEY---->
-        
-        <label style="width: 100%;">Sol Rekor</label>
-    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" value="#PRODUCT.PRODUCT.BARCOD#" onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">     
-    
-    <input type="text" name="LRekor_Qty" id="LRekor_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(IIf((get1.recordCount eq 0 and len(get1.AMOUNT) eq 0), 1, get1.AMOUNT))#" onkeyup="calculateTubeRow(this)">
-    
-    <input type="hidden" name="LRekor_PId" id="LRekor_PId" value="#PRODUCT.PRODUCT.PRODUCT_ID#">
-    <input type="hidden" name="LRekor_SId" id="LRekor_SId" value="#PRODUCT.PRODUCT.STOCK_ID#">
-    
-    <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="<cfif len(get1.PRICE)>#get1.PRICE#<cfelse>0</cfif>">
-    <input type="hidden" name="LRekor_DSC" id="LRekor_DSC" value="<cfif len(get1.DISCOUNT)>#get1.DISCOUNT#<cfelse>0</cfif>">
-    <input type="hidden" name="LRekor_MNY" id="LRekor_MNY" value="<cfif len(get1.MONEY)>#get1.MONEY#<cfelse>TL</cfif>">
-    <input type="hidden" name="LRekor_TTL" id="LRekor_TTL" value="">
-    <label style="width: 100%;font-size:6pt;color:red" id="LRekor_lbs">#PRODUCT.PRODUCT.PRODUCT_NAME#</label>
+  <!----
+    Taslak 
 
-</div>
-
-<div class="form-group">
-    
-    
+         <tr>
+            <th>Sağ Rekor</th>
+            <th>Miktar</th>
+            <th >İndirim</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div class="form-group"></div></td>
+            <td><div class="form-group"></div></td>
+        </tr>    
+    ------>
+    <cfquery name="get1" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=1</cfquery>
+    <CFSET PRODUCT=getProduct(get1.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
     <cfquery name="get2" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=2</cfquery>
     <CFSET PRODUCT2=getProduct(get2.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-
-    <label style="width: 100%;">Tube</label>
-    <input data-type="Tube" type="text" name="Tube" id="Tube" value="#PRODUCT2.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
-    <input type="text" name="Tube_Qty" id="Tube_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(IIf((get2.recordCount eq 0 and len(get2.AMOUNT) eq 0), 1, get2.AMOUNT))#" onkeyup="calculateTubeRow(this)">
-    <input type="hidden" name="Tube_PId" id="Tube_PId" value="#PRODUCT2.PRODUCT.PRODUCT_ID#">
-    <input type="hidden" name="Tube_SId" id="Tube_SId" value="#PRODUCT2.PRODUCT.STOCK_ID#">
-    
-    <input type="hidden" name="Tube_Prc" id="Tube_Prc" value="<cfif len(get2.PRICE)>#get2.PRICE#<cfelse>0</cfif>">
-    <input type="hidden" name="Tube_DSC" id="Tube_DSC" value="<cfif len(get2.DISCOUNT)>#get2.DISCOUNT#<cfelse>0</cfif>">
-    <input type="hidden" name="Tube_MNY" id="Tube_MNY" value="<cfif len(get2.MONEY)>#get2.MONEY#<cfelse>TL</cfif>">
-    <input type="hidden" name="Tube_TTL" id="Tube_TTL" value="">
-    <label style="width: 100%;font-size:6pt;color:red" id="Tube_lbs">#PRODUCT2.PRODUCT.PRODUCT_NAME#</label>
-</div>
-
-<div class="form-group">
     <cfquery name="get3" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=3</cfquery>
     <CFSET PRODUCT3=getProduct(get3.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-
-    <label style="width: 100%;">Sağ Rekor</label>
-    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor" value="#PRODUCT3.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
-    <input type="text" name="RRekor_Qty" id="RRekor_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(IIf((get3.recordCount eq 0 and len(get3.AMOUNT) eq 0), 1, get3.AMOUNT))#" onkeyup="calculateTubeRow(this)">
-    <input type="hidden" name="RRekor_PId" id="RRekor_PId" value="#PRODUCT3.PRODUCT.PRODUCT_ID#">
-    <input type="hidden" name="RRekor_SId" id="RRekor_SId" value="#PRODUCT3.PRODUCT.STOCK_ID#">
-    
-    <input type="hidden" name="RRekor_Prc" id="RRekor_Prc" value="<cfif len(get3.PRICE)>#get3.PRICE#<cfelse>0</cfif>">
-    <input type="hidden" name="RRekor_DSC" id="RRekor_DSC" value="<cfif len(get3.DISCOUNT)>#get3.DISCOUNT#<cfelse>0</cfif>">
-    <input type="hidden" name="RRekor_MNY" id="RRekor_MNY" value="<cfif len(get3.MONEY)>#get3.MONEY#<cfelse>TL</cfif>">
-    <input type="hidden" name="RRekor_TTL" id="RRekor_TTL" value="">
-
-    <label style="width: 100%;font-size:6pt;color:red" id="RRekor_lbs">#PRODUCT3.PRODUCT.PRODUCT_NAME#</label>
-</div>
-
-<div class="form-group">
-    <cfquery name="get5" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=5</cfquery>
- 
+    <cfquery name="get5" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=5</cfquery> 
     <CFSET PRODUCT5=getProduct(get5.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-
-    <label style="width: 100%;">Kabuk</label>
-    <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk" value="#PRODUCT5.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
-    <input type="text" name="Kabukr_Qty" id="Kabuk_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(IIf((get5.recordCount eq 0 and len(get5.AMOUNT) eq 0), 1, get5.AMOUNT))#"  onkeyup="calculateTubeRow(this)">
-    <input type="hidden" name="Kabuk_PId" id="Kabuk_PId" value="#PRODUCT5.PRODUCT.PRODUCT_ID#">
-    <input type="hidden" name="Kabuk_SId" id="Kabuk_SId" value="#PRODUCT5.PRODUCT.STOCK_ID#">
-    
-    <input type="hidden" name="Kabuk_Prc" id="Kabuk_Prc" value="<cfif len(get5.PRICE)>#get5.PRICE#<cfelse>0</cfif>">
-    <input type="hidden" name="Kabuk_DSC" id="Kabuk_DSC" value="<cfif len(get5.DISCOUNT)>#get5.DISCOUNT#<cfelse>0</cfif>">
-    <input type="hidden" name="Kabuk_MNY" id="Kabuk_MNY" value="<cfif len(get5.MONEY)>#get5.MONEY#<cfelse>TL</cfif>">
-    <input type="hidden" name="Kabuk_TTL" id="Kabuk_TTL" value="">
-
-    <label style="width: 100%;font-size:6pt;color:red" id="Kabuk_lbs">#PRODUCT5.PRODUCT.PRODUCT_NAME#</label>
-</div>
-
-<div class="form-group">
     <cfquery name="get4" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=4</cfquery>
     <CFSET PRODUCT4=getProduct(get4.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-
-    <label style="width: 100%;">Ek Malzeme</label>
-    <input data-type="AdditionalProduct" type="text" name="AdditionalProduct" id="AdditionalProduct" value="#PRODUCT4.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
-    <input type="text" name="AdditionalProduct_Qty" id="AdditionalProduct_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(IIf((get4.recordCount eq 0 and len(get4.AMOUNT) eq 0), 1, get4.AMOUNT))#"  onkeyup="calculateTubeRow(this)">
-    <input type="hidden" name="AdditionalProduct_PId" id="AdditionalProduct_PId" value="#PRODUCT4.PRODUCT.PRODUCT_ID#">
-    <input type="hidden" name="AdditionalProduct_SId" id="AdditionalProduct_SId" value="#PRODUCT4.PRODUCT.STOCK_ID#">
-    
-    <input type="hidden" name="AdditionalProduct_Prc" id="AdditionalProduct_Prc" value="<cfif len(get4.PRICE)>#get4.PRICE#<cfelse>0</cfif>">
-    <input type="hidden" name="AdditionalProduct_DSC" id="AdditionalProduct_DSC" value="<cfif len(get4.DISCOUNT)>#get4.DISCOUNT#<cfelse>0</cfif>">
-    <input type="hidden" name="AdditionalProduct_MNY" id="AdditionalProduct_MNY" value="<cfif len(get4.MONEY)>#get4.MONEY#<cfelse>TL</cfif>">
-    <input type="hidden" name="AdditionalProduct_TTL" id="AdditionalProduct_TTL" value="">
-    <label style="width: 100%;font-size:6pt;color:red" id="AdditionalProduct_lbs">#PRODUCT4.PRODUCT.PRODUCT_NAME#</label>
-</div>
-<div class="form-group">
     <cfquery name="get6" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=6</cfquery>
     <CFSET PRODUCT6=getProduct(get6.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
 
-    <label style="width: 100%;">İşçilik</label>
-    
-    <input  data-type="working" type="text" name="working" id="working" value="#PRODUCT6.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)" style="width: 80%!important;" placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
-    <input type="text" name="working_Qty" id="working_Qty" style="width: 15% !important;padding-right: 1px;text-align:right" value="#tlformat(IIf((get6.recordCount eq 0 and len(get6.AMOUNT) eq 0), 1, get6.AMOUNT))#"  onkeyup="calculateTubeRow(this)">
-    <input type="hidden" name="working_PId" id="working_PId" value="#PRODUCT6.PRODUCT.PRODUCT_ID#">
-    <input type="hidden" name="working_SId" id="working_SId" value="#PRODUCT6.PRODUCT.STOCK_ID#">
-   
-    <input type="hidden" name="working_Prc" id="working_Prc" value="<cfif len(get6.PRICE)>#get6.PRICE#<cfelse>0</cfif>">
-    <input type="hidden" name="working_DSC" id="working_DSC" value="<cfif len(get6.DISCOUNT)>#get6.DISCOUNT#<cfelse>0</cfif>">
-    <input type="hidden" name="working_MNY" id="working_MNY" value="<cfif len(get6.MONEY)>#get6.MONEY#<cfelse>TL</cfif>">
-    <input type="hidden" name="working_TTL" id="working_TTL" value="">
-    <label style="width: 100%;font-size:6pt;color:red" id="working_lbs">#PRODUCT6.PRODUCT.PRODUCT_NAME#</label>
-</div>
+    <table class="table">
+        <tr>
+            <th>Sol Rekor</th>
+            <th>Miktar</th>
+            <th >İndirim</th>
+        </tr>
+        <tr>
+            <td>    
+                <div class="form-group">
+                    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" value="#PRODUCT.PRODUCT.PRODUCT_NAME#" onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                                        
+                    <input type="hidden" name="LRekor_PId" id="LRekor_PId" value="#PRODUCT.PRODUCT.PRODUCT_ID#">
+                    <input type="hidden" name="LRekor_SId" id="LRekor_SId" value="#PRODUCT.PRODUCT.STOCK_ID#">           
+                    <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="<cfif len(get1.PRICE)>#get1.PRICE#<cfelse>0</cfif>">                    
+                    <input type="hidden" name="LRekor_MNY" id="LRekor_MNY" value="<cfif len(get1.MONEY)>#get1.MONEY#<cfelse>TL</cfif>">
+                    <input type="hidden" name="LRekor_TTL" id="LRekor_TTL" value="">
+                    <label style="width: 100%;font-size:6pt;color:red" id="LRekor_lbs">#PRODUCT.PRODUCT.PRODUCT_NAME#</label>
+           
+           </div></td>
+            <td><div class="form-group"><input type="text" name="LRekor_Qty" id="LRekor_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(IIf((get1.recordCount eq 0 and len(get1.AMOUNT) eq 0), 1, get1.AMOUNT))#" onchange="this.value=commaSplit(this.value);CalculateTube()">               </div></td>
+            <td><div class="form-group"><input type="text" name="LRekor_DSC" id="LRekor_DSC" onchange="this.value=commaSplit(this.value);CalculateTube()" value="<cfif len(get1.DISCOUNT)>#tlformat(get1.DISCOUNT)#<cfelse>#tlformat(0)#</cfif>"></div></td>
+        </tr>
+        <tr>
+            <th>Hortum</th>
+            <th>Miktar</th>
+            <th >İndirim</th>
+        </tr>
+        <tr>
+            <td><div class="form-group">            
+                <input data-type="Tube" type="text" name="Tube" id="Tube" value="#PRODUCT2.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
+                <input type="hidden" name="Tube_PId" id="Tube_PId" value="#PRODUCT2.PRODUCT.PRODUCT_ID#">
+                <input type="hidden" name="Tube_SId" id="Tube_SId" value="#PRODUCT2.PRODUCT.STOCK_ID#">                
+                <input type="hidden" name="Tube_Prc" id="Tube_Prc" value="<cfif len(get2.PRICE)>#get2.PRICE#<cfelse>0</cfif>">                
+                <input type="hidden" name="Tube_MNY" id="Tube_MNY" value="<cfif len(get2.MONEY)>#get2.MONEY#<cfelse>TL</cfif>">
+                <input type="hidden" name="Tube_TTL" id="Tube_TTL" value="">
+                <label style="width: 100%;font-size:6pt;color:red" id="Tube_lbs">#PRODUCT2.PRODUCT.PRODUCT_NAME#</label>
+            </div></td>
+            <td><div class="form-group"> <input type="text" name="Tube_Qty" id="Tube_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(IIf((get2.recordCount eq 0 and len(get2.AMOUNT) eq 0), 1, get2.AMOUNT))#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
+            <td><div class="form-group"><input type="text" name="Tube_DSC" id="Tube_DSC" onchange="this.value=commaSplit(this.value);CalculateTube()"  value="<cfif len(get2.DISCOUNT)>#tlformat(get2.DISCOUNT)#<cfelse>#tlformat(0)#</cfif>"></div></td>
+        </tr>   
+        <tr>
+            <th>Sağ Rekor</th>
+            <th>Miktar</th>
+            <th >İndirim</th>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">                    
+                    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor" value="#PRODUCT3.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                   
+                    <input type="hidden" name="RRekor_PId" id="RRekor_PId" value="#PRODUCT3.PRODUCT.PRODUCT_ID#">
+                    <input type="hidden" name="RRekor_SId" id="RRekor_SId" value="#PRODUCT3.PRODUCT.STOCK_ID#">                    
+                    <input type="hidden" name="RRekor_Prc" id="RRekor_Prc" value="<cfif len(get3.PRICE)>#get3.PRICE#<cfelse>0</cfif>">                    
+                    <input type="hidden" name="RRekor_MNY" id="RRekor_MNY" value="<cfif len(get3.MONEY)>#get3.MONEY#<cfelse>TL</cfif>">
+                    <input type="hidden" name="RRekor_TTL" id="RRekor_TTL" value="">                
+                    <label style="width: 100%;font-size:6pt;color:red" id="RRekor_lbs">#PRODUCT3.PRODUCT.PRODUCT_NAME#</label>
+                </div>
+            </td>
+            <td><div class="form-group"> <input type="text" name="RRekor_Qty" id="RRekor_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(IIf((get3.recordCount eq 0 and len(get3.AMOUNT) eq 0), 1, get3.AMOUNT))#" onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
+            <td><div class="form-group"><input type="text" name="RRekor_DSC" id="RRekor_DSC" onchange="this.value=commaSplit(this.value);CalculateTube()" value="<cfif len(get3.DISCOUNT)>#tlformat(get3.DISCOUNT)#<cfelse>#tlformat(0)#</cfif>"></div></td>
+        </tr> 
+        <tr>
+            <th>Kabuk</th>
+            <th>Miktar</th>
+            <th >İndirim</th>
+        </tr>
+        <tr>
+            <td><div class="form-group">
+                <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk" value="#PRODUCT5.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
+                <input type="hidden" name="Kabuk_PId" id="Kabuk_PId" value="#PRODUCT5.PRODUCT.PRODUCT_ID#">
+                <input type="hidden" name="Kabuk_SId" id="Kabuk_SId" value="#PRODUCT5.PRODUCT.STOCK_ID#">                
+                <input type="hidden" name="Kabuk_Prc" id="Kabuk_Prc" value="<cfif len(get5.PRICE)>#get5.PRICE#<cfelse>0</cfif>">
+                <input type="hidden" name="Kabuk_MNY" id="Kabuk_MNY" value="<cfif len(get5.MONEY)>#get5.MONEY#<cfelse>TL</cfif>">
+                <input type="hidden" name="Kabuk_TTL" id="Kabuk_TTL" value="">            
+                <label style="width: 100%;font-size:6pt;color:red" id="Kabuk_lbs">#PRODUCT5.PRODUCT.PRODUCT_NAME#</label>
+            </div></td>
+            <td><div class="form-group"> <input type="text" name="Kabukr_Qty" id="Kabuk_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(IIf((get5.recordCount eq 0 and len(get5.AMOUNT) eq 0), 1, get5.AMOUNT))#"  onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
+            <td><div class="form-group"><input type="text" name="Kabuk_DSC" id="Kabuk_DSC" onchange="this.value=commaSplit(this.value);CalculateTube()" value="<cfif len(get5.DISCOUNT)>#tlformat(get5.DISCOUNT)#<cfelse>#tlformat(0)#</cfif>"></div></td>
+        </tr>      
+        <tr>
+            <th>Ek Malzeme</th>
+            <th>Miktar</th>
+            <th >İndirim</th>
+        </tr>
+        <tr>
+            <td><div class="form-group">
+
+            
+                <label style="width: 100%;">Ek Malzeme</label>
+                <input data-type="AdditionalProduct" type="text" name="AdditionalProduct" id="AdditionalProduct" value="#PRODUCT4.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
+                <input type="hidden" name="AdditionalProduct_PId" id="AdditionalProduct_PId" value="#PRODUCT4.PRODUCT.PRODUCT_ID#">
+                <input type="hidden" name="AdditionalProduct_SId" id="AdditionalProduct_SId" value="#PRODUCT4.PRODUCT.STOCK_ID#">                
+                <input type="hidden" name="AdditionalProduct_Prc" id="AdditionalProduct_Prc" value="<cfif len(get4.PRICE)>#get4.PRICE#<cfelse>0</cfif>">                
+                <input type="hidden" name="AdditionalProduct_MNY" id="AdditionalProduct_MNY" value="<cfif len(get4.MONEY)>#get4.MONEY#<cfelse>TL</cfif>">
+                <input type="hidden" name="AdditionalProduct_TTL" id="AdditionalProduct_TTL" value="">
+                <label style="width: 100%;font-size:6pt;color:red" id="AdditionalProduct_lbs">#PRODUCT4.PRODUCT.PRODUCT_NAME#</label>
+            </div></td>
+            <td><div class="form-group"> <input type="text" name="AdditionalProduct_Qty" id="AdditionalProduct_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(IIf((get4.recordCount eq 0 and len(get4.AMOUNT) eq 0), 1, get4.AMOUNT))#"  onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
+            <td><div class="form-group"><input type="text" name="AdditionalProduct_DSC" id="AdditionalProduct_DSC" onchange="this.value=commaSplit(this.value);CalculateTube()" value="<cfif len(get4.DISCOUNT)>#tlformat(get4.DISCOUNT)#<cfelse>#tlformat(0)#</cfif>"></div></td>
+        </tr> 
+        <tr>
+            <th>İşçilik</th>
+            <th>Miktar</th>
+            <th >İndirim</th>
+        </tr>
+        <tr>
+            <td><div class="form-group">   
+                <input  data-type="working" type="text" name="working" id="working" value="#PRODUCT6.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
+                
+                <input type="hidden" name="working_PId" id="working_PId" value="#PRODUCT6.PRODUCT.PRODUCT_ID#">
+                <input type="hidden" name="working_SId" id="working_SId" value="#PRODUCT6.PRODUCT.STOCK_ID#">
+               
+                <input type="hidden" name="working_Prc" id="working_Prc" value="<cfif len(get6.PRICE)>#get6.PRICE#<cfelse>0</cfif>">
+                <input type="hidden" name="working_DSC" id="working_DSC" value="<cfif len(get6.DISCOUNT)>#get6.DISCOUNT#<cfelse>0</cfif>">
+                <input type="hidden" name="working_MNY" id="working_MNY" value="<cfif len(get6.MONEY)>#get6.MONEY#<cfelse>TL</cfif>">
+                <input type="hidden" name="working_TTL" id="working_TTL" value="">
+                <label style="width: 100%;font-size:6pt;color:red" id="working_lbs">#PRODUCT6.PRODUCT.PRODUCT_NAME#</label>
+            </div></td>
+            <td><div class="form-group"><input type="text" name="working_Qty" id="working_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(IIf((get6.recordCount eq 0 and len(get6.AMOUNT) eq 0), 1, get6.AMOUNT))#"  onchange="this.value=commaSplit(this.value);CalculateTube()"></div></td>
+            <td><div class="form-group"><input type="text" name="AdditionalProduct_DSC" id="AdditionalProduct_DSC" onchange="this.value=commaSplit(this.value);CalculateTube()" value="<cfif len(get6.DISCOUNT)>#tlformat(get6.DISCOUNT)#<cfelse>#tlformat(0)#</cfif>"></div></td>
+        </tr>                                         
+    </table>
+  
+
+
+ <!----
+    Taslak 
+
+         <tr>
+            <th>Sağ Rekor</th>
+            <th>Miktar</th>
+            <th >İndirim</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div class="form-group"></div></td>
+            <td><div class="form-group"></div></td>
+        </tr>    
+    ------>
+
+
+
+
+
+
+
 <div class="form-group">
     <label>Açıklama</label>
     <textarea name="PRODUCT_DESCRIPTION" id="PRODUCT_DESCRIPTION">#getVirtual.PRODUCT_DESCRIPTION#</textarea>
