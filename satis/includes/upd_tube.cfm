@@ -273,16 +273,11 @@ ORDER BY VP_ID
 
    
     
-    <cfquery name="get2" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=2</cfquery>
-    <CFSET PRODUCT2=getProduct(get2.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-    <cfquery name="get3" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=3</cfquery>
-    <CFSET PRODUCT3=getProduct(get3.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-    <cfquery name="get5" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=5</cfquery> 
-    <CFSET PRODUCT5=getProduct(get5.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-    <cfquery name="get4" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=4</cfquery>
-    <CFSET PRODUCT4=getProduct(get4.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-    <cfquery name="get6" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=6</cfquery>
-    <CFSET PRODUCT6=getProduct(get6.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
+
+    
+   
+
+
 
     <table class="table">
         <tr>
@@ -313,7 +308,9 @@ ORDER BY VP_ID
             <th >İndirim</th>
         </tr>
         <tr>
-            <td><div class="form-group">            
+            <td><div class="form-group">    
+                <cfquery name="get2" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=2</cfquery>
+                <CFSET PRODUCT2=getProduct(get2.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>        
                 <input data-type="Tube" type="text" name="Tube" id="Tube" value="#PRODUCT2.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
                 <input type="hidden" name="Tube_PId" id="Tube_PId" value="#PRODUCT2.PRODUCT.PRODUCT_ID#">
                 <input type="hidden" name="Tube_SId" id="Tube_SId" value="#PRODUCT2.PRODUCT.STOCK_ID#">                
@@ -332,7 +329,9 @@ ORDER BY VP_ID
         </tr>
         <tr>
             <td>
-                <div class="form-group">                    
+                <div class="form-group">  
+                    <cfquery name="get3" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=3</cfquery>
+                    <CFSET PRODUCT3=getProduct(get3.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>                  
                     <input  data-type="RRekor" type="text" name="RRekor" id="RRekor" value="#PRODUCT3.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                   
                     <input type="hidden" name="RRekor_PId" id="RRekor_PId" value="#PRODUCT3.PRODUCT.PRODUCT_ID#">
                     <input type="hidden" name="RRekor_SId" id="RRekor_SId" value="#PRODUCT3.PRODUCT.STOCK_ID#">                    
@@ -352,6 +351,8 @@ ORDER BY VP_ID
         </tr>
         <tr>
             <td><div class="form-group">
+                <cfquery name="get5" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=5</cfquery> 
+                <CFSET PRODUCT5=getProduct(get5.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
                 <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk" value="#PRODUCT5.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
                 <input type="hidden" name="Kabuk_PId" id="Kabuk_PId" value="#PRODUCT5.PRODUCT.PRODUCT_ID#">
                 <input type="hidden" name="Kabuk_SId" id="Kabuk_SId" value="#PRODUCT5.PRODUCT.STOCK_ID#">                
@@ -370,9 +371,8 @@ ORDER BY VP_ID
         </tr>
         <tr>
             <td><div class="form-group">
-
-            
-                <label style="width: 100%;">Ek Malzeme</label>
+                <cfquery name="get4" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=4</cfquery>
+                <CFSET PRODUCT4=getProduct(get4.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>                            
                 <input data-type="AdditionalProduct" type="text" name="AdditionalProduct" id="AdditionalProduct" value="#PRODUCT4.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
                 <input type="hidden" name="AdditionalProduct_PId" id="AdditionalProduct_PId" value="#PRODUCT4.PRODUCT.PRODUCT_ID#">
                 <input type="hidden" name="AdditionalProduct_SId" id="AdditionalProduct_SId" value="#PRODUCT4.PRODUCT.STOCK_ID#">                
@@ -391,6 +391,8 @@ ORDER BY VP_ID
         </tr>
         <tr>
             <td><div class="form-group">   
+                <cfquery name="get6" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=6</cfquery>
+                <CFSET PRODUCT6=getProduct(get6.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
                 <input  data-type="working" type="text" name="working" id="working" value="#PRODUCT6.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
                 
                 <input type="hidden" name="working_PId" id="working_PId" value="#PRODUCT6.PRODUCT.PRODUCT_ID#">
