@@ -292,7 +292,7 @@ ORDER BY VP_ID
         <tr>
             <td>    
                 <div class="form-group">
-                    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" value="#PRODUCT.PRODUCT.PRODUCT_NAME#" onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                                        
+                    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" value="#PRODUCT.PRODUCT.BARCOD#" onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                                        
                     <input type="hidden" name="LRekor_PId" id="LRekor_PId" value="#PRODUCT.PRODUCT.PRODUCT_ID#">
                     <input type="hidden" name="LRekor_SId" id="LRekor_SId" value="#PRODUCT.PRODUCT.STOCK_ID#">           
                     <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="<cfif len(get1.PRICE)>#get1.PRICE#<cfelse>0</cfif>">                    
@@ -311,7 +311,7 @@ ORDER BY VP_ID
         </tr>
         <tr>
             <td><div class="form-group">            
-                <input data-type="Tube" type="text" name="Tube" id="Tube" value="#PRODUCT2.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
+                <input data-type="Tube" type="text" name="Tube" id="Tube" value="#PRODUCT2.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
                 <input type="hidden" name="Tube_PId" id="Tube_PId" value="#PRODUCT2.PRODUCT.PRODUCT_ID#">
                 <input type="hidden" name="Tube_SId" id="Tube_SId" value="#PRODUCT2.PRODUCT.STOCK_ID#">                
                 <input type="hidden" name="Tube_Prc" id="Tube_Prc" value="<cfif len(get2.PRICE)>#get2.PRICE#<cfelse>0</cfif>">                
@@ -330,7 +330,7 @@ ORDER BY VP_ID
         <tr>
             <td>
                 <div class="form-group">                    
-                    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor" value="#PRODUCT3.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                   
+                    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor" value="#PRODUCT3.PRODUCT.BARCOD#"  onkeydown="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                   
                     <input type="hidden" name="RRekor_PId" id="RRekor_PId" value="#PRODUCT3.PRODUCT.PRODUCT_ID#">
                     <input type="hidden" name="RRekor_SId" id="RRekor_SId" value="#PRODUCT3.PRODUCT.STOCK_ID#">                    
                     <input type="hidden" name="RRekor_Prc" id="RRekor_Prc" value="<cfif len(get3.PRICE)>#get3.PRICE#<cfelse>0</cfif>">                    
