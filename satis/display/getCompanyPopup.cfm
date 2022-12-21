@@ -21,7 +21,11 @@ LEFT JOIN workcube_metosan.COMPANY_CREDIT AS CC ON CC.COMPANY_ID=C.COMPANY_ID
         <tr>
             <td style="width:75%;white-space: normal;">
                 <cfif COMPANY_STATUS EQ 1>
-                <a href="javascript://" onclick="setCompany(#COMPANY_ID#,'#NICKNAME#',#PARTNER_ID_#,'#COMPANY_PARTNER_NAME# #COMPANY_PARTNER_SURNAME#')"> #NICKNAME#</a>
+                    <cfif IS_BLACKLIST neq 1>
+                    <a href="javascript://" onclick="setCompany(#COMPANY_ID#,'#NICKNAME#',#PARTNER_ID_#,'#COMPANY_PARTNER_NAME# #COMPANY_PARTNER_SURNAME#')"> #NICKNAME#</a>
+                    <cfelse>
+                        <a onclick="ShowMessage(#COMPANY_ID#)"> #NICKNAME#</a>
+                    </cfif>
                 <cfelse>
                    <a onclick="ShowMessage(#COMPANY_ID#)"> #NICKNAME#</a>
             </cfif>
