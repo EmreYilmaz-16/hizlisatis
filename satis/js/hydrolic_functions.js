@@ -1,5 +1,3 @@
-
-
 function openHydrolic(id = "", row_id = "", tr = 0) {
     var comp_id = document.getElementById("company_id").value;
     var price_catid = document.getElementById("PRICE_CATID").value;
@@ -44,7 +42,7 @@ function findHydrolic(ev, el) {
     }
 }
 
-function addHydrolicRow(Product,qty=1) {
+function addHydrolicRow(Product, qty = 1) {
     console.log(Product);
     hydRowCount++
     var Tbl = document.getElementById("tblBaskHyd")
@@ -65,12 +63,12 @@ function addHydrolicRow(Product,qty=1) {
     input.setAttribute("id", "product_id_" + hydRowCount)
     input.setAttribute("value", Product.PRODUCT.PRODUCT_ID)
     td.appendChild(input)
-   /* var input = document.createElement("input")
-    input.setAttribute("type", "hidden")
-    input.setAttribute("name", "money_" + hydRowCount)
-    input.setAttribute("id", "money_" + hydRowCount)
-    input.setAttribute("value", Product.PRODUCT.MONEY)
-    td.appendChild(input)*/
+    /* var input = document.createElement("input")
+     input.setAttribute("type", "hidden")
+     input.setAttribute("name", "money_" + hydRowCount)
+     input.setAttribute("id", "money_" + hydRowCount)
+     input.setAttribute("value", Product.PRODUCT.MONEY)
+     td.appendChild(input)*/
 
     var input = document.createElement("input")
     input.setAttribute("type", "hidden")
@@ -89,15 +87,11 @@ function addHydrolicRow(Product,qty=1) {
     input.setAttribute("value", Product.PRODUCT.PRODUCT_NAME)
     input.setAttribute("readonly", "true")
 
-    var input2 = document.createElement("input")
-    input2.setAttribute("type", "hidden")
-    input2.setAttribute("name", "discount_" + hydRowCount)
-    input2.setAttribute("id", "discount_" + hydRowCount)
-    input2.setAttribute("value", Product.PRODUCT.DISCOUNT_RATE)
-    input2.setAttribute("readonly", "true")
+
+
 
     div.appendChild(input)
-    div.appendChild(input2)
+
     td.appendChild(div)
     tr.appendChild(td)
 
@@ -133,6 +127,18 @@ function addHydrolicRow(Product,qty=1) {
     div.appendChild(input)
     td.appendChild(div)
     tr.appendChild(td)
+    var td = document.createElement("td");
+    var div = document.createElement("div");
+    div.setAttribute("class", "form-group");
+    var input2 = document.createElement("input")
+    input2.setAttribute("type", "text")
+    input2.setAttribute("name", "discount_" + hydRowCount)
+    input2.setAttribute("id", "discount_" + hydRowCount)
+    input2.setAttribute("value", commaSplit(Product.PRODUCT.DISCOUNT_RATE))
+    input2.setAttribute("onchange", "CalculatehydrolicRow(" + hydRowCount + ")")
+    div.appendChild(input2);
+    td.appendChild(div);
+    tr.appendChild(td);
 
     var td = document.createElement("td")
     td.setAttribute("style", "width:10%")
@@ -149,7 +155,7 @@ function addHydrolicRow(Product,qty=1) {
     td.appendChild(div)
     tr.appendChild(td)
 
-  var td = document.createElement("td")
+    var td = document.createElement("td")
     td.setAttribute("style", "width:17%")
     var input = document.createElement("input")
     var div = document.createElement("div");
@@ -194,34 +200,34 @@ function saveVirtualHydrolic(modal_id) {
         success: function (retDat) {
 
             var obj = JSON.parse(retDat)
-          //  AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 2, '', 'TL', obj.PRICE);
+            //  AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 2, '', 'TL', obj.PRICE);
 
-         AddRow(
-            obj.PID,
-            0,
-            '',
-            '',
-            1,
-            1,
-            obj.PRICE,
-            obj.NAME,
-            18,
-            0,
-            2,
-            '',
-            'TL',
-            obj.PRICE,
-            "-5",
-             0,
-             0,
-            'Adet',
-            '',
-            '',
-             1,
-             '',
-             '',
-             1
-        )
+            AddRow(
+                obj.PID,
+                0,
+                '',
+                '',
+                1,
+                1,
+                obj.PRICE,
+                obj.NAME,
+                18,
+                0,
+                2,
+                '',
+                'TL',
+                obj.PRICE,
+                "-5",
+                0,
+                0,
+                'Adet',
+                '',
+                '',
+                1,
+                '',
+                '',
+                1
+            )
 
             closeBoxDraggable(modal_id)
         }
@@ -280,29 +286,29 @@ function CalculatehydrolicRow(rw_id) {
     console.log("RATE2=" + parseFloat(rate2))
 
     //var qty = document.getElementById("quantity_" + rw_id).value;
-    var qty=$("#tblBaskHyd").find("#quantity_"+rw_id).val()
-    qty=parseFloat(filterNum(commaSplit(qty)))
-    
-    //var prc = document.getElementById("price_" + rw_id).value;
-    var prc=$("#tblBaskHyd").find("#price_"+rw_id).val()
-    prc=parseFloat(filterNum(commaSplit(prc)))
+    var qty = $("#tblBaskHyd").find("#quantity_" + rw_id).val()
+    qty = parseFloat(filterNum(commaSplit(qty)))
 
-    var dsc=$("#tblBaskHyd").find("#discount_"+rw_id).val()
-    dsc=parseFloat(filterNum(commaSplit(dsc)))
+    //var prc = document.getElementById("price_" + rw_id).value;
+    var prc = $("#tblBaskHyd").find("#price_" + rw_id).val()
+    prc = parseFloat(filterNum(commaSplit(prc)))
+
+    var dsc = $("#tblBaskHyd").find("#discount_" + rw_id).val()
+    dsc = parseFloat(filterNum(commaSplit(dsc)))
 
     //var mny = document.getElementById("money_" + rw_id).value;
-    var mny=$("#tblBaskHyd").find("#money_"+rw_id).val()
+    var mny = $("#tblBaskHyd").find("#money_" + rw_id).val()
     var a = moneyArr.filter(p => p.MONEY == mny)
-    
-   
-    var rt_2=a[0].RATE2;
-    
-    var netPrc = TutarHesapla(prc,qty,dsc,rt_2) //(qty * prc)*parseFloat(a[0].RATE2);
-    var netPrcDV = TutarHesapla(prc,qty,dsc,1) 
-   //document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
-    $("#tblBaskHyd").find("#quantity_"+rw_id).val(commaSplit(qty))
+
+
+    var rt_2 = a[0].RATE2;
+
+    var netPrc = TutarHesapla(prc, qty, dsc, rt_2) //(qty * prc)*parseFloat(a[0].RATE2);
+    var netPrcDV = TutarHesapla(prc, qty, dsc, 1)
+    //document.getElementById("quantity_" + rw_id).value = commaSplit(filterNum(qty))
+    $("#tblBaskHyd").find("#quantity_" + rw_id).val(commaSplit(qty))
     //document.getElementById("price_" + rw_id).value = commaSplit(filterNum(prc))
-    $("#tblBaskHyd").find("#price_"+rw_id).val(commaSplit(prc))
+    $("#tblBaskHyd").find("#price_" + rw_id).val(commaSplit(prc))
     console.log(netPrc)
 
     document.getElementById("netT_" + rw_id).value = commaSplit(netPrc);
@@ -327,11 +333,11 @@ function CalculateHydSub() {
     $("#hydSubTotal").val(commaSplit(total));
 }
 
-function TutarHesapla(price,quantity,discount,rate2){
+function TutarHesapla(price, quantity, discount, rate2) {
 
-var return_value=price*quantity;
-return_value=return_value-((return_value*discount)/100);
-return_value=return_value*rate2;
-return return_value;
+    var return_value = price * quantity;
+    return_value = return_value - ((return_value * discount) / 100);
+    return_value = return_value * rate2;
+    return return_value;
 
 }

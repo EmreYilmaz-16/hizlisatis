@@ -259,6 +259,7 @@ var hydRowCount = 0;
                 <th>Ürün</th>
                 <th>Miktar</th>
                 <th>Fiyat</th>
+                <th>İndirim</th>
                 <th>Doviz</th>
                 <th>Doviz T</th>
                 <th>Tutar</th>
