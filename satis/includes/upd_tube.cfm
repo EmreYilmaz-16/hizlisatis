@@ -274,6 +274,7 @@ ORDER BY VP_ID
     <CFSET PRODUCT=getProduct(get1.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
     <cfdump var="#PRODUCT#">
     <cfdump var="#get1#">
+    <cfdump var="#getVirtualTree#">
     <cfabort>
     <cfquery name="get2" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=2</cfquery>
     <CFSET PRODUCT2=getProduct(get2.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
