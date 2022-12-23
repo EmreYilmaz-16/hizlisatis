@@ -32,7 +32,7 @@
 
             <div style="overflow:auto" id="sonuc_div">
                 <cfif isDefined("res.COLUMNLIST")>
-                    <table class="table striped compact" >
+                    <cf_grid_list class="table striped compact" >
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -49,7 +49,7 @@
                             </tr>
                         </cfoutput>
                         </tbody>
-                    </table>
+                    </cf_grid_list>
                 </cfif>
             </div>
                 <p>Kayıt Sayısı:<code><cfoutput>#res.recordcount#</cfoutput></p></code>

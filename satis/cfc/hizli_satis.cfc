@@ -700,7 +700,41 @@
         <cfelse>
         <cfset arguments.PRODUCT_CATID=4085>
         </cfif>
-
+        <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
+            INSERT INTO VIRTUAL_PRODUCTS_PRT (
+                PRODUCT_NAME
+                ,PRODUCT_CATID
+                ,PRICE
+                ,IS_CONVERT_REAL
+                ,MARJ
+                ,PRODUCT_TYPE
+                ,IS_PRODUCTION
+                ,RECORD_EMP
+                ,RECORD_DATE
+                ,PRODUCT_DESCRIPTION
+                ,PRODUCT_UNIT
+                )
+            VALUES (
+                '#arguments.PRODUCT_NAME#'
+                ,#arguments.PRODUCT_CATID#
+                ,0
+                ,0
+                ,0
+                ,4
+                ,0
+                ,1
+                ,#now() #
+                ,'#arguments.DESCRIPTION#'
+                ,'#arguments.UNIT#'
+                )            
+        </cfquery>
+         <CFSET RETURN_VAL.PID = Res.IDENTITYCOL>
+         <CFSET RETURN_VAL.IS_VIRTUAL = 1>
+         <CFSET RETURN_VAL.PRICE = 0>
+         <CFSET RETURN_VAL.QTY = 1>
+         <CFSET RETURN_VAL.PRODUCT_TYPE = 4>
+         <CFSET RETURN_VAL.NAME = arguments.product_name>
+         <cfreturn replace(serializeJSON(RETURN_VAL), '//', '')>
         <cfreturn Replace(SerializeJSON(arguments),'//','')>
     </cffunction>
 
