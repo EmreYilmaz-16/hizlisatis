@@ -694,7 +694,7 @@
            <cfreturn Replace(SerializeJSON(RETURN_VAL),'//','')>
     </cffunction>
 
-    <cffunction saveOfferProduct access="remote" returntype="any" returnFormat="json">
+    <cffunction name="saveOfferProduct" access="remote" returntype="any" returnFormat="json">
         <cfif len(arguments.PRODUCT_CATID) and arguments.PRODUCT_CATID neq 0>
         <cfelse>
         <cfset arguments.PRODUCT_CATID=4085>
