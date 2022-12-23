@@ -53,6 +53,7 @@ function AddRow(
     row_uniq_id = ''
 ) {
 
+    console.log(arguments);
     var form = $(document);
     var checkedValue = form.find("input[name=_rd_money]:checked").val();
     var BASKET_MONEY = document.getElementById("_hidden_rd_money_" + checkedValue).value

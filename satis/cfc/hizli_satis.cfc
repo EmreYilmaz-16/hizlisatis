@@ -693,6 +693,14 @@
            <CFSET RETURN_VAL.NAME=arguments.product_name>
            <cfreturn Replace(SerializeJSON(RETURN_VAL),'//','')>
     </cffunction>
+
+    <cffunction saveOfferProduct access="remote" returntype="any" returnFormat="json">
+        <cfif len(arguments.PRODUCT_CATID) and arguments.PRODUCT_CATID neq 0>
+        <cfelse>
+        <cfset arguments.PRODUCT_CATID=4085>
+        </cfif>
+    </cffunction>
+
     <cffunction name="saveTube" access="remote" returntype="any" returnFormat="json">
        
       <cfif len(arguments.PRODUCT_CATID) and arguments.PRODUCT_CATID neq 0>
