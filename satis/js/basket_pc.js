@@ -89,6 +89,7 @@ function AddRow(
     var rsss = moneyArr.find(p => p.MONEY == other_money)
     var prc = price_other * rsss.RATE2
 
+  
 
     var tr = document.createElement("tr");
     if (is_manuel && generalParamsSatis.workingParams.MANUEL_CONTROL) {
@@ -322,7 +323,7 @@ function AddRow(
     i_6.setAttribute("onClick", "sellinputAllVal(this)")
     i_6.setAttribute("class", "prtMoneyBox");
     i_6.setAttribute("style", "width:30px")
-    i_6.setAttribute("value", commaSplit(price, 2));
+    i_6.setAttribute("value", commaSplit(prc, 2));
     var div = document.createElement("div");
     div.setAttribute("class", "form-group");
     div.appendChild(i_6);
