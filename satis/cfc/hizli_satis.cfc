@@ -695,7 +695,7 @@
     </cffunction>
 
     <cffunction name="saveOfferProduct" access="remote" returntype="any" returnFormat="json">
-        <cfargument name="arguments.PRODUCT_CATID" default="">
+        <cfargument name="PRODUCT_CATID" default="">
         <cfif  len(arguments.PRODUCT_CATID) and arguments.PRODUCT_CATID neq 0>
         <cfelse>
         <cfset arguments.PRODUCT_CATID=4085>
