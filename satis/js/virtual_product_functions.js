@@ -46,7 +46,7 @@ function saveVirtualOfferProduct() {
           '',
           'TL',
           obj.PRICE,
-          "-5",
+          "-2",
           0,
           0,
           obj.UNIT,

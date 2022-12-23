@@ -42,8 +42,8 @@
             </tr>
         </table>
     </div>
-    <button type="button" class="btn btn-warning" onclick="saveProduct(<cfoutput>'#attributes.modal_id#'</cfoutput>)">Sanal Ürün Kaydet</button>
-    <button type="button" class="btn btn-success" onclick="saveVirtualOfferProduct(<cfoutput>'#attributes.modal_id#'</cfoutput>)">Ürün Kaydet</button>
+    <button type="button" class="btn btn-warning" onclick="saveVirtualOfferProduct(<cfoutput>'#attributes.modal_id#'</cfoutput>)">Sanal Ürün Kaydet</button>
+    <button type="button" class="btn btn-success" onclick="saveProduct(<cfoutput>'#attributes.modal_id#'</cfoutput>)">Ürün Kaydet</button>
 </cfform>
 </cf_box>
 
