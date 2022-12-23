@@ -42,7 +42,7 @@
             </tr>
         </table>
     </div>
-    <button type="button" class="btn btn-success" onclick="saveVirtualOfferProduct()">Sanal Ürün Kaydet</button>
+    <button type="button" class="btn btn-warning" onclick="saveProduct()">Sanal Ürün Kaydet</button>
     <button type="button" class="btn btn-success" onclick="saveVirtualOfferProduct()">Ürün Kaydet</button>
 </cfform>
 </cf_box>

@@ -4,6 +4,13 @@ function saveProduct() {
 
 function saveVirtualOfferProduct() {
   var formData = getFormOfferProductFormData();
+  $.ajax({
+    url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=saveOfferProduct",
+    data: formData,
+    success: function (retDat) {
+      console.log(retDat);
+    },
+  });
 }
 
 function getFormOfferProductFormData() {

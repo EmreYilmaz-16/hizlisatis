@@ -699,6 +699,8 @@
         <cfelse>
         <cfset arguments.PRODUCT_CATID=4085>
         </cfif>
+
+        <cfreturn Replace(SerializeJSON(arguments),'//','')>
     </cffunction>
 
     <cffunction name="saveTube" access="remote" returntype="any" returnFormat="json">
