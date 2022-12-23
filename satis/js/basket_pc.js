@@ -471,6 +471,7 @@ function AsamaYapici(rc,selv){
     opt.innerText = "Kapatıldı";
     sel_1.appendChild(opt)
     sel_1.value = selv;
+    return sel_1;
 }
 
 function ShelfControl(pid, RafCode) {
