@@ -5,12 +5,8 @@ function openVirtualProduct(id = "", row_id = ""){
     editorAdd();
 }
 function editorAdd(){
-var d=document.getElementById("sonuc_div")
-var v=window.innerHeight
-var t=$(document.getElementById("PRODUCT_DESCRIPTION")).css("height")
-t=parseInt(t)
-v=parseInt(v)
-d.setAttribute("style","height:"+(v-t)/1.5+"px;width:"+(v-t)/3.5)
+
+
 
 //$(d).css("height",(v-t)/1.5+"px")
 //$(d).css("width",(v-t)/1.5+"px")
@@ -20,4 +16,33 @@ d.setAttribute("style","height:"+(v-t)/1.5+"px;width:"+(v-t)/3.5)
   window.editor = CodeMirror.fromTextArea(document.getElementById('PRODUCT_DESCRIPTION'), {
      mode: "simplemode"
   });
+}
+
+
+function saveProduct() {
+  var formData = getFormOfferProductFormData();
+}
+
+function saveVirtualOfferProduct() {
+  var formData = getFormOfferProductFormData();
+  $.ajax({
+    url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=saveOfferProduct",
+    data: formData,
+    success: function (retDat) {
+      console.log(retDat);
+    },
+  });
+}
+
+function getFormOfferProductFormData() {
+  var UNIT = document.getElementById("MAIN_UNIT").value;
+  var DESCRIPTION = document.getElementById("PRODUCT_DESCRIPTION").value;
+  var PRODUCT_NAME = document.getElementById("PRODUCT_NAME").value;
+
+  var formData = {
+    PRODUCT_NAME: PRODUCT_NAME,
+    DESCRIPTION: DESCRIPTION,
+    UNIT: UNIT,
+  };
+  return formData;
 }
