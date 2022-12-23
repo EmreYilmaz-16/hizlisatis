@@ -69,6 +69,7 @@ function getFormOfferProductFormData() {
     PRODUCT_NAME: PRODUCT_NAME,
     DESCRIPTION: DESCRIPTION,
     UNIT: UNIT,
+    dsn3:generalParamsSatis.dataSources.dsn3
   };
   return formData;
 }
