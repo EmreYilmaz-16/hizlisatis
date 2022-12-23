@@ -30,6 +30,7 @@ function saveVirtualOfferProduct() {
     data: formData,
     success: function (retDat) {
       console.log(retDat);
+      var obj = JSON.parse(retDat)
         AddRow(
           obj.PID,
           0,
