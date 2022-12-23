@@ -59,7 +59,7 @@
         <th><input type="text" id="basket_bottom_discount" id="basket_bottom_discount" readonly></th>
         <th>Toplam</th>
         <th><input type="text" id="basket_bottom_total" id="basket_bottom_total" readonly></th>
-        <th><button class="btn btn-success" onclick="SaveOrder()">Kaydet</button></th>
+        <th><button type="button" class="btn btn-success" onclick="SaveOrder()">Kaydet</button></th>
     </tr>
   </tfoot>
 </cf_ajax_list>
