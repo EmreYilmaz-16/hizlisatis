@@ -733,6 +733,7 @@
          <CFSET RETURN_VAL.PRICE = 0>
          <CFSET RETURN_VAL.QTY = 1>
          <CFSET RETURN_VAL.PRODUCT_TYPE = 4>
+         <CFSET RETURN_VAL.UNIT = arguments.UNIT>
          <CFSET RETURN_VAL.NAME = arguments.product_name>
          <cfreturn replace(serializeJSON(RETURN_VAL), '//', '')>
         <cfreturn Replace(SerializeJSON(arguments),'//','')>

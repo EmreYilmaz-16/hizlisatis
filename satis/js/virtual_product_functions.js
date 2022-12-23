@@ -30,6 +30,32 @@ function saveVirtualOfferProduct() {
     data: formData,
     success: function (retDat) {
       console.log(retDat);
+        AddRow(
+          obj.PID,
+          0,
+          '',
+          '',
+          1,
+          1,
+          obj.PRICE,
+          obj.NAME,
+          18,
+          0,
+          4,
+          '',
+          'TL',
+          obj.PRICE,
+          "-5",
+          0,
+          0,
+          obj.UNIT,
+          '',
+          '',
+          1,
+          '',
+          '',
+          1
+      )
     },
   });
 }
