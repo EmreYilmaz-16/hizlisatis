@@ -36,7 +36,9 @@
             <th>Ürün Adı<input type="text" id="filter1" onkeyup="searchName(this,event)" class="ui-form" placeholder="search"></th>
             <th>Marka</th>
             <th>Depo</th>
+            <th>Aşama</th>
             <th style="text-align:right">Miktar</th>
+            
             <th>Birim</th>
             <th>Döviz</th>
             <th style="text-align:right">Döviz Fiyat</th>            

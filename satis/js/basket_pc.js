@@ -239,7 +239,14 @@ function AddRow(
     td.appendChild(div);
     tr.appendChild(td);
 
+    var td = document.createElement("td");
 
+    var div = document.createElement("div");
+    div.setAttribute("class", "form-group");
+    var sel_1=AsamaYapici(row_count,currency);
+    div.appendChild(sel_1);
+    td.appendChild(div);
+    tr.appendChild(td);
 
 
     var td = document.createElement("td");
@@ -431,13 +438,18 @@ function AddRow(
     td.appendChild(div);
     tr.appendChild(td);
 
-    var td = document.createElement("td");
-    td.setAttribute("style", "display:none");
-    td.setAttribute("class", "hiddenR");
+   
+    rowaListener(tr);
+    var bask = document.getElementById("tbl_basket");
+    bask.appendChild(tr);
+    hesapla("other_money", rowCount)
 
+}
+
+function AsamaYapici(rc,selv){
     var sel_1 = document.createElement("select");
-    sel_1.setAttribute("name", "orderrow_currency_" + row_count);
-    sel_1.setAttribute("id", "orderrow_currency_" + row_count);
+    sel_1.setAttribute("name", "orderrow_currency_" + rc);
+    sel_1.setAttribute("id", "orderrow_currency_" + rc);
     var opt = document.createElement("option");
     opt.setAttribute("value", -5);
     opt.innerText = "Üretim";
@@ -458,17 +470,7 @@ function AddRow(
     opt.setAttribute("value", -10);
     opt.innerText = "Kapatıldı";
     sel_1.appendChild(opt)
-    sel_1.value = currency;
-    var div = document.createElement("div");
-    div.setAttribute("class", "form-group");
-    div.appendChild(sel_1);
-    td.appendChild(div);
-    tr.appendChild(td);
-    rowaListener(tr);
-    var bask = document.getElementById("tbl_basket");
-    bask.appendChild(tr);
-    hesapla("other_money", rowCount)
-
+    sel_1.value = selv;
 }
 
 function ShelfControl(pid, RafCode) {
