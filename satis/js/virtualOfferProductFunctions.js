@@ -1,0 +1,20 @@
+function saveProduct() {
+  var formData = getFormOfferProductFormData();
+}
+
+function saveVirtualOfferProduct() {
+  var formData = getFormOfferProductFormData();
+}
+
+function getFormOfferProductFormData() {
+  var UNIT = document.getElementById("MAIN_UNIT").value;
+  var DESCRIPTION = document.getElementById("PRODUCT_DESCRIPTION").value;
+  var PRODUCT_NAME = document.getElementById("PRODUCT_NAME").value;
+
+  var formData = {
+    PRODUCT_NAME: PRODUCT_NAME,
+    DESCRIPTION: DESCRIPTION,
+    UNIT: UNIT,
+  };
+  return formData;
+}
