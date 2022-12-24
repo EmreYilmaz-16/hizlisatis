@@ -822,6 +822,7 @@
             <cfset barcode=getBarcode()>
             <cfset UrunAdi=arguments.product_name>
             <cfset arguments.maliyet="0,00">
+            <cfset arguments.HIEARCHY=listDeleteAt(getMaster.PRODUCT_CODE,listlen(getMaster.PRODUCT_CODE,"."),".")>
 <CFOUTPUT query="getMaster">
             <cfscript>
                 kategori_id=arguments.PRODUCT_CATID;   
