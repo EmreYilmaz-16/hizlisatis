@@ -736,8 +736,35 @@
          <CFSET RETURN_VAL.UNIT = arguments.UNIT>
          <CFSET RETURN_VAL.NAME = arguments.product_name>
          <cfreturn replace(serializeJSON(RETURN_VAL), '//', '')>
-        <cfreturn Replace(SerializeJSON(arguments),'//','')>
+        
     </cffunction>
+    <cffunction name="UpdateOfferProduct" access="remote" returntype="any" returnFormat="json">
+        <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
+            UPDATE VIRTUAL_PRODUCTS_PRT 
+            SET 
+                PRODUCT_NAME='#arguments.PRODUCT_NAME#',
+                PRICE=#Filternum(arguments.maliyet)#,
+                MARJ=#Filternum(arguments.marj)#,
+                PRODUCT_TYPE=4,
+                IS_PRODUCTION=1,
+                PRODUCT_CATID=#arguments.PRODUCT_CATID#,
+                PRODUCT_DESCRIPTION='#arguments.PRODUCT_DESCRIPTION#',
+                UPDATE_EMP=#arguments.employee_id#,
+                UPDATE_DATE=#now()#,
+                PRODUCT_UNIT='#arguments.UNIT#'
+            WHERE VIRTUAL_PRODUCT_ID=#arguments.PRODUCT_ID#
+        </cfquery>
+          <CFSET RETURN_VAL.PID = arguments.PRODUCT_ID>
+          <CFSET RETURN_VAL.IS_VIRTUAL = 1>
+          <CFSET RETURN_VAL.PRICE = 0>
+          <CFSET RETURN_VAL.QTY = 1>
+          <CFSET RETURN_VAL.PRODUCT_TYPE = 4>
+          <CFSET RETURN_VAL.UNIT = arguments.UNIT>
+          <CFSET RETURN_VAL.NAME = arguments.product_name>
+          <cfreturn replace(serializeJSON(RETURN_VAL), '//', '')>
+
+    </cffunction>
+
 
     <cffunction name="saveTube" access="remote" returntype="any" returnFormat="json">
        
