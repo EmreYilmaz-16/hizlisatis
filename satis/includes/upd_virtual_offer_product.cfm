@@ -19,8 +19,8 @@ var hydRowCount = 0;
     <input type="hidden" name="PRODUCT_CAT" id="PRODUCT_CAT" readonly value="">
     <input type="hidden" name="PRODUCT_CATID" id="PRODUCT_CATID" value="#getProduct.PRODUCT_CATID#">
     <input type="hidden" name="HIEARCHY" id="HIEARCHY" value="">
-    <input type="hidden" name="vp_id" value="#attributes.id#">
-    <input type="hidden" name="row_id" value="#attributes.row_id#">
+    <input type="hidden" name="vp_id" id="vp_id" value="#attributes.id#">
+    <input type="hidden" name="row_id" id="row_id" value="#attributes.row_id#">
 </cfoutput>
 <div id="sonuc_div">
     <table>

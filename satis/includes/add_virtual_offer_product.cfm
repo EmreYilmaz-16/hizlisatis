@@ -15,8 +15,8 @@
     <input type="text" name="PRODUCT_CAT" id="PRODUCT_CAT" readonly value="">
     <input type="hidden" name="PRODUCT_CATID" id="PRODUCT_CATID" value="">
     <input type="hidden" name="HIEARCHY" id="HIEARCHY" value="">
-    <input type="hidden" name="vp_id" value="">
-    <input type="hidden" name="row_id" value="">
+    <input type="hidden" name="vp_id" id="vp_id" value="">
+    <input type="hidden" name="row_id" id="row_id" value="">
     <div id="sonuc_div">
         <table>
             <tr>

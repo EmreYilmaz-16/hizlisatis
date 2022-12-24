@@ -113,13 +113,14 @@ function getFormOfferProductFormData() {
   var PRODUCT_NAME = document.getElementById("PRODUCT_NAME").value;
   var PRODUCT_ID = document.getElementById("vp_id").value;
   var PRODUCT_CATID = document.getElementById("PRODUCT_CATID").value;
-
+  var ROW_ID=document.getElementById("row_id").value;
   var formData = {
     PRODUCT_NAME: PRODUCT_NAME,
     DESCRIPTION: DESCRIPTION,
     UNIT: UNIT,
     PRODUCT_ID: PRODUCT_ID,
     PRODUCT_CATID: PRODUCT_CATID,
+    ROW_ID:ROW_ID,
     dsn3: generalParamsSatis.dataSources.dsn3,
   };
   return formData;
