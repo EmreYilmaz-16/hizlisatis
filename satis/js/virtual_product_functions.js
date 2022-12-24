@@ -121,6 +121,7 @@ function getFormOfferProductFormData() {
     PRODUCT_ID: PRODUCT_ID,
     PRODUCT_CATID: PRODUCT_CATID,
     ROW_ID:ROW_ID,
+    EMPLOYEE_ID:generalParamsSatis.userData.user_id,
     dsn3: generalParamsSatis.dataSources.dsn3,
   };
   return formData;

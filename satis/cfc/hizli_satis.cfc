@@ -748,7 +748,7 @@
                 PRODUCT_TYPE=4,
                 IS_PRODUCTION=0,
                 PRODUCT_CATID=#arguments.PRODUCT_CATID#,
-                PRODUCT_DESCRIPTION='#arguments.PRODUCT_DESCRIPTION#',
+                PRODUCT_DESCRIPTION='#arguments.DESCRIPTION#',
                 UPDATE_EMP=#arguments.employee_id#,
                 UPDATE_DATE=#now()#,
                 PRODUCT_UNIT='#arguments.UNIT#'
