@@ -744,7 +744,38 @@
         <cfelse>
         <cfset arguments.PRODUCT_CATID=4085>
         </cfif>
-        <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
+        <cfif isDefined("arguments.row_id") and len(arguments.row_id)>
+            <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
+                INSERT INTO VIRTUAL_PRODUCTS_PRT (
+                    PRODUCT_NAME
+                    ,PRODUCT_CATID
+                    ,PRICE
+                    ,IS_CONVERT_REAL
+                    ,MARJ
+                    ,PRODUCT_TYPE
+                    ,IS_PRODUCTION
+                    ,RECORD_EMP
+                    ,RECORD_DATE
+                    ,PRODUCT_DESCRIPTION
+                    ,PRODUCT_UNIT
+                    )
+                VALUES (
+                    '#arguments.PRODUCT_NAME#'
+                    ,#arguments.PRODUCT_CATID#
+                    ,0
+                    ,0
+                    ,0
+                    ,4
+                    ,0
+                    ,1
+                    ,#now() #
+                    ,'#arguments.DESCRIPTION#'
+                    ,'#arguments.UNIT#'
+                    )            
+            </cfquery>
+             
+        </cfif>
+
              <cfquery name="getMaster" datasource="#arguments.dsn1#">
                         SELECT S.PRODUCT_ID
                     ,S.PRODUCT_CODE
