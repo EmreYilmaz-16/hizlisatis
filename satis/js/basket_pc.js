@@ -545,7 +545,9 @@ function UpdRow(
   tax,
   discount_rate,
   row_id,
-  currency = -1
+  currency = -1,
+  stock_code='',
+  main_unit='Adet',
 ) {
   $("#product_id_" + row_id).val(pid);
   $("#stock_id_" + row_id).val(sid);
@@ -562,6 +564,8 @@ function UpdRow(
     $("#indirim1_" + row_id).val(discount_rate);
   }
   $("#orderrow_currency_" + row_id).val(currency);
+  $("#stock_code_"+row_id).val(stock_code)
+  $("#main_unit_"+row_id).val(main_unit)
   hesapla("price", row_id);
 }
 

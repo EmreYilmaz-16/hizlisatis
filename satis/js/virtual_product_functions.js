@@ -35,11 +35,54 @@ function saveProduct(modal_id) {
     success: function (retDat) {
       console.log(retDat);
       var obj = JSON.parse(retDat);
-      UpdRow(obj.PRODUCT_ID, obj.STOCK_ID, 0, 0, 0, obj.NAME, 18, 0, obj.ROW_ID, -5);   
+      if (obj.ROW_ID != 0) {
+        UpdRow(
+          obj.PRODUCT_ID,
+          obj.STOCK_ID,
+          0,
+          0,
+          0,
+          obj.PRODUCT_NAME,
+          18,
+          0,
+          obj.ROW_ID,
+          -2,
+          obj.STOCK_CODE,
+          obj.MAIN_UNIT
+        );
+      } else {
+        AddRow(
+          obj.PRODUCT_ID,
+          obj.STOCK_ID,
+          obj.STOCK_CODE,
+          obj.BRAND_NAME,
+          0,
+          obj.QUANTITY,
+          obj.PRICE,
+          obj.PRODUCT_NAME,
+          obj.TAX,
+          obj.DISCOUNT_RATE,
+          obj.PRODUCT_TYPE,
+          obj.SHELF_CODE,
+          obj.OTHER_MONEY,
+          obj.PRICE_OTHER,
+          obj.OFFER_ROW_CURRENCY,
+          obj.IS_MANUEL,
+          obj.COST,
+          obj.MAIN_UNIT,
+          obj.PRODUCT_NAME_OTHER,
+          obj.DETAIL_INFO_EXTRA,
+          obj.FC,
+          obj.ROW_NUM,
+          obj.DELIVERDATE,
+          obj.IS_PRODUCTION,
+          obj.ROW_UNIQ_ID
+        );
+      }
+
       closeBoxDraggable(modal_id);
     },
   });
-
 }
 function UpdateVirtualOfferProduct(modal_id) {
   var formData = getFormOfferProductFormData();
@@ -49,7 +92,7 @@ function UpdateVirtualOfferProduct(modal_id) {
     success: function (retDat) {
       console.log(retDat);
       var obj = JSON.parse(retDat);
-      UpdRow(obj.PID, "", 1, 0, 0, obj.NAME, 18, 0, obj.ROW_ID, -1);   
+      UpdRow(obj.PID, "", 1, 0, 0, obj.NAME, 18, 0, obj.ROW_ID, -1);
       closeBoxDraggable(modal_id);
     },
   });
@@ -109,10 +152,9 @@ function getFormOfferProductFormData() {
     ROW_ID: ROW_ID,
     EMPLOYEE_ID: generalParamsSatis.userData.user_id,
     dsn3: generalParamsSatis.dataSources.dsn3,
-    dsn1:generalParamsSatis.dataSources.dsn1,
-    dsn2:generalParamsSatis.dataSources.dsn2,
-    dsn:generalParamsSatis.dataSources.dsn
-    
+    dsn1: generalParamsSatis.dataSources.dsn1,
+    dsn2: generalParamsSatis.dataSources.dsn2,
+    dsn: generalParamsSatis.dataSources.dsn,
   };
   return formData;
 }

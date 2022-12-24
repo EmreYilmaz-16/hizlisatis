@@ -892,7 +892,7 @@
         <CFSET RETURN_VAL.SHELF_CODE=''>
         <CFSET RETURN_VAL.OTHER_MONEY=get_sales_price_info.MONEY>
         <CFSET RETURN_VAL.PRICE_OTHER=arguments.maliyet>
-        <CFSET RETURN_VAL.OFFER_ROW_CURRENCY=-5>
+        <CFSET RETURN_VAL.OFFER_ROW_CURRENCY=-2>
         <CFSET RETURN_VAL.IS_MANUEL=0>
         <CFSET RETURN_VAL.COST=arguments.maliyet>
         <CFSET RETURN_VAL.MAIN_UNIT=birim>
