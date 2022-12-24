@@ -743,10 +743,10 @@
             UPDATE VIRTUAL_PRODUCTS_PRT 
             SET 
                 PRODUCT_NAME='#arguments.PRODUCT_NAME#',
-                PRICE=#Filternum(arguments.maliyet)#,
-                MARJ=#Filternum(arguments.marj)#,
+                PRICE=#Filternum(0)#,
+                MARJ=#Filternum(0)#,
                 PRODUCT_TYPE=4,
-                IS_PRODUCTION=1,
+                IS_PRODUCTION=0,
                 PRODUCT_CATID=#arguments.PRODUCT_CATID#,
                 PRODUCT_DESCRIPTION='#arguments.PRODUCT_DESCRIPTION#',
                 UPDATE_EMP=#arguments.employee_id#,
