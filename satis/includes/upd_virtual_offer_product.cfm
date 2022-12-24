@@ -16,7 +16,7 @@ var hydRowCount = 0;
 </cfquery>
 <cfform name="OfferProductForm">
     <cfoutput>
-    <input type="text" name="PRODUCT_CAT" id="PRODUCT_CAT" readonly value="">
+    <input type="hidden" name="PRODUCT_CAT" id="PRODUCT_CAT" readonly value="">
     <input type="hidden" name="PRODUCT_CATID" id="PRODUCT_CATID" value="#getProduct.PRODUCT_CATID#">
     <input type="hidden" name="HIEARCHY" id="HIEARCHY" value="">
     <input type="hidden" name="vp_id" value="#attributes.id#">
