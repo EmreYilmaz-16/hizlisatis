@@ -109,6 +109,9 @@ function getFormOfferProductFormData() {
     ROW_ID: ROW_ID,
     EMPLOYEE_ID: generalParamsSatis.userData.user_id,
     dsn3: generalParamsSatis.dataSources.dsn3,
+    dsn1:generalParamsSatis.dataSources.dsn1,
+    dsn2:generalParamsSatis.dataSources.dsn2
+    
   };
   return formData;
 }
