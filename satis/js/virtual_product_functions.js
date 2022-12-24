@@ -110,7 +110,8 @@ function getFormOfferProductFormData() {
     EMPLOYEE_ID: generalParamsSatis.userData.user_id,
     dsn3: generalParamsSatis.dataSources.dsn3,
     dsn1:generalParamsSatis.dataSources.dsn1,
-    dsn2:generalParamsSatis.dataSources.dsn2
+    dsn2:generalParamsSatis.dataSources.dsn2,
+    dsn:generalParamsSatis.dataSources.dsn
     
   };
   return formData;
