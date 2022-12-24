@@ -738,6 +738,150 @@
          <cfreturn replace(serializeJSON(RETURN_VAL), '//', '')>
         
     </cffunction>
+    <cffunction name="saveOfferRealProduct" access="remote" returntype="any" returnFormat="json">
+        <cfargument name="PRODUCT_CATID" default="">
+        <cfif  len(arguments.PRODUCT_CATID) and arguments.PRODUCT_CATID neq 0>
+        <cfelse>
+        <cfset arguments.PRODUCT_CATID=4085>
+        </cfif>
+        <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
+             <cfquery name="getMaster" datasource="#arguments.dsn1#">
+                        SELECT S.PRODUCT_ID
+                    ,S.PRODUCT_CODE
+                    ,S.PRODUCT_CODE_2
+                    ,S.PRODUCT_NAME                    
+                    ,S.PRODUCT_CATID
+                    ,S.PROD_COMPETITIVE
+                    ,S.MANUFACT_CODE
+                    ,S.MIN_MARGIN 
+                    ,S.IS_QUALITY
+                    ,S.MAX_MARGIN
+                    ,S.SHELF_LIFE
+                    ,S.SEGMENT_ID
+                    ,S.BSMV
+                    ,S.OIV                     
+                    ,S.TAX_PURCHASE
+                    ,S.IS_INVENTORY
+                    ,S.PRODUCT_ID
+                    ,S.IS_PRODUCTION 
+                    ,S.IS_SALES
+                    ,S.IS_ZERO_STOCK
+                    ,S.BRAND_ID
+                    ,S.IS_LIMITED_STOCK
+                    ,S.IS_PURCHASE
+                    ,S.IS_INTERNET
+                    ,S.IS_EXTRANET                                        
+                    ,S.TAX
+                    ,S.PRODUCT_STAGE
+                    ,PU.IS_MAIN
+					,PU.MAIN_UNIT
+					,PU.MAIN_UNIT_ID
+                    ,SS.STOCK_ID
+                FROM PRODUCT AS S 
+                LEFT JOIN PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID     
+                INNER JOIN STOCKS AS SS ON SS.PRODUCT_ID=S.PRODUCT_ID                     
+               WHERE PRODUCT_CATID=#arguments.PRODUCT_CATID# AND PRODUCT_DETAIL2='MASTER'
+        </cfquery>
+            <cfquery name="get_purchase_price_info" datasource="#dsn1#">
+                SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_STATUS = 1 AND PURCHASESALES = 1 AND PRODUCT_ID = #getMaster.PRODUCT_ID#
+            </cfquery>
+            <cfquery name="get_sales_price_info" datasource="#dsn1#">
+                SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_STATUS = 1 AND PURCHASESALES = 0 AND PRODUCT_ID = #getMaster.PRODUCT_ID#
+            </cfquery>
+            <cfset barcode=getBarcode()>
+            <cfset UrunAdi=arguments.product_name>
+            <cfset arguments.mailiyet=tlformat(0)>
+<CFOUTPUT query="getMaster">
+            <cfscript>
+                kategori_id=arguments.PRODUCT_CATID;   
+                urun_adi=UrunAdi; 
+                detail=''; 
+                detail_2='';
+                satis_kdv=TAX;
+                ALIS_KDV=TAX_PURCHASE;
+                is_inventory=IS_INVENTORY;
+                is_production=IS_PRODUCTION;
+                is_sales=IS_SALES;
+                is_purchase=IS_PURCHASE;
+                is_internet=IS_INTERNET;
+                is_extranet=IS_EXTRANET;
+                birim = arguments.UNIT;
+                dimention = "";
+                volume = "";
+                weight = "";
+                surec_id=PRODUCT_STAGE;
+                fiyat_yetkisi = PROD_COMPETITIVE;
+                uretici_urun_kodu="";
+                brand_id=BRAND_ID;
+                short_code = '';
+                short_code_id = '';
+                product_code_2='';
+                is_limited_stock=IS_LIMITED_STOCK;
+                min_margin=MIN_MARGIN;
+                max_margin=MAX_MARGIN;
+                shelf_life=SHELF_LIFE;
+                segment_id=SEGMENT_ID;
+                bsmv=BSMV;
+                oiv=OIV;
+                IS_ZERO_STOCK=IS_ZERO_STOCK;
+                IS_QUALITY=IS_QUALITY;
+                alis_fiyat_kdvsiz = get_purchase_price_info.PRICE;
+                satis_fiyat_kdvli = filternum(arguments.maliyet)+((filternum(arguments.maliyet)*18)/100);
+                alis_fiyat_kdvli = get_purchase_price_info.PRICE_KDV;
+                sales_money = get_sales_price_info.MONEY;
+                cesit_adi='';
+                purchase_money = get_purchase_price_info.MONEY;
+            </cfscript>
+        </CFOUTPUT>
+        <cfset attributes.HIERARCHY =arguments.HIEARCHY>
+        <cfset DSN=arguments.dsn>
+        <cfset DSN3=arguments.dsn3>
+        <cfset DSN1=arguments.dsn1>
+        <cfset database_type="MSSQL">
+        <cfinclude template="/AddOns/Partner/satis/Includes/add_import_product.cfm">
+        <cfscript>
+            main_stock_id = GET_MAX_STCK.MAX_STCK;
+            main_product_id =GET_PID.PRODUCT_ID;
+            spec_name="#UrunAdi#";                          
+        </cfscript> 
+
+
+        <CFSET RETURN_VAL.PRODUCT_ID=GET_PID.PRODUCT_ID>
+        <CFSET RETURN_VAL.STOCK_ID=main_stock_id>
+        <CFSET RETURN_VAL.STOCK_CODE=attributes.PRODUCT_CODE>
+        <CFSET RETURN_VAL.BRAND_NAME=''>
+        <CFSET RETURN_VAL.IS_VIRTUAL=0>
+        <CFSET RETURN_VAL.QUANTITY=1>
+        <CFSET RETURN_VAL.PRICE=arguments.maliyet>
+        <CFSET RETURN_VAL.PRODUCT_NAME=arguments.product_name>
+        <CFSET RETURN_VAL.TAX=getMaster.TAX>
+        <CFSET RETURN_VAL.DISCOUNT_RATE=0>
+        <CFSET RETURN_VAL.PRODUCT_TYPE=0>
+        <CFSET RETURN_VAL.SHELF_CODE=''>
+        <CFSET RETURN_VAL.OTHER_MONEY=get_sales_price_info.MONEY>
+        <CFSET RETURN_VAL.PRICE_OTHER=arguments.maliyet>
+        <CFSET RETURN_VAL.OFFER_ROW_CURRENCY=-5>
+        <CFSET RETURN_VAL.IS_MANUEL=0>
+        <CFSET RETURN_VAL.COST=arguments.maliyet>
+        <CFSET RETURN_VAL.MAIN_UNIT=birim>
+        <CFSET RETURN_VAL.PRODUCT_NAME_OTHER=''>
+        <CFSET RETURN_VAL.DETAIL_INFO_EXTRA=''>
+        <CFSET RETURN_VAL.FC=0>
+        <CFSET RETURN_VAL.ROW_NUM=''>
+        <CFSET RETURN_VAL.DELIVERDATE=dateFormat(NOW(),"yyyy-mm-dd")>
+        <CFSET RETURN_VAL.IS_PRODUCTION=1>
+        <CFSET RETURN_VAL.ROW_UNIQ_ID=''>
+        <cfif isDefined("arguments.ROW_ID")>
+            <CFSET RETURN_VAL.ROW_ID=arguments.ROW_ID>
+        <cfelse>
+            <CFSET RETURN_VAL.ROW_ID="">
+        </cfif>
+
+
+<cfreturn Replace(SerializeJSON(RETURN_VAL),'//','')>
+         
+        
+    </cffunction>
     <cffunction name="UpdateOfferProduct" access="remote" returntype="any" returnFormat="json">
         <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
             UPDATE VIRTUAL_PRODUCTS_PRT 

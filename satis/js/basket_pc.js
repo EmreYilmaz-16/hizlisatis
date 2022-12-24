@@ -522,6 +522,10 @@ function AsamaYapici(rc, selv) {
   opt.setAttribute("value", -2);
   opt.innerText = "Tedarik";
   sel_1.appendChild(opt);
+  var opt = document.createElement("option");
+  opt.setAttribute("value", -1);
+  opt.innerText = "Açık";
+  sel_1.appendChild(opt);
 
   var opt = document.createElement("option");
   opt.setAttribute("value", -10);
@@ -529,6 +533,36 @@ function AsamaYapici(rc, selv) {
   sel_1.appendChild(opt);
   sel_1.value = selv;
   return sel_1;
+}
+
+function UpdRow(
+  pid,
+  sid,
+  is_virtual,
+  qty,
+  price,
+  p_name,
+  tax,
+  discount_rate,
+  row_id,
+  currency = -1
+) {
+  $("#product_id_" + row_id).val(pid);
+  $("#stock_id_" + row_id).val(sid);
+  $("#is_virtual_" + row_id).val(is_virtual);
+  if (qty > 0) {
+    $("#amount_" + row_id).val(qty);
+  }
+  if (price > 0) {
+    $("#price_" + row_id).val(price);
+  }
+  $("#product_name_" + row_id).val(p_name);
+  $("#Tax_" + row_id).val(tax);
+  if (discount_rate > 0) {
+    $("#indirim1_" + row_id).val(discount_rate);
+  }
+  $("#orderrow_currency_" + row_id).val(currency);
+  hesapla("price", row_id);
 }
 
 function ShelfControl(pid, RafCode) {

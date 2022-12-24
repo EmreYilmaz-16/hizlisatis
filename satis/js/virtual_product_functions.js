@@ -27,8 +27,19 @@ function editorAdd() {
   );
 }
 
-function saveProduct() {
+function saveProduct(modal_id) {
   var formData = getFormOfferProductFormData();
+  $.ajax({
+    url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=saveOfferRealProduct",
+    data: formData,
+    success: function (retDat) {
+      console.log(retDat);
+      var obj = JSON.parse(retDat);
+      UpdRow(obj.PRODUCT_ID, obj.STOCK_ID, 0, 0, 0, obj.NAME, 18, 0, obj.ROW_ID, -5);   
+      closeBoxDraggable(modal_id);
+    },
+  });
+
 }
 function UpdateVirtualOfferProduct(modal_id) {
   var formData = getFormOfferProductFormData();
@@ -38,32 +49,7 @@ function UpdateVirtualOfferProduct(modal_id) {
     success: function (retDat) {
       console.log(retDat);
       var obj = JSON.parse(retDat);
-     /* AddRow(
-        obj.PID,
-        0,
-        "",
-        "",
-        1,
-        1,
-        obj.PRICE,
-        obj.NAME,
-        18,
-        0,
-        4,
-        "",
-        "TL",
-        obj.PRICE,
-        "-2",
-        0,
-        0,
-        obj.UNIT,
-        "",
-        "",
-        1,
-        "",
-        "",
-        1
-      );*/
+      UpdRow(obj.PID, "", 1, 0, 0, obj.NAME, 18, 0, obj.ROW_ID, -1);   
       closeBoxDraggable(modal_id);
     },
   });
@@ -91,7 +77,7 @@ function saveVirtualOfferProduct(modal_id) {
         "",
         "TL",
         obj.PRICE,
-        "-2",
+        "-1",
         0,
         0,
         obj.UNIT,
@@ -113,15 +99,15 @@ function getFormOfferProductFormData() {
   var PRODUCT_NAME = document.getElementById("PRODUCT_NAME").value;
   var PRODUCT_ID = document.getElementById("vp_id").value;
   var PRODUCT_CATID = document.getElementById("PRODUCT_CATID").value;
-  var ROW_ID=document.getElementById("row_id").value;
+  var ROW_ID = document.getElementById("row_id").value;
   var formData = {
     PRODUCT_NAME: PRODUCT_NAME,
     DESCRIPTION: DESCRIPTION,
     UNIT: UNIT,
     PRODUCT_ID: PRODUCT_ID,
     PRODUCT_CATID: PRODUCT_CATID,
-    ROW_ID:ROW_ID,
-    EMPLOYEE_ID:generalParamsSatis.userData.user_id,
+    ROW_ID: ROW_ID,
+    EMPLOYEE_ID: generalParamsSatis.userData.user_id,
     dsn3: generalParamsSatis.dataSources.dsn3,
   };
   return formData;
