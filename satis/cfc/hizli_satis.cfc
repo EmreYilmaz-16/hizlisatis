@@ -821,7 +821,7 @@
             </cfquery>
             <cfset barcode=getBarcode()>
             <cfset UrunAdi=arguments.product_name>
-            <cfset arguments.mailiyet=tlformat(0)>
+            <cfset arguments.mailiyet="0,00">
 <CFOUTPUT query="getMaster">
             <cfscript>
                 kategori_id=arguments.PRODUCT_CATID;   
