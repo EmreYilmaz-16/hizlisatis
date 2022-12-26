@@ -2,7 +2,7 @@
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE UNIQUE_RELATION_ID='#evaluate("attributes.row_unique_relation_id#i#")#'
 </cfquery>
 
-<cfif not ishvprodorders.recordcount and evaluate("attributes.orderrow_currency_#i#") eq -5>
+<cfif not ishvprodorders.recordcount and evaluate("attributes.PBS_OFFER_ROW_CURRENCY#i#") eq -5>
 	<cfquery name="get_p_order_number" datasource="#dsn3#">
 		EXEC GET_PAPER_NUMBER 2
 	</cfquery>
