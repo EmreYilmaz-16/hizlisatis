@@ -18,6 +18,43 @@
 		)
 
 </cfquery>
+<cfquery name="getMaster" datasource="#dsn1#">
+    SELECT S.PRODUCT_ID
+	    ,S.PRODUCT_CODE
+	    ,S.PRODUCT_CODE_2
+	    ,S.PRODUCT_NAME                    
+	    ,S.PRODUCT_CATID
+	    ,S.PROD_COMPETITIVE
+	    ,S.MANUFACT_CODE
+	    ,S.MIN_MARGIN 
+	    ,S.IS_QUALITY
+	    ,S.MAX_MARGIN
+	    ,S.SHELF_LIFE
+	    ,S.SEGMENT_ID
+	    ,S.BSMV
+	    ,S.OIV                     
+	    ,S.TAX_PURCHASE
+	    ,S.IS_INVENTORY
+	    ,S.PRODUCT_ID
+	    ,S.IS_PRODUCTION 
+	    ,S.IS_SALES
+	    ,S.IS_ZERO_STOCK
+	    ,S.BRAND_ID
+	    ,S.IS_LIMITED_STOCK
+	    ,S.IS_PURCHASE
+	    ,S.IS_INTERNET
+	    ,S.IS_EXTRANET                                        
+	    ,S.TAX
+	    ,S.PRODUCT_STAGE
+	    ,PU.IS_MAIN
+		,PU.MAIN_UNIT
+		,PU.MAIN_UNIT_ID
+	    ,SS.STOCK_ID
+	FROM PRODUCT AS S 
+	LEFT JOIN PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID     
+	INNER JOIN STOCKS AS SS ON SS.PRODUCT_ID=S.PRODUCT_ID                     
+	WHERE PRODUCT_CATID=#GETSTOK.PRODUCT_CATID# AND PRODUCT_DETAIL2='MASTER'
+	</cfquery>
 
 <cfset sidArr=arrayNew(1)>
 <cfloop query="getTree">
