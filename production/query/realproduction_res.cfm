@@ -26,7 +26,7 @@
 			PID=PRODUCT_ID,
 			SID=STOCK_ID,
 			QTY=AMOUNT,
-			QUESTION=QUESTION_ID
+			QUESTION_ID=QUESTION_ID
 		};
 		arrayAppend(sidArr,o);
 	</cfscript>	
