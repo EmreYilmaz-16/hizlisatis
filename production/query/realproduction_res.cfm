@@ -32,6 +32,13 @@
 	</cfscript>	
 
 </cfloop>
+<cfscript>
+    main_stock_id = GETSTOK.STOCK_ID;
+    main_product_id =GETSTOK.PRODUCT_ID;
+    spec_name="#GETSTOK.PRODUCT_NAME#";                          
+</cfscript>  
+<cfset product_tree_id_list = ''>
+<cfset spec_main_id_list =''>
 
 <cfquery name="DELtREE" datasource="#DSN3#">
     DELETE FROM PRODUCT_TREE WHERE STOCK_ID=#GETSTOK.STOCK_ID#
