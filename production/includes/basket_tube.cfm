@@ -1,6 +1,4 @@
-<cfquery name="getPo" datasource="#dsn3#">
-	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE V_P_ORDER_ID=#attributes.VP_ORDER_ID#
-</cfquery>
+
 
 <cfif getPo.IS_FROM_VIRTUAL eq 1>
 	<cfquery name="gets" datasource="#dsn3#">
