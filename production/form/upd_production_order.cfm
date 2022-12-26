@@ -2,6 +2,9 @@
 <cfquery name="getMoney" datasource="#dsn#">
     SELECT MONEY,RATE1, EFFECTIVE_SALE AS RATE2 FROM SETUP_MONEY WHERE PERIOD_ID = #session.ep.period_id# ORDER BY MONEY_ID
 </cfquery>
+<cfquery name="getPo" datasource="#dsn3#">
+	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE V_P_ORDER_ID=#attributes.VP_ORDER_ID#
+</cfquery>
 <script>
     var moneyArr=[
         <cfoutput query="getMoney">
