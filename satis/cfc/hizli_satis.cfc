@@ -1048,7 +1048,8 @@
                 o={
                     PID=arguments.LRekor_PId,
                     SID=arguments.LRekor_SId,
-                    QTY=arguments.LRekor_Qty
+                    QTY=arguments.LRekor_Qty,
+                    QUE=1
                 };
                 arrayAppend(sidArr,o);
             </cfscript>
@@ -1058,7 +1059,8 @@
                 o={
                     PID=arguments.RRekor_PId,
                     SID=arguments.RRekor_SId,
-                    QTY=arguments.RRekor_Qty
+                    QTY=arguments.RRekor_Qty,
+                    QUE=3
                 };
                 arrayAppend(sidArr,o);
             </cfscript>
@@ -1069,7 +1071,8 @@
                 o={
                     PID=arguments.Tube_PId,
                     SID=arguments.Tube_SId,
-                    QTY=arguments.Tube_Qty
+                    QTY=arguments.Tube_Qty,
+                    QUE=2
                 };
                 arrayAppend(sidArr,o);
             </cfscript>
@@ -1080,7 +1083,8 @@
                 o={
                     PID=arguments.Kabuk_PId,
                     SID=arguments.Kabuk_SId,
-                    QTY=arguments.Kabukr_Qty
+                    QTY=arguments.Kabukr_Qty,
+                    QUE=5
                 };
                 arrayAppend(sidArr,o);
             </cfscript>
@@ -1091,7 +1095,8 @@
                 o={
                     PID=arguments.AdditionalProduct_PId,
                     SID=arguments.AdditionalProduct_SId,
-                    QTY=arguments.AdditionalProduct_Qty
+                    QTY=arguments.AdditionalProduct_Qty,
+                    QUE=4
                 };
                 arrayAppend(sidArr,o);
             </cfscript>
@@ -1102,7 +1107,8 @@
                 o={
                     PID=arguments.working_PId,
                     SID=arguments.working_SId,
-                    QTY=arguments.working_Qty
+                    QTY=arguments.working_Qty,
+                    QUE=6
                 };
                 arrayAppend(sidArr,o);
             </cfscript>
@@ -1123,6 +1129,7 @@
     <cfset attributes.add_stock_id=pr.SID>
     <cfset attributes.AMOUNT = filterNum(pr.QTY)>
     <cfset attributes.UNIT_ID = getStock_Info.PRODUCT_UNIT_ID>
+    <cfset attributes.alternative_questions = pr.QUE>
        <cfinclude template="/AddOns/Partner/satis/Includes/PARTNERTREEPORT.cfm">
         <cfset SPEC_MAIN_ID_LIST= listAppend(SPEC_MAIN_ID_LIST, getStock_Info.STOCK_ID)> 
 </cfloop>
