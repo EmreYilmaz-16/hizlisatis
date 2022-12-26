@@ -28,6 +28,11 @@
                 ,<cfif len(it.QUESTION_ID)>#it.QUESTION_ID#<cfelse>NULL</cfif>)
         
     </cfquery>
+
+    <script>
+        window.opener.location.reload();
+        this.close();
+    </script>
   <!-----
   
   <cfquery name="InsertTree" datasource="#dsn3#">
