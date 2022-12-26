@@ -67,7 +67,7 @@
 	<cfquery name="getsTree" datasource="#dsn3#">
 		SELECT * FROM PRODUCT_TREE AS PT 
 		LEFT JOIN #dsn3#.STOCKS AS S ON PT.RELATED_ID = S.STOCK_ID		
-		WHERE PT.STOCK_ID =#getPo.STOCK_ID#
+		WHERE PT.STOCK_ID =#gets.STOCK_ID#
 	</cfquery>
 		<cfquery name="getQUESTIONS" datasource="#dsn3#">
 			SELECT *
