@@ -41,14 +41,16 @@
 						,AMOUNT
 						,PRODUCT_ID
 						,PRICE
-						,DISCOUNT)
+						,DISCOUNT
+						,QUESTION_ID)
 					VALUES
 						(#RESpos.IDENTITYCOL#
 						,#RELATED_ID#
 						,#AMOUNT#
 						,#PRODUCT_ID#
 						,0
-						,0)
+						,0
+						,#QUESTION_ID#)
 				
 			</cfquery>
 		</cfloop>
