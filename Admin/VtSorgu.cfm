@@ -8,13 +8,16 @@
 
 <cfparam  name="attributes.sql_sorgu" default="">
     <cfquery name="getT" datasource="#dsn#">
-        SELECT  name FROM sys.TABLES
+    select ST.name,ss.name as schema_namea from workcube_metosan.sys.tables AS ST 
+LEFT JOIN workcube_metosan.SYS.schemas AS SS ON SS.schema_id=ST.schema_id
+order by st.schema_id
+
     </cfquery>
 <div style="display:flex;">
     <div style="width:25%;height: 100vh;overflow: scroll;">
     <cf_big_list>
         <cfoutput query="getT">
-        <tr><td>#name#</td></tr>
+        <tr><td>#schema_namea#-#name#</td></tr>
         </cfoutput>
     </cf_big_list>
     </div>
