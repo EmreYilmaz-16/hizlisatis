@@ -1,6 +1,16 @@
 <cfdump var="#attributes#">
-<cfabort>
-<cfinclude template="add_virtual_production_order_result.cfm">
+<cfquery name="getVirtualProductionOrder" datasource="#dsn3#">
+	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#
+</cfquery>
+<cfif getVirtualProductionOrder.IS_FROM_VIRTUAL eq 1>
+    <cfinclude template="add_virtual_production_order_result.cfm">
+<cfelse>
+    <cfinclude template="realproduction_res.cfm">
+</cfif>
+
+
+
+
 <cfinclude template="/AddOns/Partner/production/Includes/close_porders.cfm">
 
 <cfset attributes.process_cat=111>

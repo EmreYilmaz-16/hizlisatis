@@ -1,7 +1,5 @@
 <cfdump var="#attributes#">
-<cfquery name="getVirtualProductionOrder" datasource="#dsn3#">
-	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#
-</cfquery>
+
 <cfquery name="AddVirtualResult" datasource="#dsn3#">
 	INSERT INTO VIRTUAL_PRODUCTION_ORDERS_RESULT (
 		P_ORDER_ID,RECORD_DATE,RECORD_EMP,RESULT_AMOUNT
