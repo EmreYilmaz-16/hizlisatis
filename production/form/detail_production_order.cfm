@@ -68,6 +68,11 @@
 		LEFT JOIN #dsn3#.STOCKS AS S ON PT.RELATED_ID = S.STOCK_ID		
 		WHERE PT.STOCK_ID =#getPo.STOCK_ID#
 	</cfquery>
+		<cfquery name="getQUESTIONS" datasource="#dsn3#">
+			SELECT *
+			FROM VIRTUAL_PRODUCT_TREE_QUESTIONS
+			WHERE QUESTION_PRODUCT_TYPE = #gets.PRODUCT_TYPE#
+		</cfquery>
 </cfif>
 <cf_box title="Üretim Emri #getPo.V_P_ORDER_NO#">
 	<cfoutput>
