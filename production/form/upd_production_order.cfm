@@ -43,6 +43,7 @@
         <input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="#getOfferMain.PRICE_CAT_ID#">
         <input type="hidden" name="company_id" id="company_id" value="#getOfferMain.COMPANY_ID#">
         <input type="hidden" name="company_name" id="company_name" value="#getOfferMain.COMPANY_ID#">
+        <input type="hidden" name="vpoorderid" id="vpoorderid" value="#attributes.VP_ORDER_ID#">
         <cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
         <cfquery name="getVirtualProduct"  datasource="#dsn3#">
             SELECT * FROM #dsn3#.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#
