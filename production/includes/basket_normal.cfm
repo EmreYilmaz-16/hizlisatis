@@ -25,6 +25,31 @@
     SELECT *,PU.MAIN_UNIT FROM PRODUCT_TREE AS PT 
     LEFT JOIN #dsn3#.STOCKS AS S ON PT.RELATED_ID = S.STOCK_ID
     LEFT JOIN #dsn3#.PRODUCT_UNIT as PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND IS_MAIN=1
+    LEFT JOIN ( SELECT
+                        P.UNIT,
+                        P.PRICE,
+                        P.PRICE_KDV,
+                        P.PRODUCT_ID,
+                        P.MONEY,
+                        P.PRICE_CATID,
+                        P.CATALOG_ID,
+                        P.PRICE_DISCOUNT
+                    FROM
+                        workcube_metosan_1.PRICE P,
+                        workcube_metosan_1.PRODUCT PR
+                    WHERE
+                        P.PRODUCT_ID = PR.PRODUCT_ID
+                        AND P.PRICE_CATID = #getOfferMain.PRICE_CAT_ID#
+                        AND
+                        (
+                            P.STARTDATE <= getdate()
+                            AND
+                            (
+                                P.FINISHDATE >= getdate() OR
+                                P.FINISHDATE IS NULL
+                            )
+                        )
+                        AND ISNULL(P.SPECT_VAR_ID, 0) = 0 ) AS GPA ON GPA.PRODUCT_ID=S.PRODUCT_ID AND GPA.UNIT=PU.PRODUCT_UNIT_ID
     WHERE PT.STOCK_ID =#gets.STOCK_ID#
 </cfquery>
     <cfquery name="getQUESTIONS" datasource="#dsn3#">
