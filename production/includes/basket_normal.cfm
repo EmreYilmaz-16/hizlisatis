@@ -33,6 +33,13 @@
         WHERE QUESTION_PRODUCT_TYPE = #gets.PRODUCT_TYPE#
     </cfquery>
 
+<cfif gets.PRODUCT_TYPE eq 1 >
+    <cfinclude template="basket_tube.cfm">
+<cfelseif gets.PRODUCT_TYPE EQ 2>
+<cfelseif gets.PRODUCT_TYPE EQ 3>
+<CFELSE>
+    BİLEMEDİM
+</cfif>
 
 <cfquery name="getVirtualProduct" datasource="#dsn3#">
     SELECT S.PRODUCT_ID
