@@ -105,7 +105,7 @@ LEFT JOIN workcube_metosan_1.PRODUCTION_ORDER_RESULTS AS POR ON VPOR.REAL_RESULT
 </cfoutput>
 		</cf_grid_list>
 	</cf_box>
-    <cfif GETrES.recordCount>
+    <cfif not GETrES.recordCount>
     <button type="button" class="btn btn-warning" onclick="saveVirtual(<cfoutput>#getVirtualProduct.product_type#,#getProductionOrders.IS_FROM_VIRTUAL#</cfoutput>)">Kaydet</button>
     <button type="button" class="btn btn-success" onclick="CloseProductionOrders(<cfoutput>#attributes.VP_ORDER_ID#</cfoutput>)">Üretimi Sonlandır</button>
 </cfif>
