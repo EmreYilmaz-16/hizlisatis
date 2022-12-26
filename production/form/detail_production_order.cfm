@@ -44,7 +44,8 @@
 	</cfquery>
 <cfelse>
 	<cfquery name="gets" datasource="#dsn3#">
-		SELECT VIRTUAL_PRODUCT_ID
+		SELECT S.PRODUCT_ID
+			,S.STOCK_ID
 			,PRODUCT_NAME
 			,PC.PRODUCT_CATID
 			,PRICE
