@@ -55,7 +55,7 @@
                 <cfinclude template="../includes/basket_pump.cfm">
             </cfif>
         <cfelse>
-            <cfinclude template="../includes/bakset_normal.cfm">
+            <cfinclude template="../includes/basket_normal.cfm">
         </cfif>     
 <input type="hidden" name="total_price" id="total_price">
     </cfoutput>
