@@ -20,7 +20,7 @@
 </cfquery>
 
 <cfset sidArr=arrayNew(1)>
-<cfloop query="getVirtualProductTREE">
+<cfloop query="getTree">
 	<cfscript>
 		o={
 			PID=PRODUCT_ID,
