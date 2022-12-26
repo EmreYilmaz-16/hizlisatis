@@ -158,7 +158,7 @@
 	SELECT @@Identity AS MAX_ID      
 	SET NOCOUNT OFF
 </cfquery>
-    
+<CFSET RESULT_ID_PBS_ID= ADD_PRODUCTION_ORDER.MAX_ID>
 <cfquery name="upd_prod_order" datasource="#dsn3#"><!--- 1 OLUNCA ÜRETİM BAŞLAMIŞ OLUYOR! --->
 	UPDATE PRODUCTION_ORDERS SET IS_STAGE = 1 WHERE P_ORDER_ID =  #PARTNER_P_ORDER_ID#
 </cfquery>

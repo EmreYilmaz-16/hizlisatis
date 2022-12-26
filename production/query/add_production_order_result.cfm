@@ -22,3 +22,13 @@
 
 <cfset attributes.pr_order_id =ADD_PRODUCTION_ORDER.MAX_ID>
 <cfinclude template="/AddOns/Partner/production/Includes/add_ezgi_prod_order_result_stock.cfm">
+
+
+<cfquery name="UP" datasource="#DSN3#">
+    UPDATE VIRTUAL_PRODUCTION_ORDERS_RESULT SET REAL_RESULT_ID =  #RESULT_ID_PBS_ID# WHERE P_ORDER_ID=#attributes.V_P_ORDER_ID#
+</cfquery>
+
+<script>
+    window.opener.location.reload();
+    this.close();
+</script>

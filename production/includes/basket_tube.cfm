@@ -143,33 +143,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 		</cf_grid_list>
 	</cf_box>
 
-		<cf_box title="Üretim Sonuçları">
-		<cf_grid_list >
-			<tr>
-				<th></th>
-				<th>Ürün</th>
-				<th>Miktar</th>
-				<th>Birim</th>
-			</tr>
-			<CFLOOP query="getQUESTIONS">
-				<tr>
-					<th style="text-align:left;">
-						#QUESTION#
-					</th>					
-					<cfif isDefined("Eleman#QUESTION_ID#.STOCK_ID")>
-						<td>#evaluate("Eleman#QUESTION_ID#.PRODUCT_NAME")#</td>
-						<td>#evaluate("Eleman#QUESTION_ID#.AMOUNT")#</td>
-						<td>#evaluate("Eleman#QUESTION_ID#.MAIN_UNIT")#</td>
-					<cfelse>				
-					<td></td>
-					<td></td>
-					<td></td>
-					</cfif>
-					
-				</tr>
-			</CFLOOP>
-		</cf_grid_list>
-	</cf_box>
+		
 	</cfoutput>
 
 

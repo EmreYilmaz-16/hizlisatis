@@ -63,8 +63,51 @@
         </cfif>     
 <input type="hidden" name="total_price" id="total_price">
     </cfoutput>
-    
+    <cf_box title="Üretim Sonuçları">
+		<cf_grid_list >
+			<tr>
+				<th>#</th>
+				<th>Sanal Üretim Sonucu</th>
+				<th>Gerçek Üretim Sonucu</th>
+				<th>Miktar</th>
+                <th>Kaydeden</th>
+                <th>Kayıt Tarihi</th>
+			</tr>
+	<cfquery name="GETrES" datasource="#DSN3#">
+         SELECT POR.RESULT_NO,POR.RESULT_NUMBER,POR.RECORD_DATE,#dsn#.getEmployeeWithId(POR.RECORD_EMP) RECORD_EMP,VPOR.P_ORDER_RESULT_ID,VPOR.RESULT_AMOUNT FROM  workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS_RESULT  AS VPOR 
+LEFT JOIN workcube_metosan_1.PRODUCTION_ORDER_RESULTS AS POR ON VPOR.REAL_RESULT_ID=POR.PR_ORDER_ID
+
+ WHERE VPOR.P_ORDER_ID=#attributes.VP_ORDER_ID#
+    </cfquery>
+    <cfoutput>
+    <cfloop>
+        <tr>
+            <td>
+                #CurrentRow#
+            </td>
+            <td>
+                VPUS-#P_ORDER_RESULT_ID#
+            </td>
+            <td>
+                #RESULT_NO#
+            </td>
+            <td>
+                #RESULT_AMOUNT#
+            </td>
+            <td>
+                #RECORD_EMP#
+            </td>
+            <td>
+                #dateFormat(RECORD_DATE,"dd/mm/yyyy")#
+            </td>
+        </tr>
+    </cfloop>
+</cfoutput>
+		</cf_grid_list>
+	</cf_box>
+    <cfif GETrES.recordCount>
     <button type="button" class="btn btn-warning" onclick="saveVirtual(<cfoutput>#getVirtualProduct.product_type#,#getProductionOrders.IS_FROM_VIRTUAL#</cfoutput>)">Kaydet</button>
     <button type="button" class="btn btn-success" onclick="CloseProductionOrders(<cfoutput>#attributes.VP_ORDER_ID#</cfoutput>)">Üretimi Sonlandır</button>
+</cfif>
 </cfform>
 <script src="/AddOns/Partner/production/js/production_order.js"></script>
