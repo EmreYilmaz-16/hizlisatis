@@ -80,7 +80,7 @@ LEFT JOIN workcube_metosan_1.PRODUCTION_ORDER_RESULTS AS POR ON VPOR.REAL_RESULT
  WHERE VPOR.P_ORDER_ID=#attributes.VP_ORDER_ID#
     </cfquery>
     <cfoutput>
-    <cfloop>
+    <cfloop query="GETrES">
         <tr>
             <td>
                 #CurrentRow#
