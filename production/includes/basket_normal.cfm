@@ -1,4 +1,4 @@
-<cfdump var="#getProductionOrders#">
+
 <cfquery name="gets" datasource="#dsn3#">
     SELECT S.PRODUCT_ID
         ,S.STOCK_ID
