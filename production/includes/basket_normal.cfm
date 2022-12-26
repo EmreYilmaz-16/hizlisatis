@@ -22,6 +22,67 @@
 </cfquery>
 
 <cfquery name="getsTree" datasource="#dsn3#">
+   SELECT *
+	,PU.MAIN_UNIT
+	,(
+		SELECT TOP 1 PCE.DISCOUNT_RATE
+		FROM workcube_metosan_1.PRODUCT P
+			,workcube_metosan_1.PRICE_CAT_EXCEPTIONS PCE
+		LEFT JOIN workcube_metosan_1.PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
+		WHERE (
+				PCE.PRODUCT_ID = P.PRODUCT_ID
+				OR PCE.PRODUCT_ID IS NULL
+				)
+			AND (
+				PCE.BRAND_ID = P.BRAND_ID
+				OR PCE.BRAND_ID IS NULL
+				)
+			AND (
+				PCE.PRODUCT_CATID = P.PRODUCT_CATID
+				OR PCE.PRODUCT_CATID IS NULL
+				)
+			AND (
+				PCE.COMPANY_ID = 22143
+				OR PCE.COMPANY_ID IS NULL
+				)
+			AND P.PRODUCT_ID = S.PRODUCT_ID
+			AND ISNULL(PC.IS_SALES, 0) = 1
+			AND PCE.ACT_TYPE NOT IN (
+				2
+				,4
+				)
+			AND PC.PRICE_CATID = #getOfferMain.PRICE_CAT_ID#
+		) AS DISCOUNT_RATE
+FROM workcube_metosan_1.PRODUCT_TREE AS PT
+LEFT JOIN workcube_metosan_1.STOCKS AS S ON PT.RELATED_ID = S.STOCK_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID
+	AND IS_MAIN = 1
+LEFT JOIN (
+	SELECT P.UNIT
+		,P.PRICE
+		,P.PRICE_KDV
+		,P.PRODUCT_ID
+		,P.MONEY
+		,P.PRICE_CATID
+		,P.CATALOG_ID
+		,P.PRICE_DISCOUNT
+	FROM workcube_metosan_1.PRICE P
+		,workcube_metosan_1.PRODUCT PR
+	WHERE P.PRODUCT_ID = PR.PRODUCT_ID
+		AND P.PRICE_CATID = #getOfferMain.PRICE_CAT_ID#
+		AND (
+			P.STARTDATE <= getdate()
+			AND (
+				P.FINISHDATE >= getdate()
+				OR P.FINISHDATE IS NULL
+				)
+			)
+		AND ISNULL(P.SPECT_VAR_ID, 0) = 0
+	) AS GPA ON GPA.PRODUCT_ID = S.PRODUCT_ID
+	AND GPA.UNIT = PU.PRODUCT_UNIT_ID
+WHERE PT.STOCK_ID = #gets.STOCK_ID#
+   
+   <!-----------
     SELECT *,PU.MAIN_UNIT FROM PRODUCT_TREE AS PT 
     LEFT JOIN #dsn3#.STOCKS AS S ON PT.RELATED_ID = S.STOCK_ID
     LEFT JOIN #dsn3#.PRODUCT_UNIT as PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND IS_MAIN=1
@@ -50,7 +111,7 @@
                             )
                         )
                         AND ISNULL(P.SPECT_VAR_ID, 0) = 0 ) AS GPA ON GPA.PRODUCT_ID=S.PRODUCT_ID AND GPA.UNIT=PU.PRODUCT_UNIT_ID
-    WHERE PT.STOCK_ID =#gets.STOCK_ID#
+    WHERE PT.STOCK_ID =#gets.STOCK_ID#-------->
 </cfquery>
     <cfquery name="getQUESTIONS" datasource="#dsn3#">
         SELECT *
