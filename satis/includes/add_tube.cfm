@@ -15,7 +15,7 @@
 <cfform name="TubeForm">
 
     <cfoutput>
-    <div class="form-group">
+    <div class="form-group" style="display:none">
         <label>Uretim</label>
         <input type="checkbox" name="IsProduction" checked value="1">
     </div>

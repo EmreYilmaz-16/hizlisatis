@@ -985,6 +985,12 @@
                 INNER JOIN STOCKS AS SS ON SS.PRODUCT_ID=S.PRODUCT_ID                     
                WHERE PRODUCT_CATID=#arguments.PRODUCT_CATID# AND PRODUCT_DETAIL2='MASTER'
         </cfquery>
+
+        <cfquery name="getMasterShelf" datasource="#dsn3#">
+            SELECT SHELF_CODE FROM PRODUCT_PLACE_ROWS 
+            LEFT JOIN PRODUCT_PLACE ON PRODUCT_PLACE.PRODUCT_PLACE_ID=PRODUCT_PLACE_ROWS.PRODUCT_PLACE_ID
+            WHERE STOCK_ID=#getMaster.STOCK_ID#
+        </cfquery>
             <cfquery name="get_purchase_price_info" datasource="#dsn1#">
                 SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_STATUS = 1 AND PURCHASESALES = 1 AND PRODUCT_ID = #getMaster.PRODUCT_ID#
             </cfquery>
@@ -1213,7 +1219,7 @@
 <CFSET RETURN_VAL.TAX=getMaster.TAX>
 <CFSET RETURN_VAL.DISCOUNT_RATE=0>
 <CFSET RETURN_VAL.PRODUCT_TYPE=0>
-<CFSET RETURN_VAL.SHELF_CODE=''>
+<CFSET RETURN_VAL.SHELF_CODE='#getMasterShelf.SHELF_CODE#'>
 <CFSET RETURN_VAL.OTHER_MONEY=get_sales_price_info.MONEY>
 <CFSET RETURN_VAL.PRICE_OTHER=arguments.maliyet>
 <CFSET RETURN_VAL.OFFER_ROW_CURRENCY=-5>

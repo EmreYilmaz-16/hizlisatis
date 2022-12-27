@@ -243,7 +243,7 @@ ORDER BY VP_ID
     <cfoutput><div class="form-group"><h3> Ürün : <input type="text" name="product_name" value="#getVirtual.PRODUCT_NAME#"></h3></div></cfoutput>
 
     <cfoutput>
-    <div class="form-group">
+    <div class="form-group" style="display:none">
         <label>Uretim</label>
         <input type="checkbox" name="IsProduction" checked value="1">
     </div>
@@ -256,29 +256,6 @@ ORDER BY VP_ID
         
     <input type="hidden" name="vp_id" value="#attributes.id#">
     <input type="hidden" name="row_id" value="#attributes.row_id#">
-  <!----
-    Taslak 
-
-         <tr>
-            <th>Sağ Rekor</th>
-            <th>Miktar</th>
-            <th >İndirim</th>
-        </tr>
-        <tr>
-            <td></td>
-            <td><div class="form-group"></div></td>
-            <td><div class="form-group"></div></td>
-        </tr>    
-    ------>
-
-   
-    
-
-    
-   
-
-
-
     <table class="table">
         <tr>
             <th>Sol Rekor</th>
