@@ -162,7 +162,7 @@ function AddRow(
   );
 
   if (is_manuel == 1 && generalParamsSatis.workingParams.MANUEL_CONTROL == 1) {
-    tr.setAttribute("style", "background-color:#86b5ff75");
+    tr.setAttribute("style", "background-color:#86b5ff75 !important;");
   }
   tr.setAttribute("id", "row_" + row_count);
   tr.setAttribute("data-selected", "0");
