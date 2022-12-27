@@ -418,6 +418,18 @@
 			form_extra_cost = get_row_exit.PURCHASE_EXTRA_COST;
 			form_cost_id = get_row_exit.COST_ID;
 		</cfscript>
+		<cfquery name="getShelvesStc" datasource="#dsn3#">
+			select PPR.PRODUCT_PLACE_ID,PP.SHELF_CODE from PRODUCT_PLACE_ROWS AS PPR
+			LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
+			WHERE  PP.STORE_ID=#get_row.exit_dep_id# AND PP.LOCATION_ID=#get_row.exit_loc_id#
+		AND STOCK_ID=#_form_stocks_id_#
+		</cfquery>
+		<cfset shelf_id="">
+		<cfset shelf_number="">
+		<cfif getShelvesStc.recordCount>
+			<cfset shelf_id=getShelvesStc.PRODUCT_PLACE_ID>
+			<cfset shelf_number=getShelvesStc.SHELF_CODE>
+		</cfif>
 		<cfquery name="GET_UNIT" datasource="#DSN3#">
 			SELECT 
 				ADD_UNIT,
@@ -448,18 +460,7 @@
             </cfscript>
             <cfset form_spect_id = listgetat(main_to_spect,2,',')>
 		</cfif>
-        <cfquery name="getShelvesStc" datasource="#dsn3#">
-			select PPR.PRODUCT_PLACE_ID,PP.SHELF_CODE from PRODUCT_PLACE_ROWS AS PPR
-			LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
-			WHERE  PP.STORE_ID=#get_row.exit_dep_id# AND PP.LOCATION_ID=#get_row.exit_loc_id#
-		AND STOCK_ID=#_form_stocks_id_#
-		</cfquery>
-		<cfset shelf_id="">
-		<cfset shelf_number="">
-		<cfif getShelvesStc.recordCount>
-			<cfset shelf_id=getShelvesStc.PRODUCT_PLACE_ID>
-			<cfset shelf_number=getShelvesStc.SHELF_CODE>
-		</cfif>
+
 		<cfquery name="ADD_STOCK_FIS_ROW_2" datasource="#DSN3#">
 			INSERT INTO 
 				#dsn2_alias#.STOCK_FIS_ROW
@@ -708,7 +709,8 @@
 					OTHER_MONEY,
 					PRICE_OTHER,
 					COST_PRICE,
-					EXTRA_COST
+					EXTRA_COST,
+					SHELF_NUMBER
 					<!--- ,COST_ID --->
 				)
 				VALUES
@@ -733,7 +735,8 @@
 					'#form_other_money_currency#',
 					#form_other_money#,
 					#form_amount_price#,
-					#form_extra_cost#
+					#form_extra_cost#,
+					<cfif len(shelf_number)>'#shelf_number#'<cfelse>NULL</cfif>
 					<!--- ,<cfif len(form_cost_id)>#form_cost_id#<cfelse>NULL</cfif> --->
 				)
 			</cfquery>
@@ -751,7 +754,9 @@
 					STORE_LOCATION,
 					PROCESS_DATE,
 					SPECT_VAR_ID,
-					LOT_NO
+					LOT_NO,
+					SHELF_NUMBER
+
 				)
 				VALUES
 				(
@@ -764,7 +769,8 @@
 					#get_row_outage.exit_loc_id#,
 					#value_finish_date#,
 					<cfif len(form_spec_main_id) and form_spec_main_id gt 0>#form_spec_main_id#,<cfelse>null,</cfif>
-					<cfif len(get_row_exit.lot_no)>'#get_row_outage.lot_no#'<cfelse>null</cfif>
+					<cfif len(get_row_exit.lot_no)>'#get_row_outage.lot_no#'<cfelse>null</cfif>,
+						<cfif len(shelf_number)>'#shelf_number#'<cfelse>NULL</cfif>
 				)
 			</cfquery>
 		</cfoutput>
