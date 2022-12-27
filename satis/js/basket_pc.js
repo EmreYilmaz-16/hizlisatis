@@ -546,8 +546,8 @@ function UpdRow(
   discount_rate,
   row_id,
   currency = -1,
-  stock_code='',
-  main_unit='Adet',
+  stock_code = "",
+  main_unit = "Adet"
 ) {
   $("#product_id_" + row_id).val(pid);
   $("#stock_id_" + row_id).val(sid);
@@ -564,8 +564,8 @@ function UpdRow(
     $("#indirim1_" + row_id).val(discount_rate);
   }
   $("#orderrow_currency_" + row_id).val(currency);
-  $("#stock_code_"+row_id).val(stock_code)
-  $("#main_unit_"+row_id).val(main_unit)
+  $("#stock_code_" + row_id).val(stock_code);
+  $("#main_unit_" + row_id).val(main_unit);
   hesapla("price", row_id);
 }
 
@@ -951,10 +951,28 @@ function GetBasketData() {
   };
   return Order;
 }
+function KntO() {
+  var Hata = 0;
+  var rows = document.getElementsByClassName("sepetRow");
+  var Sip = document.getElementById("siparis");
+  var isChecked = $(Sip).is(":checked");
+
+  for (let i = 1; i <= rows.length; i++) {
+    var d = $("#orderrow_currency_" + i).val();
+    //console.log("Durum=" + d);
+    //console.log(parseInt(d) == -5);
+    //console.log(parseInt(d) == -2);
+    if ((parseInt(d) == -5 || parseInt(d) == -2) && !isChecked) {
+      alert("Sipariş Seçili Olması Gerekmektedir");
+      Hata = true;
+    }
+  }
+  if (Hata) return false;
+}
 
 function SaveOrder() {
   var BasketData = GetBasketData();
-  if (BasketData) {
+  if (BasketData && KntO()) {
     var mapForm = document.createElement("form");
     mapForm.target = "Map";
     mapForm.method = "POST"; // or "post" if appropriate
