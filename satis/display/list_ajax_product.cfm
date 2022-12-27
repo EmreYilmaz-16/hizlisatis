@@ -275,7 +275,7 @@ AddRow(
                         <cfif Len(kw) lt 2>
                             PRODUCT.PRODUCT_NAME LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
                             STOCKS.STOCK_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
-                            PRODUCT.PRODUCT_CODE_2 LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
+                           <!--- PRODUCT.PRODUCT_CODE_2 LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR---->
                             PRODUCT.PRODUCT_DETAIL LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
                             PRODUCT.MANUFACT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
                             PRODUCT_BRANDS.BRAND_NAME LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#kw#%"> COLLATE Turkish_CI_AS OR
@@ -283,7 +283,7 @@ AddRow(
                         <cfelse>
                             PRODUCT.PRODUCT_NAME LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
                             STOCKS.STOCK_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
-                            PRODUCT.PRODUCT_CODE_2 LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
+                            <!---- PRODUCT.PRODUCT_CODE_2 LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR---->
                             PRODUCT.PRODUCT_DETAIL LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
                             PRODUCT.MANUFACT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
                             PRODUCT_BRANDS.BRAND_NAME LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="%#kw#%"> COLLATE Turkish_CI_AS OR
