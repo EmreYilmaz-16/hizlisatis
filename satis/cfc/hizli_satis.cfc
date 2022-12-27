@@ -987,7 +987,7 @@
         </cfquery>
 
         <cfquery name="getMasterShelf" datasource="#dsn3#">
-            SELECT SHELF_CODE FROM PRODUCT_PLACE_ROWS 
+            SELECT SHELF_CODE,PRODUCT_PLACE_ID FROM PRODUCT_PLACE_ROWS 
             LEFT JOIN PRODUCT_PLACE ON PRODUCT_PLACE.PRODUCT_PLACE_ID=PRODUCT_PLACE_ROWS.PRODUCT_PLACE_ID
             WHERE STOCK_ID=#getMaster.STOCK_ID#
         </cfquery>
@@ -1207,6 +1207,9 @@
         	SPECT_MAIN_ID IN (#spec_main_id_list#)
     </cfquery>
 </cfif>
+<cfquery name="InsertShelfStock" datasource="#dsn3#">
+    INSERT INTO PRODUCT_PLACE_ROWS (PRODUCT_ID,STOCK_ID,PRODUCT_PLACE_ID,AMOUNT) VALUES (#main_product_id#,#main_stock_id#,#getMasterShelf.PRODUCT_PLACE_ID#,1)
+</cfquery>
 
 <CFSET RETURN_VAL.PRODUCT_ID=GET_PID.PRODUCT_ID>
 <CFSET RETURN_VAL.STOCK_ID=main_stock_id>
