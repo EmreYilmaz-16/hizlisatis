@@ -688,7 +688,10 @@ function hesapla(input, sira) {
         .getElementById("row_" + sira)
         .setAttribute("style", "background-color:#ff06005c");
     } else {
-      document.getElementById("row_" + sira).removeAttribute("style");
+      var exxc = parseInt(document.getElementById("is_manuel_" + sira).value);
+      if (exxc == 0) {
+        document.getElementById("row_" + sira).removeAttribute("style");
+      }
     }
   }
 
@@ -1600,6 +1603,5 @@ function moveRow(from_row_id, to_row_id) {
 
     hesapla("price", from_row_id);
     hesapla("price", to_row_id);
-    manuelControl();
   }
 }
