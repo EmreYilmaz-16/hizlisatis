@@ -22,9 +22,13 @@ LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=POR.STOCK_ID
 		<cfif isDefined("getProductionOrders")>
 		<cfoutput query="getProductionOrders">
 			<tr>
+				
 				<td>
 					<a href="/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#V_P_ORDER_ID#">#V_P_ORDER_NO#</a>
 				</td>
+				<td>#PRODUCT_NAME#</td>
+				<td>#NICKNAME#</td>
+				<td>#QUANTITY#</td>
 			</tr>
 		</cfoutput>
 		</cfif>
