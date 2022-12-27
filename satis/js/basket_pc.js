@@ -557,6 +557,7 @@ function manuelControl() {
     if (parseInt(ism) == 1) {
       $("#row_" + i).css("background", "#86b5ff75");
     }
+    hesapla("other_money", i);
   }
 }
 
@@ -1216,6 +1217,10 @@ function rowArrange() {
     product_id.setAttribute("id", "product_id_" + NeWid);
     product_id.setAttribute("name", "product_id_" + NeWid);
 
+    var is_manuel = document.getElementById("is_manuel_" + Old_rw_id);
+    is_manuel.setAttribute("id", "is_manuel_" + NeWid);
+    is_manuel.setAttribute("name", "is_manuel_" + NeWid);
+
     var stock_id = document.getElementById("stock_id_" + Old_rw_id);
     stock_id.setAttribute("id", "stock_id_" + NeWid);
     stock_id.setAttribute("name", "stock_id_" + NeWid);
@@ -1595,5 +1600,6 @@ function moveRow(from_row_id, to_row_id) {
 
     hesapla("price", from_row_id);
     hesapla("price", to_row_id);
+    manuelControl();
   }
 }

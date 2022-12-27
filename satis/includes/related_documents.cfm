@@ -21,7 +21,8 @@ LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
 
 <cfif getOrders.recordCount and len(getOrders.ORDER_ID)>
 <script>
-    $("#btnsave").attr("disabled","true")
+    $("#btnsave").attr("disabled","true");
+    $("#btnsave2").attr("disabled","true");
 </script>
 <cfquery name="GETSVK" datasource="#DSN3#">
  SELECT DELIVER_PAPER_NO,RECORD_DATE,SHIP_RESULT_ID  FROM #dsn3#.PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID IN(
