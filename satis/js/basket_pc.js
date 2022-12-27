@@ -240,6 +240,12 @@ function AddRow(
   i7.setAttribute("type", "hidden");
   i7.setAttribute("value", row_uniq_id);
 
+  var i8 = document.createElement("input");
+  i8.setAttribute("name", "is_manuel_" + row_count);
+  i8.setAttribute("id", "is_manuel_" + row_count);
+  i8.setAttribute("type", "hidden");
+  i8.setAttribute("value", is_manuel);
+  
   td.appendChild(i_1);
   td.appendChild(i_2);
   td.appendChild(i_3);
@@ -247,6 +253,7 @@ function AddRow(
   td.appendChild(i_5);
   td.appendChild(i_6);
   td.appendChild(i7);
+  td.appendChild(i8);
 
   var i_4 = document.createElement("input");
   i_4.setAttribute("name", "stock_code_" + row_count);
