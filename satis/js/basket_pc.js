@@ -155,10 +155,13 @@ function AddRow(
   var prc = price_other * rsss.RATE2;
 
   var tr = document.createElement("tr");
-  console.log("Manuel From Attributes"+is_manuel);
-  console.log("Manuel From Working Params"+generalParamsSatis.workingParams.MANUEL_CONTROL);
-  
-  if (is_manuel==1 && generalParamsSatis.workingParams.MANUEL_CONTROL) {
+  console.log("Manuel From Attributes" + is_manuel);
+  console.log(
+    "Manuel From Working Params" +
+      generalParamsSatis.workingParams.MANUEL_CONTROL
+  );
+
+  if (is_manuel == 1 && generalParamsSatis.workingParams.MANUEL_CONTROL == 1) {
     tr.setAttribute("style", "background-color:#86b5ff75");
   }
   tr.setAttribute("id", "row_" + row_count);
@@ -969,11 +972,10 @@ function KntO() {
       alert("Sipariş Seçili Olması Gerekmektedir");
       Hata = true;
     }
-    if(parseInt(d)==-1 && isChecked){
+    if (parseInt(d) == -1 && isChecked) {
       alert("Sipariş Yapmak İçin Açıkta Aşama Kalmış Olmaması Gerekmektedir ");
-      Hata=true;
+      Hata = true;
     }
-
   }
   if (Hata) return false;
   else return true;
