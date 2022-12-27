@@ -1,35 +1,6 @@
 ﻿
 <div >
- <table>
-    <tr>
-        <td colspan="2">
-            <div style="display:flex">
-            <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">
-                
-            <input type="checkbox" value="1" name="is_snl" checked id="snl_teklif" required onclick="snl_teklif_chek(this)">
-            <label style="display: inline;">Sanal Teklif</label>
-            </div>
-           
-            <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">            
-            <input type="checkbox" value="2" name="is_siparis" id="siparis" onclick="siparis_check(this)">
-            <label style="display: inline;">Sipariş</label>
-            </div>
-            
-            <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">       
-                
-            <input type="checkbox" value="3" name="is_sevkiyat" id="sevkiyat" onclick="isChCntPbs(this)">
-            <label style="display: inline;">Hazırlama</label>
-            </div>
-            <div class="form-group" id="sales_type_m" style="display:none">
-                
-                <input type="checkbox" value="4" name="sales_type" id="sales_type_1" >
-                <label style="display: inline;">Sevkiyat</label>
-                </div>
-             
-        </div>
-        </td>
-    </tr>
- </table>
+
 
 </div>
 <div style="clear:both"></div>
@@ -83,8 +54,37 @@
     </tbody>
   <tfoot>
     <tr style="position: sticky;bottom: 0;background: white;z-index: 1;">
-        <th colspan="11">
-            
+        <th colspan="12">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <div style="display:flex">
+                        <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">
+                            
+                        <input type="checkbox" value="1" name="is_snl" checked id="snl_teklif" required onclick="snl_teklif_chek(this)">
+                        <label style="display: inline;">Sanal Teklif</label>
+                        </div>
+                       
+                        <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">            
+                        <input type="checkbox" value="2" name="is_siparis" id="siparis" onclick="siparis_check(this)">
+                        <label style="display: inline;">Sipariş</label>
+                        </div>
+                        
+                        <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">       
+                            
+                        <input type="checkbox" value="3" name="is_sevkiyat" id="sevkiyat" onclick="isChCntPbs(this)">
+                        <label style="display: inline;">Hazırlama</label>
+                        </div>
+                        <div class="form-group" id="sales_type_m" style="display:none">
+                            
+                            <input type="checkbox" value="4" name="sales_type" id="sales_type_1" >
+                            <label style="display: inline;">Sevkiyat</label>
+                            </div>
+                         
+                    </div>
+                    </td>
+                </tr>
+             </table>
         </th>
         <th>İndirim</th>
         <th><input type="text" id="basket_bottom_discount" id="basket_bottom_discount" readonly></th>
