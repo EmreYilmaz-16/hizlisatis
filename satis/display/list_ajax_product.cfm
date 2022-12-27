@@ -189,7 +189,7 @@ AddRow(
         END    
     </cfquery>
     <cfset argkv=arguments.keyword>
-    <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
+   <!--- <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')>----><!--- % idi ; yaptik --->
              <cfsavecontent  variable="control5">
                 <cfdump  var="#argkv#">   
                 <br>
