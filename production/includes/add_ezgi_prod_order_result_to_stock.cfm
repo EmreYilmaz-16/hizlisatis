@@ -430,6 +430,12 @@
 			<cfset shelf_id=getShelvesStc.PRODUCT_PLACE_ID>
 			<cfset shelf_number=getShelvesStc.SHELF_CODE>
 		</cfif>
+		<cfsavecontent  variable="control5">
+			
+			<cfdump var="#getShelvesStc#">
+			
+		   </cfsavecontent>
+		   <cffile action="write" file = "c:\PBS\getShelvesStc_#currentrow#.html" output="#control5#"></cffile>
 		<cfquery name="GET_UNIT" datasource="#DSN3#">
 			SELECT 
 				ADD_UNIT,
