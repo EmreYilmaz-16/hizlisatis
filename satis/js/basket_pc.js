@@ -155,7 +155,7 @@ function AddRow(
   var prc = price_other * rsss.RATE2;
 
   var tr = document.createElement("tr");
-  if (is_manuel && generalParamsSatis.workingParams.MANUEL_CONTROL) {
+  if (is_manuel==1 && generalParamsSatis.workingParams.MANUEL_CONTROL) {
     tr.setAttribute("style", "background-color:#86b5ff75");
   }
   tr.setAttribute("id", "row_" + row_count);
