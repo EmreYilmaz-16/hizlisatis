@@ -245,7 +245,7 @@ function AddRow(
   i8.setAttribute("id", "is_manuel_" + row_count);
   i8.setAttribute("type", "hidden");
   i8.setAttribute("value", is_manuel);
-  
+
   td.appendChild(i_1);
   td.appendChild(i_2);
   td.appendChild(i_3);
@@ -514,6 +514,7 @@ function AddRow(
   var bask = document.getElementById("tbl_basket");
   bask.appendChild(tr);
   hesapla("other_money", rowCount);
+  manuelControl();
 }
 
 function AsamaYapici(rc, selv) {
@@ -546,6 +547,17 @@ function AsamaYapici(rc, selv) {
   sel_1.appendChild(opt);
   sel_1.value = selv;
   return sel_1;
+}
+
+function manuelControl() {
+  var rw = document.getElementsByClassName("sepetRow");
+  for (let i = 1; i <= rw.length; i++) {
+    var ism = document.getElementById("is_manuel_" + i).value;
+    console.log(ism);
+    if (parseInt(ism) == 1) {
+      $("#row_" + i).css("background", "#86b5ff75");
+    }
+  }
 }
 
 function UpdRow(
