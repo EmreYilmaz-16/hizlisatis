@@ -987,7 +987,7 @@
         </cfquery>
 
         <cfquery name="getMasterShelf" datasource="#dsn3#">
-            SELECT SHELF_CODE,PRODUCT_PLACE_ID FROM PRODUCT_PLACE_ROWS 
+            SELECT SHELF_CODE,PRODUCT_PLACE.PRODUCT_PLACE_ID FROM PRODUCT_PLACE_ROWS 
             LEFT JOIN PRODUCT_PLACE ON PRODUCT_PLACE.PRODUCT_PLACE_ID=PRODUCT_PLACE_ROWS.PRODUCT_PLACE_ID
             WHERE STOCK_ID=#getMaster.STOCK_ID#
         </cfquery>
