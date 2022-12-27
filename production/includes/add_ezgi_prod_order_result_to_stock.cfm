@@ -427,8 +427,8 @@
 		<cfset shelf_id="">
 		<cfset shelf_number="">
 		<cfif getShelvesStc.recordCount>
-			<cfset shelf_id=getShelvesStc.PRODUCT_PLACE_ID>
-			<cfset shelf_number=getShelvesStc.SHELF_CODE>
+			<cfset shelf_number=getShelvesStc.PRODUCT_PLACE_ID>
+			<cfset shelf_id=getShelvesStc.SHELF_CODE>
 		</cfif>
 		<cfsavecontent  variable="control5">
 			
