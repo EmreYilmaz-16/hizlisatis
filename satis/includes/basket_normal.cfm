@@ -1,6 +1,35 @@
 ﻿
 <div >
- 
+ <table>
+    <tr>
+        <td colspan="2">
+            <div style="display:flex">
+            <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">
+                
+            <input type="checkbox" value="1" name="is_snl" checked id="snl_teklif" required onclick="snl_teklif_chek(this)">
+            <label style="display: inline;">Sanal Teklif</label>
+            </div>
+           
+            <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">            
+            <input type="checkbox" value="2" name="is_siparis" id="siparis" onclick="siparis_check(this)">
+            <label style="display: inline;">Sipariş</label>
+            </div>
+            
+            <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">       
+                
+            <input type="checkbox" value="3" name="is_sevkiyat" id="sevkiyat" onclick="isChCntPbs(this)">
+            <label style="display: inline;">Hazırlama</label>
+            </div>
+            <div class="form-group" id="sales_type_m" style="display:none">
+                
+                <input type="checkbox" value="4" name="sales_type" id="sales_type_1" >
+                <label style="display: inline;">Sevkiyat</label>
+                </div>
+             
+        </div>
+        </td>
+    </tr>
+ </table>
 
 </div>
 <div style="clear:both"></div>
@@ -66,6 +95,7 @@
   </tfoot>
 </cf_ajax_list>
 </div>
+
 <div style="border-top: 1px solid #eaeaea;position: fixed;bottom: 0;width: 100%;margin-left: 0;left: 0;display:none">
     <table style="width:100%;text-align:center">
         <tr>
