@@ -968,6 +968,7 @@ function KntO() {
     }
   }
   if (Hata) return false;
+  else return true;
 }
 
 function SaveOrder() {
