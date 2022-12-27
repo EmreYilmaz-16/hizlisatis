@@ -19,6 +19,22 @@ LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=POR.STOCK_ID
 		</cfquery>
 	</cfif>	
 	<cf_big_list>
+		<thead>
+			<tr>
+				<th>
+					Üretim Emri
+				</th>
+				<th>
+					Ürün
+				</th>
+				<th>
+					Müşteri
+				</th>
+				<th>
+					Miktar
+				</th>
+			</tr>
+		</thead>
 		<cfif isDefined("getProductionOrders")>
 		<cfoutput query="getProductionOrders">
 			<tr>
