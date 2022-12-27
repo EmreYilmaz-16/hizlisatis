@@ -966,6 +966,11 @@ function KntO() {
       alert("Sipariş Seçili Olması Gerekmektedir");
       Hata = true;
     }
+    if(parseInt(d)==-1 && isChecked){
+      alert("Sipariş Yapmak İçin Açıkta Aşama Kalmış Olmaması Gerekmektedir ");
+      Hata=true;
+    }
+
   }
   if (Hata) return false;
   else return true;
