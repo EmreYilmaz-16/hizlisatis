@@ -972,30 +972,33 @@ function KntO() {
 
 function SaveOrder() {
   var BasketData = GetBasketData();
-  if (BasketData && KntO()) {
-    var mapForm = document.createElement("form");
-    mapForm.target = "Map";
-    mapForm.method = "POST"; // or "post" if appropriate
-    mapForm.action = "/index.cfm?fuseaction=sales.emptypopup_query_save_order";
+  if (KntO()) {
+    if (BasketData) {
+      var mapForm = document.createElement("form");
+      mapForm.target = "Map";
+      mapForm.method = "POST"; // or "post" if appropriate
+      mapForm.action =
+        "/index.cfm?fuseaction=sales.emptypopup_query_save_order";
 
-    var mapInput = document.createElement("input");
-    mapInput.type = "hidden";
-    mapInput.name = "data";
-    mapInput.value = JSON.stringify(BasketData);
-    mapForm.appendChild(mapInput);
+      var mapInput = document.createElement("input");
+      mapInput.type = "hidden";
+      mapInput.name = "data";
+      mapInput.value = JSON.stringify(BasketData);
+      mapForm.appendChild(mapInput);
 
-    document.body.appendChild(mapForm);
+      document.body.appendChild(mapForm);
 
-    map = window.open(
-      "/index.cfm?fuseaction=sales.emptypopup_query_save_order",
-      "Map",
-      "status=0,title=0,height=600,width=800,scrollbars=1"
-    );
+      map = window.open(
+        "/index.cfm?fuseaction=sales.emptypopup_query_save_order",
+        "Map",
+        "status=0,title=0,height=600,width=800,scrollbars=1"
+      );
 
-    if (map) {
-      mapForm.submit();
-    } else {
-      alert("You must allow popups for this map to work.");
+      if (map) {
+        mapForm.submit();
+      } else {
+        alert("You must allow popups for this map to work.");
+      }
     }
   }
 }
