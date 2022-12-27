@@ -2,7 +2,7 @@
 	<cfquery name="getEmpStation" datasource="#dsn3#">
 		SELECT CONVERT(INT,COMMENT) COMMENT,EMP_ID FROM workcube_metosan_1.WORKSTATIONS WHERE COMMENT IS NOT NULL AND EMP_ID LIKE '%#session.ep.userid#%'
 	</cfquery>
-	<cfif getEmpStation.recordCount and len(COMMENT)>	
+	<cfif getEmpStation.recordCount and len(getEmpStation.COMMENT)>	
 		<cfquery name="getProductionOrders" datasource="#dsn3#">			
 			SELECT * FROM (
 			select *,
