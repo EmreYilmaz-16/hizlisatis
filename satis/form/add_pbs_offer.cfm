@@ -4,7 +4,7 @@
     <cfinclude template="../includes/virtual_offer_parameters.cfm">
   <cf_box>
     <cfform name="product_form">
-    <cf_tab defaultOpen="sayfa_1" divId="sayfa_1,sayfa_2,sayfa_3"  divLang="<img src='/images/e-pd/customer.png' style='width:35px' > ;<img src='/images/e-pd/basket.png' style='width:35px'>;<img src='/images/e-pd/sigma.png' style='width:35px'>" >
+    <cf_tab defaultOpen="sayfa_1" divId="sayfa_1,sayfa_2,sayfa_3,sayfa_4"  divLang="<img src='/images/e-pd/customer.png' style='width:35px' > ;<img src='/images/e-pd/basket.png' style='width:35px'>;<img src='/images/e-pd/sigma.png' style='width:35px'>;<img src='/images/e-pd/star.png' style='width:35px'>" >
      
         <div id="unique_sayfa_1" class="ui-info-text uniqueBox">
             <cfinclude template="../includes/order_header_normal.cfm">
@@ -18,6 +18,7 @@
         <div id="unique_sayfa_3" class="ui-info-text uniqueBox">
             <cfinclude template="../includes/basket_footer_normal.cfm">
         </div>
+        <div id="unique_sayfa_4" class="ui-info-text uniqueBox"><cfinclude template="../includes/hizli_erisim_pc.cfm"></div>
     </cfform>
 </cf_box>
 
