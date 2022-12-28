@@ -234,6 +234,8 @@ function setCompany(id, name, partner_id, partner_name) {
     $("#SHIP_METHOD").val(compInfo.SHIP_METHOD)
     $("#SHIP_METHOD_ID").val(compInfo.SHIP_METHOD_ID)
     $("#VADE").val(compInfo.VADE)
+    $("#plasiyer").val(compInfo.PLASIYER);
+        $("#plasiyer_id").val(compInfo.PLASIYER_ID);
     console.log(compInfo);
     if (compInfo.BAKIYE.toString().length > 0)
         $("#BAKIYE").val("BAKIYE: " + commaSplit(compInfo.BAKIYE));
