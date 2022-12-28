@@ -52,7 +52,10 @@ LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
 <cfoutput query="getProductionOrders">
 <tr>
     <td>
-        <a onclick="windowopen('/index.cfm?fuseaction=production.emptypopup_detail_virtual_production_orders&p_order_id=#V_P_ORDER_ID#')" href="##_#V_P_ORDER_ID#">#V_P_ORDER_NO#</a>
+        <a onclick="windowopen('/index.cfm?fuseaction=production.emptypopup_detail_virtual_production_orders&p_order_id=#V_P_ORDER_ID#')" href="##_#V_P_ORDER_ID#">#V_P_ORDER_NO#- Detay</a>
+    </td>
+    <td>
+        <a onclick="windowopen('/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#V_P_ORDER_ID#')" href="##_#V_P_ORDER_ID#">#V_P_ORDER_NO# Aç</a>
     </td>
 </tr>
 </cfoutput>
