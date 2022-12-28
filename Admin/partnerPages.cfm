@@ -15,6 +15,9 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
 ) AS T ORDER BY FAMILY,MODULE,WRK_OBJECTS_ID
 </cfquery>
 <cf_box title="Sayfa Listesi">
+    <div class="form-group">
+        <input type="text" id="Search" name="Search" placeholder="Search">
+    </div>1
 <cf_grid_list id="tblPages">
     <thead>
         <tr>
@@ -58,3 +61,14 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
 </tbody>
 </cf_grid_list>
 </cf_box>
+
+<script>
+    $(document).ready(function(){
+  $("#Search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tblPages tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
