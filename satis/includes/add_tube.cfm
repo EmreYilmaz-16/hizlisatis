@@ -182,8 +182,8 @@
 </table>
 <br>
 <div style="display:flex;justify-content: space-around;align-items: center;align-content: space-between;flex-wrap: nowrap;">
-<button type="button" onclick="saveVirtualTube('#dsn3#','#attributes.modal_id#')" class="btn btn-primary">Save Virtual Tube</button>
-<button type="button" onclick="SaveTube('#dsn3#','#attributes.modal_id#')" class="btn btn-success">Save  Tube</button>
+<button type="button" onclick="saveVirtualTube('#dsn3#','#attributes.modal_id#')" class="btn btn-primary">Sanal Ürün Kaydet</button>
+<button type="button" onclick="SaveTube('#dsn3#','#attributes.modal_id#')" class="btn btn-success">Ürün Kaydet</button>
 <button type="button" onclick="closeBoxDraggable('#attributes.modal_id#')" class="btn btn-danger">Kapat</button>
 </div>
 </cfoutput>

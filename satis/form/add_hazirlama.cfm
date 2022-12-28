@@ -1,8 +1,8 @@
 ﻿<cf_box title="Ürün Hazırla">
     <cfform name="sf"></cfform>
 <cfquery name="getS" datasource="#dsn3#">
-SELECT  AMOUNT,DELIVER_DEPT,DELIVER_LOCATION,PRODUCT_NAME,PRODUCT_PLACE_ID,QUANTITY,SHELF_CODE,SHIP_RESULT_ROW_ID,STOCK_ID FROM (
-SELECT ORR.QUANTITY,SF.AMOUNT,S.PRODUCT_NAME,PP.SHELF_CODE,ORR.DELIVER_DEPT,ORR.DELIVER_LOCATION,S.STOCK_ID,SRR.SHIP_RESULT_ROW_ID,PP.PRODUCT_PLACE_ID FROM #dsn3#.PRTOTM_SHIP_RESULT_ROW AS SRR
+SELECT  AMOUNT,DELIVER_DEPT,DELIVER_LOCATION,PRODUCT_NAME,PRODUCT_PLACE_ID,QUANTITY,SHELF_CODE,SHIP_RESULT_ROW_ID,STOCK_ID,DETAIL_INFO_EXTRA FROM (
+SELECT ORR.QUANTITY,SF.AMOUNT,S.PRODUCT_NAME,PP.SHELF_CODE,ORR.DELIVER_DEPT,ORR.DELIVER_LOCATION,S.STOCK_ID,SRR.SHIP_RESULT_ROW_ID,PP.PRODUCT_PLACE_ID,ORR.DETAIL_INFO_EXTRA FROM #dsn3#.PRTOTM_SHIP_RESULT_ROW AS SRR
 LEFT JOIN #dsn3#.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID=SRR.ORDER_ROW_ID
 LEFT JOIN #dsn3#.PRTOTM_SHIP_RESULT AS SR ON SR.SHIP_RESULT_ID=SRR.SHIP_RESULT_ID
 LEFT JOIN (
@@ -29,6 +29,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
             <th>Raf</th>
             <th>Ürüm</th>
             <th>Miktar</th>
+            <th>Ölçü</th>
             <th></th>
 
         </tr>
@@ -44,6 +45,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
                 #SHELF_CODE#</td>
             <td>#PRODUCT_NAME#</td>
             <td style="width:15%"><div class="form-group"><input type="text" name="quantity#currentrow#" value="#tlformat(QUANTITY,2)#" style="padding-right: 0;text-align: right"></div></td>
+            <td>#DETAIL_INFO_EXTRA#</td>
             <td style="width:%10"><button style="width:100%" type="button" <cfif AMOUNT GTE QUANTITY>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#currentrow#" onclick="checkT(#currentrow#)">
                 <cfif AMOUNT GTE QUANTITY>&##10003<cfelse>X</cfif>
             </button>

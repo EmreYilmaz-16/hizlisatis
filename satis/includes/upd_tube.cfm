@@ -433,8 +433,8 @@ ORDER BY VP_ID
 </table>
 <br>
 <div style="display:flex;justify-content: space-around;align-items: center;align-content: space-between;flex-wrap: nowrap;">
-<button type="button" onclick="UpdVirtualTube('#dsn3#','#attributes.modal_id#')" class="btn btn-primary">Update Virtual Tube</button>
-<button type="button" class="btn btn-success" onclick="SaveTube('#dsn3#','#attributes.modal_id#',1)">Save  Tube</button>
+<button type="button" onclick="UpdVirtualTube('#dsn3#','#attributes.modal_id#')" class="btn btn-primary">Sanal Ürün Güncelle</button>
+<button type="button" class="btn btn-success" onclick="SaveTube('#dsn3#','#attributes.modal_id#',1)">Ürün Kaydet</button>
 <button type="button" onclick="closeBoxDraggable('#attributes.modal_id#')" class="btn btn-danger">Kapat</button>
 </div>
 </cfoutput>
