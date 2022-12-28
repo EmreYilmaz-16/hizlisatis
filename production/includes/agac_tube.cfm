@@ -12,7 +12,7 @@
 		</th>					
 		<cfif isDefined("Eleman#QUESTION_ID#.STOCK_ID")>
 		<td>#evaluate("Eleman#QUESTION_ID#.PRODUCT_NAME")#</td>
-		<td>#evaluate("Eleman#QUESTION_ID#.AMOUNT")*1000#</td>
+		<td><cfif QUESTION_ID eq 2>#evaluate("Eleman#QUESTION_ID#.AMOUNT")*1000#<cfelse>#evaluate("Eleman#QUESTION_ID#.AMOUNT")#</cfif></td>
 		<td>#evaluate("Eleman#QUESTION_ID#.MAIN_UNIT")#</td>
 		<cfelse>				
 		<td></td>
