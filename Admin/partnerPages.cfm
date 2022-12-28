@@ -21,6 +21,7 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
 <cf_grid_list id="tblPages">
     <thead>
         <tr>
+            <th>##</th>
             <th>
                 Sayfa
             </th>
@@ -42,6 +43,7 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
     <tbody>
     <cfoutput query="getPages">
         <tr>
+            <td>#currentrow#</td>
             <td>
                 #HEAD#
             </td>

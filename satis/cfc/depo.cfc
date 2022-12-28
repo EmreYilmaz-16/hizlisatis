@@ -71,6 +71,7 @@ AND ORR.DELIVER_DEPT IN(#arguments.DEPARTMENT_ID#)
 AND ORR.DELIVER_LOCATION IN (#arguments.LOCATION_ID#)
 AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
 AND SRR.PREPARE_PERSONAL IS NULL
+
         </cfquery>
         
         <cfset workArr=arrayNew(1)>
