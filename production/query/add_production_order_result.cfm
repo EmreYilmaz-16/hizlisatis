@@ -28,6 +28,16 @@
     UPDATE VIRTUAL_PRODUCTION_ORDERS_RESULT SET REAL_RESULT_ID =  #RESULT_ID_PBS_ID# WHERE P_ORDER_ID=#attributes.V_P_ORDER_ID#
 </cfquery>
 
+<cfquery name="up1" datasource="#dsn3#">
+update  #dsn3#.PBS_OFFER_ROW set PBS_OFFER_ROW_CURRENCY=-6 WHERE UNIQUE_RELATION_ID=(select UNIQUE_RELATION_ID from #dsn3#.VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#)
+
+</cfquery>
+
+<cfquery name="up2" datasource="#dsn3#">
+   
+    update #dsn3#.ORDER_ROW set ORDER_ROW_CURRENCY=-6 WHERE UNIQUE_RELATION_ID=(select UNIQUE_RELATION_ID from #dsn3#.VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#)
+    </cfquery>
+
 <script>
     window.opener.location.reload();
     this.close();
