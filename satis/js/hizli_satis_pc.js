@@ -49,6 +49,8 @@ function fillFields() {
         $("#item-comp_info input[readonly]").val('');
         let comp_id = $('#company_id_').val();
         let compInfo = GetAjaxQuery("CompanyInfo", comp_id);
+        console.log("Buralarda Çalıştı")
+        console.log(comp_info)
         $("#city_name").val(compInfo.CITY);
         $("#county_name").val(compInfo.COUNTY);
         $("#tax_no").val(compInfo.TAXNO);
