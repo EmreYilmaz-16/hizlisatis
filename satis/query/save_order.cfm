@@ -81,6 +81,7 @@ select count(*) AS RC from PBS_OFFER
 <cfdump var="#FormData#">
 
 <cfset wrq=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT","INTEGER,INTEGER,INTEGER,INTEGER,,VARCHAR,DECIMAL")>
+
 <cfloop array="#BasketRows#" item="it" index="i">
     
     <!----<cfif it.is_virtual eq 1 or it.---->
@@ -108,11 +109,14 @@ select count(*) AS RC from PBS_OFFER
     <cfset "attributes.other_money_#i#"=it.other_money>
     <cfset "attributes.other_money_value_#i#"=(filternum(it.price_other)*filternum(it.amount))-((filternum(it.price_other)*filternum(it.amount))*filternum(it.indirim1))/100>
     <cfset "attributes.price_other#i#"=filternum(it.price_other)>
+   
     <cfif isDefined("it.row_uniq_id") and len(it.row_uniq_id)>
         <cfset "attributes.row_unique_relation_id#i#"=it.row_uniq_id>
     <cfelse>
         <cfset "attributes.row_unique_relation_id#i#"="PBS#session.ep.userid##dateFormat(now(),"yyyymmdd")##timeFormat(now(),"hhmmnnl")#">
     </cfif>
+   
+   
     <cfset "attributes.RELATED_ACTION_TABLE#i#"="PBS_OFFER_ROW">
     <cfset "attributes.PBS_OFFER_ROW_CURRENCY#i#"=it.orderrow_currency>
     <cfset "attributes.order_currency#i#"=it.orderrow_currency>

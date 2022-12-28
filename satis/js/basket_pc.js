@@ -238,7 +238,12 @@ function AddRow(
   i7.setAttribute("name", "row_uniq_id_" + row_count);
   i7.setAttribute("id", "row_uniq_id_" + row_count);
   i7.setAttribute("type", "hidden");
-  i7.setAttribute("value", row_uniq_id);
+  if (row_uniq_id.length > 0) {
+    i7.setAttribute("value", row_uniq_id);
+  } else {
+    var rwuid = GenerateUniqueId();
+    i7.setAttribute("value", rwuid);
+  }
 
   var i8 = document.createElement("input");
   i8.setAttribute("name", "is_manuel_" + row_count);
@@ -930,8 +935,8 @@ function GetBasketData() {
   var basket_rate_2 = document.getElementById(
     "_txt_rate2_" + checkedValue
   ).value;
-  var PLASIYER=document.getElementById("plasiyer").value;
-  var PLASIYER_ID=document.getElementById("plasiyer_id").value;
+  var PLASIYER = document.getElementById("plasiyer").value;
+  var PLASIYER_ID = document.getElementById("plasiyer_id").value;
   var BASKET_RATE_1 = filterNum(basket_rate_1, 4);
   var BASKET_RATE_2 = filterNum(basket_rate_2, 4);
   var Fs = getParameterByName("fuseaction");
@@ -955,8 +960,8 @@ function GetBasketData() {
     COUNTY_ID: COUNTY_ID,
     ISLEM_TIPI_PBS: ISLEM_TIPI_PBS,
     PRICE_CATID: PRICE_CATID,
-    PLASIYER:PLASIYER,
-    PLASIYER_ID:PLASIYER_ID,
+    PLASIYER: PLASIYER,
+    PLASIYER_ID: PLASIYER_ID,
     FACT: Fs,
   };
 
@@ -1608,4 +1613,17 @@ function moveRow(from_row_id, to_row_id) {
     hesapla("price", from_row_id);
     hesapla("price", to_row_id);
   }
+}
+
+function GenerateUniqueId() {
+  var d = new Date();
+  var dy = d - 1;
+  var dd = d.toISOString().split("T")[0];
+  var ds = d.toISOString().split("T")[1];
+  var dd1 = dd.replaceAll("-", "");
+  var ds1 = ds.replaceAll(":", "");
+  ds1 = ds1.replaceAll(".", "");
+  console.log(ds1);
+  var RelId = "PBS" + generalParamsSatis.userData.user_id + "" + dd1 + "" + ds1;
+  return RelId;
 }
