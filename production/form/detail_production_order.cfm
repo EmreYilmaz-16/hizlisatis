@@ -77,7 +77,7 @@
 			WHERE QUESTION_PRODUCT_TYPE = #gets.PRODUCT_TYPE#
 		</cfquery>
 </cfif>
-<cf_box title="Üretim Emri #getPo.V_P_ORDER_NO#">
+<cf_box title="Üretim Emri #getPo.V_P_ORDER_NO#" print_href="/index.cfm?fuseaction=objects.popup_print_files&action=production.list_production_orders&action_id=#attributes.P_ORDER_ID#&print_type=1450">
 	<cfoutput>
 	<table style="width:100%">
 		<tr>
