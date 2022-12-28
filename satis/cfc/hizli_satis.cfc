@@ -1198,6 +1198,8 @@
 </cfif>
 <cfinclude template="/AddOns/Partner/satis/Includes/add_spect_main_ver.cfm">
 <cfif len(spec_main_id_list)>
+    <cfset spec_main_id_list=ListToArray(spec_main_id_list)>
+<cfset spec_main_id_list=ArrayToList(spec_main_id_list)>
     <cfquery name="get_spec_main" datasource="#dsn3#">
     	UPDATE 
         	SPECT_MAIN_ROW
