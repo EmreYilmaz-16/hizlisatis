@@ -37,6 +37,12 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
             <th>
                 Family
             </th>
+            <th>
+                <CFFILE ACTION="READ" file="/#FILE_PATH#" variable="myfile">
+<cfset myfilelist = myfile>
+<cfset linecount = listlen(myfilelist,chr(13))>
+<cfoutput>#linecount#</cfoutput>
+            </th>
             <th></th>
         </tr>
     </thead>
