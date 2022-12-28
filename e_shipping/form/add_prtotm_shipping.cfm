@@ -106,10 +106,7 @@
 				FROM            
                 	#dsn2_alias#.GET_STOCK_LAST_LOCATION
 				WHERE  
-                	<cfif len(default_dep) and len(default_loc)>     
-                        LOCATION_ID = #default_loc# AND 
-                        DEPARTMENT_ID = #default_dep# AND 
-                    </cfif>
+                	
                     STOCK_ID = ORR.STOCK_ID
            	) AS DEPO
 		FROM
