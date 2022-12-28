@@ -520,6 +520,7 @@ function AddRow(
   bask.appendChild(tr);
   hesapla("other_money", rowCount);
   manuelControl();
+  RowControlForVirtual()
 }
 
 function AsamaYapici(rc, selv) {
