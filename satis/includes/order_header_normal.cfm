@@ -77,7 +77,7 @@
         </td>
     </tr>
 <tr>
-    <td colspan="2">
+    <td >
         <div class="form-group">
             <label>Sevk Adresi</label>
         <div class="input-group">
@@ -88,6 +88,13 @@
             <span class="input-group-addon btnPointer icon-ellipsis" onClick="add_adress();"></span>
         </div>
     </div>
+    </td>
+    <td>
+        <div class="form-group">    
+            <label>Temsilci</label> 
+            <input type="text"  name="plasiyer" id="plasiyer">
+            <input type="hidden" name="plasiyer_id"  id="plasiyer_id">                
+        </div>
     </td>
 </tr>
 
