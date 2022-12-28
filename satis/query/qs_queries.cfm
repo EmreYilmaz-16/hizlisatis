@@ -61,7 +61,8 @@
                 EP.EMPLOYEE_NAME,
                 EP.EMPLOYEE_SURNAME,
                 SM.SHIP_METHOD_ID,
-	            SM.SHIP_METHOD
+	            SM.SHIP_METHOD,
+                EP.EMPLOYEE_ID
         </cfquery>
         <cfquery name="getPriceLists" datasource="#dsn3#">
             SELECT
@@ -105,6 +106,13 @@
         <cfset CompInfoStruct.BAKIYE = GetCompInfo.BAKIYE>
         <cfset CompInfoStruct.RISK = GetCompInfo.RISK>
         <cfset CompInfoStruct.PLASIYER = GetCompInfo.PLASIYER>
+        <cfif len(GetCompInfo.PLASIYER)>
+            <cfset CompInfoStruct.PLASIYER = GetCompInfo.PLASIYER>
+            <cfset CompInfoStruct.PLASIYER_ID = GetCompInfo.PLASIYER_ID>
+        <cfelse>
+            <cfset CompInfoStruct.PLASIYER = '#session.ep.NAME# #session.ep.SURNAME#'>
+            <cfset CompInfoStruct.PLASIYER_ID = session.ep.userid>
+        </cfif>
         <cfset CompInfoStruct.PRICE_LISTS = ArrayNew(1)>
         <cfloop query="getPriceLists">
             <cfset PriceListStruct = StructNew()>
