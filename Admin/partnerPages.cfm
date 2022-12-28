@@ -63,10 +63,9 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
                 #FAMILY#
             </td>
             <td>
-                <CFFILE ACTION="READ" file="/#FILE_PATH#" variable="myfile">
-                <cfset myfilelist = myfile>
-                <cfset linecount = listlen(myfilelist,chr(13))>
-                <cfoutput>#linecount#</cfoutput>
+      
+                #expandPath(FILE_PATH)#
+                #getCurrentTemplatePath()#
             </td>
             <td>
                 <a href="index.cfm?fuseaction=dev.wo&event=upd&fuseact=#FULL_FUSEACTION#&woid=#WRK_OBJECTS_ID#" target="_blank">Güncelle</a>
