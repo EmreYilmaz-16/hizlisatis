@@ -55,6 +55,9 @@ function fillFields() {
         $("#phone").val(compInfo.PHONE);
         $("#customer_value").val(compInfo.CUSTOMER_VALUE);
 
+        $("#plasiyer").val(compInfo.PLASIYER);
+        $("#plasiyer_id").val(compInfo.PLASIYER_ID);
+
         fillPayMethod(compInfo.PAYMETHOD, compInfo.PAYMETHOD_ID, compInfo.VADE, compInfo.PAYMENT_VEHICLE, 1);
 
         if (compInfo.BAKIYE.toString().length > 0)

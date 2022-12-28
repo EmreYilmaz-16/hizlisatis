@@ -930,6 +930,8 @@ function GetBasketData() {
   var basket_rate_2 = document.getElementById(
     "_txt_rate2_" + checkedValue
   ).value;
+  var PLASIYER=document.getElementById("plasiyer").value;
+  var PLASIYER_ID=document.getElementById("plasiyer_id").value;
   var BASKET_RATE_1 = filterNum(basket_rate_1, 4);
   var BASKET_RATE_2 = filterNum(basket_rate_2, 4);
   var Fs = getParameterByName("fuseaction");
@@ -953,6 +955,8 @@ function GetBasketData() {
     COUNTY_ID: COUNTY_ID,
     ISLEM_TIPI_PBS: ISLEM_TIPI_PBS,
     PRICE_CATID: PRICE_CATID,
+    PLASIYER:PLASIYER,
+    PLASIYER_ID:PLASIYER_ID,
     FACT: Fs,
   };
 
