@@ -520,7 +520,7 @@ function AddRow(
   bask.appendChild(tr);
   hesapla("other_money", rowCount);
   manuelControl();
-  RowControlForVirtual()
+  RowControlForVirtual();
 }
 
 function AsamaYapici(rc, selv) {
@@ -582,7 +582,7 @@ function UpdRow(
   main_unit = "Adet"
 ) {
   console.log("Basket PC Upd Row");
-  console.log(arguments)
+  console.log(arguments);
   $("#product_id_" + row_id).val(pid);
   $("#stock_id_" + row_id).val(sid);
   $("#is_virtual_" + row_id).val(is_virtual);
@@ -601,7 +601,7 @@ function UpdRow(
   $("#stock_code_" + row_id).val(stock_code);
   $("#main_unit_" + row_id).val(main_unit);
   hesapla("price", row_id);
-  RowControlForVirtual()
+  RowControlForVirtual();
 }
 
 function ShelfControl(pid, RafCode) {
@@ -1339,6 +1339,9 @@ function RowControlForVirtual() {
     document.getElementById("siparis").setAttribute("disabled", "true");
     document.getElementById("sevkiyat").setAttribute("disabled", "true");
     $(document.getElementById("snl_teklif")).click();
+  } else {
+    document.getElementById("siparis").removeAttribute("disabled");
+    document.getElementById("sevkiyat").removeAttribute("disabled");
   }
 }
 
