@@ -46,7 +46,7 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
                 #HEAD#
             </td>
             <td>
-                #FULL_FUSEACTION#
+               <a href="/index.cfm?fuseaction=#FULL_FUSEACTION#" target="_blank">#FULL_FUSEACTION#</a>
             </td>
             <td>
                 #FILE_PATH#
