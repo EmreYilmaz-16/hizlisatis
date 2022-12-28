@@ -11,8 +11,9 @@ LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
             <tr>
                 <td><a onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#','page')"> #ORDER_NUMBER#</a></td>
                 <td>#ORDER_HEAD#</td>
-                <td>#dateformat(RECORD_DATE,"dd/mm/yyyy")#</td>
+                <td>#dateformat(RECORD_DATE,"dd/mm/yyyy")#</td>                
                 <td><a onclick=" windowopen('index.cfm?fuseaction=eshipping.emptypopup_add_prtotm_shipping&order_id=#ORDER_ID#','wide')">Sevk Talebi</a></td>
+                <td><a onclick="windowopen('index.cfm?fuseaction=objects.popup_print_files&action=sales.list_order&action_id=#ORDER_ID#&print_type=73')"><i class="icon-print"></i></a></td>
             </tr>
         </cfoutput>
     </cf_ajax_list>
