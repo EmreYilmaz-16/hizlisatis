@@ -599,6 +599,7 @@ function UpdRow(
   $("#stock_code_" + row_id).val(stock_code);
   $("#main_unit_" + row_id).val(main_unit);
   hesapla("price", row_id);
+  RowControlForVirtual()
 }
 
 function ShelfControl(pid, RafCode) {
