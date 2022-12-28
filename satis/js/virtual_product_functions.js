@@ -36,6 +36,7 @@ function saveProduct(modal_id) {
       console.log(retDat);
       var obj = JSON.parse(retDat);
       if (obj.ROW_ID != 0) {
+        console.log("Row Id Geldi Update Çalışacak");
         UpdRow(
           obj.PRODUCT_ID,
           obj.STOCK_ID,
@@ -51,6 +52,7 @@ function saveProduct(modal_id) {
           obj.MAIN_UNIT
         );
       } else {
+        console.log("Row Id Gelmedi Update Add Çalışacak");
         AddRow(
           obj.PRODUCT_ID,
           obj.STOCK_ID,
@@ -91,6 +93,7 @@ function UpdateVirtualOfferProduct(modal_id) {
     data: formData,
     success: function (retDat) {
       console.log(retDat);
+      console.log("Çok Boktan Bir Yer Çalışıyor");
       var obj = JSON.parse(retDat);
       UpdRow(obj.PID, "", 1, 0, 0, obj.NAME, 18, 0, obj.ROW_ID, -1);
       closeBoxDraggable(modal_id);
@@ -105,6 +108,7 @@ function saveVirtualOfferProduct(modal_id) {
     success: function (retDat) {
       console.log(retDat);
       var obj = JSON.parse(retDat);
+      console.log("Çok Boktan Bir Yer Çalışıyor2");
       AddRow(
         obj.PID,
         0,

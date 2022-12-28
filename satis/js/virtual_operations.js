@@ -219,18 +219,6 @@ function UpdVirtualTube(dsn3, modal_id) {
 
 }
 
-function UpdRow(pid, sid, is_virtual, qty, price, p_name, tax, discount_rate, row_id) {
-    debugger;
-    $("#product_id_" + row_id).val(pid)
-    $("#stock_id_" + row_id).val(sid)
-    $("#is_virtual_" + row_id).val(is_virtual)
-    $("#amount_" + row_id).val(qty)
-    $("#price_" + row_id).val(price)
-    $("#product_name_" + row_id).val(p_name)
-    $("#Tax_" + row_id).val(tax)
-    $("#indirim1_" + row_id).val(discount_rate)
-    hesapla("price", row_id)
-}
 
 
 
