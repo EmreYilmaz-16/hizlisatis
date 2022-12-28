@@ -1,4 +1,4 @@
-<cfquery name="getPages" datasource="#dsn3#">
+﻿<cfquery name="getPages" datasource="#dsn3#">
     SELECT * FROM (
 SELECT WO.WRK_OBJECTS_ID,WO.HEAD,WO.FULL_FUSEACTION,WO.FILE_PATH,WM.MODULE,WF.FAMILY,WS.SOLUTION FROM workcube_metosan.WRK_OBJECTS AS WO
 	LEFT JOIN workcube_metosan.WRK_MODULE AS WM ON WM.MODULE_NO=WO.MODULE_NO
