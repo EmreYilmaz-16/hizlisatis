@@ -14,8 +14,28 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
 
 ) AS T ORDER BY FAMILY,MODULE,WRK_OBJECTS_ID
 </cfquery>
-
-<table id="tblPages">
+<cf_box title="Sayfa Listesi">
+<cf_grid_list id="tblPages">
+    <thead>
+        <tr>
+            <th>
+                Sayfa
+            </th>
+            <th>
+                Fuseaction
+            </th>
+            <th>
+                Dosya Yolu
+            </th>
+            <th>
+                Modül
+            </th>
+            <th>
+                Family
+            </th>
+        </tr>
+    </thead>
+    <tbody>
     <cfoutput query="getPages">
         <tr>
             <td>
@@ -35,4 +55,6 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
             </td>
         </tr>
     </cfoutput>
-</table>
+</tbody>
+</cf_grid_list>
+</cf_box>
