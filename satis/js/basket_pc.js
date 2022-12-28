@@ -581,6 +581,8 @@ function UpdRow(
   stock_code = "",
   main_unit = "Adet"
 ) {
+  console.log("Basket PC Upd Row");
+  console.log(arguments)
   $("#product_id_" + row_id).val(pid);
   $("#stock_id_" + row_id).val(sid);
   $("#is_virtual_" + row_id).val(is_virtual);
