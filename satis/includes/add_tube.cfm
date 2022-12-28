@@ -73,7 +73,10 @@
 
                 <label style="width: 100%;font-size:6pt;color:red" id="Tube_lbs"></label>
             </div></td>
-            <td><div class="form-group"><input type="text" name="Tube_Qty" id="Tube_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)">MM</div></td>
+            <td><div class="form-group">
+                <div class="input-group">
+                <input type="text" name="Tube_Qty" id="Tube_Qty" style="padding-right: 1px;text-align:right" value="#tlformat(1)#" onkeyup="calculateTubeRow(this)"><span class="input-group-addon">MM</span>
+                </div></div></td>
             <td><div class="form-group"><input type="text" name="Tube_DSC" id="Tube_DSC" style="padding-right: 1px;text-align:right" value="#tlformat(0)#" onkeyup="calculateTubeRow(this)"></div></td>
         </tr>
           <tr>

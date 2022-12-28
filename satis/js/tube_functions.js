@@ -197,6 +197,7 @@ function CalculateTube() {
         TotalValue+=ax;
 
         Tube_Qty=parseFloat(filterNum(commaSplit(Tube_Qty)))
+        Tube_Qty=Tube_Qty/1000;
         Tube_DSC=parseFloat(filterNum(commaSplit(Tube_DSC)))
         var ax=DegerLeriHesapla(Tube_Prc,Tube_DSC,Tube_Qty,Tube_MNY);
         document.getElementById("Tube_TTL").value=ax;
