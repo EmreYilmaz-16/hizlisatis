@@ -385,7 +385,7 @@ function SaveTube(dsn3, modal_id, tip = 0) {
             success: function (retDat) {                
                 var obj = JSON.parse(retDat)
                 if (obj.ROW_ID.length > 0) {
-                    UpdRow(obj.PID, obj.SID, 0, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+                    UpdRow(obj.PRODUCT_ID, obj.STOCK_ID, 0, 1, obj.PRICE, obj.PRODUCT_NAME, 18, 0, obj.ROW_ID);
                 } else {
                   //  AddRow(obj.PID, obj.SID, 0, 1, obj.PRICE, obj.NAME, 18, 0, 1, '', 'TL', obj.PRICE, "-5");
  AddRow(
