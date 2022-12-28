@@ -474,16 +474,7 @@ function SaveTube(dsn3, modal_id, tip = 0) {
     }
     $.ajax({
       url: "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=saveTube",
-      data:
-        d +
-        "&product_name=" +
-        p_name +
-        "&dsn3=" +
-        generalParamsSatis.dataSources.dsn3 +
-        "&dsn1=" +
-        generalParamsSatis.dataSources.dsn1 +
-        "&dsn=" +
-        generalParamsSatis.dataSources.dsn,
+      data: duri,
       success: function (retDat) {
         var obj = JSON.parse(retDat);
         if (obj.ROW_ID.length > 0) {
