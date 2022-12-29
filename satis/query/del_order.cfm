@@ -1,5 +1,4 @@
 <cfdump var="#attributes#">
-<cfabort>
 <!--- ilgili varlıklar db ve hdd den silinir --->
 <cfset attributes.action_id=attributes.offer_id>
 <cfset attributes.action_section="OFFER_ID">
