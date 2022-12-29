@@ -215,7 +215,11 @@ AddRow(
             ISNULL(GPA.PRICE,0) AS PRICE,
             PRICE_STANDART.MONEY,
             PRODUCT.TAX,
-            (SELECT SUM(STOCK_IN-STOCK_OUT) FROM #arguments.dsn2#.STOCKS_ROW WHERE PRODUCT_ID = PRODUCT.PRODUCT_ID AND STORE = 44) AS AMOUNT,
+            (
+                
+                select sum(STOCK_IN-STOCK_OUT) AS KOMPLE from #DSN2#.STOCKS_ROW where STOCK_ID=35472 AND 
+(STORE=44 OR (STORE=45 AND STORE_LOCATION=2))
+                ) AS AMOUNT,
             PRODUCT_UNIT.ADD_UNIT,
             PRODUCT_UNIT.UNIT_ID,
             PRODUCT_UNIT.MAIN_UNIT,
