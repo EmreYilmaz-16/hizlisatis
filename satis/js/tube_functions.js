@@ -184,6 +184,7 @@ function CalculateTube() {
   var AdditionalProduct_Prc = document.getElementById(
     "AdditionalProduct_Prc"
   ).value;
+
   var working_Prc = document.getElementById("working_Prc").value;
   var Kabuk_Prc = document.getElementById("Kabuk_Prc").value;
 
@@ -238,6 +239,7 @@ function CalculateTube() {
   RRekor_DSC = parseFloat(filterNum(commaSplit(RRekor_DSC)));
 
   var ax = DegerLeriHesapla(RRekor_Prc, RRekor_Qty, RRekor_DSC, RRekor_MNY);
+  console.log("AX=" + ax);
   document.getElementById("RRekor_TTL").value = ax;
   TotalValue += ax;
 
@@ -287,6 +289,8 @@ function CalculateTube() {
 }
 
 function DegerLeriHesapla(p, d, q, m = "TL") {
+  console.log("DegerLeriHesapla");
+  console.log(arguments);
   var prm = "";
   if (m.trim().length == 0) {
     prm = "TL";
