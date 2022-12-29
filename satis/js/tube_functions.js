@@ -304,7 +304,7 @@ function DegerLeriHesapla(p, d, q, m = "TL") {
   console.log("Cevrilen Fiyat =" + price);
   console.log("Cevrilen İndirim =" + discount);
   console.log("Cevrilen Miktar =" + quantity);
-  console.log("Bulunan Parabirimi="+mn+RATE2);
+  console.log("Bulunan Parabirimi="+mn.RATE2);
   var a = price - (price * discount) / 100;
   console.log("Kurla Çarpılmadan Önceki Durum");
   var b = a * quantity * mn.RATE2;
