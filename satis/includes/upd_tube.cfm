@@ -222,6 +222,7 @@
 ORDER BY VP_ID  
     </cfquery>
 
+<cfdump var="#getVirtual#">
     <!----------
 1	SOL REKOR
 2	HORTUM
