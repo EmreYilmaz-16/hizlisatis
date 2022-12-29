@@ -304,11 +304,11 @@ function DegerLeriHesapla(p, d, q, m = "TL") {
   console.log("Cevrilen Fiyat =" + price);
   console.log("Cevrilen İndirim =" + discount);
   console.log("Cevrilen Miktar =" + quantity);
-  console.log("Bulunan Parabirimi="+mn.RATE2);
+  console.log("Bulunan Parabirimi=" + mn.RATE2);
   var a = price - (price * discount) / 100;
-  console.log("Kurla Çarpılmadan Önceki Durum");
+  console.log("Kurla Çarpılmadan Önceki Durum" + a);
   var b = a * quantity * mn.RATE2;
-  console.log("Kurla Çarpıldıktan Sonraki Durum");
+  console.log("Kurla Çarpıldıktan Sonraki Durum" + b);
   return b;
 }
 
