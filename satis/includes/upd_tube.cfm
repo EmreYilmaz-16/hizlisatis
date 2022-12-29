@@ -221,7 +221,9 @@
         WHERE  VP_ID=#attributes.id#
 ORDER BY VP_ID  
     </cfquery>
-
+<cfquery name="getCat" datasource="#dsn1#">
+    SELECT * FROM PRODUCT_CAT WHERE PRODUCT_CATID=#getVirtual.PRODUCT_CATID#
+</cfquery>
 <cfdump var="#getVirtual#">
     <!----------
 1	SOL REKOR
@@ -250,9 +252,9 @@ ORDER BY VP_ID
     </div>
     <div class="form-group">
         <label>Hortum Grubu</label>
-        <input type="text" name="PRODUCT_CAT" id="PRODUCT_CAT" readonly value="">
-        <input type="hidden" name="PRODUCT_CATID" id="PRODUCT_CATID" value="">
-        <input type="hidden" name="HIEARCHY" id="HIEARCHY" value="">
+        <input type="text" name="PRODUCT_CAT" id="PRODUCT_CAT" readonly value="#getCat.PRODUCT_CAT#">
+        <input type="hidden" name="PRODUCT_CATID" id="PRODUCT_CATID" value="#getCat.PRODUCT_CATID#">
+        <input type="hidden" name="HIEARCHY" id="HIEARCHY" value="#getCat.HIEARCHY#">
     </div>
         
     <input type="hidden" name="vp_id" value="#attributes.id#">
