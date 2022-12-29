@@ -301,8 +301,14 @@ function DegerLeriHesapla(p, d, q, m = "TL") {
   var discount = parseFloat(d);
   var quantity = parseFloat(q);
   var mn = moneyArr.find((p) => p.MONEY == prm);
+  console.log("Cevrilen Fiyat =" + price);
+  console.log("Cevrilen İndirim =" + discount);
+  console.log("Cevrilen Miktar =" + quantity);
+  console.log("Bulunan Parabirimi="+mn+RATE2);
   var a = price - (price * discount) / 100;
+  console.log("Kurla Çarpılmadan Önceki Durum");
   var b = a * quantity * mn.RATE2;
+  console.log("Kurla Çarpıldıktan Sonraki Durum");
   return b;
 }
 
