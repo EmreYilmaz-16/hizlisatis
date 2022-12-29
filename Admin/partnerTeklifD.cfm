@@ -41,4 +41,4 @@ ORDER BY SHIP_NUMBER DESC
         <td><a href="/index.cfm?fuseaction=prod.list_results&event=upd&p_order_id=#P_ORDER_ID#&pr_order_id=#PR_ORDER_ID#" target="_blank">#RESULT_NO#</a></td>
     </tr>
 </cfoutput>
-</table>
+</cf_big_list>
