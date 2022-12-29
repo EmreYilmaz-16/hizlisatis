@@ -446,7 +446,7 @@ OTHER_MONEY_VALUE=(PRICE_OTHER*AMOUNT)-((PRICE_OTHER*AMOUNT)*DISCOUNT)/100------
         RETRY:
         BEGIN TRY
             INSERT INTO
-                #arguments.process_db#ORDER_ROW_RESERVED
+                #arguments.process_db#.ORDER_ROW_RESERVED
             (
                 STOCK_ID,
                 PRODUCT_ID,
@@ -473,8 +473,8 @@ OTHER_MONEY_VALUE=(PRICE_OTHER*AMOUNT)-((PRICE_OTHER*AMOUNT)*DISCOUNT)/100------
                 ISNULL(ORDER_ROW.DELIVER_DEPT,ORDERS.DELIVER_DEPT_ID),
                 ISNULL(ORDER_ROW.DELIVER_LOCATION,ORDERS.LOCATION_ID)
             FROM 
-                #arguments.process_db#ORDER_ROW ORDER_ROW,
-                #arguments.process_db#ORDERS ORDERS
+                #arguments.process_db#.ORDER_ROW ORDER_ROW,
+                #arguments.process_db#.ORDERS ORDERS
             WHERE
                 ORDERS.ORDER_ID=ORDER_ROW.ORDER_ID
                 AND ORDERS.ORDER_ID= #arguments.reserve_order_id#
