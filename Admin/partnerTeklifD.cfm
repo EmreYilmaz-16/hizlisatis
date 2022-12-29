@@ -45,7 +45,7 @@ ORDER BY SHIP_NUMBER DESC
         <td>#currentrow#</td>
         <td>#NICKNAME#</td>
         <td>#EMPO#</td>
-        <td><a href="/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#OFFER_ID#" target="_blank">#OFFER_NUMBER#</a></td>
+        <td><a href="/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#OFFER_ID#" target="_blank">#OFFER_NUMBER#</a><a onclick="windowopen('/index.cfm?fuseaction=sales.emptypopup_delete_pbs_offer&offer_id=#attributes.offer_id#')">Sil</a> </td>
         <td><a href="/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#" target="_blank">#ORDER_ID#</a></td>
         <td><a href="/index.cfm?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#" target="_blank">#DELIVER_PAPER_NO#</a></td>
         <td><a href="/index.cfm?fuseaction=invoice.form_add_bill&event=upd&iid=#INVOICE_ID#" target="_blank">#INVOICE_NUMBER#</a></td>
