@@ -62,6 +62,7 @@ select count(*) AS RC from PBS_OFFER
 <cfset attributes.basket_tax_total=FormData.OrderFooter.TAX_TOTAL>
 <cfset attributes.ref_member_type ="">
 <cfset attributes.consumer_id="">
+<cfset attributes.reserved=1>
 <cfset attributes.rows_=arrayLen(BasketRows)>
 <cfif getOfferC.RC eq 0><cfset Num=1><cfelse>
     <cfset num=getOfferC.RC>
