@@ -65,7 +65,7 @@
                 </td>
                 <td>
                     <div class="form-group">
-                        <input type="text" name="txt_disc" id="txt_disc" class="prtMoneyBox moneybox pbs_v" onkeyup="toplamHesapla_2()" value="<cfoutput>#tlformat(0,4)#</cfoutput>">
+                        <input type="text" name="txt_disc" id="txt_disc" class="prtMoneyBox moneybox pbs_v" onchange="toplamHesapla_2()" value="<cfoutput>#tlformat(0,4)#</cfoutput>">
                     </div>
                 </td>
             </tr>
