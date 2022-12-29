@@ -28,8 +28,21 @@ ORDER BY SHIP_NUMBER DESC
 </cfquery>
 
 <cf_big_list>
+    <tr>
+        <th></th>
+        <th>Müşteri</th>
+        <th>Kaydeden</th>
+        <th>Sanal Teklif</th>
+        <th>Sipariş</th>
+        <th>SVK</th>
+        <th>Fatura</th>
+        <th>İrsaliye</th>
+        <th>Üretim Emri</th>
+        <th>Üretim Sonucu</th>
+    </tr>
 <cfoutput query="getQuery">
     <tr>
+        <td>#currentrow#</td>
         <td>#NICKNAME#</td>
         <td>#EMPO#</td>
         <td><a href="/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#OFFER_ID#" target="_blank">#OFFER_NUMBER#</a></td>
