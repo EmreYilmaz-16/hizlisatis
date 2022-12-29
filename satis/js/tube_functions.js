@@ -238,7 +238,7 @@ function CalculateTube() {
   RRekor_Qty = parseFloat(filterNum(commaSplit(RRekor_Qty)));
   RRekor_DSC = parseFloat(filterNum(commaSplit(RRekor_DSC)));
 
-  var ax = DegerLeriHesapla(RRekor_Prc, RRekor_Qty, RRekor_DSC, RRekor_MNY);
+  var ax = DegerLeriHesapla(RRekor_Prc,RRekor_DSC , RRekor_Qty, RRekor_MNY);
   console.log("AX=" + ax);
   document.getElementById("RRekor_TTL").value = ax;
   TotalValue += ax;
