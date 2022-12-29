@@ -254,7 +254,7 @@ ORDER BY VP_ID
         <label>Hortum Grubu</label>
         <input type="text" name="PRODUCT_CAT" id="PRODUCT_CAT" readonly value="#getCat.PRODUCT_CAT#">
         <input type="hidden" name="PRODUCT_CATID" id="PRODUCT_CATID" value="#getCat.PRODUCT_CATID#">
-        <input type="hidden" name="HIEARCHY" id="HIEARCHY" value="#getCat.HIEARCHY#">
+        <input type="hidden" name="HIEARCHY" id="HIEARCHY" value="#getCat.HIERARCHY#">
     </div>
         
     <input type="hidden" name="vp_id" value="#attributes.id#">
