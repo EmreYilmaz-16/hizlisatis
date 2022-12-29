@@ -1,7 +1,7 @@
 <cfquery name="getQuery" datasource="#dsn3#">
 select DISTINCT PO.OFFER_NUMBER, PO.OFFER_ID,C.NICKNAME,O.ORDER_ID,O.ORDER_NUMBER,SRR.DELIVER_PAPER_NO,I.INVOICE_NUMBER,I.INVOICE_ID,S.SHIP_NUMBER,S.SHIP_ID,
 PS.P_ORDER_NO,PS.RESULT_NO,PS.V_P_ORDER_NO,PS.P_ORDER_ID,PS.PR_ORDER_ID,
-workcube_metosan.getEmployeeWithId(PO.RECORD_MEMBER) from workcube_metosan_1.PBS_OFFER AS PO 
+workcube_metosan.getEmployeeWithId(PO.RECORD_MEMBER) AS EMPO from workcube_metosan_1.PBS_OFFER AS PO 
 LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID=PO.COMPANY_ID
 LEFT JOIN workcube_metosan_1.PBS_OFFER_TO_ORDER AS POTR ON POTR.OFFER_ID=PO.OFFER_ID
 LEFT JOIN workcube_metosan_1.ORDERS AS O ON O.ORDER_ID=POTR.ORDER_ID
@@ -28,9 +28,11 @@ ORDER BY SHIP_NUMBER DESC
 
 </cfquery>
 
-
+<table>
 <cfoutput query="getQuery">
     <tr>
+        <td>#NICKNAME#</td>
+        <td>#EMPO#</td>
         <td><a href="/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#ORDER_ID#" target="_blank">#OFFER_NUMBER#</a></td>
         <td><a href="/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#" target="_blank">#ORDER_ID#</a></td>
         <td><a href="/index.cfm?fuseaction=invoice.form_add_bill&event=upd&iid=#INVOICE_ID#" target="_blank">#INVOICE_NUMBER#</a></td>
@@ -39,3 +41,4 @@ ORDER BY SHIP_NUMBER DESC
         <td><a href="/index.cfm?fuseaction=prod.list_results&event=upd&p_order_id=#P_ORDER_ID#&pr_order_id=#PR_ORDER_ID#" target="_blank">#RESULT_NO#</a></td>
     </tr>
 </cfoutput>
+</table>
