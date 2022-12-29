@@ -675,7 +675,7 @@ LÜTFEN BU SAYFADA YAPTIĞINIZ DEĞİŞİKLİKLERİ ORDA DA YAPINIZ !!!!!!!!!!!!
 			process_db : dsn3,
 			process_db_alias : "#new_dsn3_group#."
 			);
-			
+			writeDump("ReserveEtmişOlmamLazım");
 	if(isdefined('attributes.pro_material_id_list') and len(attributes.pro_material_id_list)) //proje malzeme planı ile baglantısı olusturuluyor
 	{
 		if(not isdefined("is_from_import") and not isdefined("add_paper_relation"))//importdan geliyorsa fonksiyon tanımlanmasın
