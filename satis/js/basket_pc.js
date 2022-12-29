@@ -654,9 +654,28 @@ function getRafSml(stock_id, rafcode) {
 }
 
 function hesapla(input, sira) {
-  var price_ = filterNum($("#price_" + sira).val(), 8);
+  var price_=$("#price_" + sira).val();
+  var price_other_=$("#price_other_" + sira).val();
+  /*var price_ = filterNum($("#price_" + sira).val(), 8);
 
-  var price_other_ = filterNum($("#price_other_" + sira).val(), 8);
+  var price_other_ = filterNum($("#price_other_" + sira).val(), 8);*/
+
+  if (price_.indexOf(",") != -1) {
+   
+    price_ = filterNum(price_,8);
+  } else {
+    
+    price_ = filterNum(commaSplit(price_),8);
+  }
+
+  if (price_other_.indexOf(",") != -1) {
+    console.log("t");
+    price_other_ = filterNum(price_other_,8);
+  } else {
+    console.log("y");
+    price_other_ = filterNum(commaSplit(price_other_),8);
+  }
+  
 
   var amount_ = filterNum($("#amount_" + sira).val(), 8);
   var cost_ = $("#cost_" + sira).val();
