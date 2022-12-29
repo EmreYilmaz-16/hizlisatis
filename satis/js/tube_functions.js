@@ -197,14 +197,22 @@ function CalculateTube() {
   var working_DSC = document.getElementById("working_DSC").value;
   var Kabuk_DSC = document.getElementById("Kabuk_DSC").value;
 
-  var LRekor_Qty = document.getElementById("LRekor_Qty").value;
-  var Tube_Qty = document.getElementById("Tube_Qty").value;
-  var RRekor_Qty = document.getElementById("RRekor_Qty").value;
-  var AdditionalProduct_Qty = document.getElementById(
-    "AdditionalProduct_Qty"
-  ).value;
-  var Kabuk_Qty = document.getElementById("Kabuk_Qty").value;
-  var working_Qty = document.getElementById("working_Qty").value;
+  var LRekor_Qty = document
+    .getElementById("LRekor_Qty")
+    .value.replaceAll(".", "");
+  var Tube_Qty = document.getElementById("Tube_Qty").value.replaceAll(".", "");
+  var RRekor_Qty = document
+    .getElementById("RRekor_Qty")
+    .value.replaceAll(".", "");
+  var AdditionalProduct_Qty = document
+    .getElementById("AdditionalProduct_Qty")
+    .value.replaceAll(".", "");
+  var Kabuk_Qty = document
+    .getElementById("Kabuk_Qty")
+    .value.replaceAll(".", "");
+  var working_Qty = document
+    .getElementById("working_Qty")
+    .value.replaceAll(".", "");
 
   var LRekor_DSC = document.getElementById("LRekor_DSC").value;
   var Tube_DSC = document.getElementById("Tube_DSC").value;
@@ -238,7 +246,7 @@ function CalculateTube() {
   RRekor_Qty = parseFloat(filterNum(commaSplit(RRekor_Qty)));
   RRekor_DSC = parseFloat(filterNum(commaSplit(RRekor_DSC)));
 
-  var ax = DegerLeriHesapla(RRekor_Prc,RRekor_DSC , RRekor_Qty, RRekor_MNY);
+  var ax = DegerLeriHesapla(RRekor_Prc, RRekor_DSC, RRekor_Qty, RRekor_MNY);
   console.log("AX=" + ax);
   document.getElementById("RRekor_TTL").value = ax;
   TotalValue += ax;
