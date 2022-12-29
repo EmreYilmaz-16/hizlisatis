@@ -21,6 +21,7 @@
 	WOStruct['#attributes.fuseaction#']['upd']['fuseaction'] = 'sales.form_upd_pbs_offer';
 	WOStruct['#attributes.fuseaction#']['upd']['filePath'] = '/AddOns/Partner/satis/form/upd_pbs_offer.cfm';
    
+
 	fuseactController = attributes.fuseaction;
 		tabMenuStruct = StructNew();
 		tabMenuStruct['#fuseactController#'] = structNew();
