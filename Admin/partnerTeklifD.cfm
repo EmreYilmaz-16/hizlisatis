@@ -33,7 +33,7 @@ ORDER BY SHIP_NUMBER DESC
     <tr>
         <td>#NICKNAME#</td>
         <td>#EMPO#</td>
-        <td><a href="/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#ORDER_ID#" target="_blank">#OFFER_NUMBER#</a></td>
+        <td><a href="/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#OFFER_ID#" target="_blank">#OFFER_NUMBER#</a></td>
         <td><a href="/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#" target="_blank">#ORDER_ID#</a></td>
         <td><a href="/index.cfm?fuseaction=invoice.form_add_bill&event=upd&iid=#INVOICE_ID#" target="_blank">#INVOICE_NUMBER#</a></td>
         <td><a href="/index.cfm?fuseaction=stock.form_add_sale&event=upd&ship_id=#SHIP_ID#" target="_blank">#SHIP_NUMBER#</a></td>
