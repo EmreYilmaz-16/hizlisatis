@@ -440,7 +440,7 @@ OTHER_MONEY_VALUE=(PRICE_OTHER*AMOUNT)-((PRICE_OTHER*AMOUNT)*DISCOUNT)/100------
    <cfargument name="process_db">
    <cfargument name="is_purchase_sales">
    <cfargument name="reserve_order_id">
-   <cfquery name="ADD_ORDER_ROW_RESERVED" datasource="#arguments.process_db#">
+   <cfquery name="ADD_ORDER_ROW_RESERVED" datasource="#arguments.process_db#" result="Res">
         DECLARE @RetryCounter INT
         SET @RetryCounter = 1
         RETRY:
@@ -507,4 +507,5 @@ OTHER_MONEY_VALUE=(PRICE_OTHER*AMOUNT)-((PRICE_OTHER*AMOUNT)*DISCOUNT)/100------
             END
         END CATCH
     </cfquery>
+    <cfdump var="#Res#">
 </cffunction>
