@@ -160,5 +160,8 @@
 </table>
 <div>
 <button class="btn btn-success" id="btnsave" onclick="SaveOrder()" type="button">Kaydet</button>
+<cfif attributes.event eq "UPD">
+<button class="btn btn-danger" id="btnsil" onclick="window.location.href='/index.cfm?fuseaction=sales.emptypopup_delete_pbs_offer&offer_id=<cfoutput>#attributes.offer_id#</cfoutput>'" type="button">Sil</button>
+</cfif>
 </div>
 </div>

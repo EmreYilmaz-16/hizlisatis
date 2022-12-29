@@ -24,12 +24,20 @@ LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
 <script>
     $("#btnsave").attr("disabled","true");
     $("#btnsave2").attr("disabled","true");
+    $("#btnsil").attr("disabled","true");
 </script>
 <cfquery name="GETSVK" datasource="#DSN3#">
  SELECT DELIVER_PAPER_NO,RECORD_DATE,SHIP_RESULT_ID  FROM #dsn3#.PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID IN(
  SELECT SHIP_RESULT_ID FROM #dsn3#.PRTOTM_SHIP_RESULT_ROW WHERE ORDER_ROW_ID IN( SELECT ORDER_ROW_ID FROM #dsn3#.ORDER_ROW WHERE ORDER_ID=#getOrders.ORDER_ID#))
  
 </cfquery>
+<cfif GETSVK.recordCount and len(GETSVK.DELIVER_PAPER_NO)>
+    <script>
+        $("#btnsave").attr("disabled","true");
+        $("#btnsave2").attr("disabled","true");
+        $("#btnsil").attr("disabled","true");
+    </script>
+</cfif>
 
 <cf_box title="İlişkili Sevk Belgeleri">
     <cf_ajax_list>
@@ -49,6 +57,7 @@ LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
     <cfquery name="getProductionOrders" datasource="#dsn3#">
     SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE UNIQUE_RELATION_ID IN (SELECT UNIQUE_RELATION_ID FROM PBS_OFFER_ROW WHERE OFFER_ID=#attributes.offer_id#)
 </cfquery>
+
 <cf_ajax_list>
 <cfoutput query="getProductionOrders">
 <tr>
