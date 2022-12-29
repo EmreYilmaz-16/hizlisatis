@@ -666,7 +666,7 @@ LÜTFEN BU SAYFADA YAPTIĞINIZ DEĞİŞİKLİKLERİ ORDA DA YAPINIZ !!!!!!!!!!!!
 	<cfscript>
 		basket_kur_ekle(action_id:GET_MAX_ORDER.MAX_ID,table_type_id:3,process_type:0,basket_money_db:new_dsn3_group);
 		if(not isdefined("is_from_import") and not isdefined("add_reserve_row"))//importdan geliyorsa fonksiyon tanımlanmasın
-			include('add_order_row_reserved_stock.cfm','\objects\functions'); //rezerve edilen satırlar icin ORDER_ROW_RESERVED'a kayıt atıyor.
+		/*	include('add_order_row_reserved_stock.cfm','\objects\functions'); //rezerve edilen satırlar icin ORDER_ROW_RESERVED'a kayıt atıyor.
 		add_reserve_row(
 			reserve_order_id:GET_MAX_ORDER.MAX_ID,
 			reserve_action_type:0,
@@ -674,7 +674,7 @@ LÜTFEN BU SAYFADA YAPTIĞINIZ DEĞİŞİKLİKLERİ ORDA DA YAPINIZ !!!!!!!!!!!!
 			is_purchase_sales:1,
 			process_db : dsn3,
 			process_db_alias : "#new_dsn3_group#."
-			);
+			);*/
 			writeDump("ReserveEtmişOlmamLazım");
 	if(isdefined('attributes.pro_material_id_list') and len(attributes.pro_material_id_list)) //proje malzeme planı ile baglantısı olusturuluyor
 	{
