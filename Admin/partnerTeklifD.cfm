@@ -28,7 +28,7 @@ ORDER BY SHIP_NUMBER DESC
 
 </cfquery>
 
-<table>
+<cf_big_list>
 <cfoutput query="getQuery">
     <tr>
         <td>#NICKNAME#</td>
