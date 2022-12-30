@@ -413,7 +413,7 @@ AddRow(
         <cfset REL_HIERARCHY="" >
         <cfif len(PC_DETAIL)>
             <cfquery name="getRelProductCat" datasource="#arguments.dsn1#">
-                SELECT PRODUCT_CAT,PRODUCT_CATID,HIERARCHY FROM PRODUCT_CAT WHERE PRODUCT_CATID=#PC_DETAIL#
+                SELECT PRODUCT_CAT,PRODUCT_CATID,HIERARCHY FROM PRODUCT_CAT WHERE PRODUCT_CATID IN(#PC_DETAIL#)
             </cfquery>
              <cfset REL_CATID="#getRelProductCat.PRODUCT_CATID#" >
              <cfset REL_CATNAME="#getRelProductCat.PRODUCT_CAT#" >
