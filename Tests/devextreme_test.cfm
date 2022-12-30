@@ -282,6 +282,13 @@
 <cfoutput query="getCats">
   <cfloop list="#getCats.DETAIL#" item="li">
       #getCats.HIERARCHY# -- #li#
-      <br>
+     <cfquery name="ins" datasource="#dsn3#">
+     INSERT INTO PRODUCT_CAT_QUESTIONS(PRODUCT_CATID,QUESTION_ID) VALUES (#getCats.PRODUCT_CATID#,#li#)
+      
+     </cfquery>
+  
   </cfloop>
+  <cfquery name="Upd" datasource="#dsn3#">
+      UPDATE workcube_metosan_product.PRODUCT_CAT SET DETAIL=NULL WHERE PRODUCT_CATID=#getCats.PRODUCT_CATID#
+     </cfquery>
 </cfoutput>
