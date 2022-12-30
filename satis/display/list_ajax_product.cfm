@@ -217,7 +217,7 @@ AddRow(
             PRODUCT.TAX,
             (
                 
-                select sum(STOCK_IN-STOCK_OUT) AS KOMPLE from #DSN2#.STOCKS_ROW where STOCK_ID=35472 AND 
+                select sum(STOCK_IN-STOCK_OUT) AS KOMPLE from #DSN2#.STOCKS_ROW where STOCK_ID=STOCKS.STOCK_ID AND 
 (STORE=44 OR (STORE=45 AND STORE_LOCATION=2))
                 ) AS AMOUNT,
             PRODUCT_UNIT.ADD_UNIT,
