@@ -24,6 +24,38 @@ LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
     </cfquery>
     <cfif getOrders.recordCount>
    <cfquery name="getoi" datasource="#dsn3#">        
+   SELECT * FROM (
+select OI.SHIP_ID as INVOICE_ID,SP.PERIOD_ID,SP.PERIOD_YEAR,OI.ORDER_ID,I.INVOICE_NUMBER,'SHIP' AS TIP from workcube_metosan_1.ORDERS_SHIP AS OI LEFT JOIN workcube_metosan.SETUP_PERIOD AS SP ON SP.PERIOD_ID=OI.PERIOD_ID
+
+LEFT JOIN ( 
+			SELECT SHIP_NUMBER  COLLATE SQL_Latin1_General_CP1_CI_AS AS INVOICE_NUMBER,SHIP_ID, 2 AS PERIOD_ID FROM #dsn#_#session.ep.PERIOD_YEAR#_#session.ep.COMPANY_ID#.SHIP 
+			<cfloop query="getPeriods">
+            UNION 
+			SELECT SHIP_NUMBER COLLATE SQL_Latin1_General_CP1_CI_AS AS INVOICE_NUMBER,SHIP_ID,1 AS PERIOD_ID FROM #dsn#_#PERIOD_YEAR#_#OUR_COMPANY_ID#.SHIP 
+            </cfloop>
+			
+
+UNION 
+
+select OI.INVOICE_ID,SP.PERIOD_ID,SP.PERIOD_YEAR,OI.ORDER_ID,I.INVOICE_NUMBER,'INVOICE' AS TIP from workcube_metosan_1.ORDERS_INVOICE AS OI LEFT JOIN workcube_metosan.SETUP_PERIOD AS SP ON SP.PERIOD_ID=OI.PERIOD_ID
+
+LEFT JOIN ( 
+			SELECT INVOICE_NUMBER COLLATE SQL_Latin1_General_CP1_CI_AS AS INVOICE_NUMBER,INVOICE_ID, 2 AS PERIOD_ID FROM #dsn#_#session.ep.PERIOD_YEAR#_#session.ep.COMPANY_ID#.INVOICE 
+			<cfloop query="getPeriods">
+            UNION 
+			SELECT INVOICE_NUMBER COLLATE SQL_Latin1_General_CP1_CI_AS AS INVOICE_NUMBER,INVOICE_ID,1 AS PERIOD_ID FROM #dsn#_#session.ep.PERIOD_YEAR#_#session.ep.COMPANY_ID#.INVOICE 
+            </cfloop>
+			
+		WHERE ORDER_ID=#getOrders.ORDER_ID#
+   
+   
+   
+   
+   
+   
+   
+   
+   <!----
         select OI.INVOICE_ID,SP.PERIOD_ID,SP.PERIOD_YEAR,OI.ORDER_ID,I.INVOICE_NUMBER,I.TIP from workcube_metosan_1.ORDERS_INVOICE AS OI LEFT JOIN workcube_metosan.SETUP_PERIOD AS SP ON SP.PERIOD_ID=OI.PERIOD_ID
 LEFT JOIN ( 
 
@@ -34,12 +66,24 @@ LEFT JOIN (
             </cfloop>
             
 			 ) AS I ON I.INVOICE_ID=OI.INVOICE_ID AND OI.PERIOD_ID=I.PERIOD_ID 
-             where OI.ORDER_ID=#getOrders.ORDER_ID#
+             where OI.ORDER_ID=#getOrders.ORDER_ID#---->
     </cfquery> 
 <table>
+    <tr>
+        <td>Fatura</td>
+        <td>İrsaliye</td>
+    </tr>
     <cfoutput query="getoi">
         <tr>
-            <td>#INVOICE_NUMBER#</td>
+            <cfif getoi.TIP eq 'INVOICE'>
+                <td>#INVOICE_NUMBER#</td>
+                <td></td>                
+            </cfif>
+            <cfif getoi.TIP eq 'SHIP'>                
+                <td></td>         
+                <td>#INVOICE_NUMBER#</td>       
+            </cfif>
+
         </tr>
     </cfoutput>
 </table></cfif>
