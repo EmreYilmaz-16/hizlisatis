@@ -70,11 +70,14 @@ LEFT JOIN (
 			 ) AS I ON I.INVOICE_ID=OI.INVOICE_ID AND OI.PERIOD_ID=I.PERIOD_ID 
              where OI.ORDER_ID=#getOrders.ORDER_ID#---->
     </cfquery> 
-<table>
+<cf_ajax_list>
+    <thead>
     <tr>
-        <td>Fatura</td>
-        <td>İrsaliye</td>
+        <th>Fatura</th>
+        <th>İrsaliye</th>
     </tr>
+</thead>
+<tbody>
     <cfoutput query="getoi">
         <tr>
             <cfif getoi.TIP eq 'INVOICE'>
@@ -88,7 +91,8 @@ LEFT JOIN (
 
         </tr>
     </cfoutput>
-</table></cfif>
+</tbody>
+</cf_ajax_list></cfif>
 </cf_box>
 
 <cfif getOrders.recordCount and len(getOrders.ORDER_ID)>
