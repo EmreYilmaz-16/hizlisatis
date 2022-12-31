@@ -81,12 +81,12 @@ LEFT JOIN (
     <cfoutput query="getoi">
         <tr>
             <cfif getoi.TIP eq 'INVOICE'>
-                <td>#INVOICE_NUMBER#</td>
+                <td>#INVOICE_NUMBER# (#ACTION_DATE#)</td>
                 <td></td>                
             </cfif>
             <cfif getoi.TIP eq 'SHIP'>                
                 <td></td>         
-                <td>#INVOICE_NUMBER#</td>       
+                <td>#INVOICE_NUMBER# (#ACTION_DATE#)</td>       
             </cfif>
 
         </tr>
