@@ -33,7 +33,7 @@ LEFT JOIN (
             UNION 
 			SELECT SHIP_NUMBER COLLATE SQL_Latin1_General_CP1_CI_AS AS INVOICE_NUMBER,SHIP_ID,1 AS PERIOD_ID FROM #dsn#_#PERIOD_YEAR#_#OUR_COMPANY_ID#.SHIP 
             </cfloop>
-			
+)
 
 UNION 
 
@@ -45,7 +45,7 @@ LEFT JOIN (
             UNION 
 			SELECT INVOICE_NUMBER COLLATE SQL_Latin1_General_CP1_CI_AS AS INVOICE_NUMBER,INVOICE_ID,1 AS PERIOD_ID FROM #dsn#_#session.ep.PERIOD_YEAR#_#session.ep.COMPANY_ID#.INVOICE 
             </cfloop>
-			
+))
 		WHERE ORDER_ID=#getOrders.ORDER_ID#
    
    
