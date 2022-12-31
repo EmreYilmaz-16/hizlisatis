@@ -10,6 +10,7 @@ select DEPARTMENT_ID,LOCATION_ID from #dsn#.STOCKS_LOCATION where WIDTH=#session
 <cfquery name="GETsEVKS" datasource="#dsn3#">
 SELECT DISTINCT  O.RECORD_DATE,
 SR.DELIVER_PAPER_NO,SR.COMPANY_ID,C.NICKNAME,SR.DELIVERY_DATE,DEPARTMENT_LOCATION,COMMENT,SR.SHIP_RESULT_ID,DELIVER_DEPT,DELIVER_LOCATION 
+#DSN#.getEmployeeWithId(SR.RECORD_EMP) AS KAYDEDEN
 FROM #dsn3#.PRTOTM_SHIP_RESULT_ROW AS SRR
 LEFT JOIN #dsn3#.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID=SRR.ORDER_ROW_ID
 LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=ORR.ORDER_ID
@@ -39,8 +40,9 @@ AND SRR.PREPARE_PERSONAL=#session.EP.USERID#
 <cfoutput query="GETsEVKS">
     <tr>
         <td>#currentrow#</td>
-        <td>#DELIVER_PAPER_NO#</td>
+        <td>#DELIVER_PAPER_NO#</td>        
         <td>#NICKNAME#</td>
+        <td>#KAYDEDEN#</td>
         <td>#dateFormat(DELIVERY_DATE,'dd/mm/yyyy')#</td>        
         <td>#DEPARTMENT_LOCATION# #COMMENT#</td>
         <td><button class="btn btn-success" onclick="pencereacgari(#SHIP_RESULT_ID#,#DELIVER_DEPT#,#DELIVER_LOCATION#)">AC</button></td>
