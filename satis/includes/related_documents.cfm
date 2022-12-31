@@ -73,21 +73,19 @@ LEFT JOIN (
 <cf_ajax_list>
     <thead>
     <tr>
-        <th>Fatura</th>
-        <th>İrsaliye</th>
+        <th>Belge No</th>
+        <th>Belge Tipi</th>
+        <th>Belge Tarihi</th>
     </tr>
 </thead>
 <tbody>
     <cfoutput query="getoi">
         <tr>
-            <cfif getoi.TIP eq 'INVOICE'>
-                <td>#INVOICE_NUMBER# (#ACTION_DATE#)</td>
-                <td></td>                
-            </cfif>
-            <cfif getoi.TIP eq 'SHIP'>                
-                <td></td>         
-                <td>#INVOICE_NUMBER# (#ACTION_DATE#)</td>       
-            </cfif>
+            
+                <td>#INVOICE_NUMBER# (#dateformat(ACTION_DATE,"dd/mm/yyyy")#)</td>
+                <td>#TIP#</td>                                                
+                <td> (#dateformat(ACTION_DATE,"dd/mm/yyyy")#)</td>       
+            
 
         </tr>
     </cfoutput>
