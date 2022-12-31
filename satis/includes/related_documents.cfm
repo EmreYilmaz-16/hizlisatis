@@ -18,9 +18,35 @@ LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
         </cfoutput>
     </cf_ajax_list>
 </cf_box>
+<cf_box title="İlişkili Fatura ve İrsaliyeler">
+    <cfquery name="getPeriods" datasource="#dsn#">
+        SELECT * FROM SETUP_PERIOD WHERE PERIOD_YEAR<>#session.ep.PERIOD_YEAR#
+    </cfquery>
+    <cfif getOrders.recordCount>
+   <cfquery name="getoi" datasource="#dsn3#">        
+        select OI.INVOICE_ID,SP.PERIOD_ID,SP.PERIOD_YEAR,OI.ORDER_ID,I.INVOICE_NUMBER,I.TIP from workcube_metosan_1.ORDERS_INVOICE AS OI LEFT JOIN workcube_metosan.SETUP_PERIOD AS SP ON SP.PERIOD_ID=OI.PERIOD_ID
+LEFT JOIN ( 
 
+			SELECT INVOICE_NUMBER COLLATE SQL_Latin1_General_CP1_CI_AS AS INVOICE_NUMBER,INVOICE_ID, #session.ep.period_id# AS PERIOD_ID,'INVOICE' AS TIP FROM #dsn##session.ep.PERIOD_YEAR#_#session.ep.COMPANY_ID#.INVOICE 
+			<cfloop query="getPeriods">
+                UNION 
+			SELECT INVOICE_NUMBER COLLATE SQL_Latin1_General_CP1_CI_AS AS INVOICE_NUMBER,INVOICE_ID,#PERIOD_ID# AS PERIOD_ID,'INVOICE' AS TIP FROM #dsn#_#PERIOD_YEAR#_#OUR_COMPANY_ID#.INVOICE
+            </cfloop>
+            
+			 ) AS I ON I.INVOICE_ID=OI.INVOICE_ID AND OI.PERIOD_ID=I.PERIOD_ID
+    </cfquery> 
+<table>
+    <cfoutput query="getoi">
+        <tr>
+            <td>#INVOICE_NUMBER#</td>
+        </tr>
+    </cfoutput>
+</table></cfif>
+</cf_box>
 
 <cfif getOrders.recordCount and len(getOrders.ORDER_ID)>
+
+
 <script>
     $("#btnsave").attr("disabled","true");
     $("#btnsave2").attr("disabled","true");
