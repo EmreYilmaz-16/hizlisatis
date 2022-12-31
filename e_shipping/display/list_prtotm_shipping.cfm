@@ -768,7 +768,7 @@
                 	AND SEVK_DURUM = 6
                 </cfif>
             ORDER BY
-            SHIP_RESULT_ID,
+            SHIP_RESULT_ID DESC,
                 <cfif sort_type eq 1>
                     OUT_DATE
                 <cfelseif sort_type eq 2>
