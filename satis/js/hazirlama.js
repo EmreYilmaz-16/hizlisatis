@@ -49,6 +49,9 @@ function getDepartmentWorks() {
                 var td = document.createElement("td")
                 td.innerText = o.NICKNAME
                 tr.appendChild(td)
+                var td = document.createElement("td")
+                td.innerText = o.TTS
+                tr.appendChild(td)
                 var sel = document.createElement("select")
                 sel.setAttribute("onchange", "setEmpToWork(this.value)")
                 var opt = document.createElement("option");
