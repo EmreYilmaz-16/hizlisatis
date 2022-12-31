@@ -223,7 +223,7 @@
                 <cfdump  var="#Product#">
                 <cfdump var="#get_products#">
                </cfsavecontent>
-               <cffile action="write" file = "c:\product.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\hizlisatiscfc_getproduct.html" output="#control5#"></cffile>
             <!----<a href="javascript://" onclick="addRow(#PRODUCT_ID#,#STOCK_ID#,'#TAX#','#lastCost#','#is_manuel#','#PRODUCT_NAME#','#STOCK_CODE#','#BRAND_NAME#','#discountRate#','','','','','#MAIN_UNIT#',
                 '#TLFormat(PRICE,4)#','#MONEY#','#TLFormat(PRICE,4)#','','',0,0,0);">#PRODUCT_NAME#</a>----->
         </cfoutput>
@@ -259,7 +259,7 @@
              <cfsavecontent  variable="control5">
                <cfdump  var="#arguments#">                       
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\listajaxproductstart.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\hizlisatiscfc_getProductListpbs.html" output="#control5#"></cffile>
 
     
     <cfset arguments.keyword=urlDecode(arguments.keyword)>
@@ -274,7 +274,7 @@
                 <br>
                 <cfdump  var="#listLast(arguments.keyword,";")#">                
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\hizlisatiscfc_getProductListpbs2.html" output="#control5#"></cffile>
     <cfquery name="get_productsss" datasource="#arguments.dsn1#" result="getproducts_result">
         SELECT
             STOCKS.STOCK_ID,
@@ -391,7 +391,7 @@
          <cfsavecontent  variable="control5">
                 <cfdump  var="#getproducts_result#">                
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\listajaxproductaf.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\hizlisatiscfc_getProductListpbs3.html" output="#control5#"></cffile>
 <cfquery name="get_products" datasource="#arguments.dsn1#">
   WITH CTE1 AS   (  SELECT
         *
@@ -590,7 +590,7 @@
                 <cfdump  var="#arguments#">
                 <cfdump  var="#cfcatch#">
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\cfcatch2223.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\hizlisatiscfc_saveVirtualTube.html" output="#control5#"></cffile>
             </cfcatch>
         </cftry>
         <cfsavecontent  variable="control5">
@@ -599,7 +599,7 @@
             <cfdump  var="#arguments#">
 
            </cfsavecontent>
-           <cffile action="write" file = "c:\cfcatch22234.html" output="#control5#"></cffile>
+           <cffile action="write" file = "c:\PBS\hizlisatiscfc_saveVirtualTube2.html" output="#control5#"></cffile>
 
            <CFSET RETURN_VAL.PID = Res.IDENTITYCOL>
            <CFSET RETURN_VAL.IS_VIRTUAL = 1>
@@ -632,7 +632,7 @@
             <cfdump  var="#arguments#">  
             <cfdump  var="#Res#">            
            </cfsavecontent>
-           <cffile action="write" file = "c:\updateVirtualTube.html" output="#control5#"></cffile>
+           <cffile action="write" file = "c:\PBS\hizlisatiscfc_updateVirtualTube.html" output="#control5#"></cffile>
        <cfquery name="delTree" datasource="#arguments.dsn3#">
             DELETE FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.vp_id#
 
@@ -675,7 +675,7 @@
                 <cfdump  var="#arguments#">
                 <cfdump  var="#cfcatch#">
                </cfsavecontent>
-               <cffile action="write" file = "c:\cfcatch2223.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\hizlisatiscfc_updateVirtualTube2.html" output="#control5#"></cffile>
             </cfcatch>
         </cftry>
         <cfsavecontent  variable="control5">
@@ -684,7 +684,7 @@
             <cfdump  var="#arguments#">
             
            </cfsavecontent>
-           <cffile action="write" file = "c:\cfcatch22234.html" output="#control5#"></cffile>
+           <cffile action="write" file = "c:\PBS\hizlisatiscfc_updateVirtualTube3.html" output="#control5#"></cffile>
            <CFSET RETURN_VAL.PID=arguments.vp_id>
            <CFSET RETURN_VAL.IS_VIRTUAL=1>
            <CFSET RETURN_VAL.PRICE=Filternum(arguments.maliyet)>
@@ -1277,7 +1277,7 @@
         <cfdump  var="#arguments#">
         
        </cfsavecontent>
-       <cffile action="write" file = "c:\saveVirtualHydrolic.html" output="#control5#"></cffile>
+       <cffile action="write" file = "c:\PBS\hizlisatiscfc_saveVirtualHydrolic.html" output="#control5#"></cffile>
        <CFSET RETURN_VAL.PID=Res.IDENTITYCOL>
        <CFSET RETURN_VAL.IS_VIRTUAL=1>
        <CFSET RETURN_VAL.PRICE=Filternum(arguments.hydSubTotal)>
@@ -1329,7 +1329,7 @@
     <cfdump  var="#arguments#">
     
    </cfsavecontent>
-   <cffile action="write" file = "c:\Update.html" output="#control5#"></cffile>
+   <cffile action="write" file = "c:\PBS\hizlisatiscfc_UpdateVirtualHydrolick.html" output="#control5#"></cffile>
 <cfreturn Replace(SerializeJSON(RETURN_VAL),'//','')>
 
 <!----- <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">

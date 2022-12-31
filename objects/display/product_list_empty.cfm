@@ -139,7 +139,7 @@
                 <br>
                 <cfdump  var="#listLast(arguments.keyword,";")#">                
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\product_list_empty_Fnc_GetProducts.html" output="#control5#"></cffile>
     <cfquery name="get_productsss" datasource="#arguments.dsn1#" result="getproducts_result">
         SELECT
             STOCKS.STOCK_ID,
@@ -251,7 +251,7 @@
          <cfsavecontent  variable="control5">
                 <cfdump  var="#getproducts_result#">                
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\product_list_empty_Fnc_GetProducts2.html" output="#control5#"></cffile>
 <cfquery name="get_products" datasource="#arguments.dsn1#">
   WITH CTE1 AS   (  SELECT
         *

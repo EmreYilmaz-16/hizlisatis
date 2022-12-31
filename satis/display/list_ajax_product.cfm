@@ -313,7 +313,7 @@ AddRow(
          <cfsavecontent  variable="control5">
                 <cfdump  var="#getproducts_result#">                
                </cfsavecontent>
-               <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
+               <cffile action="write" file = "c:\PBS\listajaxproduct2.html" output="#control5#"></cffile>
 <cfquery name="get_products" datasource="#arguments.dsn1#">
   WITH CTE1 AS   (  SELECT
         *
