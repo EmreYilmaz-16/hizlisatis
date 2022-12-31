@@ -268,7 +268,7 @@
                 O.EMPLOYEE_ID,
                 ESR.OUT_DATE
 			ORDER BY 
-        		ESR.DELIVER_PAPER_NO
+        		ESR.SHIP_RESULT_ID
        	</cfquery>
   	<cfelseif cari_kontrol.recordcount>
     	<cfset tip =2>
@@ -768,6 +768,7 @@
                 	AND SEVK_DURUM = 6
                 </cfif>
             ORDER BY
+            SHIP_RESULT_ID,
                 <cfif sort_type eq 1>
                     OUT_DATE
                 <cfelseif sort_type eq 2>
