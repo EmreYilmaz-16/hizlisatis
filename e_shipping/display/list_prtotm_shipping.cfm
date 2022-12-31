@@ -313,7 +313,7 @@
                 O.EMPLOYEE_ID,
                 ESR.OUT_DATE
 			ORDER BY 
-        		ESR.DELIVER_PAPER_NO
+        		ESR.SHIP_RESULT_ID
        	</cfquery>
     <cfelse>
         <cfquery name="GET_SHIPPING" datasource="#dsn3#"><!---Sevk Planları ve Sevk Talepleri Listeleniyor--->
