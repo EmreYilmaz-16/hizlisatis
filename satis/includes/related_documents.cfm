@@ -47,7 +47,7 @@ LEFT JOIN (
             </cfloop>
 ) AS I ON I.ACTION_ID=OI.INVOICE_ID AND OI.PERIOD_ID=I.PERIOD_ID
 
-)
+) as OSS
 		WHERE ORDER_ID=#getOrders.ORDER_ID#
    
    
