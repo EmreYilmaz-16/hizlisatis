@@ -73,7 +73,12 @@ AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
 AND SRR.PREPARE_PERSONAL IS NULL
 --AND ORR.ORDER_ROW_CURRENCY =-6
         </cfquery>
-        
+         <cfsavecontent  variable="control5">
+            <cfdump  var="#CGI#">                
+ 
+            <cfdump var="#getDepWorks#">
+           </cfsavecontent>
+           <cffile action="write" file = "c:\PBS\depocfc_getDepartmentWorks.html" output="#control5#"></cffile>
         <cfset workArr=arrayNew(1)>
         <cfloop query="getDepWorks">
             <cfscript> aWork={
