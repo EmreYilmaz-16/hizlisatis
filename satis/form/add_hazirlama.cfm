@@ -51,7 +51,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
             <td style="width:15%"><div class="form-group"><input type="text" name="quantity#currentrow#" value="#tlformat(QUANTITY,2)#" style="padding-right: 0;text-align: right"></div></td>
             <td>
                 <cfquery name="getSrQ" datasource="#dsn2#">
-                    select sum(STOCK_IN-STOCK_OUT) AS BAKIYE from workcube_metosan_2022_1.STOCKS_ROW where 1=1
+                    select sum(STOCK_IN-STOCK_OUT) AS BAKIYE from #dsn2#.STOCKS_ROW where 1=1
                      and STOCK_ID=#STOCK_ID# 
                 AND STORE=#attributes.DELIVER_DEPT# AND STORE_LOCATION=#attributes.DELIVER_LOCATION#
                 </cfquery>
