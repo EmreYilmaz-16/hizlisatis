@@ -1264,7 +1264,7 @@
                                                         IR.WRK_ROW_RELATION_ID
                                                     FROM            
                                                         #dsn#_#last_year#_#session.ep.company_id#.SHIP_ROW AS SR INNER JOIN
-                                                        #dsn#_#last_year#_#session.ep.company_id#.INVOICE_ROW AS IR ON SR.WRK_ROW_ID = IR.WRK_ROW_RELATION_ID
+                                                        #dsn#_#last_year#_#session.ep.company_id#.INVOICE_ROW AS IR ON SR.WRK_ROW_ID = IR.WRK_ROW_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
                                                 </cfif>
                                           	) AS TBLA
                                			GROUP BY 
