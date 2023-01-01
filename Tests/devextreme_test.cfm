@@ -304,7 +304,8 @@ where SS.TABLE_SCHEMA='workcube_metosan_2022_1' AND SS.COLLATION_NAME IS NOT NUL
 
 
 <cfoutput  query="getColation">
-  ALTER TABLE workcube_metosan_2023_1.#TABLE_NAME# ALTER COLUMN  #COLUMN_NAME# 
+ <cfquery name="alter" datasource="#dsn2#">
+ ALTER TABLE workcube_metosan_2023_1.#TABLE_NAME# ALTER COLUMN  #COLUMN_NAME# 
   <cfif DATA_TYPE eq 'nvarchar'>
       NVARCHAR(<cfif CHARACTER_MAXIMUM_LENGTH eq -1>max<cfelse>#CHARACTER_MAXIMUM_LENGTH#</cfif>   
       )
@@ -312,6 +313,6 @@ where SS.TABLE_SCHEMA='workcube_metosan_2022_1' AND SS.COLLATION_NAME IS NOT NUL
           VARCHAR(<cfif CHARACTER_MAXIMUM_LENGTH eq -1>max<cfelse>#CHARACTER_MAXIMUM_LENGTH#</cfif>   
               )
   </cfif>
-   
+</cfquery>
    <BR>
 </cfoutput>
