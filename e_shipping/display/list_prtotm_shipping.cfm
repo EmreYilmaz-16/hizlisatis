@@ -1269,7 +1269,7 @@
                                           	) AS TBLA
                                			GROUP BY 
                                          	WRK_ROW_RELATION_ID
-                               		) AS TBLB ON ORR.WRK_ROW_ID = TBLB.WRK_ROW_RELATION_ID
+                               		) AS TBLB ON ORR.WRK_ROW_ID = TBLB.WRK_ROW_RELATION_ID  COLLATE SQL_Latin1_General_CP1_CI_AS
 								WHERE        
                                 	ORR.ORDER_ROW_ID IN (#order_row_id_list#)
                             </cfquery>
