@@ -300,7 +300,7 @@ select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,TABLE_NAME,COLLATION_NAME 
 ) AS SL ON SL.TABLE_NAME=SS.TABLE_NAME AND SL.COLUMN_NAME=SS.COLUMN_NAME
 
 where SS.TABLE_SCHEMA='workcube_metosan_2022_1' AND SS.COLLATION_NAME IS NOT NULL AND SL.COLLATION_NAME<>SS.COLLATION_NAME
-and ss.TABLE_NAME not in (select name from sys.views where schema_id=10)
+and ss.TABLE_NAME not in (select name from workcube_metosan.sys.views where schema_id=10)
 </cfquery>
 
 <cftry>
