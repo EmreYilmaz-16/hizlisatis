@@ -317,4 +317,5 @@ where SS.TABLE_SCHEMA='workcube_metosan_2022_1' AND SS.COLLATION_NAME IS NOT NUL
 </cfquery>
    <BR>
 </cfoutput>
+<cfcatch></cfcatch>
 </cftry>
