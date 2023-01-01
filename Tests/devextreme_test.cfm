@@ -311,7 +311,7 @@ where SS.TABLE_SCHEMA='workcube_metosan_2022_1' AND SS.COLLATION_NAME IS NOT NUL
       )
       <cfelseif DATA_TYPE eq 'varchar'>
           VARCHAR(<cfif CHARACTER_MAXIMUM_LENGTH eq -1>max<cfelse>#CHARACTER_MAXIMUM_LENGTH#</cfif>   
-              )
+              ) COLLATION SQL_Latin1_General_CP1_CI_AS
   </cfif>
 </cfquery>
    <BR>
