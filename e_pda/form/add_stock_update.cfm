@@ -119,11 +119,13 @@
           	), 0) AS REAL_STOCK, 
             PP.PRODUCT_PLACE_ID,
             SB.BARCODE, 
-            SB.STOCK_ID
+            SB.STOCK_ID,
+			S.PRODUCT_NAME
 		FROM            
         	STOCKS_BARCODES AS SB INNER JOIN
          	PRODUCT_PLACE_ROWS AS PPR ON SB.STOCK_ID = PPR.STOCK_ID RIGHT OUTER JOIN
           	PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID = PP.PRODUCT_PLACE_ID
+			  INNER JOIN STOCKS AS S ON S.STOCK_ID=SB.STOCK_ID
 		WHERE        
         	PP.STORE_ID = #ListGetAt(attributes.department_in_id,1,'-')# AND 
             PP.LOCATION_ID = #ListGetAt(attributes.department_in_id,2,'-')# AND 
@@ -192,6 +194,7 @@
     <tr class="color-list">
       <td style="width:5%"  align="center">S</td>
       <td style="width:40%" align="center">Barkod</td>
+	  <td style="width:40%" align="center">Ürün</td>
       <td style="width:20%" align="right">Miktar</td>
       <td style="width:20%" align="right">Sayım</td>
       <td style="width:20%" align="right">Sonuç</td>
@@ -212,6 +215,7 @@
                         #currentrow#
                     </td>
                     <td onclick="detay(#STOCK_ID#);">#BARCODE#</td>
+					<TD>#PRODUCT_NAME#</TD>
                     <td style="text-align:right">
                     	#TlFormat(REAL_STOCK,0)#
                     	<input type="hidden" name="old_amount#currentrow#" id="old_amount#currentrow#" style="width:90%" value="#REAL_STOCK#">
