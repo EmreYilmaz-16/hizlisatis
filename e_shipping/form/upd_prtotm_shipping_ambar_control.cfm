@@ -285,7 +285,7 @@
                     </tr>
     			</thead>
                 <tbody>
-				<!-----------<cfdump  var="#GET_SHIP_PACKAGE_LIST#">----->
+				<cfdump  var="#GET_SHIP_PACKAGE_LIST#">
 				
 					<cfoutput query="GET_SHIP_PACKAGE_LIST">
                     	<cfinput type="hidden" name="stock_id_#currentrow#" value="#stock_id#">
