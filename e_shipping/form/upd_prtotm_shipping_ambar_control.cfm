@@ -281,6 +281,7 @@
                         <th width="50px">Sevk</th>
                         <th width="50px">Kalan</th>
 						<th>Hazırlayan</th>
+						<th>Depo</th>
                         <th width="50px">Kontrol</th>
                         <th width="20px" align="center">OK</th>
                     </tr>
@@ -289,6 +290,13 @@
 				<!---<cfdump  var="#GET_SHIP_PACKAGE_LIST#">---->
 				
 					<cfoutput query="GET_SHIP_PACKAGE_LIST">
+						<cfquery name="getsLS" datasource="#dsn3#">
+							SELECT SL.COMMENT,D.DEPARTMENT_HEAD FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR
+LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
+LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID
+LEFT JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID  AND SL.DEPARTMENT_ID=D.DEPARTMENT_ID
+WHERE PPR.STOCK_ID=#stock_id#
+						</cfquery>
                     	<cfinput type="hidden" name="stock_id_#currentrow#" value="#stock_id#">
                         <tr height="20">
                        		<td>#BARCOD#</td>
@@ -300,6 +308,7 @@
                             <input type="hidden" name="kalan_amount" id="kalan_amount_#currentrow#" value="#Tlformat(kalan_amount,3)#"/>
                             <td style="text-align:right"><strong>#Tlformat(kalan_amount,3)#</strong></td>
 							<td>#PREPARE_PERSONAL#</td>
+							<td>#getsLS.DEPARTMENT_HEAD#-#getsLS.COMMENT#</td>
                             <td style="text-align:right">
                             	<cfif type eq 1>
                              		<input name="control_amount" id="control_amount_#currentrow#" value="#Tlformat(0,3)#" style="text-align:right; width:50px" readonly="readonly" class="box"/>
