@@ -274,7 +274,7 @@
 });
 
     </script>
-
+<!----
 <cfquery name="getCats" datasource="#dsn3#">
   select * from workcube_metosan_product.PRODUCT_CAT WHERE DETAIL IS NOT NULL AND  DETAIL <>'4077' AND DETAIL <>'4078' AND DETAIL <>''
 </cfquery>
@@ -291,4 +291,32 @@
   <cfquery name="Upd" datasource="#dsn3#">
       UPDATE workcube_metosan_product.PRODUCT_CAT SET DETAIL=NULL WHERE PRODUCT_CATID=#getCats.PRODUCT_CATID#
      </cfquery>
+</cfoutput>----->
+
+<cfquery name="getColation" datasource="#dsn#">
+select SS.COLUMN_NAME,SS.DATA_TYPE,SS.CHARACTER_MAXIMUM_LENGTH,SS.TABLE_NAME,SS.COLLATION_NAME,sl.* from INFORMATION_SCHEMA.columns SS
+LEFT JOIN (
+select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,TABLE_NAME,COLLATION_NAME from INFORMATION_SCHEMA.columns where TABLE_SCHEMA='workcube_metosan_2023_1'
+) AS SL ON SL.TABLE_NAME=SS.TABLE_NAME AND SL.COLUMN_NAME=SS.COLUMN_NAME
+
+where SS.TABLE_SCHEMA='workcube_metosan_2022_1' AND SS.COLLATION_NAME IS NOT NULL AND SL.COLLATION_NAME<>SS.COLLATION_NAME
+and ss.TABLE_NAME not in (select name from workcube_metosan.sys.views where schema_id=10)
+</cfquery>
+
+<cftry>
+<cfoutput  query="getColation">
+
+
+ ALTER TABLE workcube_metosan_2023_1.#TABLE_NAME# ALTER COLUMN  #COLUMN_NAME# 
+  <cfif DATA_TYPE eq 'nvarchar'>
+      NVARCHAR(<cfif CHARACTER_MAXIMUM_LENGTH eq -1>max<cfelse>#CHARACTER_MAXIMUM_LENGTH#</cfif>   
+      )
+      <cfelseif DATA_TYPE eq 'varchar'>
+          VARCHAR(<cfif CHARACTER_MAXIMUM_LENGTH eq -1>max<cfelse>#CHARACTER_MAXIMUM_LENGTH#</cfif>   
+              ) 
+  </cfif>
+  COLLATE SQL_Latin1_General_CP1_CI_AS
+   <BR>
 </cfoutput>
+<cfcatch></cfcatch>
+</cftry>
