@@ -62,7 +62,7 @@ WHERE POR.OFFER_ID=#attributes.offer_id#
             <cfinclude template="../includes/virtual_offer_parameters.cfm">
           <cf_box>
             <cfform name="product_form">
-            <cf_tab defaultOpen="#attributes.defaultOpen#" divId="sayfa_1,sayfa_2,sayfa_3,sayfa_4,sayfa_5"  divLang="<img src='/images/e-pd/customer.png' style='width:35px' > ;<img src='/images/e-pd/basket.png' style='width:35px'>;<img src='/images/e-pd/sigma.png' style='width:35px'>;<img src='/images/e-pd/docs.png' style='width:35px'>;<img src='/images/e-pd/star.png' style='width:35px'>" >
+            <cf_tab defaultOpen="#attributes.defaultOpen#" divId="sayfa_1,sayfa_2,sayfa_3,sayfa_4,sayfa_5"  divLang="<img src='/images/e-pd/customer.png' style='width:35px' > ;<img src='/images/e-pd/basket.png' style='width:35px'>;<img src='/images/e-pd/sigma.png' style='width:35px'>;<img src='/images/e-pd/docs.png' style='width:35px'>;<img src='/images/e-pd/star.png' style='width:35px'>" beforeFunction="emptyFunction|TabCntFunction()|TabCntFunction()|emptyFunction|emptyFunction|">
              
                 <div id="unique_sayfa_1" class="ui-info-text uniqueBox">
                     <cfinclude template="../includes/order_header_normal.cfm">
