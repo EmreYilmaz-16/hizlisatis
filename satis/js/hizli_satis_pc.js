@@ -370,7 +370,7 @@ function TabCntFunction(a, b, c, d, e, f) {
   console.log("Emre");
   console.log(arguments);
   var c = $("#company_id").val();
-  var s = $("#SHIP_METHOD").val();
+  var s = $("#SHIP_METHOD_ID").val();
   var o = $("#PAYMETHOD").val();
   var hata = false;
   if (c.length > 0) {
