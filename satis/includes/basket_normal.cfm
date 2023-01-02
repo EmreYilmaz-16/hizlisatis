@@ -77,9 +77,8 @@
                         </div>
                         <div class="form-group" id="sales_type_m" style="display:none">
                             
-                            <input type="checkbox" value="3" name="is_sevkiyat" id="sevkiyat" readonly  onclick="isChCntPbs(this)">
-                            <label style="display:none" type="checkbox" value="4" name="sales_type" readonly id="sales_type_1" >
-                            <label style="display:none">Sevkiyat</label>
+                            <input style="display: none;" type="checkbox" value="4" name="sales_type" readonly id="sales_type_1" >
+                            <label style="display: none;">Sevkiyat</label>
                             </div>
                          
                     </div>
