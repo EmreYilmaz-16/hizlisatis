@@ -328,13 +328,13 @@
             	</tbody>
                 <tfoot>
                     <tr class="color-list">
-                        <td colspan="8" style="text-align:right">
+                       <!--- <td colspan="8" style="text-align:right">
                         	<cfif type eq 1>
                             	<input type="button" value="Kapat" onClick="kontrol(0);">&nbsp;
                         		<input type="button" disabled value="Ambar Fişi Oluştur" name="ambar_fisi" id="ambar_fisi" onClick="kontrol(1);" style="width:140px;">
                             <cfelse>
                             	<input type="button" value="Kapat" onClick="kontrol(0);">
-                            </cfif>
+                            </cfif>---->
                         </td>
                     </tr>
              	</tfoot>
