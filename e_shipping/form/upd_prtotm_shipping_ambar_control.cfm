@@ -102,7 +102,8 @@
                 		) AS TBL_5
         	),0) AS CONTROL_AMOUNT,
             SHIP_RESULT_ID,
-            DELIVER_PAPER_NO
+            DELIVER_PAPER_NO,
+			PREPARE_PERSONAL
 		FROM         
         	(
             SELECT
@@ -113,7 +114,8 @@
                 PRODUCT_NAME, 
                 PRODUCT_TREE_AMOUNT, 
                 SHIP_RESULT_ID,
-                DELIVER_PAPER_NO
+                DELIVER_PAPER_NO,
+				PREPARE_PERSONAL
            	FROM
             	(     
                 SELECT     
@@ -133,7 +135,8 @@
                     S.PRODUCT_TREE_AMOUNT, 
                     ESR.SHIP_RESULT_ID,
                     ESRR.ORDER_ROW_ID,
-                    ESR.DELIVER_PAPER_NO
+                    ESR.DELIVER_PAPER_NO,
+					ESR.PREPARE_PERSONAL
                 FROM          
                     PRTOTM_SHIP_RESULT AS ESR INNER JOIN
                     PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
