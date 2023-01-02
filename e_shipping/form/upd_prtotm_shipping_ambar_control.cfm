@@ -136,7 +136,7 @@
                     ESR.SHIP_RESULT_ID,
                     ESRR.ORDER_ROW_ID,
                     ESR.DELIVER_PAPER_NO,
-					ESR.PREPARE_PERSONAL
+					#dsn#.getEmployeeWithId(ESRR.PREPARE_PERSONAL) PREPARE_PERSONAL
                 FROM          
                     PRTOTM_SHIP_RESULT AS ESR INNER JOIN
                     PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
@@ -280,6 +280,7 @@
                         <th width="50px">Miktar</th>
                         <th width="50px">Sevk</th>
                         <th width="50px">Kalan</th>
+						<th>Hazırlayan</th>
                         <th width="50px">Kontrol</th>
                         <th width="20px" align="center">OK</th>
                     </tr>
@@ -298,6 +299,7 @@
                             <cfset kalan_amount= PAKETSAYISI - control_amount>
                             <input type="hidden" name="kalan_amount" id="kalan_amount_#currentrow#" value="#Tlformat(kalan_amount,3)#"/>
                             <td style="text-align:right"><strong>#Tlformat(kalan_amount,3)#</strong></td>
+							<td>#PREPARE_PERSONAL#</td>
                             <td style="text-align:right">
                             	<cfif type eq 1>
                              		<input name="control_amount" id="control_amount_#currentrow#" value="#Tlformat(0,3)#" style="text-align:right; width:50px" readonly="readonly" class="box"/>
