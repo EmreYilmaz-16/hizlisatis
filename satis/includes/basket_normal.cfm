@@ -73,12 +73,12 @@
                         <div class="form-group" style="margin-right: 5px;border-right: 1px solid #ccc;padding-right: 5px;">       
                             
                         <input style="display:none" type="checkbox" value="3" name="is_sevkiyat" id="sevkiyat" readonly  onclick="isChCntPbs(this)">
-                        <label style="display: none;">Hazırlama</label>
+                        <label style="display:none;">Hazırlama</label>
                         </div>
                         <div class="form-group" id="sales_type_m" style="display:none">
                             
-                            <input style="display: none;" type="checkbox" value="4" name="sales_type" readonly id="sales_type_1" >
-                            <label style="display: none;">Sevkiyat</label>
+                            <input style="display:none;" type="checkbox" value="4" name="sales_type" readonly id="sales_type_1" >
+                            <label style="display:none;">Sevkiyat</label>
                             </div>
                          
                     </div>
