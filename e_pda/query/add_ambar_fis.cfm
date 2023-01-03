@@ -107,6 +107,14 @@
   SELECT * FROM STOCK_FIS WHERE FIS_NUMBER='#paper_full#'
 </cfquery>
 <cfif isHvUsed.recordCount>
+    <cfquery name="UPD_GEN_PAP" datasource="#DSN3#">
+        UPDATE 
+            GENERAL_PAPERS
+        SET
+            STOCK_FIS_NUMBER = STOCK_FIS_NUMBER+1
+        WHERE
+            STOCK_FIS_NUMBER IS NOT NULL
+    </cfquery>
     <cf_papers paper_type="stock_fis">
         <cfif isdefined("paper_full") and isdefined("paper_number")>
             <cfset system_paper_no = paper_full>
