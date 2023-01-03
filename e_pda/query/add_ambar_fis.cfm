@@ -125,7 +125,6 @@
 </cfif>
 <cfdump var="#system_paper_no#">
 <cfdump var="#paper_full#">
-<cfabort>
 
 
     <cfset attributes.ROWS_ = listlen(stock_id_list)>
