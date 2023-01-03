@@ -103,6 +103,19 @@
     </cfif>
 <cfdump var="#system_paper_no#">
 <cfdump var="#paper_full#">
+<cfquery name="isHvUsed" datasource="#dsn2#">
+  SELECT * FROM STOCK_FIS WHERE FIS_NUMBER='#paper_full#'
+</cfquery>
+<cfif isHvUsed.recordCount>
+    <cf_papers paper_type="stock_fis">
+        <cfif isdefined("paper_full") and isdefined("paper_number")>
+            <cfset system_paper_no = paper_full>
+        <cfelse>
+            <cfset system_paper_no = "">
+        </cfif>
+</cfif>
+<cfdump var="#system_paper_no#">
+<cfdump var="#paper_full#">
 <cfabort>
 
 
