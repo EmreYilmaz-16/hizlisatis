@@ -353,9 +353,9 @@
 		cost_action(action_type:3,action_id:GET_ID.MAX_ID,query_type:1);
 	</cfscript>
 	<script type="text/javascript">
-		window.location.href="<cfoutput>#request.self#?fuseaction=pda.stock_welcome</cfoutput>";
+	//	window.location.href="<cfoutput>#request.self#?fuseaction=pda.stock_welcome</cfoutput>";
 	</script>
 <cfelse>
-	<cflocation url="#request.self#?fuseaction=epda.prtotm_mal_ambar" addtoken="No">
+	
 </cfif>
 </cfif>
