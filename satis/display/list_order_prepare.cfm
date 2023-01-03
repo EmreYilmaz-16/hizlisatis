@@ -58,7 +58,7 @@ AND SRR.PREPARE_PERSONAL=#session.EP.USERID#
         if(t==1){
         windowopen('/index.cfm?fuseaction=stock.emptypopup_add_hazirlama&SHIP_ID='+shid+'&DELIVER_DEPT='+dep+'&DELIVER_LOCATION='+loc,'list');}
         if(t==2){
-           windowopen('/index.cfm?fuseaction=objects.popup_print_files&print_type=32&action_id='+shid+'&iid='+dep+'-'+loc+'&action=eshipping.list_partner_shipping') 
+           windowopen('/index.cfm?fuseaction=objects.popup_print_files&print_type=32&action_id='+shid+'&action_ids='+dep+'-'+loc+'&action=eshipping.list_partner_shipping') 
         }
     }
 </script>
