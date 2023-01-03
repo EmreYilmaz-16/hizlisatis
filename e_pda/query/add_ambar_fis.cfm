@@ -101,6 +101,11 @@
     <cfelse>
         <cfset system_paper_no = "">
     </cfif>
+<cfdump var="#system_paper_no#">
+<cfdump var="#paper_full#">
+<cfabort>
+
+
     <cfset attributes.ROWS_ = listlen(stock_id_list)>
     <cfset attributes.FIS_DATE_H = hour(now())>
     <cfset attributes.FIS_DATE_M = minute(now())>
