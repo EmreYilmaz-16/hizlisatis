@@ -382,6 +382,8 @@
 		window.location.href="<cfoutput>#request.self#?fuseaction=pda.stock_welcome</cfoutput>";
 	</script>
 <cfelse>
-	
+    <script type="text/javascript">
+		window.location.href="<cfoutput>#request.self#?fuseaction=pda.stock_welcome</cfoutput>";
+	</script>
 </cfif>
 </cfif>
