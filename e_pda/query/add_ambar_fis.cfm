@@ -107,6 +107,7 @@
   SELECT * FROM STOCK_FIS WHERE FIS_NUMBER='#paper_full#'
 </cfquery>
 <cfif isHvUsed.recordCount>
+    burda
     <cfquery name="UPD_GEN_PAP" datasource="#DSN3#">
         UPDATE 
             GENERAL_PAPERS
