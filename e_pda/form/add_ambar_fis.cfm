@@ -123,9 +123,9 @@ table, td, th, div {
             <td></td>
        	  </tr>
           <tr class="color-list" height="20px">
-            <td><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox" onfocus="islemtipi=0;" style="width:40px; text-align:right" value="1" /></td>
-            <td><input id="add_other_barcod" name="add_other_barcod" type="text" value="" style="width:90px;" ></td>
-            <td><input id="add_other_shelf" name="add_other_shelf" type="text" class="moneybox" onfocus="islemtipi=0;" style="width:60px;" value="" /></td>
+            <td><div class="form-group"><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox" onfocus="islemtipi=0;" style="text-align:right" value="1" /></div></td>
+            <td><div class="form-group"><input id="add_other_barcod" name="add_other_barcod" type="text" value="" style="width:90px;" ></div></td>
+            <td><div class="form-group"><input id="add_other_shelf" name="add_other_shelf" type="text" class="moneybox" onfocus="islemtipi=0;"  value="" /></div></td>
             <td>
               <table>
               	<tr>
