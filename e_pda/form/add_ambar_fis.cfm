@@ -1,4 +1,4 @@
-﻿<cf_box>
+﻿<cf_box title="Mal Kabulden Ambara (Ambar Fişi)">
 <style>
 	.pbs_box{
 		padding: 0px 4px 0 0 !important;
