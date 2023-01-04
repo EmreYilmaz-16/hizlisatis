@@ -130,7 +130,7 @@ table, td, th, div {
        	  </tr>
           <tr class="color-list" height="20px">
             <td><div class="form-group"><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="1" /></div></td>
-            <td><div class="form-group"><input id="add_other_barcod" name="add_other_barcod" type="text" value="" ></div></td>
+            <td><div class="form-group"><input id="add_other_barcod" name="add_other_barcod" type="text" class="pbs_box" value="" ></div></td>
             <td><div class="form-group"><input id="add_other_shelf" name="add_other_shelf" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="" /></div></td>
             <td>
               <table>
