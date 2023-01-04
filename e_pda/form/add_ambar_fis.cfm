@@ -1,4 +1,5 @@
-﻿<style>
+﻿<cf_box>
+<style>
 	.pbs_box{
 		padding: 0px 4px 0 0 !important;
 		text-align:right !important;
@@ -110,7 +111,7 @@ table, td, th, div {
   <input type="hidden" name="kuponlist" value="" />
   <input type="hidden" name="active_period" value="#session.ep.period_id#" />
   <div style="width:100%">
-  <table cellpadding="2" cellspacing="1" align="left" class="color-border" width="99%">
+  <table cellpadding="2" cellspacing="1" align="left"  width="99%">
     <tr>
   <td colspan="3">
   <a href="<cfoutput>#request.self#?fuseaction=epda.emptypopup_prtotm_welcome</cfoutput>"><img style="width:30px;height:30px" src="../../images/e-pd/Home.png"></a>&nbsp;&nbsp;
@@ -119,16 +120,16 @@ table, td, th, div {
   <a href="<cfoutput>#request.self#?fuseaction=epda.prtotm_svk_kontrol</cfoutput>"><img style="width:30px;height:30px" src="../../images/e-pd/tickmav30.png"></a>&nbsp;&nbsp;
   </td>
   </tr>
-    <tr class="color-list">
+    <tr >
       <td colspan="4">
-      	<table border="0" cellpadding="0" cellspacing="0" width="100%" class="color-border">
-          <tr class="color-list" height="15px">
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%" >
+          <tr  height="15px">
             <td align="center" style="width:10%">Miktar</td>
             <td align="center" style="width:30%">Barcode</td>
             <td align="center" style="width:30%">Raf</td>
             <td style="width:30%"></td>
        	  </tr>
-          <tr class="color-list" height="20px">
+          <tr  height="20px">
             <td><div class="form-group"><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="1" /></div></td>
             <td><div class="form-group"><input id="add_other_barcod" name="add_other_barcod" type="text" class="pbs_box" value="" ></div></td>
             <td><div class="form-group"><input id="add_other_shelf" name="add_other_shelf" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="" /></div></td>
@@ -151,14 +152,14 @@ table, td, th, div {
         </table>
       </td>
     </tr>
-    <tr class="color-list">
+    <tr >
       <td colspan="4">
-      	<table border="0" cellpadding="0" cellspacing="0" width="100%" class="color-border">
-           <tr class="color-list" height="15px">
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%" >
+           <tr  height="15px">
             <td align="center" width="50%">Çıkış Depo</td>
             <td align="center" width="50%">Giriş Depo</td>
            </tr>
-           <tr class="color-list" height="20px">
+           <tr  height="20px">
             <td>
 				<div class="form-group">
               <select name="txt_department_out" style="height:20px" onchange="document.getElementById('department_out').value = this.value">
@@ -195,13 +196,13 @@ table, td, th, div {
         </table>
       </td>
     </tr>
-    <tr class="color-list" height="15px">
+    <tr  height="15px">
       <td width="55" align="center">Barkod</td>
       <td width="55" align="left">Ürün Adı</td>
       <td width="25" align="right">Mikt.</td>
       <td width="50" align="left">Raf</td>
     </tr>
-    <tr class="color-list" height="20px">
+    <tr  height="20px">
       <td align="left" colspan="4"><!---  kontrol edilen tablo--->
         <form name="product_row" id="product_row" method="post">
           <table name="table1" id="table1" border="0" cellpadding="0" cellspacing="0" width="100%" class="tablo">
@@ -209,7 +210,7 @@ table, td, th, div {
         </form>
         <!---  kontrol edilen tablo---></td>
     </tr>
-    <tr class="color-list" height="15px">
+    <tr  height="15px">
       <td colspan="6" align="right">
       	<input type="hidden" id="department_in" name="department_in" value="" />
       	<input type="hidden" id="row_count" name="row_count" value="0" />
@@ -507,3 +508,4 @@ table, td, th, div {
 			}
 	}
 </script>
+</cf_box>
