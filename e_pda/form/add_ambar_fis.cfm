@@ -130,9 +130,11 @@ table, td, th, div {
               <table>
               	<tr>
                     <td id="shelf_select_td" style="display:none">
-                        <select name="shelf_select" id="shelf_select" style="width:70px;height:20px;text-align:center">
+						<div class="form-group">
+                        <select name="shelf_select" id="shelf_select" style="height:20px;text-align:center">
                             <option value="">Ürün Rafları</option>
                         </select>
+					</div>
                     </td>
                   </tr>
                 </table>
