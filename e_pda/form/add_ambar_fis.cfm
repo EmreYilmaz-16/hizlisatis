@@ -133,7 +133,7 @@ table, td, th, div {
             <td><div class="form-group"><input id="add_other_barcod" name="add_other_barcod" type="text" class="pbs_box" value="" ></div></td>
             <td><div class="form-group"><input id="add_other_shelf" name="add_other_shelf" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="" /></div></td>
             <td>
-              <table>
+              <table style="width:100%">
               	<tr>
                     <td id="shelf_select_td" style="display:none">
 						<div class="form-group">
