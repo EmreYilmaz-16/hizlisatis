@@ -120,7 +120,8 @@
             PP.PRODUCT_PLACE_ID,
             SB.BARCODE, 
             SB.STOCK_ID,
-			S.PRODUCT_NAME
+			S.PRODUCT_NAME,
+			S.PRODUCT_CODE
 		FROM            
         	STOCKS_BARCODES AS SB INNER JOIN
          	PRODUCT_PLACE_ROWS AS PPR ON SB.STOCK_ID = PPR.STOCK_ID RIGHT OUTER JOIN
@@ -194,6 +195,7 @@
     <tr class="color-list">
       <td style="width:5%"  align="center">S</td>
       <td style="width:40%" align="center">Barkod</td>
+	  <td style="width:40%" align="center">Stok Kodu</td>
 	  <td style="width:40%" align="center">Ürün</td>
       <td style="width:20%" align="right">Miktar</td>
       <td style="width:20%" align="right">Sayım</td>
@@ -215,6 +217,7 @@
                         #currentrow#
                     </td>
                     <td onclick="detay(#STOCK_ID#);">#BARCODE#</td>
+					<TD>#PRODUCT_CODE#</TD>
 					<TD>#PRODUCT_NAME#</TD>
                     <td style="text-align:right">
                     	#TlFormat(REAL_STOCK,0)#
