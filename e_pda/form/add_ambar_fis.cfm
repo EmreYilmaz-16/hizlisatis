@@ -1,6 +1,7 @@
 ﻿<style>
 	.pbs_box{
 		padding: 0px 4px 0 0 !important;
+		text-align:right !important;
 	}
 </style>
 <cfset default_process_type = 113>
@@ -122,14 +123,14 @@ table, td, th, div {
       <td colspan="4">
       	<table border="0" cellpadding="0" cellspacing="0" width="100%" class="color-border">
           <tr class="color-list" height="15px">
-            <td align="center" width="45px">Miktar</td>
-            <td align="center" width="95px">Barcode</td>
-            <td align="center">Raf</td>
-            <td></td>
+            <td align="center" style="width:10%">Miktar</td>
+            <td align="center" style="width:40%">Barcode</td>
+            <td align="center" style="width:30%">Raf</td>
+            <td style="width:20%"></td>
        	  </tr>
           <tr class="color-list" height="20px">
-            <td><div class="form-group"><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;" style="text-align:right" value="1" /></div></td>
-            <td><div class="form-group"><input id="add_other_barcod" name="add_other_barcod" type="text" value="" style="width:90px;" ></div></td>
+            <td><div class="form-group"><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="1" /></div></td>
+            <td><div class="form-group"><input id="add_other_barcod" name="add_other_barcod" type="text" value="" ></div></td>
             <td><div class="form-group"><input id="add_other_shelf" name="add_other_shelf" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="" /></div></td>
             <td>
               <table>
