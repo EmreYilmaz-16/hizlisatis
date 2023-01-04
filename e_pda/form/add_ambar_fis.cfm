@@ -124,9 +124,9 @@ table, td, th, div {
       	<table border="0" cellpadding="0" cellspacing="0" width="100%" class="color-border">
           <tr class="color-list" height="15px">
             <td align="center" style="width:10%">Miktar</td>
-            <td align="center" style="width:40%">Barcode</td>
+            <td align="center" style="width:30%">Barcode</td>
             <td align="center" style="width:30%">Raf</td>
-            <td style="width:20%"></td>
+            <td style="width:30%"></td>
        	  </tr>
           <tr class="color-list" height="20px">
             <td><div class="form-group"><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="1" /></div></td>
