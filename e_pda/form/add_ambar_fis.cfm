@@ -1,4 +1,9 @@
-﻿<cfset default_process_type = 113>
+﻿<style>
+	.pbs_box{
+		padding: 0px 4px 0 0 !important;
+	}
+</style>
+<cfset default_process_type = 113>
 <cfquery name="get_default_departments" datasource="#dsn#">
 	SELECT        
     	DEFAULT_MK_TO_RF_DEP, 
@@ -123,9 +128,9 @@ table, td, th, div {
             <td></td>
        	  </tr>
           <tr class="color-list" height="20px">
-            <td><div class="form-group"><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox" onfocus="islemtipi=0;" style="text-align:right" value="1" /></div></td>
+            <td><div class="form-group"><input id="add_other_amount" name="add_other_amount" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;" style="text-align:right" value="1" /></div></td>
             <td><div class="form-group"><input id="add_other_barcod" name="add_other_barcod" type="text" value="" style="width:90px;" ></div></td>
-            <td><div class="form-group"><input id="add_other_shelf" name="add_other_shelf" type="text" class="moneybox" onfocus="islemtipi=0;"  value="" /></div></td>
+            <td><div class="form-group"><input id="add_other_shelf" name="add_other_shelf" type="text" class="moneybox pbs_box" onfocus="islemtipi=0;"  value="" /></div></td>
             <td>
               <table>
               	<tr>
