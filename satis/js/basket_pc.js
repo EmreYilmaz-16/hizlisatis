@@ -156,7 +156,13 @@ function AddRow(
 
   if (price == 0) {
     var q =
-      "SELECT ISNULL(workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE(22143,19,38109),0) AS FIYAT";
+      "SELECT ISNULL(workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE(" +
+      CompanyData.COMPANY_ID +
+      "," +
+      CompanyData.PRICE_CAT +
+      "," +
+      stock_id +
+      "),0) AS FIYAT";
     var res = wrk_query(q, "dsn3");
     prc = res.FIYAT[0];
     price = res.FIYAT[0];
