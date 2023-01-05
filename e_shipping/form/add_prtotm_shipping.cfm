@@ -87,6 +87,13 @@
             ORD.ORDER_NUMBER,
             ORR.SPECT_VAR_ID,
             ORR.SPECT_VAR_NAME,
+			CASE 
+	WHEN ORR.ORDER_ROW_CURRENCY=-2 THEN 'Tedarik' 
+	WHEN ORR.ORDER_ROW_CURRENCY=-5 THEN 'Üretim' 
+	WHEN ORR.ORDER_ROW_CURRENCY=-6 THEN 'Sevk' 
+	WHEN ORR.ORDER_ROW_CURRENCY=-1 THEN 'Açık' 
+	WHEN ORR.ORDER_ROW_CURRENCY=-10 THEN 'Kapatıldı'
+END AS ASAMA
             ORD.SALES_ADD_OPTION_ID,
             ORD.ORDER_STAGE,
             S.PRODUCT_NAME,
@@ -325,6 +332,7 @@
 					<th style="width:350px"><cf_get_lang_main no='245.Ürün'></th>
 					<th style="width:60px"><cf_get_lang_main no='377.Özel Kod'></th>
 					<th style="width:80px"><cf_get_lang_main no='235.Spec'></th>
+						<th>Aşama</th>
                     <th style="text-align:right; width:60px"><cf_get_lang_main no='1351.Depo'></th>
 					<th style="text-align:right; width:60px"><cf_get_lang_main no='199.Sipariş'></th>
 					<th width="70"style="text-align:right;">Sevk Planlanan</th>
@@ -348,6 +356,7 @@
 									<a  href="javascript://" onClick="windowopen('#request.self#?fuseaction=objects.popup_upd_spect&id=#SPECT_VAR_ID#&stock_id=#stock_id#','list');" class="tableyazi">#spect_main_id#-#spect_var_id#</a>	
 								</cfif>
                             </td>
+							<td>#ASAMA#</td>
                             <td style="text-align:right;">#AmountFormat(DEPO)#</td>
                             <td style="text-align:right;">#AmountFormat(get_order_det.QUANTITY)#</td>
                             <td style="text-align:right;">
