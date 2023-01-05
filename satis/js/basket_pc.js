@@ -154,7 +154,7 @@ function AddRow(
   var rsss = moneyArr.find((p) => p.MONEY == other_money);
   var prc = price_other * rsss.RATE2;
 
-  if (price > 0) {
+  if (price == 0) {
     var q =
       "SELECT ISNULL(workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE(22143,19,38109),0) AS FIYAT";
     var res = wrk_query(q, "dsn3");
