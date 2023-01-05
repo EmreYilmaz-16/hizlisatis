@@ -35,7 +35,7 @@ select count(*) AS RC from PBS_OFFER
 <cfset attributes.company_id=FormData.OrderHeader.COMPANY_ID>
 <cfset attributes.member_id=FormData.OrderHeader.COMPANY_PARTNER_ID>
 <cfset attributes.price_catid=FormData.OrderHeader.PRICE_CATID>
-<cfif isDefined("FormData.OrderHeader.PLASIYER_ID")>
+<cfif  1 EQ 0 AND isDefined("FormData.OrderHeader.PLASIYER_ID")>
     <cfset attributes.sales_emp_id=FormData.OrderHeader.PLASIYER_ID>
     <cfset attributes.sales_emp=FormData.OrderHeader.PLASIYER>
 <cfelse>
