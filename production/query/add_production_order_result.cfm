@@ -10,7 +10,7 @@
 
 
 
-
+<cfset attributes.PRODUCT_AMOUNT_1_0="#getVirtualProductionOrder.QUANTITY#">
 <cfinclude template="/AddOns/Partner/production/Includes/close_porders.cfm">
 
 <cfset attributes.process_cat=111>

@@ -245,6 +245,16 @@ pos 2 <br>
         <cfscript>
             rezerveEklePartner(dsn3,1,ORDER_ID);
         </cfscript>
+        <!--- Aşaması Tedarik Olanların Depolarının Malkabule Çekilmesi---->
+<cfquery name="getOrderRow" datasource="#dsn3#">
+    UPDATE  ORDER_ROW 
+    SET 
+        DELIVER_DEPT=#FormData.WORKING_PARAMS.ENTRY_DEPARTMENT_ID#,
+        DELIVER_LOCATION=#FormData.WORKING_PARAMS.ENTRY_LOCATION_ID# 
+    WHERE ORDER_ID=#GET_MAX_ORDER.MAX_ID# AND ORDER_ROW_CURRENCY=-2
+</cfquery>
+
+
     </cfif>
 </cfif>
 <cfdump var="#FormData#">
