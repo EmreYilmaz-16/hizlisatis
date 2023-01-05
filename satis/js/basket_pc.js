@@ -154,6 +154,15 @@ function AddRow(
   var rsss = moneyArr.find((p) => p.MONEY == other_money);
   var prc = price_other * rsss.RATE2;
 
+  if (price > 0) {
+    var q =
+      "SELECT ISNULL(workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE(22143,19,38109),0) AS FIYAT";
+    var res = wrk_query(q, "dsn3");
+    prc = res.FIYAT[0];
+    price = res.FIYAT[0];
+    price_other = res.FIYAT[0];
+    other_money = "TL";
+  }
   var tr = document.createElement("tr");
   console.log("Manuel From Attributes" + is_manuel);
   console.log(
@@ -654,28 +663,25 @@ function getRafSml(stock_id, rafcode) {
 }
 
 function hesapla(input, sira) {
-  var price_=$("#price_" + sira).val();
-  var price_other_=$("#price_other_" + sira).val();
+  var price_ = $("#price_" + sira).val();
+  var price_other_ = $("#price_other_" + sira).val();
   /*var price_ = filterNum($("#price_" + sira).val(), 8);
 
   var price_other_ = filterNum($("#price_other_" + sira).val(), 8);*/
 
   if (price_.indexOf(",") != -1) {
-   
-    price_ = filterNum(price_,8);
+    price_ = filterNum(price_, 8);
   } else {
-    
-    price_ = filterNum(commaSplit(price_),8);
+    price_ = filterNum(commaSplit(price_), 8);
   }
 
   if (price_other_.indexOf(",") != -1) {
     console.log("t");
-    price_other_ = filterNum(price_other_,8);
+    price_other_ = filterNum(price_other_, 8);
   } else {
     console.log("y");
-    price_other_ = filterNum(commaSplit(price_other_),8);
+    price_other_ = filterNum(commaSplit(price_other_), 8);
   }
-  
 
   var amount_ = filterNum($("#amount_" + sira).val(), 8);
   var cost_ = $("#cost_" + sira).val();
