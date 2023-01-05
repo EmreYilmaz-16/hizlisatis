@@ -21,7 +21,6 @@ SELECT * FROM WORKSTATIONS_PRODUCTS WHERE STOCK_ID=#main_stock_id#
 
 
 
-
 <cfset attributes.DELIVER_DATE_1="#dateformat(NEW_FINISH_DATE_,'yyyy-mm-dd')#">
 <cfset attributes.DETAIL="">
 <cfset attributes.ORDER_ID_1="">
@@ -31,7 +30,7 @@ SELECT * FROM WORKSTATIONS_PRODUCTS WHERE STOCK_ID=#main_stock_id#
 <cfset attributes.PRODUCTION_ROW_COUNT_1="0">
 <cfset attributes.STOCK_RESERVED="1">
 <cfset attributes.SHOW_LOT_NO_COUNTER="0">
-<cfset attributes.PRODUCT_AMOUNT_1_0="1">
+
 <cfset attributes.IS_STAGE="4">
 <cfset attributes.PROJECT_ID_1="">
 <cfset attributes.PROCESS_STAGE="25">
