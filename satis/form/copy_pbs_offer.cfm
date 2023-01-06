@@ -14,7 +14,7 @@
         </div>        
     </div>
     <input type="hidden" name="is_submit" value="1">
-    <button type="button" onclick="SentForm()"></button>
+    <button class="btn btn-success" type="button" onclick="SentForm()">Kopyala</button>
 </cfform>
 
 
