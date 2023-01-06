@@ -1971,9 +1971,9 @@
                                 <td style="text-align:right;" colspan="4">
                                 	<input type="text" name="send_date" id="send_date" value="#dateformat(DateAdd('d',1,now()),'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
                                     <cf_wrk_date_image date_field="send_date">
-                                    <input type="button" name="gonder" value="<cf_get_lang_main no='1331.Gönder'>" onClick="grupla(-4);">
-                                    <input type="button" name="birles" value="<cf_get_lang_main no='3551.Birleştir'>" onClick="grupla(-3);">
-                                    <input type="button" value="#getLang('prod',222)#" onClick="grupla(-2);">
+                                    <input type="button" name="gonder" value="Gönder" onClick="grupla(-4);">
+                                    <input type="button" name="birles" value="Birleştir" onClick="grupla(-3);">
+                                    <input type="button" value="Toplu Yazdır" onClick="grupla(-2);">
                                 </td>
                             </cfoutput>
                          </cfif>     
