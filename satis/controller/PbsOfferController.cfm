@@ -30,7 +30,7 @@
 
 	if(attributes.event is 'upd')
 		{			
-			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['copy']['text'] = 'Yazdır';
+			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['copy']['text'] = 'Kopyala';
 			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['copy']['onClick'] = "window.open('#request.self#?fuseaction=sales.emptypopup_copy_pbs_offer&offer_id=#url.offer_id#');";
 
 			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['print']['text'] = 'Yazdır';
