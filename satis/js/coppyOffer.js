@@ -7,6 +7,7 @@ function SentForm() {
       $("#price_catid").val(compInfo.PRICE_LISTS[i].PRICE_CATID);
     }
   }
+  $("#frm_search").submit();
 }
 
 function GetAjaxQuery(type, type_id) {
