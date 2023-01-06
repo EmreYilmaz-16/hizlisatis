@@ -1,5 +1,5 @@
 function SentForm() {
-  var id = document.getElementById("company_id").val;
+  var id = document.getElementById("company_id").value;
   let compInfo = GetAjaxQuery("CompanyInfo", id);
   for (let i = 0; i < compInfo.PRICE_LISTS.length; i++) {
     console.log(compInfo.PRICE_LISTS[i]);
