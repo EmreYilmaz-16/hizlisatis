@@ -163,7 +163,8 @@ END AS ASAMA,
                 <tbody>
                 	<cfif get_shippng_plan.recordcount>
                      	<cfoutput query="get_shippng_plan">
-              				<tr>
+							
+              				<tr  >
                             	<td align="center" id="order_row#currentrow#" class="color-row" onclick="gizle_goster(order_stocks_detail#currentrow#);connectAjax('#currentrow#','#SHIP_RESULT_ID#');gizle_goster(siparis_goster#currentrow#);gizle_goster(siparis_gizle#currentrow#);">
                                     <img id="siparis_goster#currentrow#" src="/images/listele.gif" title="<cf_get_lang_main no ='1184.Göster'>">
                                     <img id="siparis_gizle#currentrow#" src="/images/listele_down.gif" title="<cf_get_lang_main no='1216.Gizle'>" style="display:none">
@@ -349,7 +350,7 @@ END AS ASAMA,
             	<cfif get_order_det.recordcount>
                     <cfoutput query="get_order_det">
                         <cfset stock_id=get_order_det.STOCK_ID>
-                        <tr>
+                        <tr <cfif SATILABILIR lt QUANTITY>style="background-color:red"</cfif>>
                         	<td>#get_order_det.STOCK_CODE#</td>
                             <td>#get_order_det.PRODUCT_NAME#</td>
                             <td>#get_order_det.STOCK_CODE_2#</td>
