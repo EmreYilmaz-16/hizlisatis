@@ -1647,7 +1647,7 @@
                      									PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
                       									ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID ON SP.SPECT_VAR_ID = ORR.SPECT_VAR_ID INNER JOIN
                      									STOCKS AS S INNER JOIN
-                     									PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID ON SP.SPECT_MAIN_ID = EPS.MODUL_SPECT_ID INNER JOIN
+                     									PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID  INNER JOIN
                                                         STOCKS AS S1 ON ORR.STOCK_ID = S1.STOCK_ID   
                                                     WHERE      
                                                         ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID# AND
