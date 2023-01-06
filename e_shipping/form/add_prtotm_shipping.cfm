@@ -350,7 +350,7 @@ END AS ASAMA,
             	<cfif get_order_det.recordcount>
                     <cfoutput query="get_order_det">
                         <cfset stock_id=get_order_det.STOCK_ID>
-                        <tr <cfif SATILABILIR lt QUANTITY>style="background-color:red"</cfif>>
+                        <tr <cfif SATILABILIR lt QUANTITY>style="background-color:##ffb3008f"</cfif>>
                         	<td>#get_order_det.STOCK_CODE#</td>
                             <td>#get_order_det.PRODUCT_NAME#</td>
                             <td>#get_order_det.STOCK_CODE_2#</td>
