@@ -941,7 +941,7 @@
                       	</a>
                         <cfsavecontent variable="message"><cf_get_lang_main no='125.Sayi_Hatasi_Mesaj'></cfsavecontent>
                         <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,250" message="#message#" maxlength="3" style="width:25px;">
-                        <cf_wrk_search_button search_function='input_control()'>
+                        <input type="submit">
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>        
