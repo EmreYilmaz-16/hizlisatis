@@ -234,7 +234,7 @@
     <cfinput type="hidden" name="fis_type" value="#default_process_type#">
     <cfinput type="hidden" name="process_cat" value="#get_process_cat.PROCESS_CAT_ID#">
 </cfif>
-<cf_box title="Ambar Fişi Hazırlama Kontrol Listesi">
+
 <table class="dph">
 	<tr> 
 		<td class="dpht">Ambar Fişi Hazırlama Kontrol Listesi</td>
@@ -458,4 +458,3 @@ for (i = 1; i < countx+1; i++) {
 		}
 	}
 </script>
-</cf_box>
