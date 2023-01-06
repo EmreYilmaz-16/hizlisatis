@@ -327,7 +327,7 @@ END AS ASAMA,
 				</td>
 			</tr>
 		</table>
-		<cf_form_list>
+		<cf_grid_list>
 			<thead>
 				<tr> 
                 	<th style="width:100px"><cf_get_lang_main no='106.Stok Kodu'></th>
@@ -394,7 +394,7 @@ END AS ASAMA,
                     </cfoutput>
 				</cfif>
             </tbody>
-		</cf_form_list>
+		</cf_grid_list>
 		<cf_popup_box_footer>
          	<cf_workcube_buttons is_upd='0' add_function='control()'>
 		</cf_popup_box_footer>
