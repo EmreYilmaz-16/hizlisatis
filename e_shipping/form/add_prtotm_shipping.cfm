@@ -115,7 +115,8 @@ END AS ASAMA,
 				WHERE  
                 	
                     STOCK_ID = ORR.STOCK_ID
-           	) AS DEPO
+           	) AS DEPO,
+			   #DSN2#.GET_SATILABILIR_STOCK(ORR.STOCK_ID) AS SATILABILIR
 		FROM
 			ORDER_ROW ORR,
 			ORDERS ORD,
@@ -334,6 +335,7 @@ END AS ASAMA,
 					<th style="width:80px"><cf_get_lang_main no='235.Spec'></th>
 						<th>Aşama</th>
                     <th style="text-align:right; width:60px"><cf_get_lang_main no='1351.Depo'></th>
+						<th style="text-align:right; width:60px">Satılabilir S.</th>
 					<th style="text-align:right; width:60px"><cf_get_lang_main no='199.Sipariş'></th>
 					<th width="70"style="text-align:right;">Sevk Planlanan</th>
 					<th style="text-align:right; width:50px"><cf_get_lang_main no='1032.Kalan'></th>
@@ -358,6 +360,7 @@ END AS ASAMA,
                             </td>
 							<td>#ASAMA#</td>
                             <td style="text-align:right;">#AmountFormat(DEPO)#</td>
+							<td style="text-align:right;">#AmountFormat(SATILABILIR)#</td>
                             <td style="text-align:right;">#AmountFormat(get_order_det.QUANTITY)#</td>
                             <td style="text-align:right;">
                            		<cfif isdefined('ORDER_ROW_AMOUNT_#ORDER_ROW_ID#')>
