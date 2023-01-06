@@ -849,11 +849,11 @@
                 <cf_object_tr id="zone_id" title="#header_#">
                     <cf_object_td>
                         <select name="report_type_id" id="report_type_id" style="width:120px;height:20px">
-							<option value="" <cfif attributes.report_type_id eq ''>selected</cfif>><cf_get_lang_main no='296.Tümü'></option>
-							<option value="1" <cfif attributes.report_type_id eq '1'>selected</cfif>><cfoutput>#getLang('main',1305)# #getLang('main',3517)#</cfoutput></option>
-                            <option value="2" <cfif attributes.report_type_id eq '2'>selected</cfif>><cfoutput>#getLang('main',3272)# #getLang('main',3517)#</cfoutput></option>
-                            <option value="3" <cfif attributes.report_type_id eq '3'>selected</cfif>><cfoutput>#getLang('main',3518)#</cfoutput></option>
-                            <option value="4" <cfif attributes.report_type_id eq '4'>selected</cfif>><cfoutput>#getLang('main',3519)#</cfoutput></option>
+                            <option value="" <cfif attributes.report_type_id eq ''>selected</cfif>>Tümü</option>
+							<option value="1" <cfif attributes.report_type_id eq '1'>selected</cfif>>Açık Sevkler</option>
+                            <option value="2" <cfif attributes.report_type_id eq '2'>selected</cfif>>Kapalı Sevkler</option>
+                            <option value="3" <cfif attributes.report_type_id eq '3'>selected</cfif>>Hazır Sevkler</option>
+                            <option value="4" <cfif attributes.report_type_id eq '4'>selected</cfif>>Kısmi Hazır Sevkler</option>
 					</select>                    
                     </cf_object_td>
                 </cf_object_tr>
