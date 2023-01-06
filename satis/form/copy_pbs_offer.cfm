@@ -1,4 +1,4 @@
-<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" name="frm_search">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" name="frm_search" id="frm_search">
     <input type="hidden" name="OFFER_ID" value="<cfoutput>#attributes.offer_id#</cfoutput>">
     <div class="form-group" id="item_company">
         <label class="col col-12 col-xs-12">Cari Hesap</label>
@@ -19,7 +19,7 @@
 
 
 <cfif isDefined("attributes.is_submit")>
-    
+    <cfdump var="#attributes#">
     <cfquery name="getOfferRow" datasource="#dsn3#">
         DECLARE @COMPANY_ID INT = #attributes.company_id#
         DECLARE @PRICE_CAT_ID INT = #attributes.price_catid#
@@ -32,6 +32,13 @@
             ,S.STOCK_ID
             ,S.PRODUCT_CODE
             ,S.PRODUCT_NAME
+            ,S.PRODUCT_ID
+            ,PB.BRAND_NAME
+            ,PO.IS_VIRTUAL
+            ,S.TAX
+            ,PO.SHELF_CODE
+            ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE
+            ,ISNULL(GPA.PRICE,0) AS PSS
             ,(
                 SELECT TOP 1 PCE.DISCOUNT_RATE
                 FROM workcube_metosan_1.PRODUCT P
@@ -83,6 +90,8 @@
             ,GPA.*
         FROM workcube_metosan_1.PBS_OFFER_ROW AS POR
         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID = POR.STOCK_ID
+        LEFT JOIN #DSN1#.PRODUCT_BRANDS as PB ON PB.BRAND_ID=S.BRAND_ID
+        LEFT JOIN #DSN1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID
         LEFT JOIN (
             SELECT P.UNIT
                 ,P.PRICE
@@ -92,6 +101,7 @@
                 ,P.PRICE_CATID
                 ,P.CATALOG_ID
                 ,P.PRICE_DISCOUNT
+                
             FROM workcube_metosan_1.PRICE P
                 ,workcube_metosan_1.PRODUCT PR
             WHERE P.PRODUCT_ID = PR.PRODUCT_ID
@@ -108,5 +118,36 @@
             AND GPA.UNIT = S.PRODUCT_UNIT_ID
         WHERE OFFER_ID = #attributes.OFFER_ID#
     </cfquery>
+    <cfoutput query="getOfferRow">
+        <script>
+            AddRowA(
+  #PRODUCT_ID#,
+  #STOCK_ID#,
+  '#PRODUCT_CODE#',
+  '#BRAND_NAME#',
+  #IS_VIRTUAL#,
+  #QUANTITY#,
+  #PSS#,
+  '#PRODUCT_NAME#',
+  #TAX#,
+  #DSC#,
+  #PRODUCT_TYPE#,
+  '#SHELF_CODE#',
+  '#OTHER_MONEY#',
+  price_other,
+  currency = "-6",
+  is_manuel = 0,
+  cost = 0,
+  product_unit = "Adet",
+  product_name_other = "",
+  detail_info_extra = "",
+  fc = 0,
+  rowNum = "",
+  deliver_date = "",
+  is_production = 0,
+  row_uniq_id = ""
+)
+        </script>
+    </cfoutput>
 </cfif>
 <script src="/AddOns/Partner/satis/js/coppyOffer.js"></script>

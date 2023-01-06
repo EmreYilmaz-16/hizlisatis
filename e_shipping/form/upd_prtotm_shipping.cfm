@@ -98,7 +98,14 @@
         </cfoutput>
   	</cfif>      
 </cfif>
-<cf_popup_box title="Sevkiyat Planı Ekle">
+<cfquery name="GETOrders" datasource="#dsn3#">
+	SELECT * FROM workcube_metosan_1.PBS_OFFER_TO_ORDER WHERE ORDER_ID IN (
+SELECT DISTINCT ORDER_ID FROM workcube_metosan_1.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID=#attributes.iid#)
+</cfquery>
+<cfsavecontent variable="righimg">
+<i class="icon-archive" onclick="windowopen('/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=<cfoutput>#GETOrders.OFFER_ID#</cfoutput>')"></i>
+</cfsavecontent>
+<cf_popup_box title="Sevkiyat Planı Ekle" right_images='#righimg#'>
 	<cfform name="add_packet_ship" id="add_packet_ship" method="post" action="#request.self#?fuseaction=eshipping.emptypopup_qupd_prtotm_shipping&iid=#attributes.iid#">
 		<table>
 			

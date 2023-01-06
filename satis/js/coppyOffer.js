@@ -40,3 +40,59 @@ function GetAjaxQuery(type, type_id) {
   }
   return CompanyInfo;
 }
+
+function AddRowA(
+  product_id,
+  stock_id,
+  stock_code,
+  brand_name,
+  is_virtual,
+  quantity,
+  price,
+  product_name,
+  tax,
+  discount_rate,
+  poduct_type = 0,
+  shelf_code = "",
+  other_money = "TL",
+  price_other,
+  currency = "-6",
+  is_manuel = 0,
+  cost = 0,
+  product_unit = "Adet",
+  product_name_other = "",
+  detail_info_extra = "",
+  fc = 0,
+  rowNum = "",
+  deliver_date = "",
+  is_production = 0,
+  row_uniq_id = ""
+) {
+  window.opener.AddRow(
+    product_id,
+    stock_id,
+    stock_code,
+    brand_name,
+    is_virtual,
+    quantity,
+    price,
+    product_name,
+    tax,
+    discount_rate,
+    poduct_type,
+    shelf_code,
+    other_money,
+    price_other,
+    currency,
+    is_manuel,
+    cost,
+    product_unit,
+    product_name_other,
+    detail_info_extra,
+    fc,
+    rowNum,
+    deliver_date,
+    is_production,
+    row_uniq_id
+  );
+}
