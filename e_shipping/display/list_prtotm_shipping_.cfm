@@ -20,7 +20,6 @@
 <cfparam name="attributes.company_id" default="">
 <cfparam name="attributes.consumer_id" default="">
 <cfparam name="attributes.totalrecords" default="0">
-
 <cfquery name="get_default_department" datasource="#dsn#">
 	SELECT DEPARTMENT_ID, LOCATION_ID FROM EMPLOYEE_POSITION_DEPARTMENTS WHERE POSITION_CODE = #session.ep.POSITION_CODE# AND OUR_COMPANY_ID = #session.ep.COMPANY_ID#
 </cfquery>
@@ -29,15 +28,6 @@
 <cfelse>
 	<cfparam name="attributes.sales_departments" default="">
 </cfif>
-<cfquery name="get_shipping_default" datasource="#dsn3#">
-	SELECT ISNULL(SHIPPING_CONTROL_TYPE,0) SHIPPING_CONTROL_TYPE FROM EZGI_SHIPPING_DEFAULTS
-</cfquery>
-<cfif get_shipping_default.recordcount>
-	<cfparam name="attributes.e_shipping_type" default="#get_shipping_default.SHIPPING_CONTROL_TYPE#"> 
-<cfelse>
-	<cfparam name="attributes.e_shipping_type" default="0"> 
-</cfif>
-
 <cfquery name="get_locations" datasource="#dsn#">
 	SELECT 
     	DEPARTMENT_ID
@@ -59,7 +49,7 @@
 </cfquery>
 <cfif not get_locations.recordcount>
 	<script type="text/javascript">
-     	alert("<cf_get_lang_main no='3516.Bu Şirket İçin Tanımlanmış Depo ve Lokasyon Bulunamamıştır!'>");
+     	alert("Bu Şirket İçin Tanımlanmış Depo ve Lokasyon Bulunamamıştır!");
      	history.go(-1);
   	</script>
  	<cfabort>
@@ -112,8 +102,6 @@
 </cfif>
 <cfif len(attributes.finish_date)>
 	<cfset lnk_str = lnk_str &',#attributes.finish_date#'>
-
-
 <cfelse>
 	<cfset lnk_str = lnk_str &','&' '>
 </cfif>
@@ -182,6 +170,7 @@
         	(
             SELECT     
             	ESR.SHIP_RESULT_ID, 
+                O.SHIP_METHOD, 
                 O.CITY_ID, 
                 O.COUNTY_ID
          	FROM          
@@ -199,6 +188,7 @@
                 </cfif>
         	GROUP BY 
             	ESR.SHIP_RESULT_ID, 
+                O.SHIP_METHOD, 
                 O.CITY_ID, 
                 O.COUNTY_ID
         	) AS TBL
@@ -278,7 +268,7 @@
                 O.EMPLOYEE_ID,
                 ESR.OUT_DATE
 			ORDER BY 
-        		ESR.DELIVER_PAPER_NO
+        		ESR.SHIP_RESULT_ID
        	</cfquery>
   	<cfelseif cari_kontrol.recordcount>
     	<cfset tip =2>
@@ -310,8 +300,7 @@
             	ESR.SHIP_RESULT_ID IN (#hata_id_list#)
 			GROUP BY 
             	O.ORDER_NUMBER,
-                O.ORDER_ID,
-                O.REF_NO, 
+                O.ORDER_ID, 
                 ESR.DELIVER_PAPER_NO, 
                 ESR.SHIP_RESULT_ID,
                 ESR.COMPANY_ID,
@@ -324,7 +313,7 @@
                 O.EMPLOYEE_ID,
                 ESR.OUT_DATE
 			ORDER BY 
-        		ESR.DELIVER_PAPER_NO
+        		ESR.SHIP_RESULT_ID
        	</cfquery>
     <cfelse>
         <cfquery name="GET_SHIPPING" datasource="#dsn3#"><!---Sevk Planları ve Sevk Talepleri Listeleniyor--->
@@ -332,6 +321,11 @@
                 *,
                 CASE
                     WHEN TBL.COMPANY_ID IS NOT NULL THEN
+
+
+
+
+
                         (
                         SELECT     
                             NICKNAME
@@ -355,15 +349,34 @@
                 (
                 <cfif listing_type neq 3>
                     <cfif not len(attributes.branch_id)>
-                        SELECT     
-                            ESR.SHIP_RESULT_ID, 
-                            ESR.NOTE, 
+                        SELECT   
+                        	(
+                                SELECT DISTINCT 
+                                	O.ORDER_ID
+								FROM            
+                                	PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
+                         			ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
+                         			ORDERS AS O ON ORR.ORDER_ID = O.ORDER_ID
+                                WHERE     
+                                    ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID
+                            ) AS ORDER_ID,  
+                        	(
+                                SELECT DISTINCT 
+                                	O.ORDER_EMPLOYEE_ID
+								FROM            
+                                	PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
+                         			ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
+                         			ORDERS AS O ON ORR.ORDER_ID = O.ORDER_ID
+                                WHERE     
+                                    ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID
+                            ) AS ORDER_EMPLOYEE_ID,
                             ESR.SEVK_EMIR_DATE,
                             ISNULL(ESR.IS_SEVK_EMIR,0) AS IS_SEVK_EMIR,
                             ISNULL(ESR.SEVK_EMP,0) SEVK_EMP,
+                            ESR.SHIP_RESULT_ID, 
+                            ESR.NOTE, 
                             ESR.SHIP_FIS_NO, 
                             ESR.DELIVER_PAPER_NO, 
-                            ESR.DELIVER_EMP,
                             ESR.REFERENCE_NO, 
                             ESR.DELIVERY_DATE, 
                             ESR.DEPARTMENT_ID, 
@@ -377,7 +390,7 @@
                             E.EMPLOYEE_NAME, 
                             E.EMPLOYEE_SURNAME, 
                             D.DEPARTMENT_HEAD,
-                            ISNULL((
+                            (
                                 SELECT DISTINCT 
                                     SC.CITY_NAME
                                 FROM         
@@ -387,8 +400,8 @@
                                     #dsn_alias#.SETUP_CITY AS SC ON O.CITY_ID = SC.CITY_ID
                                 WHERE     
                                     ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID
-                            ),'') AS SEHIR,
-                            ISNULL((
+                            ) AS SEHIR,
+                            (
                                 SELECT DISTINCT 
                                     SCO.COUNTY_NAME
                                 FROM         
@@ -398,7 +411,7 @@
                                     #dsn_alias#.SETUP_COUNTY AS SCO ON O.COUNTY_ID = SCO.COUNTY_ID
                                 WHERE     
                                     ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID
-                            ),'') AS ILCE,
+                            ) AS ILCE,
                             (
                              SELECT     
                                 ISNULL(SUM(ORR.QUANTITY), 0) AS AMOUNT
@@ -409,16 +422,6 @@
                             WHERE     
                                 ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID 
                             ) AS AMOUNT,
-                            (
-                            	SELECT   DISTINCT     
-                                	ISNULL(ORDERS.IS_INSTALMENT, 0) AS IS_INSTALMENT
-								FROM         
-                                	PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                         			ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                       				ORDERS ON ORR.ORDER_ID = ORDERS.ORDER_ID
-								WHERE        
-                                	ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID 
-                            ) AS IS_INSTALMENT,
                             (
                             SELECT     
                                 SUM(DURUM) AS DURUM
@@ -487,6 +490,7 @@
                             #dsn_alias#.DEPARTMENT AS D ON ESR.DEPARTMENT_ID = D.DEPARTMENT_ID
                         WHERE 
                             IS_TYPE = 1
+                            AND ESR.DEPARTMENT_ID IN (#condition_departments_list#)
                             <cfif isdefined('attributes.product_id') and len(attributes.product_id)>
                                 AND ESR.SHIP_RESULT_ID IN
                                                     (
@@ -512,9 +516,10 @@
                                                             S.STOCK_CODE LIKE N'#attributes.prod_cat#%'
                                                         )                          
                             </cfif>
-                            <cfif isdefined('attributes.SALES_DEPARTMENTS') and Listlen(attributes.SALES_DEPARTMENTS,'-') eq 2>
+                            <cfif isdefined('attributes.SALES_DEPARTMENTS') and len(attributes.SALES_DEPARTMENTS)>
                                 AND ESR.DEPARTMENT_ID = #listgetat(attributes.SALES_DEPARTMENTS,1,'-')# 
                                 AND ESR.LOCATION_ID = #listgetat(attributes.SALES_DEPARTMENTS,2,'-')#
+                                
                             </cfif>
                             <cfif isdefined('attributes.start_date') and len(attributes.start_date)>
                                 AND ESR.OUT_DATE >= #attributes.start_date#
@@ -529,7 +534,12 @@
                 </cfif>
                 <cfif listing_type neq 2>
                     SELECT
-                        SI.DISPATCH_SHIP_ID SHIP_RESULT_ID,
+                    	O.ORDER_ID,
+                    	O.ORDER_EMPLOYEE_ID,
+                        SI.SEVK_EMIR_DATE,
+                       	ISNULL(SI.IS_SEVK_EMIR,0) AS IS_SEVK_EMIR,
+                        ISNULL(SI.SEVK_EMP,0) as SEVK_EMP,
+						SI.DISPATCH_SHIP_ID SHIP_RESULT_ID,
                         (
                         SELECT     
                             ORDER_DETAIL
@@ -538,12 +548,8 @@
                         WHERE      
                             ORDER_ID = O.ORDER_ID
                         ) AS NOTE,
-                        SI.SEVK_EMIR_DATE,
-                       	ISNULL(SI.IS_SEVK_EMIR,0) AS IS_SEVK_EMIR,
-                        ISNULL(SI.SEVK_EMP,0) as SEVK_EMP,
                         O.ORDER_NUMBER AS SHIP_FIS_NO,
                         CAST(SI.DISPATCH_SHIP_ID AS VARCHAR(50)) AS DELIVER_PAPER_NO,
-                        SI.DELIVER_EMP,
                         '' AS REFERENCE_NO,
                         SI.DELIVER_DATE AS DELIVERY_DATE,
                         SI.DEPARTMENT_IN AS DEPARTMENT_ID,
@@ -557,15 +563,17 @@
                         E.EMPLOYEE_NAME, 
                         E.EMPLOYEE_SURNAME,
                         D.DEPARTMENT_HEAD,
-                        ISNULL(SC.CITY_NAME,0) AS SEHIR,
-                        ISNULL(SCO.COUNTY_NAME,'') ILCE,
-                        ISNULL(SUM(SIR.AMOUNT),'') AS AMOUNT,
-                        O.IS_INSTALMENT,
+                        SC.CITY_NAME AS SEHIR,
+                        SCO.COUNTY_NAME ILCE,
+                        ISNULL(SUM(SIR.AMOUNT), 0) AS AMOUNT,
                         CASE
-                            WHEN S.SHIP_ID IS NOT NULL THEN 2
-                            WHEN S.SHIP_ID IS NULL THEN 1
-                            END
-                        AS DURUM,
+                            WHEN 
+                            	S.SHIP_ID IS NOT NULL 
+                           	THEN 2
+                            WHEN 
+                            	S.SHIP_ID IS NULL 
+                          	THEN 1
+                       	END AS DURUM,
                         (
                         	SELECT     
                               	SUM(SEVK_DURUM) AS SEVK_DURUM
@@ -595,25 +603,23 @@
                            		) AS TBL2
                         ) AS SEVK_DURUM
                     FROM         
-                       	#dsn2_alias#.SHIP_INTERNAL AS SI INNER JOIN
-                     	#dsn2_alias#.SHIP_INTERNAL_ROW AS SIR ON SI.DISPATCH_SHIP_ID = SIR.DISPATCH_SHIP_ID INNER JOIN
-                    	ORDER_ROW AS ORW ON SIR.ROW_ORDER_ID = ORW.ORDER_ROW_ID INNER JOIN
-                     	ORDERS AS O ON ORW.ORDER_ID = O.ORDER_ID INNER JOIN
-                    	#dsn_alias#.DEPARTMENT AS D ON SI.DEPARTMENT_IN = D.DEPARTMENT_ID LEFT OUTER JOIN
-                     	#dsn_alias#.SETUP_COUNTY AS SCO ON O.COUNTY_ID = SCO.COUNTY_ID LEFT OUTER JOIN
-                      	#dsn_alias#.SHIP_METHOD AS SM ON SI.SHIP_METHOD = SM.SHIP_METHOD_ID LEFT OUTER JOIN
-                     	#dsn_alias#.EMPLOYEES AS E ON SI.RECORD_EMP = E.EMPLOYEE_ID LEFT OUTER JOIN
-                    	#dsn_alias#.SETUP_CITY AS SC ON O.CITY_ID = SC.CITY_ID LEFT OUTER JOIN
-                     	#dsn2_alias#.SHIP AS S ON SI.DISPATCH_SHIP_ID = S.DISPATCH_SHIP_ID
+                      	#dsn2_alias#.SHIP_INTERNAL AS SI INNER JOIN
+                        #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR ON SI.DISPATCH_SHIP_ID = SIR.DISPATCH_SHIP_ID INNER JOIN
+                        ORDER_ROW AS ORW ON SIR.ROW_ORDER_ID = ORW.ORDER_ROW_ID INNER JOIN
+                        ORDERS AS O ON ORW.ORDER_ID = O.ORDER_ID INNER JOIN
+                        #dsn_alias#.DEPARTMENT AS D ON SI.DEPARTMENT_IN = D.DEPARTMENT_ID LEFT OUTER JOIN
+                        #dsn_alias#.SETUP_COUNTY AS SCO ON O.COUNTY_ID = SCO.COUNTY_ID LEFT OUTER JOIN
+                        #dsn_alias#.SHIP_METHOD AS SM ON SI.SHIP_METHOD = SM.SHIP_METHOD_ID LEFT OUTER JOIN
+                        #dsn_alias#.EMPLOYEES AS E ON SI.RECORD_EMP = E.EMPLOYEE_ID LEFT OUTER JOIN
+                        #dsn_alias#.SETUP_CITY AS SC ON O.CITY_ID = SC.CITY_ID LEFT OUTER JOIN
+                        #dsn2_alias#.SHIP AS S ON SI.DISPATCH_SHIP_ID = S.DISPATCH_SHIP_ID
                     WHERE
-                        1=1
+                        1=1 AND
+                        SI.DEPARTMENT_OUT IN (#condition_departments_list#)
                         <cfif isdefined('attributes.product_id') and len(attributes.product_id)>
                             AND SI.DISPATCH_SHIP_ID IN
                                                     (
                                                     SELECT     
-
-
-
                                                         SI.DISPATCH_SHIP_ID
                                                     FROM         
                                                         #dsn2_alias#.SHIP_INTERNAL AS SI INNER JOIN
@@ -635,12 +641,6 @@
                                                         #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR ON SI.DISPATCH_SHIP_ID = SIR.DISPATCH_SHIP_ID INNER JOIN
                                                         STOCKS AS S ON SIR.STOCK_ID = S.STOCK_ID
                                                     WHERE     
-
-
-
-
-
-
                                                         S.STOCK_CODE LIKE N'#attributes.prod_cat#%'
                                                     GROUP BY 
                                                         SI.DISPATCH_SHIP_ID
@@ -648,6 +648,9 @@
                         </cfif>
                         <cfif isdefined('attributes.SALES_DEPARTMENTS') and len(attributes.SALES_DEPARTMENTS)>
                             AND SI.DEPARTMENT_OUT = #listgetat(attributes.SALES_DEPARTMENTS,1,'-')# 
+
+
+
                             AND SI.LOCATION_OUT = #listgetat(attributes.SALES_DEPARTMENTS,2,'-')#
                         </cfif>
                         <cfif isdefined('attributes.start_date') and len(attributes.start_date)>
@@ -668,14 +671,13 @@
                                                     )
                         </cfif>      
                     GROUP BY 
+                    	O.ORDER_EMPLOYEE_ID,
                         SI.DISPATCH_SHIP_ID,
-                        O.ORDER_NUMBER, 
-                        O.IS_INSTALMENT,
                         SI.SEVK_EMIR_DATE,
                        	SI.IS_SEVK_EMIR,
                         SI.SEVK_EMP,
+                        O.ORDER_NUMBER, 
                         SI.DELIVER_DATE, 
-                        SI.DELIVER_EMP,
                         SI.DEPARTMENT_IN, 
                         O.COMPANY_ID, 
                         O.CONSUMER_ID, 
@@ -693,29 +695,28 @@
                 ) AS TBL
             WHERE
                 AMOUNT > 0
+                <cfif isdefined('attributes.order_employee_id') and len(attributes.order_employee_id) and len(attributes.order_employee)>
+                  	AND	ORDER_EMPLOYEE_ID = #attributes.order_employee_id#
+             	</cfif>
                 <cfif isdefined('attributes.city_name') and len(attributes.city_name)>
                     AND SEHIR ='#attributes.city_name#' 
                 </cfif>
                 <cfif isdefined('attributes.SHIP_METHOD_ID') and len(attributes.SHIP_METHOD_ID)>
                     AND SHIP_METHOD_TYPE ='#attributes.SHIP_METHOD_ID#' 
                 </cfif>
-                <cfif isdefined('attributes.member_name') and len(attributes.member_name)>
-					<cfif isdefined('attributes.company_id') and len(attributes.company_id)>
-                        AND COMPANY_ID =#attributes.company_id#
-                    </cfif>
-                    <cfif isdefined('attributes.consumer_id') and len(attributes.consumer_id)>
-                        AND CONSUMER_ID =#attributes.consumer_id# 
-                    </cfif>
+                <cfif isdefined('attributes.company_id') and len(attributes.company_id)>
+                    AND COMPANY_ID =#attributes.company_id#
+                </cfif>
+                <cfif isdefined('attributes.consumer_id') and len(attributes.consumer_id)>
+                    AND CONSUMER_ID =#attributes.consumer_id# 
                 </cfif>
                 <cfif len(attributes.keyword)>
                     AND 
                     	(
                         REFERENCE_NO LIKE '%#attributes.keyword#%' OR
-                        DELIVER_PAPER_NO LIKE '%#attributes.keyword#%'
+                        DELIVER_PAPER_NO LIKE '%#attributes.keyword#%' OR
+                        SHIP_FIS_NO LIKE '%#attributes.keyword#%'
                         )
-                </cfif>
-                <cfif len(attributes.order_employee_id) and len(attributes.order_employee)>
-                	AND DELIVER_EMP = #attributes.order_employee_id#
                 </cfif>
               	<cfif len(attributes.zone_id)>  
                 	AND (
@@ -767,14 +768,15 @@
                 	AND SEVK_DURUM = 6
                 </cfif>
             ORDER BY
+            SHIP_RESULT_ID DESC,
                 <cfif sort_type eq 1>
                     OUT_DATE
                 <cfelseif sort_type eq 2>
                     OUT_DATE desc
                 <cfelseif sort_type eq 3>
-                    SHIP_FIS_NO
+                    DELIVER_PAPER_NO
                 <cfelseif sort_type eq 4>
-                    SHIP_FIS_NO desc
+                    DELIVER_PAPER_NO desc
                 <cfelseif sort_type eq 5>
                     IS_TYPE,DEPARTMENT_ID,UNVAN, SHIP_FIS_NO
                 </cfif>
@@ -830,7 +832,7 @@
 </cfquery>
 
 <cfform name="order_form" method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
-<cf_big_list_search title="#getLang('main',1445)#">
+<cf_big_list_search title="Sevkiyat İşlemleri">
     <cf_big_list_search_area>
         <cf_object_main_table>
             <input name="form_varmi" id="form_varmi" value="1" type="hidden">
@@ -845,15 +847,15 @@
                 </cf_object_tr>
             </cf_object_table>
             <cf_object_table column_width_list="50,75">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='296.Tümü'></cfsavecontent>
+                <cfsavecontent variable="header_">Tümü</cfsavecontent>
                 <cf_object_tr id="zone_id" title="#header_#">
                     <cf_object_td>
                         <select name="report_type_id" id="report_type_id" style="width:120px;height:20px">
-							<option value="" <cfif attributes.report_type_id eq ''>selected</cfif>><cf_get_lang_main no='296.Tümü'></option>
-							<option value="1" <cfif attributes.report_type_id eq '1'>selected</cfif>><cfoutput>#getLang('main',1305)# #getLang('main',3517)#</cfoutput></option>
-                            <option value="2" <cfif attributes.report_type_id eq '2'>selected</cfif>><cfoutput>#getLang('main',3272)# #getLang('main',3517)#</cfoutput></option>
-                            <option value="3" <cfif attributes.report_type_id eq '3'>selected</cfif>><cfoutput>#getLang('main',3518)#</cfoutput></option>
-                            <option value="4" <cfif attributes.report_type_id eq '4'>selected</cfif>><cfoutput>#getLang('main',3519)#</cfoutput></option>
+							<option value="" <cfif attributes.report_type_id eq ''>selected</cfif>>Tümü</option>
+							<option value="1" <cfif attributes.report_type_id eq '1'>selected</cfif>>Açık Sevkler</option>
+                            <option value="2" <cfif attributes.report_type_id eq '2'>selected</cfif>>Kapalı Sevkler</option>
+                            <option value="3" <cfif attributes.report_type_id eq '3'>selected</cfif>>Hazır Sevkler</option>
+                            <option value="4" <cfif attributes.report_type_id eq '4'>selected</cfif>>Kısmi Hazır Sevkler</option>
 					</select>                    
                     </cf_object_td>
                 </cf_object_tr>
@@ -872,40 +874,40 @@
                 </cf_object_tr>
             </cf_object_table>
            
-            <cf_object_table column_width_list="165">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='1512.Sıralama'></cfsavecontent>
+            <cf_object_table column_width_list="185">
+                <cfsavecontent variable="header_">Sıralama</cfsavecontent>
                 <cf_object_tr id="form_ul_sort_type" title="#header_#">
                     <cf_object_td>
-                        <select name="sort_type" id="sort_type" style="width:160px;height:20px">
-                            <option value="1" <cfif attributes.sort_type eq 1>selected</cfif>><cfoutput>#getLang('prod',505)#</cfoutput></option>
-                            <option value="2" <cfif attributes.sort_type eq 2>selected</cfif>><cfoutput>#getLang('prod',506)#</cfoutput></option>
-                            <option value="3" <cfif attributes.sort_type eq 3>selected</cfif>><cfoutput>#getLang('main',3073)#</cfoutput></option>
-                            <option value="4" <cfif attributes.sort_type eq 4>selected</cfif>><cfoutput>#getLang('main',3074)#</cfoutput></option>
-                            <option value="5" <cfif attributes.sort_type eq 5>selected</cfif>><cfoutput>#getLang('main',3520)#</cfoutput></option>
+                        <select name="sort_type" id="sort_type" style="width:180px;height:20px">
+                            <option value="1" <cfif attributes.sort_type eq 1>selected</cfif>>Teslim Tarihine Göre Artan</option>
+                            <option value="2" <cfif attributes.sort_type eq 2>selected</cfif>>Teslim Tarihine Gre Azalan</option>
+                            <option value="3" <cfif attributes.sort_type eq 3>selected</cfif>>Belge Numarasına Göre Artan</option>
+                            <option value="4" <cfif attributes.sort_type eq 4>selected</cfif>>Belge Numarasına Göre Azalan</option>
+                            <option value="5" <cfif attributes.sort_type eq 5>selected</cfif>>Şirket Adına Göre Artan</option>
                         </select>                 
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table> 
             <cf_object_table column_width_list="95">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='3284.Liste Tipi'></cfsavecontent>
+                <cfsavecontent variable="header_">Liste Tipi</cfsavecontent>
                 <cf_object_tr id="form_ul_sort_type" title="#header_#">
                     <cf_object_td>
                         <select name="listing_type" id="listing_type" style="width:90px;height:20px">
-                            <option value="1" <cfif attributes.listing_type eq 1>selected</cfif>><cf_get_lang_main no='296.Tümü'></option>
-                            <option value="2" <cfif attributes.listing_type eq 2>selected</cfif>><cf_get_lang_main no='3521.Sevk Planları'></option>
-                            <option value="3" <cfif attributes.listing_type eq 3>selected</cfif>><cfoutput>#getLang('myhome',1276)#</cfoutput></option>
+                            <option value="1" <cfif attributes.listing_type eq 1>selected</cfif>>Tümü</option>
+                            <option value="2" <cfif attributes.listing_type eq 2>selected</cfif>>Sevk Planları</option>
+                            <option value="3" <cfif attributes.listing_type eq 3>selected</cfif>>Sevk Talepler</option>
                         </select>                 
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table> 
             <cf_object_table column_width_list="90">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='330.Tarih'></cfsavecontent>
+                <cfsavecontent variable="header_">Tarih</cfsavecontent>
                 <cf_object_tr id="form_ul_start_date" title="#header_#">
                     <cf_object_td>
                         <cfif session.ep.our_company_info.unconditional_list>
                             <cfinput type="text" name="start_date" value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
                         <cfelse>
-                            <cfsavecontent variable="message"><cf_get_lang_main no='2325.Başlangıç Tarihini Kontrol Ediniz'></cfsavecontent>
+                            <cfsavecontent variable="message">Baslangi Tarihi Kontrol Ediniz</cfsavecontent>
                             <cfinput type="text" name="start_date"  value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
                         </cfif>
                         <cf_wrk_date_image date_field="start_date">                 
@@ -913,13 +915,13 @@
                 </cf_object_tr>
             </cf_object_table>
             <cf_object_table column_width_list="90">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='330.Tarih'></cfsavecontent>
+                <cfsavecontent variable="header_">Tarih</cfsavecontent>
                 <cf_object_tr id="form_ul_finish_date" title="#header_#">
                     <cf_object_td>
                         <cfif session.ep.our_company_info.unconditional_list>
                             <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
                         <cfelse>
-                            <cfsavecontent variable="message"><cf_get_lang_main no='2326.Bitiş Tarihini Kontrol Ediniz'></cfsavecontent>
+                            <cfsavecontent variable="message">Bitis Tarihi Kontrol Ediniz</cfsavecontent>
                             <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
                         </cfif>
                         <cf_wrk_date_image date_field="finish_date">                 
@@ -927,17 +929,14 @@
                 </cf_object_tr>
             </cf_object_table>    
             
-            <cf_object_table column_width_list="170">
+            <cf_object_table column_width_list="150">
                 <cf_object_tr id="">
                     <cf_object_td>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_graph</cfoutput>','longpage');" class="tableyazi">
-                        	<img src="../../../images/graph.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3522.Sevkiyat Perspektif'>" />
+                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" class="tableyazi">
+                        	<img src="../../../images/graph.gif" align="absmiddle" border="0" title="Sevkiyat Perspektif" />
                       	</a>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" class="tableyazi">
-                        	<img src="../../../images/target_customer.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3523.Sevk Planı Açılacak Siparişler'>" />
-                      	</a>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" class="tableyazi">
-                        	<img src="../../../images/pos_credit.gif" align="absmiddle" border="0" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>" />
+                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_partner_shipping_deliver</cfoutput>','longpage');" class="tableyazi">
+                        	<img src="../../../images/target_customer.gif" align="absmiddle" border="0" title="Sevk Planı Açılacak Siparişler" />
                       	</a>
                         <cfsavecontent variable="message"><cf_get_lang_main no='125.Sayi_Hatasi_Mesaj'></cfsavecontent>
                         <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,250" message="#message#" maxlength="3" style="width:25px;">
@@ -950,12 +949,12 @@
     <cf_big_list_search_detail_area>
         <cf_object_main_table>
             <cf_object_table column_width_list="100,140">
-                <cfsavecontent variable="header_"><cfoutput>#getLang('report',1380)#</cfoutput></cfsavecontent>
+                <cfsavecontent variable="header_">Satış Yapan</cfsavecontent>
                 <cf_object_tr id="form_ul_order_employee" title="#header_#">
-                    <cf_object_td type="text" td_style="text-align:right;"><cfoutput>#getLang('report',1380)#</cfoutput></cf_object_td>
+                    <cf_object_td type="text" td_style="text-align:right;">Satış Yapan</cf_object_td>
                     <cf_object_td>
                         <input type="hidden" name="order_employee_id" id="order_employee_id" value="<cfif isdefined('attributes.order_employee_id') and len(attributes.order_employee_id) and isdefined('attributes.order_employee') and len(attributes.order_employee)><cfoutput>#attributes.order_employee_id#</cfoutput></cfif>">
-                        <input name="order_employee" type="text" id="order_employee" style="width:115px;" onfocus="AutoComplete_Create('order_employee','MEMBER_NAME','MEMBER_NAME','get_member_autocomplete','3','EMPLOYEE_ID','order_employee_id','','3','125');" value="<cfif isdefined('attributes.order_employee_id') and len(attributes.order_employee_id)><cfoutput>#attributes.order_employee#</cfoutput></cfif>" autocomplete="off">	
+                        <input name="order_employee" type="text" id="order_employee" style="width:115px;" onfocus="AutoComplete_Create('order_employee','MEMBER_NAME','MEMBER_NAME','get_member_autocomplete','3','EMPLOYEE_ID','order_employee_id','','3','125');" value="<cfif isdefined('attributes.order_employee_id') and len(attributes.order_employee_id) and isdefined('attributes.order_employee') and len(attributes.order_employee)><cfoutput>#attributes.order_employee#</cfoutput></cfif>" autocomplete="off">	
                         <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_positions&field_emp_id=order_form.order_employee_id&field_name=order_form.order_employee&is_form_submitted=1&select_list=1','list');"><img src="/images/plus_thin.gif" style="vertical-align:bottom"></a>		   
                     </cf_object_td>
                 </cf_object_tr>
@@ -1003,7 +1002,7 @@
                 </cf_object_tr>
             </cf_object_table>
              <cf_object_table column_width_list="75">
-              	<cfsavecontent variable="header_"><cf_get_lang_main no='41.Şube'></cfsavecontent>
+              	<cfsavecontent variable="header_">Şube</cfsavecontent>
                	<cf_object_tr id="form_ul_branch_id" title="#header_#">
                  	<cf_object_td>
                     	<select name="branch_id" id="branch_id" style="width:70px;height:20px">
@@ -1016,11 +1015,11 @@
            		</cf_object_tr>
             </cf_object_table>
             <cf_object_table column_width_list="50,135">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='2234.Lokasyon'></cfsavecontent>
+                <cfsavecontent variable="header_">Depo- Lokasyon</cfsavecontent>
                 <cf_object_tr id="form_ul_sales_departments" title="#header_#">
                     <cf_object_td>
                         <select name="sales_departments" id="sales_departments" style="width:130px;height:20px">
-                            <option value=""><cf_get_lang_main no='2234.Lokasyon'></option>
+                            <option value="">Depo- Lokasyon</option>
                             <cfoutput query="get_department_name">
                                 <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments is '#department_id#-#location_id#'>selected</cfif>>#department_head#-#comment#</option>
                             </cfoutput>
@@ -1029,11 +1028,11 @@
                 </cf_object_tr>
             </cf_object_table>
             <cf_object_table column_width_list="105">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='559.Şehir'></cfsavecontent>
+                <cfsavecontent variable="header_">Şehir</cfsavecontent>
                 <cf_object_tr id="form_city_name" title="#header_#">
                     <cf_object_td>
                         <select name="city_name" id="city_name" style="width:100px;height:20px">
-                            <option value=""><cf_get_lang_main no='559.Şehir'></option>
+                            <option value="">Şehir</option>
                             <cfoutput query="get_city">
                                 <option value="#city_name#" <cfif isdefined("attributes.city_name") and attributes.city_name is '#city_name#'>selected</cfif>>#city_name#</option>
                             </cfoutput>
@@ -1042,11 +1041,11 @@
                 </cf_object_tr>
             </cf_object_table>   
          	<cf_object_table column_width_list="105">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='1703.Sevk Yöntemi'></cfsavecontent>
+                <cfsavecontent variable="header_">Sevk Yöntemi</cfsavecontent>
                 <cf_object_tr id="form_ship_method" title="#header_#">
                     <cf_object_td>
                         <select name="SHIP_METHOD_ID" id="SHIP_METHOD_ID" style="width:100px;height:20px">
-                            <option value=""><cf_get_lang_main no='1703.Sevk Yöntemi'></option>
+                            <option value="">Sevk Yöntemi</option>
                             <cfoutput query="GET_SHIP_METHOD">
                                 <option value="#SHIP_METHOD_ID#" <cfif isdefined("attributes.SHIP_METHOD_ID") and attributes.SHIP_METHOD_ID eq SHIP_METHOD_ID>selected</cfif>>#SHIP_METHOD#</option>
                             </cfoutput>
@@ -1065,35 +1064,32 @@
 				<th rowspan="2" style="width:55px;text-align:center"><cf_get_lang_main no='75.no'></th>
 				<th rowspan="2" style="width:60px;text-align:center"><cf_get_lang_main no='330.tarih'></th>
 				<th rowspan="2" style="text-align:center"><cf_get_lang_main no='162.sirket'></th>
-                <cfif ListFind(session.ep.user_level,25)>
-                	<th rowspan="2" style="width:80px;text-align:center"><cf_get_lang_main no='1203.üye bakiyesi'></th>
-                </cfif>
 				<th rowspan="2" style="width:100px;text-align:center"><cf_get_lang_main no='487.Kaydeden'></th>
-				<th rowspan="2" style="width:100px;text-align:center"><cf_get_lang_main no='1703.Sevk Yöntemi'></th>
-                <th colspan="<cfif attributes.e_shipping_type eq 1>5<cfelse>4</cfif>" style="width:100px;text-align:center"><cfoutput>#getLang('main',1447)# #getLang('account',134)#</cfoutput></th>
-				<th rowspan="2" style="width:100px;text-align:center"><cfoutput>#getLang('prod',253)#</cfoutput></th>
-                <!---<th rowspan="2" style="width:50px;text-align:center">S.Puan</th>--->
-                <th rowspan="2" style="width:90px;text-align:center"><cf_get_lang_main no='559.Şehir'></th> 
-				<th rowspan="2" style="width:180px;text-align:center"><cf_get_lang_main no='217.Açıklama'></th>
+				<th rowspan="2" style="width:100px;text-align:center">Sevk Yöntemi</th>
+                <th colspan="5" style="width:100px;text-align:center">Süreç Kontrol</th>
+				<th rowspan="2" style="width:100px;text-align:center">Takip</th>
+                <th rowspan="2" style="width:50px;text-align:center">S.Puan</th>
+                <th rowspan="2" style="width:90px;text-align:center">Şehir</th> 
+				<th rowspan="2" style="width:180px;text-align:center">Açıklama</th>
 				<!-- sil -->
 				<th rowspan="2" style="width:20px" class="header_icn_none" nowrap="nowrap">
                 	
                 	<a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=objects.popup_print_files&print_type=79&action_id=#lnk_str#</cfoutput>','wide');"><img src="/images/print_plus.gif" alt="<cf_get_lang_main no='62.Yazdır'>" border="0" title="<cf_get_lang_main no='62.Yazdır'>">
                		</a>
                 </th>
-                <th rowspan="2" style="width:20px;text-align:center"><input type="checkbox" alt="<cf_get_lang_main no='559.Şehir'>" onClick="grupla(-1);"></th>
+                <th rowspan="2" style="width:20px;text-align:center"><input type="checkbox" alt="Hepsini Seç" onClick="grupla(-1);"></th>
 				<!-- sil -->
 
 
 			</tr>
             <tr height="10">
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3524.SVK.'></th>
-                <cfif attributes.e_shipping_type eq 1>
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3525.HZR.'></th>
-                </cfif>
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3180.KNT.'></th>
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3526.İRS.'></th>
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3527.FTR.'></th>
+            	<!---<th style="width:20px;text-align:center">RZV</th>
+                <th style="width:20px;text-align:center">GRŞ</th>--->
+                <th style="width:20px;text-align:center">SVK</th>
+                <th style="width:20px;text-align:center">HZR</th>
+                <th style="width:20px;text-align:center">CNT</th>
+                <th style="width:20px;text-align:center">İRS</th>
+                <th style="width:20px;text-align:center">FTR</th>
 
             </tr>
 		</thead>
@@ -1105,7 +1101,7 @@
                     	<tr>
                     		<td>#currentrow#</td>
                             <td style="text-align:center">
-                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping&iid=#SHIP_RESULT_ID#','page');" class="tableyazi" title="<cf_get_lang_main no='3528.Sevk Fişine Git'>">
+                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#','page');" class="tableyazi" title="Sevk Fişine Git">
 	                                #DELIVER_PAPER_NO#
                                 </a>
 							</td>
@@ -1128,9 +1124,6 @@
                                     </cfif>
                                 </cfif>
                             </td>
-                            <cfif ListFind(session.ep.user_level,25)>
-                            	<td style="text-align:right"></td>
-                            </cfif>
                             <td>#SHIP_METHOD#</td>
                             <td align="center" colspan="5">
                             	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.detail_order&order_id=#order_id#','wide');" class="tableyazi" title="Satış Siparişine Git">
@@ -1139,11 +1132,11 @@
                             </td>
                             <td style="text-align:center">#CITY_NAME#<br />#COUNTY_NAME#</td>
                             <td colspan="4"><font color="red">
-                            	<strong><cf_get_lang_main no='129.Hata'> #tip# : </strong>
+                            	<strong>Hata #tip# : </strong>
                             	<cfif tip eq 1>
-                                	<cf_get_lang_main no='3529.Birleştirme İşleminden Sonra Teslim Yeri veya Sevk Yöntemi Değiştirilen Sipariş Hatası'></font>
+                                	Birleştirme İşleminden Sonra Teslim Yeri veya Sevk Yöntemi Değiştirilen Sipariş Hatası</font>
                           		<cfelseif tip eq 2>
-                            		<cf_get_lang_main no='3530.Sevk Planlama İşleminden Sonra Cari Hesap Değiştirilen Sipariş Hatası'>
+                            		Sevk Planlama İşleminden Sonra Cari Hesap Değiştirilen Sipariş Hatası
                             	</cfif>
                             </td>
                     </cfoutput>
@@ -1152,7 +1145,6 @@
                         <cfif IS_TYPE eq 1>	
                             <cfquery name="GET_PUAN" datasource="#DSN3#"> <!---Satış Puanları Toplanıyor--->
                                 SELECT
-                                	ORR.ORDER_ID,
                                     ORR.STOCK_ID, 
                                     ORR.PRODUCT_ID, 
                                     ORR.QUANTITY,
@@ -1176,7 +1168,6 @@
                                     SI.DISPATCH_SHIP_ID, 
                                     SIR.SHIP_ROW_ID, 
                                     ORR.ORDER_ID AS FIS_ID, 
-                                    ORR.ORDER_ID,
                                     ORR.ORDER_ROW_ID AS FIS_ROW_ID
                                 FROM
                                     SHIP_INTERNAL AS SI INNER JOIN
@@ -1186,12 +1177,16 @@
                                 WHERE     
                                     SI.DISPATCH_SHIP_ID = #SHIP_RESULT_ID#
                             </cfquery>
+                            <cfquery name="get_order_id" datasource="#dsn3#">
+                                SELECT TOP (1) ORDER_ID, IS_INSTALMENT FROM ORDERS WHERE ORDER_NUMBER = N'#SHIP_FIS_NO#'
+                            </cfquery>
                         </cfif>
                         <cfset row_point = 0>
                         <cfquery name="get_order_id_list" dbtype="query">
                             SELECT
                                 FIS_ID
                             FROM
+
                                 GET_PUAN
                             GROUP BY
                                 FIS_ID
@@ -1205,6 +1200,33 @@
                             </cfif>
                         </cfloop>
                         <cfif listlen(order_row_id_list)>
+                            <!---<cfquery name="get_sevk_durum" datasource="#dsn3#"><!--- Rezerve edilen üretim planları veya satınalma siparişlerinin depoya girişleri kontrol ediliyor--->
+                                SELECT     
+                                    SUM(SEVK_DURUM) AS SEVK_DURUM
+                                FROM         
+                                    (
+                                    SELECT     
+                                        SEVK_DURUM
+                                    FROM          
+                                        (
+                                        SELECT     
+                                            CASE 
+                                                WHEN ORDER_ROW_CURRENCY = - 6 THEN 4 
+                                                WHEN ORDER_ROW_CURRENCY = - 9 THEN 1 
+                                                WHEN ORDER_ROW_CURRENCY = - 8 THEN 1 
+                                                WHEN ORDER_ROW_CURRENCY = - 3 THEN 1 
+                                                WHEN ORDER_ROW_CURRENCY = - 10 THEN 1 
+                                                ELSE 2 
+                                            END AS SEVK_DURUM
+                                        FROM          
+                                            ORDER_ROW
+                                        WHERE      
+                                            ORDER_ROW_ID IN (#order_row_id_list#) 
+                                        ) AS TBL1
+                                    GROUP BY 
+                                        SEVK_DURUM
+                                    ) AS TBL2
+                            </cfquery>--->
                             <cfset last_year = session.ep.period_year -1>
                             <cfquery name="get_invoice_durum" datasource="#dsn3#">
                             	SELECT        
@@ -1242,39 +1264,40 @@
                                                         IR.WRK_ROW_RELATION_ID
                                                     FROM            
                                                         #dsn#_#last_year#_#session.ep.company_id#.SHIP_ROW AS SR INNER JOIN
-                                                        #dsn#_#last_year#_#session.ep.company_id#.INVOICE_ROW AS IR ON SR.WRK_ROW_ID = IR.WRK_ROW_RELATION_ID
+                                                        #dsn#_#last_year#_#session.ep.company_id#.INVOICE_ROW AS IR ON SR.WRK_ROW_ID = IR.WRK_ROW_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
                                                 </cfif>
                                           	) AS TBLA
                                			GROUP BY 
                                          	WRK_ROW_RELATION_ID
-                               		) AS TBLB ON ORR.WRK_ROW_ID = TBLB.WRK_ROW_RELATION_ID
+                               		) AS TBLB ON ORR.WRK_ROW_ID = TBLB.WRK_ROW_RELATION_ID  COLLATE SQL_Latin1_General_CP1_CI_AS
 								WHERE        
                                 	ORR.ORDER_ROW_ID IN (#order_row_id_list#)
                             </cfquery>
                        	<cfelse>
                         	<cfset get_invoice_durum.recordcount =0>
+                       		<!---<cfset get_sevk_durum.sevk_durum = 4>--->
                      	</cfif>
                             <tr>
                                 <td>#currentrow#</td>
                                 <td style="text-align:center">
                                     <cfif IS_TYPE eq 1>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping&iid=#SHIP_RESULT_ID#','list');" class="tableyazi" title="<cf_get_lang_main no='3528.Sevk Fişine Git'>">
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#','page');" class="tableyazi" title="Sevk Fişine Git">
                                         #DELIVER_PAPER_NO#
                                         </a>
                                     <cfelse>
                                         <strong>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.add_dispatch_internaldemand&event=upd&ship_id=#DELIVER_PAPER_NO#','longpage');" class="tableyazi" title="<cf_get_lang_main no='3531.Sevk Talebine Git'>">
+                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.upd_dispatch_internaldemand&ship_id=#DELIVER_PAPER_NO#','wide');" class="tableyazi" title="Sevk Talebine Git">
                                                 #DELIVER_PAPER_NO#
                                             </a>
                                         </strong>
                                         <br>
                                         <cfset fuse_type = 'sales'>
-                                        <cfif IS_INSTALMENT eq 1>
-                                       	 	<cfset page_type = 'list_order_instalment&event=upd'>
+                                        <cfif get_order_id.is_instalment eq 1>
+                                            <cfset page_type = 'upd_fast_sale'>
                                         <cfelse>
-                                        	<cfset page_type = 'list_order&event=upd'>
+                                            <cfset page_type = 'detail_order'>
                                         </cfif>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=#fuse_type#.#page_type#&order_id=#order_id_list#','longpage');" class="tableyazi" title="<cf_get_lang_main no='3532.Satış Siparişine Git'>">
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=#fuse_type#.#page_type#&order_id=#get_order_id.order_id#','wide');" class="tableyazi" title="Satış Siparişine Git">
                                         #SHIP_FIS_NO#
                                         </a>
                                     </cfif>        
@@ -1290,315 +1313,25 @@
                                         (#UNVAN#)
                                     </cfif>
                                 </td>
-                                <cfif ListFind(session.ep.user_level,25)>
-                                    <td style="text-align:right">
-                                    	<cfif IS_TYPE eq 1>
-                                        	<cfset get_bakiye.recordcount =0>
-                                        	<cfif len(company_id)>
-                                            	<cfquery name="get_bakiye" datasource="#dsn2#">
-                                                	SELECT        
-                                                    	BAKIYE3, 
-                                                        OTHER_MONEY
-													FROM      
-                                                    	COMPANY_REMAINDER_MONEY
-													WHERE        
-                                                    	COMPANY_ID = #company_id#
-                                                </cfquery>
-                                            <cfelseif len(consumer_id)>
-                                            	<cfquery name="get_bakiye" datasource="#dsn2#">
-                                                	SELECT        
-                                                    	BAKIYE3, 
-                                                        OTHER_MONEY
-													FROM      
-                                                    	CONSUMER_REMAINDER_MONEY
-													WHERE        
-                                                    	CONSUMER_ID = #consumer_id#
-                                                </cfquery>
-                                            </cfif>
-                                            <cfif get_bakiye.recordcount>
-                                            	<cfloop query="get_bakiye">
-                                                <font style="color:<cfif bakiye3 lte 0>blue<cfelse>red</cfif>">
-                                                	#TlFormat(BAKIYE3,2)# #OTHER_MONEY# 
-                                               	</font><cfif get_bakiye.recordcount gt get_bakiye.currentrow><br/></cfif>
-                                                </cfloop>
-                                            </cfif>
-                                        </cfif>
-                                    </td>
-                                </cfif>
-                                <td>#get_emp_info(DELIVER_EMP,0,0)#</td>
+                                <td>#get_emp_info(order_employee_id,0,0)#</td>
                                 <td>#SHIP_METHOD#</td>
-                                <cfif listlen(order_row_id_list)>
-                                    <cfquery name="get_sevk_durum" datasource="#dsn3#"> <!---Rezerve edilen üretim planları veya satınalma siparişlerinin depoya girişleri kontrol ediliyor--->
-                                        SELECT     
-                                            SUM(SEVK_DURUM) AS SEVK_DURUM
-                                        FROM         
-                                            (
-                                            SELECT     
-                                                SEVK_DURUM
-                                            FROM          
-                                                (
-                                                SELECT     
-                                                    CASE 
-                                                        WHEN ORDER_ROW_CURRENCY = - 6 THEN 4 
-                                                        WHEN ORDER_ROW_CURRENCY = - 9 THEN 1 
-                                                        WHEN ORDER_ROW_CURRENCY = - 8 THEN 1 
-                                                        WHEN ORDER_ROW_CURRENCY = - 3 THEN 1 
-                                                        WHEN ORDER_ROW_CURRENCY = - 10 THEN 1 
-                                                        ELSE 2 
-                                                    END AS SEVK_DURUM
-                                                FROM          
-                                                    ORDER_ROW
-                                                WHERE      
-                                                    ORDER_ROW_ID IN (#order_row_id_list#) 
-                                                ) AS TBL1
-                                            GROUP BY 
-                                                SEVK_DURUM
-                                            ) AS TBL2
-                                    </cfquery>
-                                <cfelse>
-                                    <cfset get_sevk_durum.sevk_durum = 4>
-                                </cfif>
                                 <td style="text-align:center"> <!---Sevk Indicator--->
-                                    <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3533.Sevk Emri Ver'>">
-                                        <cfif  get_sevk_durum.sevk_durum eq 2>
-                                            <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
-                                        <cfelseif  get_sevk_durum.sevk_durum eq 1>
-                                            <img src="../../../images/red_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='3272.Kapalı'>" />
-                                        <cfelseif  get_sevk_durum.sevk_durum eq 6>
-                                            <img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3534.Kısmi Sevk'>" />
-                                        <cfelseif  get_sevk_durum.sevk_durum eq 4>
-                                            <img src="../../../images/blue_glob.gif" border="0"title="<cf_get_lang_main no='3535.Tüm Ürünler Hazır'>" />
-                                        <cfelseif  get_sevk_durum.sevk_durum eq 5>
-                                            <img src="../../../images/black_glob.gif" border="0"title="<cf_get_lang_main no='3536.Düzeltilmesi Gereken Sevk Talebi'>" />
+                                    <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.popup_upd_prtotm_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Sevk Emri Ver">
+                                        <cfif  sevk_durum eq 2>
+                                            <img src="../../../images/yellow_glob.gif" border="0" title="Tamamı Açık" />
+                                        <cfelseif  sevk_durum eq 1>
+                                            <img src="../../../images/red_glob.gif" border="0" title="Tamamı Kapatıldı" />
+                                        <cfelseif  sevk_durum eq 6>
+                                            <img src="../../../images/green_glob.gif" border="0"title="Kısmi Sevk" />
+                                        <cfelseif  sevk_durum eq 4>
+                                            <img src="../../../images/blue_glob.gif" border="0"title="Ürünlerin Tamamı Hazır" />
+                                        <cfelseif  sevk_durum eq 5>
+                                            <img src="../../../images/black_glob.gif" border="0"title="Düzeltimesi Gereken Sevk Talebi" />
                                         </cfif>
                                     </a>
                                 </td>
-
-                                <cfif attributes.e_shipping_type eq 1>
-									<cfif IS_TYPE eq 1>    
-                                        <cfquery name="AMBAR_CONTROL" datasource="#DSN3#">
-                                            SELECT     
-                                                ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
-                                                ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT
-                                            FROM         
-                                                (
-                                                SELECT     
-                                                    PAKET_SAYISI AS PAKETSAYISI, 
-                                                    PAKET_ID AS STOCK_ID, 
-                                                    BARCOD, 
-                                                    STOCK_CODE, 
-                                                    PRODUCT_NAME,
-                                                    (
-                                                    SELECT 
-                                                        SUM(CONTROL_AMOUNT) CONTROL_AMOUNT
-                                                    FROM
-                                                        ( 
-                                                        SELECT        
-                                                            SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
-                                                        FROM            
-                                                            #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
-                                                            #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
-                                                        WHERE        
-                                                            SF.FIS_TYPE = 113 AND 
-                                                            SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
-                                                            SFR.STOCK_ID = TBL.PAKET_ID
-                                                        <cfif get_period_id.recordcount>
-                                                            UNION ALL
-                                                            SELECT        
-                                                                SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
-                                                            FROM            
-                                                                #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
-                                                                #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
-                                                            WHERE        
-                                                                SF.FIS_TYPE = 113 AND 
-                                                                SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
-                                                                SFR.STOCK_ID = TBL.PAKET_ID
-                                                        </cfif>
-                                                        ) AS TBL_5
-                                                    ) AS CONTROL_AMOUNT
-                                                FROM         
-                                                    (
-                                                    SELECT
-                                                        SUM(PAKET_SAYISI) AS PAKET_SAYISI,
-                                                        PAKET_ID, 
-                                                        BARCOD, 
-                                                        STOCK_CODE, 
-                                                        PRODUCT_NAME, 
-                                                        PRODUCT_TREE_AMOUNT, 
-                                                        SHIP_RESULT_ID
-                                                    FROM
-                                                        (     
-                                                        SELECT     
-                                                            CASE 
-                                                                WHEN 
-                                                                    S.PRODUCT_TREE_AMOUNT IS NOT NULL 
-                                                                THEN 
-                                                                    S.PRODUCT_TREE_AMOUNT 
-                                                                ELSE 
-                                                                    SUM(ORR.QUANTITY * EPS.PAKET_SAYISI)
-                                                            END 
-                                                                AS PAKET_SAYISI, 
-                                                            EPS.PAKET_ID, 
-                                                            S.BARCOD, 
-                                                            S.STOCK_CODE, 
-                                                            S.PRODUCT_NAME, 
-                                                            S.PRODUCT_TREE_AMOUNT, 
-                                                            ESR.SHIP_RESULT_ID,
-                                                            ESRR.ORDER_ROW_ID
-                                                        FROM          
-                                                            PRTOTM_SHIP_RESULT AS ESR INNER JOIN
-                                                            PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
-                                                            ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                                            EZGI_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
-                                                            STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID
-                                                        WHERE      
-                                                            ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID#
-                                                        GROUP BY 
-                                                            EPS.PAKET_ID, 
-                                                            S.BARCOD, 
-                                                            S.STOCK_CODE, 
-                                                            S.PRODUCT_NAME, 
-                                                            S.PRODUCT_TREE_AMOUNT, 
-                                                            ESR.SHIP_RESULT_ID,
-                                                            ESRR.ORDER_ROW_ID
-                                                        ) AS TBL1
-                                                    GROUP BY
-                                                        PAKET_ID, 
-                                                        BARCOD, 
-                                                        STOCK_CODE, 
-                                                        PRODUCT_NAME, 
-                                                        PRODUCT_TREE_AMOUNT, 
-                                                        SHIP_RESULT_ID
-                                                    ) AS TBL
-                                                ) AS TBL2
-                                        </cfquery>
-                                    <cfelse>
-                                        <cfquery name="AMBAR_CONTROL" datasource="#DSN3#">
-                                            SELECT     
-                                                ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
-                                                ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT
-                                            FROM         
-                                                (		
-                                                SELECT     
-                                                    PAKET_SAYISI AS PAKETSAYISI, 
-                                                    PAKET_ID AS STOCK_ID, 
-                                                    BARCOD, 
-                                                    STOCK_CODE, 
-                                                    PRODUCT_NAME,
-                                                    (
-                                                      SELECT 
-                                                        SUM(CONTROL_AMOUNT) CONTROL_AMOUNT
-                                                    FROM
-                                                        ( 
-                                                        SELECT        
-                                                            SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
-                                                        FROM            
-                                                            #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
-                                                            #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
-                                                        WHERE        
-                                                            SF.FIS_TYPE = 113 AND 
-                                                            SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
-                                                            SFR.STOCK_ID = TBL.PAKET_ID
-                                                        <cfif get_period_id.recordcount>
-                                                            UNION ALL
-                                                            SELECT        
-                                                                SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
-                                                            FROM            
-                                                                #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
-                                                                #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
-                                                            WHERE        
-                                                                SF.FIS_TYPE = 113 AND 
-                                                                SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
-                                                                SFR.STOCK_ID = TBL.PAKET_ID
-                                                        </cfif>
-                                                        ) AS TBL_5
-                                                    ) AS CONTROL_AMOUNT, SHIP_RESULT_ID
-                                                FROM         
-                                                    (
-                                                    SELECT     
-                                                        SUM(PAKET_SAYISI) AS PAKET_SAYISI, 
-                                                        PAKET_ID, 
-                                                        BARCOD, 
-                                                        STOCK_CODE, 
-                                                        PRODUCT_NAME, 
-                                                        PRODUCT_TREE_AMOUNT, 
-                                                        SHIP_RESULT_ID
-                                                    FROM          
-                                                        (
-                                                        SELECT     
-                                                            CASE 
-                                                                WHEN 
-                                                                    S.PRODUCT_TREE_AMOUNT IS NOT NULL 
-                                                                THEN 
-                                                                    S.PRODUCT_TREE_AMOUNT 
-                                                                ELSE 
-                                                                    SUM(SIR.AMOUNT * EPS.PAKET_SAYISI)
-                                                            END 
-                                                                AS PAKET_SAYISI, 
-                                                            EPS.PAKET_ID, 
-                                                            S.BARCOD, 
-                                                            S.STOCK_CODE, 
-                                                            S.PRODUCT_NAME, 
-                                                            S.PRODUCT_TREE_AMOUNT, 
-                                                            SIR.SHIP_ROW_ID, 
-                                                            SI.DISPATCH_SHIP_ID AS SHIP_RESULT_ID
-                                                        FROM          
-                                                            STOCKS AS S INNER JOIN
-                                                            EZGI_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
-                                                            #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR INNER JOIN
-                                                            #dsn2_alias#.SHIP_INTERNAL AS SI ON SIR.DISPATCH_SHIP_ID = SI.DISPATCH_SHIP_ID ON EPS.MODUL_ID = SIR.STOCK_ID
-                                                        WHERE      
-                                                            SI.DISPATCH_SHIP_ID = #SHIP_RESULT_ID#
-                                                        GROUP BY 
-                                                            EPS.PAKET_ID, 
-                                                            S.BARCOD, 
-                                                            S.STOCK_CODE, 
-                                                            S.PRODUCT_NAME, 
-                                                            S.PRODUCT_TREE_AMOUNT, 
-                                                            SIR.SHIP_ROW_ID, 
-                                                            SI.DISPATCH_SHIP_ID
-                                                        ) AS TBL1
-                                                    GROUP BY 
-                                                        PAKET_ID, 
-                                                        BARCOD, 
-                                                        STOCK_CODE, 
-                                                        PRODUCT_NAME, 
-                                                        PRODUCT_TREE_AMOUNT, 
-                                                        SHIP_RESULT_ID
-                                                    ) AS TBL
-                                                ) AS TBL2
-                                        </cfquery> 
-                                    </cfif>
-                                    <td style="text-align:center"> <!---Hazırlama Indicator--->
-                                        <cfif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.PAKET_SAYISI eq 0 and AMBAR_CONTROL.CONTROL_AMOUNT eq 0>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>">
-                                            </a>
-                                         <cfelseif AMBAR_CONTROL.recordcount AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/red_glob.gif" border="0" title="<cf_get_lang_main no='3137.Sevk Edildi'>.">
-                                            </a>
-                                         <cfelseif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.CONTROL_AMOUNT eq 0>
-                                            <cfif IS_SEVK_EMIR eq 1>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/blue_glob.gif" border="0" title="<cf_get_lang_main no='3538.Sevk Emri Verildi.'>">
-                                                </a>
-                                            <cfelse>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3138.Sevk Edilmedi'>.">
-                                                </a>
-                                            </cfif>
-                                         <cfelseif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.PAKET_SAYISI gt AMBAR_CONTROL.CONTROL_AMOUNT>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/green_glob.gif" border="0" title="<cf_get_lang_main no='3139.Eksik Sevkiyat'>.">
-                                            </a>
-                                         <cfelseif AMBAR_CONTROL.recordcount AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) lt ceiling(AMBAR_CONTROL.CONTROL_AMOUNT)>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3140.Fazla Sevkiyat'>">  
-                                            </a>
-                                         </cfif>
-                                    </td>
-                                <cfelse>
-                                	<cfset AMBAR_CONTROL.recordcount = 0>
-                                    <cfset AMBAR_CONTROL.PAKET_SAYISI =0>
-                                    <cfset AMBAR_CONTROL.CONTROL_AMOUNT = 0>
-                                </cfif>
                                 <cfif IS_TYPE eq 1>    
-                                    <cfquery name="PACKEGE_CONTROL" datasource="#DSN3#"> <!---Paket Kontrolü kontrol ediliyor--->
+                                    <cfquery name="AMBAR_CONTROL" datasource="#DSN3#">
                                         SELECT     
                                             ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
                                             ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT
@@ -1611,14 +1344,32 @@
                                                 STOCK_CODE, 
                                                 PRODUCT_NAME,
                                                 (
-                                                SELECT     
-                                                    SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT
-                                                FROM          
-                                                    EZGI_SHIPPING_PACKAGE_LIST
-                                                WHERE      
-                                                    TYPE = 1 AND 
-                                                    STOCK_ID = TBL.PAKET_ID AND 
-                                                    SHIPPING_ID = TBL.SHIP_RESULT_ID
+                                                SELECT 
+                                                	SUM(CONTROL_AMOUNT) CONTROL_AMOUNT
+                                               	FROM
+                                                	( 
+                                                    SELECT        
+                                                        SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
+                                                    FROM            
+                                                        #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
+                                                        #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
+                                                    WHERE        
+                                                        SF.FIS_TYPE = 113 AND 
+                                                        SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
+                                                        SFR.STOCK_ID = TBL.PAKET_ID
+                                                    <cfif get_period_id.recordcount>
+                                                        UNION ALL
+                                                        SELECT        
+                                                            SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
+                                                        FROM            
+                                                            #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
+                                                            #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
+                                                        WHERE        
+                                                            SF.FIS_TYPE = 113 AND 
+                                                            SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
+                                                            SFR.STOCK_ID = TBL.PAKET_ID
+                                                    </cfif>
+                                                	) AS TBL_5
                                                 ) AS CONTROL_AMOUNT
                                             FROM         
                                                 (
@@ -1633,36 +1384,15 @@
                                                 FROM
                                                     (     
                                                     SELECT     
-                                                   		round(SUM(ORR.QUANTITY * EPS.PAKET_SAYISI),2) AS PAKET_SAYISI, 
-                                                        EPS.PAKET_ID, 
-                                                        S.BARCOD, 
-                                                        S.STOCK_CODE, 
-                                                        S.PRODUCT_NAME, 
-                                                        S.PRODUCT_TREE_AMOUNT, 
-                                                        ESR.SHIP_RESULT_ID,
-                                                        ESRR.ORDER_ROW_ID
-                                                    FROM 
-                                                    	SPECTS AS SP INNER JOIN
-                     									PRTOTM_SHIP_RESULT AS ESR INNER JOIN
-                     									PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
-                      									ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID ON SP.SPECT_VAR_ID = ORR.SPECT_VAR_ID INNER JOIN
-                     									STOCKS AS S INNER JOIN
-                     									EZGI_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID ON SP.SPECT_MAIN_ID = EPS.MODUL_SPECT_ID INNER JOIN
-                                                        STOCKS AS S1 ON ORR.STOCK_ID = S1.STOCK_ID   
-                                                    WHERE      
-                                                        ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID# AND
-                                                        ISNULL(S1.IS_PROTOTYPE,0) = 1
-                                                    GROUP BY 
-                                                        EPS.PAKET_ID, 
-                                                        S.BARCOD, 
-                                                        S.STOCK_CODE, 
-                                                        S.PRODUCT_NAME, 
-                                                        S.PRODUCT_TREE_AMOUNT, 
-                                                        ESR.SHIP_RESULT_ID,
-                                                        ESRR.ORDER_ROW_ID
-                                                 	UNION ALL
-                                                    SELECT     
-                                                   		round(SUM(ORR.QUANTITY * EPS.PAKET_SAYISI),2) AS PAKET_SAYISI, 
+                                                        CASE 
+                                                            WHEN 
+                                                                S.PRODUCT_TREE_AMOUNT IS NOT NULL 
+                                                            THEN 
+                                                                S.PRODUCT_TREE_AMOUNT 
+                                                            ELSE 
+                                                                SUM(ORR.QUANTITY * EPS.PAKET_SAYISI)
+                                                        END 
+                                                            AS PAKET_SAYISI, 
                                                         EPS.PAKET_ID, 
                                                         S.BARCOD, 
                                                         S.STOCK_CODE, 
@@ -1674,12 +1404,10 @@
                                                         PRTOTM_SHIP_RESULT AS ESR INNER JOIN
                                                         PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
                                                         ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                                        EZGI_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
-                                                        STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID INNER JOIN
-                                                        STOCKS AS S1 ON ORR.STOCK_ID = S1.STOCK_ID
+                                                        PRTOTM_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
+                                                        STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID
                                                     WHERE      
-                                                        ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID# AND
-                                                        ISNULL(S1.IS_PROTOTYPE,0) = 0
+                                                        ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID#
                                                     GROUP BY 
                                                         EPS.PAKET_ID, 
                                                         S.BARCOD, 
@@ -1693,14 +1421,14 @@
                                                     PAKET_ID, 
                                                     BARCOD, 
                                                     STOCK_CODE, 
-                                                    PRODUCT_NAME,
+                                                    PRODUCT_NAME, 
                                                     PRODUCT_TREE_AMOUNT, 
                                                     SHIP_RESULT_ID
                                                 ) AS TBL
                                             ) AS TBL2
                                     </cfquery>
                                 <cfelse>
-                                    <cfquery name="PACKEGE_CONTROL" datasource="#DSN3#">
+                                    <cfquery name="AMBAR_CONTROL" datasource="#DSN3#">
                                         SELECT     
                                             ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
                                             ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT
@@ -1713,14 +1441,32 @@
                                                 STOCK_CODE, 
                                                 PRODUCT_NAME,
                                                 (
-                                                SELECT     
-                                                    SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT
-                                                FROM          
-                                                    EZGI_SHIPPING_PACKAGE_LIST
-                                                WHERE      
-                                                    TYPE = 2 AND 
-                                                    STOCK_ID = TBL.PAKET_ID AND 
-                                                    SHIPPING_ID = TBL.SHIP_RESULT_ID
+                                                  SELECT 
+                                                	SUM(CONTROL_AMOUNT) CONTROL_AMOUNT
+                                               	FROM
+                                                	( 
+                                                    SELECT        
+                                                        SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
+                                                    FROM            
+                                                        #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
+                                                        #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
+                                                    WHERE        
+                                                        SF.FIS_TYPE = 113 AND 
+                                                        SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
+                                                        SFR.STOCK_ID = TBL.PAKET_ID
+                                                    <cfif get_period_id.recordcount>
+                                                        UNION ALL
+                                                        SELECT        
+                                                            SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
+                                                        FROM            
+                                                            #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
+                                                            #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
+                                                        WHERE        
+                                                            SF.FIS_TYPE = 113 AND 
+                                                            SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
+                                                            SFR.STOCK_ID = TBL.PAKET_ID
+                                                    </cfif>
+                                                	) AS TBL_5
                                                 ) AS CONTROL_AMOUNT, SHIP_RESULT_ID
                                             FROM         
                                                 (
@@ -1741,7 +1487,7 @@
                                                             THEN 
                                                                 S.PRODUCT_TREE_AMOUNT 
                                                             ELSE 
-                                                                round(SUM(SIR.AMOUNT * EPS.PAKET_SAYISI),2)
+                                                                SUM(SIR.AMOUNT * EPS.PAKET_SAYISI)
                                                         END 
                                                             AS PAKET_SAYISI, 
                                                         EPS.PAKET_ID, 
@@ -1753,7 +1499,214 @@
                                                         SI.DISPATCH_SHIP_ID AS SHIP_RESULT_ID
                                                     FROM          
                                                         STOCKS AS S INNER JOIN
-                                                        EZGI_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
+                                                        PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
+                                                        #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR INNER JOIN
+                                                        #dsn2_alias#.SHIP_INTERNAL AS SI ON SIR.DISPATCH_SHIP_ID = SI.DISPATCH_SHIP_ID ON EPS.MODUL_ID = SIR.STOCK_ID
+                                                    WHERE      
+                                                        SI.DISPATCH_SHIP_ID = #SHIP_RESULT_ID#
+                                                    GROUP BY 
+                                                        EPS.PAKET_ID, 
+                                                        S.BARCOD, 
+                                                        S.STOCK_CODE, 
+                                                        S.PRODUCT_NAME, 
+                                                        S.PRODUCT_TREE_AMOUNT, 
+                                                        SIR.SHIP_ROW_ID, 
+                                                        SI.DISPATCH_SHIP_ID
+                                                    ) AS TBL1
+                                                GROUP BY 
+                                                    PAKET_ID, 
+                                                    BARCOD, 
+                                                    STOCK_CODE, 
+                                                    PRODUCT_NAME, 
+                                                    PRODUCT_TREE_AMOUNT, 
+                                                    SHIP_RESULT_ID
+                                                ) AS TBL
+                                            ) AS TBL2
+                                    </cfquery> 
+								</cfif>
+                                <td style="text-align:center"> <!---Hazırlama Indicator--->
+                                	<cfif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.PAKET_SAYISI eq 0 and AMBAR_CONTROL.CONTROL_AMOUNT eq 0>
+                                    	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/plus_ques.gif" border="0" title="Barkod Yok.">
+                                        </a>
+                                     <cfelseif AMBAR_CONTROL.recordcount AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0>
+                                     	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/red_glob.gif" border="0" title="Sevk Edildi.">
+                                        </a>
+                                     <cfelseif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.CONTROL_AMOUNT eq 0>
+                                     	<cfif IS_SEVK_EMIR eq 1>
+                                        	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/blue_glob.gif" border="0" title="Sevk Emri Verildi.">
+                                            </a>
+                                        <cfelse>
+                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/yellow_glob.gif" border="0" title="Sevk Edilmedi.">
+                                            </a>
+                                        </cfif>
+
+                                     <cfelseif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.PAKET_SAYISI gt AMBAR_CONTROL.CONTROL_AMOUNT>
+                                     	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/green_glob.gif" border="0" title="Eksik Sevkiyat.">
+                                        #AMBAR_CONTROL.PAKET_SAYISI#----#AMBAR_CONTROL.CONTROL_AMOUNT#
+                                        </a>
+                                     <cfelseif AMBAR_CONTROL.recordcount AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) lt ceiling(AMBAR_CONTROL.CONTROL_AMOUNT)>
+                                     	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/black_glob.gif" border="0" title="Fazla Sevkiyat">  
+                                        </a>
+                                     </cfif>
+                                </td>
+                                <cfif IS_TYPE eq 1>    
+                                    <cfquery name="PACKEGE_CONTROL" datasource="#DSN3#"> <!---Paket Kontrolü kontrol ediliyor--->
+                                        SELECT     
+                                            ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
+                                            ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT,
+                                            ISNULL(SUM(CONTROL_AMOUNT2), 0) AS CONTROL_AMOUNT2
+                                        FROM         
+                                            (
+                                            SELECT     
+                                                PAKET_SAYISI AS PAKETSAYISI, 
+                                                PAKET_ID AS STOCK_ID, 
+                                                BARCOD, 
+                                                STOCK_CODE, 
+                                                PRODUCT_NAME,
+                                                (
+                                                SELECT     
+                                                    SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT
+                                                FROM          
+                                                    PRTOTM_SHIPPING_PACKAGE_LIST
+                                                WHERE      
+                                                    TYPE = 1 AND 
+                                                    STOCK_ID = TBL.PAKET_ID AND 
+                                                    SHIPPING_ID = TBL.SHIP_RESULT_ID
+                                                ) AS CONTROL_AMOUNT,
+                                               	(
+                                                SELECT     
+                                                    SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT2
+                                                FROM          
+                                                    PRTOTM_SHIPPING_PACKAGE_LIST_REPEAT
+                                                WHERE      
+                                                    TYPE = 1 AND 
+                                                    STOCK_ID = TBL.PAKET_ID AND 
+                                                    SHIPPING_ID = TBL.SHIP_RESULT_ID
+                                                ) AS CONTROL_AMOUNT2
+                                            FROM         
+                                                (
+                                                SELECT
+                                                    SUM(PAKET_SAYISI) AS PAKET_SAYISI,
+                                                    PAKET_ID, 
+                                                    BARCOD, 
+                                                    STOCK_CODE, 
+                                                    PRODUCT_NAME, 
+                                                    PRODUCT_TREE_AMOUNT, 
+                                                    SHIP_RESULT_ID
+                                                FROM
+                                                    (     
+                                                    SELECT     
+                                                        CASE 
+                                                            WHEN 
+                                                                S.PRODUCT_TREE_AMOUNT IS NOT NULL 
+                                                            THEN 
+                                                                S.PRODUCT_TREE_AMOUNT 
+                                                            ELSE 
+                                                                SUM(ORR.QUANTITY * EPS.PAKET_SAYISI) 
+                                                        END 
+                                                            AS PAKET_SAYISI, 
+                                                        EPS.PAKET_ID, 
+                                                        S.BARCOD, 
+                                                        S.STOCK_CODE, 
+                                                        S.PRODUCT_NAME, 
+                                                        S.PRODUCT_TREE_AMOUNT, 
+                                                        ESR.SHIP_RESULT_ID,
+                                                        ESRR.ORDER_ROW_ID
+                                                    FROM          
+                                                        PRTOTM_SHIP_RESULT AS ESR INNER JOIN
+                                                        PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
+                                                        ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
+                                                        PRTOTM_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
+                                                        STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID
+                                                    WHERE      
+                                                        ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID#
+                                                    GROUP BY 
+                                                        EPS.PAKET_ID, 
+                                                        S.BARCOD, 
+                                                        S.STOCK_CODE, 
+                                                        S.PRODUCT_NAME, 
+                                                        S.PRODUCT_TREE_AMOUNT, 
+                                                        ESR.SHIP_RESULT_ID,
+                                                        ESRR.ORDER_ROW_ID
+                                                    ) AS TBL1
+                                                GROUP BY
+                                                    PAKET_ID, 
+                                                    BARCOD, 
+                                                    STOCK_CODE, 
+                                                    PRODUCT_NAME, 
+    
+                                                    PRODUCT_TREE_AMOUNT, 
+                                                    SHIP_RESULT_ID
+                                                ) AS TBL
+                                            ) AS TBL2
+                                    </cfquery>
+                                <cfelse>
+                                    <cfquery name="PACKEGE_CONTROL" datasource="#DSN3#">
+                                        SELECT     
+                                            ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
+                                            ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT,
+                                            ISNULL(SUM(CONTROL_AMOUNT2), 0) AS CONTROL_AMOUNT2
+                                        FROM         
+                                            (		
+                                            SELECT     
+                                                PAKET_SAYISI AS PAKETSAYISI, 
+                                                PAKET_ID AS STOCK_ID, 
+                                                BARCOD, 
+                                                STOCK_CODE, 
+                                                PRODUCT_NAME,
+                                                (
+                                                SELECT     
+                                                    SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT
+                                                FROM          
+                                                    PRTOTM_SHIPPING_PACKAGE_LIST
+                                                WHERE      
+                                                    TYPE = 2 AND 
+                                                    STOCK_ID = TBL.PAKET_ID AND 
+                                                    SHIPPING_ID = TBL.SHIP_RESULT_ID
+                                                ) AS CONTROL_AMOUNT, 
+                                                (
+                                                SELECT     
+                                                    SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT2
+                                                FROM          
+                                                    PRTOTM_SHIPPING_PACKAGE_LIST_REPEAT
+                                                WHERE      
+                                                    TYPE = 2 AND 
+                                                    STOCK_ID = TBL.PAKET_ID AND 
+                                                    SHIPPING_ID = TBL.SHIP_RESULT_ID
+                                                ) AS CONTROL_AMOUNT2,
+                                                SHIP_RESULT_ID
+                                            FROM         
+                                                (
+                                                SELECT     
+                                                    SUM(PAKET_SAYISI) AS PAKET_SAYISI, 
+                                                    PAKET_ID, 
+                                                    BARCOD, 
+                                                    STOCK_CODE, 
+                                                    PRODUCT_NAME, 
+                                                    PRODUCT_TREE_AMOUNT, 
+                                                    SHIP_RESULT_ID
+                                                FROM          
+                                                    (
+                                                    SELECT     
+                                                        CASE 
+                                                            WHEN 
+                                                                S.PRODUCT_TREE_AMOUNT IS NOT NULL 
+                                                            THEN 
+                                                                S.PRODUCT_TREE_AMOUNT 
+                                                            ELSE 
+                                                                SUM(SIR.AMOUNT * EPS.PAKET_SAYISI)
+                                                        END 
+                                                            AS PAKET_SAYISI, 
+                                                        EPS.PAKET_ID, 
+                                                        S.BARCOD, 
+                                                        S.STOCK_CODE, 
+                                                        S.PRODUCT_NAME, 
+                                                        S.PRODUCT_TREE_AMOUNT, 
+                                                        SIR.SHIP_ROW_ID, 
+                                                        SI.DISPATCH_SHIP_ID AS SHIP_RESULT_ID
+                                                    FROM          
+                                                        STOCKS AS S INNER JOIN
+                                                        PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
                                                         #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR INNER JOIN
                                                         #dsn2_alias#.SHIP_INTERNAL AS SI ON SIR.DISPATCH_SHIP_ID = SI.DISPATCH_SHIP_ID ON EPS.MODUL_ID = SIR.STOCK_ID
                                                     WHERE      
@@ -1777,97 +1730,108 @@
                                                 ) AS TBL
                                             ) AS TBL2
                                     </cfquery>
-                                </cfif>
+                                </cfif> 
                                 
                                 <td style="text-align:center"> <!---El Terminali 1 Kontrol Indicator--->
                                     <cfif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI eq 0 and PACKEGE_CONTROL.CONTROL_AMOUNT eq 0>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
-                                            <img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>." />
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Detay Göster">
+                                            <img src="/images/plus_ques.gif" border="0" title="Barkod Yok." />
                                         </a>
-                                    <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI - PACKEGE_CONTROL.CONTROL_AMOUNT eq 0>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
-                                            <img src="/images/red_glob.gif" border="0" title="<cf_get_lang_main no='3133.Kontrol Edildi'>.">
+                                    <cfelseif PACKEGE_CONTROL.recordcount AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0>
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Detay Göster">
+                                            <img src="/images/red_glob.gif" border="0" title="Kontrol Edildi.">
                                         </a>
                                      <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.CONTROL_AMOUNT eq 0>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
-                                            <img src="/images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3134.Kontrol Edilmedi'>.">
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Detay Göster">
+                                            <img src="/images/yellow_glob.gif" border="0" title="Kontrol Edilmedi.">
                                         </a>
-                                     <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI gt PACKEGE_CONTROL.CONTROL_AMOUNT>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">	
-                                            <img src="/images/green_glob.gif" border="0" title="<cf_get_lang_main no='3135.Kontrol Eksik'>."> 
+                                     <cfelseif PACKEGE_CONTROL.recordcount AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) gt ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT)>
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Detay Göster">	
+                                            <img src="/images/green_glob.gif" border="0" title="Kontrol Eksik."> 
                                         </a>  
-                                     <cfelse>
-                                     	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">	
-                                            <img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3539.Teslimat Miktarı Düşürülmüş.'>"> 
-                                        </a> 
                                      </cfif>
                                 </td>
+                                
+                                <!---<td style="text-align:center"> <!---El Terminali 2 Kontrol Indicator--->
+                                    <cfif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI eq 0 and PACKEGE_CONTROL.CONTROL_AMOUNT2 eq 0>
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control_repeat&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Detay Göster">
+                                            <img src="/images/plus_ques.gif" border="0" title="Barkod Yok." />
+                                        </a>
+                                    <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI - PACKEGE_CONTROL.CONTROL_AMOUNT2 eq 0>
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control_repeat&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Detay Göster">
+                                            <img src="/images/red_glob.gif" border="0" title="Kontrol Edildi.">
+                                        </a>
+                                     <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.CONTROL_AMOUNT2 eq 0>
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control_repeat&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Detay Göster">
+                                            <img src="/images/yellow_glob.gif" border="0" title="Kontrol Edilmedi.">
+                                        </a>
+                                     <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI gt PACKEGE_CONTROL.CONTROL_AMOUNT2>
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control_repeat&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="Detay Göster">	
+                                            <img src="/images/green_glob.gif" border="0" title="Kontrol Eksik."> 
+                                        </a>  
+                                     </cfif>
+                                </td>--->
+                                
+                                	    
                                 <td style="text-align:center"> <!---İrsaliye Indicator--->
                                     <cfif IS_TYPE eq 1>
                                         <cfif DURUM eq 1>
-                                        	<cfif (attributes.e_shipping_type eq 1 and ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0) or attributes.e_shipping_type neq 1>
-                                            	<cfif Listlen(order_id_list) eq 1>
-                                                	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.form_add_sale&order_id=#order_id_list#&order_row_id=#order_row_id_list#','longpage');" class="tableyazi" title="<cf_get_lang_main no='3540.Satış İrsaliyesi Oluştur'>">
-                                                <cfelse>
-                                                	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.form_add_sale&order_id=#ListGetAt(order_id_list,1)#&ezgi_order_row_id=#order_row_id_list#&order_row_id=0','longpage');" class="tableyazi" title="<cf_get_lang_main no='3540.Satış İrsaliyesi Oluştur'>">
-                                                </cfif>
-                                                    <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
+                                        	<cfif ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0>
+                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.form_add_sale&order_id=#order_id_list#&order_row_id=#order_row_id_list#','longpage');" class="tableyazi" title="Satış İrsaliyesi Oluştur">
+                                                    <img src="../../../images/yellow_glob.gif" border="0" title="Tamamı Açık" />
                                                 </a>
                                             <cfelse>
-                                            	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3541.Kontrol Tamamlanmamış Sevkiyat'>" />
+                                            	<img src="../../../images/yellow_glob.gif" border="0" title="Önce Ambar Fişi Oluşturun" />
                                             </cfif>
                                         <cfelseif DURUM eq 2>
-                                            <img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('prod',183)# #getLang('main',3137)#</cfoutput>" />
+                                            <img src="../../../images/red_glob.gif" border="0" title="Tamamı Sevkedildi" />
                                         <cfelseif DURUM eq 3>
-                                        	 <cfif ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.form_add_sale&<cfif Listlen(order_id_list) eq 1>order_id=#order_id_list#&order_row_id=#order_row_id_list#<cfelse></cfif>','longpage');" class="tableyazi" title="Satış İrsaliyesi Oluştur">
-                                                    <img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3542.Kısmi Kapandı'>" />
+                                        	<cfif ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0>
+                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.form_add_sale&order_id=#order_id_list#&order_row_id=#order_row_id_list#','longpage');" class="tableyazi" title="Satış İrsaliyesi Oluştur">
+                                                    <img src="../../../images/green_glob.gif" border="0"title="Kısmi Kapandı" />
                                                 </a>
                                             <cfelse>
-                                            	<img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3542.Kısmi Kapandı'>" />
+                                            	<img src="../../../images/green_glob.gif" border="0"title="Kısmi Kapandı" />
                                             </cfif>
                                         </cfif>
                                     <cfelse>
                                         <cfif DURUM eq 1>
-                                        	<cfif (attributes.e_shipping_type eq 1 and ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0) or attributes.e_shipping_type neq 1>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.add_ship_dispatch&dispatch_ship_id=#SHIP_RESULT_ID#','longpage');" class="tableyazi" title="<cf_get_lang_main no='3543.Depolararası Sevk İrsaliyesi Oluştur'>">
-                                                    <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
+                                        	<cfif ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0>
+                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.add_ship_dispatch&dispatch_ship_id=#SHIP_RESULT_ID#','longpage');" class="tableyazi" title="Depolararası Sevk İrsaliyesi Oluştur">
+                                                    <img src="../../../images/yellow_glob.gif" border="0" title="Tamamı Açık" />
                                                 </a>
                                             <cfelse>
-                                            	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3541.Kontrol Tamamlanmamış Sevkiyat'>" />
+                                            	<img src="../../../images/yellow_glob.gif" border="0" title="Önce Ambar Fişi Oluşturun" />
                                             </cfif>
                                         <cfelseif DURUM eq 2>
 
-                                            <img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('prod',183)# #getLang('main',3137)#</cfoutput>" />
+                                            <img src="../../../images/red_glob.gif" border="0" title="Tamamı Sevkedildi" />
                                         </cfif>
                                     </cfif>
                                 </td>
                                 <td style="text-align:center">
                                 	<cfif get_invoice_durum.recordcount and len(get_invoice_durum.kalan)>
                                     	<cfif get_invoice_durum.kalan lt 0>
-                                    		<img src="../../../images/green_glob.gif" border="0" title="<cfoutput>#getLang('main',3544)# #getLang('report',404)#</cfoutput> " />
+                                    		<img src="../../../images/green_glob.gif" border="0" title="Kısmi Faturalandı " />
                                        	<cfelse>
-                                        	<img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('report',404)#</cfoutput> " />
+                                        	<img src="../../../images/red_glob.gif" border="0" title="Tam Faturalandı " />
                                         </cfif>
                                     <cfelse>
                                     	<cfif DURUM eq 1>
-                                        	<cfif attributes.e_shipping_type eq 1 and (ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0) or attributes.e_shipping_type neq 1>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=invoice.form_add_bill&<cfif Listlen(order_id_list) eq 1>order_id=#order_id_list#&order_row_id=#order_row_id_list#<cfelse>order_id=#ListGetAt(order_id_list,1)#</cfif>','longpage');" class="tableyazi" title="<cf_get_lang_main no='3545.Toptan Satış Faturası Oluştur'>">
-                                                    <img src="../../../images/yellow_glob.gif" border="0" title="<cfoutput>#getLang('main',296)# #getLang('sales',479)#</cfoutput> " />
+                                        	<cfif ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0>
+                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=invoice.form_add_bill&order_id=#order_id#&order_row_id=#order_row_id_list#','longpage');" class="tableyazi" title="Toptan Satış Faturası Oluştur">
+                                                    <img src="../../../images/yellow_glob.gif" border="0" title="Tamamı Faturalanacak " />
                                                 </a>
                                             <cfelse>
-                                            	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3546.Önce Ambar Fişi Oluşturun'>" />
+                                            	<img src="../../../images/yellow_glob.gif" border="0" title="Önce Ambar Fişi Oluşturun" />
                                             </cfif>
                                        	<cfelse>
-                                        	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3547.Fatura Emirlerden Kesilebilir'> " />
+                                        	<img src="../../../images/yellow_glob.gif" border="0" title="Fatura Emirlerden Kesilebilir " />
                                         </cfif>
                                     </cfif>
                                 </td> <!---Fatura Indicator--->
-                                <cfquery name="get_control_emp" datasource="#dsn3#">
-                                	SELECT DISTINCT RECORD_EMP FROM EZGI_SHIPPING_PACKAGE_LIST WHERE SHIPPING_ID = #SHIP_RESULT_ID# AND TYPE = #IS_TYPE#
-                                </cfquery>
-								<td>#get_emp_info(get_control_emp.RECORD_EMP,0,0)#</td>
-                                <!---<td style="text-align:right"><cfif isnumeric(GET_PUAN.puan)><cfif GET_PUAN.puan eq 0><font color="red">#Tlformat(row_point,2)#</font><cfelse>#Tlformat(row_point,2)#</cfif><cfelse><font color="red">-</font></cfif></td>--->
+								<td>#get_emp_info(sevk_emp,0,0)# </td>
+                                <td style="text-align:right"><cfif isnumeric(GET_PUAN.puan)><cfif GET_PUAN.puan eq 0><font color="red">#Tlformat(row_point,2)#</font><cfelse>#Tlformat(row_point,2)#</cfif><cfelse><font color="red">-</font></cfif></td>
                                 <td style="text-align:center">#SEHIR#<br />#ILCE#</td>
                                 <td title="#NOTE#">#left(NOTE,70)#<cfif len(NOTE) gt 70>...</cfif></td>
                                 
@@ -1876,7 +1840,7 @@
                                 <td style="text-align:right">
                                 	<cfset birlesme_izni = 0>
                                     <cfif IS_TYPE eq 1>
-                                        <cfif (attributes.e_shipping_type eq 1 and ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0 and DURUM eq 1  and get_invoice_durum.kalan lt 0) or attributes.e_shipping_type neq 1 >
+                                        <cfif ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0 and DURUM eq 1  and get_invoice_durum.kalan lt 0>
                                             <cfquery name="get_shipping_group" dbtype="query">
                                                 SELECT
                                                     <cfif len(COMPANY_ID)>
@@ -1887,16 +1851,13 @@
                                                     SEHIR,
                                                     ILCE,
                                                     SHIP_METHOD_TYPE,
-                                                    DELIVER_EMP,
+                                                    ORDER_ID,
                                                     COUNT(*) AS SAYI
                                                 FROM
                                                     GET_SHIPPING
                                                 WHERE
                                                     IS_TYPE = 1 AND
-                                                    SHIP_METHOD_TYPE = #SHIP_METHOD_TYPE# AND
-                                                    SEHIR = '#SEHIR#' AND
-                                                    ILCE = '#ILCE#' AND
-                                                    DELIVER_EMP = #DELIVER_EMP# AND
+                                                    ORDER_ID = #ORDER_ID# AND
                                                     <cfif len(COMPANY_ID)>
                                                         COMPANY_ID = #COMPANY_ID#
                                                     <cfelseif len(CONSUMER_ID)>
@@ -1910,24 +1871,29 @@
                                                     </cfif>
                                                     SEHIR,
                                                     ILCE,
-                                                    DELIVER_EMP,
-                                                    SHIP_METHOD_TYPE
+                                                    SHIP_METHOD_TYPE,
+                                                    ORDER_ID
                                             </cfquery>
+                                            
                                             <cfif get_shipping_group.SAYI gt 1>
+                                                <!---<img src="/images/starton.gif" border="0" title="Birleşebilir" />--->
                                                 <cfset birlesme_izni = 1>
                                             <cfelse>       
+                                                <!---<img src="/images/stop.gif" border="0" title="Birleşemez" />--->
                                             </cfif>
                                         <cfelse>      
+                                            <!---<img src="/images/stop.gif" border="0" title="Birleşemez" />--->   
                                         </cfif>
                                     <cfelse>
+                                        <!---<img src="/images/stop.gif" border="0" title="Birleşemez" /> --->      
                                     </cfif>
                                     <cfif DURUM eq 1>
                                         <input type="checkbox" name="select_production" value="#IS_TYPE#-#SHIP_RESULT_ID#-#birlesme_izni#">
                                     </cfif>
                                     <cfif birlesme_izni eq 1>
-                                        <img src="/images/starton.gif" border="0" title="<cf_get_lang_main no='3548.Birleşebilir'>" />
+                                        <img src="/images/starton.gif" border="0" title="Birleşebilir" />
                                     <cfelse>
-                                    	<img src="/images/stop.gif" border="0" title="<cf_get_lang_main no='3549.Birleşemez'>" />
+                                    	<img src="/images/stop.gif" border="0" title="Birleşemez" />
                                     </cfif>
                                 </td>
                             </tr>
@@ -1947,32 +1913,32 @@
                 	<cfif isdefined('tip')>
                     	<td colspan="17">
                         	<font color="red">
-                            	<cf_get_lang_main no='3550.Önce Hataları Düzeltmelisiniz!!!'>
+                            	Önce Hataları Düzeltmelisiniz!!!
                             </font>
                       	</td>      
                   	<cfelse>
 						<cfif attributes.totalrecords gt son_row>
                             <cfoutput>
-                                <td style="text-align:left;" colspan="<cfif attributes.e_shipping_type eq 1>13<cfelse>12</cfif>"><cfoutput>#getLang('report',462)#</cfoutput></td>
-                                <!---<td style="text-align:right;" >#Tlformat(t_point,2)#</td>--->
+                                <td style="text-align:left;" colspan="12">Sayfa Toplam</td>
+                                <td style="text-align:right;" >#Tlformat(t_point,2)#</td>
                                 <td style="text-align:right;" colspan="4">
                                		<input type="text" name="send_date" id="send_date" value="#dateformat(DateAdd('d',1,now()),'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
                                     <cf_wrk_date_image date_field="send_date">
-                                    <input type="button" name="gonder" value="<cf_get_lang_main no='1331.Gönder'>" onClick="grupla(-4);">
-                                	<input type="button" name="birles" value="<cf_get_lang_main no='3551.Birleştir'>" onClick="grupla(-3);">
-                                    <input type="button" value="#getLang('prod',222)#" onClick="grupla(-2);">
+                                    <input type="button" name="gonder" value="Gönder" onClick="grupla(-4);">
+                                	<input type="button" name="birles" value="Birleştir" onClick="grupla(-3);">
+                                    <input type="button" value="Toplu Yazdır" onClick="grupla(-2);">
                                 </td>
                             </cfoutput>
                         <cfelse>
                             <cfoutput>
-                                <td style="text-align:left;" colspan="<cfif attributes.e_shipping_type eq 1>13<cfelse>12</cfif>"><cf_get_lang_main no='268.Genel Toplam'></td>
-                                <!---<td style="text-align:right;" >#Tlformat(t_point,2)#</td>--->
+                                <td style="text-align:left;" colspan="12">Genel Toplam</td>
+                                <td style="text-align:right;" >#Tlformat(t_point,2)#</td>
                                 <td style="text-align:right;" colspan="4">
                                 	<input type="text" name="send_date" id="send_date" value="#dateformat(DateAdd('d',1,now()),'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
                                     <cf_wrk_date_image date_field="send_date">
-                                    <input type="button" name="gonder" value="<cf_get_lang_main no='1331.Gönder'>" onClick="grupla(-4);">
-                                    <input type="button" name="birles" value="<cf_get_lang_main no='3551.Birleştir'>" onClick="grupla(-3);">
-                                    <input type="button" value="#getLang('prod',222)#" onClick="grupla(-2);">
+                                    <input type="button" name="gonder" value="Gönder" onClick="grupla(-4);">
+                                    <input type="button" name="birles" value="Birleştir" onClick="grupla(-3);">
+                                    <input type="button" value="Toplu Yazdır" onClick="grupla(-2);">
                                 </td>
                             </cfoutput>
                          </cfif>     
@@ -1982,12 +1948,12 @@
             </tfoot>
         </cfif>
 	</table>
-<cfset url_str = 'sales.list_ezgi_shipping'>
+<cfset url_str = 'sales.list_PRTOTM_shipping'>
 <cfif isdefined("attributes.member_type") and len(attributes.member_type)>
 	<cfset url_str = url_str & "&member_type=#attributes.member_type#&member_name=#attributes.member_name#">
 </cfif>
 <cfif isdefined("attributes.company_id") and len(attributes.company_id)>
-	<cfset url_str = url_str & "&company_id=#attributes.company_id#&member_name=#attributes.member_name#">
+	<cfset url_str = url_str & "&company_id=#attributes.company_id#">
 </cfif>
 <cfif isdefined("attributes.product_id") and len(attributes.product_id) and isdefined("attributes.product_name") and len(attributes.product_name)>
 	<cfset url_str = url_str & "&product_id=#attributes.product_id#&product_name=#attributes.product_name#">
@@ -2008,9 +1974,9 @@
 <cfif isdefined("attributes.consumer_id") and len(attributes.consumer_id)>
 	<cfset url_str = url_str & "&consumer_id=#attributes.consumer_id#">
 </cfif>
-<!---<cfif isdefined("attributes.order_employee_id") and len(attributes.order_employee_id)> 
+<cfif isdefined("attributes.order_employee_id") and len(attributes.order_employee_id)> 
 	<cfset url_str = url_str & "&order_employee_id=#attributes.order_employee_id#&order_employee=#attributes.order_employee#">
-</cfif>--->
+</cfif>
 <cfif isdefined("attributes.sales_member_id") and len(attributes.sales_member_id)>
 	<cfset url_str = url_str & "&sales_member_id=#attributes.sales_member_id#&sales_member_name=#attributes.sales_member_name#">
 </cfif>
@@ -2046,9 +2012,9 @@
 	<cfset url_str = url_str & "&report_type_id=#attributes.report_type_id#">
 </cfif>
 <cfif len(t_point)>
+
 	<cfset url_str = url_str & "&t_point=#t_point#">
 </cfif>
-<cfset url_str = url_str & "&order_employee_id=#attributes.order_employee_id#&order_employee=#attributes.order_employee#">
 <cfset url_str = url_str & "&sort_type=#attributes.sort_type#">
 <cf_paging page="#attributes.page#" 
 	maxrows="#attributes.maxrows#" 
@@ -2060,7 +2026,7 @@
 		{
 			if(document.all.branch_id.value !='' && document.all.listing_type.value ==2)
 			{
-				alert("<cf_get_lang_main no='3552.Liste Tipi Olarak Sevk Planları İle Şubeyi Birlikte Seçemezsiniz'>!!!.");
+				alert('Liste Tipi Sevk Planları İle Şubeyi Birlikte Seçemezsiniz!!!.');
 				return false
 			}
 			else
@@ -2095,23 +2061,23 @@
 			{
 				if(type == -3)
 				{
-					var soru = confirm("<cf_get_lang_main no='3553.Birleştirilen Sevk Planını Tekrar Geri Alamazsınız'>. <cf_get_lang_main no='1176.Emin misiniz ?'>");
+					var soru = confirm('Birleştirilen Sevk Planını Tekrar Geri Alamazsınız. Emin misiniz?.');
 					if(soru==true)
 					{
-						window.open('<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_upd_ezgi_shipping_row&shipping_id_list='+shipping_id_list);
+						window.open('<cfoutput>#request.self#</cfoutput>?fuseaction=eshipping.emptypopup_qupd_prtotm_shipping_row&shipping_id_list='+shipping_id_list);
 					}
 				}
 				else if(type == -4)
 				{
-					var soru = confirm("<cf_get_lang_main no='3554.Sevkiyatları ilgili Tarihe Gönderiyorum.'> <cf_get_lang_main no='1176.Emin misiniz ?'>");
+					var soru = confirm('Sevkiyatları ilgili Tarihe Gönderiyorum. Emin misiniz?.');
 					if(soru==true)
 					{
 						send_date = document.getElementById('send_date').value;
 						if(send_date.length>0)
-						window.open('<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_upd_ezgi_shipping_date&shipping_id_list='+shipping_id_list+'&send_date='+send_date);
+						window.open('<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_upd_PRTOTM_shipping_date&shipping_id_list='+shipping_id_list+'&send_date='+send_date);
 						else
 						{
-							alert("<cf_get_lang_main no='3555.Gönderilecek Tarih Boş Olamaz !'>");
+							alert('Gönderilecek Tarih Boş Olamaz !');
 							return false;
 						}
 					}
