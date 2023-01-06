@@ -1293,7 +1293,7 @@
                                 <cfif ListFind(session.ep.user_level,25)>
                                     <td style="text-align:right">
                                     	<cfif IS_TYPE eq 1>
-                                        	<cfset get_bakiye.recordcount =0>
+                                        	<cfset bak.rc =0>
                                         	<cfif len(company_id)>
                                             	<cfquery name="get_bakiye" datasource="#dsn2#">
                                                 	SELECT        
@@ -1315,11 +1315,12 @@
                                                     	CONSUMER_ID = #consumer_id#
                                                 </cfquery>
                                             </cfif>
-                                            <cfif get_bakiye.recordcount>
+                                            <cfset bak.rc=get_bakiye.recordCount>
+                                            <cfif bak.rc>
                                             	<cfloop query="get_bakiye">
                                                 <font style="color:<cfif bakiye3 lte 0>blue<cfelse>red</cfif>">
                                                 	#TlFormat(BAKIYE3,2)# #OTHER_MONEY# 
-                                               	</font><cfif get_bakiye.recordcount gt get_bakiye.currentrow><br/></cfif>
+                                               	</font><cfif bak.rc gt get_bakiye.currentrow><br/></cfif>
                                                 </cfloop>
                                             </cfif>
                                         </cfif>
