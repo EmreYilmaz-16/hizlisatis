@@ -141,7 +141,7 @@
                     ORR.STOCK_ID, 
                     ORR.PRODUCT_ID, 
                     ORR.QUANTITY, 
-                    ORR.NETTOTAL, 
+                    ISNULL(ORR.NETTOTAL,0) NETTOTAL, 
                     ORR.RESERVE_TYPE,
                     ORR.ORDER_ROW_CURRENCY, 
                     ORR.DELIVER_AMOUNT
@@ -183,7 +183,7 @@
                     ORR.STOCK_ID, 
                     ORR.PRODUCT_ID, 
                     ORR.QUANTITY, 
-                    ORR.NETTOTAL, 
+                    ISNULL(ORR.NETTOTAL,0) NETTOTAL, 
                     ORR.RESERVE_TYPE,
                     ORR.ORDER_ROW_CURRENCY, 
                     ORR.DELIVER_AMOUNT
