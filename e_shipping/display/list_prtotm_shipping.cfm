@@ -1449,7 +1449,7 @@
                                                             PRTOTM_SHIP_RESULT AS ESR INNER JOIN
                                                             PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
                                                             ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                                            EZGI_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
+                                                            PRTOTM_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
                                                             STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID
                                                         WHERE      
                                                             ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID#
@@ -1544,7 +1544,7 @@
                                                             SI.DISPATCH_SHIP_ID AS SHIP_RESULT_ID
                                                         FROM          
                                                             STOCKS AS S INNER JOIN
-                                                            EZGI_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
+                                                            PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
                                                             #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR INNER JOIN
                                                             #dsn2_alias#.SHIP_INTERNAL AS SI ON SIR.DISPATCH_SHIP_ID = SI.DISPATCH_SHIP_ID ON EPS.MODUL_ID = SIR.STOCK_ID
                                                         WHERE      
@@ -1614,7 +1614,7 @@
                                                 SELECT     
                                                     SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT
                                                 FROM          
-                                                    EZGI_SHIPPING_PACKAGE_LIST
+                                                    PRTOTM_SHIPPING_PACKAGE_LIST
                                                 WHERE      
                                                     TYPE = 1 AND 
                                                     STOCK_ID = TBL.PAKET_ID AND 
@@ -1647,7 +1647,7 @@
                      									PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
                       									ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID ON SP.SPECT_VAR_ID = ORR.SPECT_VAR_ID INNER JOIN
                      									STOCKS AS S INNER JOIN
-                     									EZGI_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID ON SP.SPECT_MAIN_ID = EPS.MODUL_SPECT_ID INNER JOIN
+                     									PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID ON SP.SPECT_MAIN_ID = EPS.MODUL_SPECT_ID INNER JOIN
                                                         STOCKS AS S1 ON ORR.STOCK_ID = S1.STOCK_ID   
                                                     WHERE      
                                                         ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID# AND
@@ -1674,7 +1674,7 @@
                                                         PRTOTM_SHIP_RESULT AS ESR INNER JOIN
                                                         PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
                                                         ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                                        EZGI_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
+                                                        PRTOTM_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
                                                         STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID INNER JOIN
                                                         STOCKS AS S1 ON ORR.STOCK_ID = S1.STOCK_ID
                                                     WHERE      
@@ -1716,7 +1716,7 @@
                                                 SELECT     
                                                     SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT
                                                 FROM          
-                                                    EZGI_SHIPPING_PACKAGE_LIST
+                                                    PRTOTM_SHIPPING_PACKAGE_LIST
                                                 WHERE      
                                                     TYPE = 2 AND 
                                                     STOCK_ID = TBL.PAKET_ID AND 
@@ -1753,7 +1753,7 @@
                                                         SI.DISPATCH_SHIP_ID AS SHIP_RESULT_ID
                                                     FROM          
                                                         STOCKS AS S INNER JOIN
-                                                        EZGI_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
+                                                        PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
                                                         #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR INNER JOIN
                                                         #dsn2_alias#.SHIP_INTERNAL AS SI ON SIR.DISPATCH_SHIP_ID = SI.DISPATCH_SHIP_ID ON EPS.MODUL_ID = SIR.STOCK_ID
                                                     WHERE      
@@ -1864,7 +1864,7 @@
                                     </cfif>
                                 </td> <!---Fatura Indicator--->
                                 <cfquery name="get_control_emp" datasource="#dsn3#">
-                                	SELECT DISTINCT RECORD_EMP FROM EZGI_SHIPPING_PACKAGE_LIST WHERE SHIPPING_ID = #SHIP_RESULT_ID# AND TYPE = #IS_TYPE#
+                                	SELECT DISTINCT RECORD_EMP FROM PRTOTM_SHIPPING_PACKAGE_LIST WHERE SHIPPING_ID = #SHIP_RESULT_ID# AND TYPE = #IS_TYPE#
                                 </cfquery>
 								<td>#get_emp_info(get_control_emp.RECORD_EMP,0,0)#</td>
                                 <!---<td style="text-align:right"><cfif isnumeric(GET_PUAN.puan)><cfif GET_PUAN.puan eq 0><font color="red">#Tlformat(row_point,2)#</font><cfelse>#Tlformat(row_point,2)#</cfif><cfelse><font color="red">-</font></cfif></td>--->
