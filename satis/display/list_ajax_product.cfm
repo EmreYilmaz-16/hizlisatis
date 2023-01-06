@@ -48,6 +48,7 @@
             <th>Birim</th>
             <th>Marka</th>
             <th>Depo</th>
+            <th>S.Stok</th>
             <th>İlişkili Ürünler</th>
             <th></th>
             <th></th>
@@ -75,6 +76,7 @@
             <td>#it.MAIN_UNIT#</td>
             <td>#it.BRAND_NAME#</td>
             <td>#tlformat(it.STOCK_COUNT)#</td>
+            <td>#tlformat(it.SATILABILIR)#</td>
             <cfset PSBV=getRelatedProductspbs(it.PRODUCT_ID,attributes.price_catid)>
 
             <td><ul style="list-style:none;padding:0;">
@@ -220,6 +222,7 @@ AddRow(
                 select sum(STOCK_IN-STOCK_OUT) AS KOMPLE from #DSN2#.STOCKS_ROW where STOCK_ID=STOCKS.STOCK_ID AND 
 (STORE=44 OR (STORE=45 AND STORE_LOCATION=2))
                 ) AS AMOUNT,
+                #DSN2#.GET_SATILABILIR_STOCK(STOCKS.STOCK_ID) AS SATILABILIR,
             PRODUCT_UNIT.ADD_UNIT,
             PRODUCT_UNIT.UNIT_ID,
             PRODUCT_UNIT.MAIN_UNIT,
@@ -445,6 +448,7 @@ AddRow(
                 REL_HIERARCHY=REL_HIERARCHY,
                 MONEY=MONEY,
                 ROWNUM=ROWNUM,
+                SATILABILIR=SATILABILIR,
                 QUERY_COUNT=QUERY_COUNT
                
 
