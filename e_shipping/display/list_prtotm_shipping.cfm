@@ -30,7 +30,7 @@
 	<cfparam name="attributes.sales_departments" default="">
 </cfif>
 <cfquery name="get_shipping_default" datasource="#dsn3#">
-	SELECT ISNULL(SHIPPING_CONTROL_TYPE,0) SHIPPING_CONTROL_TYPE FROM EZGI_SHIPPING_DEFAULTS
+	SELECT ISNULL(SHIPPING_CONTROL_TYPE,0) SHIPPING_CONTROL_TYPE FROM PRTOTM_SHIPPING_DEFAULTS
 </cfquery>
 <cfif get_shipping_default.recordcount>
 	<cfparam name="attributes.e_shipping_type" default="#get_shipping_default.SHIPPING_CONTROL_TYPE#"> 
