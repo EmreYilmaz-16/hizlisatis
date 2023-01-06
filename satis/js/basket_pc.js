@@ -442,7 +442,7 @@ function AddRow(
   i_9.setAttribute("id", "indirim1_" + row_count);
   i_9.setAttribute("value", commaSplit(discount_rate));
   i_9.setAttribute("type", "text");
-  i_9.setAttribute("onchange", "hesapla('price'," + row_count + ")");
+  i_9.setAttribute("onchange", "getSetNum(this) && hesapla('price'," + row_count + ")");
   i_9.setAttribute("class", "prtMoneyBox");
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1664,4 +1664,13 @@ function GenerateUniqueId() {
   console.log(ds1);
   var RelId = "PBS" + generalParamsSatis.userData.user_id + "" + dd1 + "" + ds1;
   return RelId;
+}
+
+function getSetNum(el) {
+  var v = el.value;
+  if (v.length == 0) {
+    el.value = commaSplit(0);
+  } else {
+    el.value = commaSplit(v);
+  }
 }
