@@ -1087,13 +1087,13 @@
 
 			</tr>
             <tr height="10">
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3524.SVK.'></th>
+                <th style="width:20px;text-align:center">SVK</th>
                 <cfif attributes.e_shipping_type eq 1>
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3525.HZR.'></th>
+                <th style="width:20px;text-align:center">HZR</th>
                 </cfif>
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3180.KNT.'></th>
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3526.İRS.'></th>
-                <th style="width:20px;text-align:center"><cf_get_lang_main no='3527.FTR.'></th>
+                <th style="width:20px;text-align:center">KNT</th>
+                <th style="width:20px;text-align:center">İRS</th>
+                <th style="width:20px;text-align:center">FTR</th>
 
             </tr>
 		</thead>
@@ -1959,9 +1959,9 @@
                                 <td style="text-align:right;" colspan="4">
                                		<input type="text" name="send_date" id="send_date" value="#dateformat(DateAdd('d',1,now()),'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
                                     <cf_wrk_date_image date_field="send_date">
-                                    <input type="button" name="gonder" value="<cf_get_lang_main no='1331.Gönder'>" onClick="grupla(-4);">
-                                	<input type="button" name="birles" value="<cf_get_lang_main no='3551.Birleştir'>" onClick="grupla(-3);">
-                                    <input type="button" value="#getLang('prod',222)#" onClick="grupla(-2);">
+                                    <input type="button" name="gonder" value="Gönder" onClick="grupla(-4);">
+                                	<input type="button" name="birles" value="Birleştir" onClick="grupla(-3);">
+                                    <input type="button" value="Toplu Yazdır" onClick="grupla(-2);">
                                 </td>
                             </cfoutput>
                         <cfelse>
