@@ -1539,8 +1539,10 @@
                                             <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/yellow_glob.gif" border="0" title="Sevk Edilmedi.">
                                             </a>
                                         </cfif>
+
                                      <cfelseif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.PAKET_SAYISI gt AMBAR_CONTROL.CONTROL_AMOUNT>
                                      	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/green_glob.gif" border="0" title="Eksik Sevkiyat.">
+                                        #AMBAR_CONTROL.PAKET_SAYISI#----#AMBAR_CONTROL.CONTROL_AMOUNT#
                                         </a>
                                      <cfelseif AMBAR_CONTROL.recordcount AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) lt ceiling(AMBAR_CONTROL.CONTROL_AMOUNT)>
                                      	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="Detay Göster"><img src="/images/black_glob.gif" border="0" title="Fazla Sevkiyat">  
