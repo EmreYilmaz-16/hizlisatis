@@ -877,11 +877,11 @@
                 <cf_object_tr id="form_ul_sort_type" title="#header_#">
                     <cf_object_td>
                         <select name="sort_type" id="sort_type" style="width:160px;height:20px">
-                            <option value="1" <cfif attributes.sort_type eq 1>selected</cfif>><cfoutput>#getLang('prod',505)#</cfoutput></option>
-                            <option value="2" <cfif attributes.sort_type eq 2>selected</cfif>><cfoutput>#getLang('prod',506)#</cfoutput></option>
-                            <option value="3" <cfif attributes.sort_type eq 3>selected</cfif>><cfoutput>#getLang('main',3073)#</cfoutput></option>
-                            <option value="4" <cfif attributes.sort_type eq 4>selected</cfif>><cfoutput>#getLang('main',3074)#</cfoutput></option>
-                            <option value="5" <cfif attributes.sort_type eq 5>selected</cfif>><cfoutput>#getLang('main',3520)#</cfoutput></option>
+                            <option value="1" <cfif attributes.sort_type eq 1>selected</cfif>>Teslim Tarihine Göre Artan</option>
+                            <option value="2" <cfif attributes.sort_type eq 2>selected</cfif>>Teslim Tarihine Göre Azalan</option>
+                            <option value="3" <cfif attributes.sort_type eq 3>selected</cfif>>Belge Numarasına Göre Artan</option>
+                            <option value="4" <cfif attributes.sort_type eq 4>selected</cfif>>Belge Numarasına Göre Azalan</option>
+                            <option value="5" <cfif attributes.sort_type eq 5>selected</cfif>>Şirket Adına Göre Artan</option>
                         </select>                 
                     </cf_object_td>
                 </cf_object_tr>
@@ -891,9 +891,9 @@
                 <cf_object_tr id="form_ul_sort_type" title="#header_#">
                     <cf_object_td>
                         <select name="listing_type" id="listing_type" style="width:90px;height:20px">
-                            <option value="1" <cfif attributes.listing_type eq 1>selected</cfif>><cf_get_lang_main no='296.Tümü'></option>
-                            <option value="2" <cfif attributes.listing_type eq 2>selected</cfif>><cf_get_lang_main no='3521.Sevk Planları'></option>
-                            <option value="3" <cfif attributes.listing_type eq 3>selected</cfif>><cfoutput>#getLang('myhome',1276)#</cfoutput></option>
+                            <option value="1" <cfif attributes.listing_type eq 1>selected</cfif>>Tümü</option>
+                            <option value="2" <cfif attributes.listing_type eq 2>selected</cfif>>Sevk Planları</option>
+                            <option value="3" <cfif attributes.listing_type eq 3>selected</cfif>>Sevk Talepleri</option>
                         </select>                 
                     </cf_object_td>
                 </cf_object_tr>
