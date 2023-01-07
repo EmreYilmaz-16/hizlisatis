@@ -215,7 +215,7 @@ WHERE 1 = 1
 var pppp;
     function silSatir(elem,wrk_row,order,stock,orc){
              $.ajax({
-            url: "/index.cfm?fuseaction=objects.partner_test_page&event=2&wrk_row_id="+wrk_row+"&order_id="+order+"&stock_id="+stock+"&OCURRENCY="+orc,
+            url: "/index.cfm?fuseaction=objects.remove_reserved_partner&event=2&wrk_row_id="+wrk_row+"&order_id="+order+"&stock_id="+stock+"&OCURRENCY="+orc,
             success: function (retData) {              
               pppp=elem; 
               pppp.parentElement.parentElement.remove()
