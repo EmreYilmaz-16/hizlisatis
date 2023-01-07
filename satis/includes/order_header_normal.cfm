@@ -97,7 +97,14 @@
         </div>
     </td>
 </tr>
-
+<tr>
+    <td>
+        <div class="form-group">    
+            <label>Açıklama</label> 
+            <textarea name="offer_desc" id="offer_desc"></textarea>              
+        </div>
+    </td>
+</tr>
 </table>
 </td>
 <td style="width:55%">

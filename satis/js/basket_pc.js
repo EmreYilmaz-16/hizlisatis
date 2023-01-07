@@ -442,7 +442,10 @@ function AddRow(
   i_9.setAttribute("id", "indirim1_" + row_count);
   i_9.setAttribute("value", commaSplit(discount_rate));
   i_9.setAttribute("type", "text");
-  i_9.setAttribute("onchange", "getSetNum(this)&hesapla('price'," + row_count + ")");
+  i_9.setAttribute(
+    "onchange",
+    "getSetNum(this)&hesapla('price'," + row_count + ")"
+  );
   i_9.setAttribute("class", "prtMoneyBox");
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -786,7 +789,14 @@ function toplamHesapla() {
   $("#subTaxTotal").val(commaSplit(tax_total_, 2));
   $("#subWTax").val(commaSplit(tax_price_total_, 2));
 }
-
+/**
+ * !Toplam <br>
+ * ?Bu Nedir<br>
+ * TODO başka toplam hesaplanackmı \n<br>
+ * *başka ne olmuş<br>
+ * +buda yeniden olacak sanırm
+ * -çıkarılacak bunlar
+ */
 function toplamHesapla_2() {
   var rows = document.getElementsByClassName("sepetRow");
   var netT = 0;
@@ -932,7 +942,7 @@ function GetBasketData() {
   var SHIP_ADDRESS_ID = document.getElementById("ship_address_id").value;
   var CITY_ID = document.getElementById("city_id").value;
   var COUNTY_ID = document.getElementById("county_id").value;
-
+  var OFFER_DESCRIPTION = document.getElementById("offer_desc").value;
   var PRICE_CATID = document.getElementById("PRICE_CATID").value;
   SUBTOTAL = filterNum(SUBTOTAL, 4);
   SUBTAXTOTAL = filterNum(SUBTAXTOTAL, 4);
@@ -998,6 +1008,7 @@ function GetBasketData() {
     PLASIYER: PLASIYER,
     PLASIYER_ID: PLASIYER_ID,
     FACT: Fs,
+    OFFER_DESCRIPTION: OFFER_DESCRIPTION,
   };
 
   var OrderFooter = {
