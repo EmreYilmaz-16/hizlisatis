@@ -1,7 +1,7 @@
 <cfparam name="attributes.is_excell" default="0">
 <cf_report_list>
 <cf_report_list_search_area>
-<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&event=det&report_id=111" name="order_form">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&event=det&report_id=38" name="order_form">
 <input type="hidden" name="is_submit">
 
 
