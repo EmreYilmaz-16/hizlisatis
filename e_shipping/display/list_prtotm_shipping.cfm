@@ -1258,7 +1258,7 @@
                                 <td>#currentrow#</td>
                                 <td style="text-align:center">
                                     <cfif IS_TYPE eq 1>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping&iid=#SHIP_RESULT_ID#','list');" class="tableyazi" title="<cf_get_lang_main no='3528.Sevk Fişine Git'>">
+                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#','list');" class="tableyazi" title="<cf_get_lang_main no='3528.Sevk Fişine Git'>">
                                         #DELIVER_PAPER_NO#
                                         </a>
                                     <cfelse>
