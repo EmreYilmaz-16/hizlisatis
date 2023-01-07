@@ -1983,7 +1983,7 @@
             </tfoot>
         </cfif>
 	</table>
-<cfset url_str = 'sales.list_ezgi_shipping'>
+<cfset url_str = 'eshipping.list_partner_shipping'>
 <cfif isdefined("attributes.member_type") and len(attributes.member_type)>
 	<cfset url_str = url_str & "&member_type=#attributes.member_type#&member_name=#attributes.member_name#">
 </cfif>
