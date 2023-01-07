@@ -1105,7 +1105,7 @@
                     	<tr>
                     		<td>#currentrow#</td>
                             <td style="text-align:center">
-                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping&iid=#SHIP_RESULT_ID#','page');" class="tableyazi" title="<cf_get_lang_main no='3528.Sevk Fişine Git'>">
+                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.popup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#','page');" class="tableyazi" title="<cf_get_lang_main no='3528.Sevk Fişine Git'>">
 	                                #DELIVER_PAPER_NO#
                                 </a>
 							</td>
