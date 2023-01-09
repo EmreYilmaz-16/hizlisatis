@@ -52,9 +52,9 @@
             ,S.PRODUCT_NAME
             ,S.PRODUCT_ID
             ,PB.BRAND_NAME
-            ,PO.IS_VIRTUAL
+            ,POR.IS_VIRTUAL
             ,S.TAX
-            ,PO.SHELF_CODE
+            ,POR.SHELF_CODE
             ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE
             ,ISNULL(GPA.PRICE,0) AS PSS
             ,(
