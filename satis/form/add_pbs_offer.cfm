@@ -58,7 +58,7 @@
             ,S.TAX 
             ,POR.SHELF_CODE 
             ,PIP.PROPERTY1
-            ,POR.PRODUCT_NAME2,
+            ,POR.PRODUCT_NAME2
             ,'' AS UNIQUE_RELATION_ID,
             ,POR.DESCRIPTION
             ,CASE WHEN POR.IS_VIRTUAL = 1 THEN POR.UNIT COLLATE SQL_Latin1_General_CP1_CI_AS ELSE PU.MAIN_UNIT END AS MAIN_UNIT
