@@ -42,21 +42,29 @@
         DECLARE @COMPANY_ID INT = #attributes.company_id#
         DECLARE @PRICE_CAT_ID INT = #attributes.price_catid#
 
-        SELECT POR.PRICE_OTHER
-            ,POR.QUANTITY
+        SELECT POR.PRICE_OTHER AS PRICE_OTHER_ --OK
+            ,POR.QUANTITY --OK
             ,POR.OTHER_MONEY_VALUE
-            ,POR.OTHER_MONEY
+            ,POR.PBS_OFFER_ROW_CURRENCY --OK
+            ,POR.OTHER_MONEY --OK
             ,POR.DISCOUNT_1
-            ,S.STOCK_ID
+            ,S.STOCK_ID --OK
             ,S.PRODUCT_CODE
-            ,S.PRODUCT_NAME
-            ,S.PRODUCT_ID
-            ,PB.BRAND_NAME
-            ,POR.IS_VIRTUAL
-            ,S.TAX
-            ,POR.SHELF_CODE
-            ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE
-            ,ISNULL(GPA.PRICE,0) AS PSS
+            ,S.STOCK_CODE --OK
+            ,S.PRODUCT_NAME --OK
+            ,S.PRODUCT_ID --OK
+            ,PB.BRAND_NAME--OK
+            ,POR.IS_VIRTUAL--OK
+            ,S.TAX --OK
+            ,POR.SHELF_CODE --OK
+            ,PIP.PROPERTY1--OK
+            ,POR.PRODUCT_NAME2,
+            ,'' AS UNIQUE_RELATION_ID,
+            ,POR.DESCRIPTION
+            ,CASE WHEN POR.IS_VIRTUAL = 1 THEN POR.UNIT COLLATE SQL_Latin1_General_CP1_CI_AS ELSE PU.MAIN_UNIT END AS MAIN_UNIT
+            ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE --OK
+            ,ISNULL(GPA.PRICE,0) AS PRICE --OK
+            ,ISNULL(GPA.PRICE,0) AS PRICE_OTHER --OK
             ,(
                 SELECT TOP 1 PCE.DISCOUNT_RATE
                 FROM workcube_metosan_1.PRODUCT P
@@ -87,7 +95,7 @@
                     AND PC.PRICE_CATID = @PRICE_CAT_ID
                 ORDER BY PCE.COMPANY_ID DESC
                     ,PCE.PRODUCT_CATID DESC
-                ) AS dsc
+                ) AS DISCOUNT_1 ---OK
             ,(
                 SELECT TOP 1 RATE2
                 FROM (
@@ -109,6 +117,8 @@
         FROM workcube_metosan_1.PBS_OFFER_ROW AS POR
         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID = POR.STOCK_ID
         LEFT JOIN #DSN1#.PRODUCT_BRANDS as PB ON PB.BRAND_ID=S.BRAND_ID
+        LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID
+        LEFT JOIN #dsn3#.PRODUCT_INFO_PLUS AS PIP ON PIP.PRODUCT_ID=S.PRODUCT_ID
         LEFT JOIN #DSN1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID
         LEFT JOIN (
             SELECT P.UNIT
@@ -145,6 +155,14 @@ LEFT JOIN workcube_metosan.SHIP_METHOD AS SM ON SM.SHIP_METHOD_ID=CC.SHIP_METHOD
 LEFT JOIN workcube_metosan.COMPANY_PARTNER AS CP ON CP.PARTNER_ID =C.MANAGER_PARTNER_ID
 WHERE C.COMPANY_ID=#attributes.company_id#
     </cfquery>
+    <cfquery name="getOffer" datasource="#dsn3#">
+            select PO.OFFER_NUMBER,PO.OFFER_DESCRIPTION,C.COMPANY_ID,C.FULLNAME,CP.COMPANY_PARTNER_NAME+' '+CP.COMPANY_PARTNER_SURNAME AS NN,CP.PARTNER_ID,PO.OFFER_HEAD,PO.OFFER_DATE,ISNULL(PO.SHIP_METHOD,0) SHIP_METHOD,ISNULL(PO.PAYMETHOD,0) PAYMETHOD,
+    PO.RECORD_DATE, PO.UPDATE_DATE,#dsn#.getEmployeeWithId( PO.RECORD_MEMBER) as RECORD_MEMBER,#dsn#.getEmployeeWithId( PO.UPDATE_MEMBER) as UPDATE_MEMBER,PO.OFFER_DETAIL,ISNULL(PO.SA_DISCOUNT,0) SA_DISCOUNT
+     from PBS_OFFER AS PO
+LEFT JOIN #dsn#.COMPANY AS C ON PO.COMPANY_ID=C.COMPANY_ID
+LEFT JOIN #dsn#.COMPANY_PARTNER AS CP ON CP.PARTNER_ID=PO.PARTNER_ID
+WHERE OFFER_ID=#attributes.from_offer_id#
+    </cfquery>
     <script>
     $(document).ready(function () {          
         <cfoutput>
@@ -158,6 +176,70 @@ WHERE C.COMPANY_ID=#attributes.company_id#
             var sm=generalParamsSatis.SHIP_METHODS.filter(p=>p.SHIP_METHOD_ID==#getComp.SHIP_METHOD_ID#)
             setSevkYontem(sm[0].SHIP_METHOD_ID, sm[0].SHIP_METHOD)
         </cfif>
+        document.getElementById("offer_head").value="#getOffer.OFFER_HEAD#"
+        document.getElementById("offer_date").value=date_format("#getOffer.OFFER_DATE#")
+        document.getElementById("txt_disc").value=commaSplit(#getOffer.SA_DISCOUNT#)
+        document.getElementById("offer_desc").value='#getOffer.OFFER_DESCRIPTION#'
+
+        <cfloop query="getOfferRow">
+                        <CFSET EMANUEL=0>
+                        <cfset lastCost = 0>
+                        <cfset Pname="">
+                        
+          <CFIF getOfferRow.IS_VIRTUAL neq 1>
+                        
+            <cfquery name="getLastCost" datasource="#dsn2#">
+                SELECT TOP 1
+                    IR.PRICE-(IR.DISCOUNTTOTAL/2) AS PRICE
+                FROM
+                    INVOICE I
+                    LEFT JOIN INVOICE_ROW IR ON IR.INVOICE_ID = I.INVOICE_ID
+                WHERE
+                    ISNULL(I.PURCHASE_SALES,0) = 0 AND
+                    IR.PRODUCT_ID = #PRODUCT_ID#
+                    AND I.PROCESS_CAT<>35
+                ORDER BY
+                    I.INVOICE_DATE DESC
+            </cfquery>
+            <cfif getLastCost.RecordCount AND Len(getLastCost.PRICE)>
+                <cfset lastCost = getLastCost.PRICE>
+            </cfif>
+                        
+                            <CFIF getOfferRow.PROPERTY1 EQ "MANUEL">
+                                <CFSET EMANUEL=1>
+                            </CFIF>
+        </cfif>
+                        console.log("#PRODUCT_NAME#");
+                        AddRow(
+                            #PRODUCT_ID#,
+                            #STOCK_ID#,
+                            '#STOCK_CODE#',
+                            '#getOfferRow.BRAND_NAME#',
+                            #getOfferRow.IS_VIRTUAL#,
+                            #getOfferRow.QUANTITY#,
+                            #getOfferRow.PRICE#,
+                            '#getOfferRow.PRODUCT_NAME#',
+                            #getOfferRow.TAX#,
+                            #getOfferRow.DISCOUNT_1#,
+                            #getOfferRow.PRODUCT_TYPE#,
+                            '#getOfferRow.SHELF_CODE#',
+                            '#getOfferRow.OTHER_MONEY#',
+                            #getOfferRow.PRICE_OTHER#,
+                            #getOfferRow.PBS_OFFER_ROW_CURRENCY#,
+                            #EMANUEL#,
+                            #lastCost#,
+                            '#getOfferRow.MAIN_UNIT#',
+                            '#getOfferRow.PRODUCT_NAME2#',
+                            '#getOfferRow.DETAIL_INFO_EXTRA#',
+                            1,
+                            0,
+                            '#dateFormat(getOfferRow.DELIVER_DATE,"yyyy-mm-dd")#',
+                            #getOfferRow.IS_PRODUCTION#,
+                            '#getOfferRow.UNIQUE_RELATION_ID#',
+                            '#DESCRIPTION#'
+                        )                                                                    
+                    </cfloop>
+
     </cfoutput>
 })
     </script>
