@@ -95,7 +95,7 @@
                     AND PC.PRICE_CATID = @PRICE_CAT_ID
                 ORDER BY PCE.COMPANY_ID DESC
                     ,PCE.PRODUCT_CATID DESC
-                ) AS DISCOUNT_1 -
+                ) AS DISCOUNT_1 
             ,(
                 SELECT TOP 1 RATE2
                 FROM (
