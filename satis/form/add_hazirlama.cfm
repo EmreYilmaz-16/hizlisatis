@@ -33,6 +33,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
             <th>Miktar</th>
             <th>Depo</th>
             <th>Ölçü</th>
+            <th>Açıklama</th>
             <th></th>
 
         </tr>
@@ -58,6 +59,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
                 #getSrQ.BAKIYE#
             </td>
             <td>#DETAIL_INFO_EXTRA#</td>
+            <td>#DESCRIPTION#</td>
             <td style="width:%10"><button style="width:100%" type="button" <cfif AMOUNT GTE QUANTITY>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#currentrow#" onclick="checkT(#currentrow#)">
                 <cfif AMOUNT GTE QUANTITY>&##10003<cfelse>X</cfif>
             </button>
