@@ -28,7 +28,7 @@
     <cfelse>
         <cfabort>
     </cfif>
-    <cfif isDefined("attributes.companyId") and len(attributes.company_id)>
+    <cfif isDefined("attributes.company_id") and len(attributes.company_id)>
     <cfelse>
         <script>
             alert("Cari Seçmeden Kopyalama Yapamazsınız")
@@ -39,7 +39,7 @@
     
 
     <cfquery name="getOfferRow" datasource="#dsn3#">
-        DECLARE @COMPANY_ID INT = #attributes.companyId#
+        DECLARE @COMPANY_ID INT = #attributes.company_id#
         DECLARE @PRICE_CAT_ID INT = #attributes.price_catid#
 
         SELECT POR.PRICE_OTHER
