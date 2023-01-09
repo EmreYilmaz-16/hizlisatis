@@ -47,7 +47,7 @@
             ,POR.OTHER_MONEY_VALUE
             ,POR.PBS_OFFER_ROW_CURRENCY 
             ,POR.OTHER_MONEY 
-            ,POR.DISCOUNT_1
+            ,POR.DISCOUNT_1 as DISCOUNT_1
             ,S.STOCK_ID 
             ,S.PRODUCT_CODE
             ,S.STOCK_CODE 
