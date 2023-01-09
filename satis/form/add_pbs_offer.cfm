@@ -148,7 +148,7 @@ WHERE C.COMPANY_ID=#attributes.company_id#
     <script>
         <cfoutput>
             setCompany(#getComp.COMPANY_ID#, '#getComp.FULLNAME#',#getComp.MANAGER_PARTNER_ID#,'#getComp.NN#')       
-        </cfoutput>
+        
         <cfif getComp.PAYMETHOD_ID neq 0>
             var pm=generalParamsSatis.PAY_METHODS.filter(p=>p.PAYMETHOD_ID==#getComp.PAYMETHOD_ID#);
             setOdemeYontem(pm[0].PAYMETHOD_ID, pm[0].PAYMETHOD, pm[0].DUE_DAY)
@@ -157,6 +157,7 @@ WHERE C.COMPANY_ID=#attributes.company_id#
             var sm=generalParamsSatis.SHIP_METHODS.filter(p=>p.SHIP_METHOD_ID==#getComp.SHIP_METHOD_ID#)
             setSevkYontem(sm[0].SHIP_METHOD_ID, sm[0].SHIP_METHOD)
         </cfif>
+    </cfoutput>
     </script>
 </cfif>
 
