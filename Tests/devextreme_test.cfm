@@ -352,8 +352,8 @@ and ss.TABLE_NAME not in (select name from workcube_metosan.sys.views where sche
                 LEFT JOIN #dsn#.COMPANY AS C ON C.COMPANY_ID=SR.COMPANY_ID
                 INNER JOIN  #dsn#.STOCKS_LOCATION as SL ON SL.LOCATION_ID=ORR.DELIVER_LOCATION AND SL.DEPARTMENT_ID=ORR.DELIVER_DEPT
                 WHERE 1=1             
-                AND ORR.DELIVER_DEPT IN(#arguments.DEPARTMENT_ID#)
-                AND ORR.DELIVER_LOCATION IN (#arguments.LOCATION_ID#)
+                AND ORR.DELIVER_DEPT IN(44)
+                AND ORR.DELIVER_LOCATION IN (2)
                 AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
                 AND SRR.PREPARE_PERSONAL IS NULL
         </cfquery>
