@@ -148,6 +148,7 @@
             ) AS GPA ON GPA.PRODUCT_ID = S.PRODUCT_ID
             AND GPA.UNIT = S.PRODUCT_UNIT_ID
         WHERE OFFER_ID = #attributes.from_offer_id#
+        ORDER BY POR.OFFER_ROW_ID
     </cfquery>
     
     <cfquery name="getComp" datasource="#dsn3#">
