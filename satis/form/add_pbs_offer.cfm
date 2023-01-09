@@ -23,7 +23,7 @@
 </cf_box>
 
 <cfif isDefined("attributes.act") and attributes.act eq "copy">
-   <cfdump var="#attributes#">
+   
     <cfif isDefined("attributes.from_offer_id") and len(attributes.from_offer_id)>
     <cfelse>
         <cfabort>
@@ -149,7 +149,7 @@
             AND GPA.UNIT = S.PRODUCT_UNIT_ID
         WHERE OFFER_ID = #attributes.from_offer_id#
     </cfquery>
-    <cfdump var="#getOfferRow#">
+    
     <cfquery name="getComp" datasource="#dsn3#">
         SELECT C.NICKNAME,C.FULLNAME,C.MANAGER_PARTNER_ID,C.COMPANY_ID,ISNULL(CC.PAYMETHOD_ID,0)AS PAYMETHOD_ID,CC.PRICE_CAT,ISNULL(CC.SHIP_METHOD_ID,0) AS SHIP_METHOD_ID,SPM.PAYMETHOD,SM.SHIP_METHOD,CP.COMPANY_PARTNER_NAME+' '+CP.COMPANY_PARTNER_SURNAME AS NN FROM workcube_metosan.COMPANY AS C 
 LEFT JOIN workcube_metosan.COMPANY_CREDIT AS CC ON CC.COMPANY_ID=C.COMPANY_ID
