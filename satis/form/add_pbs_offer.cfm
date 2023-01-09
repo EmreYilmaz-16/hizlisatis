@@ -244,6 +244,8 @@ WHERE OFFER_ID=#attributes.from_offer_id#
                     </cfloop>
 
     </cfoutput>
+    RowControlForVirtual();
+                    setDoom();
 })
     </script>
 </cfif>
