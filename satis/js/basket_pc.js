@@ -51,7 +51,8 @@ function AddRow(
   rowNum = "",
   deliver_date = "",
   is_production = 0,
-  row_uniq_id = ""
+  row_uniq_id = "",
+  description = ""
 ) {
   console.log(arguments);
   var form = $(document);
@@ -532,6 +533,16 @@ function AddRow(
   div.appendChild(i_8);
   td.appendChild(div);
   tr.appendChild(td);
+  var td = document.createElement("td");
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  var input_11 = document.createElement("input");
+  input_11.setAttribute("name", "description_" + row_count);
+  input_11.setAttribute("id", "description_" + row_count);
+  input_11.setAttribute("value", description);
+  div.appendChild(input_11);
+  td.appendChild(div);
+  tr.appendChild(td);
 
   rowaListener(tr);
   var bask = document.getElementById("tbl_basket");
@@ -881,6 +892,7 @@ function GetBasketData() {
     var is_production = document.getElementById(
       "is_production_" + Old_rw_id
     ).value;
+    var description = document.getElementById("description_" + Old_rw_id).value;
     var row_uniq_id = document.getElementById("row_uniq_id_" + Old_rw_id).value;
     if (!generalParamsSatis.workingParams.IS_ZERO_QUANTITY) {
       var p = filterNum(price);
@@ -908,6 +920,7 @@ function GetBasketData() {
       deliver_date_bask: deliver_date_bask,
       is_production: is_production,
       row_uniq_id: row_uniq_id,
+      description:description,
     };
     OrderRows.push(Obj);
   }
@@ -1363,6 +1376,10 @@ function rowArrange() {
     var indirim1 = document.getElementById("indirim1_" + Old_rw_id);
     indirim1.setAttribute("id", "indirim1_" + NeWid);
     indirim1.setAttribute("name", "indirim1_" + NeWid);
+
+    var description = document.getElementById("description_" + Old_rw_id);
+    description.setAttribute("id", "description_" + NeWid);
+    description.setAttribute("name", "description_" + NeWid);
   }
   row_count = rows.length;
   rowCount = rows.length;
@@ -1583,6 +1600,7 @@ function moveRow(from_row_id, to_row_id) {
     var deliver_date_1 = $("#deliver_date_" + from_row_id).val();
     var Tax_1 = $("#Tax_" + from_row_id).val();
     var orderrow_currency_1 = $("#orderrow_currency_" + from_row_id).val();
+    var description_1 = $("#description" + from_row_id).val();
 
     var product_id_2 = $("#product_id_" + to_row_id).val();
     var stock_id_2 = $("#stock_id_" + to_row_id).val();
@@ -1606,6 +1624,7 @@ function moveRow(from_row_id, to_row_id) {
     var deliver_date_2 = $("#deliver_date_" + to_row_id).val();
     var Tax_2 = $("#Tax_" + to_row_id).val();
     var orderrow_currency_2 = $("#orderrow_currency_" + to_row_id).val();
+    var description_2 = $("#description" + to_row_id).val();
 
     $("#product_id_" + to_row_id).val(product_id_1);
     $("#product_id_" + from_row_id).val(product_id_2);
@@ -1651,6 +1670,8 @@ function moveRow(from_row_id, to_row_id) {
     $("#deliver_date_" + from_row_id).val(deliver_date_2);
     $("#orderrow_currency_" + to_row_id).val(orderrow_currency_1);
     $("#orderrow_currency_" + from_row_id).val(orderrow_currency_2);
+    $("#orderrow_currency_" + to_row_id).val(description_1);
+    $("#orderrow_currency_" + from_row_id).val(description_2);
 
     document
       .getElementById("row_" + to_row_id)

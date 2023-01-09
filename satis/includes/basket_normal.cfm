@@ -48,6 +48,7 @@
             <th>Malzeme Adı</th>
             <th>Ölçü</th>
             <th>Teslim Tarihi</th>
+            <th>Açıklama</th>
         </tr>
     </thead>
     <tbody id="tbl_basket">

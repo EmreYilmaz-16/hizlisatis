@@ -121,7 +121,11 @@ select count(*) AS RC from PBS_OFFER
     <cfset "attributes.other_money_#i#"=it.other_money>
     <cfset "attributes.other_money_value_#i#"=(filternum(it.price_other)*filternum(it.amount))-((filternum(it.price_other)*filternum(it.amount))*filternum(it.indirim1))/100>
     <cfset "attributes.price_other#i#"=filternum(it.price_other)>
-   
+    <cfif isDefined("it.description")>
+    <cfset "attributes.description#i#"=it.description>
+    <cfelse>    
+        <cfset "attributes.description#i#"="">
+    </cfif>
     <cfif isDefined("it.row_uniq_id") and len(it.row_uniq_id)>
         <cfset "attributes.row_unique_relation_id#i#"=it.row_uniq_id>
     <cfelse>
