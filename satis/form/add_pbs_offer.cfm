@@ -42,29 +42,29 @@
         DECLARE @COMPANY_ID INT = #attributes.company_id#
         DECLARE @PRICE_CAT_ID INT = #attributes.price_catid#
 
-        SELECT POR.PRICE_OTHER AS PRICE_OTHER_ --OK
-            ,POR.QUANTITY --OK
+        SELECT POR.PRICE_OTHER AS PRICE_OTHER_ 
+            ,POR.QUANTITY
             ,POR.OTHER_MONEY_VALUE
-            ,POR.PBS_OFFER_ROW_CURRENCY --OK
-            ,POR.OTHER_MONEY --OK
+            ,POR.PBS_OFFER_ROW_CURRENCY 
+            ,POR.OTHER_MONEY 
             ,POR.DISCOUNT_1
-            ,S.STOCK_ID --OK
+            ,S.STOCK_ID 
             ,S.PRODUCT_CODE
-            ,S.STOCK_CODE --OK
-            ,S.PRODUCT_NAME --OK
-            ,S.PRODUCT_ID --OK
-            ,PB.BRAND_NAME--OK
-            ,POR.IS_VIRTUAL--OK
-            ,S.TAX --OK
-            ,POR.SHELF_CODE --OK
-            ,PIP.PROPERTY1--OK
+            ,S.STOCK_CODE 
+            ,S.PRODUCT_NAME 
+            ,S.PRODUCT_ID 
+            ,PB.BRAND_NAME
+            ,POR.IS_VIRTUAL
+            ,S.TAX 
+            ,POR.SHELF_CODE 
+            ,PIP.PROPERTY1
             ,POR.PRODUCT_NAME2,
             ,'' AS UNIQUE_RELATION_ID,
             ,POR.DESCRIPTION
             ,CASE WHEN POR.IS_VIRTUAL = 1 THEN POR.UNIT COLLATE SQL_Latin1_General_CP1_CI_AS ELSE PU.MAIN_UNIT END AS MAIN_UNIT
-            ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE --OK
-            ,ISNULL(GPA.PRICE,0) AS PRICE --OK
-            ,ISNULL(GPA.PRICE,0) AS PRICE_OTHER --OK
+            ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE 
+            ,ISNULL(GPA.PRICE,0) AS PRICE 
+            ,ISNULL(GPA.PRICE,0) AS PRICE_OTHER 
             ,(
                 SELECT TOP 1 PCE.DISCOUNT_RATE
                 FROM workcube_metosan_1.PRODUCT P
@@ -95,7 +95,7 @@
                     AND PC.PRICE_CATID = @PRICE_CAT_ID
                 ORDER BY PCE.COMPANY_ID DESC
                     ,PCE.PRODUCT_CATID DESC
-                ) AS DISCOUNT_1 ---OK
+                ) AS DISCOUNT_1 -
             ,(
                 SELECT TOP 1 RATE2
                 FROM (
