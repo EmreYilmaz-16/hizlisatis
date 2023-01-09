@@ -55,7 +55,7 @@
     </tbody>
   <tfoot>
     <tr style="position: sticky;bottom: 0;background: white;z-index: 1;">
-        <th colspan="12">
+        <th colspan="13">
             <table>
                 <tr>
                     <td colspan="2">
