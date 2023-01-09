@@ -22,6 +22,122 @@
     </cfform>
 </cf_box>
 
+<cfif isDefined("attributes.act") and attributes.act ="copy">
+    <cfif isDefined("attributes.from_offer_id") and len(attributes.from_offer_id)>
+    <cfelse>
+        <cfabort>
+    </cfif>
+    <cfif isDefined("attributes.companyId") and len(attributes.companyId)>
+    <cfelse>
+        <script>
+            alert("Cari Seçmeden Kopyalama Yapamazsınız")
+        </script>
+        <cfabort>
+    </cfif>
+
+    
+
+    <cfquery name="getOfferRow" datasource="#dsn3#">
+        DECLARE @COMPANY_ID INT = #attributes.companyId#
+        DECLARE @PRICE_CAT_ID INT = #attributes.price_catid#
+
+        SELECT POR.PRICE_OTHER
+            ,POR.QUANTITY
+            ,POR.OTHER_MONEY_VALUE
+            ,POR.OTHER_MONEY
+            ,POR.DISCOUNT_1
+            ,S.STOCK_ID
+            ,S.PRODUCT_CODE
+            ,S.PRODUCT_NAME
+            ,S.PRODUCT_ID
+            ,PB.BRAND_NAME
+            ,PO.IS_VIRTUAL
+            ,S.TAX
+            ,PO.SHELF_CODE
+            ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE
+            ,ISNULL(GPA.PRICE,0) AS PSS
+            ,(
+                SELECT TOP 1 PCE.DISCOUNT_RATE
+                FROM workcube_metosan_1.PRODUCT P
+                    ,workcube_metosan_1.PRICE_CAT_EXCEPTIONS PCE
+                LEFT JOIN workcube_metosan_1.PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
+                WHERE (
+                        PCE.PRODUCT_ID = P.PRODUCT_ID
+                        OR PCE.PRODUCT_ID IS NULL
+                        )
+                    AND (
+                        PCE.BRAND_ID = P.BRAND_ID
+                        OR PCE.BRAND_ID IS NULL
+                        )
+                    AND (
+                        PCE.PRODUCT_CATID = P.PRODUCT_CATID
+                        OR PCE.PRODUCT_CATID IS NULL
+                        )
+                    AND (
+                        PCE.COMPANY_ID = @COMPANY_ID
+                        OR PCE.COMPANY_ID IS NULL
+                        )
+                    AND P.PRODUCT_ID = s.PRODUCT_ID
+                    AND ISNULL(PC.IS_SALES, 0) = 1
+                    AND PCE.ACT_TYPE NOT IN (
+                        2
+                        ,4
+                        )
+                    AND PC.PRICE_CATID = @PRICE_CAT_ID
+                ORDER BY PCE.COMPANY_ID DESC
+                    ,PCE.PRODUCT_CATID DESC
+                ) AS dsc
+            ,(
+                SELECT TOP 1 RATE2
+                FROM (
+                    SELECT MONEY
+                        ,RATE2
+                        ,VALIDATE_DATE
+                    FROM workcube_metosan.MONEY_HISTORY
+                    
+                    UNION ALL
+                    
+                    SELECT 'TL' AS MONEY
+                        ,1 AS RATE2
+                        ,CONVERT(DATE, GETDATE()) AS VALIDATE_DATE
+                    ) AS TT
+                WHERE VALIDATE_DATE = CONVERT(DATE, GETDATE())
+                    AND MONEY = ISNULL(GPA.MONEY, 'TL')
+                ) AS R2
+            ,GPA.*
+        FROM workcube_metosan_1.PBS_OFFER_ROW AS POR
+        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID = POR.STOCK_ID
+        LEFT JOIN #DSN1#.PRODUCT_BRANDS as PB ON PB.BRAND_ID=S.BRAND_ID
+        LEFT JOIN #DSN1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID
+        LEFT JOIN (
+            SELECT P.UNIT
+                ,P.PRICE
+                ,P.PRICE_KDV
+                ,P.PRODUCT_ID
+                ,P.MONEY
+                ,P.PRICE_CATID
+                ,P.CATALOG_ID
+                ,P.PRICE_DISCOUNT
+                
+            FROM workcube_metosan_1.PRICE P
+                ,workcube_metosan_1.PRODUCT PR
+            WHERE P.PRODUCT_ID = PR.PRODUCT_ID
+                AND P.PRICE_CATID = 19
+                AND (
+                    P.STARTDATE <= GETDATE()
+                    AND (
+                        P.FINISHDATE >= GETDATE()
+                        OR P.FINISHDATE IS NULL
+                        )
+                    )
+                AND ISNULL(P.SPECT_VAR_ID, 0) = 0
+            ) AS GPA ON GPA.PRODUCT_ID = S.PRODUCT_ID
+            AND GPA.UNIT = S.PRODUCT_UNIT_ID
+        WHERE OFFER_ID = #attributes.from_offer_id#
+    </cfquery>
+</cfif>
+
+
 <script src="/AddOns/Partner/satis/js/basket_pc.js"></script>
 <script src="/AddOns/Partner/satis/js/hizli_satis_pc.js"></script>
 <script src="/AddOns/Partner/satis/js/tube_functions.js"></script>
@@ -35,3 +151,5 @@
     <script src="/JS/codemirror-5.65.0/mode/sql/sql.js"></script>
     <script src="/JS/codemirror-5.65.0/addon/hint/show-hint.js"></script>
     <script src="/JS/codemirror-5.65.0/addon/hint/sql-hint.js"></script>
+
+

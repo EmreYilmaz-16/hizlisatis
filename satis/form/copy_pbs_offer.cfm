@@ -1,5 +1,5 @@
-<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" name="frm_search" id="frm_search">
-    <input type="hidden" name="OFFER_ID" value="<cfoutput>#attributes.offer_id#</cfoutput>">
+<cfform method="post" action="#request.self#?fuseaction=sales.list_pbs_offer&event=add&act=copy" name="frm_search" id="frm_search">
+    <input type="hidden" name="from_offer_id" value="<cfoutput>#attributes.offer_id#</cfoutput>">
     <div class="form-group" id="item_company">
         <label class="col col-12 col-xs-12">Cari Hesap</label>
         <div class="col col-12 col-xs-12">
