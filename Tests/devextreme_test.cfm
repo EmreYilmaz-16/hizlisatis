@@ -292,7 +292,7 @@
       UPDATE workcube_metosan_product.PRODUCT_CAT SET DETAIL=NULL WHERE PRODUCT_CATID=#getCats.PRODUCT_CATID#
      </cfquery>
 </cfoutput>----->
-
+<!----
 <cfquery name="getColation" datasource="#dsn#">
 select SS.COLUMN_NAME,SS.DATA_TYPE,SS.CHARACTER_MAXIMUM_LENGTH,SS.TABLE_NAME,SS.COLLATION_NAME,sl.* from INFORMATION_SCHEMA.columns SS
 LEFT JOIN (
@@ -319,4 +319,41 @@ and ss.TABLE_NAME not in (select name from workcube_metosan.sys.views where sche
    <BR>
 </cfoutput>
 <cfcatch></cfcatch>
-</cftry>
+</cftry>------>
+
+
+<cfquery name="getPeriods" datasource="#dsn#">
+  select PERIOD_YEAR,OUR_COMPANY_ID from workcube_metosan.SETUP_PERIOD  where PERIOD_YEAR<> YEAR(getdate())
+</cfquery>
+
+<cfquery name="getDepWorks" datasource="#dataSources.dsn#">
+            SELECT DISTINCT  O.RECORD_DATE,
+                SR.DELIVER_PAPER_NO,SR.COMPANY_ID,C.NICKNAME,SR.DELIVERY_DATE,DEPARTMENT_LOCATION,COMMENT,SR.SHIP_RESULT_ID,DELIVER_DEPT,DELIVER_LOCATION,SRR.PREPARE_PERSONAL
+                ,(SELECT COUNT(*) FROM #dataSources.DSN3#.ORDER_ROW where ORDER_ID =O.ORDER_ID AND DELIVER_DEPT=ORR.DELIVER_DEPT AND DELIVER_LOCATION=ORR.DELIVER_LOCATION) AS TTS
+                ,#dataSources.DSN#.getEmployeeWithId(SR.RECORD_EMP) AS KAYDEDEN
+                FROM #dataSources.dsn3#.PRTOTM_SHIP_RESULT_ROW AS SRR
+                LEFT JOIN #dataSources.dsn3#.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID=SRR.ORDER_ROW_ID
+                LEFT JOIN #dataSources.dsn3#.ORDERS AS O ON O.ORDER_ID=ORR.ORDER_ID
+                LEFT JOIN #dataSources.dsn3#.PRTOTM_SHIP_RESULT AS SR ON SR.SHIP_RESULT_ID=SRR.SHIP_RESULT_ID
+                LEFT JOIN (
+                    SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_#year(now())#_1.STOCK_FIS AS SF 
+                    LEFT JOIN #dataSources.dsn#_#year(now())#_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
+                    <cfloop query="getPeriods">
+                      UNION
+                      SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_#PERIOD_YEAR#_#OUR_COMPANY_ID#.STOCK_FIS AS SF 
+                      LEFT JOIN #dataSources.dsn#_#PERIOD_YEAR#_#OUR_COMPANY_ID#.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
+                    </cfloop>
+                    
+                    
+                ) AS SF ON SF.REF_NO=SR.DELIVER_PAPER_NO AND SF.STOCK_ID=ORR.STOCK_ID
+                LEFT JOIN #dataSources.dsn3#.STOCKS AS S ON S.STOCK_ID=ORR.STOCK_ID
+                LEFT JOIN #dataSources.dsn3#.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=S.STOCK_ID
+                LEFT JOIN #dataSources.dsn3#.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
+                LEFT JOIN #dataSources.dsn#.COMPANY AS C ON C.COMPANY_ID=SR.COMPANY_ID
+                INNER JOIN  #dataSources.dsn#.STOCKS_LOCATION as SL ON SL.LOCATION_ID=ORR.DELIVER_LOCATION AND SL.DEPARTMENT_ID=ORR.DELIVER_DEPT
+                WHERE 1=1             
+                AND ORR.DELIVER_DEPT IN(#arguments.DEPARTMENT_ID#)
+                AND ORR.DELIVER_LOCATION IN (#arguments.LOCATION_ID#)
+                AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
+                AND SRR.PREPARE_PERSONAL IS NULL
+        </cfquery>
