@@ -23,6 +23,7 @@
 </cf_box>
 
 <cfif isDefined("attributes.act") and attributes.act eq "copy">
+   <cfdump var="#attributes#">
     <cfif isDefined("attributes.from_offer_id") and len(attributes.from_offer_id)>
     <cfelse>
         <cfabort>
