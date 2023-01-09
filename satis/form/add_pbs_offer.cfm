@@ -135,6 +135,7 @@
             AND GPA.UNIT = S.PRODUCT_UNIT_ID
         WHERE OFFER_ID = #attributes.from_offer_id#
     </cfquery>
+    <cfdump var="#getOfferRow#">
 </cfif>
 
 
