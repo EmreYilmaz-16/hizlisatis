@@ -29,6 +29,11 @@ select count(*) AS RC from PBS_OFFER
 <cfset attributes.ship_date=now()>
 <cfset attributes.finishdate=now()>
 <cfset attributes.member_name=FormData.OrderHeader.MEMBER_NAME>
+<cfif isDefined("FormData.OrderHeader.OFFER_DESCRIPTION")>
+<cfset attributes.OFFER_DESCRIPTION=FormData.OrderHeader.OFFER_DESCRIPTION>
+<cfelse>
+    <cfset attributes.OFFER_DESCRIPTION="">
+</cfif>
 <cfset attributes.company_id=FormData.OrderHeader.COMPANY_ID>
 <cfset attributes.partner_id=FormData.OrderHeader.COMPANY_PARTNER_ID>
 <cfset FactPBS=FormData.OrderHeader.FACT>

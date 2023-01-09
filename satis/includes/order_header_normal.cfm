@@ -98,7 +98,7 @@
     </td>
 </tr>
 <tr>
-    <td>
+    <td colspan="2">
         <div class="form-group">    
             <label>Açıklama</label> 
             <textarea name="offer_desc" id="offer_desc"></textarea>              

@@ -107,7 +107,8 @@
                 SZ_ID=<cfif isdefined("attributes.sales_zone_id") and len(attributes.sales_zone_id)>#attributes.sales_zone_id#<cfelseif isdefined("get_country") and len(get_country.sales_id)>#get_country.sales_id#<cfelse>NULL</cfif>,
 				PROBABILITY = <cfif isdefined("attributes.probability")>#attributes.probability#<cfelse>NULL</cfif>,
                 SA_DISCOUNT = <cfif isdefined("form.genel_indirim") and len(form.genel_indirim)>#form.genel_indirim#<cfelse>NULL</cfif>,
-                PRICE_CAT_ID = <cfif isdefined("attributes.price_catid") and len(attributes.price_catid)>#attributes.price_catid#<cfelse>NULL</cfif>
+                PRICE_CAT_ID = <cfif isdefined("attributes.price_catid") and len(attributes.price_catid)>#attributes.price_catid#<cfelse>NULL</cfif>,
+					OFFER_DESCRIPTION = <cfif isdefined("attributes.OFFER_DESCRIPTION") and len(attributes.OFFER_DESCRIPTION)>'#attributes.OFFER_DESCRIPTION#'<cfelse>NULL</cfif>
 			WHERE
 				OFFER_ID = #attributes.offer_id#
 		</cfquery>
