@@ -186,7 +186,7 @@
 			<cfif isdefined("attributes.probability")>#attributes.probability#<cfelse>NULL</cfif>,
             <cfif isdefined('attributes.event_plan_row_id') and len(attributes.event_plan_row_id)>#event_plan_row_id#<cfelse>NULL</cfif>,
             <cfif isdefined("attributes.genel_indirim") and len(attributes.genel_indirim)>#attributes.genel_indirim#<cfelse>NULL</cfif>,
-            <cfif isdefined("attributes.price_catid") and len(attributes.price_catid)>#attributes.price_catid#<cfelse>NULL</cfif>
+            <cfif isdefined("attributes.price_catid") and len(attributes.price_catid)>#attributes.price_catid#<cfelse>NULL</cfif>,
 			<cfif isDefined("attributes.OFFER_DESCRIPTION") and len(attributes.OFFER_DESCRIPTION)>'#attributes.OFFER_DESCRIPTION#'<cfelse>NULL</cfif>
 			)
 		</cfquery>
