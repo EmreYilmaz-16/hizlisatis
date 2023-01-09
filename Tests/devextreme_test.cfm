@@ -357,3 +357,5 @@ and ss.TABLE_NAME not in (select name from workcube_metosan.sys.views where sche
                 AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
                 AND SRR.PREPARE_PERSONAL IS NULL
         </cfquery>
+
+        <cfdump var="#getDepWorks#">
