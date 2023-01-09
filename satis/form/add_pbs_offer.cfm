@@ -28,7 +28,7 @@
     <cfelse>
         <cfabort>
     </cfif>
-    <cfif isDefined("attributes.companyId") and len(attributes.companyId)>
+    <cfif isDefined("attributes.companyId") and len(attributes.company_id)>
     <cfelse>
         <script>
             alert("Cari Seçmeden Kopyalama Yapamazsınız")
