@@ -146,6 +146,7 @@ LEFT JOIN workcube_metosan.COMPANY_PARTNER AS CP ON CP.PARTNER_ID =C.MANAGER_PAR
 WHERE C.COMPANY_ID=#attributes.company_id#
     </cfquery>
     <script>
+    $(document).ready(function () {          
         <cfoutput>
             setCompany(#getComp.COMPANY_ID#, '#getComp.FULLNAME#',#getComp.MANAGER_PARTNER_ID#,'#getComp.NN#')       
         
@@ -158,6 +159,7 @@ WHERE C.COMPANY_ID=#attributes.company_id#
             setSevkYontem(sm[0].SHIP_METHOD_ID, sm[0].SHIP_METHOD)
         </cfif>
     </cfoutput>
+})
     </script>
 </cfif>
 
