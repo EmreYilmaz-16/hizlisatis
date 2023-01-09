@@ -184,7 +184,8 @@ WHERE POR.OFFER_ID=#attributes.offer_id#
 0,
 '#dateFormat(getOfferRow.DELIVER_DATE,"yyyy-mm-dd")#',
 #getOfferRow.IS_PRODUCTION#,
-'#getOfferRow.UNIQUE_RELATION_ID#'
+'#getOfferRow.UNIQUE_RELATION_ID#',
+'#DESCRIPTION#'
 )
                        
                        
