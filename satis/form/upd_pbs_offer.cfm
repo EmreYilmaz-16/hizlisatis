@@ -39,6 +39,7 @@ WHERE OFFER_ID=#attributes.offer_id#
 	,POR.DELIVER_DATE
 	,POR.IS_VIRTUAL
 	,POR.UNIT
+    ,POR.DESCRIPTION
     ,POR.UNIQUE_RELATION_ID
     ,CASE WHEN POR.IS_VIRTUAL =1 THEN 1 ELSE S.IS_PRODUCTION END AS IS_PRODUCTION
 FROM #dsn3#.PBS_OFFER_ROW AS POR
@@ -187,7 +188,7 @@ WHERE POR.OFFER_ID=#attributes.offer_id#
 )
                        
                        
-                      //  AddRow(#PRODUCT_ID#, #STOCK_ID#, 0, #QUANTITY#, #PRICE#, '#PRODUCT_NAME#', #TAX#, #DISCOUNT_1#, 0, '#SHELF_CODE#','#OTHER_MONEY#',#PRICE_OTHER#,#PBS_OFFER_ROW_CURRENCY#) 
+                      //  AddRow(#PRODUCT_ID#, #STOCK_ID#, 0, #QUANTITY#, #PRICE#, '#PRODUCT_NAME#', #TAX#, #DISCOUNT_1#, 0, '#SHELF_CODE#','#OTHER_MONEY#',#PRICE_OTHER#,#PBS_OFFER_ROW_CURRENCY#,'#DESCRIPTION#') 
                     </cfloop>
                     RowControlForVirtual();
                     setDoom();
