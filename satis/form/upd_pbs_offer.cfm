@@ -4,7 +4,7 @@
 <cfif attributes.event eq "UPD">
     
     <cfquery name="getOffer" datasource="#dsn3#">
-    select PO.OFFER_NUMBER,C.COMPANY_ID,C.FULLNAME,CP.COMPANY_PARTNER_NAME+' '+CP.COMPANY_PARTNER_SURNAME AS NN,CP.PARTNER_ID,PO.OFFER_HEAD,PO.OFFER_DATE,ISNULL(PO.SHIP_METHOD,0) SHIP_METHOD,ISNULL(PO.PAYMETHOD,0) PAYMETHOD,
+    select PO.OFFER_NUMBER,PO.OFFER_DESCRIPTION,C.COMPANY_ID,C.FULLNAME,CP.COMPANY_PARTNER_NAME+' '+CP.COMPANY_PARTNER_SURNAME AS NN,CP.PARTNER_ID,PO.OFFER_HEAD,PO.OFFER_DATE,ISNULL(PO.SHIP_METHOD,0) SHIP_METHOD,ISNULL(PO.PAYMETHOD,0) PAYMETHOD,
     PO.RECORD_DATE, PO.UPDATE_DATE,#dsn#.getEmployeeWithId( PO.RECORD_MEMBER) as RECORD_MEMBER,#dsn#.getEmployeeWithId( PO.UPDATE_MEMBER) as UPDATE_MEMBER,PO.OFFER_DETAIL,ISNULL(PO.SA_DISCOUNT,0) SA_DISCOUNT
      from PBS_OFFER AS PO
 LEFT JOIN #dsn#.COMPANY AS C ON PO.COMPANY_ID=C.COMPANY_ID
@@ -100,6 +100,7 @@ WHERE POR.OFFER_ID=#attributes.offer_id#
                         document.getElementById("offer_head").value="#getOffer.OFFER_HEAD#"
                         document.getElementById("offer_date").value=date_format("#getOffer.OFFER_DATE#")
                         document.getElementById("txt_disc").value=commaSplit(#getOffer.SA_DISCOUNT#)
+                        document.getElementById("offer_desc").value='#getOffer.OFFER_DESCRIPTION#'
                         <cfif len(getOffer.RECORD_MEMBER)>
                         var e1=document.getElementById("dvv_r");
                         $(e1).show();
@@ -126,6 +127,7 @@ WHERE POR.OFFER_ID=#attributes.offer_id#
                             document.getElementById("sales_type_1").setAttribute("checked","true");
                             $("##sales_type_m").show();
                         </cfif>
+                        
                         console.log("Burada 2")
                     <cfloop query="getOfferRow">
                         <CFSET EMANUEL=0>
