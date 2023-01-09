@@ -58,6 +58,7 @@
             ,S.TAX 
             ,POR.SHELF_CODE 
             ,PIP.PROPERTY1
+            ,POR.DETAIL_INFO_EXTRA
             ,POR.PRODUCT_NAME2
             ,'' AS UNIQUE_RELATION_ID
             ,POR.DESCRIPTION
