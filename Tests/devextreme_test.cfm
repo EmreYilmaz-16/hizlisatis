@@ -30,10 +30,10 @@
 </cf_box>
 ,C.COMPANY_TELCODE,C.COMPANY_TEL1
 <cfquery name="getCompanies" datasource="#dsn#">
-  select C.*,SC.CITY_NAME,SCO.COUNTRY_NAME,SCT.COUNTY_NAME from workcube_hidtek.COMPANY AS C
-left join workcube_hidtek.SETUP_CITY as SC ON SC.CITY_ID=C.CITY
-left join workcube_hidtek.SETUP_COUNTRY as SCO ON SCO.COUNTRY_ID=C.COUNTRY
-left join workcube_hidtek.SETUP_COUNTY as SCT ON SCT.COUNTY_ID=C.COUNTY
+  select C.*,SC.CITY_NAME,SCO.COUNTRY_NAME,SCT.COUNTY_NAME from COMPANY AS C
+left join SETUP_CITY as SC ON SC.CITY_ID=C.CITY
+left join SETUP_COUNTRY as SCO ON SCO.COUNTRY_ID=C.COUNTRY
+left join SETUP_COUNTY as SCT ON SCT.COUNTY_ID=C.COUNTY
 </cfquery>
 <script>
   const customers = [
