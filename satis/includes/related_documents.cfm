@@ -37,7 +37,7 @@ WHERE ORDER_ID IN (
         </tr>
         <cfoutput query="GEToRDERS2">
             <tr>
-                <td><a onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#','page')"> #ORDER_NUMBER#</a></td>
+                <td><a onclick="windowopen('/index.cfm?fuseaction=purchase.list_order&event=upd&order_id=#ORDER_ID#','page')"> #ORDER_NUMBER#</a></td>
                 <td>#ORDER_HEAD#</td>
                 <td>#dateformat(RECORD_DATE,"dd/mm/yyyy")#</td>                
                 <td></td>
