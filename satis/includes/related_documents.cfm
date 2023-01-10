@@ -4,8 +4,21 @@
 LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
  where POTO.OFFER_ID=#attributes.offer_id#
 </cfquery>
-
+<cfquery name="GEToRDERS2" datasource="#dsn3#">
+    SELECT *
+FROM ORDERS
+WHERE ORDER_ID IN (
+		SELECT ORDER_ID
+		FROM ORDER_ROW
+		WHERE WRK_ROW_RELATION_ID IN (
+				SELECT UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
+				FROM PBS_OFFER_ROW
+				WHERE OFFER_ID = #attributes.offer_id#
+				)
+		)
+</cfquery>
 <cf_box title="İlişkili Siparişler">
+    <h3>Satış Siparişleri</h3>
     <cf_ajax_list>
         <cfoutput query="getOrders">
             <tr>
@@ -16,6 +29,20 @@ LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
                 <td><a onclick="windowopen('index.cfm?fuseaction=objects.popup_print_files&action=sales.list_order&action_id=#ORDER_ID#&print_type=73')"><i class="icon-print"></i></a></td>
             </tr>
         </cfoutput>
+        
+    </cf_ajax_list>
+    <h3>Alış Siparişleri</h3>
+    <cf_ajax_list>
+        <cfoutput query="GEToRDERS2">
+            <tr>
+                <td><a onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#','page')"> #ORDER_NUMBER#</a></td>
+                <td>#ORDER_HEAD#</td>
+                <td>#dateformat(RECORD_DATE,"dd/mm/yyyy")#</td>                
+                <td></td>
+                <td><a onclick="windowopen('index.cfm?fuseaction=objects.popup_print_files&action=sales.list_order&action_id=#ORDER_ID#&print_type=73')"><i class="icon-print"></i></a></td>
+            </tr>
+        </cfoutput>
+        
     </cf_ajax_list>
 </cf_box>
 <cf_box title="İlişkili Fatura ve İrsaliyeler">
