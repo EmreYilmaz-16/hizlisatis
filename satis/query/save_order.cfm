@@ -128,10 +128,13 @@ select count(*) AS RC from PBS_OFFER
     </cfif>
     <cfif isDefined("it.row_uniq_id") and len(it.row_uniq_id)>
         <cfset "attributes.row_unique_relation_id#i#"=it.row_uniq_id>
+        <cfset "attributes.wrk_row_id#i#"=it.row_uniq_id>
+        <cfset "attributes.wrk_row_id#i#"=it.row_uniq_id>
     <cfelse>
         <cfset "attributes.row_unique_relation_id#i#"="PBS#session.ep.userid##dateFormat(now(),"yyyymmdd")##timeFormat(now(),"hhmmnnl")#">
+        <cfset "attributes.wrk_row_id#i#"="PBS#session.ep.userid##dateFormat(now(),"yyyymmdd")##timeFormat(now(),"hhmmnnl")#">
     </cfif>
-   
+    
    
     <cfset "attributes.RELATED_ACTION_TABLE#i#"="PBS_OFFER_ROW">
     <cfset "attributes.PBS_OFFER_ROW_CURRENCY#i#"=it.orderrow_currency>
