@@ -18,8 +18,9 @@ WHERE ORDER_ID IN (
 		)
 </cfquery>
 <cf_box title="İlişkili Siparişler">
-    <h3>Satış Siparişleri</h3>
+   
     <cf_ajax_list>
+        <tr><th colspan="5">Satış Siparişleri</th></tr>
         <cfoutput query="getOrders">
             <tr>
                 <td><a onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#','page')"> #ORDER_NUMBER#</a></td>
@@ -29,10 +30,11 @@ WHERE ORDER_ID IN (
                 <td><a onclick="windowopen('index.cfm?fuseaction=objects.popup_print_files&action=sales.list_order&action_id=#ORDER_ID#&print_type=73')"><i class="icon-print"></i></a></td>
             </tr>
         </cfoutput>
-        
-    </cf_ajax_list>
-    <h3>Alış Siparişleri</h3>
-    <cf_ajax_list>
+        <tr>
+            <th colspan="5">
+                Alış Siparişleri
+            </th>
+        </tr>
         <cfoutput query="GEToRDERS2">
             <tr>
                 <td><a onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#','page')"> #ORDER_NUMBER#</a></td>
@@ -42,8 +44,8 @@ WHERE ORDER_ID IN (
                 <td><a onclick="windowopen('index.cfm?fuseaction=objects.popup_print_files&action=sales.list_order&action_id=#ORDER_ID#&print_type=73')"><i class="icon-print"></i></a></td>
             </tr>
         </cfoutput>
-        
     </cf_ajax_list>
+ 
 </cf_box>
 <cf_box title="İlişkili Fatura ve İrsaliyeler">
     <cfquery name="getPeriods" datasource="#dsn#">
