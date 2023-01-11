@@ -1,3 +1,4 @@
+<cfif getPo.IS_FROM_VIRTUAL eq 1>
 <cfquery name="getPo" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE V_P_ORDER_ID=#attributes.VP_ORDER_ID#
 </cfquery>
@@ -41,7 +42,7 @@
 	WHERE VP_ID = #getPo.STOCK_ID#
 	ORDER BY VP_ID
 </cfquery>
-
+</cfif>
 <cf_box title="Üretim Emri #getPo.V_P_ORDER_NO#">
 	<cfoutput>
 	<table style="width:100%">
