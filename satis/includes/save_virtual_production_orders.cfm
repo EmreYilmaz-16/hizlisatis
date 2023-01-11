@@ -50,7 +50,7 @@
 						,#PRODUCT_ID#
 						,0
 						,0
-						,#QUESTION_ID#)
+						,<cfif len(QUESTION_ID)>#QUESTION_ID#<cfelse>NULL</cfif>
 				
 			</cfquery>
 		</cfloop>
