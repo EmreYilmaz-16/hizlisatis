@@ -16,6 +16,7 @@
         <cfoutput><input type="hidden" name="dsn3" value="#dsn3#"></cfoutput>
         <cfoutput><input type="hidden" name="dsn2" value="#dsn2#"></cfoutput>
         <cfoutput><input type="hidden" name="dsn1" value="#dsn1#"></cfoutput>
+        <cfoutput><input type="hidden" name="dsn" value="#dsn#"></cfoutput>
         <div class="form-group">
             <label>Uretim</label>
             <input type="checkbox" name="IsProduction" checked value="1">
