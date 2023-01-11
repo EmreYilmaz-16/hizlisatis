@@ -268,7 +268,8 @@ function UpdateVirtualHydrolic(modal_id) {
 
 function saveRealHydrolic(modal_id) {
   $("#hydRwc").val(hydRowCount);
-
+  var pname = SetName(2);
+  $("#hydProductName").val(pname);
   var formData = getFormData($("#HydrolicForm"));
   $.ajax({
     url: "/AddOns/Partner/satis/cfc/hydrolic_functions.cfc?method=SaveRealHydrolic",
