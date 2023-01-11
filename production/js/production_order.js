@@ -1,3 +1,4 @@
+var IsTreeUpdated = false;
 function openProductPopup(question_id, from_row = 0) {
   var cp_id = document.getElementById("company_id").value;
   var cp_name = document.getElementById("company_id").value;
@@ -41,6 +42,7 @@ function setRow(
   $("#DISCOUNT_" + question_id).val(discount);
   $("#MONEY_" + question_id).val(money);
   Hesapla(1);
+  IsTreeUpdated=true;
 }
 
 function Hesapla(type) {
@@ -144,7 +146,7 @@ function GetBasketData() {
   var UNIQUE_RELATION_ID = $("#UNIQUE_RELATION_ID").val();
   var product_type = $("#product_type").val();
   var offer_row_id = $("#offer_row_id").val();
-  var p_order_id=$("#vpoorderid").val();
+  var p_order_id = $("#vpoorderid").val();
   tprice = parseFloat(filterNum(commaSplit(tprice)));
   var form_data = {
     TotalPrice: tprice,
@@ -154,7 +156,7 @@ function GetBasketData() {
     product_type: product_type,
     offer_row_id: offer_row_id,
     product_type: 1,
-    p_order_id:p_order_id,
+    p_order_id: p_order_id,
     rows: "",
   };
   return form_data;
@@ -195,7 +197,7 @@ function GetBasketDataHydrolik() {
   var UNIQUE_RELATION_ID = $("#UNIQUE_RELATION_ID").val();
   var product_type = $("#product_type").val();
   var offer_row_id = $("#offer_row_id").val();
-  var p_order_id=$("#vpoorderid").val();
+  var p_order_id = $("#vpoorderid").val();
   tprice = parseFloat(filterNum(commaSplit(tprice)));
   var form_data = {
     TotalPrice: tprice,
@@ -205,7 +207,7 @@ function GetBasketDataHydrolik() {
     product_type: product_type,
     offer_row_id: offer_row_id,
     product_type: 2,
-    p_order_id:p_order_id,
+    p_order_id: p_order_id,
     rows: hyd_basket_rows - 1,
   };
   return form_data;
@@ -436,10 +438,16 @@ function addHydrolikRow(product, barcode) {
       hyd_basket_rows++;
     }
   }
+  IsTreeUpdated=true;
   Hesapla(2);
+  
 }
 
 function CloseProductionOrders(p_order_id) {
+  if(IsTreeUpdated){
+    alert("Ağaçta Değişiklik Yapılmıştır Ağacı Kayıt Etmeden Üretim Sonlandıramazsınız")
+    return false;
+  }
   windowopen(
     "index.cfm?fuseaction=production.emptypopup_add_prod_order_result&V_P_ORDER_ID=" +
       p_order_id
