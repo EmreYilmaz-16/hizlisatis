@@ -2,6 +2,7 @@
 	<cfquery name="getEmpStation" datasource="#dsn3#">
 		SELECT CONVERT(INT,COMMENT) COMMENT,EMP_ID FROM workcube_metosan_1.WORKSTATIONS WHERE COMMENT IS NOT NULL AND EMP_ID LIKE '%#session.ep.userid#%'
 	</cfquery>
+	<CFSET TSLIST=valueList(getEmpStation.COMMENT)>
 	<cfif getEmpStation.recordCount and len(getEmpStation.COMMENT)>	
 		<cfquery name="getProductionOrders" datasource="#dsn3#">			
 		SELECT T.*,C.NICKNAME,T.QUANTITY,POR.PRODUCT_NAME FROM (
@@ -15,7 +16,7 @@
 LEFT JOIN workcube_metosan_1.PBS_OFFER AS PO ON PO.OFFER_ID=POR.OFFER_ID
 LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID=PO.COMPANY_ID
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=POR.STOCK_ID
- WHERE T.PRODUCT_TYPE=#getEmpStation.COMMENT# and  T.REAL_RESULT_ID IS NULL
+ WHERE T.PRODUCT_TYPE IN(#TSLIST#) and  T.REAL_RESULT_ID IS NULL
 		</cfquery>
 	</cfif>	
 	<cf_big_list>
