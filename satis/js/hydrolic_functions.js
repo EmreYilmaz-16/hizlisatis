@@ -276,7 +276,7 @@ function saveRealHydrolic(modal_id) {
     success: function (retDat) {
       var obj = JSON.parse(retDat);
      console.log(obj);
-      /* if (obj.ROW_ID.length > 0) {
+      if (obj.ROW_ID.length > 0) {
         UpdRow(
             obj.PRODUCT_ID,
             obj.STOCK_ID,
@@ -319,7 +319,7 @@ function saveRealHydrolic(modal_id) {
             obj.IS_PRODUCTION,
             obj.ROW_UNIQ_ID
           );
-      }*/
+      }
      // closeBoxDraggable(modal_id);
     },
   });
