@@ -195,6 +195,7 @@ function GetBasketDataHydrolik() {
   var UNIQUE_RELATION_ID = $("#UNIQUE_RELATION_ID").val();
   var product_type = $("#product_type").val();
   var offer_row_id = $("#offer_row_id").val();
+  var p_order_id=$("#vpoorderid").val();
   tprice = parseFloat(filterNum(commaSplit(tprice)));
   var form_data = {
     TotalPrice: tprice,
@@ -204,6 +205,7 @@ function GetBasketDataHydrolik() {
     product_type: product_type,
     offer_row_id: offer_row_id,
     product_type: 2,
+    p_order_id:p_order_id,
     rows: hyd_basket_rows - 1,
   };
   return form_data;
