@@ -122,6 +122,7 @@ WHERE PT.V_P_ORDER_ID = #attributes.VP_ORDER_ID#
 <cfif gets.PRODUCT_TYPE eq 1 >
     <cfinclude template="basket_tube.cfm">
 <cfelseif gets.PRODUCT_TYPE EQ 2>
+    <cfinclude template="basket_hydrolik.cfm">
 <cfelseif gets.PRODUCT_TYPE EQ 3>
 <CFELSE>
     BİLEMEDİM
