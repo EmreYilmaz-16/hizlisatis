@@ -96,7 +96,7 @@
 			<CFLOOP query="getsTree">
 				<tr>
 					<th style="text-align:left;">
-						#QUESTION#
+						##
 					</th>					
 					
 						<td>
