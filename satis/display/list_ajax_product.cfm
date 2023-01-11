@@ -305,7 +305,7 @@ AddRow(
                 AND PRODUCT.COMPANY_ID = #attributes.get_company#
             </cfif>
             <cfif Len(arguments.product_hierarchy)>
-                AND PRODUCT.PRODUCT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#attributes.product_hierarchy#%">
+                AND PRODUCT.PRODUCT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_nvarchar" value="#arguments.product_hierarchy#%">
             </cfif>
             <cfif Len(arguments.brand_id)>
                 AND PRODUCT_BRANDS.BRAND_ID	= #attributes.brand_id#
