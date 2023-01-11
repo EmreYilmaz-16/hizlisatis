@@ -51,7 +51,7 @@
 						,0
 						,0
 						,<cfif len(QUESTION_ID)>#QUESTION_ID#<cfelse>NULL</cfif>
-				
+						)
 			</cfquery>
 		</cfloop>
 	</cfif> 
