@@ -28,7 +28,10 @@
     </cfquery>
 
     <cfquery name="getOffer" datasource="#dsn3#">
-        SELECT * FROM  PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#getProductionOrders.UNIQUE_RELATION_ID#'
+        select POR.*,DETAIL from PBS_OFFER_ROW  AS POR 
+        LEFT JOIN STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID
+        LEFT JOIN #dsn1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID 
+        WHERE UNIQUE_RELATION_ID='#getProductionOrders.UNIQUE_RELATION_ID#'
     </cfquery>
     <cfquery name="getOfferMain" datasource="#dsn3#">
         SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
@@ -110,4 +113,5 @@ LEFT JOIN workcube_metosan_1.PRODUCTION_ORDER_RESULTS AS POR ON VPOR.REAL_RESULT
     <button type="button" class="btn btn-success" onclick="CloseProductionOrders(<cfoutput>#attributes.VP_ORDER_ID#</cfoutput>)">Üretimi Sonlandır</button>
 </cfif>
 </cfform>
-<script src="/AddOns/Partner/production/js/production_order.js"></script>
+
+    <script src="/AddOns/Partner/production/js/production_order.js"></script>

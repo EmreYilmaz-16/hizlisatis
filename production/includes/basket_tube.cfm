@@ -94,6 +94,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 							<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRICE")#">	
 							<input type="hidden" name="DISCOUNT_#QUESTION_ID#" id="DISCOUNT_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.DISCOUNT")#">	
 							<input type="hidden" name="MONEY_#QUESTION_ID#" id="MONEY_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.MONEY")#">	
+							<input type="hidden" name="QUESTION_ID_#QUESTION_ID#" id="QUESTION_ID_#QUESTION_ID#" value="#QUESTION_ID#">	
 						</td>
 						<td>
 							<div class="form-group">
@@ -121,6 +122,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 						<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="">	
 						<input type="hidden" name="DISCOUNT_#QUESTION_ID#" id="DISCOUNT_#QUESTION_ID#" value="">	
 						<input type="hidden" name="MONEY_#QUESTION_ID#" id="MONEY_#QUESTION_ID#" value="">	
+						<input type="hidden" name="QUESTION_ID_#QUESTION_ID#" id="QUESTION_ID_#QUESTION_ID#" value="">	
 					</td>
 					<td>
 						<div class="form-group">

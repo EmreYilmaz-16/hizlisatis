@@ -83,7 +83,7 @@
 	</div>
 		<cf_grid_list id="basketim2">
 			<tr>
-				<th></th>
+				<th><a onclick="addProdRow()"><i class="fa fa-plus"></i></a></th>
 				<th>Ürün</th>
 				<th>Barkod</th>
 				<th>Miktar</th>
@@ -112,6 +112,7 @@
 							<input type="hidden" name="PRICE_#QUESTION_ID_#" id="PRICE_#QUESTION_ID_#" value="#PRICE#">	
 							<input type="hidden" name="DISCOUNT_#QUESTION_ID_#" id="DISCOUNT_#QUESTION_ID_#" value="#DISCOUNT#">
 							<input type="hidden" name="MONEY_#QUESTION_ID_#" id="MONEY_#QUESTION_ID_#" value="#MONEY#">	
+							<input type="hidden" name="QUESTION_ID_#QUESTION_ID#" id="QUESTION_ID_#QUESTION_ID#" value="">	
 						</td>
 						<td>
 							<div class="form-group">
