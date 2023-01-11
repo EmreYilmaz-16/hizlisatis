@@ -45,7 +45,7 @@
             </div>
         </div>
         <button type="button" onclick="saveVirtualHydrolic('<cfoutput>#attributes.modal_id#</cfoutput>')" class="btn btn-primary">Sanal Ürün Kaydet</button>
-        <button type="button" class="btn btn-success">Ürün Kaydet</button>
+        <button type="button" class="btn btn-success" onclick="saveRealHydrolic(<cfoutput>#attributes.modal_id#</cfoutput>)">Ürün Kaydet</button>
         <button type="button" class="btn btn-danger">Kapat</button>
     </cfform>
 </cf_box>
