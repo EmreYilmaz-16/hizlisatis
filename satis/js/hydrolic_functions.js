@@ -320,7 +320,7 @@ function saveRealHydrolic(modal_id) {
             obj.ROW_UNIQ_ID
           );
       }*/
-      closeBoxDraggable(modal_id);
+     // closeBoxDraggable(modal_id);
     },
   });
 }
