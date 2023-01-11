@@ -197,6 +197,10 @@
         </cfscript>
     </CFOUTPUT>
     <cfset attributes.HIERARCHY =getMaster.HIERARCHY>
+    <cfif isDefined("arguments.dsn")>
+    <cfelse>
+        <cfset arguments.dsn=dsn>
+    </cfif>
     <cfset DSN=arguments.dsn>
     <cfset DSN3=arguments.dsn3>
     <cfset DSN1=arguments.dsn1>
