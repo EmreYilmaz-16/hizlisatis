@@ -212,7 +212,7 @@
             o={
                 PID=evaluate("arguments.product_id_#i#"),
                 SID=evaluate("arguments.stock_id_#i#"),
-                QTY=evalueate("arguments.quantity_#i#"),
+                QTY=evaluate("arguments.quantity_#i#"),
                 QUE=""
             };
             arrayAppend(sidArr,o);
