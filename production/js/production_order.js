@@ -42,7 +42,7 @@ function setRow(
   $("#DISCOUNT_" + question_id).val(discount);
   $("#MONEY_" + question_id).val(money);
   Hesapla(1);
-  IsTreeUpdated=true;
+  IsTreeUpdated = true;
 }
 
 function Hesapla(type) {
@@ -438,14 +438,15 @@ function addHydrolikRow(product, barcode) {
       hyd_basket_rows++;
     }
   }
-  IsTreeUpdated=true;
+  IsTreeUpdated = true;
   Hesapla(2);
-  
 }
 
 function CloseProductionOrders(p_order_id) {
-  if(IsTreeUpdated){
-    alert("Ağaçta Değişiklik Yapılmıştır Ağacı Kayıt Etmeden Üretim Sonlandıramazsınız")
+  if (IsTreeUpdated) {
+    alert(
+      "Ağaçta Değişiklik Yapılmıştır Ağacı Kayıt Etmeden Üretim Sonlandıramazsınız"
+    );
     return false;
   }
   windowopen(
