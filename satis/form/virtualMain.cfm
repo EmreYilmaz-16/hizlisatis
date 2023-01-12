@@ -34,3 +34,11 @@
         <cfinclude template="../includes/add_virtual_offer_product.cfm">
     </cfif>
 </cfif>
+
+<cfif attributes.type eq 5>
+    <cfif len(attributes.id)>
+        <cfinclude template="../includes/upd_virtual_pump.cfm">
+    <cfelse>
+        <cfinclude template="../includes/add_virtual_pump.cfm">
+    </cfif>
+</cfif>
