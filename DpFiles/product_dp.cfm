@@ -40,7 +40,7 @@ function getParameterByName(name, url) {
 }
 function pencereac(tip,idd,demo){
    if(tip==1){
-     windowopen("/index.cfm?fuseaction=objects.update_product_demontage&product_id="+idd)
+     windowopen("/index.cfm?fuseaction=objects.emptypopup_update_product_demontage&product_id="+idd+"&IS_DEMONTAGE="+demo)
    }
 }
 </script>
