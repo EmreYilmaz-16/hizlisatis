@@ -179,7 +179,7 @@ WHERE 1 = 1
     <td><a href="index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#" target="_blank" >#ORDER_NUMBER#</a></td>
     <td>#dateformat(ORDER_DATE,"dd/mm/yyyy")#</td>
 	<td>#getEmpInfo(ORDER_EMPLOYEE_ID)#</td>
-    <td>#DURUM#</td>
+    <td>#ORDER_ROW_CURRENCY#-#DURUM#</td>
     <td>#SOR#</td>
     <td>#SIR#</td>
     <td><!----<a href="index.cfm?fuseaction=#attributes.fuseaction#&event=2&wrk_row_id=#ORDER_WRK_ROW_ID#&order_id=#ORDER_ID#&stock_id=#STOCK_ID#&OCURRENCY=#ORDER_ROW_CURRENCY#" target="_blank">Sil</a> ---->
