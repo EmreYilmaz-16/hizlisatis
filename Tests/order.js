@@ -4,10 +4,10 @@ $(document).ready(function () {
   var q = "SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE V_P_ORDER_ID=31";
   var res = wrk_query(q, "dsn3");
   console.log(res);
-  addCol(res.STOCK_ID[0], res.QUANTITY[0]);
+  addCol(res.STOCK_ID[0], res.QUANTITY[0], 1, 1);
 });
 
-function addCol(STOCK_ID, MIKTAR) {
+function addCol(STOCK_ID, MIKTAR, isIo = 0, isMain = 0) {
   var ss =
     "SELECT S.STOCK_ID,S.PRODUCT_ID,S.PRODUCT_CODE,S.PRODUCT_NAME,PU.MAIN_UNIT," +
     MIKTAR +
@@ -41,9 +41,11 @@ function addCol(STOCK_ID, MIKTAR) {
     PRODUCT_CODE: mainStok.PRODUCT_CODE[0],
     PRODUCT_NAME: mainStok.PRODUCT_NAME[0],
     MAIN_UNIT: mainStok.MAIN_UNIT[0],
-	BAKIYE: mainStok.BAKIYE[0],
+    BAKIYE: mainStok.BAKIYE[0],
     SIPARIS_MIKTARI: mainStok.SIPARIS_MIKTARI[0],
-    isIo: 0,
+    isIo: isIo,
+    IsMain: isMain,
+    AgacRc: treeRes.recordcount,
     AGAC: [],
   };
   var col = new Array();
@@ -57,7 +59,7 @@ function addCol(STOCK_ID, MIKTAR) {
         PRODUCT_ID: treeRes.PRODUCT_ID[i],
         MAIN_UNIT: treeRes.MAIN_UNIT[i],
         BAKIYE: treeRes.BAKIYE[i],
-        isIo: 0,
+        isIo: -1 * isIo,
       };
       obj.AGAC.push(agac);
     }
@@ -89,6 +91,16 @@ function addCol(STOCK_ID, MIKTAR) {
     btn.setAttribute("class", "btn btn-primary");
     btn.innerText = "0";
     btn.setAttribute("onclick", "SetIo(" + i + ",-1,this)");
+    if (item.isIo == 0) {
+      btn.setAttribute("class", "btn btn-primary");
+      btn.innerText = "0";
+    } else if (item.isIo == 1) {
+      btn.setAttribute("class", "btn btn-success");
+      btn.innerText = "+";
+    } else {
+      btn.setAttribute("class", "btn btn-danger");
+      btn.innerText = "-";
+    }
     td.appendChild(btn);
     tr.appendChild(td);
     table.appendChild(tr);
@@ -109,7 +121,7 @@ function addCol(STOCK_ID, MIKTAR) {
     tr.appendChild(td);
     table.appendChild(tr);
 
-	var tr = document.createElement("tr");
+    var tr = document.createElement("tr");
     var td = document.createElement("th");
     td.innerText = "Bakiye";
     tr.appendChild(td);
@@ -129,7 +141,7 @@ function addCol(STOCK_ID, MIKTAR) {
     var td_2 = document.createElement("th");
     td_2.innerText = "Miktar";
     tr_2.appendChild(td_2);
-	var td_2 = document.createElement("th");
+    var td_2 = document.createElement("th");
     td_2.innerText = "Depo";
     tr_2.appendChild(td_2);
     var td_2 = document.createElement("th");
@@ -144,6 +156,7 @@ function addCol(STOCK_ID, MIKTAR) {
     } else {
       btn.setAttribute("onclick", "addTreeItem(" + i + ")");
     }
+
     btn.setAttribute("style", "width:30px");
     td_2.appendChild(btn);
     tr_2.appendChild(td_2);
@@ -156,8 +169,15 @@ function addCol(STOCK_ID, MIKTAR) {
       var td_2 = document.createElement("th");
       td_2.innerText = tree[j].AMOUNT;
       tr_2.appendChild(td_2);
-	  var td_2 = document.createElement("th");
-      td_2.innerText = tree[j].BAKIYE;
+      var td_2 = document.createElement("th");
+      // td_2.innerText = tree[j].BAKIYE;
+      var a = document.createElement("a");
+      a.innerText = tree[j].BAKIYE;
+      a.setAttribute(
+        "onclick",
+        "showDemonte(" + tree[j].STOCK_ID + "," + item.SIPARIS_MIKTARI + ")"
+      );
+      td_2.appendChild(a);
       tr_2.appendChild(td_2);
       var td_2 = document.createElement("th");
       td_2.innerText = tree[j].MAIN_UNIT;
@@ -224,6 +244,11 @@ function SetIo(col, x, elem) {
   }
 }
 
-function showDemonte(STOCK_ID){
-	
+function showDemonte(STOCK_ID, MIKTAR) {
+  openBoxDraggable(
+    "index.cfm?fuseaction=objects.emptypopup_show_rel_demontaged_products&STOCK_ID=" +
+      STOCK_ID +
+      "&MIKTAR=" +
+      MIKTAR
+  );
 }
