@@ -1,3 +1,4 @@
+<cf_box title="Make Tube" scroll="1" collapsable="1" resize="1" popup_box="1">
 <cfquery name="getP" datasource="#dsn3#">
 select DISTINCT PT.STOCK_ID,S.PRODUCT_NAME,S.PRODUCT_CODE,PT.AMOUNT,P.PRODUCT_ID,P.IS_DEMONTAGE ,
 ISNULL((
@@ -42,3 +43,4 @@ where RELATED_ID=#attributes.stock_id# AND IS_DEMONTAGE=1
         </cfoutput>
     </tbody>
 </cf_grid_list>
+</cf_box>
