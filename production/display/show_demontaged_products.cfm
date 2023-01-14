@@ -1,4 +1,4 @@
-<cf_box title="Make Tube" scroll="1" collapsable="1" resize="1" popup_box="1">
+<cf_box title="Demonte Edilebilir Ürünler" scroll="1" collapsable="1" resize="1" popup_box="1">
 <cfquery name="getP" datasource="#dsn3#">
 select DISTINCT PT.STOCK_ID,S.PRODUCT_NAME,S.PRODUCT_CODE,PT.AMOUNT,P.PRODUCT_ID,P.IS_DEMONTAGE ,
 ISNULL((
