@@ -78,7 +78,7 @@ function addCol(STOCK_ID, MIKTAR, isIo = 0, isMain = 0) {
     table.setAttribute("border", 1);
     table.setAttribute("class", "table column_" + i);
     table.setAttribute("style", "border-spacing:0");
-    TblListener(table);
+    TblListener(table, i);
     var tr = document.createElement("tr");
     var td = document.createElement("th");
     td.innerText = "Ürün Adı";
@@ -262,11 +262,12 @@ function addTreeItem(col) {
   openProductPopup("", "", col);
 }
 
-function TblListener(tbl) {
+function TblListener(tbl, coli) {
   $(tbl).on("contextmenu", function (ev) {
+    $(".pbsContex").remove();
     ev.preventDefault();
     console.log(ev);
-	var div = document.createElement("div");
+    var div = document.createElement("div");
     div.setAttribute("class", "pbsContex");
     $(div).attr(
       "style",
@@ -280,7 +281,20 @@ function TblListener(tbl) {
     var div2 = document.createElement("div");
     div2.setAttribute("class", "list-group");
 
-  
+    var a = document.createElement("a");
+    var spn1 = document.createElement("span");
+    spn1.setAttribute("class", "icon-times");
+    spn1.setAttribute("style", "margin-right:10px");
+    var spn2 = document.createElement("span");
+    spn2.innerText = "Sil";
+    a.appendChild(spn1);
+    a.appendChild(spn2);
+    if (coli == 0) {
+      a.setAttribute("disabled", "");
+    }
+    a.setAttribute("class", "list-group-item");
+    a.setAttribute("onclick", "removeCol(" + coli + ")");
+    div2.appendChild(a);
 
     div.appendChild(div3);
     div.appendChild(div2);
@@ -288,4 +302,8 @@ function TblListener(tbl) {
     document.body.appendChild(div);
     $(div).show(500);
   });
+}
+
+function removeCol(col) {
+  console.log(cols[col]);
 }
