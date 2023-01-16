@@ -74,9 +74,11 @@ function addCol(STOCK_ID, MIKTAR, isIo = 0, isMain = 0) {
     var div_2 = document.createElement("div");
     div_2.setAttribute("class", "col");
     var table = document.createElement("table");
+
     table.setAttribute("border", 1);
-    table.setAttribute("class", "table");
+    table.setAttribute("class", "table column_" + i);
     table.setAttribute("style", "border-spacing:0");
+    TblListener(table);
     var tr = document.createElement("tr");
     var td = document.createElement("th");
     td.innerText = "Ürün Adı";
@@ -172,11 +174,14 @@ function addCol(STOCK_ID, MIKTAR, isIo = 0, isMain = 0) {
       var td_2 = document.createElement("th");
       // td_2.innerText = tree[j].BAKIYE;
       var a = document.createElement("a");
-      a.innerText = tree[j].BAKIYE;
-      a.setAttribute(
-        "onclick",
-        "showDemonte(" + tree[j].STOCK_ID + "," + item.SIPARIS_MIKTARI + ")"
-      );
+      a.innerText = commaSplit(tree[j].BAKIYE);
+      if (parseFloat(tree[j].BAKIYE) <= 0) {
+        a.setAttribute(
+          "onclick",
+          "showDemonte(" + tree[j].STOCK_ID + "," + item.SIPARIS_MIKTARI + ")"
+        );
+        a.setAttribute("style", "color:red");
+      }
       td_2.appendChild(a);
       tr_2.appendChild(td_2);
       var td_2 = document.createElement("th");
@@ -251,4 +256,36 @@ function showDemonte(STOCK_ID, MIKTAR) {
       "&MIKTAR=" +
       MIKTAR
   );
+}
+
+function addTreeItem(col) {
+  openProductPopup("", "", col);
+}
+
+function TblListener(tbl) {
+  $(tbl).on("contextmenu", function (ev) {
+    ev.preventDefault();
+    console.log(ev);
+	var div = document.createElement("div");
+    div.setAttribute("class", "pbsContex");
+    $(div).attr(
+      "style",
+      "display:none;top:" + ev.clientY + "px;left:" + ev.clientX + "px"
+    );
+    var div3 = document.createElement("div");
+    div3.setAttribute(
+      "style",
+      "border-top: solid 5px black;border-left: solid 5px black;width: 10px;height: 10px;"
+    );
+    var div2 = document.createElement("div");
+    div2.setAttribute("class", "list-group");
+
+  
+
+    div.appendChild(div3);
+    div.appendChild(div2);
+
+    document.body.appendChild(div);
+    $(div).show(500);
+  });
 }
