@@ -82,7 +82,7 @@
                         <a onclick="setRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.PRODUCT_NAME#',#attributes.question_id#,'#it.BARCOD#','#it.MAIN_UNIT#',#it.PRICE#,1,#it.DISCOUNT_RATE#)">#it.PRODUCT_NAME#</a>
                     </cfif>
                     <cfif attributes.actType eq 3>
-                        <a onclick="addTreeItem_('#it.STOCK_CODE#','#ite.PRODUCT_NAME#',#attributes.SIPARIS_MIKTARI#,#it.STOCK_ID#,#it.PRODUCT_ID#,'#it.MAIN_UNIT#',#it.STOCK_COUNT#,0)">#it.PRODUCT_NAME#</a>
+                        <a onclick="addTreeItem_('#it.STOCK_CODE#','#it.PRODUCT_NAME#',#attributes.SIPARIS_MIKTARI#,#it.STOCK_ID#,#it.PRODUCT_ID#,'#it.MAIN_UNIT#',#it.STOCK_COUNT#,0)">#it.PRODUCT_NAME#</a>
                         <!----
                             function addTreeItem_(
   PRODUCT_CODE,
