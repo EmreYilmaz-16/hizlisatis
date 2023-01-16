@@ -65,6 +65,9 @@ function addCol(STOCK_ID, MIKTAR, isIo = 0, isMain = 0) {
     }
   }
   cols.push(obj);
+  writeCols();
+}
+function writeCols() {
   var dv = document.getElementById("SepetDiv");
   dv.innerHTML = "";
 
@@ -259,7 +262,7 @@ function showDemonte(STOCK_ID, MIKTAR) {
 }
 
 function addTreeItem(col) {
-  openProductPopup("", "", col);
+  openProductPopup("", "", col, 2);
 }
 
 function TblListener(tbl, coli) {
@@ -305,5 +308,12 @@ function TblListener(tbl, coli) {
 }
 
 function removeCol(col) {
+  if (col == 0) {
+    alert("Ana Ürünü Silemezsiniz");
+    return false;
+  }
+  $(".column_" + col).remove();
+
   console.log(cols[col]);
+  cols.splice(cols, 1);
 }

@@ -104,7 +104,7 @@
 								<div class="form-group">
 									<div class="input-group">
 										<input type="text" name="PRODUCT_NAME_#QUESTION_ID_#" id="PRODUCT_NAME_#QUESTION_ID_#"  value='#PRODUCT_NAME#'>
-										<span class="input-group-addon btnPointer icon-ellipsis"  onclick='openProductPopup(#QUESTION_ID_#)'></span>
+										<span class="input-group-addon btnPointer icon-ellipsis"  onclick='openProductPopup(#QUESTION_ID_#,"","",2)'></span>
 									</div>
 								</div>
 							<input type="hidden" name="STOCK_ID_#QUESTION_ID_#" id="STOCK_ID_#QUESTION_ID_#"  value="#STOCK_ID#">

@@ -1,5 +1,5 @@
 var IsTreeUpdated = false;
-function openProductPopup(question_id, from_row = 0, col = "") {
+function openProductPopup(question_id, from_row = 0, col = "", actType = "") {
   var cp_id = document.getElementById("company_id").value;
   var cp_name = document.getElementById("company_id").value;
 
@@ -17,7 +17,9 @@ function openProductPopup(question_id, from_row = 0, col = "") {
       "&question_id=" +
       question_id +
       "&col=" +
-      col
+      col +
+      "&actType=" +
+      actType
   );
 }
 

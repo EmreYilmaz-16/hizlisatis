@@ -1,5 +1,5 @@
 <cf_box title="Ürün Listesi" scroll="1" collapsable="1" resize="1" popup_box="1" draggable="1">
-
+<cfparam name="attributes.actType" default="">
 <table>
 <tr>
 	
@@ -8,6 +8,7 @@
 	<input type="hidden" name="company_name" id="company_name" value="#attributes.company_name#">
 	<input type="hidden" name="company_id" id="company_id" value="#attributes.company_id#">
 	<input type="hidden" name="question_id" id="question_id" value="#attributes.question_id#">
+    <input type="hidden" name="actType" id="actType" value="#attributes.actType#">
 	</cfoutput>
 
     <td>
@@ -98,8 +99,9 @@ function filtreleriAl() {
     var company_name = document.getElementById("company_name").value
     var company_id = document.getElementById("company_id").value
 
- var question_id = document.getElementById("question_id").value
+    var question_id = document.getElementById("question_id").value
     
+    var actType=document.getElementById("actType").value
 
     var miktar = document.getElementById("miktar").value
     miktar = filterNum(miktar);
@@ -112,6 +114,7 @@ function filtreleriAl() {
     if (price_cat.length > 0 && price_catid.length > 0) AddRess += "&price_catid=" + price_catid; else AddRess += "&price_catid=";
     if (company_name.length > 0 && company_id.length > 0) AddRess += "&company_id=" + company_id; else AddRess += "&company_id=";
     AddRess += "&miktar=" + miktar;
+    AddRess += "&actType=" + actType;
     return AddRess
 }
 $(document).ready(function(){
