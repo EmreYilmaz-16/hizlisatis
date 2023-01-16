@@ -82,7 +82,7 @@
                         <a onclick="setRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.PRODUCT_NAME#',#attributes.question_id#,'#it.BARCOD#','#it.MAIN_UNIT#',#it.PRICE#,1,#it.DISCOUNT_RATE#)">#it.PRODUCT_NAME#</a>
                     </cfif>
                     <cfif attributes.actType eq 3>
-                        <a onclick="addTreeItem_('#it.STOCK_CODE#','#it.PRODUCT_NAME#',#attributes.SIPARIS_MIKTARI#,#it.STOCK_ID#,#it.PRODUCT_ID#,'#it.MAIN_UNIT#',#it.STOCK_COUNT#,0)">#it.PRODUCT_NAME#</a>
+                        <a onclick="addTreeItem_('#it.STOCK_CODE#','#it.PRODUCT_NAME#',#attributes.SIPARIS_MIKTARI#,#it.STOCK_ID#,#it.PRODUCT_ID#,'#it.MAIN_UNIT#',#it.STOCK_COUNT#,0,#attributes.columnsa#)">#it.PRODUCT_NAME#</a>
                         <!----
                             function addTreeItem_(
   PRODUCT_CODE,
@@ -117,7 +117,7 @@
                             <a onclick="setRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.PRODUCT_NAME#',#attributes.question_id#,'#it2.BARCOD#','#it2.MAIN_UNIT#',#it2.PRICE#,1,#it2.DISCOUNT_RATE#)">#it2.PRODUCT_NAME#</a>
                         </cfif>
                         <cfif attributes.actType eq 3>
-                            <a onclick="addTreeItem_('#it2.STOCK_CODE#','#it2.PRODUCT_NAME#',#attributes.SIPARIS_MIKTARI#,#it2.STOCK_ID#,#it2.PRODUCT_ID#,'#it2.MAIN_UNIT#',00,0)">#it.PRODUCT_NAME#</a>
+                            <a onclick="addTreeItem_('#it2.STOCK_CODE#','#it2.PRODUCT_NAME#',#attributes.SIPARIS_MIKTARI#,#it2.STOCK_ID#,#it2.PRODUCT_ID#,'#it2.MAIN_UNIT#',00,0,#attributes.columnsa#)">#it.PRODUCT_NAME#</a>
                         </cfif>
                     <cfelse>
                         <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,0,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#')">#it2.PRODUCT_NAME#</a></li>
