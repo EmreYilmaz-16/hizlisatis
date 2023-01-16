@@ -157,7 +157,7 @@ function writeCols() {
     var btn = document.createElement("button");
     btn.innerText = "+";
     btn.setAttribute("class", "btn btn-warning");
-    if (tree.length > 0) {
+    if (item.AgacRc > 0) {
     } else {
       btn.setAttribute(
         "onclick",
