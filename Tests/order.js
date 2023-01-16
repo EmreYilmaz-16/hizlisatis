@@ -267,6 +267,27 @@ function showDemonte(STOCK_ID, MIKTAR) {
 function addTreeItem(col, SIPARIS_MIKTARI) {
   openProductPopup("", "", col, 3, SIPARIS_MIKTARI);
 }
+function addTreeItem_(
+  PRODUCT_CODE,
+  PRODUCT_NAME,
+  AMOUNT,
+  STOCK_ID,
+  PRODUCT_ID,
+  MAIN_UNIT,
+  BAKIYE,
+  isIo
+) {
+  var agac = {
+    PRODUCT_CODE: PRODUCT_CODE,
+    PRODUCT_NAME: PRODUCT_NAME,
+    AMOUNT: AMOUNT,
+    STOCK_ID: STOCK_ID,
+    PRODUCT_ID: PRODUCT_ID,
+    MAIN_UNIT: MAIN_UNIT,
+    BAKIYE: BAKIYE,
+    isIo: isIo,
+  };
+}
 
 function TblListener(tbl, coli) {
   $(tbl).on("contextmenu", function (ev) {
