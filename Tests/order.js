@@ -46,6 +46,7 @@ function addCol(STOCK_ID, MIKTAR, isIo = 0, isMain = 0) {
     isIo: isIo,
     IsMain: isMain,
     AgacRc: treeRes.recordcount,
+    saveTree: 0,
     AGAC: [],
   };
   var col = new Array();
@@ -217,6 +218,24 @@ function writeCols() {
     td.appendChild(table_2);
     tr.appendChild(td);
     table.appendChild(tr);
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    td.setAttribute("colspan", 3);
+    var dva= document.createElement("div");
+    dva.setAttribute("class", "form-group");
+    var lbl = document.createElement("label");
+    lbl.innerText = "Ağaç Kaydet";
+	lbl.setAttribute("style","vertical-align: top;")
+    dva.appendChild(lbl);
+    var inpx = document.createElement("input");
+    inpx.setAttribute("type", "checkbox");
+    inpx.setAttribute("onclick", "saveTreeCheck(this," + i + ")");
+    if(item.saveTree==1){inpx.setAttribute("checked","")}
+	dva.appendChild(inpx);
+	
+    td.appendChild(dva);
+    tr.appendChild(td);
+    table.appendChild(tr);
     div_2.appendChild(table);
     dv.appendChild(div_2);
   }
@@ -263,7 +282,13 @@ function showDemonte(STOCK_ID, MIKTAR) {
       MIKTAR
   );
 }
-
+function saveTreeCheck(el, col) {
+  if ($(el).is(":checked") == true) {
+    cols[col].saveTree = 1;
+  } else {
+    cols[col].saveTree = 0;
+  }
+}
 function addTreeItem(col, SIPARIS_MIKTARI) {
   openProductPopup("", "", col, 3, SIPARIS_MIKTARI);
 }
