@@ -317,6 +317,7 @@ function addTreeItem_(
     isIo: isIo,
   };
   cols[col].AGAC.push(agac);
+  writeCols();
 }
 
 function TblListener(tbl, coli) {
