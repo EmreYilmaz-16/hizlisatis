@@ -288,6 +288,7 @@ function addTreeItem_(
     BAKIYE: BAKIYE,
     isIo: isIo,
   };
+  cols[col].AGAC.push(agac);
 }
 
 function TblListener(tbl, coli) {
