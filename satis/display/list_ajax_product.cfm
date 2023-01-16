@@ -67,7 +67,7 @@
             <td>#it.STOCK_CODE#</td>
             <td>#it.PRODUCT_CODE_2#</td>
             <td>
-                <cfif isDefined("attributes.actType") and len(attributes.actType)>
+                <!---<cfif isDefined("attributes.actType") and len(attributes.actType)>
                     <cfif attributes.actType eq 1 or attributes.actType eq 2>
                         <a onclick="setRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.PRODUCT_NAME#',#attributes.question_id#,'#it.BARCOD#','#it.MAIN_UNIT#',#it.PRICE#,1,#it.DISCOUNT_RATE#)">#it.PRODUCT_NAME#</a>
                     </cfif>    
@@ -76,14 +76,9 @@
                     </cfif>
                 </cfelse>
                     <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,0,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#')">#it.PRODUCT_NAME#</a>
-                </cfif>
+                </cfif>----->
 
-            <cfif findNoCase("emptypopup_update_virtual_production_orders", getHTTPRequestData().headers.referer)>
-                
-            <cfelse>
-                
-                
-            </cfif>
+ 
             </td>
 
             <td>#it.PRODUCT_CAT#</td>
