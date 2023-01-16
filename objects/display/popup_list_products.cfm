@@ -105,7 +105,7 @@ function filtreleriAl() {
     
     var actType=document.getElementById("actType").value
 
-    var siparis_miktari=getElementById("SIPARIS_MIKTARI").value
+    var siparis_miktari=document.getElementById("SIPARIS_MIKTARI").value
     var miktar = document.getElementById("miktar").value
     miktar = filterNum(miktar);
 
