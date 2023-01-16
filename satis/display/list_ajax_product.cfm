@@ -22,6 +22,9 @@
 <cfset attributes.end_row=attributes.start_row+attributes.max_row-1>
 </cfif>
 </cfif>
+<cfif session.ep.userid eq 1146>
+    <cfdump var="#attributes#">
+</cfif>
 
 <cfset P_RETURN=getProducts(
     '#attributes.keyword#',
