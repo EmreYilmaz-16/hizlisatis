@@ -22,7 +22,7 @@ function openProductPopup(
       cp_name +
       "&question_id=" +
       question_id +
-      "&col=" +
+      "&columnsa=" +
       col +
       "&actType=" +
       actType +

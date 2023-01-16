@@ -275,7 +275,8 @@ function addTreeItem_(
   PRODUCT_ID,
   MAIN_UNIT,
   BAKIYE,
-  isIo
+  isIo,
+  col
 ) {
   var agac = {
     PRODUCT_CODE: PRODUCT_CODE,

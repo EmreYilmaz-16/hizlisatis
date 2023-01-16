@@ -1,6 +1,7 @@
 <cf_box title="Ürün Listesi" scroll="1" collapsable="1" resize="1" popup_box="1" draggable="1">
 <cfparam name="attributes.actType" default="">
 <cfparam name="attributes.SIPARIS_MIKTARI" default="1">
+<cfparam name="attributes.columnsa" default="">
 <table>
 <tr>
 	
@@ -11,6 +12,7 @@
 	<input type="hidden" name="question_id" id="question_id" value="#attributes.question_id#">
     <input type="hidden" name="actType" id="actType" value="#attributes.actType#">
     <input type="hidden" name="SIPARIS_MIKTARI" id="SIPARIS_MIKTARI" value="#attributes.SIPARIS_MIKTARI#">
+    <input type="hidden" name="columnsa" id="columnsa" value="#attributes.columnsa#">
 	</cfoutput>
 
     <td>
@@ -106,6 +108,7 @@ function filtreleriAl() {
     var actType=document.getElementById("actType").value
 
     var siparis_miktari=document.getElementById("SIPARIS_MIKTARI").value
+    var columnsa=document.getElementById("columnsa").value
     var miktar = document.getElementById("miktar").value
     miktar = filterNum(miktar);
 
@@ -118,6 +121,7 @@ function filtreleriAl() {
     if (company_name.length > 0 && company_id.length > 0) AddRess += "&company_id=" + company_id; else AddRess += "&company_id=";
     AddRess += "&miktar=" + miktar;
     AddRess += "&actType=" + actType;
+    AddRess += "&columnsa=" + columnsa;
     AddRess += "&SIPARIS_MIKTARI=" + siparis_miktari;
     return AddRess
 }
