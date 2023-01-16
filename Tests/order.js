@@ -159,7 +159,10 @@ function writeCols() {
     btn.setAttribute("class", "btn btn-warning");
     if (tree.length > 0) {
     } else {
-      btn.setAttribute("onclick", "addTreeItem(" + i + ")");
+      btn.setAttribute(
+        "onclick",
+        "addTreeItem(" + i + "," + item.SIPARIS_MIKTARI + ")"
+      );
     }
 
     btn.setAttribute("style", "width:30px");
@@ -261,8 +264,8 @@ function showDemonte(STOCK_ID, MIKTAR) {
   );
 }
 
-function addTreeItem(col) {
-  openProductPopup("", "", col, 3);
+function addTreeItem(col, SIPARIS_MIKTARI) {
+  openProductPopup("", "", col, 3, SIPARIS_MIKTARI);
 }
 
 function TblListener(tbl, coli) {

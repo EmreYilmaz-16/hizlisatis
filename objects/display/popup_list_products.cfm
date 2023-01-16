@@ -1,5 +1,6 @@
 <cf_box title="Ürün Listesi" scroll="1" collapsable="1" resize="1" popup_box="1" draggable="1">
 <cfparam name="attributes.actType" default="">
+<cfparam name="attributes.SIPARIS_MIKTARI" default="">
 <table>
 <tr>
 	
@@ -9,6 +10,7 @@
 	<input type="hidden" name="company_id" id="company_id" value="#attributes.company_id#">
 	<input type="hidden" name="question_id" id="question_id" value="#attributes.question_id#">
     <input type="hidden" name="actType" id="actType" value="#attributes.actType#">
+    <input type="hidden" name="SIPARIS_MIKTARI" id="SIPARIS_MIKTARI" value="#attributes.SIPARIS_MIKTARI#">
 	</cfoutput>
 
     <td>

@@ -1,5 +1,11 @@
 var IsTreeUpdated = false;
-function openProductPopup(question_id, from_row = 0, col = "", actType = "") {
+function openProductPopup(
+  question_id,
+  from_row = 0,
+  col = "",
+  actType = "",
+  SIPARIS_MIKTARI = 1
+) {
   var cp_id = document.getElementById("company_id").value;
   var cp_name = document.getElementById("company_id").value;
 
@@ -19,7 +25,9 @@ function openProductPopup(question_id, from_row = 0, col = "", actType = "") {
       "&col=" +
       col +
       "&actType=" +
-      actType
+      actType +
+      "&SIPARIS_MIKTARI=" +
+      SIPARIS_MIKTARI
   );
 }
 
