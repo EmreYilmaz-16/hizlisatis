@@ -262,7 +262,7 @@ function showDemonte(STOCK_ID, MIKTAR) {
 }
 
 function addTreeItem(col) {
-  openProductPopup("", "", col, 2);
+  openProductPopup("", "", col, 3);
 }
 
 function TblListener(tbl, coli) {
