@@ -352,9 +352,10 @@ td.setAttribute("style","display:flex;align-items: baseline;")
   satistl.setAttribute("class","icon-detail");
   satistl.setAttribute("onclick","openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid="+product_id+"&sid="+stock_id+"')")
   div.appendChild(sel_1);
-  td.appendChild(satistl);
+  
 
   td.appendChild(div);
+  td.appendChild(satistl);
   tr.appendChild(td);
 /*
  <a href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&amp;pid=38109&amp;sid=38109')">
