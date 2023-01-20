@@ -1065,14 +1065,11 @@
 				<th rowspan="2" style="width:55px;text-align:center"><cf_get_lang_main no='75.no'></th>
 				<th rowspan="2" style="width:60px;text-align:center"><cf_get_lang_main no='330.tarih'></th>
 				<th rowspan="2" style="text-align:center"><cf_get_lang_main no='162.sirket'></th>
-                
-                
                 <cfif ListFind(session.ep.user_level,25)>
                 	<th rowspan="2" style="width:80px;text-align:center"><cf_get_lang_main no='1203.üye bakiyesi'></th>
                 </cfif>
 				<th rowspan="2" style="width:100px;text-align:center"><cf_get_lang_main no='487.Kaydeden'></th>
 				<th rowspan="2" style="width:100px;text-align:center"><cf_get_lang_main no='1703.Sevk Yöntemi'></th>
-                <th rowspan="2" style="text-align:center">Ödeme Yöntemi</th>
                 <th colspan="<cfif attributes.e_shipping_type eq 1>5<cfelse>4</cfif>" style="width:100px;text-align:center"><cfoutput>#getLang('main',1447)# #getLang('account',134)#</cfoutput></th>
 				<th rowspan="2" style="width:100px;text-align:center"><cfoutput>#getLang('prod',253)#</cfoutput></th>
                 <!---<th rowspan="2" style="width:50px;text-align:center">S.Puan</th>--->
@@ -1131,24 +1128,16 @@
                                     </cfif>
                                 </cfif>
                             </td>
-                            
                             <cfif ListFind(session.ep.user_level,25)>
                             	<td style="text-align:right"></td>
                             </cfif>
-                            <td>#SHIP_METHOD#</td>
-                            <td>
-                                <cfif tip eq 2>
-                                	<cfif len(comp_id)>
-                                      <cfquery name="getPM" datasource="#dsn#">
+                            <td>#SHIP_METHOD#<br>
+                                <cfquery name="getPm" datasource="#dsn#">
                                         SELECT SP.PAYMETHOD FROM workcube_metosan.COMPANY_CREDIT AS CC 
                                         INNER JOIN workcube_metosan.SETUP_PAYMETHOD AS SP ON CC.PAYMETHOD_ID=SP.PAYMETHOD_ID
                                         WHERE CC.COMPANY_ID=#COMP_ID#
-                                      </cfquery>
-                                        #getPM.PAYMETHOD#
-                                    <cfelseif len(cons_id)>
-                                        
-                                    </cfif>
-                                </cfif>
+                                </cfquery>
+                                #getPm.PAYMETHOD#
                             </td>
                             <td align="center" colspan="5">
                             	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.detail_order&order_id=#order_id#','wide');" class="tableyazi" title="Satış Siparişine Git">
