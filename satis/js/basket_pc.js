@@ -352,6 +352,7 @@ function AddRow(
   satistl.setAttribute("class","icon-detail");
   satistl.setAttribute("onclick","openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid="+product_id+"&sid="+stock_id+"')")
   div.appendChild(sel_1);
+  div.appendChild(satistl);
   td.appendChild(div);
   tr.appendChild(td);
 /*
