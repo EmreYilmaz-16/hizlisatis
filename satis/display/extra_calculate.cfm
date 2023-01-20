@@ -27,7 +27,7 @@
  $(document).ready(function(){
         $("#measure").focus();
         $("#measure").on("keyup",()=>{if(window.event.keyCode == "13")$("#cut_pcs").focus();});
-        $("#cut_pcs").on("keyup",()=>{if(window.event.keyCode == "13")calculateUnit();});
+        $("#cut_pcs").on("keyup",function(ev){if(ev.keyCode == "13")calculateUnit();});
     });    
     function calculateUnit(
     product_id,
