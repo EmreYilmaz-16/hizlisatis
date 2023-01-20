@@ -1137,7 +1137,7 @@
                                         INNER JOIN workcube_metosan.SETUP_PAYMETHOD AS SP ON CC.PAYMETHOD_ID=SP.PAYMETHOD_ID
                                         WHERE CC.COMPANY_ID=#COMP_ID#
                                 </cfquery>
-                                #getPm.PAYMETHOD# emre
+                                #getPm.PAYMETHOD#
                             </td>
                             <td align="center" colspan="5">
                             	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.detail_order&order_id=#order_id#','wide');" class="tableyazi" title="Satış Siparişine Git">
@@ -1334,7 +1334,15 @@
                                     </td>
                                 </cfif>
                                 <td>#get_emp_info(DELIVER_EMP,0,0)#</td>
-                                <td>#SHIP_METHOD#</td>
+                                <td>#SHIP_METHOD#
+                                    <br>
+                                <cfquery name="getPm" datasource="#dsn#">
+                                        SELECT SP.PAYMETHOD FROM workcube_metosan.COMPANY_CREDIT AS CC 
+                                        INNER JOIN workcube_metosan.SETUP_PAYMETHOD AS SP ON CC.PAYMETHOD_ID=SP.PAYMETHOD_ID
+                                        WHERE CC.COMPANY_ID=#COMP_ID#
+                                </cfquery>
+                                #getPm.PAYMETHOD#
+                                </td>
                                 <cfif listlen(order_row_id_list)>
                                     <cfquery name="get_sevk_durum" datasource="#dsn3#"> <!---Rezerve edilen üretim planları veya satınalma siparişlerinin depoya girişleri kontrol ediliyor--->
                                         SELECT     
