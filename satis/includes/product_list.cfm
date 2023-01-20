@@ -51,7 +51,7 @@
         </div></div>
     </td>
     <td>
-        <button type="button" class="btn btn-info" onclick="Filtrele(this,event)"><i class="fa fa-search"></i>Ara</button>
+        <button type="button" class="btn btn-info" onclick="Filtrele(this,event)"><i style="margin-right:5px" class="fa fa-search"></i>Ara</button>
     </td>
     <td>
         <div style="align-self: self-end;float:right">
