@@ -1077,7 +1077,7 @@
                 o={
                     PID=arguments.Tube_PId,
                     SID=arguments.Tube_SId,
-                    QTY=arguments.Tube_Qty/1000,
+                    QTY=filterNum(arguments.Tube_Qty)/1000,
                     QUE=2
                 };
                 arrayAppend(sidArr,o);
