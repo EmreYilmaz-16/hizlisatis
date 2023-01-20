@@ -548,6 +548,13 @@
 
     <cffunction name="saveVirtualTube" access="remote" returntype="any" returnFormat="json">
         <cfargument name="IsProduction" default="0">
+        <cfsavecontent  variable="control5">
+            <cfdump  var="#CGI#">
+
+            <cfdump  var="#arguments#">
+
+           </cfsavecontent>
+           <cffile action="write" file = "c:\PBS\hizlisatiscfc_saveVirtualTube002.html" output="#control5#"></cffile>
         <cftry>
             <cfif not isdefined(arguments.employee_id)> <cfset arguments.employee_id=1></cfif>
             <cfif not isdefined(arguments.PRODUCT_CATID) or not len(arguments.PRODUCT_CATID)> <cfset arguments.PRODUCT_CATID=0></cfif>
