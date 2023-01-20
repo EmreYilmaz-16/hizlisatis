@@ -591,6 +591,14 @@ AddRow(
                 RELATED_PRODUCT.RELATED_PRODUCT_ID = #arguments.PRODUCT_ID#
             )
     </cfquery>
+    <cfif session.ep.userid eq 1146>
+        <cfsavecontent  variable="control5">
+            <cfdump  var="#getRelatedProduct#">                
+            <cfdump  var="#arguments#">
+          
+           </cfsavecontent>
+           <cffile action="write" file = "c:\PBS\get_relatedProducts.html" output="#control5#"></cffile>
+        </cfif>
     <cfset returnArr=arrayNew(1)>
     
     <cfloop query="getRelatedProduct">
