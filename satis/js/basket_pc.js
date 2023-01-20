@@ -106,7 +106,7 @@ function AddRow(
   q += " WHERE STOCK_ID=" + stock_id;
   var res = wrk_query(q, "dsn3");
   var RafKodu = "";
-  if (res.recordcount > 0) {
+  if (res.recordcount > 0 && fc == 0) {
     if (res.recordcount > 1 && fc == 0) {
       var calculate_params =
         "&pid_=" +
