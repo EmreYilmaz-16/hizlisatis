@@ -1137,7 +1137,7 @@
                                         INNER JOIN workcube_metosan.SETUP_PAYMETHOD AS SP ON CC.PAYMETHOD_ID=SP.PAYMETHOD_ID
                                         WHERE CC.COMPANY_ID=#COMP_ID#
                                 </cfquery>
-                                #getPm.PAYMETHOD#
+                                #getPm.PAYMETHOD# emre
                             </td>
                             <td align="center" colspan="5">
                             	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.detail_order&order_id=#order_id#','wide');" class="tableyazi" title="Satış Siparişine Git">
