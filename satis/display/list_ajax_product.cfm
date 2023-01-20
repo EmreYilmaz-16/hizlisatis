@@ -708,6 +708,14 @@ AddRow(
             arrayAppend(returnArr,Product);
         </cfscript>
     </cfloop>
+    <cfif session.ep.userid eq 1146>
+        <cfsavecontent  variable="control5">
+            <cfdump  var="#returnArr#">                
+            <cfdump  var="#arguments#">
+          
+           </cfsavecontent>
+           <cffile action="write" file = "c:\PBS\get_relatedProducts_01.html" output="#control5#"></cffile>
+        </cfif>
     <CFSET ReturnVal.RecordCount=1>
 <CFSET ReturnVal.REL_PRODUCTS=returnArr>
 <cfreturn ReturnVal.REL_PRODUCTS>
