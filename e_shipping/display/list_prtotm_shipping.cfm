@@ -1341,7 +1341,7 @@
                                         INNER JOIN workcube_metosan.SETUP_PAYMETHOD AS SP ON CC.PAYMETHOD_ID=SP.PAYMETHOD_ID
                                         WHERE CC.COMPANY_ID=#company_id#
                                 </cfquery>
-                                #getPm.PAYMETHOD#
+                                <b>Ö.Y:(#getPm.PAYMETHOD#)</b>
                                 </td>
                                 <cfif listlen(order_row_id_list)>
                                     <cfquery name="get_sevk_durum" datasource="#dsn3#"> <!---Rezerve edilen üretim planları veya satınalma siparişlerinin depoya girişleri kontrol ediliyor--->
