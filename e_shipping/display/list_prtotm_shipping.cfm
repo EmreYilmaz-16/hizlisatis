@@ -1065,6 +1065,7 @@
 				<th rowspan="2" style="width:55px;text-align:center"><cf_get_lang_main no='75.no'></th>
 				<th rowspan="2" style="width:60px;text-align:center"><cf_get_lang_main no='330.tarih'></th>
 				<th rowspan="2" style="text-align:center"><cf_get_lang_main no='162.sirket'></th>
+                    <th rowspan="2" style="text-align:center">Ödeme Yöntemi</th>
                 <cfif ListFind(session.ep.user_level,25)>
                 	<th rowspan="2" style="width:80px;text-align:center"><cf_get_lang_main no='1203.üye bakiyesi'></th>
                 </cfif>
@@ -1125,6 +1126,20 @@
                                         #get_par_info(COMP_ID,1,1,0)#
                                     <cfelseif len(cons_id)>
                                         #get_cons_info(CONS_ID,0,0)#
+                                    </cfif>
+                                </cfif>
+                            </td>
+                            <td>
+                                <cfif tip eq 2>
+                                	<cfif len(comp_id)>
+                                      <cfquery name="getPM" datasource="#dsn#">
+                                        SELECT SP.PAYMETHOD FROM workcube_metosan.COMPANY_CREDIT AS CC 
+                                        INNER JOIN workcube_metosan.SETUP_PAYMETHOD AS SP ON CC.PAYMETHOD_ID=SP.PAYMETHOD_ID
+                                        WHERE CC.COMPANY_ID=#COMP_ID#
+                                      </cfquery>
+                                        #getPM.PAYMETHOD#
+                                    <cfelseif len(cons_id)>
+                                        
                                     </cfif>
                                 </cfif>
                             </td>
