@@ -225,6 +225,9 @@ ORDER BY VP_ID
     SELECT * FROM PRODUCT_CAT WHERE PRODUCT_CATID=#getVirtual.PRODUCT_CATID#
 </cfquery>
 
+<cfdump var="#getVirtual#">
+<cfdump var="#getVirtualTree#">
+<cfdump var="#getCat#">
     <!----------
 1	SOL REKOR
 2	HORTUM
