@@ -343,21 +343,29 @@ function AddRow(
   tr.appendChild(td);
 
   var td = document.createElement("td");
-td.setAttribute("style","display:flex;align-items: baseline;")
+  td.setAttribute("style", "display:flex;align-items: baseline;");
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   var sel_1 = AsamaYapici(row_count, currency);
 
-  var satistl=document.createElement("span");
-  satistl.setAttribute("class","icon-detail");
-  satistl.setAttribute("onclick","openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid="+product_id+"&sid="+stock_id+"')")
+  var satistl = document.createElement("span");
+  satistl.setAttribute("class", "icon-detail");
+  satistl.setAttribute(
+    "onclick",
+    "openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid=" +
+      product_id +
+      "&sid=" +
+      stock_id +
+      "')"
+  );
   div.appendChild(sel_1);
-  
 
   td.appendChild(div);
-  td.appendChild(satistl);
+  if (is_virtual != 1) {
+    td.appendChild(satistl);
+  }
   tr.appendChild(td);
-/*
+  /*
  <a href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&amp;pid=38109&amp;sid=38109')">
                 <i class="icon-detail" title="Ürün Detay Bilgisi"></i>
             </a>
