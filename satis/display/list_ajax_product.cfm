@@ -121,6 +121,7 @@
                         </cfif>
                     <cfelse>
                         <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,0,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#')">#it2.PRODUCT_NAME#</a></li>
+                        <span class="icon-detail" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid=#it2.PRODUCT_ID#&sid=#it2.STOCK_ID#')"></span>
                     </cfif>
         
             </cfloop>
