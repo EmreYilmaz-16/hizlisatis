@@ -679,12 +679,12 @@ AddRow(
         </cfif>    
         <cfscript>
             Product={
-                PRODUCT_ID=PRODUCT_ID,
-                STOCK_ID=STOCK_ID,
-                PRODUCT_CATID=PRODUCT_CATID,
-                PRODUCT_CAT=PRODUCT_CAT,
-                PRODUCT_CODE_2=PRODUCT_CODE_2,
-                MANUFACT_CODE=MANUFACT_CODE,
+                PRODUCT_ID=getRelatedProduct.PRODUCT_ID,
+                STOCK_ID=getRelatedProduct.STOCK_ID,
+                PRODUCT_CATID=getRelatedProduct.PRODUCT_CATID,
+                PRODUCT_CAT=getRelatedProduct.PRODUCT_CAT,
+                PRODUCT_CODE_2=getRelatedProduct.PRODUCT_CODE_2,
+                MANUFACT_CODE=getRelatedProduct.MANUFACT_CODE,
                 IS_PRODUCTION=IS_PRODUCTION,
                 TAX=TAX,
                 LAST_COST=lastCost2,
