@@ -343,7 +343,7 @@ function AddRow(
   tr.appendChild(td);
 
   var td = document.createElement("td");
-
+td.setAttribute("style","display:flex;align-items: baseline;")
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   var sel_1 = AsamaYapici(row_count, currency);
