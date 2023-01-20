@@ -1339,7 +1339,7 @@
                                 <cfquery name="getPm" datasource="#dsn#">
                                         SELECT SP.PAYMETHOD FROM workcube_metosan.COMPANY_CREDIT AS CC 
                                         INNER JOIN workcube_metosan.SETUP_PAYMETHOD AS SP ON CC.PAYMETHOD_ID=SP.PAYMETHOD_ID
-                                        WHERE CC.COMPANY_ID=#COMP_ID#
+                                        WHERE CC.COMPANY_ID=#company_id#
                                 </cfquery>
                                 #getPm.PAYMETHOD#
                                 </td>
