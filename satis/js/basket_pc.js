@@ -145,6 +145,7 @@ function AddRow(
         "index.cfm?fuseaction=objects.emptypopup_select_raf_pbs" +
           calculate_params
       );
+      RafKodu=shelf_code;
       return true;
     } else {
       RafKodu = res.SHELF_CODE[0];
