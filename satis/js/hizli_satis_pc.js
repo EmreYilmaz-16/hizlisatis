@@ -225,8 +225,8 @@ function sayfaYukle() {
   );
 }
 function Filtrele(el, ev) {
-  console.log(ev);
-  if (ev.keyCode == 13) {
+  //console.log(ev);
+  if (ev.keyCode == 13 || ev.type == "click") {
     sayfaYukle();
   }
 }
