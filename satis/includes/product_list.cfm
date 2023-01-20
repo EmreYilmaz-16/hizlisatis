@@ -51,6 +51,9 @@
         </div></div>
     </td>
     <td>
+        <button type="button" class="btn btn-primary" onclick="Filtrele(this,event)">Ara</button>
+    </td>
+    <td>
         <div style="align-self: self-end;float:right">
             <button class="btn btn-primary" onclick="openHose('')" type="button">T</button>
             <button class="btn btn-danger" onclick="openHydrolic('')" type="button">H</button>

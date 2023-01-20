@@ -225,6 +225,7 @@ function sayfaYukle() {
   );
 }
 function Filtrele(el, ev) {
+  console.log(ev);
   if (ev.keyCode == 13) {
     sayfaYukle();
   }
