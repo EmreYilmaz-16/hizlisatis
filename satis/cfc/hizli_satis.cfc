@@ -557,7 +557,7 @@
            <cffile action="write" file = "c:\PBS\hizlisatiscfc_saveVirtualTube002.html" output="#control5#"></cffile>
         <cftry>
             <cfif not isdefined(arguments.employee_id)> <cfset arguments.employee_id=1></cfif>
-            <cfif not isdefined(arguments.PRODUCT_CATID) or not len(arguments.PRODUCT_CATID)> <cfset arguments.PRODUCT_CATID=0></cfif>
+            <cfif not isdefined("arguments.PRODUCT_CATID") or not len(arguments.PRODUCT_CATID)> <cfset arguments.PRODUCT_CATID=0></cfif>
         <cfquery name="insertQ" datasource="#arguments.dsn3#" result="Res">
             INSERT INTO VIRTUAL_PRODUCTS_PRT(PRODUCT_NAME,PRODUCT_CATID,PRICE,IS_CONVERT_REAL,MARJ,PRODUCT_TYPE,IS_PRODUCTION,RECORD_EMP,RECORD_DATE,PRODUCT_DESCRIPTION) VALUES('#arguments.product_name#',#arguments.PRODUCT_CATID#,#Filternum(arguments.maliyet)#,0,#Filternum(arguments.marj)#,1,#arguments.IsProduction#,1,#now()#,'#arguments.PRODUCT_DESCRIPTION#')
         </cfquery>
