@@ -27,7 +27,7 @@
  $(document).ready(function(){
         $("#measure").focus();
         $("#measure").on("keyup",()=>{if(window.event.keyCode == "13")$("#cut_pcs").focus();});
-        $("#cut_pcs").on("keyup",function(ev){if(ev.keyCode == "13")calculateUnit();});
+        $("#cut_pcs").on("keyup",function(ev){if(ev.keyCode == "13")calculateUnit(<cfoutput>#attributes.pid_#,#attributes.sid_#,'#attributes.stock_code#','#attributes.brand#',#attributes.is_virtual#,#attributes.amount#,#attributes.price#,'#attributes.product_name#',#attributes.tax#,#attributes.indirim1#,#attributes.product_type#,'#attributes.shelf_code#','#attributes.other_money#',#attributes.price_other#,-6,#attributes.manuel#,#attributes.cost#,'#attributes.unit#','','',1,'#attributes.modal_id#',#attributes.rowNum#</cfoutput>);});
     });    
     function calculateUnit(
     product_id,
