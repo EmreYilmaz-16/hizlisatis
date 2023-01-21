@@ -1140,7 +1140,7 @@
 <cfset attributes.main_stock_id=main_stock_id>
     <cfset attributes.PRODUCT_ID=getStock_Info.PRODUCT_ID>
     <cfset attributes.add_stock_id=pr.SID>
-    <cfset attributes.AMOUNT = filterNum(pr.QTY)>
+    <cfset attributes.AMOUNT = filterNum(tlformat(pr.QTY))>
     <cfset attributes.UNIT_ID = getStock_Info.PRODUCT_UNIT_ID>
     <cfset attributes.alternative_questions = pr.QUE>
        <cfinclude template="/AddOns/Partner/satis/Includes/PARTNERTREEPORT.cfm">
