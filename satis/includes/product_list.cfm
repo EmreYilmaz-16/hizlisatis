@@ -53,14 +53,7 @@
     <td>
         <button type="button" class="btn btn-info" onclick="Filtrele(this,event)"><i style="margin-right:5px" class="fa fa-search"></i>Ara</button>
     </td>
-    <td>
-        <div style="align-self: self-end;float:right">
-            <button class="btn btn-primary" onclick="openHose('')" type="button">T</button>
-            <button class="btn btn-danger" onclick="openHydrolic('')" type="button">H</button>
-            <button class="btn btn-warning" onclick="openPump('')" type="button">P</button>
-            <button class="btn btn-success" onclick="openVirtualProduct('')" type="button">VP</button>
-        </div>
-    </td>
+  <td><button type="button" class="btn btn-warning" onclick="CheckSatilabilir()"><i style="margin-right:5px" class="fa fa-gears"></i>Stok Kontrol</button></td>
     <td>
         <div class="form-group">    
             
@@ -71,6 +64,14 @@
         <div class="form-group">    
             
             <input type="text"  name="BAKIYE" id="BAKIYE" style="font-size:14pt;line-height:1">
+        </div>
+    </td>
+    <td>
+        <div style="align-self: self-end;float:right">
+            <button class="btn btn-primary" onclick="openHose('')" type="button">T</button>
+            <button class="btn btn-danger" onclick="openHydrolic('')" type="button">H</button>
+            <button class="btn btn-warning" onclick="openPump('')" type="button">P</button>
+            <button class="btn btn-success" onclick="openVirtualProduct('')" type="button">VP</button>
         </div>
     </td>
 </tr>
