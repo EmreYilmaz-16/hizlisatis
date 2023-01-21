@@ -1737,13 +1737,13 @@ function CheckSatilabilir(){
       var mik_=document.getElementById("amount_"+i).value
       var mik=parseFloat(filterNum(mik_));
       var rw=document.getElementById("row_"+i);
-      console.log(mik)
+     // console.log(mik)
      if(parseInt(sid) !=0){
-          console.log(sid)
+         // console.log(sid)
          var q=wrk_query("SELECT ISNULL("+generalParamsSatis.dataSources.dsn2+".GET_SATILABILIR_STOCK("+sid+"),0) as SATILABILIR","dsn2");
          //console.log(q)
          var ss=parseFloat(q.SATILABILIR[0])
-         console.log(ss)
+      //   console.log(ss)
          if(ss<mik){
              rw.setAttribute("style","background:#ff5959")
          }
