@@ -1729,3 +1729,26 @@ function getSetNum(el) {
     el.value = commaSplit(v);
   }
 }
+
+function CheckSatilabilir(){
+  //var rows=document.getElementsByClassName("sepetRow");
+  for(let i=1;i<=row_count;i++){
+      var sid=document.getElementById("stock_id_"+i).value
+      var mik_=document.getElementById("amount_"+i).value
+      var mik=parseFloat(filterNum(mik_));
+      var rw=document.getElementById("row_"+i);
+      console.log(mik)
+     if(parseInt(sid) !=0){
+          console.log(sid)
+         var q=wrk_query("SELECT ISNULL("+generalParamsSatis.dataSources.dsn2+".GET_SATILABILIR_STOCK("+sid+"),0) as SATILABILIR","dsn2");
+         //console.log(q)
+         var ss=parseFloat(q.SATILABILIR[0])
+         console.log(ss)
+         if(ss<mik){
+             rw.setAttribute("style","background:#ff5959")
+         }
+      }
+     // console.log(sid)
+      
+  }
+}
