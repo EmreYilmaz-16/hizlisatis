@@ -16,12 +16,7 @@
         </div>
     </div>
     </td>
-    <td>
-        <div class="form-group">
-            
-            <input type="text" name="keyword" id="keyword" placeholder="Filtre" onkeyup="Filtrele(this,event)">
-        </div>
-    </td>
+
     <td><div class="form-group">
         <div class="input-group" style="position: static;">
            
