@@ -14,6 +14,97 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
 
 ) AS T ORDER BY FAMILY,MODULE,WRK_OBJECTS_ID
 </cfquery>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.0.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.9/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.js" integrity="sha512-NOmoi96WK3LK/lQDDRJmrobxa+NMwVzHHAaLfxdy0DRHIBc6GZ44CRlYDmAKzg9j7tvq3z+FGRlJ4g+3QC2qXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/message.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/number.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/currency.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/date.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.4/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.4/css/dx.light.css" />
+    <script src="https://cdn3.devexpress.com/jslib/20.2.4/js/dx.all.js"></script>
+<cf_box title="DevExtreme Test">
+  <div class="demo-container">
+    <div id="gridContainer"></div>
+    <div class="options">
+      <div class="caption">Options</div>
+      <div class="option">
+        <div id="autoExpand"></div>
+      </div>
+    </div>
+  </div>
+</cf_box>
+,C.COMPANY_TELCODE,C.COMPANY_TEL1
+
+<script>
+  const customers = [
+  <cfoutput query="getCompanies">
+  {
+  ID: #WRK_OBJECTS_ID#,
+  Sayfa: '#HEAD#',
+  Fuseaction: '#FULL_FUSEACTION#',
+  FilePath: '#FILE_PATH#',
+  Module: '#MODULE#',
+  Family: '#FAMILY#',
+  Author: '#AUTHOR#'
+},</cfoutput> ];
+
+</script>
+    <script>
+      $(() => {
+  const dataGrid = $('#gridContainer').dxDataGrid({
+    dataSource: customers,
+    keyExpr: 'ID',
+    allowColumnReordering: true,
+    showBorders: true,
+    grouping: {
+      autoExpandAll: true,
+    },
+    searchPanel: {
+      visible: true,
+    },
+    paging: {
+      pageSize: 10,
+    },
+    groupPanel: {
+      visible: true,
+    },
+    columns: [
+      'Sayfa',
+      'Fuseaction',
+      'FilePath',
+      'Module',
+      'Family',
+      'Author'
+    ],
+  }).dxDataGrid('instance');
+
+  $('#autoExpand').dxCheckBox({
+    value: true,
+    text: 'Expand All Groups',
+    onValueChanged(data) {
+      dataGrid.option('grouping.autoExpandAll', data.value);
+    },
+  });
+});
+
+    </script>
+
+
+
+
+
+
 <cf_box title="Sayfa Listesi">
     <div class="form-group">
         <input type="text" id="Search" name="Search" placeholder="Search">

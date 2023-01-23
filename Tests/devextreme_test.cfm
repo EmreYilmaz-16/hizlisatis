@@ -137,7 +137,7 @@ and ss.TABLE_NAME not in (select name from workcube_metosan.sys.views where sche
    <BR>
 </cfoutput>
 <cfcatch></cfcatch>
-</cftry>------>
+</cftry>
 
 
 <cfquery name="getPeriods" datasource="#dsn#">
@@ -177,3 +177,4 @@ and ss.TABLE_NAME not in (select name from workcube_metosan.sys.views where sche
         </cfquery>
 
         <cfdump var="#getDepWorks#">
+        ------>
