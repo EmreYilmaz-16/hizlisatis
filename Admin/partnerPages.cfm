@@ -48,7 +48,7 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
 
 <script>
   const customers = [
-  <cfoutput query="getCompanies">
+  <cfoutput query="getPages">
   {
   ID: #WRK_OBJECTS_ID#,
   Sayfa: '#HEAD#',
