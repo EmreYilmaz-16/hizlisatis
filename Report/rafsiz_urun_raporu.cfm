@@ -1,10 +1,10 @@
-<cfparam name="attributes.report_id" default="0">
+﻿<cfparam name="attributes.report_id" default="0">
 <cfparam name="attributes.product_code" default="">
 <cfparam name="attributes.product_cat" default="">
 <cfparam name="attributes.brand_id" default="">
 <cfparam name="attributes.brand_name" default="">
 <cfparam name="attributes.display_cost" default="">
-
+<cf_box title="Rafsız Ürün Raporu">
 <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&event=det&report_id=#attributes.report_id#" name="rapor">
     <table><cfoutput>
         <tr>
@@ -70,6 +70,14 @@
 </cfquery>
 
 <cf_big_list>
+    <tr>
+        <th>
+            Ürün Kodu
+        </th>
+        <th>
+            Ürün Adı
+        </th>
+    </tr>
 <cfoutput query="Products">
     <tr>
         <td>
@@ -83,3 +91,5 @@
 </cf_big_list>
 </cfif>
 
+
+</cf_box>
