@@ -49,6 +49,10 @@
     </table>
 </cfform>
 
+<cfif isDefined("attrributes.is_submit")>
+
+
+
 <cfquery name="Products" datasource="#dsn3#">
     SELECT * FROM workcube_metosan_1.STOCKS AS S 
 	LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=S.STOCK_ID
@@ -64,3 +68,17 @@
         AND S.BRAND_ID =#attributes.brand_id#
     </cfif>
 </cfquery>
+<cf_big_list>
+<cfoutput query="Products">
+    <tr>
+        <td>
+            #PRODUCT_CODE#
+        </td>
+        <td>
+            #PRODUCT_NAME#
+        </td>
+    </tr>
+</cfoutput>
+</cf_big_list>
+</cfif>
+
