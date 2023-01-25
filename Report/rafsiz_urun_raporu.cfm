@@ -68,7 +68,7 @@
         AND S.BRAND_ID =#attributes.brand_id#
     </cfif>
 </cfquery>
-<cfdump var="#Products#">
+
 <cf_big_list>
 <cfoutput query="Products">
     <tr>
