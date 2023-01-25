@@ -14,7 +14,7 @@
                     <div class="col col-12">
                         <div class="input-group">
                             <input type="hidden" name="product_code" id="product_code" value="#attributes.product_code#">
-                            <input type="text" name="product_cat" id="product_cat" style="width:135px;" value="#attributes.product_cat#" onfocus="AutoComplete_Create('product_cat','PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','','HIERARCHY','product_code','','3','200');" autocomplete="off"><div id="product_cat_div_2" name="product_cat_div_2" class="completeListbox" autocomplete="on" style="width: 458px; max-height: 150px; overflow: auto; position: absolute; left: 25px; top: 113px; z-index: 159; display: none;"></div>
+                            <input type="text" name="product_cat" id="product_cat" required style="width:135px;" value="#attributes.product_cat#" onfocus="AutoComplete_Create('product_cat','PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','','HIERARCHY','product_code','','3','200');" autocomplete="off"><div id="product_cat_div_2" name="product_cat_div_2" class="completeListbox" autocomplete="on" style="width: 458px; max-height: 150px; overflow: auto; position: absolute; left: 25px; top: 113px; z-index: 159; display: none;"></div>
                             <span class="input-group-addon btnPointer icon-ellipsis" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_product_cat_names&is_sub_category=1&field_code=rapor.product_code&field_name=rapor.product_cat&keyword='+encodeURIComponent(document.rapor.product_cat.value));"></span>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
 <cfoutput query="Products">
     <tr>
         <td>
-            #PRODUCT_CODE#
+           <a href="/index.cfm?fuseaction=product.list_product&event=det&pid=#PRODUCT_ID#" target="_blank"> #PRODUCT_CODE#</a>
         </td>
         <td>
             #PRODUCT_NAME#
