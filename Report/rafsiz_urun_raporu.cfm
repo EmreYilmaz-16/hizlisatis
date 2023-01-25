@@ -54,7 +54,7 @@
 
 
 <cfquery name="Products" datasource="#dsn3#">
-    SELECT S.*,SR.*<cfif attributes.display_cost eq 1>,D.DEPARTMENT_HEAD,SL.COMMENT</cfif>  FROM workcube_metosan_1.STOCKS AS S 
+    SELECT <cfif attributes.display_cost eq 1>D.DEPARTMENT_HEAD,SL.COMMENT,<cfelse>*</cfif>  FROM workcube_metosan_1.STOCKS AS S 
 	LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=S.STOCK_ID
 	<cfif attributes.display_cost eq 1>
     LEFT JOIN (
