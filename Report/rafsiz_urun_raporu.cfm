@@ -54,12 +54,15 @@
 
 
 <cfquery name="Products" datasource="#dsn3#">
-    SELECT * FROM workcube_metosan_1.STOCKS AS S 
+    SELECT S.*,SR.*<cfif attributes.display_cost eq 1>,D.DEPARTMENT_HEAD,SL.COMMENT</cfif>  FROM workcube_metosan_1.STOCKS AS S 
 	LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=S.STOCK_ID
 	<cfif attributes.display_cost eq 1>
     LEFT JOIN (
 	SELECT SUM(STOCK_IN-STOCK_OUT) AS BKY ,STOCK_ID,STORE,STORE_LOCATION FROM workcube_metosan_2023_1.STOCKS_ROW GROUP BY STOCK_ID,STORE,STORE_LOCATION
-	) AS SR  ON SR.STOCK_ID=S.STOCK_ID</cfif>
+	) AS SR  ON SR.STOCK_ID=S.STOCK_ID
+	LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SR.STORE
+	LEFT JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.DEPARTMENT_ID=SR.STORE_LOCATION
+</cfif>
 	WHERE PPR.PRODUCT_PLACE_ID IS NULL <cfif attributes.display_cost eq 1> AND SR.BKY>0</cfif> 
     <cfif len(attributes.product_cat)>
         AND S.PRODUCT_CODE LIKE '%#attributes.product_code#%'
@@ -77,6 +80,15 @@
         <th>
             Ürün Adı
         </th>
+        <cfif attributes.display_cost eq 1>
+        <th>
+            Stok Miktarı
+        </th>
+        <th>
+            Depo Lokasyon
+        </th>
+
+        </cfif>
     </tr>
 <cfoutput query="Products">
     <tr>
@@ -86,6 +98,14 @@
         <td>
             #PRODUCT_NAME#
         </td>
+        <cfif attributes.display_cost eq 1>
+            <td>
+                #BKY#
+            </td>
+            <td>
+                #DEPARTMENT_HEAD# #COMMENT#
+            </td>
+        </cfif>
     </tr>
 </cfoutput>
 </cf_big_list>
