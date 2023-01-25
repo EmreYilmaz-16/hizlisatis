@@ -49,8 +49,8 @@
     </table>
 </cfform>
 
-<cfif isDefined("attrributes.is_submit")>
-buraya girdi
+<cfif isDefined("attributes.is_submit")>
+
 
 
 <cfquery name="Products" datasource="#dsn3#">
@@ -64,7 +64,7 @@ buraya girdi
     <cfif len(attributes.product_cat)>
         AND S.PRODUCT_CODE LIKE '%#attributes.product_code#%'
     </cfif>
-    <cfif len(attributes.product_cat)>
+    <cfif len(attributes.brand_name)>
         AND S.BRAND_ID =#attributes.brand_id#
     </cfif>
 </cfquery>
