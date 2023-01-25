@@ -50,7 +50,7 @@
 </cfform>
 
 <cfif isDefined("attrributes.is_submit")>
-
+buraya girdi
 
 
 <cfquery name="Products" datasource="#dsn3#">
