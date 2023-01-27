@@ -278,7 +278,7 @@
                 O.EMPLOYEE_ID,
                 ESR.OUT_DATE
 			ORDER BY 
-        		ESR.SHIP_RESULT_ID
+        		ESR.DELIVER_PAPER_NO
        	</cfquery>
   	<cfelseif cari_kontrol.recordcount>
     	<cfset tip =2>
@@ -324,7 +324,7 @@
                 O.EMPLOYEE_ID,
                 ESR.OUT_DATE
 			ORDER BY 
-        		ESR.SHIP_RESULT_ID
+        		ESR.DELIVER_PAPER_NO
        	</cfquery>
     <cfelse>
         <cfquery name="GET_SHIPPING" datasource="#dsn3#"><!---Sevk Planları ve Sevk Talepleri Listeleniyor--->
@@ -767,17 +767,7 @@
                 	AND SEVK_DURUM = 6
                 </cfif>
             ORDER BY
-                <cfif sort_type eq 1>
-                    OUT_DATE
-                <cfelseif sort_type eq 2>
-                    OUT_DATE desc
-                <cfelseif sort_type eq 3>
-                    SHIP_FIS_NO
-                <cfelseif sort_type eq 4>
-                    SHIP_FIS_NO desc
-                <cfelseif sort_type eq 5>
-                    IS_TYPE,DEPARTMENT_ID,UNVAN, SHIP_FIS_NO
-                </cfif>
+            SHIP_RESULT_ID
         </cfquery>
         <cfset arama_yapilmali = 0>
         <cfset attributes.totalrecords = GET_SHIPPING.recordcount>
@@ -1143,6 +1133,7 @@
                             	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.detail_order&order_id=#order_id#','wide');" class="tableyazi" title="Satış Siparişine Git">
                                     #ORDER_NUMBER#
                               	</a>
+                                <a onclick="windowopen('/index.cfm?fuseaction=eshipping.emptypopup_add_prtotm_shipping&order_id=#order_id#','page')">Plan</a>
                             </td>
                             <td style="text-align:center">#CITY_NAME#<br />#COUNTY_NAME#</td>
                             <td colspan="4"><font color="red">
