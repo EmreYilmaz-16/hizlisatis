@@ -147,7 +147,7 @@ WHERE es.SHIP_RESULT_ID = esrr.SHIP_RESULT_ID
 </td>
 <td>
 <cfoutput>
-<a href="##" onclick="windowopen('index.cfm?fuseaction=sales.popup_add_prtotm_shipping&order_id=#GetSiparisler.ORDER_ID[j]#','page')">
+<a href="##" onclick="windowopen('index.cfm?fuseaction=eshipping.emptypopup_add_prtotm_shipping&order_id=#GetSiparisler.ORDER_ID[j]#','page')">
 #dateformat(GetSiparisler.ORDER_DATE[j],"dd/mm/yyyy")#</a>
 </cfoutput>
 </td>
