@@ -156,7 +156,7 @@
                         </div>
                         <div class="form-group">
                             <select name="IsSiparis">
-                                <option value="">Tümü</option>
+                                <option value="">Sipariş Durumu</option>
                                 <option <cfif attributes.IsSiparis eq 1>selected</cfif> value="1">Siparişe Dönenler</option>
                                 <option <cfif attributes.IsSiparis eq 0>selected</cfif> value="0">Siparişe Dönmemiş</option>
                             </select>
