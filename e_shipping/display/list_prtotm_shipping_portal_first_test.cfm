@@ -173,7 +173,7 @@ WHERE es.SHIP_RESULT_ID = esrr.SHIP_RESULT_ID
 </td>
 <td>
 <cfoutput query="GetSVKNO">
-<a class="tableyazi" href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=1','page');" title="Alınan Siparisler">#DELIVER_PAPER_NO#</a>
+<a class="tableyazi" href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#&is_type=1','page');" title="Alınan Siparisler">#DELIVER_PAPER_NO#</a>
 </cfoutput>
 </td>
 </tr>
