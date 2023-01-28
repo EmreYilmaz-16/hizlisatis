@@ -1,4 +1,4 @@
-<cfset IS_SHOW_SALES_EMP=1>
+﻿<cfset IS_SHOW_SALES_EMP=1>
 <cfset XML_PROBABILITY =0>
 <cfset XML_OFFER_REVISION  =0>
 <cfset X_SHOW_ORDER_PRICE   =0>
@@ -299,6 +299,7 @@
                             <th><cf_get_lang dictionary_id='57742.Tarih'></th>
                             <th><cf_get_lang dictionary_id='57480.Başlık'></th>
                             <th><cf_get_lang dictionary_id='57574.Sirket'> - <cf_get_lang dictionary_id='57578.Yetkili'></th>
+                                <th>Açıklama</th>
                             <cfif x_show_order_price eq 1 and attributes.listing_type eq 1>
                             <th><cf_get_lang dictionary_id='30024.KDVsiz'><cfif attributes.listing_type eq 1><cf_get_lang dictionary_id='57673.Tutar'><cfelse><cf_get_lang dictionary_id='58084.Fiyat'></cfif></th>
                             </cfif>
@@ -452,6 +453,7 @@
                                                 </cfloop>
                                             </cfif>
                                         </td>
+                                        <td>#OFFER_DESCRIPTION#</td>
                                         <cfif Len(attributes.listing_type) and attributes.listing_type eq 2>
                                             <cfif len(discount_1)><cfset indirim1 = discount_1><cfelse><cfset indirim1 =0></cfif>
                                             <cfif len(discount_2)><cfset indirim2 = discount_2><cfelse><cfset indirim2 =0></cfif>

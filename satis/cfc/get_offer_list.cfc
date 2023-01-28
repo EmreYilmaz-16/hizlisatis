@@ -81,6 +81,7 @@
             OFFER.RECORD_DATE,
             OFFER.OFFER_HEAD,
             OFFER.PRICE,
+            OFFER.OFFER_DESCRIPTION,
             OFFER.OTHER_MONEY,
             OFFER.OTHER_MONEY_VALUE,
             OFFER.OFFER_STATUS,
