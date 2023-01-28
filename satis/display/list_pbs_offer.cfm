@@ -300,6 +300,7 @@
                             <th><cf_get_lang dictionary_id='57480.Başlık'></th>
                             <th><cf_get_lang dictionary_id='57574.Sirket'> - <cf_get_lang dictionary_id='57578.Yetkili'></th>
                                 <th>Açıklama</th>
+                                <th>Sipariş</th>
                             <cfif x_show_order_price eq 1 and attributes.listing_type eq 1>
                             <th><cf_get_lang dictionary_id='30024.KDVsiz'><cfif attributes.listing_type eq 1><cf_get_lang dictionary_id='57673.Tutar'><cfelse><cf_get_lang dictionary_id='58084.Fiyat'></cfif></th>
                             </cfif>
@@ -454,6 +455,7 @@
                                             </cfif>
                                         </td>
                                         <td>#OFFER_DESCRIPTION#</td>
+                                        <td>#ORDER_NUMBER#</td>
                                         <cfif Len(attributes.listing_type) and attributes.listing_type eq 2>
                                             <cfif len(discount_1)><cfset indirim1 = discount_1><cfelse><cfset indirim1 =0></cfif>
                                             <cfif len(discount_2)><cfset indirim2 = discount_2><cfelse><cfset indirim2 =0></cfif>

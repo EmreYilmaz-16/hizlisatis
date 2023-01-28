@@ -97,11 +97,14 @@
 			OFFER.PROBABILITY,
             ISNULL(OFFER.NETTOTAL,0) NETTOTAL,
             ISNULL(OFFER.TAX,0) TAX,
-            ISNULL(OFFER.OTV_TOTAL,0) OTV_TOTAL
+            ISNULL(OFFER.OTV_TOTAL,0) OTV_TOTAL,
+            O.ORDER_NUMBER
         FROM 
             PBS_OFFER AS OFFER LEFT JOIN #this.dsn_alias#.PRO_PROJECTS PP ON PP.PROJECT_ID = OFFER.PROJECT_ID
 				  LEFT JOIN #this.dsn_alias#.EMPLOYEES E ON E.EMPLOYEE_ID = OFFER.SALES_EMP_ID	
 				  LEFT JOIN #this.dsn_alias#.EMPLOYEES EMPLOYEES ON EMPLOYEES.EMPLOYEE_ID = OFFER.RECORD_MEMBER	
+                  LEFT JOIN PBS_OFFER_TO_ORDER AS PTO ON PTO.OFFER_ID=OFFER.OFFER_ID
+                  LEFT JOIN ORDERS AS OO ON OO.ORDER_ID=PTO.ORDER_ID
           <cfif (isdefined("arguments.product_name") and len(arguments.product_name) and len(arguments.product_id)) or (isDefined("arguments.listing_type") and arguments.listing_type eq 2)>
             ,PBS_OFFER_ROW OFR LEFT JOIN STOCKS S ON S.STOCK_ID = OFR.STOCK_ID 
           </cfif>		
