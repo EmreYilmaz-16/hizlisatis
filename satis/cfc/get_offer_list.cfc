@@ -29,7 +29,8 @@
 	<cfargument name="sales_member_type" default=""/>
 	<cfargument name="sales_member_name" default=""/>
 	<cfargument name="sales_member_id" default=""/>
-	<cfargument name="xml_sales_cari" default="">
+	<cfargument name="IsSiparis" default="">
+    <cfargument name="xml_sales_cari" default="">
 	
     <cfset dsn_alias = this.dsn_alias>
 	<cfif x_control_ims eq 1 and session.ep.our_company_info.sales_zone_followup eq 1>
@@ -191,6 +192,14 @@
 				AND OFFER.SALES_PARTNER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.sales_member_id#">
 			</cfif>
 		</cfif>
+        <cfif isDefined("arguments.IsSiparis") and len(arguments.IsSiparis)>
+            <cfif arguments.IsSiparis eq 1>
+                AND OO.ORDER_ID IS NOT NULL
+            </cfif>
+            <cfif arguments.IsSiparis eq 0>
+                AND OO.ORDER_ID IS NULL
+            </cfif>
+        </cfif>
         <cfif isdefined("arguments.x_control_ims") and arguments.x_control_ims eq 1 and session.ep.our_company_info.sales_zone_followup eq 1>
             AND
                 (

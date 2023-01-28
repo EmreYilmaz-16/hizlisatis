@@ -30,7 +30,7 @@
     <cfparam name="attributes.sales_member_name" default="">
     <cfparam name="attributes.sales_member_id" default="">
     <cfparam name="attributes.sales_member_type" default="">
-    
+    <cfparam name="attributes.IsSiparis" default="">
     <cfif not isdefined("attributes.sales_emp_id") and attributes.form_varmi neq 1 and is_show_sales_emp eq 1>
         <cfset attributes.sales_emp_id = "#session.ep.userid#">
     </cfif>
@@ -78,6 +78,7 @@
                     sales_member_type : '#IIf(IsDefined("attributes.sales_member_type"),"attributes.sales_member_type",DE(""))#',
                     sales_member_name : '#IIf(IsDefined("attributes.sales_member_name"),"attributes.sales_member_name",DE(""))#',
                     sales_member_id : '#IIf(IsDefined("attributes.sales_member_id"),"attributes.sales_member_id",DE(""))#',
+                    IsSiparis : '#IIf(IsDefined("attributes.IsSiparis"),"attributes.IsSiparis",DE(""))#',
                     xml_sales_cari : '#IIf(IsDefined("xml_sales_cari"),"xml_sales_cari",DE(""))#'
                     );
         </cfscript>
@@ -152,6 +153,13 @@
                                 <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,dateformat_style)#" validate="#validate_style#" maxlength="10" message="#alert#">
                                 <span class="input-group-addon"><cf_wrk_date_image date_field="finish_date"></span>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <select name="IsSiparis">
+                                <option value="">Tümü</option>
+                                <option <cfif attributes.IsSiparis eq 1>selected</cfif> value="1">Siparişe Dönenler</option>
+                                <option <cfif attributes.IsSiparis eq 0>selected</cfif> value="0">Siparişe Dönmemiş</option>
+                            </select>
                         </div>
                         <div class="form-group small">
                             <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,999" message="#getLang('','Kayıt Sayısı Hatalı',57537)#" maxlength="3">
