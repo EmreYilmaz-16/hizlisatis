@@ -1,3 +1,4 @@
+<cf_box title="Stok Durumları">
 <cfquery name="getShippingData" datasource="#dsn3#">
 SELECT S.PRODUCT_CODE,S.PRODUCT_NAME,ORR.QUANTITY,ORR.ORDER_ROW_CURRENCY,workcube_metosan_2023_1.GET_SATILABILIR_STOCK(ORR.STOCK_ID) AS SATILABILIR,
 		CASE 
@@ -59,3 +60,4 @@ WHERE SHIP_RESULT_ID=5240
 </cfoutput>
 </tbody>
 </cf_grid_list>
+</cf_box>
