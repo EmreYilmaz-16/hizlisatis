@@ -129,10 +129,10 @@
                 <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,250" message="#message#" maxlength="3" style="width:25px;">
             </div>
             <div class="form-group">
-                <button type="button" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" title="Sevkiyat Perspektif"><i class="icn-md fa fa-bar-chart"></i></button>
-                <button type="button" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" title="Sevk Planı Açılacak Siparişler"><i class="icn-md fa fa-bell"></i></button>
-                <button type="button" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" title="Sevk Planı Açılacak Siparişler"><i class="icn-md fa fa-bell"></i></button>
-                <cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>"
+                <button type="button" class="ui-wrk-btn ui-wrk-btn-success" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" title="Sevkiyat Perspektif"><i class="icn-md fa fa-bar-chart"></i></button>
+                <button type="button" class="ui-wrk-btn ui-wrk-btn-warning"  onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" title="Sevk Planı Açılacak Siparişler"><i class="icn-md fa fa-bell"></i></button>
+                <button type="button" class="ui-wrk-btn ui-wrk-btn-extra"  onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>"><i class="icn-md fa fa-gears"></i></button>
+                "
                 <!--------
        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" class="tableyazi">
                         	<img src="../../../images/graph.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3522.Sevkiyat Perspektif'>" />
@@ -140,7 +140,7 @@
                         <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" class="tableyazi">
                         	<img src="../../../images/target_customer.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3523.Sevk Planı Açılacak Siparişler'>" />
                       	</a>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" class="tableyazi">
+                        <a href="javascript://" onclick="" class="tableyazi">
                         	<img src="../../../images/pos_credit.gif" align="absmiddle" border="0" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>" />
                       	</a>
 ------>
