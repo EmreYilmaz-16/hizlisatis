@@ -24,7 +24,7 @@
                          FROM            
                             #dsn#_#session.ep.period_year#_#session.ep.company_id#.SHIP_ROW AS SR INNER JOIN
                              #dsn#_#session.ep.period_year#_#session.ep.company_id#.INVOICE_ROW AS IR ON SR.WRK_ROW_ID = IR.WRK_ROW_RELATION_ID
-                             LEFT JOIN #dsn#_#session.ep.period_year#_#session.ep.company_id#.INVOICE AS ı ON I.INVOICE_ID = IR.INVOICE_ID WHERE I.PURCHASE_SALES=1
+                             LEFT JOIN #dsn#_#session.ep.period_year#_#session.ep.company_id#.INVOICE AS I ON I.INVOICE_ID = IR.INVOICE_ID WHERE I.PURCHASE_SALES=1
                           <cfif get_period_id.recordcount>
                             UNION ALL
                             SELECT        
