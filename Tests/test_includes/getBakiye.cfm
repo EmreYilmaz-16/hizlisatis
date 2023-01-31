@@ -29,6 +29,7 @@
             #TlFormat(BAKIYE3,2)# #OTHER_MONEY# 
            </font><cfif bak.rc gt get_bakiye.currentrow><br/></cfif>
         </cfloop>
+    </cfoutput>
     </cfif>
-</cfoutput>
+
 </cfif>
