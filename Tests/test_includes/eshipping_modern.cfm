@@ -380,11 +380,7 @@
                                             </a>
                                          </cfif>
                                     </td>
-                                <cfelse>
-                                	<cfset AMBAR_CONTROL.recordcount = 0>
-                                    <cfset AMBAR_CONTROL.PAKET_SAYISI =0>
-                                    <cfset AMBAR_CONTROL.CONTROL_AMOUNT = 0>
-                                </cfif>
+                             
                                 <cfinclude template="package_control.cfm">
                                 
                                 <td style="text-align:center"> <!---El Terminali 1 Kontrol Indicator--->
