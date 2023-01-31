@@ -98,7 +98,7 @@
             </div>
         </cf_box_search>
         <cf_box_search_detail>
-            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+            <div class="form-group col col-2 ">
                 <label>Gönderen</label>
                 <div class="input-group">
                 <input type="hidden" name="order_employee_id" id="order_employee_id" value="<cfif isdefined('attributes.order_employee_id') and len(attributes.order_employee_id) and isdefined('attributes.order_employee') and len(attributes.order_employee)><cfoutput>#attributes.order_employee_id#</cfoutput></cfif>">
@@ -106,7 +106,7 @@
                 <span class="input-group-addon icon-ellipsis btnPointer" href="javascript://" onclick="windowopen('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_positions&field_emp_id=order_form.order_employee_id&field_name=order_form.order_employee&is_form_submitted=1&select_list=1','list');"></span>		   
             </div>
             </div>
-            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+            <div class="form-group col col-2 ">
                 <label>Cari Hesap</label>
                 <div class="input-group">
                 <input type="hidden" name="consumer_id" id="consumer_id" value="<cfif isdefined("attributes.consumer_id")><cfoutput>#attributes.consumer_id#</cfoutput></cfif>">
@@ -117,7 +117,7 @@
                 <span class="input-group-addon icon-ellipsis btnPointer"  href="javascript://" onclick="windowopen('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_all_pars<cfoutput>#str_linke_ait#<cfif fusebox.circuit eq "store">&is_store_module=1</cfif></cfoutput>&select_list=7,8&keyword='+encodeURIComponent(document.order_form.member_name.value),'list');"></span>
                 </div>
             </div>
-            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+            <div class="form-group col col-2 ">
                 <label>Ürün</label>
                 <div class="input-group">
                     <input type="hidden" name="product_id" id="product_id" <cfif len(attributes.product_id) and len(attributes.product_name)>value="<cfoutput>#attributes.product_id#</cfoutput>"</cfif>>
@@ -125,7 +125,7 @@
                     <span class="input-group-addon icon-ellipsis btnPointer" href="javascript://" onclick="windowopen('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_product_names&product_id=order_form.product_id&field_name=order_form.product_name&keyword='+encodeURIComponent(document.order_form.product_name.value),'list');"></span>
                 </div>
             </div>
-            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+            <div class="form-group col col-2 ">
                 <select name="prod_cat" id="prod_cat" >
                     <option value=""><cf_get_lang_main no='1604.rn Kategorileri'></option>
                     <cfoutput query="GET_PRODUCT_CATS">
@@ -135,7 +135,7 @@
                     </cfoutput>
                 </select>  
             </div>
-            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+            <div class="form-group col col-2 ">
                 <select name="branch_id" id="branch_id" >
                     <option value=""><cf_get_lang_main no='41.Sube'></option>
                      <cfoutput query="get_branch">
@@ -143,7 +143,8 @@
                     </cfoutput>
                 </select> 
             </div>
-            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+
+            <div class="form-group col col-3 ">
                 <select name="sales_departments" id="sales_departments" >
                     <option value=""><cf_get_lang_main no='2234.Lokasyon'></option>
                     <cfoutput query="get_department_name">
