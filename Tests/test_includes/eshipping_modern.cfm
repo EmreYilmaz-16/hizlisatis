@@ -59,6 +59,37 @@
                     <option value="5" <cfif attributes.sort_type eq 5>selected</cfif>>Şirket Adına Göre Artan</option>
                 </select> 
             </div>
+            <div class="form-group">
+                <label>Liste Tipi</label>
+                <select name="listing_type" id="listing_type" style="width:90px;height:20px">
+                    <option value="1" <cfif attributes.listing_type eq 1>selected</cfif>>Tümü</option>
+                    <option value="2" <cfif attributes.listing_type eq 2>selected</cfif>>Sevk Planları</option>
+                    <option value="3" <cfif attributes.listing_type eq 3>selected</cfif>>Sevk Talepleri</option>
+                </select>  
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <cfif session.ep.our_company_info.unconditional_list>
+                        <cfinput type="text" name="start_date" value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
+                    <cfelse>
+                        <cfsavecontent variable="message"><cf_get_lang_main no='2325.Başlangıç Tarihini Kontrol Ediniz'></cfsavecontent>
+                        <cfinput type="text" name="start_date"  value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
+                    </cfif>
+                    <cf_wrk_date_image date_field="start_date">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <cfif session.ep.our_company_info.unconditional_list>
+                        <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
+                    <cfelse>
+                        <cfsavecontent variable="message"><cf_get_lang_main no='2326.Bitiş Tarihini Kontrol Ediniz'></cfsavecontent>
+                        <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
+                    </cfif>
+                    <cf_wrk_date_image date_field="finish_date">   
+                </div>
+            </div>
+            
         </cf_box_search>
     </cfform>
 </cf_box>
@@ -111,11 +142,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='3284.Liste Tipi'></cfsavecontent>
                 <cf_object_tr id="form_ul_sort_type" title="#header_#">
                     <cf_object_td>
-                        <select name="listing_type" id="listing_type" style="width:90px;height:20px">
-                            <option value="1" <cfif attributes.listing_type eq 1>selected</cfif>>Tümü</option>
-                            <option value="2" <cfif attributes.listing_type eq 2>selected</cfif>>Sevk Planları</option>
-                            <option value="3" <cfif attributes.listing_type eq 3>selected</cfif>>Sevk Talepleri</option>
-                        </select>                 
+                                    
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table> 
@@ -123,13 +150,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='330.Tarih'></cfsavecontent>
                 <cf_object_tr id="form_ul_start_date" title="#header_#">
                     <cf_object_td>
-                        <cfif session.ep.our_company_info.unconditional_list>
-                            <cfinput type="text" name="start_date" value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
-                        <cfelse>
-                            <cfsavecontent variable="message"><cf_get_lang_main no='2325.Başlangıç Tarihini Kontrol Ediniz'></cfsavecontent>
-                            <cfinput type="text" name="start_date"  value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
-                        </cfif>
-                        <cf_wrk_date_image date_field="start_date">                 
+                                       
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>
@@ -137,13 +158,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='330.Tarih'></cfsavecontent>
                 <cf_object_tr id="form_ul_finish_date" title="#header_#">
                     <cf_object_td>
-                        <cfif session.ep.our_company_info.unconditional_list>
-                            <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
-                        <cfelse>
-                            <cfsavecontent variable="message"><cf_get_lang_main no='2326.Bitiş Tarihini Kontrol Ediniz'></cfsavecontent>
-                            <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
-                        </cfif>
-                        <cf_wrk_date_image date_field="finish_date">                 
+                                
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>    
