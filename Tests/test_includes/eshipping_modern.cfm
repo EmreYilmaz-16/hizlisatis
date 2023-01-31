@@ -31,6 +31,34 @@
                 <label>Filtre</label>
                 <cfinput type="text" name="keyword" maxlength="50"  value="#attributes.keyword#">    
             </div>
+            <div class="form-group">
+                <select name="report_type_id" id="report_type_id" style="width:120px;height:20px">
+                    <option value="" <cfif attributes.report_type_id eq ''>selected</cfif>>Tümü</option>
+                    <option value="1" <cfif attributes.report_type_id eq '1'>selected</cfif>>Açık Sevkler</option>
+                    <option value="2" <cfif attributes.report_type_id eq '2'>selected</cfif>>Kapalı Sevkler</option>
+                    <option value="3" <cfif attributes.report_type_id eq '3'>selected</cfif>>Hazır Sevkler</option>
+                    <option value="4" <cfif attributes.report_type_id eq '4'>selected</cfif>>Kısmi Hazır Sevkler</option>
+                </select>                   
+            </div>
+            <div class="form-group">
+                <label>Satış Bölgesi</label>
+                <select name="zone_id" id="zone_id" style="width:100px;height:20px">
+                    <option value=""><cf_get_lang_main no='247.Satis Bölgesi'></option>
+                    <cfoutput query="sz">
+                        <option value="#SZ_HIERARCHY#" <cfif attributes.zone_id eq SZ_HIERARCHY>selected</cfif>>#sz_name#</option>
+                    </cfoutput>
+                </select>  
+            </div>
+            <div class="form-group">
+                <label>Sıralama</label>
+                <select name="sort_type" id="sort_type" style="width:160px;height:20px">
+                    <option value="1" <cfif attributes.sort_type eq 1>selected</cfif>>Teslim Tarihine Göre Artan</option>
+                    <option value="2" <cfif attributes.sort_type eq 2>selected</cfif>>Teslim Tarihine Göre Azalan</option>
+                    <option value="3" <cfif attributes.sort_type eq 3>selected</cfif>>Belge Numarasına Göre Artan</option>
+                    <option value="4" <cfif attributes.sort_type eq 4>selected</cfif>>Belge Numarasına Göre Azalan</option>
+                    <option value="5" <cfif attributes.sort_type eq 5>selected</cfif>>Şirket Adına Göre Artan</option>
+                </select> 
+            </div>
         </cf_box_search>
     </cfform>
 </cf_box>
@@ -58,13 +86,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='296.Tümü'></cfsavecontent>
                 <cf_object_tr id="zone_id" title="#header_#">
                     <cf_object_td>
-                        <select name="report_type_id" id="report_type_id" style="width:120px;height:20px">
-                            <option value="" <cfif attributes.report_type_id eq ''>selected</cfif>>Tümü</option>
-							<option value="1" <cfif attributes.report_type_id eq '1'>selected</cfif>>Açık Sevkler</option>
-                            <option value="2" <cfif attributes.report_type_id eq '2'>selected</cfif>>Kapalı Sevkler</option>
-                            <option value="3" <cfif attributes.report_type_id eq '3'>selected</cfif>>Hazır Sevkler</option>
-                            <option value="4" <cfif attributes.report_type_id eq '4'>selected</cfif>>Kısmi Hazır Sevkler</option>
-					</select>                    
+                         
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>
@@ -72,12 +94,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='247.Satis Bölgesi'></cfsavecontent>
                 <cf_object_tr id="zone_id" title="#header_#">
                     <cf_object_td>
-                        <select name="zone_id" id="zone_id" style="width:100px;height:20px">
-						<option value=""><cf_get_lang_main no='247.Satis Bölgesi'></option>
-						<cfoutput query="sz">
-							<option value="#SZ_HIERARCHY#" <cfif attributes.zone_id eq SZ_HIERARCHY>selected</cfif>>#sz_name#</option>
-						</cfoutput>
-					</select>                    
+                      
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>
@@ -86,13 +103,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='1512.Sıralama'></cfsavecontent>
                 <cf_object_tr id="form_ul_sort_type" title="#header_#">
                     <cf_object_td>
-                        <select name="sort_type" id="sort_type" style="width:160px;height:20px">
-                            <option value="1" <cfif attributes.sort_type eq 1>selected</cfif>>Teslim Tarihine Göre Artan</option>
-                            <option value="2" <cfif attributes.sort_type eq 2>selected</cfif>>Teslim Tarihine Göre Azalan</option>
-                            <option value="3" <cfif attributes.sort_type eq 3>selected</cfif>>Belge Numarasına Göre Artan</option>
-                            <option value="4" <cfif attributes.sort_type eq 4>selected</cfif>>Belge Numarasına Göre Azalan</option>
-                            <option value="5" <cfif attributes.sort_type eq 5>selected</cfif>>Şirket Adına Göre Artan</option>
-                        </select>                 
+                          
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table> 
