@@ -1,8 +1,8 @@
 ﻿<cf_box title="Ürün Hazırla">
     <cfform name="sf"></cfform>
 <cfquery name="getS" datasource="#dsn3#">
-SELECT  AMOUNT,DELIVER_DEPT,DELIVER_LOCATION,PRODUCT_NAME,PRODUCT_PLACE_ID,QUANTITY,SHELF_CODE,SHIP_RESULT_ROW_ID,STOCK_ID,DETAIL_INFO_EXTRA,BRAND_NAME,DESCRIPTION FROM (
-SELECT ORR.QUANTITY,SF.AMOUNT,S.PRODUCT_NAME,PP.SHELF_CODE,ORR.DELIVER_DEPT,ORR.DELIVER_LOCATION,S.STOCK_ID,SRR.SHIP_RESULT_ROW_ID,PP.PRODUCT_PLACE_ID,ORR.DETAIL_INFO_EXTRA,B.BRAND_NAME,ORR.DESCRIPTION FROM #dsn3#.PRTOTM_SHIP_RESULT_ROW AS SRR
+SELECT  AMOUNT,DELIVER_DEPT,DELIVER_LOCATION,PRODUCT_NAME,PRODUCT_PLACE_ID,QUANTITY,SHELF_CODE,SHIP_RESULT_ROW_ID,STOCK_ID,DETAIL_INFO_EXTRA,BRAND_NAME,PRODUCT_CODE,DESCRIPTION FROM (
+SELECT ORR.QUANTITY,SF.AMOUNT,S.PRODUCT_NAME,S.PRODUCT_CODE,PP.SHELF_CODE,ORR.DELIVER_DEPT,ORR.DELIVER_LOCATION,S.STOCK_ID,SRR.SHIP_RESULT_ROW_ID,PP.PRODUCT_PLACE_ID,ORR.DETAIL_INFO_EXTRA,B.BRAND_NAME,ORR.DESCRIPTION FROM #dsn3#.PRTOTM_SHIP_RESULT_ROW AS SRR
 LEFT JOIN #dsn3#.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID=SRR.ORDER_ROW_ID
 LEFT JOIN #dsn3#.PRTOTM_SHIP_RESULT AS SR ON SR.SHIP_RESULT_ID=SRR.SHIP_RESULT_ID
 LEFT JOIN (
@@ -28,7 +28,8 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
     <thead>
         <tr>
             <th>Raf</th>
-            <th>Ürün</th>
+            <th>Ürün Kodu</th>
+            <th>Ürün</th>            
             <th>Marka</th>
             <th>Miktar</th>
             <th>Depo</th>
@@ -47,6 +48,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
                 <input type="hidden" name="shelfcode#currentrow#" value="#SHELF_CODE#">
                 <input type="hidden" name="PRODUCT_PLACE_ID#currentrow#" value="#PRODUCT_PLACE_ID#">
                 #SHELF_CODE#</td>
+                <td>#PRODUCT_CODE#</td>
             <td>#PRODUCT_NAME#</td>
             <td>#BRAND_NAME#</td>
             <td style="width:15%"><div class="form-group"><input type="text" name="quantity#currentrow#" value="#tlformat(QUANTITY,2)#" style="padding-right: 0;text-align: right"></div></td>
