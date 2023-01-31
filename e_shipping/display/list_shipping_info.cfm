@@ -37,6 +37,7 @@ WHERE SHIP_RESULT_ID=5240
             </th>
         </tr>
     </thead>
+    <tbody>
 <cfoutput query="getShippingData">
 <tr>
     <td>
@@ -56,4 +57,5 @@ WHERE SHIP_RESULT_ID=5240
     </td>
 </tr>
 </cfoutput>
+</tbody>
 </cf_grid_list>
