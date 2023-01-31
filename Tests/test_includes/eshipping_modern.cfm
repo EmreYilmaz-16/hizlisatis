@@ -130,8 +130,8 @@
             </div>
             <div class="form-group">
                 <button type="button" class="ui-wrk-btn ui-wrk-btn-red" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" title="Sevkiyat Perspektif"><i class="icn-md fa fa-bar-chart"></i></button>
-                <button type="button" class="ui-wrk-btn ui-wrk-btn-warning"  onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" title="Sevk Planı Açılacak Siparişler"><i class="icn-md fa fa-bell"></i></button>
-                <button type="button" class="ui-wrk-btn ui-wrk-btn-extra"  onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>"><i class="icn-md fa fa-gears"></i></button>
+                <button type="button" class="ui-wrk-btn ui-wrk-btn-warning" style="margin-left:2px"  onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" title="Sevk Planı Açılacak Siparişler"><i class="icn-md fa fa-bell"></i></button>
+                <button type="button" class="ui-wrk-btn ui-wrk-btn-extra" style="margin-left:2px"   onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>"><i class="icn-md fa fa-gears"></i></button>
                 
                 <!--------
        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" class="tableyazi">
