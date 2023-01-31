@@ -147,7 +147,7 @@
 
             </div>
             <div class="form-group">
-                <cf_wrk_search_button button-type="1">
+                <cf_wrk_search_button_pbs button-type="1">
             </div>
         </cf_box_search>
         <cf_box_search_detail>
