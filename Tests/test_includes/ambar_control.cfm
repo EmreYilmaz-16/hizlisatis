@@ -193,3 +193,8 @@
                 ) AS TBL2
         </cfquery> 
     </cfif>
+<cfelse>
+    <cfset AMBAR_CONTROL.recordcount = 0>
+    <cfset AMBAR_CONTROL.PAKET_SAYISI =0>
+    <cfset AMBAR_CONTROL.CONTROL_AMOUNT = 0>
+</cfif>
