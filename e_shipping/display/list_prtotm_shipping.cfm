@@ -937,7 +937,7 @@
             </cf_object_table>        
         </cf_object_main_table>
     </cf_big_list_search_area>
-    <cf_big_list_search_detail_area>
+    <cf_big_list_search_detail_area collapsed="0">
         <cf_object_main_table>
             <cf_object_table column_width_list="100,140">
                 <cfsavecontent variable="header_"><cfoutput>#getLang('report',1380)#</cfoutput></cfsavecontent>
