@@ -209,27 +209,7 @@
 
             </tr>
 		</thead>
-    </cf_grid_list>
-</cf_box>
-
-
-<cfabort>
-<!--------
-       <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" class="tableyazi">
-                        	<img src="../../../images/graph.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3522.Sevkiyat Perspektif'>" />
-                      	</a>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" class="tableyazi">
-                        	<img src="../../../images/target_customer.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3523.Sevk Planı Açılacak Siparişler'>" />
-                      	</a>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" class="tableyazi">
-                        	<img src="../../../images/pos_credit.gif" align="absmiddle" border="0" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>" />
-                      	</a>
------->
-
-
-	<table class="big_list">
-		
-		<tbody>
+        <tbody>
         	<cfset t_point =#attributes.t_point#>
         	<cfif isdefined("attributes.form_varmi") and GET_SHIPPING.recordcount>
             	<cfif hata_kontrol.recordcount or cari_kontrol.recordcount> <!---Hatalı İşlemler Varsa Listeleniyor--->
@@ -289,44 +269,7 @@
                     </cfoutput>
                 <cfelse>
 					<cfoutput query="GET_SHIPPING" startrow="#attributes.startrow#" maxrows="#attributes.maxrows#">
-                        <cfif IS_TYPE eq 1>	
-                            <cfquery name="GET_PUAN" datasource="#DSN3#"> <!---Satış Puanları Toplanıyor--->
-                                SELECT
-                                	ORR.ORDER_ID,
-                                    ORR.STOCK_ID, 
-                                    ORR.PRODUCT_ID, 
-                                    ORR.QUANTITY,
-                                    ORR.ORDER_ID FIS_ID,
-                                    ORR.ORDER_ROW_ID FIS_ROW_ID,
-                                    ISNULL(PIP.PROPERTY1, 0) AS PUAN
-                                FROM         
-                                    PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                                    ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID LEFT OUTER JOIN
-                                    PRODUCT_INFO_PLUS AS PIP ON ORR.PRODUCT_ID = PIP.PRODUCT_ID
-                                WHERE     
-                                    ESRR.SHIP_RESULT_ID = #SHIP_RESULT_ID#
-                            </cfquery>
-                        <cfelse>
-                            <cfquery name="GET_PUAN" datasource="#DSN2#">
-                                SELECT     
-                                    ISNULL(PIP.PROPERTY1, 0) AS PUAN, 
-                                    SIR.AMOUNT AS QUANTITY, 
-                                    SIR.PRODUCT_ID, 
-                                    SIR.STOCK_ID, 
-                                    SI.DISPATCH_SHIP_ID, 
-                                    SIR.SHIP_ROW_ID, 
-                                    ORR.ORDER_ID AS FIS_ID, 
-                                    ORR.ORDER_ID,
-                                    ORR.ORDER_ROW_ID AS FIS_ROW_ID
-                                FROM
-                                    SHIP_INTERNAL AS SI INNER JOIN
-                                    SHIP_INTERNAL_ROW AS SIR ON SI.DISPATCH_SHIP_ID = SIR.DISPATCH_SHIP_ID INNER JOIN
-                                    #dsn3_alias#.ORDER_ROW AS ORR ON SIR.ROW_ORDER_ID = ORR.ORDER_ROW_ID LEFT OUTER JOIN
-                                    #dsn3_alias#.PRODUCT_INFO_PLUS AS PIP ON SIR.PRODUCT_ID = PIP.PRODUCT_ID
-                                WHERE     
-                                    SI.DISPATCH_SHIP_ID = #SHIP_RESULT_ID#
-                            </cfquery>
-                        </cfif>
+                   <cfinclude template="get_puan.cfm">
                         <cfset row_point = 0>
                         <cfquery name="get_order_id_list" dbtype="query">
                             SELECT
@@ -344,60 +287,7 @@
                                 <cfset t_point =t_point+GET_PUAN.puan*GET_PUAN.QUANTITY>
                             </cfif>
                         </cfloop>
-                        <cfif listlen(order_row_id_list)>
-                            <cfset last_year = session.ep.period_year -1>
-                            <cfquery name="get_invoice_durum" datasource="#dsn3#">
-                            		SELECT        
-                                	SUM(ORR.QUANTITY) - SUM(TBLB.AMOUNT) AS KALAN
-								FROM            
-                                	ORDER_ROW AS ORR LEFT OUTER JOIN
-                             		(
-                                    	SELECT        
-                                        	WRK_ROW_RELATION_ID, 
-                                            SUM(AMOUNT) AS AMOUNT
-                               			FROM            
-                                        	(
-                                            	SELECT        
-                                            		AMOUNT, 
-                                                    WRK_ROW_RELATION_ID
-                                           		FROM            
-                                                	#dsn#_#session.ep.period_year#_#session.ep.company_id#.INVOICE_ROW
-                                                    LEFT JOIN  #dsn#_#session.ep.period_year#_#session.ep.company_id#.INVOICE AS I ON I.INVOICE_ID=INVOICE_ROW.INVOICE_ID WHERE I.PURCHASE_SALES=1
-                                            	UNION ALL
-                                             	SELECT        
-                                                	IR.AMOUNT, 
-                                                    IR.WRK_ROW_RELATION_ID
-                                             	FROM            
-                                                	#dsn#_#session.ep.period_year#_#session.ep.company_id#.SHIP_ROW AS SR INNER JOIN
-                                                 	#dsn#_#session.ep.period_year#_#session.ep.company_id#.INVOICE_ROW AS IR ON SR.WRK_ROW_ID = IR.WRK_ROW_RELATION_ID
-                                                     LEFT JOIN #dsn#_#session.ep.period_year#_#session.ep.company_id#.INVOICE AS ı ON I.INVOICE_ID = IR.INVOICE_ID WHERE I.PURCHASE_SALES=1
-                                              	<cfif get_period_id.recordcount>
-                                                	UNION ALL
-                                                    SELECT        
-                                                        AMOUNT, 
-                                                        WRK_ROW_RELATION_ID
-                                                    FROM            
-                                                        #dsn#_#last_year#_#session.ep.company_id#.INVOICE_ROW
-                                                        LEFT JOIN  #dsn#_#last_year#_#session.ep.company_id#.INVOICE AS I ON I.INVOICE_ID=INVOICE_ROW.INVOICE_ID WHERE I.PURCHASE_SALES=1
-                                                    UNION ALL
-                                                    SELECT        
-                                                        IR.AMOUNT, 
-                                                        IR.WRK_ROW_RELATION_ID
-                                                    FROM            
-                                                        #dsn#_#last_year#_#session.ep.company_id#.SHIP_ROW AS SR INNER JOIN
-                                                        #dsn#_#last_year#_#session.ep.company_id#.INVOICE_ROW AS IR ON SR.WRK_ROW_ID = IR.WRK_ROW_RELATION_ID
-                                                        LEFT JOIN #dsn#_#last_year#_#session.ep.company_id#.INVOICE AS I ON I.INVOICE_ID = IR.INVOICE_ID WHERE I.PURCHASE_SALES=1
-                                                </cfif>
-                                          	) AS TBLA
-                               			GROUP BY 
-                                         	WRK_ROW_RELATION_ID
-                               		) AS TBLB ON ORR.WRK_ROW_ID = TBLB.WRK_ROW_RELATION_ID
-								WHERE        
-                                	ORR.ORDER_ROW_ID IN (#order_row_id_list#)
-                            </cfquery>
-                       	<cfelse>
-                        	<cfset get_invoice_durum.recordcount =0>
-                     	</cfif>
+                       <cfinclude template="get_invoice_durum.cfm">
                             <tr>
                                 <td>#currentrow#</td>
                                 <td style="text-align:center">
@@ -436,38 +326,7 @@
                                 </td>
                                 <cfif ListFind(session.ep.user_level,25)>
                                     <td style="text-align:right">
-                                    	<cfif IS_TYPE eq 1>
-                                        	<cfset bak.rc =0>
-                                        	<cfif len(company_id)>
-                                            	<cfquery name="get_bakiye" datasource="#dsn2#">
-                                                	SELECT        
-                                                    	BAKIYE3, 
-                                                        OTHER_MONEY
-													FROM      
-                                                    	COMPANY_REMAINDER_MONEY
-													WHERE        
-                                                    	COMPANY_ID = #company_id#
-                                                </cfquery>
-                                            <cfelseif len(consumer_id)>
-                                            	<cfquery name="get_bakiye" datasource="#dsn2#">
-                                                	SELECT        
-                                                    	BAKIYE3, 
-                                                        OTHER_MONEY
-													FROM      
-                                                    	CONSUMER_REMAINDER_MONEY
-													WHERE        
-                                                    	CONSUMER_ID = #consumer_id#
-                                                </cfquery>
-                                            </cfif>
-                                            <cfset bak.rc=get_bakiye.recordCount>
-                                            <cfif bak.rc>
-                                            	<cfloop query="get_bakiye">
-                                                <font style="color:<cfif bakiye3 lte 0>blue<cfelse>red</cfif>">
-                                                	#TlFormat(BAKIYE3,2)# #OTHER_MONEY# 
-                                               	</font><cfif bak.rc gt get_bakiye.currentrow><br/></cfif>
-                                                </cfloop>
-                                            </cfif>
-                                        </cfif>
+                                        <cfinclude template="getBakiye.cfm">                                    	
                                     </td>
                                 </cfif>
                                 <td>#get_emp_info(DELIVER_EMP,0,0)#</td>
@@ -479,38 +338,8 @@
                                         WHERE CC.COMPANY_ID=#company_id#
                                 </cfquery>
                                 <b>Ö.Y:(#getPm.PAYMETHOD#)</b>
-                                </td>
-                                <cfif listlen(order_row_id_list)>
-                                    <cfquery name="get_sevk_durum" datasource="#dsn3#"> <!---Rezerve edilen üretim planları veya satınalma siparişlerinin depoya girişleri kontrol ediliyor--->
-                                        SELECT     
-                                            SUM(SEVK_DURUM) AS SEVK_DURUM
-                                        FROM         
-                                            (
-                                            SELECT     
-                                                SEVK_DURUM
-                                            FROM          
-                                                (
-                                                SELECT     
-                                                    CASE 
-                                                        WHEN ORDER_ROW_CURRENCY = - 6 THEN 4 
-                                                        WHEN ORDER_ROW_CURRENCY = - 9 THEN 1 
-                                                        WHEN ORDER_ROW_CURRENCY = - 8 THEN 1 
-                                                        WHEN ORDER_ROW_CURRENCY = - 3 THEN 1 
-                                                        WHEN ORDER_ROW_CURRENCY = - 10 THEN 1 
-                                                        ELSE 2 
-                                                    END AS SEVK_DURUM
-                                                FROM          
-                                                    ORDER_ROW
-                                                WHERE      
-                                                    ORDER_ROW_ID IN (#order_row_id_list#) 
-                                                ) AS TBL1
-                                            GROUP BY 
-                                                SEVK_DURUM
-                                            ) AS TBL2
-                                    </cfquery>
-                                <cfelse>
-                                    <cfset get_sevk_durum.sevk_durum = 4>
-                                </cfif>
+                                </td>                               
+                                <cfinclude template="get_sevk_durum.cfm">
                                 <td style="text-align:center"> <!---Sevk Indicator--->
                                     <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3533.Sevk Emri Ver'>">
                                         <cfif  get_sevk_durum.sevk_durum eq 2>
@@ -527,201 +356,7 @@
                                     </a>
                                 </td>
 
-                                <cfif attributes.e_shipping_type eq 1>
-									<cfif IS_TYPE eq 1>    
-                                        <cfquery name="AMBAR_CONTROL" datasource="#DSN3#">
-                                            SELECT     
-                                                ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
-                                                ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT
-                                            FROM         
-                                                (
-                                                SELECT     
-                                                    PAKET_SAYISI AS PAKETSAYISI, 
-                                                    PAKET_ID AS STOCK_ID, 
-                                                    BARCOD, 
-                                                    STOCK_CODE, 
-                                                    PRODUCT_NAME,
-                                                    (
-                                                    SELECT 
-                                                        SUM(CONTROL_AMOUNT) CONTROL_AMOUNT
-                                                    FROM
-                                                        ( 
-                                                        SELECT        
-                                                            SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
-                                                        FROM            
-                                                            #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
-                                                            #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
-                                                        WHERE        
-                                                            SF.FIS_TYPE = 113 AND 
-                                                            SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
-                                                            SFR.STOCK_ID = TBL.PAKET_ID
-                                                        <cfif get_period_id.recordcount>
-                                                            UNION ALL
-                                                            SELECT        
-                                                                SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
-                                                            FROM            
-                                                                #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
-                                                                #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
-                                                            WHERE        
-                                                                SF.FIS_TYPE = 113 AND 
-                                                                SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
-                                                                SFR.STOCK_ID = TBL.PAKET_ID
-                                                        </cfif>
-                                                        ) AS TBL_5
-                                                    ) AS CONTROL_AMOUNT
-                                                FROM         
-                                                    (
-                                                    SELECT
-                                                        SUM(PAKET_SAYISI) AS PAKET_SAYISI,
-                                                        PAKET_ID, 
-                                                        BARCOD, 
-                                                        STOCK_CODE, 
-                                                        PRODUCT_NAME, 
-                                                        PRODUCT_TREE_AMOUNT, 
-                                                        SHIP_RESULT_ID
-                                                    FROM
-                                                        (     
-                                                        SELECT     
-                                                            CASE 
-                                                                WHEN 
-                                                                    S.PRODUCT_TREE_AMOUNT IS NOT NULL 
-                                                                THEN 
-                                                                    S.PRODUCT_TREE_AMOUNT 
-                                                                ELSE 
-                                                                    SUM(ORR.QUANTITY * EPS.PAKET_SAYISI)
-                                                            END 
-                                                                AS PAKET_SAYISI, 
-                                                            EPS.PAKET_ID, 
-                                                            S.BARCOD, 
-                                                            S.STOCK_CODE, 
-                                                            S.PRODUCT_NAME, 
-                                                            S.PRODUCT_TREE_AMOUNT, 
-                                                            ESR.SHIP_RESULT_ID,
-                                                            ESRR.ORDER_ROW_ID
-                                                        FROM          
-                                                            PRTOTM_SHIP_RESULT AS ESR INNER JOIN
-                                                            PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
-                                                            ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                                            PRTOTM_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
-                                                            STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID
-                                                        WHERE      
-                                                            ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID#
-                                                        GROUP BY 
-                                                            EPS.PAKET_ID, 
-                                                            S.BARCOD, 
-                                                            S.STOCK_CODE, 
-                                                            S.PRODUCT_NAME, 
-                                                            S.PRODUCT_TREE_AMOUNT, 
-                                                            ESR.SHIP_RESULT_ID,
-                                                            ESRR.ORDER_ROW_ID
-                                                        ) AS TBL1
-                                                    GROUP BY
-                                                        PAKET_ID, 
-                                                        BARCOD, 
-                                                        STOCK_CODE, 
-                                                        PRODUCT_NAME, 
-                                                        PRODUCT_TREE_AMOUNT, 
-                                                        SHIP_RESULT_ID
-                                                    ) AS TBL
-                                                ) AS TBL2
-                                        </cfquery>
-                                    <cfelse>
-                                        <cfquery name="AMBAR_CONTROL" datasource="#DSN3#">
-                                            SELECT     
-                                                ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
-                                                ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT
-                                            FROM         
-                                                (		
-                                                SELECT     
-                                                    PAKET_SAYISI AS PAKETSAYISI, 
-                                                    PAKET_ID AS STOCK_ID, 
-                                                    BARCOD, 
-                                                    STOCK_CODE, 
-                                                    PRODUCT_NAME,
-                                                    (
-                                                      SELECT 
-                                                        SUM(CONTROL_AMOUNT) CONTROL_AMOUNT
-                                                    FROM
-                                                        ( 
-                                                        SELECT        
-                                                            SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
-                                                        FROM            
-                                                            #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
-                                                            #dsn#_#session.ep.period_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
-                                                        WHERE        
-                                                            SF.FIS_TYPE = 113 AND 
-                                                            SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
-                                                            SFR.STOCK_ID = TBL.PAKET_ID
-                                                        <cfif get_period_id.recordcount>
-                                                            UNION ALL
-                                                            SELECT        
-                                                                SUM(SFR.AMOUNT) AS CONTROL_AMOUNT
-                                                            FROM            
-                                                                #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS AS SF INNER JOIN
-                                                                #dsn#_#last_year#_#session.ep.company_id#.STOCK_FIS_ROW AS SFR ON SF.FIS_ID = SFR.FIS_ID
-                                                            WHERE        
-                                                                SF.FIS_TYPE = 113 AND 
-                                                                SF.REF_NO = '#DELIVER_PAPER_NO#' AND 
-                                                                SFR.STOCK_ID = TBL.PAKET_ID
-                                                        </cfif>
-                                                        ) AS TBL_5
-                                                    ) AS CONTROL_AMOUNT, SHIP_RESULT_ID
-                                                FROM         
-                                                    (
-                                                    SELECT     
-                                                        SUM(PAKET_SAYISI) AS PAKET_SAYISI, 
-                                                        PAKET_ID, 
-                                                        BARCOD, 
-                                                        STOCK_CODE, 
-                                                        PRODUCT_NAME, 
-                                                        PRODUCT_TREE_AMOUNT, 
-                                                        SHIP_RESULT_ID
-                                                    FROM          
-                                                        (
-                                                        SELECT     
-                                                            CASE 
-                                                                WHEN 
-                                                                    S.PRODUCT_TREE_AMOUNT IS NOT NULL 
-                                                                THEN 
-                                                                    S.PRODUCT_TREE_AMOUNT 
-                                                                ELSE 
-                                                                    SUM(SIR.AMOUNT * EPS.PAKET_SAYISI)
-                                                            END 
-                                                                AS PAKET_SAYISI, 
-                                                            EPS.PAKET_ID, 
-                                                            S.BARCOD, 
-                                                            S.STOCK_CODE, 
-                                                            S.PRODUCT_NAME, 
-                                                            S.PRODUCT_TREE_AMOUNT, 
-                                                            SIR.SHIP_ROW_ID, 
-                                                            SI.DISPATCH_SHIP_ID AS SHIP_RESULT_ID
-                                                        FROM          
-                                                            STOCKS AS S INNER JOIN
-                                                            PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
-                                                            #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR INNER JOIN
-                                                            #dsn2_alias#.SHIP_INTERNAL AS SI ON SIR.DISPATCH_SHIP_ID = SI.DISPATCH_SHIP_ID ON EPS.MODUL_ID = SIR.STOCK_ID
-                                                        WHERE      
-                                                            SI.DISPATCH_SHIP_ID = #SHIP_RESULT_ID#
-                                                        GROUP BY 
-                                                            EPS.PAKET_ID, 
-                                                            S.BARCOD, 
-                                                            S.STOCK_CODE, 
-                                                            S.PRODUCT_NAME, 
-                                                            S.PRODUCT_TREE_AMOUNT, 
-                                                            SIR.SHIP_ROW_ID, 
-                                                            SI.DISPATCH_SHIP_ID
-                                                        ) AS TBL1
-                                                    GROUP BY 
-                                                        PAKET_ID, 
-                                                        BARCOD, 
-                                                        STOCK_CODE, 
-                                                        PRODUCT_NAME, 
-                                                        PRODUCT_TREE_AMOUNT, 
-                                                        SHIP_RESULT_ID
-                                                    ) AS TBL
-                                                ) AS TBL2
-                                        </cfquery> 
-                                    </cfif>
+                                    <cfinclude template="ambar_control.cfm">
                                     <td style="text-align:center"> <!---Hazırlama Indicator--->
                                         <cfif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.PAKET_SAYISI eq 0 and AMBAR_CONTROL.CONTROL_AMOUNT eq 0>
                                             <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>">
@@ -750,187 +385,7 @@
                                     <cfset AMBAR_CONTROL.PAKET_SAYISI =0>
                                     <cfset AMBAR_CONTROL.CONTROL_AMOUNT = 0>
                                 </cfif>
-                                <cfif IS_TYPE eq 1>    
-                                    <cfquery name="PACKEGE_CONTROL" datasource="#DSN3#"> <!---Paket Kontrolü kontrol ediliyor--->
-                                        SELECT     
-                                            ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
-                                            ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT
-                                        FROM         
-                                            (
-                                            SELECT     
-                                                PAKET_SAYISI AS PAKETSAYISI, 
-                                                PAKET_ID AS STOCK_ID, 
-                                                BARCOD, 
-                                                STOCK_CODE, 
-                                                PRODUCT_NAME,
-                                                (
-                                                SELECT     
-                                                    SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT
-                                                FROM          
-                                                    PRTOTM_SHIPPING_PACKAGE_LIST
-                                                WHERE      
-                                                    TYPE = 1 AND 
-                                                    STOCK_ID = TBL.PAKET_ID AND 
-                                                    SHIPPING_ID = TBL.SHIP_RESULT_ID
-                                                ) AS CONTROL_AMOUNT
-                                            FROM         
-                                                (
-                                                SELECT
-                                                    SUM(PAKET_SAYISI) AS PAKET_SAYISI,
-                                                    PAKET_ID, 
-                                                    BARCOD, 
-                                                    STOCK_CODE, 
-                                                    PRODUCT_NAME, 
-                                                    PRODUCT_TREE_AMOUNT, 
-                                                    SHIP_RESULT_ID
-                                                FROM
-                                                    (     
-                                                    SELECT     
-                                                   		round(SUM(ORR.QUANTITY * EPS.PAKET_SAYISI),2) AS PAKET_SAYISI, 
-                                                        EPS.PAKET_ID, 
-                                                        S.BARCOD, 
-                                                        S.STOCK_CODE, 
-                                                        S.PRODUCT_NAME, 
-                                                        S.PRODUCT_TREE_AMOUNT, 
-                                                        ESR.SHIP_RESULT_ID,
-                                                        ESRR.ORDER_ROW_ID
-                                                    FROM 
-                                                    	SPECTS AS SP INNER JOIN
-                     									PRTOTM_SHIP_RESULT AS ESR INNER JOIN
-                     									PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
-                      									ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID ON SP.SPECT_VAR_ID = ORR.SPECT_VAR_ID INNER JOIN
-                     									STOCKS AS S INNER JOIN
-                     									PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID ON SP.SPECT_MAIN_ID = 0 INNER JOIN
-                                                        STOCKS AS S1 ON ORR.STOCK_ID = S1.STOCK_ID   
-                                                    WHERE      
-                                                        ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID# AND
-                                                        ISNULL(S1.IS_PROTOTYPE,0) = 1
-                                                    GROUP BY 
-                                                        EPS.PAKET_ID, 
-                                                        S.BARCOD, 
-                                                        S.STOCK_CODE, 
-                                                        S.PRODUCT_NAME, 
-                                                        S.PRODUCT_TREE_AMOUNT, 
-                                                        ESR.SHIP_RESULT_ID,
-                                                        ESRR.ORDER_ROW_ID
-                                                 	UNION ALL
-                                                    SELECT     
-                                                   		round(SUM(ORR.QUANTITY * EPS.PAKET_SAYISI),2) AS PAKET_SAYISI, 
-                                                        EPS.PAKET_ID, 
-                                                        S.BARCOD, 
-                                                        S.STOCK_CODE, 
-                                                        S.PRODUCT_NAME, 
-                                                        S.PRODUCT_TREE_AMOUNT, 
-                                                        ESR.SHIP_RESULT_ID,
-                                                        ESRR.ORDER_ROW_ID
-                                                    FROM          
-                                                        PRTOTM_SHIP_RESULT AS ESR INNER JOIN
-                                                        PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
-                                                        ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                                        PRTOTM_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
-                                                        STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID INNER JOIN
-                                                        STOCKS AS S1 ON ORR.STOCK_ID = S1.STOCK_ID
-                                                    WHERE      
-                                                        ESR.SHIP_RESULT_ID = #SHIP_RESULT_ID# AND
-                                                        ISNULL(S1.IS_PROTOTYPE,0) = 0
-                                                    GROUP BY 
-                                                        EPS.PAKET_ID, 
-                                                        S.BARCOD, 
-                                                        S.STOCK_CODE, 
-                                                        S.PRODUCT_NAME, 
-                                                        S.PRODUCT_TREE_AMOUNT, 
-                                                        ESR.SHIP_RESULT_ID,
-                                                        ESRR.ORDER_ROW_ID
-                                                    ) AS TBL1
-                                                GROUP BY
-                                                    PAKET_ID, 
-                                                    BARCOD, 
-                                                    STOCK_CODE, 
-                                                    PRODUCT_NAME,
-                                                    PRODUCT_TREE_AMOUNT, 
-                                                    SHIP_RESULT_ID
-                                                ) AS TBL
-                                            ) AS TBL2
-                                    </cfquery>
-                                <cfelse>
-                                    <cfquery name="PACKEGE_CONTROL" datasource="#DSN3#">
-                                        SELECT     
-                                            ISNULL(SUM(PAKETSAYISI), 0) AS PAKET_SAYISI, 
-                                            ISNULL(SUM(CONTROL_AMOUNT), 0) AS CONTROL_AMOUNT
-                                        FROM         
-                                            (		
-                                            SELECT     
-                                                PAKET_SAYISI AS PAKETSAYISI, 
-                                                PAKET_ID AS STOCK_ID, 
-                                                BARCOD, 
-                                                STOCK_CODE, 
-                                                PRODUCT_NAME,
-                                                (
-                                                SELECT     
-                                                    SUM(CONTROL_AMOUNT) AS CONTROL_AMOUNT
-                                                FROM          
-                                                    PRTOTM_SHIPPING_PACKAGE_LIST
-                                                WHERE      
-                                                    TYPE = 2 AND 
-                                                    STOCK_ID = TBL.PAKET_ID AND 
-                                                    SHIPPING_ID = TBL.SHIP_RESULT_ID
-                                                ) AS CONTROL_AMOUNT, SHIP_RESULT_ID
-                                            FROM         
-                                                (
-                                                SELECT     
-                                                    SUM(PAKET_SAYISI) AS PAKET_SAYISI, 
-                                                    PAKET_ID, 
-                                                    BARCOD, 
-                                                    STOCK_CODE, 
-                                                    PRODUCT_NAME, 
-                                                    PRODUCT_TREE_AMOUNT, 
-                                                    SHIP_RESULT_ID
-                                                FROM          
-                                                    (
-                                                    SELECT     
-                                                        CASE 
-                                                            WHEN 
-                                                                S.PRODUCT_TREE_AMOUNT IS NOT NULL 
-                                                            THEN 
-                                                                S.PRODUCT_TREE_AMOUNT 
-                                                            ELSE 
-                                                                round(SUM(SIR.AMOUNT * EPS.PAKET_SAYISI),2)
-                                                        END 
-                                                            AS PAKET_SAYISI, 
-                                                        EPS.PAKET_ID, 
-                                                        S.BARCOD, 
-                                                        S.STOCK_CODE, 
-                                                        S.PRODUCT_NAME, 
-                                                        S.PRODUCT_TREE_AMOUNT, 
-                                                        SIR.SHIP_ROW_ID, 
-                                                        SI.DISPATCH_SHIP_ID AS SHIP_RESULT_ID
-                                                    FROM          
-                                                        STOCKS AS S INNER JOIN
-                                                        PRTOTM_PAKET_SAYISI AS EPS ON S.STOCK_ID = EPS.PAKET_ID INNER JOIN
-                                                        #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR INNER JOIN
-                                                        #dsn2_alias#.SHIP_INTERNAL AS SI ON SIR.DISPATCH_SHIP_ID = SI.DISPATCH_SHIP_ID ON EPS.MODUL_ID = SIR.STOCK_ID
-                                                    WHERE      
-                                                        SI.DISPATCH_SHIP_ID = #SHIP_RESULT_ID#
-                                                    GROUP BY 
-                                                        EPS.PAKET_ID, 
-                                                        S.BARCOD, 
-                                                        S.STOCK_CODE, 
-                                                        S.PRODUCT_NAME, 
-                                                        S.PRODUCT_TREE_AMOUNT, 
-                                                        SIR.SHIP_ROW_ID, 
-                                                        SI.DISPATCH_SHIP_ID
-                                                    ) AS TBL1
-                                                GROUP BY 
-                                                    PAKET_ID, 
-                                                    BARCOD, 
-                                                    STOCK_CODE, 
-                                                    PRODUCT_NAME, 
-                                                    PRODUCT_TREE_AMOUNT, 
-                                                    SHIP_RESULT_ID
-                                                ) AS TBL
-                                            ) AS TBL2
-                                    </cfquery>
-                                </cfif>
+                                <cfinclude template="package_control.cfm">
                                 
                                 <td style="text-align:center"> <!---El Terminali 1 Kontrol Indicator--->
                                     <cfif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI eq 0 and PACKEGE_CONTROL.CONTROL_AMOUNT eq 0>
@@ -1028,52 +483,7 @@
                                 </td>
                                 <td style="text-align:right">
                                 	<cfset birlesme_izni = 0>
-                                    <cfif IS_TYPE eq 1>
-                                        <cfif (attributes.e_shipping_type eq 1 and ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0 and DURUM eq 1  and get_invoice_durum.kalan lt 0) or attributes.e_shipping_type neq 1 >
-                                            <cfquery name="get_shipping_group" dbtype="query">
-                                                SELECT
-                                                    <cfif len(COMPANY_ID)>
-                                                        COMPANY_ID,
-                                                    <cfelseif len(CONSUMER_ID)>
-                                                        CONSUMER_ID,
-                                                    </cfif>
-                                                    SEHIR,
-                                                    ILCE,
-                                                    SHIP_METHOD_TYPE,
-                                                    DELIVER_EMP,
-                                                    COUNT(*) AS SAYI
-                                                FROM
-                                                    GET_SHIPPING
-                                                WHERE
-                                                    IS_TYPE = 1 AND
-                                                    SHIP_METHOD_TYPE = #SHIP_METHOD_TYPE# AND
-                                                    SEHIR = '#SEHIR#' AND
-                                                    ILCE = '#ILCE#' AND
-                                                    DELIVER_EMP = #DELIVER_EMP# AND
-                                                    <cfif len(COMPANY_ID)>
-                                                        COMPANY_ID = #COMPANY_ID#
-                                                    <cfelseif len(CONSUMER_ID)>
-                                                        CONSUMER_ID = #CONSUMER_ID#
-                                                    </cfif>
-                                                GROUP BY
-                                                    <cfif len(COMPANY_ID)>
-                                                        COMPANY_ID,
-                                                    <cfelseif len(CONSUMER_ID)>
-                                                        CONSUMER_ID,
-                                                    </cfif>
-                                                    SEHIR,
-                                                    ILCE,
-                                                    DELIVER_EMP,
-                                                    SHIP_METHOD_TYPE
-                                            </cfquery>
-                                            <cfif get_shipping_group.SAYI gt 1>
-                                                <cfset birlesme_izni = 1>
-                                            <cfelse>       
-                                            </cfif>
-                                        <cfelse>      
-                                        </cfif>
-                                    <cfelse>
-                                    </cfif>
+                                   <cfinclude template="birlesme_kontrol.cfm">
                                     <cfif DURUM eq 1>
                                         <input type="checkbox" name="select_production" value="#IS_TYPE#-#SHIP_RESULT_ID#-#birlesme_izni#">
                                     </cfif>
@@ -1134,7 +544,25 @@
                 </form>
             </tfoot>
         </cfif>
-	</table>
+    </cf_grid_list>
+</cf_box>
+
+
+
+<!--------
+       <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" class="tableyazi">
+                        	<img src="../../../images/graph.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3522.Sevkiyat Perspektif'>" />
+                      	</a>
+                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" class="tableyazi">
+                        	<img src="../../../images/target_customer.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3523.Sevk Planı Açılacak Siparişler'>" />
+                      	</a>
+                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" class="tableyazi">
+                        	<img src="../../../images/pos_credit.gif" align="absmiddle" border="0" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>" />
+                      	</a>
+------>
+
+
+
 <cfset url_str = 'eshipping.list_partner_shipping'>
 <cfif isdefined("attributes.member_type") and len(attributes.member_type)>
 	<cfset url_str = url_str & "&member_type=#attributes.member_type#&member_name=#attributes.member_name#">
