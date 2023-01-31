@@ -287,6 +287,7 @@
                                 <cfset t_point =t_point+GET_PUAN.puan*GET_PUAN.QUANTITY>
                             </cfif>
                         </cfloop>
+                        <cfset last_year = session.ep.period_year -1>
                        <cfinclude template="get_invoice_durum.cfm">
                             <tr>
                                 <td>#currentrow#</td>
