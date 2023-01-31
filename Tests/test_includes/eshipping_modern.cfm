@@ -86,7 +86,7 @@
                         <cfsavecontent variable="message"><cf_get_lang_main no='2326.Bitiş Tarihini Kontrol Ediniz'></cfsavecontent>
                         <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
                     </cfif>
-                    <cf_wrk_date_image date_field="finish_date">   
+                    <span class="input-group-addon"><cf_wrk_date_image date_field="finish_date"></span>
                 </div>
             </div>
             
