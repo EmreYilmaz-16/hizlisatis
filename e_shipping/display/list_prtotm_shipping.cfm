@@ -1370,8 +1370,8 @@
                                     <cfset get_sevk_durum.sevk_durum = 4>
                                 </cfif>
                                 <td style="text-align:center"> <!---Sevk Indicator--->
-                                    <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3533.Sevk Emri Ver'>">
-                                        <cfif  get_sevk_durum.sevk_durum eq 2>
+                                    <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_list_e_shipping_info&iid=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3533.Sevk Emri Ver'>">
+                                        <cfif  get_sevk_durum.sevk_durum eq 2><!---- Buydu :#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#---->
                                             <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
                                         <cfelseif  get_sevk_durum.sevk_durum eq 1>
                                             <img src="../../../images/red_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='3272.Kapalı'>" />
