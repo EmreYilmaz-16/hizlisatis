@@ -90,7 +90,7 @@
             CASE
            		WHEN TBL.COMPANY_ID IS NOT NULL THEN
                    (
-                    SELECT     
+                    SELECT   TOP 1  
                       	NICKNAME
 					FROM         
                     	#dsn_alias#.COMPANY
@@ -99,7 +99,7 @@
                   	)
           		WHEN TBL.CONSUMER_ID IS NOT NULL THEN      
                    	(	
-                  	SELECT     
+                  	SELECT    TOP 1 
                      	CONSUMER_NAME + ' ' + CONSUMER_SURNAME AS ISIM
 					FROM         
                       	#dsn_alias#.CONSUMER
@@ -108,7 +108,7 @@
                		)
             	WHEN TBL.EMPLOYEE_ID IS NOT NULL THEN
                   	(
-                   	SELECT     
+                   	SELECT     TOP 1
                     	EMPLOYEE_NAME + ' ' + EMPLOYEE_SURNAME AS ISIM
 					FROM         
                   		#dsn_alias#.EMPLOYEES
@@ -118,7 +118,7 @@
       		END
              	AS UNVAN,
           	(
-            SELECT     
+            SELECT TOP 1    
             	PRODUCT_NAME
 			FROM         
             	STOCKS
