@@ -125,6 +125,32 @@
                     <span class="input-group-addon icon-ellipsis btnPointer" href="javascript://" onclick="windowopen('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_product_names&product_id=order_form.product_id&field_name=order_form.product_name&keyword='+encodeURIComponent(document.order_form.product_name.value),'list');"></span>
                 </div>
             </div>
+            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+                <select name="prod_cat" id="prod_cat" >
+                    <option value=""><cf_get_lang_main no='1604.rn Kategorileri'></option>
+                    <cfoutput query="GET_PRODUCT_CATS">
+                        <cfif listlen(hierarchy,".") gte 4>
+                        <option value="#hierarchy#"<cfif (attributes.prod_cat eq hierarchy) and len(attributes.prod_cat) eq len(hierarchy)> selected</cfif>>#product_cat#</option>
+                        </cfif>
+                    </cfoutput>
+                </select>  
+            </div>
+            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+                <select name="branch_id" id="branch_id" >
+                    <option value=""><cf_get_lang_main no='41.Sube'></option>
+                     <cfoutput query="get_branch">
+                           <option value="#branch_id#" <cfif isdefined("attributes.branch_id") and branch_id eq attributes.branch_id>selected</cfif>>#branch_name#</option>
+                    </cfoutput>
+                </select> 
+            </div>
+            <div class="form-group col col-3 col-md-4 col-sm-6 col xs-12">
+                <select name="sales_departments" id="sales_departments" >
+                    <option value=""><cf_get_lang_main no='2234.Lokasyon'></option>
+                    <cfoutput query="get_department_name">
+                        <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments is '#department_id#-#location_id#'>selected</cfif>>#department_head#-#comment#</option>
+                    </cfoutput>
+                </select>
+            </div>
         </cf_box_search_detail>
     </cfform>
 </cf_box>
@@ -138,66 +164,7 @@
     <cf_big_list_search_area>
         <cf_object_main_table>
            
-            <cf_object_table column_width_list="50,150">
 
-                <cfsavecontent variable="header_"><cf_get_lang_main no='48.Filtre'></cfsavecontent>
-                <cf_object_tr id="form_ul_keyword" title="#header_#">
-                    <cf_object_td type="text"><cf_get_lang_main no='48.Filtre'></cf_object_td>
-                    <cf_object_td>
-                                        
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-            <cf_object_table column_width_list="50,75">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='296.Tümü'></cfsavecontent>
-                <cf_object_tr id="zone_id" title="#header_#">
-                    <cf_object_td>
-                         
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-            <cf_object_table column_width_list="50,75">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='247.Satis Bölgesi'></cfsavecontent>
-                <cf_object_tr id="zone_id" title="#header_#">
-                    <cf_object_td>
-                      
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-           
-            <cf_object_table column_width_list="165">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='1512.Sıralama'></cfsavecontent>
-                <cf_object_tr id="form_ul_sort_type" title="#header_#">
-                    <cf_object_td>
-                          
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table> 
-            <cf_object_table column_width_list="95">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='3284.Liste Tipi'></cfsavecontent>
-                <cf_object_tr id="form_ul_sort_type" title="#header_#">
-                    <cf_object_td>
-                                    
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table> 
-            <cf_object_table column_width_list="90">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='330.Tarih'></cfsavecontent>
-                <cf_object_tr id="form_ul_start_date" title="#header_#">
-                    <cf_object_td>
-                                       
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-            <cf_object_table column_width_list="90">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='330.Tarih'></cfsavecontent>
-                <cf_object_tr id="form_ul_finish_date" title="#header_#">
-                    <cf_object_td>
-                                
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>    
-            
             <cf_object_table column_width_list="170">
                 <cf_object_tr id="">
                     <cf_object_td>
@@ -250,14 +217,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='1604.rn Kategorileri'></cfsavecontent>
                 <cf_object_tr id="form_ul_prod_cat" title="#header_#">
                     <cf_object_td>
-                        <select name="prod_cat" id="prod_cat" style="width:140px;height:20px">
-                            <option value=""><cf_get_lang_main no='1604.rn Kategorileri'></option>
-                            <cfoutput query="GET_PRODUCT_CATS">
-                            	<cfif listlen(hierarchy,".") gte 4>
-                                <option value="#hierarchy#"<cfif (attributes.prod_cat eq hierarchy) and len(attributes.prod_cat) eq len(hierarchy)> selected</cfif>>#product_cat#</option>
-                                </cfif>
-                            </cfoutput>
-                        </select>                       
+                                          
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>
@@ -265,12 +225,7 @@
               	<cfsavecontent variable="header_"><cf_get_lang_main no='41.Şube'></cfsavecontent>
                	<cf_object_tr id="form_ul_branch_id" title="#header_#">
                  	<cf_object_td>
-                    	<select name="branch_id" id="branch_id" style="width:70px;height:20px">
-                        	<option value=""><cf_get_lang_main no='41.Sube'></option>
-                         	<cfoutput query="get_branch">
-                           		<option value="#branch_id#" <cfif isdefined("attributes.branch_id") and branch_id eq attributes.branch_id>selected</cfif>>#branch_name#</option>
-                            </cfoutput>
-                   		</select>        
+                           
               		</cf_object_td>
            		</cf_object_tr>
             </cf_object_table>
@@ -278,12 +233,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='2234.Lokasyon'></cfsavecontent>
                 <cf_object_tr id="form_ul_sales_departments" title="#header_#">
                     <cf_object_td>
-                        <select name="sales_departments" id="sales_departments" style="width:130px;height:20px">
-                            <option value=""><cf_get_lang_main no='2234.Lokasyon'></option>
-                            <cfoutput query="get_department_name">
-                                <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments is '#department_id#-#location_id#'>selected</cfif>>#department_head#-#comment#</option>
-                            </cfoutput>
-                        </select>
+                 
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>
