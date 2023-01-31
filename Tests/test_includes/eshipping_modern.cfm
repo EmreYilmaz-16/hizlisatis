@@ -94,7 +94,7 @@
                 <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,250" message="#message#" maxlength="3" style="width:25px;">
             </div>
             <div class="form-group">
-                <cf_wrk_search_button button-type="1"></cf_wrk_search_button>
+                <cf_wrk_search_button button-type="1">
             </div>
         </cf_box_search>
         <cf_box_search_detail>
