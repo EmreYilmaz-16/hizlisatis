@@ -98,7 +98,7 @@
             </div>
         </cf_box_search>
         <cf_box_search_detail>
-            <div class="form-group col col-2 ">
+            <div class="form-group col col-1 ">
                 <label>Gönderen</label>
                 <div class="input-group">
                 <input type="hidden" name="order_employee_id" id="order_employee_id" value="<cfif isdefined('attributes.order_employee_id') and len(attributes.order_employee_id) and isdefined('attributes.order_employee') and len(attributes.order_employee)><cfoutput>#attributes.order_employee_id#</cfoutput></cfif>">
@@ -106,7 +106,7 @@
                 <span class="input-group-addon icon-ellipsis btnPointer" href="javascript://" onclick="windowopen('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_positions&field_emp_id=order_form.order_employee_id&field_name=order_form.order_employee&is_form_submitted=1&select_list=1','list');"></span>		   
             </div>
             </div>
-            <div class="form-group col col-2 ">
+            <div class="form-group col col-1 ">
                 <label>Cari Hesap</label>
                 <div class="input-group">
                 <input type="hidden" name="consumer_id" id="consumer_id" value="<cfif isdefined("attributes.consumer_id")><cfoutput>#attributes.consumer_id#</cfoutput></cfif>">
@@ -144,13 +144,29 @@
                 </select> 
             </div>
 
-            <div class="form-group col col-3 ">
+            <div class="form-group col col-2 ">
                 <select name="sales_departments" id="sales_departments" >
                     <option value=""><cf_get_lang_main no='2234.Lokasyon'></option>
                     <cfoutput query="get_department_name">
                         <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments is '#department_id#-#location_id#'>selected</cfif>>#department_head#-#comment#</option>
                     </cfoutput>
                 </select>
+            </div>
+            <div class="form-group col col-1 ">
+                <select name="city_name" id="city_name" style="width:100px;height:20px">
+                    <option value=""><cf_get_lang_main no='559.Şehir'></option>
+                    <cfoutput query="get_city">
+                        <option value="#city_name#" <cfif isdefined("attributes.city_name") and attributes.city_name is '#city_name#'>selected</cfif>>#city_name#</option>
+                    </cfoutput>
+                </select> 
+            </div>
+            <div class="form-group col col-1 ">
+                <select name="SHIP_METHOD_ID" id="SHIP_METHOD_ID" style="width:100px;height:20px">
+                    <option value=""><cf_get_lang_main no='1703.Sevk Yöntemi'></option>
+                    <cfoutput query="GET_SHIP_METHOD">
+                        <option value="#SHIP_METHOD_ID#" <cfif isdefined("attributes.SHIP_METHOD_ID") and attributes.SHIP_METHOD_ID eq SHIP_METHOD_ID>selected</cfif>>#SHIP_METHOD#</option>
+                    </cfoutput>
+                </select>  
             </div>
         </cf_box_search_detail>
     </cfform>
@@ -242,12 +258,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='559.Şehir'></cfsavecontent>
                 <cf_object_tr id="form_city_name" title="#header_#">
                     <cf_object_td>
-                        <select name="city_name" id="city_name" style="width:100px;height:20px">
-                            <option value=""><cf_get_lang_main no='559.Şehir'></option>
-                            <cfoutput query="get_city">
-                                <option value="#city_name#" <cfif isdefined("attributes.city_name") and attributes.city_name is '#city_name#'>selected</cfif>>#city_name#</option>
-                            </cfoutput>
-                        </select>                 
+                                    
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>   
@@ -255,12 +266,7 @@
                 <cfsavecontent variable="header_"><cf_get_lang_main no='1703.Sevk Yöntemi'></cfsavecontent>
                 <cf_object_tr id="form_ship_method" title="#header_#">
                     <cf_object_td>
-                        <select name="SHIP_METHOD_ID" id="SHIP_METHOD_ID" style="width:100px;height:20px">
-                            <option value=""><cf_get_lang_main no='1703.Sevk Yöntemi'></option>
-                            <cfoutput query="GET_SHIP_METHOD">
-                                <option value="#SHIP_METHOD_ID#" <cfif isdefined("attributes.SHIP_METHOD_ID") and attributes.SHIP_METHOD_ID eq SHIP_METHOD_ID>selected</cfif>>#SHIP_METHOD#</option>
-                            </cfoutput>
-                        </select>                 
+                                 
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>
