@@ -75,7 +75,7 @@
                         <cfsavecontent variable="message"><cf_get_lang_main no='2325.Başlangıç Tarihini Kontrol Ediniz'></cfsavecontent>
                         <cfinput type="text" name="start_date"  value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
                     </cfif>
-                    <cf_wrk_date_image date_field="start_date">
+                    <span class="input-group-addon"><cf_wrk_date_image date_field="start_date"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -89,7 +89,13 @@
                     <span class="input-group-addon"><cf_wrk_date_image date_field="finish_date"></span>
                 </div>
             </div>
-            
+            <div class="form-group">
+                <cfsavecontent variable="message"><cf_get_lang_main no='125.Sayi_Hatasi_Mesaj'></cfsavecontent>
+                <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,250" message="#message#" maxlength="3" style="width:25px;">
+            </div>
+            <div class="form-group">
+                <input type="submit">
+            </div>
         </cf_box_search>
     </cfform>
 </cf_box>
@@ -175,9 +181,8 @@
                         <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" class="tableyazi">
                         	<img src="../../../images/pos_credit.gif" align="absmiddle" border="0" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>" />
                       	</a>
-                        <cfsavecontent variable="message"><cf_get_lang_main no='125.Sayi_Hatasi_Mesaj'></cfsavecontent>
-                        <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,250" message="#message#" maxlength="3" style="width:25px;">
-                        <input type="submit">
+                        
+                        
                     </cf_object_td>
                 </cf_object_tr>
             </cf_object_table>        
