@@ -478,7 +478,7 @@
                                 
                                 <td style="text-align:center;<cfif DURUM neq 1>background-color:red</cfif>"><a href="javascript://" onclick="windowopen('#request.self#?fuseaction=objects.popup_print_files&print_type=32&action_id=#is_type#-#SHIP_RESULT_ID#','page');"><img src="/images/print2.gif" alt="<cf_get_lang_main no='62.Yazdır'>" border="0" title="<cf_get_lang_main no='62.Yazdır'>">
                                 </td>
-                                <td style="text-align:right">
+                                <td style="text-align:right;display:flex">
                                 	<cfset birlesme_izni = 0>
                                    <cfinclude template="birlesme_kontrol.cfm">
                                     <cfif DURUM eq 1>
