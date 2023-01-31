@@ -820,7 +820,7 @@
 </cfquery>
 
 <cfform name="order_form" method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
-<cf_big_list_search title="#getLang('main',1445)#">
+<cf_big_list_search title="#getLang('main',1445)#" collapsed="0">
     <cf_big_list_search_area>
         <cf_object_main_table>
             <input name="form_varmi" id="form_varmi" value="1" type="hidden">
