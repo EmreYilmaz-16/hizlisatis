@@ -1,3 +1,38 @@
+<style>
+    .ui-wrk-btn-black {
+    background-color: #574f46 !important;
+    color: #fff !important;
+}
+
+.ui-wrk-btn-black:hover {
+    background-color: #000000 !important;
+    transition: .4s;
+}
+.ui-wrk-btn-warning {
+    background-color: #ff9100 !important;
+    color: #fff !important;
+}
+
+.ui-wrk-btn-warning:hover {
+    background-color: #ce7b08 !important;
+    transition: .4s;
+}
+.ui-wrk-btn-success {
+    background-color: #09ff00 !important;
+    color: #fff !important;
+}
+
+.ui-wrk-btn-succes:hover {
+    background-color: #26b809 !important;
+    transition: .4s;
+}
+.pclss{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 0 !important;
+}
+</style>
 <cfsetting showdebugoutput="yes">
 <cfparam name="attributes.product_name" default="">
 <cfparam name="attributes.product_id" default="">
@@ -341,132 +376,258 @@
                                 <b>Ö.Y:(#getPm.PAYMETHOD#)</b>
                                 </td>                               
                                 <cfinclude template="get_sevk_durum.cfm">
-                                <td style="text-align:center"> <!---Sevk Indicator--->
-                                    <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3533.Sevk Emri Ver'>">
-                                        <cfif  get_sevk_durum.sevk_durum eq 2>
-                                            <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
-                                        <cfelseif  get_sevk_durum.sevk_durum eq 1>
-                                            <img src="../../../images/red_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='3272.Kapalı'>" />
-                                        <cfelseif  get_sevk_durum.sevk_durum eq 6>
-                                            <img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3534.Kısmi Sevk'>" />
-                                        <cfelseif  get_sevk_durum.sevk_durum eq 4>
-                                            <img src="../../../images/blue_glob.gif" border="0"title="<cf_get_lang_main no='3535.Tüm Ürünler Hazır'>" />
-                                        <cfelseif  get_sevk_durum.sevk_durum eq 5>
-                                            <img src="../../../images/black_glob.gif" border="0"title="<cf_get_lang_main no='3536.Düzeltilmesi Gereken Sevk Talebi'>" />
-                                        </cfif>
-                                    </a>
+                                <td style="text-align:center">
+                                   
+                                   <cfset sevk_durum_class="">
+                                   <cfset sevk_durum_title="">
+                                    <cfif  get_sevk_durum.sevk_durum eq 2>
+                                        <cfset sevk_durum_class="ui-wrk-btn ui-wrk-btn-warning">
+                                       <cfset sevk_durum_title="Hepsi Açık">
+                                      <!---  <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />---->
+                                    <cfelseif  get_sevk_durum.sevk_durum eq 1>
+                                        <cfset sevk_durum_class="ui-wrk-btn ui-wrk-btn-red">
+                                        <cfset sevk_durum_title="Kapalı">
+                                      <!---  <img src="../../../images/red_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='3272.Kapalı'>" />---->
+                                    <cfelseif  get_sevk_durum.sevk_durum eq 6>
+                                        <cfset sevk_durum_class="ui-wrk-btn ui-wrk-btn-success">
+                                        <cfset sevk_durum_title="Kısmi Sevk">
+                                     <!---   <img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3534.Kısmi Sevk'>" />---->
+                                    <cfelseif  get_sevk_durum.sevk_durum eq 4>
+                                        <cfset sevk_durum_class="ui-wrk-btn ui-wrk-btn-extra">
+                                        <cfset sevk_durum_title="Tüm Ürünler Hazır">
+                                       <!--- <img src="../../../images/blue_glob.gif" border="0"title="<cf_get_lang_main no='3535.Tüm Ürünler Hazır'>" />---->
+                                    <cfelseif  get_sevk_durum.sevk_durum eq 5>
+                                        <cfset sevk_durum_class="ui-wrk-btn ui-wrk-btn-busy">
+                                        <cfset sevk_durum_title="Düzeltilmesi Gereken Sevk Talebi">
+                                       <!--- <img src="../../../images/black_glob.gif" border="0"title="<cf_get_lang_main no='3536.Düzeltilmesi Gereken Sevk Talebi'>" />---->
+                                    </cfif>
+                                    <button onclick="windowopen('#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#','page');"  type="button" class="#sevk_durum_class# pclss" title="#sevk_durum_title#"></button>
+                                    
+                                    <!---Sevk Indicator
+                                    <a href="javascript://"  class="tableyazi" title="<cf_get_lang_main no='3533.Sevk Emri Ver'>">
+                                        
+                                    </a>--->
                                 </td>
 
                                     <cfinclude template="ambar_control.cfm">
                                     <td style="text-align:center"> <!---Hazırlama Indicator--->
+                                        <cfset HazirlamaClass="">
+                                        <cfset HazirlamaTitle="">
+                                        <cfset HazirlamaAction="">
+
                                         <cfif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.PAKET_SAYISI eq 0 and AMBAR_CONTROL.CONTROL_AMOUNT eq 0>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>">
-                                            </a>
+                                            <cfset HazirlamaClass="ui-wrk-btn ui-wrk-btn-busy">
+                                            <cfset HazirlamaTitle="Barkod Yok">
+                                            <cfset HazirlamaAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');">
+                                            <!---
+                                            <a href="javascript://" onclick="" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                                                <img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>">
+                                            </a>---->
                                          <cfelseif AMBAR_CONTROL.recordcount AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/red_glob.gif" border="0" title="<cf_get_lang_main no='3137.Sevk Edildi'>.">
-                                            </a>
+                                            <cfset HazirlamaClass="ui-wrk-btn ui-wrk-btn-red">
+                                            <cfset HazirlamaTitle="Sevk Edildi">
+                                            <cfset HazirlamaAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');">
+
+                                            <!---<a href="javascript://" onclick="" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                                                <img src="/images/red_glob.gif" border="0" title="<cf_get_lang_main no='3137.Sevk Edildi'>.">
+                                            </a>---->
                                          <cfelseif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.CONTROL_AMOUNT eq 0>
                                             <cfif IS_SEVK_EMIR eq 1>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/blue_glob.gif" border="0" title="<cf_get_lang_main no='3538.Sevk Emri Verildi.'>">
-                                                </a>
+                                                <cfset HazirlamaClass="ui-btn ui-btn-blue">
+                                                <cfset HazirlamaTitle="Sevk Emri Verildi">
+                                                <cfset HazirlamaAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');">
+
+                                              <!---  <a href="javascript://" onclick="" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                                                    <img src="/images/blue_glob.gif" border="0" title="<cf_get_lang_main no='3538.Sevk Emri Verildi.'>">
+                                                </a>--->
                                             <cfelse>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3138.Sevk Edilmedi'>.">
-                                                </a>
+                                                <cfset HazirlamaClass="ui-wrk-btn ui-wrk-btn-warning">
+                                                <cfset HazirlamaTitle="Sevk Edilmedi">
+                                                <cfset HazirlamaAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');">
+
+                                               <!---  <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                                                    <img src="/images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3138.Sevk Edilmedi'>.">
+                                                </a>---->
                                             </cfif>
                                          <cfelseif AMBAR_CONTROL.recordcount AND AMBAR_CONTROL.PAKET_SAYISI gt AMBAR_CONTROL.CONTROL_AMOUNT>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/green_glob.gif" border="0" title="<cf_get_lang_main no='3139.Eksik Sevkiyat'>.">
-                                            </a>
+                                            <cfset HazirlamaClass="ui-wrk-btn ui-wrk-btn-success">
+                                            <cfset HazirlamaTitle="Eksik Sevkiyat">
+                                            <cfset HazirlamaAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');">
+                                           <!--- <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                                                <img src="/images/green_glob.gif" border="0" title="<cf_get_lang_main no='3139.Eksik Sevkiyat'>.">
+                                            </a>--->
                                          <cfelseif AMBAR_CONTROL.recordcount AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) lt ceiling(AMBAR_CONTROL.CONTROL_AMOUNT)>
-                                            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3140.Fazla Sevkiyat'>">  
-                                            </a>
+                                            <cfset HazirlamaClass="ui-wrk-btn ui-wrk-btn-black">
+                                            <cfset HazirlamaTitle="Fazla Sevkiyat">
+                                            <cfset HazirlamaAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');">
+                                            <!---<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                                                <img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3140.Fazla Sevkiyat'>">  
+                                            </a>--->
                                          </cfif>
+                                        <button type="button" class="#HazirlamaClass# pclss" title="#HazirlamaTitle#" onclick="#HazirlamaAction#"></button>
                                     </td>
                              
                                 <cfinclude template="package_control.cfm">
                                 
                                 <td style="text-align:center"> <!---El Terminali 1 Kontrol Indicator--->
+                                    <cfset PaketClass="">
+                                    <cfset PaketTitle="">
+                                    <cfset PaketAction="">
                                     <cfif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI eq 0 and PACKEGE_CONTROL.CONTROL_AMOUNT eq 0>
+                                        <cfset PaketClass="ui-wrk-btn ui-wrk-btn-busy">
+                                        <cfset PaketTitle="Barkod Yok">
+                                        <cfset PaketAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');">
+<!---
                                         <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
                                             <img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>." />
-                                        </a>
+                                        </a>---->
                                     <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI - PACKEGE_CONTROL.CONTROL_AMOUNT eq 0>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                                        <cfset PaketClass="ui-wrk-btn ui-wrk-btn-red">
+                                        <cfset PaketTitle="Kontrol Edildi">
+                                        <cfset PaketAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');">
+                                      <!---  <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
                                             <img src="/images/red_glob.gif" border="0" title="<cf_get_lang_main no='3133.Kontrol Edildi'>.">
-                                        </a>
+                                        </a>---->
                                      <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.CONTROL_AMOUNT eq 0>
+                                        <cfset PaketClass="ui-wrk-btn ui-wrk-btn-warning">
+                                        <cfset PaketTitle="Kontrol Edilmedi">
+                                        <cfset PaketAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');">
+                                        <!---
                                         <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
                                             <img src="/images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3134.Kontrol Edilmedi'>.">
-                                        </a>
+                                        </a>---->
                                      <cfelseif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI gt PACKEGE_CONTROL.CONTROL_AMOUNT>
-                                        <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">	
-                                            <img src="/images/green_glob.gif" border="0" title="<cf_get_lang_main no='3135.Kontrol Eksik'>."> 
+                                        <cfset PaketClass="ui-wrk-btn ui-wrk-btn-succes">
+                                        <cfset PaketTitle="Kontrol Eksik">
+                                        <cfset PaketAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');">
+                                        
+                                        <!---<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">	
+                                            <img src="/images/green_glob.gif" border="0" title="<cf_get_lang_main no='3135.Kontrol Eksik'>."> ---->
                                         </a>  
                                      <cfelse>
-                                     	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">	
-                                            <img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3539.Teslimat Miktarı Düşürülmüş.'>"> 
+                                        <cfset PaketClass="ui-wrk-btn ui-wrk-btn-black">
+                                        <cfset PaketTitle="Teslimat Miktarı Düşürülmüş">
+                                        <cfset PaketAction="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');">
+                                       <!---- <a href="javascript://" onclick="" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">	
+                                            <img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3539.Teslimat Miktarı Düşürülmüş.'>"> ---->
                                         </a> 
                                      </cfif>
+                                     <button type="button" class="#PaketClass# pclss" title="#PaketTitle#" onclick="#PaketAction#"></button>
                                 </td>
                                 <td style="text-align:center"> <!---İrsaliye Indicator--->
+                                    <cfset IrsaliyeClass="">
+                                    <cfset IrsaliyeTitle="">
+                                    <cfset IrsaliyeAction="">
+                                    
                                     <cfif IS_TYPE eq 1>
                                         <cfif DURUM eq 1>
                                         	<cfif (attributes.e_shipping_type eq 1 and ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0) or attributes.e_shipping_type neq 1>
                                             	<cfif Listlen(order_id_list) eq 1>
-                                                	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.form_add_sale&order_id=#order_id_list#&order_row_id=#order_row_id_list#','longpage');" class="tableyazi" title="<cf_get_lang_main no='3540.Satış İrsaliyesi Oluştur'>">
+                                                    <cfset IrsaliyeClass="ui-wrk-btn ui-wrk-btn-warning">
+                                                    <cfset IrsaliyeTitle="Satış İrsaliyesi Oluştur">
+                                                    <cfset IrsaliyeAction="windowopen('#request.self#?fuseaction=stock.form_add_sale&order_id=#order_id_list#&order_row_id=#order_row_id_list#','longpage');">
+                                                
                                                 <cfelse>
-                                                	<a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.form_add_sale&order_id=#ListGetAt(order_id_list,1)#&ezgi_order_row_id=#order_row_id_list#&order_row_id=0','longpage');" class="tableyazi" title="<cf_get_lang_main no='3540.Satış İrsaliyesi Oluştur'>">
+                                                    <cfset IrsaliyeClass="ui-wrk-btn ui-wrk-btn-warning">
+                                                    <cfset IrsaliyeTitle="Satış İrsaliyesi Oluştur">
+                                                    <cfset IrsaliyeAction="windowopen('#request.self#?fuseaction=stock.form_add_sale&order_id=#ListGetAt(order_id_list,1)#&ezgi_order_row_id=#order_row_id_list#&order_row_id=0','longpage');">
+                                                
                                                 </cfif>
-                                                    <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
-                                                </a>
+                                                
+                                                   
+                                                
                                             <cfelse>
-                                            	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3541.Kontrol Tamamlanmamış Sevkiyat'>" />
+                                                <cfset IrsaliyeClass="ui-wrk-btn ui-wrk-btn-warning">
+                                                <cfset IrsaliyeTitle="Kontrol Tamamlanmamış Sevkiyat">
+                                                <cfset IrsaliyeAction="">                                            	
                                             </cfif>
                                         <cfelseif DURUM eq 2>
-                                            <img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('prod',183)# #getLang('main',3137)#</cfoutput>" />
+                                            <cfset IrsaliyeClass="ui-wrk-btn ui-wrk-btn-red">
+                                            <cfset IrsaliyeTitle="#getLang('prod',183)# #getLang('main',3137)#">
+                                            <cfset IrsaliyeAction="">
+                                           
                                         <cfelseif DURUM eq 3>
                                         	 <cfif ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.form_add_sale&<cfif Listlen(order_id_list) eq 1>order_id=#order_id_list#&order_row_id=#order_row_id_list#<cfelse></cfif>','longpage');" class="tableyazi" title="Satış İrsaliyesi Oluştur">
-                                                    <img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3542.Kısmi Kapandı'>" />
-                                                </a>
+                                                <cfset IrsaliyeClass="ui-wrk-btn ui-wrk-btn-success">
+                                                <cfset IrsaliyeTitle="Kısmi Kapandı">
+                                                <cfset assx="">
+                                                <cfif Listlen(order_id_list) eq 1>
+                                                    <cfset assx="order_id=#order_id_list#&order_row_id=#order_row_id_list#">
+                                                <cfelse>
+                                                    <cfset assx="">
+                                                </cfif>
+                                                <cfset IrsaliyeAction="windowopen('#request.self#?fuseaction=stock.form_add_sale&#assx#','longpage');">
+                                                
                                             <cfelse>
-                                            	<img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3542.Kısmi Kapandı'>" />
+                                                <cfset IrsaliyeAction="">                                            	
                                             </cfif>
                                         </cfif>
                                     <cfelse>
                                         <cfif DURUM eq 1>
                                         	<cfif (attributes.e_shipping_type eq 1 and ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0) or attributes.e_shipping_type neq 1>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.add_ship_dispatch&dispatch_ship_id=#SHIP_RESULT_ID#','longpage');" class="tableyazi" title="<cf_get_lang_main no='3543.Depolararası Sevk İrsaliyesi Oluştur'>">
-                                                    <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
-                                                </a>
+                                                <cfset IrsaliyeClass="ui-wrk-btn ui-wrk-btn-warning">
+                                                <cfset IrsaliyeTitle="Hepsi Açık">
+                                                <cfset IrsaliyeAction="windowopen('#request.self#?fuseaction=stock.add_ship_dispatch&dispatch_ship_id=#SHIP_RESULT_ID#','longpage');">
+
+                                                
                                             <cfelse>
-                                            	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3541.Kontrol Tamamlanmamış Sevkiyat'>" />
+                                                <cfset IrsaliyeAction="">
+                                                <cfset IrsaliyeTitle="Kontrol Tamamlanmamış Sevkiyat">
+                                                <cfset IrsaliyeClass="ui-wrk-btn ui-wrk-btn-warning">
+                                            
                                             </cfif>
                                         <cfelseif DURUM eq 2>
-
-                                            <img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('prod',183)# #getLang('main',3137)#</cfoutput>" />
+                                            <cfset IrsaliyeAction="">
+                                            <cfset IrsaliyeTitle="#getLang('prod',183)# #getLang('main',3137)#">
+                                            <cfset IrsaliyeClass="ui-wrk-btn ui-wrk-btn-red">
+                                            
                                         </cfif>
                                     </cfif>
+                                    <button type="button" class="#IrsaliyeClass# pclss" title="#IrsaliyeTitle#" onclick="#IrsaliyeAction#"></button>
                                 </td>
                                 <td style="text-align:center">
-                                	<cfif get_invoice_durum.recordcount and len(get_invoice_durum.kalan)>
+                                    
+                                    <cfset FaturaClass="">
+                                    <cfset FaturaTitle="">
+                                    <cfset FaturaAction="">
+                                    <cfif get_invoice_durum.recordcount and len(get_invoice_durum.kalan)>
                                     	<cfif get_invoice_durum.kalan lt 0>
-                                    		<img src="../../../images/green_glob.gif" border="0" title="<cfoutput>#getLang('main',3544)# #getLang('report',404)#</cfoutput> " />
+                                            <cfset FaturaClass="ui-wrk-btn ui-wrk-btn-success">
+                                            <cfset FaturaTitle="#getLang('main',3544)# #getLang('report',404)#">
+                                            <cfset FaturaAction="">
+                                          
                                        	<cfelse>
-                                        	<img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('report',404)#</cfoutput> " />
+                                            <cfset FaturaClass="ui-wrk-btn ui-wrk-btn-red">
+                                            <cfset FaturaTitle="#getLang('report',404)#">
+                                            <cfset FaturaAction="">
+                                        	
                                         </cfif>
                                     <cfelse>
                                     	<cfif DURUM eq 1>
                                         	<cfif attributes.e_shipping_type eq 1 and (ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0) or attributes.e_shipping_type neq 1>
-                                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=invoice.form_add_bill&<cfif Listlen(order_id_list) eq 1>order_id=#order_id_list#&order_row_id=#order_row_id_list#<cfelse>order_id=#ListGetAt(order_id_list,1)#</cfif>','longpage');" class="tableyazi" title="<cf_get_lang_main no='3545.Toptan Satış Faturası Oluştur'>">
-                                                    <img src="../../../images/yellow_glob.gif" border="0" title="<cfoutput>#getLang('main',296)# #getLang('sales',479)#</cfoutput> " />
-                                                </a>
+                                                <cfset FaturaClass="ui-wrk-btn ui-wrk-btn-warning">
+                                                <cfset FaturaTitle="#getLang('main',296)# #getLang('sales',479)#">
+                                                <cfset asx="">
+                                                <cfif Listlen(order_id_list) eq 1>
+                                                    <cfset asx="order_id=#order_id_list#&order_row_id=#order_row_id_list#">
+                                                <cfelse>
+                                                    <cfset asx="order_id=#ListGetAt(order_id_list,1)#">
+                                                </cfif>
+                                                <cfset FaturaAction="windowopen('#request.self#?fuseaction=invoice.form_add_bill&#asx#','longpage');">                                                                                            
                                             <cfelse>
-                                            	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3546.Önce Ambar Fişi Oluşturun'>" />
+                                                <cfset FaturaClass="ui-wrk-btn ui-wrk-btn-warning">
+                                                <cfset FaturaTitle="Önce Ambar Fişi Oluşturun">
+                                                <cfset FaturaAction="">
+                                            	
                                             </cfif>
                                        	<cfelse>
-                                        	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3547.Fatura Emirlerden Kesilebilir'> " />
+                                            <cfset FaturaClass="ui-wrk-btn ui-wrk-btn-warning">
+                                            <cfset FaturaTitle="Fatura Emirlerden Kesilebilir">
+                                            <cfset FaturaAction="">
+                                        	
                                         </cfif>
                                     </cfif>
+                                    <button type="button" class="#FaturaClass# pclss" title="#FaturaTitle#" onclick="#FaturaAction#"></button>
                                 </td> <!---Fatura Indicator--->
                                 <cfquery name="get_control_emp" datasource="#dsn3#">
                                 	SELECT DISTINCT RECORD_EMP FROM PRTOTM_SHIPPING_PACKAGE_LIST WHERE SHIPPING_ID = #SHIP_RESULT_ID# AND TYPE = #IS_TYPE#
