@@ -170,112 +170,8 @@
             </div>
         </cf_box_search_detail>
     </cfform>
-</cf_box>
-
-
-<cfabort>
-
-
-<cfform name="order_form" method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
-<cf_big_list_search title="#getLang('main',1445)#" collapsed="0">
-    <cf_big_list_search_area>
-        <cf_object_main_table>
-           
-
-            <cf_object_table column_width_list="170">
-                <cf_object_tr id="">
-                    <cf_object_td>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" class="tableyazi">
-                        	<img src="../../../images/graph.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3522.Sevkiyat Perspektif'>" />
-                      	</a>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" class="tableyazi">
-                        	<img src="../../../images/target_customer.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3523.Sevk Planı Açılacak Siparişler'>" />
-                      	</a>
-                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" class="tableyazi">
-                        	<img src="../../../images/pos_credit.gif" align="absmiddle" border="0" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>" />
-                      	</a>
-                        
-                        
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>        
-        </cf_object_main_table>
-    </cf_big_list_search_area>
-    <cf_big_list_search_detail_area collapsed="0">
-        <cf_object_main_table>
-            <cf_object_table column_width_list="100,140">
-                <cfsavecontent variable="header_"><cfoutput>#getLang('report',1380)#</cfoutput></cfsavecontent>
-                <cf_object_tr id="form_ul_order_employee" title="#header_#">
-                    <cf_object_td type="text" td_style="text-align:right;"><cfoutput>#getLang('report',1380)#</cfoutput></cf_object_td>
-                    <cf_object_td>
-                        
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-            <cf_object_table column_width_list="90,140">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='107.Cari Hesap'></cfsavecontent>
-                <cf_object_tr id="form_ul_member_name" title="#header_#">
-                    <cf_object_td  td_style="text-align:right;" type="text"><cf_get_lang_main no='107.Cari Hesap'></cf_object_td>
-                    <cf_object_td>
-          
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-            <cf_object_table column_width_list="50,145">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='245.Ürün'></cfsavecontent>
-                <cf_object_tr id="form_ul_product_name" title="#header_#">
-                    <cf_object_td td_style="text-align:right;" type="text"><cf_get_lang_main no='245.Ürün'></cf_object_td>
-                    <cf_object_td>
-                        
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-            <cf_object_table column_width_list="50,145">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='1604.rn Kategorileri'></cfsavecontent>
-                <cf_object_tr id="form_ul_prod_cat" title="#header_#">
-                    <cf_object_td>
-                                          
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-             <cf_object_table column_width_list="75">
-              	<cfsavecontent variable="header_"><cf_get_lang_main no='41.Şube'></cfsavecontent>
-               	<cf_object_tr id="form_ul_branch_id" title="#header_#">
-                 	<cf_object_td>
-                           
-              		</cf_object_td>
-           		</cf_object_tr>
-            </cf_object_table>
-            <cf_object_table column_width_list="50,135">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='2234.Lokasyon'></cfsavecontent>
-                <cf_object_tr id="form_ul_sales_departments" title="#header_#">
-                    <cf_object_td>
-                 
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-            <cf_object_table column_width_list="105">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='559.Şehir'></cfsavecontent>
-                <cf_object_tr id="form_city_name" title="#header_#">
-                    <cf_object_td>
-                                    
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>   
-         	<cf_object_table column_width_list="105">
-                <cfsavecontent variable="header_"><cf_get_lang_main no='1703.Sevk Yöntemi'></cfsavecontent>
-                <cf_object_tr id="form_ship_method" title="#header_#">
-                    <cf_object_td>
-                                 
-                    </cf_object_td>
-                </cf_object_tr>
-            </cf_object_table>
-        </cf_object_main_table>                               
-    </cf_big_list_search_detail_area>
-</cf_big_list_search>
-</cfform>
-	<table class="big_list">
-		<thead>
+    <cf_grid_list>
+        <thead>
 			<tr height="15">
 				<th rowspan="2" style="width:30px;text-align:center" class="header_icn_txt"><cf_get_lang_main no='1165.Sira'></th>
 				<th rowspan="2" style="width:55px;text-align:center"><cf_get_lang_main no='75.no'></th>
@@ -313,6 +209,26 @@
 
             </tr>
 		</thead>
+    </cf_grid_list>
+</cf_box>
+
+
+<cfabort>
+<!--------
+       <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=eshipping.popup_list_prtotm_shipping_graph</cfoutput>','longpage');" class="tableyazi">
+                        	<img src="../../../images/graph.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3522.Sevkiyat Perspektif'>" />
+                      	</a>
+                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_deliver</cfoutput>','longpage');" class="tableyazi">
+                        	<img src="../../../images/target_customer.gif" align="absmiddle" border="0" title="<cf_get_lang_main no='3523.Sevk Planı Açılacak Siparişler'>" />
+                      	</a>
+                        <a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=sales.popup_list_ezgi_shipping_control</cfoutput>','wide');" class="tableyazi">
+                        	<img src="../../../images/pos_credit.gif" align="absmiddle" border="0" title="<cfoutput>#getLang('stock',348)# #getLang('stock',181)#</cfoutput>" />
+                      	</a>
+------>
+
+
+	<table class="big_list">
+		
 		<tbody>
         	<cfset t_point =#attributes.t_point#>
         	<cfif isdefined("attributes.form_varmi") and GET_SHIPPING.recordcount>
