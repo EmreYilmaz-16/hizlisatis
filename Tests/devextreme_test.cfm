@@ -1,4 +1,10 @@
-<cfinclude template="test_includes/eshipping_modern.cfm">
+<cfif isDefined("attributes.page")>
+  <cfswitch expression="#attributes.page#">
+    <cfcase value="1"><cfinclude template="test_includes/eshipping_modern.cfm"></cfcase>
+    <cfcase value="2"><cfinclude template="test_includes/makeTree.cfm"></cfcase>
+  </cfswitch>
+</cfif>
+
 <cfabort>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
