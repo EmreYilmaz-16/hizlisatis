@@ -1,5 +1,8 @@
-<div class="row">
-    <div class="col">
-        Ağaç 1 Burada
-    </div>
-</div>
+<button onclick="AddSomethig()">+</button>
+
+
+
+
+<script>
+    <cfinclude template="makeTree.js">
+</script>

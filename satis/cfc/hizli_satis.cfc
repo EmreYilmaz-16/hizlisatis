@@ -1143,8 +1143,10 @@
     <cfset attributes.AMOUNT = filterNum(tlformat(pr.QTY))>
     <cfset attributes.UNIT_ID = getStock_Info.PRODUCT_UNIT_ID>
     <cfset attributes.alternative_questions = pr.QUE>
-       <cfinclude template="/AddOns/Partner/satis/Includes/PARTNERTREEPORT.cfm">
+    <cfif attributes.add_stock_id neq 0>
+    <cfinclude template="/AddOns/Partner/satis/Includes/PARTNERTREEPORT.cfm">
         <cfset SPEC_MAIN_ID_LIST= listAppend(SPEC_MAIN_ID_LIST, getStock_Info.STOCK_ID)> 
+    </cfif>   
 </cfloop>
 <cfquery name="insertOpp" datasource="#dsn3#">
     INSERT INTO PRODUCT_TREE (

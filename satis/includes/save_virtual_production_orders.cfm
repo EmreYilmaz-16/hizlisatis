@@ -33,6 +33,7 @@
 		<cfquery name="GETtREE" datasource="#DSN3#">
 			SELECT * FROM PRODUCT_TREE WHERE STOCK_ID=#evaluate('attributes.stock_id#i#')#
 		</cfquery>
+		<cfdump var="#GETtREE#">
 		<cfloop query="GETtREE">
 			<cfquery name="insertPosStocks" datasource="#dsn3#">
 				INSERT INTO VIRTUAL_PRODUCTION_ORDERS_STOCKS
