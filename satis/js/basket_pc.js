@@ -1236,6 +1236,7 @@ function BasketSelControl() {
 var elks = "";
 function showTree(el) {
   elks = el;
+  console.log(el)
 }
 
 function rowaListener(tr) {
