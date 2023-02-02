@@ -1227,12 +1227,12 @@ function BasketSelControl() {
           att: "",
         };
       }
-    }else{
+    } else {
       var treeButton = {
         icon: "icn-md fa fa-tree",
         txt: "Ağaç Görüntüle",
         evntType: "onclick",
-        evnt: "showTree("+RwId+")",
+        evnt: "showTree(" + RwId + ")",
         att: "",
       };
     }
@@ -1244,7 +1244,11 @@ function BasketSelControl() {
 var elks = "";
 function showTree(el) {
   elks = el;
-  console.log(el)
+  console.log(el);
+  var sid = document.getElementById("stock_id_" + el);
+  openBoxDraggable(
+    "index.cfm?fuseaction=objects.emptypopup_show_tree_prt&stock_id=" + sid
+  );
 }
 
 function rowaListener(tr) {
