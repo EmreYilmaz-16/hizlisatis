@@ -1227,6 +1227,14 @@ function BasketSelControl() {
           att: "",
         };
       }
+    }else{
+      var treeButton = {
+        icon: "icn-md fa fa-tree",
+        txt: "Ağaç Görüntüle",
+        evntType: "onclick",
+        evnt: "showTree("+RwId+")",
+        att: "",
+      };
     }
   }
   buttonGroups.push(removeButton, UpdateButton, groupButton, treeButton);
