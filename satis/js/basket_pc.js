@@ -1245,7 +1245,7 @@ var elks = "";
 function showTree(el) {
   elks = el;
   console.log(el);
-  var sid = document.getElementById("stock_id_" + el);
+  var sid = document.getElementById("stock_id_" + el).value;
   openBoxDraggable(
     "index.cfm?fuseaction=objects.emptypopup_show_tree_prt&stock_id=" + sid
   );
