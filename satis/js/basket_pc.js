@@ -1180,7 +1180,7 @@ function BasketSelControl() {
     txt: "Ağaç Görüntüle",
     evntType: "onclick",
     evnt: "showTree(this)",
-    att: "",
+    att: "disabled",
   };
   var buttonGroups = [];
   var sepetRows = document.getElementsByClassName("sepetRow");
