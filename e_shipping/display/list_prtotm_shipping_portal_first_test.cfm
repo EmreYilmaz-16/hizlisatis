@@ -63,7 +63,7 @@
 		<cfif getOrderAmount.recordCount>
 			<cfset SiparisMiktari=getOrderAmount.QUANTITY>
 		</cfif>
-	<cf_box title="#GetLocationStocks.PRODUCT_CODE[i]# #GetLocationStocks.PRODUCT_NAME[i]# #GetLocationStocks.STOCK_ID[i]# " resize="0" collapsable="0">
+	<cf_box title="#GetLocationStocks.PRODUCT_CODE[i]# --&gt; #GetLocationStocks.PRODUCT_NAME[i]#" resize="0" collapsable="0">
 		
 		<table>
 			<tr><td>
