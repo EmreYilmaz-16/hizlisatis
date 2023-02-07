@@ -87,6 +87,7 @@
                          	SF.FIS_TYPE = 113 AND 
                           	SF.REF_NO = '#attributes.ref_no#' AND 
                      		SFR.STOCK_ID = TBL.PAKET_ID
+							AND SF.DEPARTMENT_OUT =TBL.DELIVER_DEPT AND LOCATION_OUT=TBL.DELIVER_LOCATION
                  		<cfif get_period_id.recordcount>
                        		UNION ALL
                           	SELECT        
@@ -98,6 +99,7 @@
                               	SF.FIS_TYPE = 113 AND 
                               	SF.REF_NO = '#attributes.ref_no#' AND 
                               	SFR.STOCK_ID = TBL.PAKET_ID
+								  AND SF.DEPARTMENT_OUT =TBL.DELIVER_DEPT AND LOCATION_OUT=TBL.DELIVER_LOCATION
                     	</cfif>
                 		) AS TBL_5
         	),0) AS CONTROL_AMOUNT,
@@ -116,6 +118,8 @@
                 SHIP_RESULT_ID,
                 DELIVER_PAPER_NO,
 				PREPARE_PERSONAL
+				DELIVER_DEPT,
+				DELIVER_LOCATION
            	FROM
             	(     
                 SELECT     
@@ -131,7 +135,9 @@
                     EPS.PAKET_ID, 
                     S.BARCOD, 
                     S.STOCK_CODE, 
-                    ORR.PRODUCT_NAME, 
+                    ORR.PRODUCT_NAME,
+					ORR.DELIVER_DEPT,
+					ORR.DELIVER_LOCATION ,
                     S.PRODUCT_TREE_AMOUNT, 
                     ESR.SHIP_RESULT_ID,
                     ESRR.ORDER_ROW_ID,
