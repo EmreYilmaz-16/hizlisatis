@@ -1,16 +1,85 @@
-﻿<style>
+﻿<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" name="frm1">
+	<cfquery name="getDep" datasource="#dsn#">
+		SELECT * FROM DEPARTMENT WHERE DEPARTMENT_ID IN (44,45,46,47)
+	</cfquery>
+	
+	<div style="width:50%;" class="divElement">
+		<cf_box >
+		<div class="form-group">
+			<label>Departman</label>
+			<select name="dep" id="dep" required onchange="getLocation(this.value)">
+				<option value="">Seçiniz</option>
+				<cfoutput query="getDep">
+					<option value="#DEPARTMENT_ID#">
+						#DEPARTMENT_HEAD#
+					</option>
+				</cfoutput>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Lokasyon</label>
+			<select name="loc" id="loc" required>
+			
+			</select>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" name="show_no_order" value="1">
+			<label>Tümünü Getir</label>
+		</div>
+			<button class="btn btn-success" onclick="document.frm1.submit()">Sorgula</button>
+	</cf_box>
+	</div>
+	
+
+	<cfparam name="attributes.dep" default="44">
+	<cfparam name="attributes.loc" default="1">
+	<script>
+		function getLocation(id){
+			var q=wrk_query("SELECT DEPARTMENT_ID,LOCATION_ID,COMMENT FROM STOCKS_LOCATION where DEPARTMENT_ID="+id,"dsn")
+			console.log(q)
+			var sel=document.getElementById("loc");
+			sel.innerHTML="";
+			var opt=document.createElement("option");
+			opt.setAttribute("value","")
+			opt.innerText="Seçiniz";            
+			sel.appendChild(opt);
+	
+			for(let i=0;i<q.recordcount;i++){
+				var opt=document.createElement("option");
+				opt.setAttribute("value",q.LOCATION_ID[i])
+				opt.innerText=q.COMMENT[i]
+				sel.appendChild(opt);
+			}
+		}
+		function loginTv(){
+			var dep=document.getElementById("dep").value
+			var loc=document.getElementById("loc").value
+			window.location.href="/index.cfm?fuseaction=stock.emptypopup_hazirlama_tv_after&department_id="+dep+"&location_id="+loc
+		}
+	</script>
+</cfform>
+<style>
 	th{
 	color:black !important;
 	}
 	</style>
 	<cfquery name="GetLocationStocks" datasource="#dsn2#">
-	SELECT *,(select MAX(PROCESS_DATE) from #dsn2#.STOCKS_ROW where STOCK_ID=S.STOCK_ID) DD
+	SELECT * FROM (
+	SELECT  S.*,P.PRODUCT_CODE,P.PRODUCT_NAME,(select MAX(PROCESS_DATE) from #dsn2#.STOCKS_ROW where STOCK_ID=S.STOCK_ID) DD,
+	(	SELECT SUM(ordr.QUANTITY) AS QUANTITY
+			FROM workcube_metosan_1.ORDER_ROW AS ordr
+				,workcube_metosan_1.ORDERS AS ord
+			WHERE 1 = 1
+				 AND STOCK_ID = S.STOCK_ID
+				AND ORDER_ROW_CURRENCY = - 6
+				AND ord.ORDER_ID = ordr.ORDER_ID
+				AND ord.PURCHASE_SALES = 1) AS AA_ORDER
 	FROM #dsn1#.STOCKS AS S,#dsn1#.PRODUCT AS P
 	WHERE STOCK_ID IN (
 			SELECT STOCK_ID
 			FROM #dsn2#.STOCKS_ROW
-			WHERE STORE_LOCATION = 1
-			AND STORE=44
+			WHERE STORE_LOCATION = #attributes.loc#
+			AND STORE=#attributes.dep#
 			GROUP BY STOCK_ID
 			HAVING sum(STOCK_IN - STOCK_OUT) > 0
 			
@@ -18,6 +87,11 @@
 	AND S.PRODUCT_ID=P.PRODUCT_ID
 	<cfif isDefined("attributes.stock_id_1")>
 	and	P.PRODUCT_ID=#attributes.stock_id_1#
+	</cfif>) AS TTQ
+
+	<cfif isDefined("attributes.show_no_order") and attributes.show_no_order eq 1>
+		<cfelse>
+WHERE TTQ.AA_ORDER>0
 	</cfif>
 	ORDER BY DD
 	</cfquery>
@@ -26,7 +100,7 @@
 	
 	<cfloop from="1" to="#kayitsayisi#" index="i" step="1">
 		<cfquery name="GetDepoMiktar" datasource="#dsn2#">
-			select sum(STOCK_IN-STOCK_OUT) AS MIKTAR FROM #dsn2#.STOCKS_ROW WHERE STOCK_ID=#GetLocationStocks.STOCK_ID[i]# AND STORE_LOCATION = 1 AND STORE=44
+			select sum(STOCK_IN-STOCK_OUT) AS MIKTAR FROM #dsn2#.STOCKS_ROW WHERE STOCK_ID=#GetLocationStocks.STOCK_ID[i]# AND STORE_LOCATION = #attributes.loc# AND STORE=#attributes.dep#
 		</cfquery>
 		<cfquery name="getOrderAmount" datasource="#dsn3#">
 			SELECT SUM(ordr.QUANTITY) AS QUANTITY
@@ -153,7 +227,7 @@
 												'#item#',
 											</cfloop>'')
 											AND SFR.STOCK_ID =#GetLocationStocks.STOCK_ID[i]#
-											AND SF.DEPARTMENT_OUT=44 AND SF.LOCATION_OUT=1
+											AND SF.DEPARTMENT_OUT=#attributes.dep# AND SF.LOCATION_OUT=#attributes.loc#
 										
 						</cfquery>
 						
