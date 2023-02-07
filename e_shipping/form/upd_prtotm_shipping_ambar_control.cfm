@@ -117,7 +117,7 @@
                 PRODUCT_TREE_AMOUNT, 
                 SHIP_RESULT_ID,
                 DELIVER_PAPER_NO,
-				PREPARE_PERSONAL
+				PREPARE_PERSONAL,
 				DELIVER_DEPT,
 				DELIVER_LOCATION
            	FROM
