@@ -12,7 +12,7 @@ errorvariable="local.err">
     <cfoutput>
         <cfset sx=findNocase("git",str)>
         <cfset lx=len(mid(str,sx,len(str)))>
-        #mid(str,sx,lx-59)#
+        #mid(str,sx,lx-62)#
     </cfoutput>
 
 
