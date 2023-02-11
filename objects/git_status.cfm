@@ -7,8 +7,14 @@ errorvariable="local.err">
 
 
 <cf_box title="Git Status">
-<cfoutput>
-#local.out#
-</cfoutput>
+    <cfset str="#local.out#">
+
+    <cfoutput>
+        <cfset sx=findNocase("git",str)>
+        <cfset lx=len(mid(str,sx,len(str)))>
+        #mid(str,sx,lx-59)#
+    </cfoutput>
+
+
 
 </cf_box>
