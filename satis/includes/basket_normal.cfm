@@ -5,9 +5,16 @@
 </div>
 <div style="clear:both"></div>
 
+<cfif isDefined("attributes.event") and attributes.event eq "upd">
+    <cfquery name="getMoney" datasource="#dsn3#">
+        SELECT *,MONEY_TYPE as MONEY FROM PBS_OFFER_MONEY WHERE ACTION_ID = #attributes.offer_id#
+    </cfquery>
+
+<cfelse>
 <cfquery name="getMoney" datasource="#dsn#">
     SELECT MONEY,RATE1, EFFECTIVE_SALE AS RATE2 FROM SETUP_MONEY WHERE PERIOD_ID = #session.ep.period_id# ORDER BY MONEY_ID
 </cfquery>
+</cfif>
 <script>
     var moneyArr=[
         <cfoutput query="getMoney">
