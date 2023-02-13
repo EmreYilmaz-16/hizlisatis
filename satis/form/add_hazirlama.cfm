@@ -146,10 +146,12 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
                 <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
                 <cfset 'attributes.SHELF_NUMBER_#ix#' = SHELF_NUMBER>
                 <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>
+                
               <cfelse>
                 <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = ''> 
                 <cfset 'attributes.SHELF_NUMBER_#ix#' = ''>
-                <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>
+                <cfset 'attributes.shelf_number#ix#' = ''>
+                
             </cfif>
               <cfset 'attributes.stock_id#ix#' = STOCK_ID>
               <cfset 'attributes.amount#ix#' = AMOUNT>
