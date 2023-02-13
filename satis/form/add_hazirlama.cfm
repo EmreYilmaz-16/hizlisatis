@@ -139,8 +139,16 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
             </cfquery>
             
               <cfset attributes.rows_=attributes.rows_+1>
-              <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
-              <cfset 'attributes.SHELF_NUMBER_#ix#' = SHELF_NUMBER>
+              <cfquery name="isShelfed" datasource="#dsn3#">
+                SELECT * FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE='#SHELF_NUMBER_TXT#' AND STORE_ID=#attributes.department_out# AND LOCATION_ID=#attributes.LOCATION_OUT#
+              </cfquery>
+              <cfif isShelfed.recordCount>
+                <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
+                <cfset 'attributes.SHELF_NUMBER_#ix#' = SHELF_NUMBER>
+              <cfelse>
+                <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = ''> 
+                <cfset 'attributes.SHELF_NUMBER_#ix#' = ''>
+            </cfif>
               <cfset 'attributes.stock_id#ix#' = STOCK_ID>
               <cfset 'attributes.amount#ix#' = AMOUNT>
               <cfset 'attributes.unit#ix#' = getSinfo.MAIN_UNIT>
