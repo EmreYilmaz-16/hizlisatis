@@ -145,9 +145,11 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
               <cfif isShelfed.recordCount>
                 <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
                 <cfset 'attributes.SHELF_NUMBER_#ix#' = SHELF_NUMBER>
+                <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>
               <cfelse>
                 <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = ''> 
                 <cfset 'attributes.SHELF_NUMBER_#ix#' = ''>
+                <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>
             </cfif>
               <cfset 'attributes.stock_id#ix#' = STOCK_ID>
               <cfset 'attributes.amount#ix#' = AMOUNT>
@@ -157,7 +159,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
               <cfset 'attributes.product_id#ix#' = getSinfo.PRODUCT_ID>
               <cfset 'attributes.is_inventory#ix#' = getSinfo.IS_INVENTORY>
               <cfset 'attributes.WRK_ROW_ID#ix#' = "#round(rand()*65)##dateformat(now(),'YYYYMMDD')##timeformat(now(),'HHmmssL')##session.ep.userid##round(rand()*100)#">
-              <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>
+              
               <cfset ix=ix+1>   
         </cfloop>
         <cfinclude template="/v16/stock/query/add_ship_fis_1_PBS.cfm">    
