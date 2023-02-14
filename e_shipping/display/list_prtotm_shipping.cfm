@@ -1060,7 +1060,7 @@
                 </cfif>
 				<th rowspan="2" style="width:100px;text-align:center"><cf_get_lang_main no='487.Kaydeden'></th>
 				<th rowspan="2" style="width:100px;text-align:center"><cf_get_lang_main no='1703.Sevk Yöntemi'></th>
-                <th colspan="<cfif attributes.e_shipping_type eq 1>5<cfelse>4</cfif>" style="width:100px;text-align:center"><cfoutput>#getLang('main',1447)# #getLang('account',134)#</cfoutput></th>
+                <th colspan="<cfif attributes.e_shipping_type eq 1>6<cfelse>5</cfif>" style="width:100px;text-align:center"><cfoutput>#getLang('main',1447)# #getLang('account',134)#</cfoutput></th>
 				<th rowspan="2" style="width:100px;text-align:center"><cfoutput>#getLang('prod',253)#</cfoutput></th>
                 <!---<th rowspan="2" style="width:50px;text-align:center">S.Puan</th>--->
                 <th rowspan="2" style="width:90px;text-align:center"><cf_get_lang_main no='559.Şehir'></th> 
@@ -1077,7 +1077,7 @@
 
 			</tr>
             <tr height="10">
-                <th>INF</th>
+                <th style="width:20px;text-align:center">INF</th>
                 <th style="width:20px;text-align:center">SVK</th>
                 <cfif attributes.e_shipping_type eq 1>
                 <th style="width:20px;text-align:center">HZR</th>
