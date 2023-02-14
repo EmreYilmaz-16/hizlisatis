@@ -62,7 +62,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         </td>
         <td>#READY_QUANTITY#</td>
         <td>
-            <input type="text" name="required_quantity_#UNIQUE_RELATION_ID#" value="#(QUANTITY-SHIPPED_QUANTITY)-READY_QUANTITY#">
+            <input type="text" name="required_quantity_#UNIQUE_RELATION_ID#" value="#READY_QUANTITY-SHIPPED_QUANTITY#">
         </td>
         <td>
             <input type="checkbox" value="#UNIQUE_RELATION_ID#" name="quantity_vals">
