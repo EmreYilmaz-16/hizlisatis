@@ -1339,7 +1339,9 @@
                                 </cfquery>
                                 <b>Ö.Y:(#getPm.PAYMETHOD#)</b>
                                 </td>
-                                <td></td>
+                                <td>
+                                    <img src="../../../images/idea.gif" border="0" title="Durum" />
+                                </td>
                                 <cfif listlen(order_row_id_list)>
                                     <cfquery name="get_sevk_durum" datasource="#dsn3#"> <!---Rezerve edilen üretim planları veya satınalma siparişlerinin depoya girişleri kontrol ediliyor--->
                                         SELECT     
