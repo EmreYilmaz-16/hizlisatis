@@ -33,6 +33,9 @@ AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
 AND SRR.PREPARE_PERSONAL=#session.EP.USERID#
 
 </cfquery>
+<cfif session.ep.userid eq 1146>
+    <cfdump var="#GETsEVKS#">
+</cfif>
 
 <div style="height:80vh">
     <cf_box title="Hazırlama Listesi">
