@@ -1077,6 +1077,7 @@
 
 			</tr>
             <tr height="10">
+                <th>INF</th>
                 <th style="width:20px;text-align:center">SVK</th>
                 <cfif attributes.e_shipping_type eq 1>
                 <th style="width:20px;text-align:center">HZR</th>
@@ -1338,6 +1339,7 @@
                                 </cfquery>
                                 <b>Ö.Y:(#getPm.PAYMETHOD#)</b>
                                 </td>
+                                <td></td>
                                 <cfif listlen(order_row_id_list)>
                                     <cfquery name="get_sevk_durum" datasource="#dsn3#"> <!---Rezerve edilen üretim planları veya satınalma siparişlerinin depoya girişleri kontrol ediliyor--->
                                         SELECT     
@@ -1789,7 +1791,7 @@
                                             ) AS TBL2
                                     </cfquery>
                                 </cfif>
-                                
+
                                 <td style="text-align:center"> <!---El Terminali 1 Kontrol Indicator--->
                                     <cfif PACKEGE_CONTROL.recordcount AND PACKEGE_CONTROL.PAKET_SAYISI eq 0 and PACKEGE_CONTROL.CONTROL_AMOUNT eq 0>
                                         <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
