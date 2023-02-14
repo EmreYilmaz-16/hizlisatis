@@ -20,7 +20,20 @@ LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID = ORR.STOCK_ID
 WHERE PSR.SHIP_RESULT_ID = 6413
 
 </cfquery>
+<cf_box title="Sevk Durumları">
 <cf_grid_list>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Ürün Kodu</th>
+            <th>Ürün Adı</th>
+            <th>Sipariş Miktarı</th>
+            <th>Sevk Edilen Miktar</th>
+            <th>Sevk Edilecek Miktar</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
     <cfoutput>
 <cfloop query="GetSiparisData">
     <tr>
@@ -48,4 +61,6 @@ WHERE PSR.SHIP_RESULT_ID = 6413
     </tr>
 </cfloop>
 </cfoutput>
+</tbody>
 </cf_grid_list>
+</cf_box>

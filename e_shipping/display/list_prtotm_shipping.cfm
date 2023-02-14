@@ -1340,7 +1340,7 @@
                                 <b>Ö.Y:(#getPm.PAYMETHOD#)</b>
                                 </td>
                                 <td style="text-align:center">
-                                    <a href="javascript://" onclick="windowopen('index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=#SHIP_RESULT_ID#')">
+                                    <a href="javascript://" onclick="windowopen('index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=#SHIP_RESULT_ID#','page')">
                                     <img src="../../../images/idea.gif" border="0" title="Durum" />
                                 </a>
                                 </td>
