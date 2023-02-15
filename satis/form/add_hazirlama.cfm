@@ -133,6 +133,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
             <cfset AMOUNT=filternum(evaluate("attributes.QUANTITY#li#"))>
             <cfset SHELF_NUMBER=evaluate("attributes.PRODUCT_PLACE_ID#li#")>
             <cfset SHELF_NUMBER_TXT=evaluate("attributes.SHELFCODE#li#")>
+            <cfset ROW_UNIQ_RELATION=evaluate("attributes.uniq_relation_id_#li#")>
             <cfquery name="getSinfo" datasource="#dsn3#">                            
                 select PRODUCT_UNIT.MAIN_UNIT,STOCKS.PRODUCT_UNIT_ID,STOCKS.TAX,STOCKS.PRODUCT_ID,STOCKS.IS_INVENTORY from #dsn3#.STOCKS 
                 left join #dsn3#.PRODUCT_UNIT on PRODUCT_UNIT.PRODUCT_ID=STOCKS.PRODUCT_ID and IS_MAIN=1                            
@@ -162,7 +163,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
               <cfset 'attributes.product_id#ix#' = getSinfo.PRODUCT_ID>
               <cfset 'attributes.is_inventory#ix#' = getSinfo.IS_INVENTORY>
               <cfset 'attributes.WRK_ROW_ID#ix#' = "#round(rand()*65)##dateformat(now(),'YYYYMMDD')##timeformat(now(),'HHmmssL')##session.ep.userid##round(rand()*100)#">
-              <cfset 'attributes.row_unique_relation_id#ix#'=evaluate('attributes.uniq_relation_id_#ix#')>
+              <cfset 'attributes.row_unique_relation_id#ix#'=ROW_UNIQ_RELATION>
               <cfset ix=ix+1>   
         </cfloop>
         <cfinclude template="/v16/stock/query/add_ship_fis_1_PBS.cfm">    
