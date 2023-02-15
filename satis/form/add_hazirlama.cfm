@@ -177,8 +177,8 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
         </cfif>   
 <script>
     //window.location.href="/index.cfm?fuseaction=sales.list_pbs_order_prepare";
-    window.opener.location.reload();
-    this.close();
+    //window.opener.location.reload();
+    //this.close();
 </script>
 </cfif>
 <script>
