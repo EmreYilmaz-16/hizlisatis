@@ -32,7 +32,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 
 </cfquery>
 <cf_box title="Sevk Durumları">
-<cfform method="post" action="#request.self#?fuseaction=invoice.form_add_bill">
+<cfform method="post" action="#request.self#?fuseaction=invoice.form_add_bill&is_from_pbs=1">
     <cf_grid_list>
     <thead>
         <tr>

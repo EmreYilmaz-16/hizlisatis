@@ -1,7 +1,5 @@
 <cfif isDefined("attributes.is_from_pbs")>
-    <cfif session.ep.userid eq 1146>
-        <cfdump var="#attributes#">
-    </cfif>
+
 <script>
 $(document).on('ready',function(){
     var quantity_list=getParameterByName('quantity');
