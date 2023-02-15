@@ -2,7 +2,7 @@
 
 <script>
 $(document).on('ready',function(){
-    var quantity_list=getParameterByName('quantity');
+    var quantity_list="<cfoutput>#attributes.quantity#</cfoutput>"
     
 var strArr=quantity_list.split(",")
 var rows=$("#tblBasket").find("input[name='Amount']")
