@@ -68,10 +68,10 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         </td>
         <td>#READY_QUANTITY#</td>
         <td>
-            <input type="text" name="quantity" value="#READY_QUANTITY-SHIPPED_QUANTITY#">
+            <input type="text" id="txt_#currentrow#" name="quantity" value="#READY_QUANTITY-SHIPPED_QUANTITY#">
         </td>
         <td>            
-            <input type="hidden" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
+            <input type="checkbox" onclick="checkKontrol(this,#currentrow#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
                         
         </td>
     </tr>
@@ -84,3 +84,12 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 </cf_box>
 
 
+<script>
+    function checkKontrol(el,id){
+        if($(el).is(":checked")){
+            document.getElementById("txt_"+id).removeAttribute("disabled")
+        }else{
+            document.getElementById("txt_"+id).setAttribute("disabled","disabled")
+        }
+    }
+</script>
