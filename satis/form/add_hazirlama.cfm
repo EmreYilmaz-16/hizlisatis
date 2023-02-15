@@ -47,7 +47,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
                 <input type="hidden" name="SHIP_RESULT_ROW_ID#currentrow#" value="#SHIP_RESULT_ROW_ID#">
                 <input type="hidden" name="shelfcode#currentrow#" value="#SHELF_CODE#">
                 <input type="hidden" name="PRODUCT_PLACE_ID#currentrow#" value="#PRODUCT_PLACE_ID#">
-                <input type="hidden" name="uniq_relation_id_#currentrow#" value="#UNIQUE_RELATION_ID#"
+                <input type="hidden" name="uniq_relation_id_#currentrow#" value="#UNIQUE_RELATION_ID#">
                 #SHELF_CODE#</td>
                 <td>#PRODUCT_CODE#</td>
             <td>#PRODUCT_NAME#</td>
