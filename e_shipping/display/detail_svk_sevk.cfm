@@ -32,7 +32,8 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 
 </cfquery>
 <cf_box title="Sevk Durumları">
-<cf_grid_list>
+<cfform method="get" action="#request.self#?fuseaction=invoice.form_add_bill">
+    <cf_grid_list>
     <thead>
         <tr>
             <th></th>
@@ -47,6 +48,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
     </thead>
     <tbody>
     <cfoutput>
+        <input type="hidden" value="#GetSiparisData.ORDER_ID#" name="order_id" id="row_order_id">
 <cfloop query="GetSiparisData">
     <tr>
         <td>
@@ -66,69 +68,19 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         </td>
         <td>#READY_QUANTITY#</td>
         <td>
-            <input type="text" name="required_quantity_#UNIQUE_RELATION_ID#" value="#READY_QUANTITY-SHIPPED_QUANTITY#">
+            <input type="text" name="quantity" value="#READY_QUANTITY-SHIPPED_QUANTITY#">
         </td>
-        <td>
-            <input type="hidden" value="#ORDER_ID#" name="row_order_id" id="row_order_id">
-            <input type="hidden" value="#ORDER_ROW_ID#" name="row_order_row_id" id="row_order_row_id">            
-            <input type="Checkbox" name="company_order_" id="company_order_" value="#ORDER_ID#;#ORDER_ROW_ID#;#COMPANY_ID#;#DEPARTMENT_ID#">
-
-            <input type="checkbox" value="#UNIQUE_RELATION_ID#" name="quantity_vals">
+        <td>            
+            <input type="hidden" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
+                        
         </td>
     </tr>
 </cfloop>
 </cfoutput>
 </tbody>
 </cf_grid_list>
+<input type="submit">
+</cfform>
 </cf_box>
 
 
-<script>
-    function control_ship_amounts(form_row_no)
-		{
-			form_row_no = 1;
-			satir_var = 0;
-			
-			if(eval('document.ship_detail_1.company_order_')!= undefined)
-				var checked_item_= eval('document.ship_detail_1.company_order_');
-			else if(eval('document.ship_detail_1.cons_order_') != undefined)
-				var checked_item_= eval('document.ship_detail_1.cons_order_');
-			
-			if(checked_item_.length != undefined)
-			{
-				for(var xx=0; xx < checked_item_.length; xx++)
-				{
-					if(checked_item_[xx].checked)
-					{
-						ship_ = eval('document.ship_detail_1.row_order_id[' + xx + '].value');
-						ship_row_id_ = eval('document.ship_detail_1.row_order_row_id[' + xx + '].value');
-						eval('document.ship_detail_1.order_add_amount_' + ship_ + '_' + ship_row_id_).value=filterNum(eval('document.ship_detail_1.order_add_amount_' + ship_ + '_' + ship_row_id_).value,4);
-						satir_var = 1;
-					}
-				}
-			}
-			else if(checked_item_.checked)
-			{
-				ship_row_id_ = eval('document.ship_detail_1.row_order_row_id.value');
-				ship_ = eval('document.ship_detail_1.row_order_id.value');
-				eval('document.ship_detail_1.order_add_amount_' + ship_ + '_' + ship_row_id_).value=filterNum(eval('document.ship_detail_1.order_add_amount_' + ship_ + '_' + ship_row_id_).value,4);
-				satir_var = 1;
-			}
-			if(satir_var==1)
-				{
-					
-				ship_detail_1.action='index.cfm?fuseaction=objects.popup_add_order_to_ship&is_from_invoice=1&company_id=22781&is_return=0&order_detail=&is_sale_store=0&department_id=&list_type=2&sort_type=1&is_purchase=0&list_type=2';	
-				
-					if(ship_detail_1.action.includes("list_type")) {
-						ship_detail_1.action='index.cfm?fuseaction=objects.popup_add_order_to_ship&is_from_invoice=1&company_id=22781&is_return=0&order_detail=&is_sale_store=0&department_id=&list_type=2&sort_type=1&is_purchase=0';
-					}	
-					
-				ship_detail_1.submit();							
-				}
-			else
-				{
-				alert("Lütfen Satır Seçiniz !");
-				return false;
-				}
-		}
-</script>

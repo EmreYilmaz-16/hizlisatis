@@ -26,5 +26,5 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 </script>
-    merhaba
+    
 </cfif>
