@@ -238,7 +238,7 @@ AddRow(
                </cfsavecontent>
                <cffile action="write" file = "c:\PBS\listajaxproduct.html" output="#control5#"></cffile>
     <cfquery name="get_productsss" datasource="#arguments.dsn1#" result="getproducts_result">
-        SELECT
+        SELECT TOP 1000
             STOCKS.STOCK_ID,
             STOCKS.PRODUCT_ID,
             STOCKS.STOCK_CODE,
