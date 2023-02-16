@@ -66,7 +66,7 @@ WHERE SRR.SHIP_RESULT_ID=#attributes.SHIP_ID# AND ORR.DELIVER_DEPT=#attributes.D
             <td style="width:%10"><button style="width:100%" type="button" <cfif AMOUNT GTE QUANTITY>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#currentrow#" onclick="checkT(#currentrow#)">
                 <cfif AMOUNT GTE QUANTITY>&##10003<cfelse>X</cfif>
             </button>
-                <input type="checkbox"  <cfif AMOUNT GTE QUANTITY>checked</cfif> value="#currentrow#" name="roww" id="is_add#currentrow#"style="display:none"></td>
+                <input type="checkbox"  <cfif AMOUNT GTE QUANTITY>disabled checked</cfif> value="#currentrow#" name="roww" id="is_add#currentrow#"style="display:none"></td>
         </tr>
     </cfoutput>
 </tbody>
