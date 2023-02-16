@@ -130,7 +130,7 @@
   #PSS#,
   '#PRODUCT_NAME#',
   #TAX#,
-  #DSC#,
+  <cfif len(dsc)>#DSC#<cfelse>0</cfif>,
   #PRODUCT_TYPE#,
   '#SHELF_CODE#',
   '#OTHER_MONEY#',
