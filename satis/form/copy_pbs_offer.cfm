@@ -28,7 +28,7 @@
             ,POR.QUANTITY
             ,POR.OTHER_MONEY_VALUE
             ,POR.OTHER_MONEY
-            ,POR.DISCOUNT_1
+            ,ISNULL(POR.DISCOUNT_1,0) AS DISCOUNT_1
             ,S.STOCK_ID
             ,S.PRODUCT_CODE
             ,S.PRODUCT_NAME
@@ -39,7 +39,7 @@
             ,PO.SHELF_CODE
             ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE
             ,ISNULL(GPA.PRICE,0) AS PSS
-            ,(
+            ,ISNULL((
                 SELECT TOP 1 PCE.DISCOUNT_RATE
                 FROM workcube_metosan_1.PRODUCT P
                     ,workcube_metosan_1.PRICE_CAT_EXCEPTIONS PCE
@@ -69,7 +69,7 @@
                     AND PC.PRICE_CATID = @PRICE_CAT_ID
                 ORDER BY PCE.COMPANY_ID DESC
                     ,PCE.PRODUCT_CATID DESC
-                ) AS dsc
+                ),0) AS dsc
             ,(
                 SELECT TOP 1 RATE2
                 FROM (
