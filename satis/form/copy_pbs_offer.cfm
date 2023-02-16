@@ -118,6 +118,7 @@
             AND GPA.UNIT = S.PRODUCT_UNIT_ID
         WHERE OFFER_ID = #attributes.OFFER_ID#
     </cfquery>
+    <cfdump var="#getOfferRow#">
     <cfoutput query="getOfferRow">
         <script>
             AddRowA(
