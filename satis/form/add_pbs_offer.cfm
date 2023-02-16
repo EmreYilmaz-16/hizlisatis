@@ -68,7 +68,7 @@
             ,ISNULL(PC.DETAIL,0) AS PRODUCT_TYPE 
             ,ISNULL(GPA.PRICE,0) AS PRICE 
             ,ISNULL(GPA.PRICE,0) AS PRICE_OTHER 
-            ,(
+            ,ISNULL((
                 SELECT TOP 1 PCE.DISCOUNT_RATE
                 FROM workcube_metosan_1.PRODUCT P
                     ,workcube_metosan_1.PRICE_CAT_EXCEPTIONS PCE
@@ -98,7 +98,7 @@
                     AND PC.PRICE_CATID = @PRICE_CAT_ID
                 ORDER BY PCE.COMPANY_ID DESC
                     ,PCE.PRODUCT_CATID DESC
-                ) AS DISCOUNT_1 
+                ),0) AS DISCOUNT_1 
             ,(
                 SELECT TOP 1 RATE2
                 FROM (
