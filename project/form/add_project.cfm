@@ -14,6 +14,11 @@
                     </select>
                 </div>
             </td>
+            <td>
+                <div class="form-group">
+                <cf_workcube_process is_upd='0'  is_detail='0'>
+                </div>
+            </td>
         </tr>
     </table>
 </cf_box>
