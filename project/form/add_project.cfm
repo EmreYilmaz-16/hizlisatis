@@ -58,11 +58,13 @@
         <tr>
             <td>
                 <div class="form-group">
+                    <label>Proje Adı</label>
                     <input type="text" name="project_head" id="project_head">
                 </div>
             </td>
             <td>
                 <div class="form-group">
+                    <label>Proje No</label>
                     <input type="text" name="project_number" id="project_number">
                 </div>
             </td>
