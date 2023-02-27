@@ -1,6 +1,17 @@
 <cfquery name="getCats" datasource="#dsn#">
-    SELECT * FROM workcube_metosan.SETUP_MAIN_PROCESS_CAT
+    SELECT SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT,SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT_ID,PRNUMBER,SHORT_CODE  FROM workcube_metosan.SETUP_MAIN_PROCESS_CAT 
+INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT_ID
 </cfquery>
+<script>
+    var SCodes=[
+<cfoutput query="getCats">
+{
+    MAIN_PROCESS_CAT_ID:#MAIN_PROCESS_CAT_ID#,
+    SHORT_CODE:'#SHORT_CODE#'
+},
+</cfoutput>
+    ]
+</script>
 <cf_box title="Yeni Proje" scroll="1" collapsable="1" resize="1" popup_box="1">
 <cfform name="add_project_form">
     <input type="hidden" name="consumer_id" id="consumer_id" value="">
