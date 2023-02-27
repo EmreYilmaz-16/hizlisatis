@@ -12,6 +12,7 @@
             <input type="text" name="about_par_name" id="about_par_name" value="">
         </div>
     </div>
+    <input type="hidden" name="task_partner_id" id="task_partner_id" value="" class="">
     <table>
         <tr>
             <td>
