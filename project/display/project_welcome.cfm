@@ -7,6 +7,4 @@
     <div class="prSt prPtype">Proje Ürün Tipleri</div>
     <div class="prSt prBekle">Bekleyen İşlerim</div>
     <div class="prSt prNotes">Notlarım</div>
-
-
 </cf_box>
