@@ -5,6 +5,13 @@
 <cfform name="add_project_form">
     <input type="hidden" name="consumer_id" id="consumer_id" value="">
     <input type="hidden" name="company_id" id="company_id" value="">
+    <div class="form-group" id="form_ul_about_par_name" style="display: none;">
+        <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Yetkili </label>
+        <div class="col col-8 col-md-8 col-sm-8 col-xs-12">
+            <input type="hidden" name="partner_id" id="partner_id" value="">
+            <input type="text" name="about_par_name" id="about_par_name" value="">
+        </div>
+    </div>
     <table>
         <tr>
             <td>
