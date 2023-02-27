@@ -31,6 +31,15 @@
                     </div>
                 </div>
             </td>
+            <td>
+                <div class="form-group" id="item_responsable_name">
+                    <label>Yönetici *</label>
+                    <div class="input-group">
+                        <input type="text" name="responsable_name" onblur="" required="yes" id="responsable_name" placeholder="" value="" onchange="" class="" data-gdpr="">
+                        <span class="input-group-addon icon-ellipsis" href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_positions&field_partner=add_project_form.task_partner_id&field_emp_id=add_project_form.project_emp_id&field_code=add_project_form.project_pos_code&field_comp_id=add_project_form.task_company_id&field_name=add_project_form.responsable_name&select_list=1,2')"></span>
+                    </div>
+                </div>
+            </td>
         </tr>
     </table>
 </cfform>
