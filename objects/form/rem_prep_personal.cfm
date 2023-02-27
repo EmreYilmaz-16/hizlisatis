@@ -45,8 +45,10 @@
             Silme Başarılı
         </div>
         <script>
-            $(document).ready(function(){
-                $("#aldiv").hide(500);
+          $(document).ready(function(){
+                setTimeout(function (){
+                    $("#aldiv").hide(500)
+                },1500)
             })
         </script>
     </cfif>
