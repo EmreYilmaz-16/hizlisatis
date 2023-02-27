@@ -3,6 +3,8 @@
 </cfquery>
 <cf_box title="Yeni Proje" scroll="1" collapsable="1" resize="1" popup_box="1">
 <cfform name="add_project_form">
+    <input type="hidden" name="consumer_id" id="consumer_id" value="">
+    <input type="hidden" name="company_id" id="company_id" value="">
     <table>
         <tr>
             <td>
