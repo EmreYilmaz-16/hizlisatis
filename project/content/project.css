@@ -1,0 +1,13 @@
+.prNew {
+    background: #ffc800;
+}
+
+.prSt {
+    padding: 9px;
+    max-width: 200px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    font-size: 20pt;
+    color: #ffffff;
+}
