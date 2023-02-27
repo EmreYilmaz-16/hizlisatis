@@ -58,3 +58,27 @@
     margin: 5px;
     cursor: pointer;
 }
+
+.form-group input[type=text], .form-group input[type=search],input[type=date], input[type=search], .form-group input[type=number], .form-group input[type=password], .form-group input[type=file], .form-group select {
+    width: 100%!important;
+    min-height: 23px;
+    font-family: 'Roboto';
+    padding: 1px 25px 1px 5px;
+    font-size: 12px;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    -webkit-box-shadow: 0;
+    box-shadow: 0;
+    border-radius: 0;
+    border: 1px solid #ccc;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+}
