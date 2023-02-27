@@ -44,13 +44,25 @@
         <tr>
             <td>
                 <div class="form-group">
+                    <label>Başlangıç Tarihi</label>
                     <input type="date" name="start_data" placeholder="Başlangıç Tarihi">
                 </div>
             </td>
             <td>
                 <div class="form-group">
+                    <label>Bitiş Tarihi</label>
                     <input type="date" name="finish_data" placeholder="Bitiş Tarihi">
                 </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <input type="text" name="project_head" id="project_head">
+                </div>
+            </td>
+            <td>
+                <cf_duxi name="project_number" type="text" data=""  label="57416+57487" hint="proje no" maxlength="20">  
             </td>
         </tr>
     </table>
