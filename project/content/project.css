@@ -10,7 +10,7 @@
     background: #ff4600;
 }
 
-.prReport :hover {
+.prReport:hover {
     background: #d33a02;
 }
 
@@ -18,7 +18,7 @@
     background: #00a1ff;
 }
 
-.prProds :hover {
+.prProds:hover {
     background: #0184cf;
 }
 
@@ -26,7 +26,7 @@
     background: #ff0076;
 }
 
-.prPtype :hover {
+.prPtype:hover {
     background: #cf0061;
 }
 
