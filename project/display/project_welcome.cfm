@@ -5,9 +5,8 @@
     <div class="prSt prReport">Proje Raporları</div>
     <div class="prSt prProds">Proje Ürünleri</div>
     <div class="prSt prPtype">Proje Ürün Tipleri</div>
-    <div class="prSt prNew">Bekleyen İşlerim</div>
-    <div class="prSt prNew">Notlarım</div>
+    <div class="prSt prBekle">Bekleyen İşlerim</div>
+    <div class="prSt prNotes">Notlarım</div>
 
 
 </cf_box>
-project\display\project_welcome.cfm

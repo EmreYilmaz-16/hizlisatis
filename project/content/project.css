@@ -30,6 +30,22 @@
     background: #cf0061;
 }
 
+.prBekle {
+    background: #644581;
+}
+
+.prBekle:hover {
+    background: #352544;
+}
+
+.prNotes {
+    background: #648b47;
+}
+
+.prNotes:hover {
+    background: #4f6d38;
+}
+
 .prSt {
     padding: 9px;
     max-width: 200px;
