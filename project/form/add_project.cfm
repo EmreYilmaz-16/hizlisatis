@@ -62,7 +62,9 @@
                 </div>
             </td>
             <td>
-                <cf_duxi name="project_number" type="text" data=""  label="57416+57487" hint="proje no" maxlength="20">  
+                <div class="form-group">
+                    <input type="text" name="project_number" id="project_number">
+                </div>
             </td>
         </tr>
     </table>
