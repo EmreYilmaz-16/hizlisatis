@@ -56,4 +56,5 @@
     color: #ffffff;
     transition: all .4s ease;
     margin: 5px;
+    cursor: pointer;
 }
