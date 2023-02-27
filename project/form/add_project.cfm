@@ -41,6 +41,18 @@
                 </div>
             </td>
         </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <input type="date" name="start_data" placeholder="Başlangıç Tarihi">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input type="date" name="finish_data" placeholder="Bitiş Tarihi">
+                </div>
+            </td>
+        </tr>
     </table>
 </cfform>
 </cf_box>
