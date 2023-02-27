@@ -18,6 +18,18 @@
     background: #00a1ff;
 }
 
+.prProds :hover {
+    background: #0184cf;
+}
+
+.prPtype {
+    background: #ff0076;
+}
+
+.prPtype :hover {
+    background: #cf0061;
+}
+
 .prSt {
     padding: 9px;
     max-width: 200px;
