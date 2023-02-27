@@ -2,6 +2,18 @@
     background: #ffc800;
 }
 
+.prNew:hover {
+    background: #e7b605;
+}
+
+.prReport {
+    background: #ff4600;
+}
+
+.prReport :hover {
+    background: #d33a02;
+}
+
 .prSt {
     padding: 9px;
     max-width: 200px;
@@ -10,4 +22,5 @@
     border-radius: 10px;
     font-size: 20pt;
     color: #ffffff;
+    transition: all .4s ease;
 }
