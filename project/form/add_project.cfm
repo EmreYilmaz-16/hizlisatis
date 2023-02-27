@@ -13,6 +13,7 @@
         </div>
     </div>
     <input type="hidden" name="task_partner_id" id="task_partner_id" value="" class="">
+    <input type="hidden" name="project_pos_code" id="project_pos_code" value="" 
     <table>
         <tr>
             <td>
