@@ -22,5 +22,6 @@
 	attributes.pro_h_finish = attributes.finish_date;
 </cfscript>
 <cfdump var="#attributes#">
+<cfabort>
 <cfinclude template="../includes/save_project.cfm">
 
