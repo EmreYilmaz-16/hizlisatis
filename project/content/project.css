@@ -80,10 +80,11 @@
 .prSt {
     padding: 9px;
     max-width: 200px;
+    min-width: 200px;
     text-align: center;
     vertical-align: middle;
     border-radius: 10px;
-    font-size: 20pt;
+    font-size: 13pt;
     color: #ffffff;
     transition: all .4s ease;
     margin: 5px;
