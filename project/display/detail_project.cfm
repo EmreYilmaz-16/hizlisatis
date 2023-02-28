@@ -21,7 +21,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                     <td>
                         <cfoutput>#getProject.NICKNAME#</cfoutput>
                     </td>
-                    <td rowspan="2">
+                    <td >
                         <div class="form-group">
                         <cf_workcube_process is_upd='0' process_stage='#getProject.PRO_CURRENCY_ID#'  is_detail='0'>
                         </div>
@@ -34,7 +34,10 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                 </th>
                 <td>
                     <cfoutput>#getProject.YONETICI#</cfoutput>
-                </td>                
+                </td>  
+                <td>
+                    <cfoutput><span style="padding: 5px !important;display: block;border-radius: 4px;" class="color#getProject.COLOR#">#getProject.PRIORITY#</span></cfoutput>
+                </td>              
             </tr>
             <tr>
                 <th style="text-align:left">
