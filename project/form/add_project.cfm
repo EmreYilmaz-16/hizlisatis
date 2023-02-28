@@ -38,7 +38,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
         <tr>
             <td>
                 <div class="form-group">
-                    <select name="projectCat" required>
+                    <select name="projectCat" required onchange="ProjectNameGet(this)">
                         <option value="">Ürün Tipi</option>
                         <cfoutput query="getCats">
                             <option value="#MAIN_PROCESS_CAT_ID#">#MAIN_PROCESS_CAT#</option>

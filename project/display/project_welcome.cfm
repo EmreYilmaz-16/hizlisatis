@@ -8,3 +8,5 @@
     <div class="prSt prBekle">Bekleyen İşlerim</div>
     <div class="prSt prNotes">Notlarım</div>
 </cf_box>
+
+<script src="/AddOns/Partner/project/content/project_welcome.js"></script>
