@@ -12,10 +12,10 @@
     <cfparam name="attributes.EXPENSE_CODE" default="">
     <cfparam name="attributes.PROJECT_TARGET" default="">
     <cfparam name="attributes.RELATED_PROJECT_ID" default="">
-
+<cfset attributes.main_process_cat =attributes.projectCat>
 <cfscript>
     attributes.pro_h_start = attributes.start_date;
 	attributes.pro_h_finish = attributes.finish_date;
 </cfscript>
-
+<cfdump var="#attributes#">
 <cfinclude template="../includes/save_project.cfm">
