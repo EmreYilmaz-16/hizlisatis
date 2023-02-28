@@ -15,8 +15,7 @@
 <cfscript>
 	attributes.expected_budget=filterNum(attributes.expected_budget);
 	attributes.expected_cost=filterNum(attributes.expected_cost);
-	attributes.pro_h_start = date_add("n",start_minute,date_add('h',attributes.START_HOUR, attributes.pro_h_start));
-	attributes.pro_h_finish = date_add("n",FINISH_minute,date_add('h',attributes.FINISH_HOUR, attributes.pro_h_finish));
+	
 </cfscript>
 <cflock name="#CREATEUUID()#" timeout="20">
 	<cftransaction>
