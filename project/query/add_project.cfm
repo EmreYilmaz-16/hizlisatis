@@ -24,3 +24,6 @@
 <cfdump var="#attributes#">
 <cfinclude template="../includes/save_project.cfm">
 
+<cfquery name="up" datasource="#dsn#">
+    UPDATE  PROJECT_NUMBERS_BY_CAT SET PRNUMBER=PRNUMBER+1 WHERE MAIN_PROCESS_CAT_ID=#attributes.main_process_cat#
+</cfquery>
