@@ -12,6 +12,7 @@
     <cfparam name="attributes.EXPENSE_CODE" default="">
     <cfparam name="attributes.PROJECT_TARGET" default="">
     <cfparam name="attributes.RELATED_PROJECT_ID" default="">
+    <cfparam name="attributes.project_folder " default="">
 <cfset attributes.main_process_cat =attributes.projectCat>
 <cfscript>
     attributes.pro_h_start = attributes.start_date;
