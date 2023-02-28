@@ -102,6 +102,14 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
         </tr>
         <tr>
             <td colspan="2" style="text-align:right">
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea name="project_detail" id="project_detail"></textarea>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right">
                 <button type="submit" class="btn btn-success">Kaydet</button>
             </td>
         </tr>
