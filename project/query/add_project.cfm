@@ -13,6 +13,9 @@
     <cfparam name="attributes.PROJECT_TARGET" default="">
     <cfparam name="attributes.RELATED_PROJECT_ID" default="">
     <cfparam name="attributes.project_folder " default="">
+    <cfparam name="attributes.branchId" default="">
+    <cfparam name="attributes.department_id" default="">
+    <cfparam name="attributes.location_id" default="">
 <cfset attributes.main_process_cat =attributes.projectCat>
 <cfscript>
     attributes.pro_h_start = attributes.start_date;
@@ -20,3 +23,4 @@
 </cfscript>
 <cfdump var="#attributes#">
 <cfinclude template="../includes/save_project.cfm">
+
