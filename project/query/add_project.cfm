@@ -27,3 +27,8 @@
 <cfquery name="up" datasource="#dsn#">
     UPDATE  PROJECT_NUMBERS_BY_CAT SET PRNUMBER=PRNUMBER+1 WHERE MAIN_PROCESS_CAT_ID=#attributes.main_process_cat#
 </cfquery>
+
+
+<script type="text/javascript">
+    window.location.href = '<cfoutput>#request.self#?fuseaction=project.emptypopup_detail_project_pbs&id=#get_last_pro.pro_id#</cfoutput>';
+</script>
