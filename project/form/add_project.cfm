@@ -12,7 +12,8 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
 </cfoutput>
     ]
 </script>
-<span style="border-radius: 20px; background-color:white;" id="scrollList">
+<span style="border-radius: 10px; background-color:white;padding:20px" id="scrollList">
+    <h3>Yeni Proje</h3>
 <cfform name="add_project_form">
     <input type="hidden" name="consumer_id" id="consumer_id" value="">
     <input type="hidden" name="company_id" id="company_id" value="">
@@ -28,7 +29,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
     <input type="hidden" name="task_company_id" id="task_company_id" value="" class="">
     <input type="hidden" name="project_emp_id" id="project_emp_id" value="" class="">
 
-    <button type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')">Kapat</button>
+    <button class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
 
     <table>
         <tr>
