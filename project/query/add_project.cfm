@@ -1,6 +1,5 @@
 
-<cf_date tarih="attributes.start_date">
-<cf_date tarih="attributes.finish_date">
+
     <cfset attributes.expected_budget=0>
     <cfset attributes.expected_cost=0>
     <cfset attributes.START_MINUTE=0>
