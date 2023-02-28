@@ -219,7 +219,7 @@
 <cfset attributes.info_id = PRO_ID.IDENTITYCOL>
 <cfset attributes.is_upd = 0>
 <cfset attributes.info_type_id = -10>
-<cfinclude template="../../objects/query/add_info_plus2.cfm">
+<cfinclude template="/v16/objects/query/add_info_plus2.cfm">
 <!---Ek Bilgiler--->
 <cfquery name="UPD_PROJECT_NUMBER" datasource="#DSN#">
 	UPDATE 
