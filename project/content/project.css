@@ -13,7 +13,13 @@
 .prNew:hover {
     background: #e7b605;
 }
+.prGray {
+    background: #d1d1d1;
+}
 
+.prGray:hover {
+    background: #757575;
+}
 .prReport {
     background: #ff4600;
 }
