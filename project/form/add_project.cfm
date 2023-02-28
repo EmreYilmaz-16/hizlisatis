@@ -17,7 +17,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
     <h3 style="color:orange">Yeni Proje</h3>
     <button style="margin-left:auto" class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
 </div> 
-<cfform name="add_project_form">
+<cfform name="add_project_form" id="add_project_form" action="#request.self#?fuseaction=project.emptypopup_save_project">
     <input type="hidden" name="consumer_id" id="consumer_id" value="">
     <input type="hidden" name="company_id" id="company_id" value="">
     <div class="form-group" id="form_ul_about_par_name" style="display: none;">
