@@ -12,7 +12,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
 </cfoutput>
     ]
 </script>
-
+<div style="border-radius: 20px; background-color:white;">
 <cfform name="add_project_form">
     <input type="hidden" name="consumer_id" id="consumer_id" value="">
     <input type="hidden" name="company_id" id="company_id" value="">
@@ -27,9 +27,9 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
     <input type="hidden" name="project_pos_code" id="project_pos_code" value="">
     <input type="hidden" name="task_company_id" id="task_company_id" value="" class="">
     <input type="hidden" name="project_emp_id" id="project_emp_id" value="" class="">
-<div >
+
     <button type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')">Kapat</button>
-</div>
+
     <table>
         <tr>
             <td>
@@ -98,3 +98,4 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
         </tr>
     </table>
 </cfform>
+</div>
