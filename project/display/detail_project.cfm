@@ -56,7 +56,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <div class="prSt prGray">Ürün Dizayn</div>
         <div class="prSt prGray">Çalışma Gurupları</div>
         <div class="prSt prGray">İşler</div>
-        <div class="prSt prGray">İlişkili Projeler</div>
+        <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_related_projects_pbs&project_id=#attributes.project_id#</cfoutput>'">İlişkili Projeler</div>
         <div class="prSt prGray">Belgeler</div>
         <div class="prSt prGray">Üretim Emirleri</div>
         <div class="prSt prGray">Notlar</div>
