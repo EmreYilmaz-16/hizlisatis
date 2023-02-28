@@ -10,8 +10,7 @@
 		<cfabort>
 	</cfif>
 </cfif>
-<cf_date tarih="attributes.pro_h_start">
-<cf_date tarih="attributes.pro_h_finish">
+
 <cfscript>
 	attributes.expected_budget=filterNum(attributes.expected_budget);
 	attributes.expected_cost=filterNum(attributes.expected_cost);
