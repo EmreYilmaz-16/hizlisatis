@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/AddOns/Partner/project/content/project.css">
 <cf_box title="Projeler">
 <cfquery name="getProjects" datasource="#dsn#">
 SELECT PROJECT_ID,RELATED_PROJECT_ID, PRO_PROJECTS.PROJECT_NUMBER,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS YONETICI,PROJECT_HEAD,TARGET_START,TARGET_FINISH,SETUP_PRIORITY.PRIORITY,SETUP_PRIORITY.COLOR,COMPANY.NICKNAME from workcube_metosan.PRO_PROJECTS
