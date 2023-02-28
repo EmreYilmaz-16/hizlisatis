@@ -1,3 +1,11 @@
+.prList {
+    background: #ff00ff;
+}
+
+.prList:hover {
+    background: #cf03cf;
+}
+
 .prNew {
     background: #ffc800;
 }
