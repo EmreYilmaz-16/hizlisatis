@@ -12,10 +12,10 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
 </cfoutput>
     ]
 </script>
-<span style="border-radius: 10px; background-color:white;padding:20px" id="scrollList">
-   <div style="display:flex">
-    <h3>Yeni Proje</h3>
-    <button class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
+<span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
+   <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
+    <h3 style="color:orange">Yeni Proje</h3>
+    <button style="margin-left:auto" class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
 </div> 
 <cfform name="add_project_form">
     <input type="hidden" name="consumer_id" id="consumer_id" value="">
