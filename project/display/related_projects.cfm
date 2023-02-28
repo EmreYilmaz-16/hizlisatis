@@ -9,7 +9,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <table style="width:100%">
             <tr>
                 <th colspan="2" style="color:orange;font-size:14pt;text-align:left">
-                    Proje : <cfoutput>#getProject.PROJECT_HEAD#</cfoutput>
+                    Proje : <cfoutput>#getRelatedProjects.PROJECT_HEAD#</cfoutput>
                 </th>
             </tr>
         </table>
