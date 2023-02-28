@@ -52,14 +52,16 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             </tr>
         </table>
     </div>
-    <div class="prSt prGray">Ürün Dizayn</div>
-    <div class="prSt prGray">Çalışma Gurupları</div>
-    <div class="prSt prGray">İşler</div>
-    <div class="prSt prGray">İlişkili Projeler</div>
-    <div class="prSt prGray">Belgeler</div>
-    <div class="prSt prGray">Üretim Emirleri</div>
-    <div class="prSt prGray">Notlar</div>
-    <div class="prSt prGray">Malzeme İhtiyaçları</div>
-    <div class="prSt prGray">Teklife Dönüştür</div>
-    <div class="prSt prGray">İlişkili İşlemler</div>
+    <div style="display:flex;width: 50%;flex-direction: row;flex-wrap: wrap;align-content: stretch;justify-content: flex-start;align-items: flex-end;">
+        <div class="prSt prGray">Ürün Dizayn</div>
+        <div class="prSt prGray">Çalışma Gurupları</div>
+        <div class="prSt prGray">İşler</div>
+        <div class="prSt prGray">İlişkili Projeler</div>
+        <div class="prSt prGray">Belgeler</div>
+        <div class="prSt prGray">Üretim Emirleri</div>
+        <div class="prSt prGray">Notlar</div>
+        <div class="prSt prGray">Malzeme İhtiyaçları</div>
+        <div class="prSt prGray">Teklife Dönüştür</div>
+        <div class="prSt prGray">İlişkili İşlemler</div>
+        </div>
 </cf_box>
