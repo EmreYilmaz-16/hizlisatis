@@ -91,8 +91,8 @@
 				</cfif>
 					<cfqueryparam cfsqltype="cf_sql_varchar" value="#attributes.PROJECT_HEAD#">,
 					<cfqueryparam cfsqltype="cf_sql_varchar" value="#attributes.PROJECT_DETAIL#">,
-					<cfif len(attributes.PRO_H_START)>#attributes.PRO_H_START#<cfelse>NULL</cfif>,
-					<cfif len(attributes.PRO_H_FINISH)>#attributes.PRO_H_FINISH#<cfelse>NULL</cfif>,
+					<cfif len(attributes.PRO_H_START)>'#attributes.PRO_H_START#'<cfelse>NULL</cfif>,
+					<cfif len(attributes.PRO_H_FINISH)>'#attributes.PRO_H_FINISH#'<cfelse>NULL</cfif>,
 					#attributes.process_stage#,
 					#attributes.PRIORITY_CAT#,
 					#NOW()#,
