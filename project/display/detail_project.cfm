@@ -1,27 +1,27 @@
 <cfdump var="#attributes#">
 <cf_box title="Proje Detay">
     <div>
-        <table>
+        <table style="width:100%">
             <tr>
-                <td>
-                    <th>
+                
+                    <th style="text-align:left;width;20%">
                         Şirket
                     </th>
                     <td>
                         Partner Bİgi Sistemleri
                     </td>
-                </td>
+                
             </tr>
             <tr>
-                <th>
+                <th style="text-align:left">
                     Proje Yöneticisi
                 </th>
-                <th>
+                <td>
                     Erhan Karaş
-                </th>                
+                </td>                
             </tr>
             <tr>
-                <th>
+                <th style="text-align:left">
                     Tamamlanma
                 </th>
                 <td>
