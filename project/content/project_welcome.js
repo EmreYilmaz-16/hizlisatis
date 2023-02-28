@@ -16,5 +16,5 @@ function ProjectNameGet(el) {
     nmr += "0";
   }
   nmr += num.toString();
-  return nmr;
+  document.getElementById("project_head").value=nmr;
 }
