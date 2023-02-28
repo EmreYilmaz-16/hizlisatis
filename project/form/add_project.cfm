@@ -12,7 +12,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
 </cfoutput>
     ]
 </script>
-<div style="border-radius: 20px; background-color:white;" id="scrollList">
+<span style="border-radius: 20px; background-color:white;" id="scrollList">
 <cfform name="add_project_form">
     <input type="hidden" name="consumer_id" id="consumer_id" value="">
     <input type="hidden" name="company_id" id="company_id" value="">
@@ -98,4 +98,4 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
         </tr>
     </table>
 </cfform>
-</div>
+</span>
