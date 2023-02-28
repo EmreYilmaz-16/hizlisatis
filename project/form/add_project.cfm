@@ -76,13 +76,13 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
             <td>
                 <div class="form-group">
                     <label>Başlangıç Tarihi</label>
-                    <input type="date" name="start_data" placeholder="Başlangıç Tarihi">
+                    <input type="date" name="start_date" placeholder="Başlangıç Tarihi">
                 </div>
             </td>
             <td>
                 <div class="form-group">
                     <label>Bitiş Tarihi</label>
-                    <input type="date" name="finish_data" placeholder="Bitiş Tarihi">
+                    <input type="date" name="finish_date" placeholder="Bitiş Tarihi">
                 </div>
             </td>
         </tr>

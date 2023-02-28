@@ -19,7 +19,7 @@ function ProjectNameGet(el) {
   document.getElementById("project_head").value=nmr;
 }
 
-$("#idForm").submit(function(e) {
+$("#add_project_form").submit(function(e) {
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
 
