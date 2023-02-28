@@ -46,7 +46,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             <td>#dateFormat(TARGET_START,"dd/mm/yyyy")#</td>
             <td>#dateFormat(TARGET_FINISH,"dd/mm/yyyy")#</td>
             <td>
-                <span style="padding: 1px !important;width: 100%;display: block;border-radius: 4px;" class="color#COLOR#">#PRIORITY#</span>
+                <span style="padding: 5px !important;display: block;border-radius: 4px;" class="color#COLOR#">#PRIORITY#</span>
 
             </td>
             <td><a onclick="window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#PROJECT_ID#'"></a></td>
