@@ -187,8 +187,8 @@
 					<cfif isdefined("attributes.TASK_COMPANY_ID")><cfqueryparam cfsqltype="cf_sql_varchar" value="#attributes.TASK_COMPANY_ID#">,<cfelse>NULL,</cfif>
 					<cfif isdefined("attributes.TASK_PARTNER_ID")><cfqueryparam cfsqltype="cf_sql_varchar" value="#attributes.TASK_PARTNER_ID#">,<cfelse>NULL,</cfif>
 				</cfif>
-					#attributes.PRO_H_START#,
-					#attributes.PRO_H_FINISH#,
+					#attributes.start_date#,
+					#attributes.finish_date#,
 					#attributes.process_stage#,
 					#attributes.PRIORITY_CAT#,
 					#SESSION.EP.USERID#,
