@@ -3,13 +3,13 @@
     <div>
         <table style="width:100%">
             <tr>
-                <th colspan="2">
+                <th colspan="2" style="color:orange;font-size:14pt;text-align:left">
                     Proje : HDS-00004
                 </th>
             </tr>
             <tr>
                 
-                    <th style="text-align:left;width;20%">
+                    <th style="text-align:left;width:20%">
                         Şirket
                     </th>
                     <td>
