@@ -247,7 +247,5 @@
 			action_page='#request.self#?fuseaction=project.projects&event=det&id=#get_last_pro.pro_id#'
 			warning_description = 'Proje No : #attributes.project_number#'>
     <cfset attributes.actionId = get_last_pro.pro_id>
-	<script type="text/javascript">
-		window.location.href = '<cfoutput>#request.self#?fuseaction=project.projects&event=det&id=#get_last_pro.pro_id#</cfoutput>';
-    </script>
+	
 </cfif>
