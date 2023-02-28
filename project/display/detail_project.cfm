@@ -1,5 +1,4 @@
-
-<cfdump var="#attributes#">
+<link rel="stylesheet" href="/AddOns/Partner/project/content/project.css">
 <cfquery name="getProject" datasource="#dsn#">
     select PRO_CURRENCY_ID,PROJECT_ID,RELATED_PROJECT_ID, PRO_PROJECTS.PROJECT_NUMBER,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) as YONETICI,PROJECT_HEAD,TARGET_START,TARGET_FINISH,SETUP_PRIORITY.PRIORITY,SETUP_PRIORITY.COLOR,COMPANY.NICKNAME from workcube_metosan.PRO_PROJECTS
 INNER join workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PRO_PROJECTS.PROCESS_CAT=PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID
@@ -23,7 +22,9 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                         <cfoutput>#getProject.NICKNAME#</cfoutput>
                     </td>
                     <td rowspan="2">
-                        <cf_workcube_process is_upd='0' process_stage='#getProject.PRO_CURRENCY_ID#' process_cat_width='130' is_detail='0'>
+                        <div class="form-group">
+                        <cf_workcube_process is_upd='0' process_stage='#getProject.PRO_CURRENCY_ID#'  is_detail='0'>
+                        </div>
                     </td>
                 
             </tr>
