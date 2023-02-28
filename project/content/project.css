@@ -54,6 +54,23 @@
     background: #4f6d38;
 }
 
+.color0099FF{
+    color: #0099FF;
+    background: #0099ff4d;
+}
+.color46DB07{
+    color: #46DB07;
+    background: #46DB074d;
+}
+.colorCC5E2F{
+    color: #CC5E2F;
+    background: #CC5E2F4d;
+}
+.colorFF0000{
+    color: #FF0000;
+    background: #FF00004d;
+}
+
 .prSt {
     padding: 9px;
     max-width: 200px;

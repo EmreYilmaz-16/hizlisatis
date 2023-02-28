@@ -1,3 +1,4 @@
+<cf_box title="Projeler">
 <cfquery name="getProjects" datasource="#dsn#">
 SELECT PROJECT_ID,RELATED_PROJECT_ID, PRO_PROJECTS.PROJECT_NUMBER,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS YONETICI,PROJECT_HEAD,TARGET_START,TARGET_FINISH,SETUP_PRIORITY.PRIORITY,SETUP_PRIORITY.COLOR,COMPANY.NICKNAME from workcube_metosan.PRO_PROJECTS
 INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PRO_PROJECTS.PROCESS_CAT=PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID
@@ -6,6 +7,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
 </cfquery>
 
 <cf_grid_list>
+    <thead>
     <tr>
         <th>
             Proje  No
@@ -30,6 +32,8 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         </th>
         <th></th>
     </tr>
+</thead>
+<tbody>
     <cfoutput query="getProjects">
         <tr>
             <td>
@@ -40,8 +44,13 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             <td>#NICKNAME#</td>
             <td>#dateFormat(TARGET_START,"dd/mm/yyyy")#</td>
             <td>#dateFormat(TARGET_FINISH,"dd/mm/yyyy")#</td>
-            <td><span style="pading:1px;color:###COLOR#">#PRIORITY#</span></td>
+            <td>
+                <span style="padding: 1px !important;width: 100%;display: block;border-radius: 4px;" class="color#COLOR#">#PRIORITY#</span>
+
+            </td>
             <td><a onclick="window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#PROJECT_ID#'"></a></td>
         </tr>
     </cfoutput>
+</tbody>
 </cf_grid_list>
+</cf_box>
