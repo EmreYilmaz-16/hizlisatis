@@ -11,6 +11,7 @@
     <cfparam name="attributes.priority_cat" default="1">
     <cfparam name="attributes.EXPENSE_CODE" default="">
     <cfparam name="attributes.PROJECT_TARGET" default="">
+    <cfparam name="attributes.RELATED_PROJECT_ID" default="">
 
 <cfscript>
     attributes.pro_h_start = attributes.start_date;
