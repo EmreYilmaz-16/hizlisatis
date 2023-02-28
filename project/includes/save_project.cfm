@@ -99,7 +99,7 @@
 					#NOW()#,
 					#SESSION.EP.USERID#,
 					<cfqueryparam cfsqltype="cf_sql_varchar" value="#CGI.REMOTE_ADDR#">,
-					<cfqueryparam cfsqltype="cf_sql_varchar" value="#EXPENSE_CODE#">,
+					NULL,
 				<cfif len(attributes.expected_budget)>
 					#attributes.expected_budget#,
 				</cfif>
