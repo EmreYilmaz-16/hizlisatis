@@ -2,6 +2,15 @@
     SELECT SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT,SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT_ID,PRNUMBER,SHORT_CODE  FROM workcube_metosan.SETUP_MAIN_PROCESS_CAT 
 INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT_ID
 </cfquery>
+<cfquery name="GET_PRIORITY" datasource="#dsn#">
+    SELECT
+    PRIORITY_ID,PRIORITY
+    FROM
+        SETUP_PRIORITY
+        
+    ORDER BY
+        PRIORITY_ID
+</cfquery> 
 <script>
     var SCodes=[
 <cfoutput query="getCats">
@@ -49,6 +58,17 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
             <td>
                 <div class="form-group">
                 <cf_workcube_process is_upd='0'  is_detail='0'>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <select name="PRIORITY_CAT">
+                        <cfoutput query="GET_PRIORITY">
+                            <option value="#PRIORITY_ID#">#PRIORITY#</option>
+                        </cfoutput>                        
+                    </select>
                 </div>
             </td>
         </tr>
