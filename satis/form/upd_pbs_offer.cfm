@@ -158,7 +158,7 @@ ORDER BY POR.OFFER_ROW_ID
                                 <CFSET EMANUEL=1>
                             </CFIF>
         </cfif>
-                        console.log("#PRODUCT_NAME#");
+                        <cfif session.ep.userid neq 1146>
                         AddRow(
                             #PRODUCT_ID#,
                             #STOCK_ID#,
@@ -187,7 +187,36 @@ ORDER BY POR.OFFER_ROW_ID
 '#getOfferRow.UNIQUE_RELATION_ID#',
 '#DESCRIPTION#'
 )
-                       
+<cfelse>
+                            AddRow_pbso(
+                            #PRODUCT_ID#,
+                            #STOCK_ID#,
+    '#STOCK_CODE#',
+    '#getOfferRow.BRAND_NAME#',
+    #getOfferRow.IS_VIRTUAL#,
+    #getOfferRow.QUANTITY#,
+    #getOfferRow.PRICE#,
+    '#getOfferRow.PRODUCT_NAME#',
+    #getOfferRow.TAX#,
+    #getOfferRow.DISCOUNT_1#,
+    #getOfferRow.PRODUCT_TYPE#,
+    '#getOfferRow.SHELF_CODE#',
+    '#getOfferRow.OTHER_MONEY#',
+    #getOfferRow.PRICE_OTHER#,
+    #getOfferRow.PBS_OFFER_ROW_CURRENCY#,
+    #EMANUEL#,
+    #lastCost#,
+    '#getOfferRow.MAIN_UNIT#',
+    '#getOfferRow.PRODUCT_NAME2#',
+    '#getOfferRow.DETAIL_INFO_EXTRA#',
+    1,
+0,
+'#dateFormat(getOfferRow.DELIVER_DATE,"yyyy-mm-dd")#',
+#getOfferRow.IS_PRODUCTION#,
+'#getOfferRow.UNIQUE_RELATION_ID#',
+'#DESCRIPTION#'
+)
+</cfif>                 
                        
                       //  AddRow(#PRODUCT_ID#, #STOCK_ID#, 0, #QUANTITY#, #PRICE#, '#PRODUCT_NAME#', #TAX#, #DISCOUNT_1#, 0, '#SHELF_CODE#','#OTHER_MONEY#',#PRICE_OTHER#,#PBS_OFFER_ROW_CURRENCY#,'#DESCRIPTION#') 
                     </cfloop>

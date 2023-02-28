@@ -574,7 +574,557 @@ function AddRow(
   manuelControl();
   RowControlForVirtual();
 }
+function AddRow_pbso(
+  product_id,
+  stock_id,
+  stock_code,
+  brand_name,
+  is_virtual,
+  quantity,
+  price,
+  product_name,
+  tax,
+  discount_rate,
+  poduct_type = 0,
+  shelf_code = "",
+  other_money = "TL",
+  price_other,
+  currency = "-6",
+  is_manuel = 0,
+  cost = 0,
+  product_unit = "Adet",
+  product_name_other = "",
+  detail_info_extra = "",
+  fc = 0,
+  rowNum = "",
+  deliver_date = "",
+  is_production = 0,
+  row_uniq_id = "",
+  description = ""
+) {
+  console.log(arguments);
+  var form = $(document);
+  var checkedValue = form.find("input[name=_rd_money]:checked").val();
+  var BASKET_MONEY = document.getElementById(
+    "_hidden_rd_money_" + checkedValue
+  ).value;
+  if (product_unit == "M" && fc == 0) {
+    var calculate_params =
+      "&pid_=" +
+      product_id +
+      "&sid_=" +
+      stock_id +
+      "&tax=" +
+      tax +
+      "&cost=" +
+      cost +
+      "&manuel=" +
+      is_manuel +
+      "&product_name=" +
+      product_name +
+      "&stock_code=" +
+      stock_code +
+      "&brand=" +
+      brand_name +
+      "&indirim1=" +
+      discount_rate +
+      "&amount=" +
+      quantity +
+      "&unit=" +
+      product_unit +
+      "&price=" +
+      price +
+      "&other_money=" +
+      other_money +
+      "&price_other=" +
+      price_other;
+    calculate_params += "&is_virtual=" + is_virtual;
+    calculate_params += "&product_type=" + poduct_type;
+    calculate_params += "&shelf_code=" + shelf_code;
+    calculate_params += "&rowNum=" + row_count;
+    openBoxDraggable(
+      "index.cfm?fuseaction=objects.emptypopup_extra_calculate_pbs" +
+        calculate_params
+    );
+    return true;
+  }
+  var q = "SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR";
+  q +=
+    " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID";
+  q += " WHERE STOCK_ID=" + stock_id;
+  
+  
+  
+  var RafKodu = "";
+  if (shelf_code.length == 0) {
+    var res = wrk_query(q, "dsn3");
+    if (res.recordcount > 0) {
+      if (res.recordcount > 1 && fc == 0) {
+        var calculate_params =
+          "&pid_=" +
+          product_id +
+          "&sid_=" +
+          stock_id +
+          "&tax=" +
+          tax +
+          "&cost=" +
+          cost +
+          "&manuel=" +
+          is_manuel +
+          "&product_name=" +
+          product_name +
+          "&stock_code=" +
+          stock_code +
+          "&brand=" +
+          brand_name +
+          "&indirim1=" +
+          discount_rate +
+          "&amount=" +
+          quantity +
+          "&unit=" +
+          product_unit +
+          "&price=" +
+          price +
+          "&other_money=" +
+          other_money +
+          "&price_other=" +
+          price_other;
+        calculate_params += "&is_virtual=" + is_virtual;
+        calculate_params += "&product_type=" + poduct_type;
+        calculate_params += "&shelf_code=" + shelf_code;
+        calculate_params += "&rowNum=" + row_count;
+        openBoxDraggable(
+          "index.cfm?fuseaction=objects.emptypopup_select_raf_pbs" +
+            calculate_params
+        );
+        return true;
+      } else {
+        RafKodu = res.SHELF_CODE[0];
+      }
+    }
+  } else {
+    RafKodu = shelf_code;
+  }
+  row_count++;
+  rowCount = row_count;
+  var rsss = moneyArr.find((p) => p.MONEY == other_money);
+  var prc = price_other * rsss.RATE2;
 
+  if (price == 0) {
+    var q =
+      "SELECT ISNULL(workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE(" +
+      CompanyData.COMPANY_ID +
+      "," +
+      CompanyData.PRICE_CAT +
+      "," +
+      stock_id +
+      "),0) AS FIYAT";
+    var res = wrk_query(q, "dsn3");
+    prc = res.FIYAT[0];
+    price = res.FIYAT[0];
+    price_other = res.FIYAT[0];
+    other_money = "TL";
+  }
+  var tr = document.createElement("tr");
+  console.log("Manuel From Attributes" + is_manuel);
+  console.log(
+    "Manuel From Working Params" +
+      generalParamsSatis.workingParams.MANUEL_CONTROL
+  );
+
+  if (is_manuel == 1) {
+    tr.setAttribute("style", "background-color:#86b5ff75 !important;");
+  }
+  tr.setAttribute("id", "row_" + row_count);
+  tr.setAttribute("data-selected", "0");
+  tr.setAttribute("data-rc", row_count);
+  tr.setAttribute("data-ProductType", poduct_type);
+  tr.setAttribute("class", "sepetRow");
+
+  var td = document.createElement("td");
+  var spn = document.createElement("span");
+  spn.innerText = row_count;
+  1;
+  spn.setAttribute("id", "spn_" + row_count);
+  td.appendChild(spn);
+  var spn2 = document.createElement("span");
+  if (row_count != 1) {
+    spn2.setAttribute("class", "fa fa-arrow-up");
+    spn2.setAttribute(
+      "onclick",
+      "moveRow(" + row_count + "," + (row_count - 1) + ")"
+    );
+  } else {
+    spn2.setAttribute("class", "");
+  }
+  td.appendChild(spn2);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  var cbx = document.createElement("input");
+  cbx.setAttribute("type", "checkbox");
+  cbx.setAttribute("data-row", row_count);
+  cbx.setAttribute("onclick", "selectrw(this)");
+  td.appendChild(cbx);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  var i_1 = document.createElement("input");
+  i_1.setAttribute("name", "product_id_" + row_count);
+  i_1.setAttribute("id", "product_id_" + row_count);
+  i_1.setAttribute("type", "hidden");
+  i_1.setAttribute("value", product_id);
+
+  var i_2 = document.createElement("input");
+  i_2.setAttribute("name", "stock_id_" + row_count);
+  i_2.setAttribute("id", "stock_id_" + row_count);
+  i_2.setAttribute("type", "hidden");
+  i_2.setAttribute("value", stock_id);
+
+  var i_3 = document.createElement("input");
+  i_3.setAttribute("name", "is_virtual_" + row_count);
+  i_3.setAttribute("id", "is_virtual_" + row_count);
+  i_3.setAttribute("type", "hidden");
+  i_3.setAttribute("value", is_virtual);
+
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", "shelf_code_" + row_count);
+  i_4.setAttribute("id", "shelf_code_" + row_count);
+  i_4.setAttribute("type", "hidden");
+  i_4.setAttribute("value", RafKodu);
+
+  var i_5 = document.createElement("input");
+  i_5.setAttribute("name", "cost_" + row_count);
+  i_5.setAttribute("id", "cost_" + row_count);
+  i_5.setAttribute("type", "hidden");
+  i_5.setAttribute("value", cost);
+
+  var i_6 = document.createElement("input");
+  i_6.setAttribute("name", "is_production_" + row_count);
+  i_6.setAttribute("id", "is_production_" + row_count);
+  i_6.setAttribute("type", "hidden");
+  i_6.setAttribute("value", is_production);
+
+  var i7 = document.createElement("input");
+  i7.setAttribute("name", "row_uniq_id_" + row_count);
+  i7.setAttribute("id", "row_uniq_id_" + row_count);
+  i7.setAttribute("type", "hidden");
+  if (row_uniq_id.length > 0) {
+    i7.setAttribute("value", row_uniq_id);
+  } else {
+    var rwuid = GenerateUniqueId();
+    i7.setAttribute("value", rwuid);
+  }
+
+  var i8 = document.createElement("input");
+  i8.setAttribute("name", "is_manuel_" + row_count);
+  i8.setAttribute("id", "is_manuel_" + row_count);
+  i8.setAttribute("type", "hidden");
+  i8.setAttribute("value", is_manuel);
+
+  td.appendChild(i_1);
+  td.appendChild(i_2);
+  td.appendChild(i_3);
+  td.appendChild(i_4);
+  td.appendChild(i_5);
+  td.appendChild(i_6);
+  td.appendChild(i7);
+  td.appendChild(i8);
+
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", "stock_code_" + row_count);
+  i_4.setAttribute("id", "stock_code_" + row_count);
+  i_4.setAttribute("type", "text");
+  i_4.setAttribute("readonly", "");
+  i_4.setAttribute("style", "width:40px");
+  i_4.setAttribute("class", "stockkodu");
+  i_4.setAttribute("value", stock_code);
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_4);
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:15%");
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", "product_name_" + row_count);
+  i_4.setAttribute("id", "product_name_" + row_count);
+  i_4.setAttribute("class", "urunadi");
+  i_4.setAttribute("type", "text");
+  i_4.setAttribute("style", "width:40px");
+  i_4.setAttribute("value", product_name);
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_4);
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:5%");
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", "brand_name_" + row_count);
+  i_4.setAttribute("id", "brand_name_" + row_count);
+  i_4.setAttribute("type", "text");
+  i_4.setAttribute("disabled", "");
+  i_4.setAttribute("value", brand_name);
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_4);
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var rff = getRafSml(stock_id, RafKodu);
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:5%");
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", "department_name" + row_count);
+  i_4.setAttribute("id", "department_name" + row_count);
+  i_4.setAttribute("type", "text");
+  i_4.setAttribute("disabled", "");
+  i_4.setAttribute("value", rff);
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_4);
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  td.setAttribute("style", "display:flex;align-items: baseline;");
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  var sel_1 = AsamaYapici(row_count, currency);
+
+  var satistl = document.createElement("span");
+  satistl.setAttribute("class", "icon-detail");
+  satistl.setAttribute(
+    "onclick",
+    "openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid=" +
+      product_id +
+      "&sid=" +
+      stock_id +
+      "')"
+  );
+  div.appendChild(sel_1);
+
+  td.appendChild(div);
+  if (is_virtual != 1) {
+    td.appendChild(satistl);
+  }
+  tr.appendChild(td);
+  /*
+ <a href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&amp;pid=38109&amp;sid=38109')">
+                <i class="icon-detail" title="Ürün Detay Bilgisi"></i>
+            </a>
+*/
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:3%");
+  var i_5 = document.createElement("input");
+  i_5.setAttribute("name", "amount_" + row_count);
+  i_5.setAttribute("id", "amount_" + row_count);
+  i_5.setAttribute("type", "text");
+  i_5.setAttribute("class", "prtMoneyBox");
+  i_5.setAttribute("value", commaSplit(quantity, 2));
+  i_5.setAttribute("onchange", "hesapla('price'," + row_count + ")");
+  i_5.setAttribute("onClick", "sellinputAllVal(this)");
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_5);
+
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:3%");
+  var i_5 = document.createElement("input");
+  i_5.setAttribute("name", "main_unit_" + row_count);
+  i_5.setAttribute("id", "main_unit_" + row_count);
+  i_5.setAttribute("type", "text");
+  i_5.setAttribute("style", "width:20px");
+  i_5.setAttribute("readonly", "");
+  i_5.setAttribute("value", product_unit);
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_5);
+
+  td.appendChild(div);
+  tr.appendChild(td);
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:3%");
+  var sel = document.createElement("select");
+  sel.setAttribute("name", "other_money_" + row_count);
+  sel.setAttribute("id", "other_money_" + row_count);
+  sel.setAttribute("onchange", "hesapla('other_money'," + row_count + ")");
+  for (let index = 0; index < moneyArr.length; index++) {
+    const element = moneyArr[index];
+    var option = document.createElement("option");
+    option.setAttribute("value", element.MONEY);
+    option.innerText = element.MONEY;
+    sel.appendChild(option);
+  }
+  sel.value = other_money;
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(sel);
+
+  td.appendChild(div);
+  tr.appendChild(td);
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:5%");
+  var i_10 = document.createElement("input");
+  i_10.setAttribute("name", "price_other_" + row_count);
+  i_10.setAttribute("id", "price_other_" + row_count);
+  i_10.setAttribute("type", "text");
+  i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
+  i_10.setAttribute("class", "prtMoneyBox");
+  i_10.setAttribute("style", "width:30px");
+  i_10.setAttribute("value", commaSplit(price_other));
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_10);
+
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:5%");
+  var i_6 = document.createElement("input");
+  i_6.setAttribute("name", "price_" + row_count);
+  i_6.setAttribute("id", "price_" + row_count);
+  i_6.setAttribute("type", "text");
+  i_6.setAttribute("onchange", "hesapla('price'," + row_count + ")");
+  i_6.setAttribute("onClick", "sellinputAllVal(this)");
+  i_6.setAttribute("class", "prtMoneyBox");
+  i_6.setAttribute("style", "width:30px");
+  i_6.setAttribute("value", commaSplit(prc, 2));
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_6);
+
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:5%");
+
+  var i_9 = document.createElement("input");
+  i_9.setAttribute("name", "indirim1_" + row_count);
+  i_9.setAttribute("id", "indirim1_" + row_count);
+  i_9.setAttribute("value", commaSplit(discount_rate));
+  i_9.setAttribute("type", "text");
+  i_9.setAttribute(
+    "onchange",
+    "getSetNum(this)&hesapla('price'," + row_count + ")"
+  );
+  i_9.setAttribute("class", "prtMoneyBox");
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_9);
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:10%");
+  var i_7 = document.createElement("input");
+  i_7.setAttribute("name", "row_nettotal_" + row_count);
+  i_7.setAttribute("id", "row_nettotal_" + row_count);
+  i_7.setAttribute("type", "text");
+  i_7.setAttribute("class", "prtMoneyBox");
+
+  i_7.setAttribute("value", commaSplit(0, 2));
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_7);
+
+  td.appendChild(div);
+  tr.appendChild(td);
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:15%");
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", "product_name_other_" + row_count);
+  i_4.setAttribute("id", "product_name_other_" + row_count);
+  i_4.setAttribute("type", "text");
+  i_4.setAttribute("style", "width:40px");
+  i_4.setAttribute("value", product_name_other);
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_4);
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:8%");
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", "detail_info_extra_" + row_count);
+  i_4.setAttribute("id", "detail_info_extra_" + row_count);
+  i_4.setAttribute("type", "text");
+  i_4.setAttribute("style", "width:40px");
+  i_4.setAttribute("value", detail_info_extra);
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_4);
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  var dtd = new Date();
+  var td = document.createElement("td");
+  td.setAttribute("style", "width:10%");
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", "deliver_date_" + row_count);
+  i_4.setAttribute("id", "deliver_date_" + row_count);
+  i_4.setAttribute("type", "date");
+
+  if (deliver_date.length > 0) {
+    i_4.setAttribute("value", deliver_date);
+  } else {
+    i_4.setAttribute("value", dtd.toISOString().split("T")[0]);
+  }
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_4);
+  td.appendChild(div);
+  tr.appendChild(td);
+  var td = document.createElement("td");
+  td.setAttribute("style", "display:none");
+  td.setAttribute("class", "hiddenR");
+
+  var i_8 = document.createElement("input");
+  i_8.setAttribute("name", "Tax_" + row_count);
+  i_8.setAttribute("id", "Tax_" + row_count);
+  i_8.setAttribute("value", commaSplit(tax));
+
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  div.appendChild(i_8);
+  td.appendChild(div);
+  tr.appendChild(td);
+  var td = document.createElement("td");
+  var div = document.createElement("div");
+  div.setAttribute("class", "form-group");
+  var input_11 = document.createElement("input");
+  input_11.setAttribute("name", "description_" + row_count);
+  input_11.setAttribute("id", "description_" + row_count);
+  input_11.setAttribute("value", description);
+  div.appendChild(input_11);
+  td.appendChild(div);
+  tr.appendChild(td);
+
+  rowaListener(tr);
+  var bask = document.getElementById("tbl_basket");
+  bask.appendChild(tr);
+  hesapla("other_money", rowCount);
+  manuelControl();
+  RowControlForVirtual();
+}
 function AsamaYapici(rc, selv) {
   var sel_1 = document.createElement("select");
   sel_1.setAttribute("name", "orderrow_currency_" + rc);
@@ -618,6 +1168,7 @@ function manuelControl() {
     hesapla("other_money", i);
   }
 }
+
 
 function UpdRow(
   pid,
