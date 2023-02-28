@@ -100,6 +100,11 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
                 </div>
             </td>
         </tr>
+        <tr>
+            <td colspan="2" style="text-align:right">
+                <button class="btn btn-success">Kaydet</button>
+            </td>
+        </tr>
     </table>
 </cfform>
 </span>
