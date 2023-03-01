@@ -600,7 +600,8 @@ function AddRow_pbso(
   deliver_date = "",
   is_production = 0,
   row_uniq_id = "",
-  description = ""
+  description = "",
+  rfls = ""
 ) {
   console.log(arguments);
   var form = $(document);
@@ -652,9 +653,7 @@ function AddRow_pbso(
   q +=
     " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID";
   q += " WHERE STOCK_ID=" + stock_id;
-  
-  
-  
+
   var RafKodu = "";
   if (shelf_code.length == 0) {
     var res = wrk_query(q, "dsn3");
@@ -876,8 +875,12 @@ function AddRow_pbso(
   div.appendChild(i_4);
   td.appendChild(div);
   tr.appendChild(td);
-
-  var rff = getRafSml(stock_id, RafKodu);
+  var rff = "";
+  if (rfls.length == 0) {
+    rff = getRafSml(stock_id, RafKodu);
+  } else {
+    rff = rfls;
+  }
   var td = document.createElement("td");
   td.setAttribute("style", "width:5%");
   var i_4 = document.createElement("input");
@@ -1168,7 +1171,6 @@ function manuelControl() {
     hesapla("other_money", i);
   }
 }
-
 
 function UpdRow(
   pid,
