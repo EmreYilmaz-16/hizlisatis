@@ -175,11 +175,11 @@ function AddRow(
     other_money = "TL";
   }
   var tr = document.createElement("tr");
-  console.log("Manuel From Attributes" + is_manuel);
+ /* console.log("Manuel From Attributes" + is_manuel);
   console.log(
     "Manuel From Working Params" +
       generalParamsSatis.workingParams.MANUEL_CONTROL
-  );
+  );*/
 
   if (is_manuel == 1) {
     tr.setAttribute("style", "background-color:#86b5ff75 !important;");
@@ -725,11 +725,11 @@ function AddRow_pbso(
     other_money = "TL";
   }
   var tr = document.createElement("tr");
-  console.log("Manuel From Attributes" + is_manuel);
+ /* console.log("Manuel From Attributes" + is_manuel);
   console.log(
     "Manuel From Working Params" +
       generalParamsSatis.workingParams.MANUEL_CONTROL
-  );
+  );*/
 
   if (is_manuel == 1) {
     tr.setAttribute("style", "background-color:#86b5ff75 !important;");
@@ -875,12 +875,12 @@ function AddRow_pbso(
   div.appendChild(i_4);
   td.appendChild(div);
   tr.appendChild(td);
-  var rff = "";
-  if (rfls.length == 0) {
+  var rff = rfls;
+  /*if (rfls.length == 0) {
     rff = getRafSml(stock_id, RafKodu);
   } else {
     rff = rfls;
-  }
+  }*/
   var td = document.createElement("td");
   td.setAttribute("style", "width:5%");
   var i_4 = document.createElement("input");
@@ -1164,7 +1164,7 @@ function manuelControl() {
   var rw = document.getElementsByClassName("sepetRow");
   for (let i = 1; i <= rw.length; i++) {
     var ism = document.getElementById("is_manuel_" + i).value;
-    console.log(ism);
+    //console.log(ism);
     if (parseInt(ism) == 1) {
       $("#row_" + i).css("background", "#86b5ff75");
     }
@@ -1272,10 +1272,10 @@ function hesapla(input, sira) {
   }
 
   if (price_other_.indexOf(",") != -1) {
-    console.log("t");
+    //console.log("t");
     price_other_ = filterNum(price_other_, 8);
   } else {
-    console.log("y");
+    //console.log("y");
     price_other_ = filterNum(commaSplit(price_other_), 8);
   }
 
