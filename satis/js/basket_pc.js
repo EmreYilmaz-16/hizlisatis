@@ -175,7 +175,7 @@ function AddRow(
     other_money = "TL";
   }
   var tr = document.createElement("tr");
- /* console.log("Manuel From Attributes" + is_manuel);
+  /* console.log("Manuel From Attributes" + is_manuel);
   console.log(
     "Manuel From Working Params" +
       generalParamsSatis.workingParams.MANUEL_CONTROL
@@ -655,7 +655,7 @@ function AddRow_pbso(
   q += " WHERE STOCK_ID=" + stock_id;
 
   var RafKodu = "";
-  if (shelf_code.length == 0) {
+  if (shelf_code.length == 0 && stock_id != 0) {
     var res = wrk_query(q, "dsn3");
     if (res.recordcount > 0) {
       if (res.recordcount > 1 && fc == 0) {
@@ -725,7 +725,7 @@ function AddRow_pbso(
     other_money = "TL";
   }
   var tr = document.createElement("tr");
- /* console.log("Manuel From Attributes" + is_manuel);
+  /* console.log("Manuel From Attributes" + is_manuel);
   console.log(
     "Manuel From Working Params" +
       generalParamsSatis.workingParams.MANUEL_CONTROL
