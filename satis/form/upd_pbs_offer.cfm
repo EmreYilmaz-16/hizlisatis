@@ -94,7 +94,7 @@ ORDER BY POR.OFFER_ROW_ID
             <script>    
             <cfoutput>
                 $(document).ready(function(){                     
-                        setCompany(#getOffer.COMPANY_ID#, '#getOffer.FULLNAME#',#getOffer.PARTNER_ID#,'#getOffer.NN#')           
+                        setCompany(#getOffer.COMPANY_ID#, '#getOffer.FULLNAME#',#getOffer.PARTNER_ID#,'#getOffer.NN#',0)           
                     <cfif getOffer.PAYMETHOD neq 0>var pm=generalParamsSatis.PAY_METHODS.filter(p=>p.PAYMETHOD_ID==#getOffer.PAYMETHOD#);
                         setOdemeYontem(pm[0].PAYMETHOD_ID, pm[0].PAYMETHOD, pm[0].DUE_DAY)
                     </cfif>
@@ -189,7 +189,8 @@ ORDER BY POR.OFFER_ROW_ID
 '#dateFormat(getOfferRow.DELIVER_DATE,"yyyy-mm-dd")#',
 #getOfferRow.IS_PRODUCTION#,
 '#getOfferRow.UNIQUE_RELATION_ID#',
-'#DESCRIPTION#'
+'#DESCRIPTION#',
+'#DELLOC#'
 )
 <cfelse>
                             AddRow_pbso(
@@ -218,7 +219,8 @@ ORDER BY POR.OFFER_ROW_ID
 '#dateFormat(getOfferRow.DELIVER_DATE,"yyyy-mm-dd")#',
 #getOfferRow.IS_PRODUCTION#,
 '#getOfferRow.UNIQUE_RELATION_ID#',
-'#DESCRIPTION#'
+'#DESCRIPTION#',
+'#DELLOC#'
 )
 </cfif>                 
                        

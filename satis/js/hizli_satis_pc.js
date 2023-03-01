@@ -280,7 +280,7 @@ function HideCustomerDiv() {
   $(e).hide(500);
 }
 
-function setCompany(id, name, partner_id, partner_name) {
+function setCompany(id, name, partner_id, partner_name, ttype = 1) {
   let compInfo = GetAjaxQuery("CompanyInfo", id);
   console.log(compInfo.PRICE_LISTS.length);
   if (compInfo.PRICE_LISTS.length == 0) {
@@ -327,7 +327,9 @@ function setCompany(id, name, partner_id, partner_name) {
   // console.log(compInfo);
   HideCustomerDiv();
   setAddress(id);
-  sayfaYukle();
+  if (ttype == 1) {
+    sayfaYukle();
+  }
   if (compInfo.NOTE_COUNT > 0) {
     ShowMessage(id);
   }
