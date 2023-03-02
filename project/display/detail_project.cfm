@@ -64,4 +64,18 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <div class="prSt prGray">Teklife Dönüştür</div>
         <div class="prSt prGray">İlişkili İşlemler</div>
         </div>
-</cf_box>
+        <div id="leftMenuPss" style="width:10%;height:100vh;background:red" style="display:none"></div>
+    </cf_box>
+
+    <script>
+        $(document).ready(function(){
+            $(document).on("mousemove",function(ev){
+   
+    if(ev.clientX >=window.innerWidth-100){
+        $(leftMenuPss).show(500);
+    }else{
+        $(leftMenuPss).hide(500);
+    }
+})
+        })
+    </script>
