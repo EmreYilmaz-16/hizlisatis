@@ -21,6 +21,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
 </cfoutput>
     ]
 </script>
+<cfparam name="attributes.upper_project_id">
 <span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
    <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
     <h3 style="color:orange">Yeni Proje</h3>
@@ -40,7 +41,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
     <input type="hidden" name="project_pos_code" id="project_pos_code" value="">
     <input type="hidden" name="task_company_id" id="task_company_id" value="" class="">
     <input type="hidden" name="project_emp_id" id="project_emp_id" value="" class="">
-
+<input type="hidden" name="RELATED_PROJECT_ID" value="<cfoutput>#attributes.upper_project_id#</cfoutput>">
     
 
     <table>
