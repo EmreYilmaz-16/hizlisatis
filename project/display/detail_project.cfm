@@ -81,7 +81,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
    
     if(ev.clientX >=window.innerWidth-100){
         $(leftMenuPss).show(500);
-    }else if(ev.clientX >=window.innerWidth-300){
+    }else if(ev.clientX <=window.innerWidth-300){
         $(leftMenuPss).hide(500);
     }
 })
