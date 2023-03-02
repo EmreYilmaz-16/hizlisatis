@@ -30,5 +30,5 @@
 
 
 <script type="text/javascript">
-    window.location.href = '<cfoutput>#request.self#?fuseaction=project.emptypopup_detail_project_pbs&id=#get_last_pro.pro_id#</cfoutput>';
+    window.location.href = '<cfoutput>#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#get_last_pro.pro_id#</cfoutput>';
 </script>
