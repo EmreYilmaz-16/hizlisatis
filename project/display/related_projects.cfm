@@ -39,7 +39,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                 Öncelik
             </th>
             <th>
-                <a href="javascript:\\" onclick="openboxDragable('index.cfm?fuseaction=project.emptypopup_add_project_fast&upper_project_id=<cfoutput>#attributes.project_id#</cfoutput>')"><span class="icn-md icon-pluss"></span></a>
+                <a href="javascript:\\" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast&upper_project_id=<cfoutput>#attributes.project_id#</cfoutput>')"><span class="icn-md icon-pluss"></span></a>
             </th>
         </tr>
     </thead>
