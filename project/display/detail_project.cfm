@@ -65,12 +65,13 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <div class="prSt prGray">İlişkili İşlemler</div>
         </div>
         <div id="leftMenuPss" style="width:10%;height:90vh;background:red;position: absolute;right: 0;top: 0;display:none">
-        <h3>Hızlı Erişim</h3>
+            <cf_box title="Hızlı Erişim">
             <div class="list-group">
                 <a class="list-group-item" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_welcome</cfoutput>'">
                     Proje Ana Sayfa
                 </a>
             </div>
+        </cf_box>
         </div>
     </cf_box>
 
