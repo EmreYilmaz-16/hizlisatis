@@ -68,7 +68,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
     </cf_box>
 
     <script>
-        $(document).ready(function(){
+        
             $(document).on("mousemove",function(ev){
    
     if(ev.clientX >=window.innerWidth-100){
@@ -77,5 +77,5 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         $(leftMenuPss).hide(500);
     }
 })
-        })
+        
     </script>
