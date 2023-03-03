@@ -24,7 +24,8 @@
 }
 </style>----->
 <link rel="stylesheet" href="/js/dx/lib/css/dx.light.css" />
-<link rel="stylesheet" href="/js/dx/lib/css/styles.css" />
+<link rel="stylesheet" href="/js/dx/lib/css/dx.light.css" />
+<link rel="stylesheet" href="/js/dx/lib/css/icons/dxicons.tff" />
 
 
 
