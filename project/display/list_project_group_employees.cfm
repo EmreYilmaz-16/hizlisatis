@@ -6,11 +6,11 @@
     ) AS EMP_INFO ON EMP_INFO.EMPLOYEE_ID=WEP.EMPLOYEE_ID
     WHERE WORKGROUP_ID=(SELECT WORKGROUP_ID FROM workcube_metosan.WORK_GROUP WHERE PROJECT_ID=#attributes.PROJECT_ID#)
     </cfquery>
-    <div class="row">
+    <div class="row" style="display:flex;justify-content: space-evenly;align-items: stretch;">
         <cfoutput query="getWorkGroupEmployees">
-    <div class="col-2">
+    <div class="col-2" style="padding:20px">
     <div style="width:100%">
-        <img src="#getWorkGroupEmployees.phath##getWorkGroupEmployees.PHOTO#">
+        <img style="width:100%" src="#getWorkGroupEmployees.phath##getWorkGroupEmployees.PHOTO#">
     </div>
     <div style="background:white">
     <code>#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#</code>
