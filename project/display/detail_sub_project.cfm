@@ -52,7 +52,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             </tr>
         </table>
     </div>
-    <cfdump var="#cgi#">
+  
 
     <div style="display:flex;width: 50%;flex-direction: row;flex-wrap: wrap;align-content: stretch;justify-content: flex-start;align-items: flex-end;">
         <div class="prSt prGray">Ürün Dizayn</div>
