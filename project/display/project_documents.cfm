@@ -23,9 +23,9 @@
     margin-bottom: 0;
 }
 </style>----->
-<link rel="stylesheet" href="/js/dx/lib/css/dx.light.css" />
-<link rel="stylesheet" href="/js/dx/lib/css/dx.light.css" />
-<link rel="stylesheet" href="/js/dx/lib/css/icons/dxicons.ttf" />
+
+<link rel="stylesheet" href="/js/dx/lib/css/dx.material.blue.light.css" />
+<link rel="stylesheet" href="/js/dx/lib/css/styles.css" />
 
 
 
