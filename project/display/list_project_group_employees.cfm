@@ -8,7 +8,7 @@
     </cfquery>
     <div class="row" style="display:flex;justify-content: space-evenly;align-items: stretch;">
         <cfoutput query="getWorkGroupEmployees">
-    <div class="col-2" style="padding:20px">
+    <div class="col-2" style="padding:20px;background:white">
     <div style="width:100%">
         <img style="width:100%" src="#getWorkGroupEmployees.phath##getWorkGroupEmployees.PHOTO#">
     </div>
