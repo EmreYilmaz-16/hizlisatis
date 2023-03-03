@@ -1,4 +1,4 @@
-<style>
+<!----<style>
     .list-group-item:first-child {
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
@@ -22,13 +22,67 @@
     padding-left: 0;
     margin-bottom: 0;
 }
-</style>
+</style>----->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ 
+<!-- DevExtreme theme -->
+<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/22.2.4/css/dx.light.css">
+
+<!-- DevExtreme library -->
+<script type="text/javascript" src="https://cdn3.devexpress.com/jslib/22.2.4/js/dx.all.js"></script>
+
 <cfquery name="getassetsCats" datasource="#dsn#">
  Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where ASSETCAT_MAIN_ID=-1
 UNION 
 Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where ASSETCAT_ID=-1
 </cfquery>
+<script>
+    var products=[
+        <cfoutput query="getassetsCats">
+            <cfquery name="getAssets" datasource="#dsn#">
+                   select ASSET_FILE_NAME,ASSET_NAME,NAME,ASSET.RECORD_DATE,workcube_metosan.getEmployeeWithId(ASSET.RECORD_EMP) AS RECORD_EMP,ASSET.ACTION_ID from workcube_metosan.ASSET 
+                    left join workcube_metosan.CONTENT_PROPERTY on CONTENT_PROPERTY.CONTENT_PROPERTY_ID=ASSET.PROPERTY_ID
+                    where ASSETCAT_ID=#ASSETCAT_ID# AND ASSET.ACTION_ID=#attributes.project_id#
+               </cfquery>
+               <cfset cr_id=currentrow>
+            {
+                id:'#cr_id#',
+                text:'#ASSETCAT#',
+                items:[
+                    <cfloop query="getAssets">
+                        {
+                            id:'#cr_id#_#currentrow#',
+                            text:'#getAssets.ASSET_NAME#'
+                        },
+                    </cfloop>
+                ]
+            },
+        </cfoutput>
+    ]
+</script>
+<div id="simple-treeview"></div>
+<script>
+    $(() => {
+  $('#simple-treeview').dxTreeView({
+    items: products,
+    width: 300,
+    onItemClick(e) {
+      const item = e.itemData;
+      /*if (item.price) {
+        $('#product-details').removeClass('hidden');
+        $('#product-details > img').attr('src', item.image);
+        $('#product-details > .price').text(`$${item.price}`);
+        $('#product-details > .name').text(item.text);
+      } else {
+        $('#product-details').addClass('hidden');
+      }*/
+    },
+  }).dxTreeView('instance');
+});
 
+</script>
+
+<!----
 <ul  class="list-group">
     <cfoutput>
         <cfloop query="getassetsCats">
@@ -57,4 +111,4 @@ Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where 
             </li>
         </cfloop>
     </cfoutput>
-</ul>
+</ul>----->
