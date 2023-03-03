@@ -8,7 +8,7 @@ Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where 
     <cfoutput>
         <cfloop query="getassetsCats">
             <li>
-               <div style="display:flex"><img src="css/assets/icons/catalyst-icon-svg/ctl-school-material.svg" width="30px"> #ASSETCAT# </div> 
+               <div style="display:flex;align-items: center;"><img src="css/assets/icons/catalyst-icon-svg/ctl-school-material.svg" width="30px"> <span style="margin-left:5px"> #ASSETCAT# </span> </div> 
                <cfquery name="getAssets" datasource="#dsn#">
                    select ASSET_FILE_NAME,ASSET_NAME,NAME,ASSET.RECORD_DATE,workcube_metosan.getEmployeeWithId(ASSET.RECORD_EMP) AS RECORD_EMP,ASSET.ACTION_ID from workcube_metosan.ASSET 
                     left join workcube_metosan.CONTENT_PROPERTY on CONTENT_PROPERTY.CONTENT_PROPERTY_ID=ASSET.PROPERTY_ID
