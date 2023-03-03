@@ -75,7 +75,9 @@ Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where 
         </cfoutput>
     ]
 </script>
+<cf_box title="Belgeler">
 <div id="simple-treeview"></div>
+</cf_box>
 <script>
     $(() => {
   $('#simple-treeview').dxTreeView({
