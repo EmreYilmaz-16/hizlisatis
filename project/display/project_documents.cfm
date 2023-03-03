@@ -23,13 +23,28 @@
     margin-bottom: 0;
 }
 </style>----->
+<link rel="stylesheet" href="/js/dx/lib/css/dx.light.css" />
+<link rel="stylesheet" href="/js/dx/lib/css/styles.css" />
+
+
+
+
+
+<script type="text/javascript" src="/js/dx/lib/js/cldr.min.js"></script>
+<script type="text/javascript" src="/js/dx/lib/js/cldr/event.min.js"></script>
+<script type="text/javascript" src="/js/dx/lib/js/cldr/supplemental.min.js"></script>
+
+<script type="text/javascript" src="/js/dx/lib/js/globalize.min.js"></script>
+<script type="text/javascript" src="/js/dx/lib/js/globalize/message.min.js"></script>
+<script type="text/javascript" src="/js/dx/lib/js/globalize/number.min.js"></script>
+<script type="text/javascript" src="/js/dx/lib/js/globalize/currency.min.js"></script>
+<script type="text/javascript" src="/js/dx/lib/js/globalize/date.min.js"></script>
+
+<script type="text/javascript" src="/js/dx/lib/js/dx.all.js"></script>
+
 
  
-<!-- DevExtreme theme -->
-<link rel="stylesheet" href="/js/dx/lib/css/dx.light.css">
 
-<!-- DevExtreme library -->
-<script type="text/javascript" src="/js/dx/Lib/js/dx.all.js"></script>
 
 <cfquery name="getassetsCats" datasource="#dsn#">
  Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where ASSETCAT_MAIN_ID=-1
