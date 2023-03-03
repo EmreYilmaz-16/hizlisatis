@@ -7,7 +7,7 @@
     WHERE WORKGROUP_ID=(SELECT WORKGROUP_ID FROM workcube_metosan.WORK_GROUP WHERE PROJECT_ID=#attributes.PROJECT_ID#)
     </cfquery>
     <div class="row">
-        <cfoutput query="">
+        <cfoutput query="getWorkGroupEmployees">
     <div class="col-2">
     <div style="width:100%">
         <img src="#getWorkGroupEmployees.phath##getWorkGroupEmployees.PHOTO#">
