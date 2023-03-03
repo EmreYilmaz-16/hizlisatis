@@ -18,7 +18,13 @@ Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where 
                     <ul>
                         <cfloop query="getAssets">
                             <li>
-                                #ASSET_NAME#
+                                <div style="display:flex">
+                                    <img src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,".")#.svg" width="30px">
+                                    <span>
+                                        #ASSET_NAME#
+                                    </span>
+                                </div>
+                                
                             </li>
                         </cfloop>
                     </ul>
