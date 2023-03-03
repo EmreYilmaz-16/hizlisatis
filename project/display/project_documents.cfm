@@ -12,7 +12,7 @@ Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where 
                <cfquery name="getAssets" datasource="#dsn#">
                    select ASSET_FILE_NAME,ASSET_NAME,NAME,ASSET.RECORD_DATE,workcube_metosan.getEmployeeWithId(ASSET.RECORD_EMP) AS RECORD_EMP,ASSET.ACTION_ID from workcube_metosan.ASSET 
                     left join workcube_metosan.CONTENT_PROPERTY on CONTENT_PROPERTY.CONTENT_PROPERTY_ID=ASSET.PROPERTY_ID
-                    where ASSETCAT_ID=#ASSET_CAT_ID# AND ASSET.ACTION_ID=#attributes.project_id#
+                    where ASSETCAT_ID=#ASSETCAT_ID# AND ASSET.ACTION_ID=#attributes.project_id#
                </cfquery>
                <cfif getAssets.recordCount>
                     <ul>
