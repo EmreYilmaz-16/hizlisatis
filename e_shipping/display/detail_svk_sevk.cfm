@@ -32,7 +32,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 
 </cfquery>
 <cf_box title="Sevk Durumları">
-<cfform method="post" id="frm1" action="#request.self#?fuseaction=invoice.form_add_bill&is_from_pbs=1">
+<cfform method="post" id="frm1" action="">
     <cf_grid_list>
     <thead>
         <tr>
@@ -94,11 +94,13 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         }
     }
     function sbm(tip) {
+        var frm=document.getElementById("frm1")
         if(tip==1){
-
+            frm.action="index.cfm?fuseaction=invoice.form_add_bill&is_from_pbs=1"
         }
         else if(tip==2){
-
+            frm.action="index.cfm?fuseaction=stock.form_add_sale&is_from_pbs=1"
         }
+        frm.submit();
     }
 </script>
