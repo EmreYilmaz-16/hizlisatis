@@ -32,7 +32,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 
 </cfquery>
 <cf_box title="Sevk Durumları">
-<cfform method="post" action="#request.self#?fuseaction=invoice.form_add_bill&is_from_pbs=1">
+<cfform method="post" id="frm1" action="#request.self#?fuseaction=invoice.form_add_bill&is_from_pbs=1">
     <cf_grid_list>
     <thead>
         <tr>
@@ -79,7 +79,8 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 </cfoutput>
 </tbody>
 </cf_grid_list>
-<input type="submit">
+<button class="btn btn-success" type="button" onclick="sbm(1)">Fatura Kes</button>
+<button class="btn btn-warning" type="button" onclick="sbm(2)">İrsaliye Kes</button>
 </cfform>
 </cf_box>
 
@@ -90,6 +91,14 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
             document.getElementById("txt_"+id).removeAttribute("disabled")
         }else{
             document.getElementById("txt_"+id).setAttribute("disabled","disabled")
+        }
+    }
+    function sbm(tip) {
+        if(tip==1){
+
+        }
+        else if(tip==2){
+
         }
     }
 </script>
