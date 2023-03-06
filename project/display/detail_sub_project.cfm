@@ -53,11 +53,11 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         </table>
     </div>
   
-
+    
     <div style="display:flex;width: 50%;flex-direction: row;flex-wrap: wrap;align-content: stretch;justify-content: flex-start;align-items: flex-end;">
         <div class="prSt prGray">Ürün Dizayn</div>
         <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'">Çalışma Gurupları</div>
-        <div class="prSt prGray">İşler</div>        
+        <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_works&project_id=#attributes.project_id#</cfoutput>'">İşler</div>        
         <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'">Belgeler</div>
         <div class="prSt prGray">Üretim Emirleri</div>
         <div class="prSt prGray">Notlar</div>
