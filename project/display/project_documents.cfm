@@ -64,12 +64,12 @@ Select ASSETCAT_ID,ASSETCAT,ASSETCAT_PATH From workcube_metosan.ASSET_CAT where 
             {
                 id:'#cr_id#',
                 text:'#ASSETCAT#',
-                icon:'css/assets/icons/catalyst-icon-svg/ctl-school-material.svg'
+                icon:'css/assets/icons/catalyst-icon-svg/ctl-school-material.svg',
                 items:[
                     <cfloop query="getAssets">
                         {
                             id:'#cr_id#_#currentrow#',
-                            text:'#getAssets.ASSET_NAME#'
+                            text:'#getAssets.ASSET_NAME#',
                             icon:'css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,".")#.svg'
                         },
                     </cfloop>
