@@ -23,7 +23,7 @@
         #currentrow#
     </td>
     <td style="width:55%">
-        <a href="/documents/#attributes.pth#/#ASSET_FILE_NAME#" >
+        <a href="/documents/asset/#attributes.pth#/#ASSET_FILE_NAME#" >
             <img style="width:20px" src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg">&nbsp; #ASSET_NAME#
         </a>
     </td>
