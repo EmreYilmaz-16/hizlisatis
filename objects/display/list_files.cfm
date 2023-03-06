@@ -28,7 +28,7 @@
             <cfset ext="xls">
         </cfif>
         <a href="/documents/asset/#attributes.pth#/#ASSET_FILE_NAME#" >
-            <img style="width:20px" src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg">&nbsp; #ASSET_NAME#
+            <img style="width:20px" src="css/assets/icons/catalyst-icon-svg/#ext#.svg">&nbsp; #ASSET_NAME#
         </a>
     </td>
     <td style="width:10%">#NAME#</td>
