@@ -15,7 +15,7 @@
     </cfquery>
     <div class="row" style="display:flex;justify-content: space-evenly;align-items: stretch;">
         <cfoutput query="getWorkGroupEmployees">
-    <div class="col-2" style="padding:20px;background:white">
+    <div class="col-2" style="padding:20px;background:white;border:solid 1px black;border-radius:3%">
     <div style="width:100%">
         <img style="width:100%" src="#getWorkGroupEmployees.phath##getWorkGroupEmployees.PHOTO#">
     </div>
