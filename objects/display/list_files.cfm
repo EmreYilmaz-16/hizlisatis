@@ -1,4 +1,4 @@
-<cf_box title="#attributes.cat_name#">
+﻿<cf_box title="#attributes.cat_name#">
     
     <cfquery name="getAssets" datasource="#dsn#">
         select ASSET_FILE_NAME,ASSET_NAME,NAME,ASSET.RECORD_DATE,workcube_metosan.getEmployeeWithId(ASSET.RECORD_EMP) AS RECORD_EMP,ASSET.ACTION_ID from workcube_metosan.ASSET 
