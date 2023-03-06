@@ -71,7 +71,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
 
     $(document).on("mousemove",function(ev){
 
-if(ev.clientX >=window.innerWidth-100){
+if(ev.clientX >=window.innerWidth-20){
 $(leftMenuPss).show(500);
 }else if(ev.clientX <=window.innerWidth-300){
 $(leftMenuPss).hide(500);
