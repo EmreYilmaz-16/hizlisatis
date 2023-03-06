@@ -13,7 +13,7 @@
     <ul>
     <cfoutput query="getassetsCats">
         <li class="folder">
-            <a onclick="loadFiles('#ASSETCAT_PATH#',#ASSETCAT_ID#,'#ASSETCAT#','#attributes.project_id#')">#ASSETCAT#</a>
+            <a onclick="loadFiles('#ASSETCAT_PATH#',#ASSETCAT_ID#,'#ASSETCAT#','#attributes.project_id#')"><img src="css/assets/icons/catalyst-icon-svg/ctl-office-material-2.svg" style="width:20px">&nbsp;#ASSETCAT#</a>
         </li>    
     </cfoutput>
     </ul>
