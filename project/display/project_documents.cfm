@@ -24,6 +24,6 @@
 </div>
 <script>
     function loadFiles(pth,id,acs){
-        AjaxPageLoad("index.cfm?fuseaction=objects.list_files_pbs.cfm&pth="+pth+"&cat_name="+acs+"&assetcatid="+id,"files",1,"Yükleniyor");
+        AjaxPageLoad("index.cfm?fuseaction=objects.emptypopup_list_files_pbs&pth="+pth+"&cat_name="+acs+"&assetcatid="+id,"files",1,"Yükleniyor");
     }
 </script>
