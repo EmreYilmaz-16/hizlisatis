@@ -47,7 +47,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                        Proje Detay 
                 </a>        
             <cfelse>
-                <a class="list-group-item" onclick="<cfoutput>window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#getProject.RELATED_PROJECT_ID#'</cfoutput>">
+                <a class="list-group-item" onclick="<cfoutput>window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#getProject.PROJECT_ID#'</cfoutput>">
                     Proje Detay 
              </a>
             </cfif>
