@@ -1,3 +1,4 @@
+<cf_box title="Çalışma Grubu">
 <cfquery name="getWorkGroupEmployees" datasource="#dsn#">
     SELECT EMP_INFO.*,ROLE_HEAD FROM workcube_metosan.WORKGROUP_EMP_PAR  AS WEP
     LEFT JOIN (
@@ -22,3 +23,4 @@
     </div>
     </cfoutput>
     </div>
+    </cf_box>
