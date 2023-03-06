@@ -12,7 +12,7 @@
     <cf_box title="Klasörler">
     <ul>
     <cfoutput query="getassetsCats">
-        <li class="folder">
+        <li class="folder" style="margin-bottom:10px">
             <a onclick="loadFiles('#ASSETCAT_PATH#',#ASSETCAT_ID#,'#ASSETCAT#','#attributes.project_id#')"><img src="css/assets/icons/catalyst-icon-svg/ctl-office-material-2.svg" style="width:20px">&nbsp;#ASSETCAT#</a>
         </li>    
     </cfoutput>
