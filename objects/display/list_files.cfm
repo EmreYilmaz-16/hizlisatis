@@ -5,13 +5,26 @@
          left join workcube_metosan.CONTENT_PROPERTY on CONTENT_PROPERTY.CONTENT_PROPERTY_ID=ASSET.PROPERTY_ID
          where ASSETCAT_ID=#attributes.assetcatid# AND ASSET.ACTION_ID=#attributes.project_id#
     </cfquery>
-    <div class="row">
+<table>
 <cfoutput query="getAssets">
-    <div class="col-2 col-xs-6">
-        <a href="javascript://">
-        <img style="display:block;margin:0 auto;" src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg" width="50px" height="80px">#ASSET_NAME#</a></div>
+ <tr>
+    <td>
+        #currentrow#
+    </td>
+    <td>
+        <img style="width:20px" src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg">&nbsp; #ASSET_NAME#
+    </td>
+    <td>
+        #dateFormat(RECORD_DATE,"dd/mm/yyyy")#
+    </td>
+    <td>
+        #RECORD_EMP#
+    </td>
+ </tr>
+        
+        
 </cfoutput>
-</div>
+</table>
 <!---    <cfparam name="attributes.DosyaAd" default="#attributes.pth#">    
 <cfdirectory action="list" directory="#expandPath("./documents/asset/>#attributes.DosyaAd#")#" recurse="false" name="myLists">
 <cfset myList=directoryList(expandPath("./documents/asset/#attributes.DosyaAd#"),false,"query","","type asc")>
