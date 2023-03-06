@@ -10,6 +10,7 @@
     <tr>
         <th></th>
         <th>Dosya Adı</th>
+        <th>Belge Tipi</th>
         <th>Kayıt Tarihi</th>
         <th>Kaydeden</th>
         
@@ -21,11 +22,12 @@
     <td style="width:5%">
         #currentrow#
     </td>
-    <td style="width:65%">
-        <a href="javascript//">
+    <td style="width:55%">
+        <a href="/documents/#attributes.pth#/#ASSET_FILE_NAME#" >
             <img style="width:20px" src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg">&nbsp; #ASSET_NAME#
         </a>
     </td>
+    <td style="width:10%">#NAME#</td>
     <td style="width:10%;text-align:right">
         #dateFormat(RECORD_DATE,"dd/mm/yyyy")#
     </td>
