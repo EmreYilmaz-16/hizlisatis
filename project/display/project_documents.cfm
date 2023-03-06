@@ -38,6 +38,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
 
 <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none">
     <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
+        <div style="height:90vh">
     <cf_grid_list>
         <tr>
             <td>
@@ -59,7 +60,9 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         </a>
     </td>
     </tr>
+    
     </cf_grid_list>
+</div>
 </cf_box>
 </div>
 
