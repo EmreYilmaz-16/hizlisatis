@@ -62,7 +62,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
     </cf_grid_list>
 </cf_box>
 </div>
-</cf_box>
+
 
 <script>
 
