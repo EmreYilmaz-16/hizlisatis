@@ -1,7 +1,7 @@
 ﻿<cf_box title="#attributes.cat_name#">
     
     <cfquery name="getAssets" datasource="#dsn#">
-        select ASSET_FILE_NAME,ASSET_NAME,NAME,ASSET.RECORD_DATE,workcube_metosan.getEmployeeWithId(ASSET.RECORD_EMP) AS RECORD_EMP,ASSET.ACTION_ID from workcube_metosan.ASSET 
+        select ASSET_FILE_NAME,ASSET_NAME,NAME,ASSET.RECORD_DATE,workcube_metosan.getEmployeeWithId(ASSET.RECORD_EMP) AS RECORD_EMP,ASSET.ACTION_ID,ASSET_ID from workcube_metosan.ASSET 
          left join workcube_metosan.CONTENT_PROPERTY on CONTENT_PROPERTY.CONTENT_PROPERTY_ID=ASSET.PROPERTY_ID
          where ASSETCAT_ID=#attributes.assetcatid# AND ASSET.ACTION_ID=#attributes.project_id#
     </cfquery>
@@ -13,7 +13,10 @@
         <th>Belge Tipi</th>
         <th>Kayıt Tarihi</th>
         <th>Kaydeden</th>
-        
+        <th><cfoutput>
+            <a onclick="windowopen('index.cfm?fuseaction=asset.list_asset&event=add&module=project&module_id=1&action=PROJECT_ID&action_id=#attributes.project_id#&asset_cat_id=#attributes.assetcatid#&action_type=0')">
+                <span class="icn-md icon-pluss"></span>
+            </a></cfoutput></th>
     </tr>
 </thead>
 <tbody>
@@ -38,6 +41,9 @@
     <td style="width:20%;text-align:right">
         #RECORD_EMP#
     </td>
+    <td><a onclick="windowopen('index.cfm?fuseaction=asset.list_asset&event=upd&asset_id=#ASSET_ID#&assetcat_id=#attributes.assetcatid#&nogoback=1')">
+        <span class="icn-md icon-pencil-square-o"></span>
+    </a></td>
  </tr>
 </cfoutput>
 </tbody>
