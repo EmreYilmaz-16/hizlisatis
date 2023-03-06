@@ -6,7 +6,7 @@
 </cfquery>
 <cf_box title="Klasörler">
 
-<cfdump var="#var#">
+
 </cf_box>
 <div style="display:flex">
 <div id="folders" style="width:33%">
