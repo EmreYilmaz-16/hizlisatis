@@ -27,7 +27,8 @@
 
     <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none">
         <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
-        <cf_grid_list>
+        <div style="height:90vh">
+            <cf_grid_list>
             <tr>
                 <td>
                     <cfif len(getProject.RELATED_PROJECT_ID)>
@@ -35,7 +36,7 @@
                            Proje Detay 
                     </a>        
                 <cfelse>
-                    <a class="list-group-item" onclick="<cfoutput>window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#getProject.RELATED_PROJECT_ID#'</cfoutput>">
+                    <a class="list-group-item" onclick="<cfoutput>window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#getProject.PROJECT_ID#'</cfoutput>">
                         Proje Detay 
                  </a>
                 </cfif>
@@ -49,9 +50,10 @@
         </td>
         </tr>
         </cf_grid_list>
-    </cf_box>
     </div>
     </cf_box>
+    </div>
+    
     
     <script>
     
