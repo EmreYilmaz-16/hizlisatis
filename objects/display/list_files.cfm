@@ -22,7 +22,9 @@
         #currentrow#
     </td>
     <td style="width:65%">
-        <img style="width:20px" src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg">&nbsp; #ASSET_NAME#
+        <a href="javascript//">
+            <img style="width:20px" src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg">&nbsp; #ASSET_NAME#
+        </a>
     </td>
     <td style="width:10%;text-align:right">
         #dateFormat(RECORD_DATE,"dd/mm/yyyy")#
