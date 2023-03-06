@@ -9,7 +9,7 @@
 <cfoutput query="getAssets">
     <div class="col-2 col-xs-6">
         <a href="javascript://">
-        <img src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg" width="50px" height="80px">#ASSET_NAME#</a></div>
+        <img style="display:block;margin:0 auto;" src="css/assets/icons/catalyst-icon-svg/#listLast(ASSET_FILE_NAME,'.')#.svg" width="50px" height="80px">#ASSET_NAME#</a></div>
 </cfoutput>
 </div>
 <!---    <cfparam name="attributes.DosyaAd" default="#attributes.pth#">    
