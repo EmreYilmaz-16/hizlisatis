@@ -21,7 +21,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
 </cfoutput>
     ]
 </script>
-<cfparam name="attributes.upper_project_id">
+<cfparam name="attributes.upper_project_id" default="">
 <span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
    <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
     <h3 style="color:orange">Yeni Proje</h3>
