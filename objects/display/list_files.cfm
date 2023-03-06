@@ -30,7 +30,11 @@
         <cfif ext eq "xlsx">
             <cfset ext="xls">
         </cfif>
+      <cfif attributes.assetcatid lt 0>
+        <a href="/documents/#attributes.pth#/#ASSET_FILE_NAME#" >
+    <cfelse>
         <a href="/documents/asset/#attributes.pth#/#ASSET_FILE_NAME#" >
+      </cfif>   
             <img style="width:20px" src="css/assets/icons/catalyst-icon-svg/#ext#.svg">&nbsp; #ASSET_NAME#
         </a>
     </td>
