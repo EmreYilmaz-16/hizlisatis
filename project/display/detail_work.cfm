@@ -27,9 +27,9 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
     <cfif iss neq 1>
     <div style="display:flex;border-bottom:solid 1px gray">
     <div style="display: flex;margin-top: 5px;flex-direction: row;align-content: space-between;align-items: center">
-        <div style="width:20px;border:solid 0.5px black;"><cfset str=""><cfloop list="#UPDATE_AUTHOR#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
+        <div style="border:solid 0.5px black;padding:5px"><cfset str=""><cfloop list="#UPDATE_AUTHOR#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
         <span style="font-weight:bold">&gt;</span>
-        <div style="border:solid 0.5px black;border-radius:5px"><cfset str=""><cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
+        <div style="border:solid 0.5px black;border-radius:5px;padding:5px"><cfset str=""><cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
     </div>
     <div >
     <cfoutput>#WORK_DETAIL#</cfoutput>
