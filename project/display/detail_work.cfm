@@ -18,29 +18,40 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
 <cf_box title="#getWork.WORK_HEAD#">
-    <h4>Detay</h4>
-    <div>
-        #getWork.WORK_DETAIL#
+    <div style="height:80vh">
+        <div style="display:flex">
+            <div style="width:50%">
+                <h4>Detay</h4>
+                <div>
+                    <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
+                </div>
+                <cfset iss=1>
+                <cfloop query="getWork">
+                <cfif iss neq 1>    
+                    <table>
+                        <tr>
+                            <td>
+                                <div style="padding:5px;background:#ff000087;color:white;border-radius:25%"><cfset str=""><cfloop list="#UPDATE_AUTHOR#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
+                            </td>
+                            <td style="font-weight:bold">&gt;</td>
+                            <td>
+                                <div style="border-radius:5px;padding:5px;background:#1c49d791;color:white;border-radius:25%"><cfset str=""><cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
+                            </td>
+                            <td>
+                                <cfoutput>#WORK_DETAIL#</cfoutput>
+                            </td>
+                        </tr>
+                    </table>                                 
+                </cfif>
+                <cfset iss=iss+1>
+                </cfloop>
+            </div>
+            <div>
+                <cf_box title="ToDo">
+                    
+                </cf_box>
+            </div>
+        </div>
     </div>
-    <cfset iss=1>
-<cfloop query="getWork">
-    <cfif iss neq 1>    
-        <table>
-            <tr>
-                <td>
-                    <div style="padding:5px;background:#ff000087;color:white;border-radius:25%"><cfset str=""><cfloop list="#UPDATE_AUTHOR#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
-                </td>
-                <td>
-                    <div style="border-radius:5px;padding:5px;background:#1c49d791;color:white;border-radius:25%"><cfset str=""><cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
-                </td>
-                <td>
-                    <cfoutput>#WORK_DETAIL#</cfoutput>
-                </td>
-            </tr>
-        </table>                                 
-    </cfif>
-    <cfset iss=iss+1>
-</cfloop>
-
 </cf_box>
 
