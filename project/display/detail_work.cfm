@@ -17,7 +17,7 @@ LEFT JOIN workcube_metosan.PRO_WORK_CAT AS PWC ON PWC.WORK_CAT_ID=PWH.WORK_CAT_I
 where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
-<span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;height:80vh" id="scrollList">
+<span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;height:80vh;width:75%" id="scrollList">
     <h4>Detay</h4>
     <div>
         <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
