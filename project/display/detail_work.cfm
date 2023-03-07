@@ -45,13 +45,13 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                                 <td>
                                     <div style="border-radius:5px;padding:5px;background:#1c49d791;color:white;border-radius:25%"><cfset str=""><cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
                                 </td>
-                                <td rowspan="2">
+                                <td >
                                     <cfoutput>#WORK_DETAIL#</cfoutput>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
-                                    <cfoutput>#STAGE# #dateFormat(UPDATE_DATE,'dd/mm/yyy')#</cfoutput>
+                                <td colspan="4">
+                                    <code style="color:##00ff659c"><cfoutput><i class="fa fa-tree"></i>#STAGE# #dateFormat(UPDATE_DATE,'dd/mm/yyy')#</cfoutput></code>
                                 </td>
                             </tr>
                         </table>                                 
