@@ -24,9 +24,12 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
         <h3 style="color:orange"><cfoutput>#getWork.WORK_HEAD#</cfoutput></h3>
         <button style="margin-left:auto" class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
     </div>
-    <h4>Detay</h4>
+    
     <div>
-        <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
+        <cf_box title="Detay">
+            <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
+        </cf_box>
+        
     </div>
     <div>
         <div style="display:flex;justify-content: space-around;align-content: center;align-items: center;">
