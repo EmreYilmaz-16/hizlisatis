@@ -17,12 +17,12 @@ LEFT JOIN workcube_metosan.PRO_WORK_CAT AS PWC ON PWC.WORK_CAT_ID=PWH.WORK_CAT_I
 where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
-<cf_box title="İş: #getWork.WORK_HEAD#">
+<span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
     <h4>Detay</h4>
     <div>
         <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
     </div>
-    <div style="">
+    <div style="width:75%">
         <div style="display:flex">
             <div style="width:70%">
                 <cf_box title="Takipler">
@@ -81,3 +81,4 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cf_box>
 </cf_box>
 
+</span>
