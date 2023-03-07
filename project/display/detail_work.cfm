@@ -26,7 +26,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
     <div>
         <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
     </div>
-    <div style="width:75%">
+    <div>
         <div style="display:flex;justify-content: space-around;align-content: center;align-items: center;">
             <div style="width:68%">
                 <cf_box title="Takipler">
