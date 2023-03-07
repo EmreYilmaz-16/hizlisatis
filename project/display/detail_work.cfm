@@ -29,7 +29,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
     <div>
         <div style="display:flex;justify-content: space-around;align-content: center;align-items: center;">
             <div style="width:68%">
-                <cf_box title="Takipler" add_href='<cfoutput>openBoxDraggable("index.cfm?fuseaction=project.emptypopup_add_followup&work_id=#attributes.WORK_ID#")</cfoutput>'>
+                <cf_box title="Takipler" add_href="<cfoutput>openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_followup&work_id=#attributes.WORK_ID#')</cfoutput>">
                 <div style="height:25vh">
                     <cfset iss=1>
                     <cfloop query="getWork">
