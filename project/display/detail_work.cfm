@@ -59,10 +59,19 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                                     <td>
                                         #URLDecode(WORK_STEP_DETAIL)#
                                     </td>
+                                    <td>
+                                        
+                                    </td>
                                 </tr>
                             </cfoutput>
                         </cf_ajax_list>
                 </cf_box>
+                <cf_box id="comments"               
+                    title="#getLang('settings',859,'chat')#" 
+                    closable="0"
+                    add_href_size="wide"
+                    box_page="#request.self#?fuseaction=project.emptypopup_work_comment&id=#attributes.work_id#">					
+            </cf_box>
             </div>
         </div>
     </div>
