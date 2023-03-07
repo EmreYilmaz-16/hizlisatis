@@ -1,3 +1,9 @@
+<!-----
+    TODO: Buralara Dikkat Edelim
+    *Sayfaları Yap
+    ------>
+    <!----  FIXME: ------>
+    
 <link rel="stylesheet" href="/AddOns/Partner/project/content/project.css">
 <cfquery name="getProject" datasource="#dsn#">
     select PRO_CURRENCY_ID,PROJECT_ID,RELATED_PROJECT_ID, PRO_PROJECTS.PROJECT_NUMBER,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) as YONETICI,PROJECT_HEAD,TARGET_START,TARGET_FINISH,SETUP_PRIORITY.PRIORITY,SETUP_PRIORITY.COLOR,COMPANY.NICKNAME from workcube_metosan.PRO_PROJECTS
@@ -53,7 +59,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         </table>
     </div>
     <div style="display:flex;width: 50%;flex-direction: row;flex-wrap: wrap;align-content: stretch;justify-content: flex-start;align-items: flex-end;">
-        <div class="prSt prGray">Ürün Dizayn</div>
+        <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_product_pbs&project_id=#attributes.project_id#</cfoutput>'">Ürün Dizayn</div>
         <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'">Çalışma Gurupları</div>
         <div class="prSt prGray"  onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_works&project_id=#attributes.project_id#</cfoutput>'">İşler</div>
         <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_related_projects_pbs&project_id=#attributes.project_id#</cfoutput>'">İlişkili Projeler</div>
