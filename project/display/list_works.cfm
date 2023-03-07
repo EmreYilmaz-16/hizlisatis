@@ -53,7 +53,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                     <td>#dateFormat(TARGET_START,"dd/mm/yyyy")#</td>
                     <td>#dateFormat(TARGET_FINISH,"dd/mm/yyyy")#</td>
                     <td>#RECORD_AUTHOR#</td>
-                    <td><span class="icn-md icon-search"></span></td>
+                    <td><span onclick="openBoxDraggable('#request.self#?fuseaction=project.emptypopup_work_detail_pbs&work_id=#WORK_ID#')" class="icn-md icon-search"></span></td>
                 </tr>
             </cfoutput>
         </tbody>
