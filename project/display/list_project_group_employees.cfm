@@ -38,7 +38,7 @@
             <tr>
                 <td>
                     <cfif len(getProject.RELATED_PROJECT_ID)>
-                    <a class="list-group-item" onclick="<cfoutput>window.location.href='#request.self#?fuseaction=project.emptypopup_detail_sub_project_pbs&project_id=#getProject.RELATED_PROJECT_ID#'</cfoutput>">
+                    <a class="list-group-item" onclick="<cfoutput>window.location.href='#request.self#?fuseaction=project.emptypopup_detail_sub_project_pbs&project_id=#getProject.PROJECT_ID#'</cfoutput>">
                            Proje Detay 
                     </a>        
                 <cfelse>
