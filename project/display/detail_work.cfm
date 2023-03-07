@@ -51,7 +51,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                             </tr>
                             <tr>
                                 <td colspan="4">
-                                    <code style="color:##00ff659c"><cfoutput><i class="fa fa-tree"></i>#STAGE# #dateFormat(UPDATE_DATE,'dd/mm/yyy')#</cfoutput></code>
+                                    <code style="color:#1262329c"><cfoutput><i class="fa fa-tree"></i>#STAGE# #dateFormat(UPDATE_DATE,'dd/mm/yyy')#</cfoutput></code>
                                 </td>
                             </tr>
                         </table>                                 
