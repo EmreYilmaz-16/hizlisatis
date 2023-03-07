@@ -23,8 +23,8 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
         <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
     </div>
     <div style="width:75%">
-        <div style="display:flex">
-            <div style="width:70%">
+        <div style="display:flex;justify-content: space-around;align-content: center;align-items: center;">
+            <div style="width:68%">
                 <cf_box title="Takipler">
                 <div style="height:25vh">
                     <cfset iss=1>
@@ -51,7 +51,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                 </cf_box>
      
             </div>
-            <div style="width:30%">
+            <div style="width:28%">
                 <cf_box title="ToDo">
                     <div style="height:25vh">
                         <cfquery name="getSteps" datasource="#dsn#">
