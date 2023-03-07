@@ -79,6 +79,6 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
     add_href_size="wide"
     box_page="#request.self#?fuseaction=project.emptypopup_work_comment&id=#attributes.work_id#&height=20vh">					
 </cf_box>
-</cf_box>
+
 
 </span>
