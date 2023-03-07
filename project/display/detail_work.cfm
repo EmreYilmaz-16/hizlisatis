@@ -18,7 +18,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
 <cf_box title="İş: #getWork.WORK_HEAD#">
-    <div style="height:80vh">
+    <div style="">
         <div style="display:flex">
             <div style="width:70%">
                 <cf_box title="Takipler">
