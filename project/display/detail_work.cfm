@@ -34,6 +34,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
             </cfloop>
         </div>
     </cfif>
+    <cfset iss=iss+1>
 </cfloop>
 
 </cf_box>
