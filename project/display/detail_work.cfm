@@ -18,6 +18,10 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
 <span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;height:80vh;width:75%" id="scrollList">
+    <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
+        <h3 style="color:orange"><cfoutput>#getWork.WORK_HEAD#</cfoutput></h3>
+        <button style="margin-left:auto" class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
+    </div>
     <h4>Detay</h4>
     <div>
         <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
