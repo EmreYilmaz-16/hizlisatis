@@ -58,11 +58,11 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                         <cf_ajax_list>
                             <cfoutput query="getSteps">
                                 <tr>
-                                    <td>
+                                    <td style="<cfif WORK_STEP_COMPLETE_PERCENT eq 1>text-decoration: line-through;color: gray<cfelse>color:black</cfif>">
                                         #URLDecode(WORK_STEP_DETAIL)#
                                     </td>
                                     <td>
-                                        
+                                     
                                     </td>
                                 </tr>
                             </cfoutput>
