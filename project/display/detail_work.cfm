@@ -17,10 +17,10 @@ LEFT JOIN workcube_metosan.PRO_WORK_CAT AS PWC ON PWC.WORK_CAT_ID=PWH.WORK_CAT_I
 where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
-<cf_box title="#getWork.WORK_HEAD#">
+<cf_box title="İş: #getWork.WORK_HEAD#">
     <div style="height:80vh">
         <div style="display:flex">
-            <div style="width:50%">
+            <div style="width:70%">
                 <cf_box title="Takipler">
                     <h4>Detay</h4>
                     <div>
@@ -48,9 +48,20 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                     </cfloop>
                 </cf_box>
             </div>
-            <div>
+            <div style="width:30%">
                 <cf_box title="ToDo">
-
+                        <cfquery name="getSteps" datasource="#dsn#">
+                            select WORK_STEP_DETAIL,WORK_STEP_ID,WORK_STEP_COMPLETE_PERCENT from workcube_metosan.PRO_WORKS_STEP where WORK_ID=27
+                        </cfquery>
+                        <cf_ajax_list>
+                            <cfoutput query="getSteps">
+                                <tr>
+                                    <td>
+                                        #WORK_STEP_DETAIL#
+                                    </td>
+                                </tr>
+                            </cfoutput>
+                        </cf_ajax_list>
                 </cf_box>
             </div>
         </div>
