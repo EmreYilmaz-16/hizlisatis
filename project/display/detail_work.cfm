@@ -48,12 +48,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                     </cfloop>
                     
                 </cf_box>
-                <cf_box id="comments"               
-                title="#getLang('settings',859,'chat')#" 
-                closable="0"
-                add_href_size="wide"
-                box_page="#request.self#?fuseaction=project.emptypopup_work_comment&id=#attributes.work_id#">					
-        </cf_box>
+     
             </div>
             <div style="width:30%">
                 <cf_box title="ToDo">
@@ -77,5 +72,11 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
             </div>
         </div>
     </div>
+    <cf_box id="comments"               
+    title="#getLang('settings',859,'chat')#" 
+    closable="0"
+    add_href_size="wide"
+    box_page="#request.self#?fuseaction=project.emptypopup_work_comment&id=#attributes.work_id#">					
+</cf_box>
 </cf_box>
 
