@@ -8,7 +8,9 @@ SELECT WORK_ID
 	,TARGET_FINISH
 	,TERMINATE_DATE
 	,workcube_metosan.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
-FROM workcube_metosan.PRO_WORKS
+    ,PTR.STAGE
+FROM workcube_metosan.PRO_WORKS as PWH
+LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
 WHERE PROJECT_ID = #attributes.PROJECT_ID#
 </cfquery>
 <cfquery name="getProject" datasource="#dsn#">
@@ -31,6 +33,9 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                     Görevli
                 </th>
                 <th>
+                    Süreç
+                </th>
+                <th>
                     Termin Tarihi
                 </th>
                 <th>
@@ -51,6 +56,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                     <td>#WORK_ID#</td>
                     <td>#WORK_HEAD#</td>
                     <td>#PROJECT_EMP#</td>
+                    <td>#STAGE#</td>
                     <td>#dateFormat(TERMINATE_DATE,"dd/mm/yyyy")#</td>
                     <td>#dateFormat(TARGET_START,"dd/mm/yyyy")#</td>
                     <td>#dateFormat(TARGET_FINISH,"dd/mm/yyyy")#</td>
