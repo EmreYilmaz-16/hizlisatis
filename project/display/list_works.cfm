@@ -40,7 +40,9 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
                     Hedef Bitiş
                 </th>
                 <th>Atayan</th>
-                <th></th>
+                <th>
+                  <cfoutput>  <a href="javascript:void(0)" onclick="windowopen('#request.self#?fuseaction=project.works&event=add&id=#attributes.project_id#&work_fuse=project.emptypopup_ajax_project_works')" title="Ekle "><i class="fa fa-plus"></i></a></cfoutput>
+                </th>
             </tr>
         </thead>
         <tbody>
