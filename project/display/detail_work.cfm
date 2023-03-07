@@ -76,7 +76,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
     title="#getLang('settings',859,'chat')#" 
     closable="0"
     add_href_size="wide"
-    box_page="#request.self#?fuseaction=project.emptypopup_work_comment&id=#attributes.work_id#">					
+    box_page="#request.self#?fuseaction=project.emptypopup_work_comment&id=#attributes.work_id#&height:20vh">					
 </cf_box>
 </cf_box>
 
