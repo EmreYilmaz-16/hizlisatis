@@ -18,14 +18,15 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
 <cf_box title="İş: #getWork.WORK_HEAD#">
+    <h4>Detay</h4>
+    <div>
+        <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
+    </div>
     <div style="">
         <div style="display:flex">
             <div style="width:70%">
                 <cf_box title="Takipler">
-                    <h4>Detay</h4>
-                    <div>
-                        <cfoutput>#getWork.WORK_DETAIL#</cfoutput>
-                    </div>
+                
                     <cfset iss=1>
                     <cfloop query="getWork">
                     <cfif iss neq 1>    
