@@ -51,13 +51,13 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
             <div style="width:30%">
                 <cf_box title="ToDo">
                         <cfquery name="getSteps" datasource="#dsn#">
-                            select WORK_STEP_DETAIL,WORK_STEP_ID,WORK_STEP_COMPLETE_PERCENT from workcube_metosan.PRO_WORKS_STEP where WORK_ID=27
+                            select WORK_STEP_DETAIL,WORK_STEP_ID,WORK_STEP_COMPLETE_PERCENT from workcube_metosan.PRO_WORKS_STEP where WORK_ID=#attributes.work_id#
                         </cfquery>
                         <cf_ajax_list>
                             <cfoutput query="getSteps">
                                 <tr>
                                     <td>
-                                        #encodeForHTML(WORK_STEP_DETAIL)#
+                                        #URLDecode(WORK_STEP_DETAIL)#
                                     </td>
                                 </tr>
                             </cfoutput>
