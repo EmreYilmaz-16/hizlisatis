@@ -57,7 +57,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                             <cfoutput query="getSteps">
                                 <tr>
                                     <td>
-                                        #WORK_STEP_DETAIL#
+                                        #encodeForHTML(WORK_STEP_DETAIL)#
                                     </td>
                                 </tr>
                             </cfoutput>
