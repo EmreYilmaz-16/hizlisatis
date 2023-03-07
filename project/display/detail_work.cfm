@@ -24,17 +24,20 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
     </div>
     <cfset iss=1>
 <cfloop query="getWork">
-    <cfif iss neq 1>
-    <div style="display:flex;border-bottom:solid 1px gray">
-    <div style="display: flex;margin-top: 5px;flex-direction: row;align-content: space-between;align-items: center">
-        <div style="border:solid 0.5px black;padding:5px;background:#ff4600;color:white"><cfset str=""><cfloop list="#UPDATE_AUTHOR#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
-        <span style="font-weight:bold">&gt;</span>
-        <div style="border:solid 0.5px black;border-radius:5px;padding:5px;background:#46DB07;color:white"><cfset str=""><cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
-    </div>
-    <div >
-    <cfoutput>#WORK_DETAIL#</cfoutput>
-</div>
-</div>
+    <cfif iss neq 1>    
+        <table>
+            <tr>
+                <td>
+                    <div style="padding:5px;background:#ff000087;color:white;border-radius:25%"><cfset str=""><cfloop list="#UPDATE_AUTHOR#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
+                </td>
+                <td>
+                    <div style="border-radius:5px;padding:5px;background:#1c49d791;color:white;border-radius:25%"><cfset str=""><cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
+                </td>
+                <td>
+                    <cfoutput>#WORK_DETAIL#</cfoutput>
+                </td>
+            </tr>
+        </table>                                 
     </cfif>
     <cfset iss=iss+1>
 </cfloop>
