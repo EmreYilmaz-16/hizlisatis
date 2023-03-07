@@ -27,9 +27,9 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
     <cfif iss neq 1>
         <div style="width:20px;border:solid 0.5px black,">
             <cfset llis=listLen(PROJECT_EMP_ID," ")>;
-            <cfloop list="#llis#" item="it" index="i" delimiters=" ">
+            <cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" ">
                 <cfoutput>
-                    #i#
+                    #it#
                 </cfoutput>
             </cfloop>
         </div>
