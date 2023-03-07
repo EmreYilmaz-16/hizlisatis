@@ -10,10 +10,12 @@ PWH.WORK_CAT_ID,
 WORK_PRIORITY_ID ,
 SP.PRIORITY,
 SP.COLOR,
-PWC.WORK_CAT
+PWC.WORK_CAT,
+PTH.STAGE
 from workcube_metosan.PRO_WORKS_HISTORY AS PWH
 LEFT JOIN workcube_metosan.SETUP_PRIORITY AS SP ON SP.PRIORITY_ID=PWH.WORK_PRIORITY_ID
 LEFT JOIN workcube_metosan.PRO_WORK_CAT AS PWC ON PWC.WORK_CAT_ID=PWH.WORK_CAT_ID
+LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
 where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
@@ -43,8 +45,13 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                                 <td>
                                     <div style="border-radius:5px;padding:5px;background:#1c49d791;color:white;border-radius:25%"><cfset str=""><cfloop list="#PROJECT_EMP_ID#" item="it" index="i" delimiters=" "><cfset str="#str##left(it,1)#"></cfloop><cfoutput>#str#</cfoutput></div>
                                 </td>
-                                <td>
+                                <td rowspan="2">
                                     <cfoutput>#WORK_DETAIL#</cfoutput>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <cfoutput>#STAGE# #dateFormat(UPDATE_DATE,'dd/mm/yyy')#</cfoutput>
                                 </td>
                             </tr>
                         </table>                                 
