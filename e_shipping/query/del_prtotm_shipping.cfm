@@ -1,4 +1,7 @@
-﻿<cfquery name="DEL_ROW" datasource="#DSN3#">
+﻿<cfdump var="#attributes#">
+<cfabort>
+
+<cfquery name="DEL_ROW" datasource="#DSN3#">
         DELETE FROM 
         	PRTOTM_SHIP_RESULT_ROW
 		WHERE  
