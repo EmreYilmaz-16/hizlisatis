@@ -5,7 +5,7 @@
 (select * from #dsn2#.STOCK_FIS 
 UNION
 SELECT * FROM #dsn#_#B_YEAR#_#session.ep.COMPANY_ID#.STOCK_FIS) AS T
-where REF_NO=(SELECT DELIVER_PAPER_NO FROM #dsn3#.PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID=#attributes.ship_result_id#))
+where REF_NO=(SELECT DELIVER_PAPER_NO FROM #dsn3#.PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID=#attributes.ship_result_id#)
 </cfquery>
 
 <cfif isHvSvk.recordCount>
