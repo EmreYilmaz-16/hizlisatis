@@ -1,5 +1,21 @@
-﻿<cfdump var="#attributes#">
-<cfabort>
+﻿
+<CFSET B_YEAR=year(NOW())-1>
+<cfquery name="isHvSvk" datasource="#dsn3#">
+	SELECT * FROM 
+(select * from #dsn2#.STOCK_FIS 
+UNION
+SELECT * FROM #dsn#_#B_YEAR#_#session.ep.COMPANY_ID#.STOCK_FIS) AS T
+where REF_NO=(SELECT DELIVER_PAPER_NO FROM workcube_metosan_1.PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID=#attributes.ship_result_id#))
+</cfquery>
+
+<cfif isHvSvk.recordCount>
+	<script>
+		alert("Önce Hazırlama Fişini Silmelisiniz");
+		window.history.back()
+
+	</script>
+	<cfabort>
+</cfif>
 
 <cfquery name="DEL_ROW" datasource="#DSN3#">
         DELETE FROM 
