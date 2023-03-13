@@ -56,7 +56,8 @@
 				SHIP_STAGE,
 				RECORD_EMP,
 				RECORD_IP,
-				RECORD_DATE
+				RECORD_DATE,
+				IS_PARCALI
                 )
 			VALUES
 				(
@@ -79,7 +80,8 @@
 				#attributes.process_stage#,
 				#session.ep.userid#,
 				'#cgi.remote_addr#',
-				#now()#
+				#now()#,
+				#attributes.IS_PARCALI#
 				)
 		</cfquery>
         <!--- Belge numarasi update ediliyor. --->
