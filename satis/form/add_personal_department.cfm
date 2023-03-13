@@ -16,7 +16,7 @@
 </cfif>
 <cfif attributes.type eq 2>
 <cf_box title="Depoya Personel Ekleme">
-    <cfform name="#request.self#?fuseaction=#attributes.fuseaction#&type=3" name="order_form"> 
+    <cfform action="#request.self#?fuseaction=#attributes.fuseaction#&type=3" name="order_form"> 
         <div class="form-group" id="item-order_employee_id">						
             <label class="col col-12 col-md-12 col-sm-12 col-xs-12">Çalışan </label>			
             <div class="col col-12 col-md-12 col-sm-12 col-xs-12">

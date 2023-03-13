@@ -36,14 +36,18 @@ ORDER BY DEPARTMENT_ID
                         <tr>
                             <th>Çalışan</th>
                             <th>
-                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=epda.emptypopup_form_add_employee_departments&type=2')"><span class="fa fa-plus"></span></a>
+                                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=epda.emptypopup_form_add_employee_departments&type=2&branch_id=#BRANCH_ID#&deliver_dept_id=#DEPARTMENT_ID#&deliver_loc_id=#LOCATION_ID#')"><span class="fa fa-plus"></span></a>
                             </th>
                         </tr>
                     <cfoutput>
-                        
+                        <!-----
+                            <cfparam name="attributes.branch_id" default="">
+<cfparam name="attributes.deliver_dept_id" default="">
+<cfparam name="attributes.deliver_loc_id" default="">
+<cfparam name="attributes.deliver_dept_name" default="">----->
                             <tr>
                                 <td>#EMPLOYEE#</td>
-                                <td><a href="javascript://" onclick="if(confirm('Silmek İstediğinize Eminmisiniz')){windowopen('#request.self#?fuseaction=epda.emptypopup_form_add_employee_departments&type=1&dp_id=#DP_ID#')}"><span class="fa fa-minus"></span></a></td>
+                                <td><a href="javascript://" onclick="if(confirm('Silmek İstediğinize Eminmisiniz')){windowopen('#request.self#?fuseaction=epda.emptypopup_form_add_employee_departments&type=1&dp_id=#DP_ID#&deliver_dept_name=#DEPARTMENT_HEAD# #COMMENT#')}"><span class="fa fa-minus"></span></a></td>
                             </tr>
                         
                     </cfoutput>
