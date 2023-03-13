@@ -11,7 +11,15 @@ ORDER BY DEPARTMENT_ID,LOCATION_ID
         <cf_box title="#DEPARTMENT_HEAD#">
             <cfoutput group="LOCATION_ID">
                 <cf_box title="#COMMENT#">
-                    
+                    <table>
+                    <cfoutput>
+                        
+                            <tr>
+                                <td>#EMPLOYEE#</td>
+                            </tr>
+                        
+                    </cfoutput>
+                </table>
                 </cf_box>
             </cfoutput>
         </cf_box>
