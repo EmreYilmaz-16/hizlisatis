@@ -46,6 +46,18 @@
                     width="140">
             </div>                
         </div>
+        <input type="hidden" name="is_submit">
+        <input type="submit">
     </cfform>
 </cf_box>
+</cfif>
+<cfif isDefined(attributes.is_submit) and attributes.type eq 3>
+    <cfquery name="ins" datasource="#dsn3#">
+        INSERT INTO DEPARTMENT_PERSONALS (EMPLOYEE_ID,DEPARTMENT_ID,LOCATION_ID) VALUES(#attributes.order_employee_id#,#attributes.deliver_dept_id#,#attributes.deliver_loc_id#)
+    </cfquery>
+    <script>
+        alert("Kayıt Başarılı");
+        window.opener.location.reload();
+        this.close();
+    </script>
 </cfif>
