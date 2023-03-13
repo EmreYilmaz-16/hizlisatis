@@ -99,6 +99,7 @@ function getCols(schm,tbl){
     var cols=wrk_query(q,"dsn");
     console.log(cols);
 var tbl=document.createElement("table");
+tbl.setAttribute("class","table table-stripped table-sm")
 for(let i=0;i<cols.recordcount;i++){
     var tr=document.createElement("tr");
 
@@ -122,6 +123,7 @@ console.log(tbl)
 var p=document.createElement("p")
     p.innerText="Merhaba"
     w.document.write("<p>Kolonlar</p>")
+    w.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">')
 $(w.document).find("p")[0].appendChild(tbl)
 
 }
