@@ -50,7 +50,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
     <cfoutput>
         <input type="hidden" value="#GetSiparisData.ORDER_ID#" name="order_id" id="row_order_id">
 <cfloop query="GetSiparisData">
-    <tr>
+    <tr class="rows">
         <td>
             #currentrow#
         </td>
