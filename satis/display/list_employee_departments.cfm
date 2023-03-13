@@ -9,7 +9,11 @@ ORDER BY DEPARTMENT_ID,LOCATION_ID
 
     <cfoutput query="getData" group="DEPARTMENT_ID">
         <cf_box title="#DEPARTMENT_HEAD#">
-
+            <cfoutput group="LOCATION_ID">
+                <cf_box title="#COMMENT#">
+                    
+                </cf_box>
+            </cfoutput>
         </cf_box>
     </cfoutput>
 </cf_box>
