@@ -326,6 +326,17 @@ END AS ASAMA,
 					<a href="javascript://" onClick="windowopen('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_positions&field_emp_id2=add_packet_ship.deliver_id2&field_name=add_packet_ship.deliver_name2&select_list=1','list');"> <img src="/images/plus_thin.gif" border="0" align="absbottom"></a>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					Sevk Tipi
+				</td>
+				<td>
+					<select name="is_parcali">
+						<option value="0">Kısmi Sevk</option>
+						<option value="1">Tamamı Sevk</option>
+					</select>
+				</td>
+			</tr>
 		</table>
 		<cf_grid_list>
 			<thead>

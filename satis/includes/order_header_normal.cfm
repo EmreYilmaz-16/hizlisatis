@@ -98,6 +98,16 @@
     </td>
 </tr>
 <tr>
+    <td>
+        <div class="form-group">
+            <select name="is_parcali">
+                <option value="0">Kısmi Sevk</option>
+                <option value="1">Tamamı Sevk</option>
+            </select>
+        </div>
+    </td>
+</tr>
+<tr>
     <td colspan="2">
         <div class="form-group">    
             <label>Açıklama</label> 
