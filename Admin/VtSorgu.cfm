@@ -102,13 +102,13 @@ var tbl=document.createElement("table");
 for(let i=0;i<q.recordcount;i++){
     var tr=document.createElement("tr");
     var td=document.createElement("td");
-        td.innerText=COLUMN_NAME;
+        td.innerText=COLUMN_NAME[i];
     tr.appendChild(td);
     var td=document.createElement("td");
-        td.innerText=DATA_TYPE;
+        td.innerText=DATA_TYPE[i];
     tr.appendChild(td);
     var td=document.createElement("td");
-        td.innerText=CHARACTER_MAXIMUM_LENGTH;
+        td.innerText=CHARACTER_MAXIMUM_LENGTH[i];
     tr.appendChild(td);
     tbl.appendChild(tr);
 }
