@@ -60,13 +60,13 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         <td>
             #PRODUCT_NAME#
         </td>
-        <td class="order_quantity">
+        <td class="order_quantity" id="order_quantity_#currentrow#">
             #QUANTITY#
         </td>
-        <td class="shipped_quantity">
+        <td class="shipped_quantity" id="shipped_quantity_#currentrow#">
             #SHIPPED_QUANTITY#
         </td>
-        <td class="ready_quantity">#READY_QUANTITY#</td>
+        <td class="ready_quantity" id="ready_quantity_#currentrow#">#READY_QUANTITY#</td>
         <td>
             <input type="text" readonly id="txt_#currentrow#" name="quantity" disabled value="#READY_QUANTITY-SHIPPED_QUANTITY#">
         </td>
