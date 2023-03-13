@@ -43,7 +43,7 @@ ORDER BY DEPARTMENT_ID
                         
                             <tr>
                                 <td>#EMPLOYEE#</td>
-                                <td><a href="javascript://" onclick="if(confirm('Silmek İstediğinize Eminmisiniz')){windowopen('#request.self#?fuseaction=epda.emptypopup_form_add_employee_departments&type=1&dp_id=#DP_ID#'})">-</a></td>
+                                <td><a href="javascript://" onclick="if(confirm('Silmek İstediğinize Eminmisiniz')){windowopen('#request.self#?fuseaction=epda.emptypopup_form_add_employee_departments&type=1&dp_id=#DP_ID#')}"><span class="fa fa-minus"></span></a></td>
                             </tr>
                         
                     </cfoutput>
