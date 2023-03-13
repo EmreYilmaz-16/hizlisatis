@@ -94,6 +94,8 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         }
     }
     function sbm(tip) {
+       var kntRes=parcaliKontrol(<cfoutput>#attributes.iid#</cfoutput>);
+       
         var frm=document.getElementById("frm1")
         if(tip==1){
             frm.action="index.cfm?fuseaction=invoice.form_add_bill&is_from_pbs=1"
@@ -101,6 +103,42 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         else if(tip==2){
             frm.action="index.cfm?fuseaction=stock.form_add_sale&is_from_pbs=1"
         }
-        frm.submit();
+        if(kntRes){
+        frm.submit();}
+    }
+    function parcaliKontrol(iid){
+        var hata=false;
+        var rows=document.getElementsByClassName("rows")
+            for(let i=0;i<rows.length;i++){
+            var row=rows[i];
+            var OrderQuantity=trim($(row).find(".order_quantity").text())   
+                OrderQuantity=parseFloat(OrderQuantity)
+            var SevkQuantity=$(row).find("input[name='quantity']").val()
+                SevkQuantity=parseFloat(SevkQuantity)
+            var cbx=$(row).find("input[type='checkbox']").is(":checked")
+                console.log(cbx)
+        
+            if(cbx){
+                if(OrderQuantity!=SevkQuantity){
+                    hata=true
+                }
+            }else{
+                hata=true
+            }
+                
+        }
+        
+        var q=wrk_query("SELECT ISNULL(IS_PARCALI,0) as IS_PARCALI  FROM PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID="+iid,"dsn3")
+        console.log(q)
+        if(parseInt(q.IS_PARCALI[0])==0){
+            hata=false
+        };
+        
+        if(hata){
+            alert("Ürünlerin Tamamını Sevk Etmediniz")
+            return false
+        }else{
+            return true
+        }
     }
 </script>
