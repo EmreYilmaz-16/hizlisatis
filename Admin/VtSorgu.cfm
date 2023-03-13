@@ -17,7 +17,7 @@ order by st.schema_id
     <div style="width:25%;height: 100vh;overflow: scroll;">
     <cf_big_list>
         <cfoutput query="getT">
-        <tr><td><a href="javascript://" onclick="getCols('#schema_namea#','#name#')"></a>#schema_namea#-#name#</td></tr>
+        <tr><td><a href="javascript://" onclick="getCols('#schema_namea#','#name#')">#schema_namea#-#name#</a></td></tr>
         </cfoutput>
     </cf_big_list>
     </div>
