@@ -28,9 +28,9 @@ ORDER BY DEPARTMENT_ID
     </cfquery>
 
     <cfoutput query="getData" group="DEPARTMENT_ID">
-        <cf_box title="#DEPARTMENT_HEAD#">
+        <cf_box title="#DEPARTMENT_HEAD#" collapsed="1">
             <cfoutput group="LOCATION_ID">
-                <cf_seperator title="#COMMENT#" id="item#DEPARTMENT_ID#_#LOCATION_ID#">
+                <cf_seperator title="#COMMENT#" id="item#DEPARTMENT_ID#_#LOCATION_ID#" style="display:none;">
                    <div id="item#DEPARTMENT_ID#_#LOCATION_ID#">
                     <cf_ajax_list>
                         <tr>
