@@ -10,8 +10,9 @@ ORDER BY DEPARTMENT_ID,LOCATION_ID
     <cfoutput query="getData" group="DEPARTMENT_ID">
         <cf_box title="#DEPARTMENT_HEAD#">
             <cfoutput group="LOCATION_ID">
-                <cf_box title="#COMMENT#">
-                    <table>
+                <cf_seperator title="Seperator Başlığı" id="item#DEPARTMENT_ID#_#LOCATION_ID#">
+                   <div id="item#DEPARTMENT_ID#_#LOCATION_ID#">
+                    <cf_ajax_list>
                     <cfoutput>
                         
                             <tr>
@@ -19,8 +20,8 @@ ORDER BY DEPARTMENT_ID,LOCATION_ID
                             </tr>
                         
                     </cfoutput>
-                </table>
-                </cf_box>
+                </cf_ajax_list>
+            </div>
             </cfoutput>
         </cf_box>
     </cfoutput>
