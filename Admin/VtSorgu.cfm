@@ -98,5 +98,26 @@ function getCols(schm,tbl){
     var q="select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA='"+schm+"' and TABLE_NAME='"+tbl+"'";
     var cols=wrk_query(q,"dsn");
     console.log(cols);
+var tbl=document.createElement("table");
+for(let i=0;i<q.recordcount;i++){
+    var tr=document.createElement("tr");
+    var td=document.createElement("td");
+        td.innerText=COLUMN_NAME;
+    tr.appendChild(td);
+    var td=document.createElement("td");
+        td.innerText=DATA_TYPE;
+    tr.appendChild(td);
+    var td=document.createElement("td");
+        td.innerText=CHARACTER_MAXIMUM_LENGTH;
+    tr.appendChild(td);
+    tbl.appendChild(tr);
+}
+
+    var w=window.open("","","width:80;height:150")
+var p=document.createElement("p")
+    p.innerText="Merhaba"
+    w.document.write("<p>Kolonlar</p>")
+$(w.document).find("p")[0].appendChild(tbl)
+
 }
 </script>
