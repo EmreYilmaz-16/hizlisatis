@@ -25,7 +25,8 @@
 				SHIP_STAGE = #attributes.process_stage#,
 				UPDATE_EMP = #session.ep.userid#,
 				UPDATE_IP = '#cgi.remote_addr#',
-				UPDATE_DATE = #now()#
+				UPDATE_DATE = #now()#,
+				IS_PARCALI=#attributes.IS_PARCALI#
          	WHERE
             	SHIP_RESULT_ID = #attributes.ship_result_id#
 		</cfquery>

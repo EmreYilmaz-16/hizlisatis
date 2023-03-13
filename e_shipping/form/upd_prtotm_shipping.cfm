@@ -17,7 +17,8 @@
         ESR.PARTNER_ID, 
         ESR.CONSUMER_ID, 
         ESR.IS_TYPE, 
-        ESR.LOCATION_ID
+        ESR.LOCATION_ID,
+		ESR.IS_PARCALI
 	FROM         
     	PRTOTM_SHIP_RESULT AS ESR INNER JOIN
     	#dsn_alias#.SHIP_METHOD AS SM ON ESR.SHIP_METHOD_TYPE = SM.SHIP_METHOD_ID
@@ -227,6 +228,17 @@ SELECT DISTINCT ORDER_ID FROM workcube_metosan_1.PRTOTM_SHIP_RESULT_ROW WHERE SH
 					<input type="hidden" name="deliver_id2" id="deliver_id2" value="<cfoutput>#get_shippng_plan.DELIVER_EMP#</cfoutput>">
 					<input type="text" name="deliver_name2" id="deliver_name2" value="<cfoutput>#get_emp_info(get_shippng_plan.DELIVER_EMP,0,0)#</cfoutput>" readonly style="width:170px;">
 					<a href="javascript://" onClick="windowopen('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_positions&field_emp_id2=add_packet_ship.deliver_id2&field_name=add_packet_ship.deliver_name2&select_list=1','list');"> <img src="/images/plus_thin.gif" border="0" align="absbottom"></a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Sevk Tipi
+				</td>
+				<td>
+					<select name="is_parcali">
+						<option <cfif get_shippng_plan.IS_PARCALI eq 0>selected</cfif> value="0">Kısmi Sevk</option>
+						<option <cfif get_shippng_plan.IS_PARCALI eq 1>selected</cfif> value="1">Tamamı Sevk</option>
+					</select>
 				</td>
 			</tr>
             <tr>
