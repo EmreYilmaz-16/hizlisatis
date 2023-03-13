@@ -113,6 +113,7 @@ for(let i=0;i<q.recordcount;i++){
     tbl.appendChild(tr);
 }
 
+console.log(tbl)
     var w=window.open("","","width:80;height:150")
 var p=document.createElement("p")
     p.innerText="Merhaba"
