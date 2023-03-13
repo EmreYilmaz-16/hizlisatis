@@ -99,17 +99,21 @@ function getCols(schm,tbl){
     var cols=wrk_query(q,"dsn");
     console.log(cols);
 var tbl=document.createElement("table");
-for(let i=0;i<q.recordcount;i++){
+for(let i=0;i<cols.recordcount;i++){
     var tr=document.createElement("tr");
+
     var td=document.createElement("td");
-        td.innerText=COLUMN_NAME[i];
-    tr.appendChild(td);
+        td.innerText=cols.COLUMN_NAME[i];
+        tr.appendChild(td);
+
     var td=document.createElement("td");
-        td.innerText=DATA_TYPE[i];
-    tr.appendChild(td);
+        td.innerText=cols.DATA_TYPE[i];
+        tr.appendChild(td);
+
     var td=document.createElement("td");
-        td.innerText=CHARACTER_MAXIMUM_LENGTH[i];
-    tr.appendChild(td);
+        td.innerText=cols.CHARACTER_MAXIMUM_LENGTH[i];
+        tr.appendChild(td);
+
     tbl.appendChild(tr);
 }
 
