@@ -47,7 +47,7 @@ ORDER BY DEPARTMENT_ID
 <cfparam name="attributes.deliver_dept_name" default="">----->
                             <tr>
                                 <td>#EMPLOYEE#</td>
-                                <td><a href="javascript://" onclick="if(confirm('Silmek İstediğinize Eminmisiniz')){windowopen('#request.self#?fuseaction=epda.emptypopup_form_add_employee_departments&type=1&dp_id=#DP_ID#&deliver_dept_name=#DEPARTMENT_HEAD# #COMMENT#')}"><span class="fa fa-minus"></span></a></td>
+                                <td style="text-align:center"><a href="javascript://" onclick="if(confirm('Silmek İstediğinize Eminmisiniz')){windowopen('#request.self#?fuseaction=epda.emptypopup_form_add_employee_departments&type=1&dp_id=#DP_ID#&deliver_dept_name=#DEPARTMENT_HEAD# #COMMENT#')}"><span class="fa fa-minus"></span></a></td>
                             </tr>
                         
                     </cfoutput>

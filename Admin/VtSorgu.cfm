@@ -22,6 +22,7 @@ order by st.schema_id
     </cf_big_list>
     </div>
     <div style="width:74%">
+        <cf_box title="Veritabanı">
         <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#"> 
             <textarea name="sql_sorgu" id="sql_sorgu"><cfoutput>#attributes.sql_sorgu#</cfoutput></textarea>
             <input type="hidden" name="is_submit" value="1">
@@ -58,6 +59,7 @@ order by st.schema_id
                 <p>Kayıt Sayısı:<code><cfoutput>#res.recordcount#</cfoutput></p></code>
         </cfif>
     </cfif>
+</cf_box>
 </div>
 </div>
 
