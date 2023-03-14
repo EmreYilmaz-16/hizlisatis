@@ -106,7 +106,7 @@ function SatirlariYaz() {
       btn.setAttribute("class", "btn btn-danger");
       btn.innerText = "-";
     } else {
-      btn.setAttribute("class", "btn btn-danger");
+      btn.setAttribute("class", "btn btn-success");
       btn.innerText = "+";
     }
 
