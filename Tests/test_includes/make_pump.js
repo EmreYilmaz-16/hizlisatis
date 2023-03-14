@@ -76,7 +76,7 @@ function addProdToArr(
 
 function SatirlariYaz(){
     var tbody=document.createElement("tbody");
-    var tbody=setAttribute("id","tb1");
+     tbody.setAttribute("id","tb1");
     var tbl=document.getElementById("pump_basket");
     for(let i=0;i<ArrForPum.length();i++){
         var tr=document.createElement("tr");
