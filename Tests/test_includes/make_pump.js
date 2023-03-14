@@ -120,8 +120,10 @@ function SatirlariYaz() {
 
 function changeRowIO(ix, el) {
   ArrForPum[ix].IN_OUT = ArrForPum[ix].IN_OUT * -1;
+  SatirlariYaz()
 }
 
 function ChangeRowQ(ix, el) {
   ArrForPum[ix].QUANTITY = el.value;
+  SatirlariYaz()
 }
