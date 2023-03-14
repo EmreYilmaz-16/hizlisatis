@@ -52,7 +52,7 @@ function addProdToArr(
   PRODUCT_CODE,
   STOCK_ID,
   IN_OUT,
-  QUANTITY
+  QUANTITY=1
 ) {
   var Obj = {
     PRODUCT_ID: PRODUCT_ID,
