@@ -69,45 +69,59 @@ function addProdToArr(
     ArrForPum[ix] = Obj;
   }
 
-  $("#tb1").remove();
   SatirlariYaz();
-
 }
 
-function SatirlariYaz(){
-    var tbody=document.createElement("tbody");
-     tbody.setAttribute("id","tb1");
-    var tbl=document.getElementById("pump_basket");
-    for(let i=0;i<ArrForPum.length;i++){
-        var tr=document.createElement("tr");
-        tr.setAttribute("data-pid",ArrForPum[i].PRODUCT_ID)
-        tr.setAttribute("data-sid",ArrForPum[i].STOCK_ID)
-        tr.setAttribute("data-inout",ArrForPum[i].IN_OUT)
-        tr.setAttribute("data-ix",i)
-        var td=document.createElement("td");
-        td.innerText=ArrForPum[i].PRODUCT_CODE;
-        tr.appendChild(td)
-        var td=document.createElement("td");
-        td.innerText=ArrForPum[i].PRODUCT_NAME;
-        tr.appendChild(td)
-        var td=document.createElement("td");
-        var input=document.createElement("input");
-        input.setAttribute("type","text");
-        input.setAttribute("onchange","ChangeRowQ("+i+")")
-        var div =document.createElement("div");
-        div.setAttribute("class","form-group");
-        div.appendChild(input);
-        td.appendChild(div);
-        tr.appendChild(td);
-        var td=document.createElement("td");
-        var btn=document.createElement("button");
-            btn.setAttribute("type","button");
-            btn.setAttribute("class","btn btn-danger");
-            btn.innerText="-";
-            btn.setAttribute("onclick","changeRowIO("+i+")");
-        td.appendChild(btn);
-        tr.appendChild(td);
-        tbody.appendChild(tr);
+function SatirlariYaz() {
+  $("#tb1").remove();
+  var tbody = document.createElement("tbody");
+  tbody.setAttribute("id", "tb1");
+  var tbl = document.getElementById("pump_basket");
+  for (let i = 0; i < ArrForPum.length; i++) {
+    var tr = document.createElement("tr");
+    tr.setAttribute("data-pid", ArrForPum[i].PRODUCT_ID);
+    tr.setAttribute("data-sid", ArrForPum[i].STOCK_ID);
+    tr.setAttribute("data-inout", ArrForPum[i].IN_OUT);
+    tr.setAttribute("data-ix", i);
+    var td = document.createElement("td");
+    td.innerText = ArrForPum[i].PRODUCT_CODE;
+    tr.appendChild(td);
+    var td = document.createElement("td");
+    td.innerText = ArrForPum[i].PRODUCT_NAME;
+    tr.appendChild(td);
+    var td = document.createElement("td");
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("onchange", "ChangeRowQ(" + i + ",this)");
+    input.setAttribute("value", ArrForPum[i].QUANTITY);
+    var div = document.createElement("div");
+    div.setAttribute("class", "form-group");
+    div.appendChild(input);
+    td.appendChild(div);
+    tr.appendChild(td);
+    var td = document.createElement("td");
+    var btn = document.createElement("button");
+    btn.setAttribute("type", "button");
+    if (ArrForPum[i].IN_OUT == -1) {
+      btn.setAttribute("class", "btn btn-danger");
+      btn.innerText = "-";
+    } else {
+      btn.setAttribute("class", "btn btn-danger");
+      btn.innerText = "+";
     }
-    tbl.appendChild(tbody);
+
+    btn.setAttribute("onclick", "changeRowIO(" + i + ",this)");
+    td.appendChild(btn);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+  }
+  tbl.appendChild(tbody);
+}
+
+function changeRowIO(ix, el) {
+  ArrForPum[ix].IN_OUT = ArrForPum[ix].IN_OUT * -1;
+}
+
+function ChangeRowQ(ix, el) {
+  ArrForPum[ix].QUANTITY = el.value;
 }
