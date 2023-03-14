@@ -78,7 +78,7 @@ function SatirlariYaz(){
     var tbody=document.createElement("tbody");
      tbody.setAttribute("id","tb1");
     var tbl=document.getElementById("pump_basket");
-    for(let i=0;i<ArrForPum.length();i++){
+    for(let i=0;i<ArrForPum.length;i++){
         var tr=document.createElement("tr");
         tr.setAttribute("data-pid",ArrForPum[i].PRODUCT_ID)
         tr.setAttribute("data-sid",ArrForPum[i].STOCK_ID)
