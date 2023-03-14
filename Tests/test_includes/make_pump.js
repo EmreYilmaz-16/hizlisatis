@@ -99,7 +99,7 @@ function SatirlariYaz(){
         div.appendChild(input);
         td.appendChild(div);
         tr.appendChild(td);
-        var td=document.createElement(td);
+        var td=document.createElement("td");
         var btn=document.createElement("button");
             btn.setAttribute("type","button");
             btn.setAttribute("class","btn btn-danger");
