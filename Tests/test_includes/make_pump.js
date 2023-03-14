@@ -18,7 +18,7 @@ function OpenBasketProducts(
   question_id,
   from_row = 0,
   col = "",
-  actType = "",
+  actType = "4",
   SIPARIS_MIKTARI = 1
 ) {
   var cp_id = document.getElementById("company_id").value;
