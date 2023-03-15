@@ -1697,7 +1697,9 @@ function selectrw(el) {
 
   BasketSelControl();
 }
-
+function groupControl(){
+  return true;
+}
 function BasketSelControl() {
   selectedArr.splice(0, selectedArr.length);
   var groupButton = {
