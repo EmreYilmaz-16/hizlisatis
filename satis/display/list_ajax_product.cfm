@@ -101,7 +101,7 @@
                         <!----PRODUCT_ID, PRODUCT_NAME, PRODUCT_CODE, STOCK_ID, IN_OUT, QUANTITY------>
                     </cfif>
                 <cfelse>
-                    <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,0,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#')">#it.PRODUCT_NAME#</a></li>
+                    <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,#it.PRODUCT_TYPE#,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#')">#it.PRODUCT_NAME#</a></li>
                 </cfif>
  
             </td>
@@ -125,7 +125,7 @@
                             <a onclick="addTreeItem_('#it2.STOCK_CODE#','#it2.PRODUCT_NAME#',#attributes.SIPARIS_MIKTARI#,#it2.STOCK_ID#,#it2.PRODUCT_ID#,'#it2.MAIN_UNIT#',00,0,#attributes.columnsa#)">#it.PRODUCT_NAME#</a>
                         </cfif>
                     <cfelse>
-                        <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,0,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#')">#it2.PRODUCT_NAME#</a>
+                        <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,#it2.PRODUCT_TYPE#,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#')">#it2.PRODUCT_NAME#</a>
                         <span style="float:right" class="icon-detail" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid=#it2.PRODUCT_ID#&sid=#it2.STOCK_ID#')"></span>
                     </cfif>
                 </li>
@@ -255,7 +255,7 @@ AddRow(
             PRODUCT_CAT.HIERARCHY,            
             PRODUCT.BARCOD,
             PRODUCT_CAT.DETAIL AS PC_DETAIL,
-            PCPT.PRODUCT_TYPE,
+            ISNULL(PCPT.PRODUCT_TYPE,0) AS PRODUCT_TYPE,
             PRODUCT.MANUFACT_CODE,
             ISNULL(GPA.PRICE,0) AS PRICE,
             PRICE_STANDART.MONEY,
@@ -533,7 +533,7 @@ AddRow(
             PRODUCT_CAT.HIERARCHY,
             PRODUCT_CAT.DETAIL AS PC_DETAIL,
             PRODUCT_CAT.PRODUCT_CATID,
-            PCPT.PRODUCT_TYPE,
+            ISNULL(PCPT.PRODUCT_TYPE,0) AS PRODUCT_TYPE,
             PRODUCT.MANUFACT_CODE,
             ISNULL(GPA.PRICE,0) AS PRICE,
             PRICE_STANDART.MONEY,
