@@ -1735,6 +1735,13 @@ function BasketSelControl() {
     evnt: "showTree(this)",
     att: "disabled",
   };
+  var TurnButton={
+    icon:"icn-md fa fa-recycle",
+    txt:"Yön Değiştir",
+    evntType:"onclick",
+    evnt:"TurnOut(this)",
+    att:"disabled"
+  }
   var buttonGroups = [];
   var sepetRows = document.getElementsByClassName("sepetRow");
   for (let i = 0; i < sepetRows.length; i++) {

@@ -65,7 +65,8 @@
         <tr>
             <td>#it.ROWNUM#</td>
             <td>#it.STOCK_CODE#</td>
-            <td>#it.PRODUCT_CODE_2#</td>
+            <td>#it.PRODUCT_CODE_2#<span style="display:none">#it.REL_CATID#-#it.REL_CATNAME#-#it.REL_HIERARCHY#</span></td>
+            
             <td>
                 <!---<cfif isDefined("attributes.actType") and len(attributes.actType)>
                     <cfif attributes.actType eq 1 or attributes.actType eq 2>
@@ -251,7 +252,7 @@ AddRow(
             PRODUCT.PRODUCT_CODE_2,
             PRODUCT_CAT.PRODUCT_CAT,
             PRODUCT_CAT.PRODUCT_CATID,
-            PRODUCT_CAT.HIERARCHY,
+            PRODUCT_CAT.HIERARCHY,            
             PRODUCT.BARCOD,
             PRODUCT_CAT.DETAIL AS PC_DETAIL,
             PRODUCT.MANUFACT_CODE,
