@@ -1797,9 +1797,18 @@ function BasketSelControl() {
         evnt: "showTree(" + RwId + ")",
         att: "",
       };
+      if(parseInt(Ptype)==3){
+        var TurnButton={
+          icon:"icn-md fa fa-recycle",
+          txt:"Yön Değiştir",
+          evntType:"onclick",
+          evnt:"TurnOut(this)",
+          att:""
+        }
+      }
     }
   }
-  buttonGroups.push(removeButton, UpdateButton, groupButton, treeButton);
+  buttonGroups.push(removeButton, UpdateButton, groupButton, treeButton,TurnButton);
   //$(RemCell).show();
   return buttonGroups;
 }
@@ -1812,7 +1821,9 @@ function showTree(el) {
     "index.cfm?fuseaction=objects.emptypopup_show_tree_prt&stock_id=" + sid
   );
 }
-
+function TurnOut(el){
+  console.log(el);
+}
 function rowaListener(tr) {
   $(tr).on("contextmenu", function (ev) {
     $(".pbsContex").remove();
