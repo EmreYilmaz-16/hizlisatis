@@ -456,6 +456,7 @@ AddRow(
         <cfset REL_CATID="" >
         <cfset REL_CATNAME="" >
         <cfset REL_HIERARCHY="" >
+        <cfset REL_PRODUCT_TYPE="" >
         <cfif len(PC_DETAIL)>
             <cfquery name="getRelProductCat" datasource="#arguments.dsn1#">
                 SELECT PRODUCT_CAT,PRODUCT_CATID,HIERARCHY FROM PRODUCT_CAT WHERE PRODUCT_CATID IN(#PC_DETAIL#)
@@ -463,6 +464,7 @@ AddRow(
              <cfset REL_CATID="#getRelProductCat.PRODUCT_CATID#" >
              <cfset REL_CATNAME="#getRelProductCat.PRODUCT_CAT#" >
              <cfset REL_HIERARCHY="#getRelProductCat.HIERARCHY#" >
+             <cfset REL_PRODUCT_TYPE='#getRelProductCat.DETAIL#'>
         </cfif>    
         <cfscript>
             Product={
@@ -488,9 +490,11 @@ AddRow(
                 REL_CATID=REL_CATID,
                 REL_CATNAME=REL_CATNAME,
                 REL_HIERARCHY=REL_HIERARCHY,
+                REL_PRODUCT_TYPE=REL_PRODUCT_TYPE,
                 MONEY=MONEY,
                 ROWNUM=ROWNUM,
                 SATILABILIR=SATILABILIR,
+                
                 QUERY_COUNT=QUERY_COUNT
                
 
@@ -675,6 +679,7 @@ AddRow(
         <cfset REL_CATID="" >
         <cfset REL_CATNAME="" >
         <cfset REL_HIERARCHY="" >
+        <cfset REL_PRODUCT_TYPE="" >
         <cfif len(PC_DETAIL)>
             <cfquery name="getRelProductCat" datasource="#dsn1#">
                 SELECT PRODUCT_CAT,PRODUCT_CATID,HIERARCHY FROM PRODUCT_CAT WHERE PRODUCT_CATID=#PC_DETAIL#
@@ -682,6 +687,7 @@ AddRow(
              <cfset REL_CATID="#getRelProductCat.PRODUCT_CATID#" >
              <cfset REL_CATNAME="#getRelProductCat.PRODUCT_CAT#" >
              <cfset REL_HIERARCHY="#getRelProductCat.HIERARCHY#" >
+             <cfset REL_PRODUCT_TYPE='#getRelProductCat.DETAIL#'>
         </cfif>    
         <cfscript>
             Product={
@@ -705,6 +711,7 @@ AddRow(
                 REL_CATID=REL_CATID,
                 REL_CATNAME=REL_CATNAME,
                 REL_HIERARCHY=REL_HIERARCHY,
+                REL_PRODUCT_TYPE=REL_PRODUCT_TYPE,
                 MONEY=MONEY,
                 ROWNUM=1,
                 QUERY_COUNT=getRelatedProduct.recordcount
