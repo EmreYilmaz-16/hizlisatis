@@ -65,7 +65,7 @@
         <tr>
             <td>#it.ROWNUM#</td>
             <td>#it.STOCK_CODE#</td>
-            <td>#it.PRODUCT_CODE_2#<span style="display:none">#it.REL_CATID#-#it.REL_CATNAME#-#it.REL_HIERARCHY#</span></td>
+            <td>#it.PRODUCT_CODE_2#<span style="display:none">#it.REL_CATID#-#it.REL_CATNAME#-#it.REL_HIERARCHY#-#it.REL_PRODUCT_TYPE#</span></td>
             
             <td>
                 <!---<cfif isDefined("attributes.actType") and len(attributes.actType)>
