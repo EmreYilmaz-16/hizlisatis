@@ -52,7 +52,7 @@ function addProdToArr(
   PRODUCT_CODE,
   STOCK_ID,
   IN_OUT,
-  QUANTITY=1
+  QUANTITY = 1
 ) {
   var Obj = {
     PRODUCT_ID: PRODUCT_ID,
@@ -120,10 +120,14 @@ function SatirlariYaz() {
 
 function changeRowIO(ix, el) {
   ArrForPum[ix].IN_OUT = ArrForPum[ix].IN_OUT * -1;
-  SatirlariYaz()
+  SatirlariYaz();
 }
 
 function ChangeRowQ(ix, el) {
   ArrForPum[ix].QUANTITY = el.value;
-  SatirlariYaz()
+  SatirlariYaz();
+}
+
+function silPumpRow(ix) {
+  ArrForPum.splice(ix, 1);
 }

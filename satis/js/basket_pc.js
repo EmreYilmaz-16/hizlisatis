@@ -2201,6 +2201,7 @@ function moveRow(from_row_id, to_row_id) {
     var Tax_1 = $("#Tax_" + from_row_id).val();
     var orderrow_currency_1 = $("#orderrow_currency_" + from_row_id).val();
     var description_1 = $("#description" + from_row_id).val();
+    var product_name_other_1=$("#product_name_other_"+from_row_id).val()
 
     var product_id_2 = $("#product_id_" + to_row_id).val();
     var stock_id_2 = $("#stock_id_" + to_row_id).val();
@@ -2225,7 +2226,8 @@ function moveRow(from_row_id, to_row_id) {
     var Tax_2 = $("#Tax_" + to_row_id).val();
     var orderrow_currency_2 = $("#orderrow_currency_" + to_row_id).val();
     var description_2 = $("#description" + to_row_id).val();
-
+    var product_name_other_2=$("#product_name_other_"+to_row_id).val()
+    
     $("#product_id_" + to_row_id).val(product_id_1);
     $("#product_id_" + from_row_id).val(product_id_2);
     $("#stock_id_" + to_row_id).val(stock_id_1);
@@ -2270,8 +2272,12 @@ function moveRow(from_row_id, to_row_id) {
     $("#deliver_date_" + from_row_id).val(deliver_date_2);
     $("#orderrow_currency_" + to_row_id).val(orderrow_currency_1);
     $("#orderrow_currency_" + from_row_id).val(orderrow_currency_2);
-    $("#orderrow_currency_" + to_row_id).val(description_1);
-    $("#orderrow_currency_" + from_row_id).val(description_2);
+
+    $("#description_" + to_row_id).val(description_1);
+    $("#description_" + from_row_id).val(description_2);
+
+    $("#product_name_other_" + to_row_id).val(product_name_other_1);
+    $("#product_name_other_" + from_row_id).val(product_name_other_2);
 
     document
       .getElementById("row_" + to_row_id)
