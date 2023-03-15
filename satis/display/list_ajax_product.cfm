@@ -65,7 +65,7 @@
         <tr>
             <td>#it.ROWNUM#</td>
             <td>#it.STOCK_CODE#</td>
-            <td>#it.PRODUCT_CODE_2#<span style="display:none">#it.REL_CATID#-#it.REL_CATNAME#-#it.REL_HIERARCHY#-#it.REL_PRODUCT_TYPE#</span></td>
+            <td>#it.PRODUCT_CODE_2#<span style="display:none">#it.REL_CATID#-#it.REL_CATNAME#-#it.REL_HIERARCHY#-#it.PRODUCT_TYPE#</span></td>
             
             <td>
                 <!---<cfif isDefined("attributes.actType") and len(attributes.actType)>
@@ -255,6 +255,7 @@ AddRow(
             PRODUCT_CAT.HIERARCHY,            
             PRODUCT.BARCOD,
             PRODUCT_CAT.DETAIL AS PC_DETAIL,
+            PCPT.PRODUCT_TYPE,
             PRODUCT.MANUFACT_CODE,
             ISNULL(GPA.PRICE,0) AS PRICE,
             PRICE_STANDART.MONEY,
@@ -280,6 +281,7 @@ AddRow(
             LEFT JOIN PRICE_STANDART ON PRODUCT_UNIT.PRODUCT_UNIT_ID = PRICE_STANDART.UNIT_ID AND PRICE_STANDART.PRODUCT_ID = STOCKS.PRODUCT_ID
             LEFT JOIN #arguments.dsn3#.PRODUCT_BRANDS ON PRODUCT_BRANDS.BRAND_ID	= PRODUCT.BRAND_ID
             LEFT JOIN #arguments.dsn3#.PRODUCT_CAT ON PRODUCT_CAT.PRODUCT_CATID = PRODUCT.PRODUCT_CATID
+            LEFT JOIN PRODUCT_CAT_PRODUCT_TYPES AS PCPT ON PCPT.PRODUCT_CATID=PRODUCT.PRODUCT_CATID
             LEFT JOIN
             (
                 SELECT
@@ -490,7 +492,7 @@ AddRow(
                 REL_CATID=REL_CATID,
                 REL_CATNAME=REL_CATNAME,
                 REL_HIERARCHY=REL_HIERARCHY,
-                REL_PRODUCT_TYPE=REL_PRODUCT_TYPE,
+                PRODUCT_TYPE=PRODUCT_TYPE,
                 MONEY=MONEY,
                 ROWNUM=ROWNUM,
                 SATILABILIR=SATILABILIR,
@@ -531,6 +533,7 @@ AddRow(
             PRODUCT_CAT.HIERARCHY,
             PRODUCT_CAT.DETAIL AS PC_DETAIL,
             PRODUCT_CAT.PRODUCT_CATID,
+            PCPT.PRODUCT_TYPE,
             PRODUCT.MANUFACT_CODE,
             ISNULL(GPA.PRICE,0) AS PRICE,
             PRICE_STANDART.MONEY,
@@ -560,6 +563,7 @@ AddRow(
             LEFT JOIN PRICE_STANDART ON PRODUCT_UNIT.PRODUCT_UNIT_ID = PRICE_STANDART.UNIT_ID AND PRICE_STANDART.PRODUCT_ID = STOCKS.PRODUCT_ID
             LEFT JOIN #dsn3_alias#.PRODUCT_BRANDS ON PRODUCT_BRANDS.BRAND_ID	= PRODUCT.BRAND_ID
             LEFT JOIN #dsn3_alias#.PRODUCT_CAT ON PRODUCT_CAT.PRODUCT_CATID = PRODUCT.PRODUCT_CATID
+            LEFT JOIN PRODUCT_CAT_PRODUCT_TYPES AS PCPT ON PCPT.PRODUCT_CATID=PRODUCT.PRODUCT_CATID
             LEFT JOIN
             (
                 SELECT
@@ -687,7 +691,7 @@ AddRow(
              <cfset REL_CATID="#getRelProductCat.PRODUCT_CATID#" >
              <cfset REL_CATNAME="#getRelProductCat.PRODUCT_CAT#" >
              <cfset REL_HIERARCHY="#getRelProductCat.HIERARCHY#" >
-             <cfset REL_PRODUCT_TYPE='#getRelProductCat.DETAIL#'>
+            
         </cfif>    
         <cfscript>
             Product={
@@ -711,7 +715,7 @@ AddRow(
                 REL_CATID=REL_CATID,
                 REL_CATNAME=REL_CATNAME,
                 REL_HIERARCHY=REL_HIERARCHY,
-                REL_PRODUCT_TYPE=REL_PRODUCT_TYPE,
+                PRODUCT_TYPE=PRODUCT_TYPE,
                 MONEY=MONEY,
                 ROWNUM=1,
                 QUERY_COUNT=getRelatedProduct.recordcount
