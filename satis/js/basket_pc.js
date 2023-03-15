@@ -1697,7 +1697,7 @@ function selectrw(el) {
 
   BasketSelControl();
 }
-function groupControl(){
+function groupControl() {
   return true;
 }
 function BasketSelControl() {
@@ -1737,13 +1737,13 @@ function BasketSelControl() {
     evnt: "showTree(this)",
     att: "disabled",
   };
-  var TurnButton={
-    icon:"icn-md fa fa-recycle",
-    txt:"Yön Değiştir",
-    evntType:"onclick",
-    evnt:"TurnOut(this)",
-    att:"disabled"
-  }
+  var TurnButton = {
+    icon: "icn-md fa fa-recycle",
+    txt: "Yön Değiştir",
+    evntType: "onclick",
+    evnt: "TurnOut(this)",
+    att: "disabled",
+  };
   var buttonGroups = [];
   var sepetRows = document.getElementsByClassName("sepetRow");
   for (let i = 0; i < sepetRows.length; i++) {
@@ -1797,18 +1797,24 @@ function BasketSelControl() {
         evnt: "showTree(" + RwId + ")",
         att: "",
       };
-      if(parseInt(Ptype)==3){
-        var TurnButton={
-          icon:"icn-md fa fa-recycle",
-          txt:"Yön Değiştir",
-          evntType:"onclick",
-          evnt:"TurnOut(this)",
-          att:""
-        }
+      if (parseInt(Ptype) == 3) {
+        var TurnButton = {
+          icon: "icn-md fa fa-recycle",
+          txt: "Yön Değiştir",
+          evntType: "onclick",
+          evnt: "TurnOut(this," + RwId + ")",
+          att: "",
+        };
       }
     }
   }
-  buttonGroups.push(removeButton, UpdateButton, groupButton, treeButton,TurnButton);
+  buttonGroups.push(
+    removeButton,
+    UpdateButton,
+    groupButton,
+    treeButton,
+    TurnButton
+  );
   //$(RemCell).show();
   return buttonGroups;
 }
@@ -1821,8 +1827,30 @@ function showTree(el) {
     "index.cfm?fuseaction=objects.emptypopup_show_tree_prt&stock_id=" + sid
   );
 }
-function TurnOut(el){
+function TurnOut(el, rwid) {
   console.log(el);
+  var cp_id = document.getElementById("company_id").value;
+  var cp_name = document.getElementById("company_id").value;
+
+  var p_cat = document.getElementById("PRICE_CATID").value;
+  var p_cat_id = document.getElementById("PRICE_CATID").value;
+
+  openBoxDraggable(
+    "http://erp.metosan.com.tr/index.cfm?fuseaction=objects.emptypopup_list_products_partner&price_cat=" +
+      p_cat +
+      "&PRICE_CATID=" +
+      p_cat_id +
+      "&company_id=" +
+      cp_id +
+      "&company_name=" +
+      cp_name +
+      "&question_id=&columnsa=&actType=" +
+      99 +
+      "&SIPARIS_MIKTARI=" +
+      1 +
+      "&row_iid=" +
+      rwid
+  );
 }
 function rowaListener(tr) {
   $(tr).on("contextmenu", function (ev) {
@@ -2221,7 +2249,7 @@ function moveRow(from_row_id, to_row_id) {
     var Tax_1 = $("#Tax_" + from_row_id).val();
     var orderrow_currency_1 = $("#orderrow_currency_" + from_row_id).val();
     var description_1 = $("#description_" + from_row_id).val();
-    var product_name_other_1=$("#product_name_other_"+from_row_id).val()
+    var product_name_other_1 = $("#product_name_other_" + from_row_id).val();
 
     var product_id_2 = $("#product_id_" + to_row_id).val();
     var stock_id_2 = $("#stock_id_" + to_row_id).val();
@@ -2246,8 +2274,8 @@ function moveRow(from_row_id, to_row_id) {
     var Tax_2 = $("#Tax_" + to_row_id).val();
     var orderrow_currency_2 = $("#orderrow_currency_" + to_row_id).val();
     var description_2 = $("#description_" + to_row_id).val();
-    var product_name_other_2=$("#product_name_other_"+to_row_id).val()
-    
+    var product_name_other_2 = $("#product_name_other_" + to_row_id).val();
+
     $("#product_id_" + to_row_id).val(product_id_1);
     $("#product_id_" + from_row_id).val(product_id_2);
     $("#stock_id_" + to_row_id).val(stock_id_1);
