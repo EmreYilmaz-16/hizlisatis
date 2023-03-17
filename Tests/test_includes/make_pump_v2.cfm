@@ -51,3 +51,6 @@
     <table class="pump_basket" id="pump_basket">
     </table>
 </cf_box>
+
+<script src="/AddOns/Partner/Tests/test_includes/make_pump.js"></script>
+
