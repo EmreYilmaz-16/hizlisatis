@@ -46,12 +46,38 @@
     <div style="width:50%;">
         <cf_box title="Giren Ürünler">
             <div style="height:30vh">
+                <cf_big_list>
+                    <thead>
+                        <tr>
+                            <th>
+                                Ürün 
+                            </th>
+                            <th>
+                                <button type="button" class="btn btn-success">+</button>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                </cf_big_list>
             </div>
         </cf_box>
     </div>
     <div style="width:50%;">
         <cf_box title="Çıkan Ürünler">
             <div style="height:30vh">
+                <cf_big_list>
+                    <thead>
+                        <tr>
+                            <th>
+                                Ürün 
+                            </th>
+                            <th>
+                                <button type="button" class="btn btn-success">+</button>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                </cf_big_list>
             </div>
         </cf_box>
     </div>
