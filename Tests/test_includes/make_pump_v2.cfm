@@ -48,8 +48,19 @@
     <button type="button" class="btn btn-primary" onclick="OpenBasketProducts()">+</button>
     <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>
     <input type="hidden" name="is_rotation" id="is_rotation" value="0">
-    <table class="pump_basket" id="pump_basket">
-    </table>
+    <cf_big_list class="pump_basket" id="pump_basket">
+        <thead>
+            <tr>
+                <th>
+                    Ürün
+                </th>
+                <th>
+                    Miktar
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+    </cf_big_list>
 </cf_box>
 
 <script src="/AddOns/Partner/Tests/test_includes/make_pump.js"></script>
