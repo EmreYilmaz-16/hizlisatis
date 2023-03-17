@@ -71,7 +71,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
             <input type="text" readonly id="txt_#currentrow#" name="quantity" disabled value="#READY_QUANTITY-SHIPPED_QUANTITY#">
         </td>
         <td>            
-            <input type="checkbox" onclick="checkKontrol(this,#currentrow#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
+            <input type="checkbox" class="cssxbx" onclick="checkKontrol(this,#currentrow#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
                         
         </td>
     </tr>
@@ -143,7 +143,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
     }
 
     function checkAll(){
-        var cbx=$("input[type='checkbox']")
-        for(let i=0;i<cbx.length;i++){console.log(cbx[i]).click()}
+        var cbx=$(".cssxbx")
+        for(let i=0;i<cbx.length;i++){cbx[i].click()}
     }
 </script>
