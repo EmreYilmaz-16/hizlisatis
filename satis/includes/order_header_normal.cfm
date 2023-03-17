@@ -97,7 +97,7 @@
         </div>
     </td>
 </tr>
-<tr>
+<tr style="display:none">
     <td>
         <div class="form-group">
             <select name="is_parcali">
