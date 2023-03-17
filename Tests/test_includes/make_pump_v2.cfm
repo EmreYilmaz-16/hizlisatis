@@ -42,26 +42,20 @@
 
 </cf_box>
 <hr>
-<cf_box title="Giren Çıkan Stoklar">
-    <input type="hidden" name="company_id" id="company_id" value="22781">
-    <input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="17"> 
-    <button type="button" class="btn btn-primary" onclick="OpenBasketProducts()">+</button>
-    <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>
-    <input type="hidden" name="is_rotation" id="is_rotation" value="0">
-    <cf_big_list class="pump_basket" id="pump_basket">
-        <thead>
-            <tr>
-                <th>
-                    Ürün
-                </th>
-                <th>
-                    Miktar
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-    </cf_big_list>
-</cf_box>
+<div style="display:flex">
+    <div style="width:50%;">
+        <cf_box title="Giren Ürünler">
+            <div style="height:30vh">
+            </div>
+        </cf_box>
+    </div>
+    <div style="width:50%;">
+        <cf_box title="Çıkan Ürünler">
+            <div style="height:30vh">
+            </div>
+        </cf_box>
+    </div>
+</div>
 
 <script src="/AddOns/Partner/Tests/test_includes/make_pump.js"></script>
 
