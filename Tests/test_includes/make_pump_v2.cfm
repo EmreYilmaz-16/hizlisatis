@@ -40,7 +40,7 @@
     </div>
 </div>
 
-</cf_box>
+
 <hr>
 <div style="display:flex">
     <div style="width:50%;">
@@ -85,3 +85,4 @@
 
 <script src="/AddOns/Partner/Tests/test_includes/make_pump.js"></script>
 
+</cf_box>
