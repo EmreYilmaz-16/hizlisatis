@@ -26,6 +26,16 @@ function hideP() {
   $(".pbsContex").remove();
 }
 
+/**
+ *  
+ * @description Sepete Satır Ekler
+ * @param {boolean} is_virtual Sanal Ürün Olup Olmama 
+ * @param {number} poduct_type Ürün Tipi 0-Normal Ürün 1-Hortum 2-Hidrolik 3-Pompa 4-Teklif Ürünü
+ * @param {boolean} is_manuel Manuel Fiyat Kontrolü Ürün Ek Bilgi
+ * @returns void
+ *  TODO: Yön değişimi İçin AddRow Güncellenecek
+ */
+
 function AddRow(
   product_id,
   stock_id,
@@ -52,7 +62,9 @@ function AddRow(
   deliver_date = "",
   is_production = 0,
   row_uniq_id = "",
-  description = ""
+  description = "",
+  rfls = "",
+  converted_sid = 0
 ) {
   console.log(arguments);
   var form = $(document);
@@ -542,20 +554,27 @@ function AddRow(
   div.appendChild(i_4);
   td.appendChild(div);
   tr.appendChild(td);
+
   var td = document.createElement("td");
   td.setAttribute("style", "display:none");
   td.setAttribute("class", "hiddenR");
-
   var i_8 = document.createElement("input");
   i_8.setAttribute("name", "Tax_" + row_count);
   i_8.setAttribute("id", "Tax_" + row_count);
   i_8.setAttribute("value", commaSplit(tax));
 
+  var i88 = document.createElement("input");
+  i88.setAttribute("name", "converted_sid_" + row_count);
+  i88.setAttribute("id", "converted_sid_" + row_count);
+  i88.setAttribute("value", converted_sid);
+
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   div.appendChild(i_8);
+  div.appendChild(i88);
   td.appendChild(div);
   tr.appendChild(td);
+
   var td = document.createElement("td");
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
