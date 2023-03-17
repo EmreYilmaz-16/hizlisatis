@@ -19,7 +19,7 @@
             </div>
         </cf_box>
     </div>
-    <div style="width:70%">
+    <div style="width:68%;margin-left:2%">
         <cf_box title="Bozulacak Ürün(ler)" collapsable="0" resize="0">
             <div style="height:30vh">
                 <cf_big_list>
@@ -62,7 +62,7 @@
             </div>
         </cf_box>
     </div>
-    <div style="width:50%;">
+    <div style="width:50%;margin-left:2%">
         <cf_box title="Çıkan Ürünler" collapsable="0" resize="0">
             <div style="height:30vh">
                 <cf_big_list>
