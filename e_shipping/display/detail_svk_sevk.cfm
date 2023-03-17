@@ -43,7 +43,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
             <th>Sevk Edilen Miktar</th>
             <th>Hazırlanan Miktar</th>
             <th>Sevk Edilecek Miktar</th>
-            <th></th>
+            <th><input type="checkbox" onclick="checkAll()"></th>
         </tr>
     </thead>
     <tbody>
@@ -140,5 +140,10 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         }else{
             return true
         }
+    }
+
+    function checkAll(){
+        var cbx=$("input[type='checkbox']")
+        for(let i=0;i<cbx.length;i++){console.log(cbx[i]).click()}
     }
 </script>
