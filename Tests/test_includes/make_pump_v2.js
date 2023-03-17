@@ -19,3 +19,6 @@ var Obj = {
   operationType: 0, //0 Tandem,1 Yön Değiştir,
   girenCikanlar: girenCikan,
 };
+
+
+
