@@ -1,7 +1,7 @@
 ﻿<cf_box title="">
 <div style="display:flex">
     <div style="width:30%;">
-        <cf_box title="Oluşacak Ürün">
+        <cf_box title="Oluşacak Ürün" collapsable="0" resize="0">
             <div style="height:30vh">
                 <cf_big_list>
                     <thead>
@@ -20,7 +20,7 @@
         </cf_box>
     </div>
     <div style="width:70%">
-        <cf_box title="Bozulacak Ürün(ler)">
+        <cf_box title="Bozulacak Ürün(ler)" collapsable="0" resize="0">
             <div style="height:30vh">
                 <cf_big_list>
                     <thead>
@@ -44,7 +44,7 @@
 <hr>
 <div style="display:flex">
     <div style="width:50%;">
-        <cf_box title="Giren Ürünler">
+        <cf_box title="Giren Ürünler" collapsable="0" resize="0">
             <div style="height:30vh">
                 <cf_big_list>
                     <thead>
@@ -63,7 +63,7 @@
         </cf_box>
     </div>
     <div style="width:50%;">
-        <cf_box title="Çıkan Ürünler">
+        <cf_box title="Çıkan Ürünler" collapsable="0" resize="0">
             <div style="height:30vh">
                 <cf_big_list>
                     <thead>
