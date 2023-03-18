@@ -23,6 +23,8 @@
                                 <input type="hidden" name="pidPumpa" id="pidPumpa">
                                 <input type="hidden" name="SidPumpa" id="SidPumpa">
                                 <input type="hidden" name="isVirtualPumpa" id="isVirtualPumpa">
+                                <input type="hidden" name="PricePumpa" id="PricePumpa">
+                                <input type="hidden" name="DiscountPumpa" id="DiscountPumpa">
                             </div>
                         </td>
                     </tr>

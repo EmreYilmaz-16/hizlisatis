@@ -11,6 +11,9 @@ var OlusacakUrun = {
   QUANTITY: 0,
   IS_VIRTUAL: 0,
   DESCRIPTION: "",
+  PRICE: 0,
+  DISCOUNT: 0,
+  MONEY: "TL",
 };
 
 function AddArrItem(
@@ -21,7 +24,10 @@ function AddArrItem(
   STOCK_ID,
   QUANTITY = 1,
   DESCRIPTION = "",
-  IS_VIRTUAL = 0
+  IS_VIRTUAL = 0,
+  PRICE = 0,
+  DISCOUNT = 0,
+  MONEY = "TL"
 ) {
   var Obj = {
     PRODUCT_ID: PRODUCT_ID,
@@ -31,6 +37,9 @@ function AddArrItem(
     QUANTITY: QUANTITY,
     IS_VIRTUAL: IS_VIRTUAL,
     DESCRIPTION: DESCRIPTION,
+    PRICE: PRICE,
+    DISCOUNT: DISCOUNT,
+    MONEY: MONEY,
   };
   if (ArrNum == 0) {
     OlusacakUrun = Obj;
@@ -66,6 +75,12 @@ function SatirlariYaz_2(arb) {
     document
       .getElementById("AciklamaPUMPA")
       .setAttribute("value", OlusacakUrun.DESCRIPTION);
+    document
+      .getElementById("PricePumpa")
+      .setAttribute("value", OlusacakUrun.PRICE);
+    document
+      .getElementById("DiscountPumpa")
+      .setAttribute("value", OlusacakUrun.DISCOUNT);
   } else if (arb == 1) {
     for (let i = 0; i < BozulacakArr.length; i++) {
       var tr = document.createElement("tr");
@@ -85,6 +100,14 @@ function SatirlariYaz_2(arb) {
       input.setAttribute("value", BozulacakArr[i].QUANTITY);
       var div = document.createElement("div");
       div.setAttribute("class", "form-group");
+      div.appendChild(input);
+      var input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("value", BozulacakArr[i].PRICE);
+      div.appendChild(input);
+      var input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("value", BozulacakArr[i].DISCOUNT);
       div.appendChild(input);
       td.appendChild(div);
       tr.appendChild(td);
@@ -110,6 +133,14 @@ function SatirlariYaz_2(arb) {
       var div = document.createElement("div");
       div.setAttribute("class", "form-group");
       div.appendChild(input);
+      var input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("value", GirenArr[i].PRICE);
+      div.appendChild(input);
+      var input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("value", GirenArr[i].DISCOUNT);
+      div.appendChild(input);
       td.appendChild(div);
       tr.appendChild(td);
       tbody.appendChild(tr);
@@ -133,6 +164,14 @@ function SatirlariYaz_2(arb) {
       input.setAttribute("value", CikanArr[i].QUANTITY);
       var div = document.createElement("div");
       div.setAttribute("class", "form-group");
+      div.appendChild(input);
+      var input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("value", CikanArr[i].PRICE);
+      div.appendChild(input);
+      var input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("value", CikanArr[i].DISCOUNT);
       div.appendChild(input);
       td.appendChild(div);
       tr.appendChild(td);
@@ -182,3 +221,5 @@ function AddVpIS() {}
 function ChangeDesc(el) {
   OlusacakUrun.DESCRIPTION = el.value;
 }
+
+function ParaHesapla() {}
