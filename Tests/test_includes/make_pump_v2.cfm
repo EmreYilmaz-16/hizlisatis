@@ -1,4 +1,10 @@
-﻿<cf_box title="">
+﻿<input type="hidden" name="company_id" id="company_id" value="22781">
+<input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="17"> 
+
+<button type="button" class="btn btn-primary" onclick="OpenBasketProducts()">+</button>
+<button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>
+<input type="hidden" name="is_rotation" id="is_rotation" value="0">
+<cf_box title="">
 <div style="display:flex">
     <div style="width:30%;">
         <cf_box title="Oluşacak Ürün" collapsable="0" resize="0">
