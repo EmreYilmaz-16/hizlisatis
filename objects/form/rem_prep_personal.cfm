@@ -39,7 +39,7 @@
         </cf_big_list>
     <cfelseif attributes.ev eq "del">
         <cfquery name="delPrep" datasource="#dsn3#">
-            DELETE FROM PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID=#attributes.svk_id# AND PREPARE_PERSONAL=#attributes.employee_id#
+            UPDATE  PRTOTM_SHIP_RESULT_ROW SET PREPARE_PERSONAL=NULL WHERE SHIP_RESULT_ID=#attributes.svk_id# AND PREPARE_PERSONAL=#attributes.employee_id#
         </cfquery>
         <div id="aldiv" class="alert alert-success" >
             Silme Başarılı
