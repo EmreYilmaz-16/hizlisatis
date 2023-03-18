@@ -222,4 +222,63 @@ function ChangeDesc(el) {
   OlusacakUrun.DESCRIPTION = el.value;
 }
 
-function ParaHesapla() {}
+function ParaHesapla() {
+  var TotalPrice = 0;
+  var str =
+    '[{"MONEY":"TL","RATE1":"1","RATE2":"1"},{"MONEY":"USD","RATE1":"1","RATE2":"19.0412"},{"MONEY":"EUR","RATE1":"1","RATE2":"20.2745"}]';
+  var MoneyArr = JSON.parse(str);
+  for (let i = 0; i < BozulacakArr.length; i++) {
+    var Q = BozulacakArr[i].QUANTITY;
+    var P = BozulacakArr[i].PRICE;
+    var M = BozulacakArr[i].MONEY;
+    var D = BozulacakArr[i].DISCOUNT;
+    var R2 = MoneyArr.find((p) => p.MONEY == M).RATE2;
+
+    var ix = Q * P;
+    ix = ix * R2;
+    ix = ix - (ix * D) / 100;
+    //ix=Math.round(ix,2)
+    ix = parseFloat(filterNum(commaSplit(ix, 2)));
+    TotalPrice += ix;
+    console.log(ix);
+  }
+
+  console.log(TotalPrice);
+
+  for (let i = 0; i < CikanArr.length; i++) {
+    var Q = CikanArr[i].QUANTITY;
+    var P = CikanArr[i].PRICE;
+    var M = CikanArr[i].MONEY;
+    var D = CikanArr[i].DISCOUNT;
+    var R2 = MoneyArr.find((p) => p.MONEY == M).RATE2;
+
+    var ix = Q * P;
+    ix = ix * R2;
+    ix = ix - (ix * D) / 100;
+    //ix=Math.round(ix,2)
+    ix = parseFloat(filterNum(commaSplit(ix, 2)));
+    TotalPrice += ix;
+    console.log(ix);
+  }
+
+  console.log(TotalPrice);
+
+  for (let i = 0; i < GirenArr.length; i++) {
+    var Q = GirenArr[i].QUANTITY;
+    var P = GirenArr[i].PRICE;
+    var M = GirenArr[i].MONEY;
+    var D = GirenArr[i].DISCOUNT;
+    var R2 = MoneyArr.find((p) => p.MONEY == M).RATE2;
+
+    var ix = Q * P;
+    ix = ix * R2;
+    ix = ix - (ix * D) / 100;
+    //ix=Math.round(ix,2)
+    ix = parseFloat(filterNum(commaSplit(ix, 2)));
+    TotalPrice -= ix;
+    console.log(ix);
+  }
+
+  console.log(TotalPrice);
+  TotalPrice = parseFloat(filterNum(commaSplit(TotalPrice, 2)));
+}
