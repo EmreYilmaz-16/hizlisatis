@@ -16,7 +16,7 @@
                                 Ürün 
                             </th>
                             <th>
-                                <button type="button" onclick="OpenBasketProducts(1,0)"  class="btn btn-success">+</button>
+                                <button type="button" onclick="OpenBasketProducts(0,0)"  class="btn btn-success">+</button>
                                 <button type="button" onclick="AddVpIS()" class="btn btn-primary">VP</button>
                             </th>
                         </tr>
