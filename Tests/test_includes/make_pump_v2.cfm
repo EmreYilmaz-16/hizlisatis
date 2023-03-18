@@ -34,7 +34,7 @@
                         <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <textarea name="AciklamaPUMPA" id="AciklamaPUMPA"></textarea>
+                                <textarea onchange="ChangeDesc(this)" name="AciklamaPUMPA" id="AciklamaPUMPA"></textarea>
                             </div>
                             </td>
                         </tr>

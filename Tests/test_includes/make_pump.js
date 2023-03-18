@@ -178,3 +178,7 @@ function OpenBasketProducts(
 }
 
 function AddVpIS() {}
+
+function ChangeDesc(el) {
+  OlusacakUrun.DESCRIPTION = el.value;
+}
