@@ -3,7 +3,15 @@ var ArrForPum = [];
 var GirenArr = [];
 var CikanArr = [];
 var BozulacakArr = [];
-var OlusacakUrun;
+var OlusacakUrun = {
+  PRODUCT_ID: 0,
+  STOCK_ID: 0,
+  PRODUCT_NAME: "",
+  PRODUCT_CODE: "",
+  QUANTITY: 0,
+  IS_VIRTUAL: 0,
+  DESCRIPTION: "",
+};
 
 function AddArrItem(
   ArrNum,
@@ -11,7 +19,9 @@ function AddArrItem(
   PRODUCT_NAME,
   PRODUCT_CODE,
   STOCK_ID,
-  QUANTITY = 1
+  QUANTITY = 1,
+  DESCRIPTION = "",
+  IS_VIRTUAL = 0
 ) {
   var Obj = {
     PRODUCT_ID: PRODUCT_ID,
@@ -19,8 +29,8 @@ function AddArrItem(
     PRODUCT_NAME: PRODUCT_NAME,
     PRODUCT_CODE: PRODUCT_CODE,
     QUANTITY: QUANTITY,
-    IS_VIRTUAL: 0,
-    DESCRIPTION,
+    IS_VIRTUAL: IS_VIRTUAL,
+    DESCRIPTION: DESCRIPTION,
   };
   if (ArrNum == 0) {
     OlusacakUrun = Obj;
@@ -41,7 +51,21 @@ function SatirlariYaz_2(arb) {
   var tbody = document.createElement("tbody");
   tbody.setAttribute("id", "tbod_" + arb);
   if (arb == 0) {
-
+    document
+      .getElementById("NamePumpa")
+      .setAttribute("value", OlusacakUrun.PRODUCT_NAME);
+    document
+      .getElementById("pidPumpa")
+      .setAttribute("value", OlusacakUrun.PRODUCT_ID);
+    document
+      .getElementById("SidPumpa")
+      .setAttribute("value", OlusacakUrun.STOCK_ID);
+    document
+      .getElementById("isVirtualPumpa")
+      .setAttribute("value", OlusacakUrun.IS_VIRTUAL);
+    document
+      .getElementById("AciklamaPUMPA")
+      .setAttribute("value", OlusacakUrun.DESCRIPTION);
   } else if (arb == 1) {
     for (let i = 0; i < BozulacakArr.length; i++) {
       var tr = document.createElement("tr");
