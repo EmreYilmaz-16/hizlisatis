@@ -22,14 +22,15 @@
     <div style="width:68%;margin-left:2%">
         <cf_box title="Bozulacak Ürün(ler)" collapsable="0" resize="0">
             <div style="height:30vh">
-                <cf_big_list>
+                <cf_big_list id="tbl_1">
                     <thead>
                         <tr>
                             <th>
                                 Ürün 
                             </th>
+                            <th>Miktar</th>
                             <th>
-                                <button type="button" class="btn btn-success">+</button>
+                                <button  onclick="OpenBasketProducts(1,0)" type="button" class="btn btn-success">+</button>
                                 
                             </th>
                         </tr>
@@ -46,14 +47,15 @@
     <div style="width:50%;">
         <cf_box title="Giren Ürünler" collapsable="0" resize="0">
             <div style="height:30vh">
-                <cf_big_list>
+                <cf_big_list id="tbl_2">
                     <thead>
                         <tr>
                             <th>
                                 Ürün 
                             </th>
+                            <th>Miktar</th>
                             <th>
-                                <button type="button" class="btn btn-success">+</button>
+                                <button onclick="OpenBasketProducts(2,0)" type="button" class="btn btn-success">+</button>
                                 
                             </th>
                         </tr>
@@ -65,14 +67,15 @@
     <div style="width:50%;margin-left:2%">
         <cf_box title="Çıkan Ürünler" collapsable="0" resize="0">
             <div style="height:30vh">
-                <cf_big_list>
+                <cf_big_list id="tbl_3">
                     <thead>
                         <tr>
                             <th>
                                 Ürün 
                             </th>
+                            <th>Miktar</th>
                             <th>
-                                <button type="button" class="btn btn-success">+</button>
+                                <button onclick="OpenBasketProducts(3,0)" type="button" class="btn btn-success">+</button>
                                 
                             </th>
                         </tr>
@@ -86,3 +89,13 @@
 <script src="/AddOns/Partner/Tests/test_includes/make_pump.js"></script>
 
 </cf_box>
+
+<!----function OpenBasketProducts(
+  ArrNum,
+  question_id,
+  from_row = 0,
+  col = "",
+  actType = "4",
+  SIPARIS_MIKTARI = 1,
+  
+) ----->
