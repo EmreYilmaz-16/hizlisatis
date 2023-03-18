@@ -119,8 +119,7 @@ function OpenBasketProducts(
   from_row = 0,
   col = "",
   actType = "4",
-  SIPARIS_MIKTARI = 1,
-  
+  SIPARIS_MIKTARI = 1
 ) {
   var cp_id = document.getElementById("company_id").value;
   var cp_name = document.getElementById("company_id").value;
@@ -143,7 +142,9 @@ function OpenBasketProducts(
       "&actType=" +
       actType +
       "&SIPARIS_MIKTARI=" +
-      SIPARIS_MIKTARI
+      SIPARIS_MIKTARI +
+      "&arrayid=" +
+      ArrNum
   );
 }
 
