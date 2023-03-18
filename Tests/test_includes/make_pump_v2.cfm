@@ -9,19 +9,11 @@
     <div style="width:30%;">
         <cf_box title="Oluşacak Ürün" collapsable="0" resize="0">
             <div style="height:30vh">
-                <cf_big_list>
-                    <thead>
-                        <tr>
-                            <th>
-                                Ürün 
-                            </th>
-                            <th>
-                                <button type="button" onclick="OpenBasketProducts(0,0)"  class="btn btn-success">+</button>
-                                <button type="button" onclick="AddVpIS()" class="btn btn-primary">VP</button>
-                            </th>
-                        </tr>
-                    </thead>
-                </cf_big_list>
+                
+                <div style="display:flex">
+                    <button type="button" onclick="OpenBasketProducts(0,0)"  class="btn btn-success">+</button>
+                    <button type="button" onclick="AddVpIS()" class="btn btn-primary">VP</button>                            
+                </div>
                 <button type="button" class="btn btn-success" style="bottom: 0; position: absolute; right: 0; margin-right: 10px; margin-bottom: 10px;">Kaydet</button>
                 <!--- TODO: Ürün Gerçekse Direk Pompa Tablosuna Veri Atılacak Değilse Önce Ürün Oluştur Pompa Tablosuna Veri At----->
             </div>
