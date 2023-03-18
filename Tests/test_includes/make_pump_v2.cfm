@@ -16,12 +16,14 @@
                                 Ürün 
                             </th>
                             <th>
-                                <button type="button" class="btn btn-success">+</button>
-                                <button type="button" class="btn btn-primary">VP</button>
+                                <button type="button" onclick="OpenBasketProducts(1,0)"  class="btn btn-success">+</button>
+                                <button type="button" onclick="AddVpIS()" class="btn btn-primary">VP</button>
                             </th>
                         </tr>
                     </thead>
                 </cf_big_list>
+                <button type="button" class="btn btn-success">Kaydet</button>
+                <!--- TODO: Ürün Gerçekse Direk Pompa Tablosuna Veri Atılacak Değilse Önce Ürün Oluştur Pompa Tablosuna Veri At----->
             </div>
         </cf_box>
     </div>
@@ -87,6 +89,7 @@
                         </tr>
                     </thead>
                 </cf_big_list>
+
             </div>
         </cf_box>
     </div>

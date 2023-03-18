@@ -19,8 +19,11 @@ function AddArrItem(
     PRODUCT_NAME: PRODUCT_NAME,
     PRODUCT_CODE: PRODUCT_CODE,
     QUANTITY: QUANTITY,
+    IS_VIRTUAL: 0,
   };
-  if (ArrNum == 1) {
+  if (ArrNum == 0) {
+    OlusacakUrun = Obj;
+  } else if (ArrNum == 1) {
     var ix = BozulacakArr.findIndex((p) => p.PRODUCT_ID == PRODUCT_ID);
     if (ix == -1) BozulacakArr.push(Obj);
   } else if (ArrNum == 2) {
@@ -30,8 +33,9 @@ function AddArrItem(
     var ix = CikanArr.findIndex((p) => p.PRODUCT_ID == PRODUCT_ID);
     if (ix == -1) CikanArr.push(Obj);
   }
-
-  SatirlariYaz_2(ArrNum);
+  if (ArrNum != 0) {
+    SatirlariYaz_2(ArrNum);
+  }
 }
 function SatirlariYaz_2(arb) {
   var tbody = document.createElement("tbody");
