@@ -19,7 +19,7 @@
                         <td>Ürün Adı</td>
                         <td>
                             <div class="form-group">
-                                <input type="text" name="NamePumpa" id="NamePumpa">
+                                <input type="text" style="font-size: 15pt !important;color:green !important" name="NamePumpa" id="NamePumpa">
                                 <input type="hidden" name="pidPumpa" id="pidPumpa">
                                 <input type="hidden" name="SidPumpa" id="SidPumpa">
                                 <input type="hidden" name="isVirtualPumpa" id="isVirtualPumpa">
