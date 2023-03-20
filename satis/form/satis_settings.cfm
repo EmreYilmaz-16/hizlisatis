@@ -153,7 +153,7 @@
         </tr>
         <tr>
             <td style="vertical-align:middle">
-               <div>Tamamı Sevk</div>
+               <div>Virman Raf</div>
             </td>
             <td style="vertical-align:middle">
                 <div class="form-group">
