@@ -296,12 +296,15 @@ function SaveForVirtual() {
 
 function changeRotation(el) {
   var ix = $("#is_rotation").val();
+  console.log(ix);
   if (parseInt(ix) == 0) {
     $("#is_rotation").val(1);
-   // document.getElementById("r").setAttribute("class","btn btn-success") .removeAttribute("class")
+    // document.getElementById("r").setAttribute("class","btn btn-success") .removeAttribute("class")
     el.removeAttribute("class");
-    el.setAttribute("class","btn btn-success")
+    el.setAttribute("class", "btn btn-success");
   } else {
     $("#is_rotation").val(0);
+    el.removeAttribute("class");
+    el.setAttribute("class", "btn btn-secondary");
   }
 }
