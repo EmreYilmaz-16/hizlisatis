@@ -11,7 +11,9 @@
     SEVK_LOCATION_ID=#attributes.SEVK_LOCATION_ID#,
     MANUEL_CONTROL=#attributes.MANUEL_CONTROL#,
     MANUEL_CONTROL_AREA='#attributes.MANUEL_CONTROL_AREA#',
-    MALIYET_CONTROL=#attributes.MALIYET_CONTROL#
+    MALIYET_CONTROL=#attributes.MALIYET_CONTROL#,
+    IS_VIRMAN_WORK_WITH_SHELF=#attributes.IS_VIRMAN_WORK_WITH_SHELF#
+
 </cfquery>
 </cfif>
 <cfquery name="getVSettings" datasource="#dsn3#">
@@ -20,7 +22,8 @@
     IS_RANDOM_UNIQE_NAME,SEVK_DEPARTMENT_ID,SEVK_LOCATION_ID,
     IS_UPDATE_OFFER,IS_CHANGE_CARI,IS_ALL_SEVK,ADD_MANUAL_PRODUCT,
     IS_ZERO_QUANTITY,MAX_DISCOINT,
-    MANUEL_CONTROL,MANUEL_CONTROL_AREA,MALIYET_CONTROL
+    MANUEL_CONTROL,MANUEL_CONTROL_AREA,MALIYET_CONTROL,
+    IS_VIRMAN_WORK_WITH_SHELF
     FROM #dsn3#.VIRTUAL_OFFER_SETTINGS
 </cfquery>
 <cf_box title="Satış Parametreleri">
@@ -150,6 +153,24 @@
         </tr>
         <tr>
             <td style="vertical-align:middle">
+               <div>Tamamı Sevk</div>
+            </td>
+            <td style="vertical-align:middle">
+                <div class="form-group">
+                <select name="IS_VIRMAN_WORK_WITH_SHELF">
+                    <option <cfif getVSettings.IS_VIRMAN_WORK_WITH_SHELF eq 1>selected</cfif> value="1">Evet</option>
+                    <option <cfif getVSettings.IS_VIRMAN_WORK_WITH_SHELF eq 0>selected</cfif> value="0">Hayır</option>
+                </select>
+            </div>
+            </td>
+            <td style="vertical-align:middle">
+                <div class="alert alert-warning" style="padding:5px;margin-bottom:0px">
+                 <span style="font-size:14pt">&lt;!&gt;</span>  Virman Yapılacak Ürünler Raflamı Çalışsın
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle">
                <div>Mavi Uyarı</div>
             </td>
             <td style="vertical-align:middle">
@@ -225,3 +246,4 @@
     <input type="submit">
 </cfform>
 </cf_box>
+

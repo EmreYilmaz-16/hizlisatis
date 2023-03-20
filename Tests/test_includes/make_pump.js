@@ -296,7 +296,7 @@ function SaveForPump() {
     GirenUrunler: GirenArr,
     CikanUrunler: CikanArr,
     IsRotate: ix,
-    Product_CatId: cx,
+    HIERARCHY: cx,
   };
   console.log(ReturnObject);
 }

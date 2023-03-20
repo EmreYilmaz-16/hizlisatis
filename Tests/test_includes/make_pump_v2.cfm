@@ -50,7 +50,7 @@
                                 <select name="CatPumpa" id="CatPumpa">
                                     <option value="">Ürün Tipi Seçiniz</option>
                                     <cfoutput query="getPcats">
-                                        <option value="#PRODUCT_CATID#">#HIERARCHY# - #PRODUCT_CAT#</option>
+                                        <option value="#HIERARCHY#">#HIERARCHY# - #PRODUCT_CAT#</option>
                                     </cfoutput>
                                 </select>
                             </div>
@@ -60,7 +60,7 @@
                 </tbody></table>
                 <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;">
                 <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>                
-                <button type="button" class="btn btn-success" onclick="SaveForPump()">Kaydet</button>;
+                <button type="button" style="margin-right:15px" class="btn btn-success" onclick="SaveForPump()">Kaydet</button>;
             </div>
                 <!--- TODO: Ürün Gerçekse Direk Pompa Tablosuna Veri Atılacak Değilse Önce Ürün Oluştur Pompa Tablosuna Veri At----->
             </div>
