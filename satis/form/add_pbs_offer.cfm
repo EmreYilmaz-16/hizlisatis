@@ -183,8 +183,8 @@ WHERE OFFER_ID=#attributes.from_offer_id#
         document.getElementById("offer_head").value="#getOffer.OFFER_HEAD#"
         document.getElementById("offer_date").value=date_format("#getOffer.OFFER_DATE#")
         document.getElementById("txt_disc").value=commaSplit(#getOffer.SA_DISCOUNT#)
-        document.getElementById("offer_desc").value='#getOffer.OFFER_DESCRIPTION#'
-
+        
+        document.getElementById("offer_desc").value='#EncodeForJavaScript(getOffer.OFFER_DESCRIPTION)#'
         <cfloop query="getOfferRow">
                         <CFSET EMANUEL=0>
                         <cfset lastCost = 0>
