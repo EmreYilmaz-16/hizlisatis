@@ -136,7 +136,7 @@
             FROM workcube_metosan_1.PRICE P
                 ,workcube_metosan_1.PRODUCT PR
             WHERE P.PRODUCT_ID = PR.PRODUCT_ID
-                AND P.PRICE_CATID = 19
+                AND P.PRICE_CATID = @PRICE_CAT_ID
                 AND (
                     P.STARTDATE <= GETDATE()
                     AND (
