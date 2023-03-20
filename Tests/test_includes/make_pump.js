@@ -285,12 +285,18 @@ function ParaHesapla() {
 
 function SaveForPump() {
   var ix = $("#is_rotation").val();
+  var cx = $("#CatPumpa").val();
+  if (cx.length == 0) {
+    alert("Kategori Seçiniz");
+    return false;
+  }
   var ReturnObject = {
     OlusacakUrun: OlusacakUrun,
     BozulacakUrunler: BozulacakArr,
     GirenUrunler: GirenArr,
     CikanUrunler: CikanArr,
     IsRotate: ix,
+    Product_CatId: cx,
   };
   console.log(ReturnObject);
 }
