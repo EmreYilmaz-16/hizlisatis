@@ -41,6 +41,22 @@
                             </div>
                             </td>
                         </tr>
+                        <tr>
+                            <cfquery name="getPcats" datasource="#dsn1#">
+                                SELECT PRODUCT_CATID,HIERARCHY,PRODUCT_CAT FROM PRODUCT_CAT WHERE DETAIL IN ('1','2','3','4')
+                            </cfquery>
+                            <td>
+                                <div class="form-group">
+                                <select name="CatPumpa" id="CatPumpa">
+                                    <option value="">Seçiniz</option>
+                                    <cfoutput query="getPcats">
+                                        <option value="#PRODUCT_CATID#">#HIERARCHY# - #PRODUCT_CAT#</option>
+                                    </cfoutput>
+                                </select>
+                            </div>
+                            </td>
+                        </tr>
+                            
                 </tbody></table>
                 <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;">
                 <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>                
