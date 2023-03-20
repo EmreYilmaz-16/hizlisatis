@@ -45,10 +45,10 @@
                             <cfquery name="getPcats" datasource="#dsn1#">
                                 SELECT PRODUCT_CATID,HIERARCHY,PRODUCT_CAT FROM PRODUCT_CAT WHERE DETAIL IN ('1','2','3','4')
                             </cfquery>
-                            <td>
+                            <td colspan="2">
                                 <div class="form-group">
                                 <select name="CatPumpa" id="CatPumpa">
-                                    <option value="">Seçiniz</option>
+                                    <option value="">Ürün Tipi Seçiniz</option>
                                     <cfoutput query="getPcats">
                                         <option value="#PRODUCT_CATID#">#HIERARCHY# - #PRODUCT_CAT#</option>
                                     </cfoutput>
