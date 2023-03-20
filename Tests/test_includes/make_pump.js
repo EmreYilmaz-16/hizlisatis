@@ -284,13 +284,13 @@ function ParaHesapla() {
 }
 
 function SaveForVirtual() {
-  var ix = $("#is_rotation").is(":checked");
+  var ix = $("#is_rotation").val();
   var ReturnObject = {
     OlusacakUrun: OlusacakUrun,
     BozulacakUrunler: BozulacakArr,
     GirenUrunler: GirenArr,
     CikanUrunler: CikanArr,
-    IsRotate: "",
+    IsRotate: ix,
   };
 }
 

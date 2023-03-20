@@ -42,8 +42,11 @@
                             </td>
                         </tr>
                 </tbody></table>
+                <div style="display:flex;bottom: 0; position: absolute;margin-right: 10px; margin-bottom: 10px;">
                 <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>
-                <button type="button" class="btn btn-success" style="bottom: 0; position: absolute; right: 0; margin-right: 10px; margin-bottom: 10px;">Kaydet</button>
+                <button type="button" class="btn btn-warning" >Sanal Pompa Kayıt</button>
+                <button type="button" class="btn btn-success" >Pompa Kayıt</button>
+            </div>
                 <!--- TODO: Ürün Gerçekse Direk Pompa Tablosuna Veri Atılacak Değilse Önce Ürün Oluştur Pompa Tablosuna Veri At----->
             </div>
         </cf_box>
