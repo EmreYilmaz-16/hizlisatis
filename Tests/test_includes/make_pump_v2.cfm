@@ -42,10 +42,9 @@
                             </td>
                         </tr>
                 </tbody></table>
-                <div style="display:flex;bottom: 0; position: absolute;margin-right: 10px; margin-bottom: 10px;">
-                <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>
-                <button type="button" class="btn btn-warning" >Sanal Pompa Kayıt</button>
-                <button type="button" class="btn btn-success" >Pompa Kayıt</button>
+                <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;">
+                <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>                
+                <button type="button" class="btn btn-success" onclick="SaveForPump()">Kaydet</button>;
             </div>
                 <!--- TODO: Ürün Gerçekse Direk Pompa Tablosuna Veri Atılacak Değilse Önce Ürün Oluştur Pompa Tablosuna Veri At----->
             </div>

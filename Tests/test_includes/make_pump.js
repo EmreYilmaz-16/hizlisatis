@@ -283,7 +283,7 @@ function ParaHesapla() {
   TotalPrice = parseFloat(filterNum(commaSplit(TotalPrice, 2)));
 }
 
-function SaveForVirtual() {
+function SaveForPump() {
   var ix = $("#is_rotation").val();
   var ReturnObject = {
     OlusacakUrun: OlusacakUrun,
@@ -292,6 +292,7 @@ function SaveForVirtual() {
     CikanUrunler: CikanArr,
     IsRotate: ix,
   };
+  console.log(ReturnObject);
 }
 
 function changeRotation(el) {
