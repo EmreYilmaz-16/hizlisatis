@@ -1,5 +1,5 @@
 ﻿<cfcomponent>
-   <cffunction name="savePumpa">
+   <cffunction name="savePumpa" access="remote">
     <cfargument name="FormData">
         <cfdump var="#arguments#">
    </cffunction>
