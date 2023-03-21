@@ -9,7 +9,7 @@ var OlusacakUrun = {
   PRODUCT_NAME: "",
   PRODUCT_CODE: "",
   QUANTITY: 0,
-  IS_VIRTUAL: 0,
+  IS_VIRTUAL: 1,
   DESCRIPTION: "",
   PRICE: 0,
   DISCOUNT: 0,
@@ -81,6 +81,10 @@ function SatirlariYaz_2(arb) {
     document
       .getElementById("DiscountPumpa")
       .setAttribute("value", OlusacakUrun.DISCOUNT);
+
+    if (parseInt(OlusacakUrun.PRODUCT_ID) != 0) {
+      document.getElementById("NamePumpa").setAttribute("readonly", "true");
+    }
   } else if (arb == 1) {
     for (let i = 0; i < BozulacakArr.length; i++) {
       var tr = document.createElement("tr");
@@ -216,8 +220,6 @@ function OpenBasketProducts(
   );
 }
 
-function AddVpIS() {}
-
 function ChangeDesc(el) {
   OlusacakUrun.DESCRIPTION = el.value;
 }
@@ -314,4 +316,26 @@ function changeRotation(el) {
     el.removeAttribute("class");
     el.setAttribute("class", "btn btn-secondary");
   }
+}
+function Temizle() {
+  document.getElementById("NamePumpa").removeAttribute("readonly");
+  /*document.getElementById("pidPumpa")=0
+  document.getElementById("SidPumpa")=0
+  document.getElementById("isVirtualPumpa")=0
+  document.getElementById("PricePumpa")=0
+  document.getElementById("DiscountPumpa")=0
+  document.getElementById("is_rotation")=0*/
+  OlusacakUrun = {
+    PRODUCT_ID: 0,
+    STOCK_ID: 0,
+    PRODUCT_NAME: "",
+    PRODUCT_CODE: "",
+    QUANTITY: 0,
+    IS_VIRTUAL: 1,
+    DESCRIPTION: "",
+    PRICE: 0,
+    DISCOUNT: 0,
+    MONEY: "TL",
+  };
+  SatirlariYaz_2();
 }

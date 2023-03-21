@@ -13,7 +13,7 @@
                 
                 <div style="display: flex; margin-top: 10px; margin-right: 10px; justify-content: flex-end;">
                     <button type="button" onclick="OpenBasketProducts(0,0)"  class="btn btn-success">+</button>
-                    <button type="button" onclick="AddVpIS()" class="btn btn-primary">VP</button>                            
+                                            
                 </div>
                 <table class="table" style="">
                     <tbody><tr>
@@ -71,7 +71,8 @@
                             
                 </tbody></table>
                 <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;">
-                <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>                
+                <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>        
+                <button type="button" class="btn btn-warning" onclick="Temizle()">Temizle</button>        
                 <button type="button" style="margin-right:15px" class="btn btn-success" onclick="SaveForPump()">Kaydet</button>;
             </div>
                 <!--- TODO: Ürün Gerçekse Direk Pompa Tablosuna Veri Atılacak Değilse Önce Ürün Oluştur Pompa Tablosuna Veri At----->
