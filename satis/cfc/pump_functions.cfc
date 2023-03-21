@@ -6,8 +6,10 @@
    <cffunction name="savePumpa" access="remote" returntype="string" returnformat="JSON" httpMethod="POST">          
       <CFSET datam=deserializeJSON(arguments.FORM_DATA)>            
       <cfquery name="getShelf" datasource="#datam.dataSources.dsn3#">
-         SELECT PRODUCT_PLACE_ID FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE='#catParser(datam.HIERARCHY)#'
+         SELECT PRODUCT_PLACE_ID,SHELF_CODE  FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE=ltrim('#catParser(datam.HIERARCHY)#')
       </cfquery>
+      
+      
       <cfset RETURN_VAL=structNew()>
       <cfif datam.IsRotate neq 1>
          <cfif datam.OlusacakUrun.IS_VIRTUAL eq 1>
@@ -124,7 +126,7 @@
      <cfquery name="InsertShelfStock" datasource="#dsn3#">
       INSERT INTO PRODUCT_PLACE_ROWS (PRODUCT_ID,STOCK_ID,PRODUCT_PLACE_ID,AMOUNT) VALUES (#main_product_id#,#main_stock_id#,#getShelf.PRODUCT_PLACE_ID#,1)
   </cfquery>
-         <cfquery name="ins" datasource="#dsn3#">
+         <cfquery name="ins" datasource="#dsn3#" result="RESSSS">
             INSERT INTO VirmanProduct
                   (JSON_DATA
                   ,CREATED_PID
@@ -134,7 +136,7 @@
                   ,#main_product_id#
                   ,#main_stock_id#)
          </cfquery>
-
+<CFSET VIRMAN_ID=RESSSS.IDENTITYCOL>
 
 
          </cfif>
@@ -166,6 +168,7 @@
       <CFSET RETURN_VAL.DELIVERDATE=dateFormat(NOW(),"yyyy-mm-dd")>
       <CFSET RETURN_VAL.IS_PRODUCTION=1>
       <CFSET RETURN_VAL.ROW_UNIQ_ID=''>
+      <CFSET RETURN_VAL.VIRMAN_ID=VIRMAN_ID>
       <cfif isDefined("arguments.row_id")>
       <CFSET RETURN_VAL.ROW_ID=arguments.row_id>
       <cfelse>
