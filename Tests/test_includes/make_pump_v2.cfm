@@ -5,7 +5,8 @@
 
 
 <cf_box title="">
-<div style="display:flex">
+    <cfform name="search_product">
+    <div style="display:flex">
     <div style="width:30%;">
         <cf_box title="Oluşacak Ürün" collapsable="0" resize="0">
             <div style="height:30vh">
@@ -42,7 +43,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <cfquery name="getPcats" datasource="#dsn1#">
+                            <td>
+                                <div class="form-group" id="item-cat_id">
+                                    <label>Kategori </label>
+                                    <div class="input-group">
+                                        <input type="hidden" name="cat_id" id="cat_id" value="">
+                                        <input type="hidden" name="cat" id="cat" value="">
+                                        <input name="category_name" type="text" id="category_name" onfocus="AutoComplete_Create('category_name','PRODUCT_CATID,PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','','PRODUCT_CATID,HIERARCHY','cat_id,cat','','3','200','','1');" value="" autocomplete="off"><div id="category_name_div_2" name="category_name_div_2" class="completeListbox" autocomplete="on" style="width: 463px; max-height: 150px; overflow: auto; position: absolute; left: 487.5px; top: 145px; z-index: 159; display: none;"></div>
+                                        <span class="input-group-addon icon-ellipsis btnPointer" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_product_cat_names&is_sub_category=1&field_id=search_product.cat_id&field_code=search_product.cat&field_name=search_product.category_name');"></span>
+                                    </div>
+                                </div>
+                            </td>
+                          <!---  <cfquery name="getPcats" datasource="#dsn1#">
                                 SELECT PRODUCT_CATID,HIERARCHY,PRODUCT_CAT FROM PRODUCT_CAT WHERE DETAIL IN ('1','2','3','4')
                             </cfquery>
                             <td colspan="2">
@@ -54,7 +66,7 @@
                                     </cfoutput>
                                 </select>
                             </div>
-                            </td>
+                            </td>---->
                         </tr>
                             
                 </tbody></table>
@@ -133,7 +145,7 @@
         </cf_box>
     </div>
 </div>
-
+</cfform>
 <script src="/AddOns/Partner/Tests/test_includes/make_pump.js"></script>
 
 </cf_box>
