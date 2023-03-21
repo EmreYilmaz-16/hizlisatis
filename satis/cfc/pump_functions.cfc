@@ -3,17 +3,14 @@
 <cfset dsn1="">
 <cfset dsn2="">
 <cfset dsn3="">
-   <cffunction name="savePumpa" access="remote" returntype="string" returnformat="JSON" httpMethod="POST">    
-      <cfdump var="#arguments#" >
-      <CFSET datam=deserializeJSON(arguments.FORM_DATA)>
-      <cfdump var="#datam#">
-      <cfoutput>
-         #catParser(datam.HIERARCHY)#
-      </cfoutput>
-      
+   <cffunction name="savePumpa" access="remote" returntype="string" returnformat="JSON" httpMethod="POST">          
+      <CFSET datam=deserializeJSON(arguments.FORM_DATA)>            
+      <cfquery name="getShelf" datasource="#dsn3#">
+         SELECT PRODUCT_PLACE_ID FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE='#catParser(datam.HIERARCHY)#'
+      </cfquery>
+      <cfset RETURN_VAL=structNew()>
       <cfif datam.IsRotate neq 1>
          <cfif datam.OlusacakUrun.IS_VIRTUAL eq 1>
-
             <cfset arguments.PRODUCT_CATID=4083>
             <cfquery name="getMaster" datasource="#datam.dataSources.dsn1#">
                 SELECT S.PRODUCT_ID
@@ -119,14 +116,65 @@
      <cfset database_type="MSSQL">
      <cfset barcode=getBarcode()>
      <cfinclude template="/AddOns/Partner/satis/Includes/add_import_product.cfm">
+     
+     <cfscript>
+      main_stock_id = GET_MAX_STCK.MAX_STCK;
+      main_product_id =GET_PID.PRODUCT_ID;
+     </cfscript>
+     <cfquery name="InsertShelfStock" datasource="#dsn3#">
+      INSERT INTO PRODUCT_PLACE_ROWS (PRODUCT_ID,STOCK_ID,PRODUCT_PLACE_ID,AMOUNT) VALUES (#main_product_id#,#main_stock_id#,#getShelf.PRODUCT_PLACE_ID#,1)
+  </cfquery>
+         <cfquery name="ins" datasource="#dsn3#">
+            INSERT INTO VirmanProduct
+                  (JSON_DATA
+                  ,CREATED_PID
+                  ,CREATED_SID)
+            VALUES
+                  ('#Replace(SerializeJSON(datam),'//','')#'
+                  ,#main_product_id#
+                  ,#main_stock_id#)
+         </cfquery>
 
 
 
          </cfif>
 
-
-
       </cfif>
+
+      <CFSET RETURN_VAL.PRODUCT_ID=main_product_id>
+      <CFSET RETURN_VAL.STOCK_ID=main_stock_id>
+      <CFSET RETURN_VAL.STOCK_CODE=attributes.PRODUCT_CODE>
+      <CFSET RETURN_VAL.BRAND_NAME=''>
+      <CFSET RETURN_VAL.IS_VIRTUAL=0>
+      <CFSET RETURN_VAL.QUANTITY=1>
+      <CFSET RETURN_VAL.PRICE=datam.OlusacakUrun.PRICE>
+      <CFSET RETURN_VAL.PRODUCT_NAME=urun_adi>
+      <CFSET RETURN_VAL.TAX=getMaster.TAX>
+      <CFSET RETURN_VAL.DISCOUNT_RATE=0>
+      <CFSET RETURN_VAL.PRODUCT_TYPE=2>
+      <CFSET RETURN_VAL.SHELF_CODE='#getShelf.SHELF_CODE#'>
+      <CFSET RETURN_VAL.OTHER_MONEY=get_sales_price_info.MONEY>
+      <CFSET RETURN_VAL.PRICE_OTHER=datam.OlusacakUrun.PRICE>
+      <CFSET RETURN_VAL.OFFER_ROW_CURRENCY=-5>
+      <CFSET RETURN_VAL.IS_MANUEL=0>
+      <CFSET RETURN_VAL.COST=datam.OlusacakUrun.PRICE>
+      <CFSET RETURN_VAL.MAIN_UNIT=birim>
+      <CFSET RETURN_VAL.PRODUCT_NAME_OTHER=''>
+      <CFSET RETURN_VAL.DETAIL_INFO_EXTRA=''>
+      <CFSET RETURN_VAL.FC=0>
+      <CFSET RETURN_VAL.ROW_NUM=''>
+      <CFSET RETURN_VAL.DELIVERDATE=dateFormat(NOW(),"yyyy-mm-dd")>
+      <CFSET RETURN_VAL.IS_PRODUCTION=1>
+      <CFSET RETURN_VAL.ROW_UNIQ_ID=''>
+      <cfif isDefined("arguments.row_id")>
+      <CFSET RETURN_VAL.ROW_ID=arguments.row_id>
+      <cfelse>
+          <CFSET RETURN_VAL.ROW_ID="">
+      </cfif>
+      
+      
+      <cfreturn Replace(SerializeJSON(RETURN_VAL),'//','')>
+
 
 
    </cffunction>
