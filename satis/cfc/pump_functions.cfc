@@ -12,7 +12,7 @@
          <cfif datam.OlusacakUrun.IS_VIRTUAL eq 1>
 
             <cfset arguments.PRODUCT_CATID=4083>
-            <cfquery name="getMaster" datasource="#arguments.dsn1#">
+            <cfquery name="getMaster" datasource="#datam.dataSources.dsn1#">
                 SELECT S.PRODUCT_ID
                     ,S.PRODUCT_CODE
                     ,S.PRODUCT_CODE_2
@@ -51,15 +51,15 @@
                 LEFT JOIN PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID              
                 WHERE S.PRODUCT_CATID=#arguments.PRODUCT_CATID# AND PRODUCT_DETAIL2='MASTER'
             </cfquery>
-      <cfquery name="get_purchase_price_info" datasource="#dsn1#">
+      <cfquery name="get_purchase_price_info" datasource="#datam.dataSources.dsn1#">
          SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_STATUS = 1 AND PURCHASESALES = 1 AND PRODUCT_ID = #getMaster.PRODUCT_ID#
      </cfquery>
-     <cfquery name="get_sales_price_info" datasource="#dsn1#">
+     <cfquery name="get_sales_price_info" datasource="#datam.dataSources.dsn1#">
          SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_STATUS = 1 AND PURCHASESALES = 0 AND PRODUCT_ID = #getMaster.PRODUCT_ID#
      </cfquery>
      <cfset barcode=getBarcode()>
      <cfset UrunAdi=arguments.hydProductName>
-     <cfquery name="getCat" datasource="#dsn#">
+     <cfquery name="getCat" datasource="#datam.dataSources.dsn#">
          select * from workcube_metosan_1.PRODUCT_CAT WHERE HIERARCHY='#datam.HIERARCHY#'
      </cfquery>
      <CFOUTPUT query="getMaster">
@@ -109,9 +109,9 @@
      <cfelse>
          <cfset arguments.dsn=dsn>
      </cfif>
-     <cfset DSN=arguments.dsn>
-     <cfset DSN3=arguments.dsn3>
-     <cfset DSN1=arguments.dsn1>
+     <cfset DSN=datam.dataSources.dsn>
+     <cfset DSN3=datam.dataSources.dsn3>
+     <cfset DSN1=datam.dataSources.dsn1>
      <cfset database_type="MSSQL">
      <cfinclude template="/AddOns/Partner/satis/Includes/add_import_product.cfm">
 
