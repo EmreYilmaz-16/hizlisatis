@@ -57,6 +57,7 @@ function AddArrItem(
   SatirlariYaz_2(ArrNum);
 }
 function SatirlariYaz_2(arb) {
+  console.log(arb);
   var tbody = document.createElement("tbody");
   tbody.setAttribute("id", "tbod_" + arb);
   if (arb == 0) {
@@ -188,7 +189,6 @@ function SatirlariYaz_2(arb) {
     $("#tbod_" + arb).remove();
     document.getElementById("tbl_" + arb).appendChild(tbody);
   }
- 
 }
 function OpenBasketProducts(
   ArrNum,
@@ -323,7 +323,7 @@ function changeRotation(el) {
   }
 }
 function Temizle() {
-  document.getElementById("NamePumpa").value="";
+  document.getElementById("NamePumpa").value = "";
   document.getElementById("NamePumpa").removeAttribute("readonly");
   /*document.getElementById("pidPumpa")=0
   document.getElementById("SidPumpa")=0
