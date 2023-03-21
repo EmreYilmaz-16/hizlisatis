@@ -311,6 +311,9 @@ function SaveForPump() {
     IsRotate: ix,
     HIERARCHY: cx,
     dataSources: generalParamsSatis.dataSources,
+    BozulacakUrunlerArrLen:BozulacakArr.length,
+    GirenUrunlerArrLen:GirenArr.length,
+    CikanUrunlerArrLen:CikanArr.length
   };
   if (parseInt(ix) == 1) {
     var xx = YonKontrol();
@@ -322,9 +325,8 @@ function SaveForPump() {
   if (xx) {
     $.ajax({
       url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=savePumpa",
-      data: JReturnObject,
-      contentType: "application/json",
-      dataType: "json",
+      data: "&FORM_DATA="+JSON.stringify(ReturnObject),
+     
     });
   }
 }
