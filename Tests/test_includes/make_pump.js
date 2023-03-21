@@ -64,7 +64,7 @@ function SatirlariYaz_2(arb) {
     document
       .getElementById("NamePumpa")
       .setAttribute("value", OlusacakUrun.PRODUCT_NAME);
-      $("#NamePumpa").val(OlusacakUrun.PRODUCT_NAME)
+    $("#NamePumpa").val(OlusacakUrun.PRODUCT_NAME);
     document
       .getElementById("pidPumpa")
       .setAttribute("value", OlusacakUrun.PRODUCT_ID);
@@ -289,6 +289,7 @@ function ParaHesapla() {
 
   console.log(TotalPrice);
   TotalPrice = parseFloat(filterNum(commaSplit(TotalPrice, 2)));
+  return TotalPrice;
 }
 
 function SaveForPump() {
@@ -297,6 +298,10 @@ function SaveForPump() {
   if (cx.length == 0) {
     alert("Kategori Seçiniz");
     return false;
+  }
+  if (OlusacakUrun.PRODUCT_ID != 0) {
+    var tp = ParaHesapla();
+    OlusacakUrun.PRICE = tp;
   }
   var ReturnObject = {
     OlusacakUrun: OlusacakUrun,
@@ -344,5 +349,10 @@ function Temizle() {
     DISCOUNT: 0,
     MONEY: "TL",
   };
+  SatirlariYaz_2(0);
+}
+
+function SetUrunAdi(el) {
+  OlusacakUrun.PRODUCT_NAME = el.value;
   SatirlariYaz_2(0);
 }
