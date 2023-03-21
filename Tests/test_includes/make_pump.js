@@ -117,6 +117,8 @@ function SatirlariYaz_2(arb) {
       tr.appendChild(td);
       tbody.appendChild(tr);
     }
+    $("#tbod_" + arb).remove();
+    document.getElementById("tbl_" + arb).appendChild(tbody);
   } else if (arb == 2) {
     for (let i = 0; i < GirenArr.length; i++) {
       var tr = document.createElement("tr");
@@ -149,6 +151,8 @@ function SatirlariYaz_2(arb) {
       tr.appendChild(td);
       tbody.appendChild(tr);
     }
+    $("#tbod_" + arb).remove();
+    document.getElementById("tbl_" + arb).appendChild(tbody);
   } else if (arb == 3) {
     for (let i = 0; i < CikanArr.length; i++) {
       var tr = document.createElement("tr");
@@ -181,9 +185,10 @@ function SatirlariYaz_2(arb) {
       tr.appendChild(td);
       tbody.appendChild(tr);
     }
+    $("#tbod_" + arb).remove();
+    document.getElementById("tbl_" + arb).appendChild(tbody);
   }
-  $("#tbod_" + arb).remove();
-  document.getElementById("tbl_" + arb).appendChild(tbody);
+ 
 }
 function OpenBasketProducts(
   ArrNum,
