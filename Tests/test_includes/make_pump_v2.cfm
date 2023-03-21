@@ -71,7 +71,7 @@
                             
                 </tbody></table>
                 <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;">
-                <button type="button" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>        
+                <button type="button" style="margin-inline-end: auto;" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>        
                 <button type="button" class="btn btn-warning" onclick="Temizle()">Temizle</button>        
                 <button type="button" style="margin-right:15px" class="btn btn-success" onclick="SaveForPump()">Kaydet</button>;
             </div>
