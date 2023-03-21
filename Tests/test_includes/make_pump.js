@@ -310,9 +310,13 @@ function SaveForPump() {
     CikanUrunler: CikanArr,
     IsRotate: ix,
     HIERARCHY: cx,
+    dataSources: generalParamsSatis.dataSources,
   };
-  var xx = YonKontrol();
-
+  if (parseInt(ix) == 1) {
+    var xx = YonKontrol();
+  } else {
+    var xx = true;
+  }
   console.log(ReturnObject);
 
   if (xx) {
@@ -320,7 +324,7 @@ function SaveForPump() {
       url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=savePumpa",
       data: JReturnObject,
       contentType: "application/json",
-      dataType: "json"
+      dataType: "json",
     });
   }
 }
