@@ -319,6 +319,8 @@ function SaveForPump() {
     $.ajax({
       url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=savePumpa",
       data: JReturnObject,
+      contentType: "application/json",
+      dataType: "json"
     });
   }
 }
