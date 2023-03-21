@@ -1,5 +1,8 @@
 ﻿<cfcomponent>
    <cfset dsn=application.systemparam.dsn>
+<cfset dsn1="">
+<cfset dsn2="">
+<cfset dsn3="">
    <cffunction name="savePumpa" access="remote" returntype="string" returnformat="JSON" httpMethod="POST">    
       <cfdump var="#arguments#" >
       <CFSET datam=deserializeJSON(arguments.FORM_DATA)>
@@ -145,6 +148,7 @@
       </cfloop>  
       <cfreturn "Merhaba">
   </cffunction>
+
   <cffunction name="getBarcode">
       
    <cfif  1 eq 1>
