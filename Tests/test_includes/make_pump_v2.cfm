@@ -1,8 +1,8 @@
 ﻿<input type="hidden" name="company_id" id="company_id" value="22781">
 <input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="17"> 
 
-
-
+<cfset plkcddd=0>
+<cfinclude template="/AddOns/Partner/satis/includes/virtual_offer_parameters.cfm">
 
 <cf_box title="">
     <cfform name="search_product">

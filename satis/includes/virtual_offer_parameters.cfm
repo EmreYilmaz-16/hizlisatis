@@ -64,7 +64,7 @@
     </cfoutput>
   </script>
 
-
+<cfif not isDefined("plkcddd")>
 <cfquery name="DELFROMTOOR" datasource="#DSN3#">
     
 DELETE FROM #dsn3#.PBS_OFFER_TO_ORDER WHERE OFFER_ID IN (
@@ -74,3 +74,5 @@ DELETE FROM #dsn3#.PBS_OFFER_TO_ORDER WHERE OFFER_ID IN (
 			LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=PTO.ORDER_ID
 			) AS T WHERE  OR2 IS NULL AND OR1 IS NOT NULL )
 </cfquery>
+
+</cfif>
