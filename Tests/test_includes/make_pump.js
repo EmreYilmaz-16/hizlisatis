@@ -318,6 +318,7 @@ function changeRotation(el) {
   }
 }
 function Temizle() {
+  document.getElementById("NamePumpa").value="";
   document.getElementById("NamePumpa").removeAttribute("readonly");
   /*document.getElementById("pidPumpa")=0
   document.getElementById("SidPumpa")=0
@@ -337,5 +338,5 @@ function Temizle() {
     DISCOUNT: 0,
     MONEY: "TL",
   };
-  SatirlariYaz_2();
+  SatirlariYaz_2(0);
 }
