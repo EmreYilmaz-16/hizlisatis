@@ -285,7 +285,7 @@ function ParaHesapla() {
 
 function SaveForPump() {
   var ix = $("#is_rotation").val();
-  var cx = $("#CatPumpa").val();
+  var cx = $("#Pumpa_cat").val();
   if (cx.length == 0) {
     alert("Kategori Seçiniz");
     return false;
