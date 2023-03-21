@@ -5,7 +5,7 @@
 <cfset dsn3="">
    <cffunction name="savePumpa" access="remote" returntype="string" returnformat="JSON" httpMethod="POST">          
       <CFSET datam=deserializeJSON(arguments.FORM_DATA)>            
-      <cfquery name="getShelf" datasource="#data.dataSources.dsn3#">
+      <cfquery name="getShelf" datasource="#datam.dataSources.dsn3#">
          SELECT PRODUCT_PLACE_ID FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE='#catParser(datam.HIERARCHY)#'
       </cfquery>
       <cfset RETURN_VAL=structNew()>
