@@ -64,6 +64,7 @@ function SatirlariYaz_2(arb) {
     document
       .getElementById("NamePumpa")
       .setAttribute("value", OlusacakUrun.PRODUCT_NAME);
+      $("#NamePumpa").val(OlusacakUrun.PRODUCT_NAME)
     document
       .getElementById("pidPumpa")
       .setAttribute("value", OlusacakUrun.PRODUCT_ID);
