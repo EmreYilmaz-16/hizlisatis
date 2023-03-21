@@ -60,8 +60,8 @@
      <cfquery name="get_sales_price_info" datasource="#datam.dataSources.dsn1#">
          SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_STATUS = 1 AND PURCHASESALES = 0 AND PRODUCT_ID = #getMaster.PRODUCT_ID#
      </cfquery>
-     <cfset barcode=getBarcode()>
-     <cfset UrunAdi=arguments.hydProductName>
+    
+     <cfset UrunAdi=datam.OlusacakUrun.PRODUCT_NAME>
      <cfquery name="getCat" datasource="#datam.dataSources.dsn#">
          select * from workcube_metosan_1.PRODUCT_CAT WHERE HIERARCHY='#datam.HIERARCHY#'
      </cfquery>
@@ -112,10 +112,12 @@
      <cfelse>
          <cfset arguments.dsn=dsn>
      </cfif>
+   
      <cfset DSN=datam.dataSources.dsn>
      <cfset DSN3=datam.dataSources.dsn3>
      <cfset DSN1=datam.dataSources.dsn1>
      <cfset database_type="MSSQL">
+     <cfset barcode=getBarcode()>
      <cfinclude template="/AddOns/Partner/satis/Includes/add_import_product.cfm">
 
 
@@ -128,6 +130,7 @@
 
 
    </cffunction>
+  
 
    <cffunction  name="catParser">
       <cfargument  name="product_code">         
