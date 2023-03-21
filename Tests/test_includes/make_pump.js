@@ -299,7 +299,7 @@ function SaveForPump() {
     alert("Kategori Seçiniz");
     return false;
   }
-  if (OlusacakUrun.PRODUCT_ID != 0) {
+  if (OlusacakUrun.IS_VIRTUAL == 1) {
     var tp = ParaHesapla();
     OlusacakUrun.PRICE = tp;
   }
@@ -311,7 +311,16 @@ function SaveForPump() {
     IsRotate: ix,
     HIERARCHY: cx,
   };
+  var xx = YonKontrol();
+
   console.log(ReturnObject);
+
+  if (xx) {
+    $.ajax({
+      url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=savePumpa",
+      data: JSON.stringify(ReturnObject),
+    });
+  }
 }
 
 function changeRotation(el) {
@@ -355,4 +364,22 @@ function Temizle() {
 function SetUrunAdi(el) {
   OlusacakUrun.PRODUCT_NAME = el.value;
   SatirlariYaz_2(0);
+}
+
+function YonKontrol() {
+  var b = BozulacakArr.length;
+  var hata = false;
+  if (b == 0 || b > 1) {
+    alert("Yön Değiştirirken Bozulacak Üründe 1 Adet Ürün Olmalı !");
+    hata = true;
+  }
+  if (OlusacakUrun.IS_VIRTUAL == 1) {
+    alert("Yön Değiştirmede Sanal Ürün Kullanamazsınız !");
+    hata = true;
+  }
+  if (hata) {
+    return false;
+  } else {
+    return true;
+  }
 }
