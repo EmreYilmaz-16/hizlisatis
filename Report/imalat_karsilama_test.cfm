@@ -82,6 +82,9 @@
             (
             	TBL.DEPARTMENT_ID = #attributes.department_id#
            	)--->
+			   <cfif len(attributes.brand_id)>
+				AND P.BRAND_ID=#attributes.brand_id#
+			</cfif>
             <cfif Len(attributes.product_code) and Len(attributes.product_cat)>
             	AND P.PRODUCT_ID IN (#ValueList(get_categories.product_id,',')#)
           	</cfif>
@@ -93,9 +96,7 @@
                       	P.PRODUCT_CODE_2 LIKE '%#attributes.keyword#%'
                     )
          	</cfif>
-			<cfif len(attributes.brand_id)>
-				AND P.BRAND_ID=#attributes.brand_id#
-			</cfif>
+			
              <cfif len(attributes.keyword2)>
              	AND
                 	(
