@@ -241,19 +241,38 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
 		<input type="hidden" name="is_submitted" id="is_submitted" value="1">
 			<table style="width:100%">
 				<tr>
-                	<td width="400">&nbsp;</td>
-					<td width="30" align="right"><cf_get_lang_main no='48.Filtre'></td>
-					<td width="85"><cfinput type="text" name="keyword" id="keyword" value="#attributes.keyword#" maxlength="50" style="width:80px;"></td>
-                    <td width="90" align="right">Cari Özel Kodu</td>
-					<td width="95"><cfinput type="text" name="keyword2" id="keyword2" value="#attributes.keyword2#" maxlength="50" style="width:80px;"></td>
-                    <td width="70" align="right">Kat Sayı</td>
-                    <td width="40"><cfinput type="text" name="katsayi" id="katsayi" value="#attributes.katsayi#" validate="integer" maxlength="2" style="width:30px; text-align:right"></td>
+                	<td width="400">&nbsp;</td>					
+					<td width="85">
+						<div  class="form-group">
+							<label>Filtre</label>
+						<cfinput type="text" name="keyword" id="keyword" value="#attributes.keyword#" maxlength="50">
+					</div>
+					</td>
+                    
+					<td width="95">
+						<div class="form-group">
+							<label>Cari Özel Kodu</label>
+						<cfinput type="text" name="keyword2" id="keyword2" value="#attributes.keyword2#" maxlength="50" style="width:80px;">
+					</div>
+					</td>
+                    
+                    <td width="40">
+						<div class="form-group">
+							<label>Kat Sayı</label>
+						<cfinput type="text" name="katsayi" id="katsayi" value="#attributes.katsayi#" validate="integer" maxlength="2" style="width:30px; text-align:right">
+						</div>
+					</td>
                     <cfoutput>
-                        <td style="width:40px;" align="right"><cf_get_lang_main no='74.Kategori'></td>
-                        <td nowrap="nowrap" width="280"><input type="hidden" name="product_code" id="product_code" value="<cfif len(attributes.product_cat) and len(attributes.product_code)>#attributes.product_code#</cfif>">
+                        
+                        <td nowrap="nowrap" width="280">
+						<div class="form-group"	>
+							<label>Kategori</label>
+							<div class="input-group">
+							<input type="hidden" name="product_code" id="product_code" value="<cfif len(attributes.product_cat) and len(attributes.product_code)>#attributes.product_code#</cfif>">
                             <input type="hidden" name="product_cat_id" id="product_cat_id" value="<cfif len(attributes.product_cat) and len(attributes.product_cat_id)>#attributes.product_cat_id#</cfif>">
                             <input type="text" name="product_cat" id="product_cat" style="width:250px;" onFocus="AutoComplete_Create('product_cat','PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','0','PRODUCT_CATID,HIERARCHY','product_cat_id,product_code','','3','175','','1');" value="<cfif len(attributes.product_cat) and len(attributes.product_code)>#attributes.product_cat#</cfif>" autocomplete="off">
-                            <a href="javascript://"onClick="windowopen('#request.self#?fuseaction=objects.popup_product_cat_names&is_sub_category=1&field_id=list_order.product_cat_id&field_code=list_order.product_code&field_name=list_order.product_cat&keyword='+encodeURIComponent(document.list_order.product_cat.value),'list');"><img src="/images/plus_thin.gif" style="vertical-align:middle" title="<cf_get_lang no='576.Ürün Kategorisi Ekle'>!"></a>
+                            <span class="input-group-addon btnPointer icon-ellipsis" onClick="windowopen('#request.self#?fuseaction=objects.popup_product_cat_names&is_sub_category=1&field_id=list_order.product_cat_id&field_code=list_order.product_code&field_name=list_order.product_cat&keyword='+encodeURIComponent(document.list_order.product_cat.value),'list');"></span>
+							</div></div>
                         </td>
 						<td>
 							<div class="form-group" id="item-brand_id">
