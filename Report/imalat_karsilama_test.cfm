@@ -380,7 +380,10 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID
                             <td nowrap="nowrap">
                             	<a href="#request.self#?fuseaction=product.list_product&event=det&pid=#product_id#" class="tableyazi">#PRODUCT_NAME#</a>
                             </td>
-							
+							<td>#YEAR_2018#</td>
+							<td>#YEAR_2019#</td>
+							<td>#YEAR_2020#</td>
+							<td>#YEAR_2021#</td>
                             <cfloop from="#last_year_min_month#" to="#last_year_max_month#" index="i">
                             	<cfquery name="get_stock_sales" dbtype="query">
                                     SELECT satis FROM get_all_sales WHERE STOCK_ID = #STOCK_ID# AND YIL = #last_year# AND AY = #i#
