@@ -119,6 +119,7 @@
 		ORDER BY
         	P.PRODUCT_CODE
    	</cfquery>
+	<cfdump var="#get_product_list#">
 <!---- workcube_metosan.ProductYearlySaleData----->
 	   
 	    
