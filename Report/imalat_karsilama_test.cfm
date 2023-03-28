@@ -189,7 +189,9 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID
 </cfquery>
 <cfif get_product_list.recordcount>
 	<cfset stock_id_list = Valuelist(get_product_list.stock_id)>
-	<cfset stock_id_list="0,#stock_id_list#">
+	<cfif listLen(stock_id_list) eq 0>
+		<cfset stock_id_list=0>
+	</cfif>
 	<cfquery name="GET_PRICE" datasource="#DSN3#">
      	SELECT
         	P.MONEY,
