@@ -15,6 +15,7 @@
 <cfparam name="attributes.report_type" default="">
 <cfparam name="attributes.keyword" default="">
 <cfparam name="attributes.keyword2" default="">
+<cfparam name="attributes.brand_id" default="">
 <cfset this_year_max_month = Month(now())><!---İçinde bulunduğumuz ay--->
 <cfset this_year_min_month = 1><!---İçinde bulunduğumuz senenin en küçük ayı 1.aydır--->
 <cfset last_year_max_month = 12><!---İçinde bulunduğumuz senenin en büyük ayı 12.aydır--->
@@ -239,6 +240,17 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID
                             <input type="text" name="product_cat" id="product_cat" style="width:250px;" onFocus="AutoComplete_Create('product_cat','PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','0','PRODUCT_CATID,HIERARCHY','product_cat_id,product_code','','3','175','','1');" value="<cfif len(attributes.product_cat) and len(attributes.product_code)>#attributes.product_cat#</cfif>" autocomplete="off">
                             <a href="javascript://"onClick="windowopen('#request.self#?fuseaction=objects.popup_product_cat_names&is_sub_category=1&field_id=list_order.product_cat_id&field_code=list_order.product_code&field_name=list_order.product_cat&keyword='+encodeURIComponent(document.list_order.product_cat.value),'list');"><img src="/images/plus_thin.gif" style="vertical-align:middle" title="<cf_get_lang no='576.Ürün Kategorisi Ekle'>!"></a>
                         </td>
+						<td>
+							<div class="form-group" id="item-brand_id">
+								<label><cf_get_lang dictionary_id='58847.Marka'></label>
+								<cf_wrkproductbrand
+								width="100"
+								compenent_name="getProductBrand"               
+								boxwidth="240"
+								boxheight="150"
+								brand_id="#attributes.brand_id#">
+							</div>
+						</td>
                         <td nowrap="nowrap">
                         	<!---<cfinput type="text" name="start_date" maxlength="10" validate="eurodate" style="width:65px;" value="#dateformat(attributes.start_date,'dd/mm/yyyy')#">
                 			<cf_wrk_date_image date_field="start_date">
