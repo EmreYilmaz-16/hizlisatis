@@ -303,17 +303,26 @@ function SaveForPump() {
     var tp = ParaHesapla();
     OlusacakUrun.PRICE = tp;
   }
+
+  var company_id = document.getElementById("company_id").value;
+  var price_catid = document.getElementById("PRICE_CATID").value;
+
+  var offer_data = {
+    comp_id: company_id,
+    price_catid: price_catid,
+  };
   var ReturnObject = {
     OlusacakUrun: OlusacakUrun,
     BozulacakUrunler: BozulacakArr,
     GirenUrunler: GirenArr,
     CikanUrunler: CikanArr,
+    Offer_data: offer_data,
     IsRotate: ix,
     HIERARCHY: cx,
     dataSources: generalParamsSatis.dataSources,
-    BozulacakUrunlerArrLen:BozulacakArr.length,
-    GirenUrunlerArrLen:GirenArr.length,
-    CikanUrunlerArrLen:CikanArr.length
+    BozulacakUrunlerArrLen: BozulacakArr.length,
+    GirenUrunlerArrLen: GirenArr.length,
+    CikanUrunlerArrLen: CikanArr.length,
   };
   if (parseInt(ix) == 1) {
     var xx = YonKontrol();
@@ -325,8 +334,24 @@ function SaveForPump() {
   if (xx) {
     $.ajax({
       url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=savePumpa",
-      data: "&FORM_DATA="+JSON.stringify(ReturnObject),
-     
+      data: "&FORM_DATA=" + JSON.stringify(ReturnObject),
+      success: function (returnData) {
+        var O = JSON.parse(returnData);
+        window.opener.AddRow(
+          O.PRODUCT_ID,
+          O.STOCK_ID,
+          O.STOCK_CODE,
+          O.BRAND_NAME,
+          O.IS_VIRTUAL,
+          O.QUANTITY,
+          O.PRICE,
+          O.PRODUCT_NAME,
+          O.TAX,
+          O.DISCOUNT_RATE,
+          O.PRODUCT_TYPE,
+          O.SHELF_CODE
+        );
+      },
     });
   }
 }

@@ -12,6 +12,8 @@ $(document).ready(function () {
   setDoom();
 });
 
+
+
 function setDoom() {
   $(".ui-form-list-btn").parent().hide();
   $("#basketArea")
@@ -27,9 +29,9 @@ function hideP() {
 }
 
 /**
- *  
+ *
  * @description Sepete Satır Ekler
- * @param {boolean} is_virtual Sanal Ürün Olup Olmama 
+ * @param {boolean} is_virtual Sanal Ürün Olup Olmama
  * @param {number} poduct_type Ürün Tipi 0-Normal Ürün 1-Hortum 2-Hidrolik 3-Pompa 4-Teklif Ürünü
  * @param {boolean} is_manuel Manuel Fiyat Kontrolü Ürün Ek Bilgi
  * @returns void
@@ -620,7 +622,8 @@ function AddRow_pbso(
   is_production = 0,
   row_uniq_id = "",
   description = "",
-  rfls = ""
+  rfls = "",
+  converted_sid = 0
 ) {
   console.log(arguments);
   var form = $(document);
@@ -1124,8 +1127,14 @@ function AddRow_pbso(
   i_8.setAttribute("id", "Tax_" + row_count);
   i_8.setAttribute("value", commaSplit(tax));
 
+  var i88 = document.createElement("input");
+  i88.setAttribute("name", "converted_sid_" + row_count);
+  i88.setAttribute("id", "converted_sid_" + row_count);
+  i88.setAttribute("value", converted_sid);
+
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
+  div.appendChild(i88);
   div.appendChild(i_8);
   td.appendChild(div);
   tr.appendChild(td);
@@ -1468,6 +1477,9 @@ function GetBasketData() {
     var row_nettotal = document.getElementById(
       "row_nettotal_" + Old_rw_id
     ).value;
+    var converted_sid = document.getElementById(
+      "converted_sid_" + Old_rw_id
+    ).value;
     var shelf_code = document.getElementById("shelf_code_" + Old_rw_id).value;
     var Tax = document.getElementById("Tax_" + Old_rw_id).value;
     var indirim1 = document.getElementById("indirim1_" + Old_rw_id).value;
@@ -1516,6 +1528,7 @@ function GetBasketData() {
       is_production: is_production,
       row_uniq_id: row_uniq_id,
       description: description,
+      converted_sid: converted_sid,
     };
     OrderRows.push(Obj);
   }
