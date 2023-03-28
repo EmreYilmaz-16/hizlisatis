@@ -251,7 +251,7 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                     
 					<td >
 						<div class="form-group">
-							<label>Cari Özel Kodu</label>
+							<label>Ü.Ürün Kodu</label>
 						<cfinput type="text" name="keyword2" id="keyword2" value="#attributes.keyword2#" maxlength="50" style="width:80px;">
 					</div>
 					</td>
