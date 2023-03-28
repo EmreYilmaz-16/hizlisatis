@@ -93,6 +93,9 @@
                       	P.PRODUCT_CODE_2 LIKE '%#attributes.keyword#%'
                     )
          	</cfif>
+			<cfif len(attributes.brand_id)>
+				AND P.BRAND_ID=#attributes.brand_id#
+			</cfif>
              <cfif len(attributes.keyword2)>
              	AND
                 	(
@@ -457,6 +460,9 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID
     <cfif Len(attributes.product_code)>
 		<cfset adres = "#adres#&product_code=#attributes.product_code#">
     </cfif>
+	<cfif len(attributes.brand_id)>
+		<cfset adres="#adres#&brand_id=#attributes.brand_id#">
+	</cfif>
     <!-- sil -->
     <!---
     <cf_paging page="#attributes.page#"
