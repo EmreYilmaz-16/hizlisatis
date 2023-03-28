@@ -114,7 +114,7 @@
         	P.PRODUCT_CODE
    	</cfquery>
 
-	   
+	   <cfdump var="#get_product_list#">
 	    
 	   <cfset stock_id_list = Valuelist(get_product_list.STOCK_ID)>
 	   <cfquery name="get_all_sales" datasource="#dsn2#">
