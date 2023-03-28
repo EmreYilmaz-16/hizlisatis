@@ -189,6 +189,8 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID
 	   <cfelse>
 	   <cfset get_product_list.recordcount=0>
 	</cfif>
+
+	<cfdump var="#get_all_sales#">
 <cfquery name="GET_MONEY" datasource="#DSN2#">
  	SELECT * FROM SETUP_MONEY
 </cfquery>
