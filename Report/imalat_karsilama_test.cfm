@@ -48,6 +48,10 @@
             SUM(TBL.NOSALE_STOCK) AS NOSALE_STOCK, 
             SUM(TBL.REAL_STOCK) AS REAL_STOCK, 
             SUM(TBL.SALEABLE_STOCK) AS SALEABLE_STOCK, 
+			SUM(PSYSD.YEAR_2021) AS YEAR_2021,
+			SUM(PSYSD.YEAR_2020) AS YEAR_2020,
+			SUM(PSYSD.YEAR_2019) AS YEAR_2019,
+			SUM(PSYSD.YEAR_2018) AS YEAR_2018,
             P.PRODUCT_CODE, 
             P.SHELF_LIFE,
             P.PRODUCT_NAME, 
@@ -77,6 +81,7 @@
             	GET_STOCK_LAST_PROFILE2 AS GSL
          	) AS TBL INNER JOIN
     		#dsn1_alias#.PRODUCT AS P ON TBL.PRODUCT_ID = P.PRODUCT_ID
+			LEFT JOIN #DSN#.ProductYearlySaleData AS PSYSD ON PSYSD.PRODUCT_ID=P.PRODUCT_ID
 		WHERE     
             P.PRODUCT_STATUS = 1 <!---AND 
             (
@@ -114,7 +119,7 @@
 		ORDER BY
         	P.PRODUCT_CODE
    	</cfquery>
-
+<!---- workcube_metosan.ProductYearlySaleData----->
 	   
 	    
 	   <cfset stock_id_list = Valuelist(get_product_list.STOCK_ID)>
@@ -294,6 +299,10 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID
                     <th width="70">S.Özel.K</th>
                     <th width="40">C.Özel.K</th>
                     <th><cf_get_lang_main no='245.Ürün'></th>
+					<th>2018</th>
+					<th>2019</th>
+					<th>2020</th>
+					<th>2021</th>
                     <cfoutput>
                     <cfloop from="#last_year_min_month#" to="#last_year_max_month#" index="i">
                     	<th width="40" style="text-align:center">#last_year#/#i#</th>
@@ -370,6 +379,7 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID
                             <td nowrap="nowrap">
                             	<a href="#request.self#?fuseaction=product.list_product&event=det&pid=#product_id#" class="tableyazi">#PRODUCT_NAME#</a>
                             </td>
+							
                             <cfloop from="#last_year_min_month#" to="#last_year_max_month#" index="i">
                             	<cfquery name="get_stock_sales" dbtype="query">
                                     SELECT satis FROM get_all_sales WHERE STOCK_ID = #STOCK_ID# AND YIL = #last_year# AND AY = #i#
