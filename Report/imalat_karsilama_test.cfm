@@ -241,22 +241,22 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
 		<input type="hidden" name="is_submitted" id="is_submitted" value="1">
 			<table style="width:100%">
 				<tr>
-                	<td width="400">&nbsp;</td>					
-					<td width="85">
+                					
+					<td >
 						<div  class="form-group">
 							<label>Filtre</label>
 						<cfinput type="text" name="keyword" id="keyword" value="#attributes.keyword#" maxlength="50">
 					</div>
 					</td>
                     
-					<td width="95">
+					<td >
 						<div class="form-group">
 							<label>Cari Özel Kodu</label>
 						<cfinput type="text" name="keyword2" id="keyword2" value="#attributes.keyword2#" maxlength="50" style="width:80px;">
 					</div>
 					</td>
                     
-                    <td width="40">
+                    <td >
 						<div class="form-group">
 							<label>Kat Sayı</label>
 						<cfinput type="text" name="katsayi" id="katsayi" value="#attributes.katsayi#" validate="integer" maxlength="2" style="width:30px; text-align:right">
@@ -264,7 +264,7 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
 					</td>
                     <cfoutput>
                         
-                        <td nowrap="nowrap" width="280">
+                        <td nowrap="nowrap" >
 						<div class="form-group"	>
 							<label>Kategori</label>
 							<div class="input-group">
