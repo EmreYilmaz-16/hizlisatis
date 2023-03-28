@@ -115,9 +115,12 @@
         	P.PRODUCT_CODE
    	</cfquery>
 
-	   <cfdump var="#get_product_list#">
+	   
 	    
 	   <cfset stock_id_list = Valuelist(get_product_list.STOCK_ID)>
+	   <cfif listLen(stock_id_list) eq 0>
+		<cfset stock_id_list=0>
+	</cfif>
 	   <cfquery name="get_all_sales" datasource="#dsn2#">
 			SELECT YIL
 				,AY
@@ -192,6 +195,7 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID
 	<cfif listLen(stock_id_list) eq 0>
 		<cfset stock_id_list=0>
 	</cfif>
+
 	<cfquery name="GET_PRICE" datasource="#DSN3#">
      	SELECT
         	P.MONEY,
