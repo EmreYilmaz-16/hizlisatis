@@ -140,10 +140,7 @@
 				FROM #dsn#_#this_year#_#session.ep.COMPANY_ID#.STOCKS_ROW
 				WHERE STOCK_ID IN(#stock_id_list#)
 					AND STORE IN (
-						44
-						,45
-						,46
-						,47
+						select DEPARTMENT_ID from workcube_metosan.DEPARTMENT WHERE IS_STORE=1
 						)
 					AND PROCESS_TYPE IN (70,71,111)
 					AND MONTH(PROCESS_DATE) >= #this_year_min_month#
@@ -161,8 +158,7 @@
 				FROM #dsn#_#last_year#_#session.ep.COMPANY_ID#.STOCKS_ROW
 				WHERE STOCK_ID IN(#stock_id_list#)
 					AND STORE IN (
-						44
-						,45
+						select DEPARTMENT_ID from workcube_metosan.DEPARTMENT WHERE IS_STORE=1
 						)
 					AND PROCESS_TYPE IN (70,71,111)
 					AND MONTH(PROCESS_DATE) >= #last_year_min_month#
