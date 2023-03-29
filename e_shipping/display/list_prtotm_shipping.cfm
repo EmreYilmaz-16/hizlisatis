@@ -1820,7 +1820,17 @@
                                      </cfif>
                                 </td>
                                 <td style="text-align:center"> <!---İrsaliye Indicator--->
-                                    <cfif IS_TYPE eq 1>
+                                    <cfif IS_TYPE EQ 1>
+                                        <CFIF DURUM EQ 1>
+                                            <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
+                                        <cfelseif DURUM EQ 2>
+                                            <img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('prod',183)# #getLang('main',3137)#</cfoutput>" />
+                                        <cfelseif DURUM EQ 3>
+                                            <img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3542.Kısmi Kapandı'>" />
+                                        </CFIF>
+                                    </cfif>
+                                    
+                                    <!----<cfif IS_TYPE eq 1>
                                         <cfif DURUM eq 1>
                                         	<cfif (attributes.e_shipping_type eq 1 and ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.recordcount) AND ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0) or attributes.e_shipping_type neq 1>
                                             	<cfif Listlen(order_id_list) eq 1>
@@ -1857,9 +1867,17 @@
 
                                             <img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('prod',183)# #getLang('main',3137)#</cfoutput>" />
                                         </cfif>
-                                    </cfif>
+                                    </cfif>----->
                                 </td>
                                 <td style="text-align:center">
+                                    <cfif get_invoice_durum.recordcount and len(get_invoice_durum.kalan)>
+                                        <cfif get_invoice_durum.kalan lt 0>
+                                    		<img src="../../../images/green_glob.gif" border="0" title="<cfoutput>#getLang('main',3544)# #getLang('report',404)#</cfoutput> " />
+                                       	<cfelse>
+                                        	<img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('report',404)#</cfoutput> " />
+                                        </cfif>
+                                    </cfif>
+                                    <!----
                                 	<cfif get_invoice_durum.recordcount and len(get_invoice_durum.kalan)>
                                     	<cfif get_invoice_durum.kalan lt 0>
                                     		<img src="../../../images/green_glob.gif" border="0" title="<cfoutput>#getLang('main',3544)# #getLang('report',404)#</cfoutput> " />
@@ -1867,7 +1885,7 @@
                                         	<img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('report',404)#</cfoutput> " />
                                         </cfif>
                                     <cfelse>
-                                    	<cfif DURUM eq 1>
+                                    	<cfif 0 eq 1>
                                         	<cfif attributes.e_shipping_type eq 1 and (ceiling(AMBAR_CONTROL.recordcount) AND ceiling(AMBAR_CONTROL.PAKET_SAYISI) - ceiling(AMBAR_CONTROL.CONTROL_AMOUNT) eq 0 and ceiling(PACKEGE_CONTROL.PAKET_SAYISI) - ceiling(PACKEGE_CONTROL.CONTROL_AMOUNT) eq 0) or attributes.e_shipping_type neq 1>
                                                 <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=invoice.form_add_bill&<cfif Listlen(order_id_list) eq 1>order_id=#order_id_list#&order_row_id=#order_row_id_list#<cfelse>order_id=#ListGetAt(order_id_list,1)#</cfif>','longpage');" class="tableyazi" title="<cf_get_lang_main no='3545.Toptan Satış Faturası Oluştur'>">
                                                     <img src="../../../images/yellow_glob.gif" border="0" title="<cfoutput>#getLang('main',296)# #getLang('sales',479)#</cfoutput> " />
@@ -1878,7 +1896,7 @@
                                        	<cfelse>
                                         	<img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3547.Fatura Emirlerden Kesilebilir'> " />
                                         </cfif>
-                                    </cfif>
+                                    </cfif>----->
                                 </td> <!---Fatura Indicator--->
                                 <cfquery name="get_control_emp" datasource="#dsn3#">
                                 	SELECT DISTINCT RECORD_EMP FROM PRTOTM_SHIPPING_PACKAGE_LIST WHERE SHIPPING_ID = #SHIP_RESULT_ID# AND TYPE = #IS_TYPE#
