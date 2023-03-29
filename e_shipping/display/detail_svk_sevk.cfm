@@ -68,7 +68,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         </td>
         <td class="ready_quantity" id="ready_quantity_#ORDER_ROW_ID#">#READY_QUANTITY#</td>
         <td>
-            <input type="text" readonly id="txt_#ORDER_ROW_ID#" name="quantity_#ORDER_ROW_ID#"  value="#READY_QUANTITY-SHIPPED_QUANTITY#">
+            <input type="text" class="qtyy" readonly id="txt_#ORDER_ROW_ID#" name="quantity_#ORDER_ROW_ID#"  value="#READY_QUANTITY-SHIPPED_QUANTITY#">
             <input type="hidden" name="relation_id_#ORDER_ROW_ID#" value="#UNIQUE_RELATION_ID#">
         </td>
         <td>            
@@ -117,7 +117,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
             var row=rows[i];
             var OrderQuantity=trim($(row).find(".order_quantity").text())   
                 OrderQuantity=parseFloat(OrderQuantity)
-            var SevkQuantity=$(row).find("input[name='quantity']").val()
+            var SevkQuantity=$(row).find(".qtyy").val()
                 SevkQuantity=parseFloat(SevkQuantity)
             var cbx=$(row).find("input[type='checkbox']").is(":checked")
                 console.log(cbx)
