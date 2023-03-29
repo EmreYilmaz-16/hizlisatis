@@ -60,16 +60,16 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         <td>
             #PRODUCT_NAME#
         </td>
-        <td class="order_quantity" id="order_quantity_#currentrow#">
+        <td class="order_quantity" id="order_quantity_#ORDER_ROW_ID#">
             #QUANTITY#
         </td>
-        <td class="shipped_quantity" id="shipped_quantity_#currentrow#">
+        <td class="shipped_quantity" id="shipped_quantity_#ORDER_ROW_ID#">
             #SHIPPED_QUANTITY#
         </td>
-        <td class="ready_quantity" id="ready_quantity_#currentrow#">#READY_QUANTITY#</td>
+        <td class="ready_quantity" id="ready_quantity_#ORDER_ROW_ID#">#READY_QUANTITY#</td>
         <td>
-            <input type="text" readonly id="txt_#currentrow#" name="quantity" disabled value="#READY_QUANTITY-SHIPPED_QUANTITY#">
-            <input type="hidden" name="relation_id_#currentrow#" value="#UNIQUE_RELATION_ID#">
+            <input type="text" readonly id="txt_#ORDER_ROW_ID#" name="quantity" disabled value="#READY_QUANTITY-SHIPPED_QUANTITY#">
+            <input type="hidden" name="relation_id_#ORDER_ROW_ID#" value="#UNIQUE_RELATION_ID#">
         </td>
         <td>            
             <input type="checkbox" class="cssxbx" onclick="checkKontrol(this,#currentrow#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
