@@ -69,6 +69,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         <td class="ready_quantity" id="ready_quantity_#currentrow#">#READY_QUANTITY#</td>
         <td>
             <input type="text" readonly id="txt_#currentrow#" name="quantity" disabled value="#READY_QUANTITY-SHIPPED_QUANTITY#">
+            <input type="hidden" name="relation_id_#currentrow#" value="#UNIQUE_RELATION_ID#">
         </td>
         <td>            
             <input type="checkbox" class="cssxbx" onclick="checkKontrol(this,#currentrow#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
@@ -106,6 +107,9 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         if(kntRes){
         frm.submit();}
     }
+
+
+
     function parcaliKontrol(iid){
         var hata=false;
         var rows=document.getElementsByClassName("rows")
