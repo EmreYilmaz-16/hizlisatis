@@ -11,7 +11,7 @@ $(document).on('ready',function(){
     </cfloop>
   </cfoutput>
   
-    /* var quantity_list="<cfoutput>#attributes.quantity#</cfoutput>"
+    /*<!---- var quantity_list="<cfoutput>#attributes.quantity#</cfoutput>"
      
 var strArr=quantity_list.split(",")
 var rows=$("#tblBasket").find("input[name='Amount']")
@@ -23,7 +23,7 @@ for(let i=0;i<rows.length;i++){
     console.log(basket.items[i].AMOUNT)
     hesapla("AMOUNT",i)
 }
-document.getElementsByName("price_other")[0].click()*/
+document.getElementsByName("price_other")[0].click()----->*/
 })
 
 function getParameterByName(name, url) {
