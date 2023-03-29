@@ -2040,6 +2040,10 @@ function rowArrange() {
     row_nettotal.setAttribute("id", "row_nettotal_" + NeWid);
     row_nettotal.setAttribute("name", "row_nettotal_" + NeWid);
 
+    var converted_sid = document.getElementById("converted_sid_" + Old_rw_id);
+    converted_sid.setAttribute("id", "converted_sid_" + NeWid);
+    converted_sid.setAttribute("name", "converted_sid_" + NeWid);
+
     var shelf_code = document.getElementById("shelf_code_" + Old_rw_id);
     shelf_code.setAttribute("id", "shelf_code_" + NeWid);
     shelf_code.setAttribute("name", "shelf_code_" + NeWid);
