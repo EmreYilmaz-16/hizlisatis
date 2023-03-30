@@ -92,7 +92,7 @@ select count(*) AS RC from PBS_OFFER
 <cfset form.genel_indirim=FormData.OrderFooter.AFTER_DISCOUNT>
 <cfdump var="#FormData#">
 
-<cfset wrq=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT","INTEGER,INTEGER,INTEGER,INTEGER,,VARCHAR,DECIMAL")>
+<cfset wrq=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR")>
 
 <cfloop array="#BasketRows#" item="it" index="i">
     
@@ -174,7 +174,8 @@ select count(*) AS RC from PBS_OFFER
             STOCK_ID=it.stock_id,
             AMOUNT=filternum(it.amount),
             SHELF_NUMBER=getS.PRODUCT_PLACE_ID,
-            SHELF_NUMBER_TXT=it.shelf_code
+            SHELF_NUMBER_TXT=it.shelf_code,
+            ROW_UNIQ_ID=evaluate("attributes.row_unique_relation_id#i#")
         };
         queryAddRow(wrq,O);
    </cfscript>
@@ -404,6 +405,7 @@ pos 2 <br>
                 <cfset 'attributes.is_inventory#ix#' = getSinfo.IS_INVENTORY>
                 <cfset 'attributes.WRK_ROW_ID#ix#' = "#round(rand()*65)##dateformat(now(),'YYYYMMDD')##timeformat(now(),'HHmmssL')##session.ep.userid##round(rand()*100)#">
                 <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>
+                <cfset 'attributes.row_unique_relation_id#ix#' = ROW_UNIQ_ID>
                 <cfset ix=ix+1>                        
             </cfloop>
             <cfinclude template="/v16/stock/query/add_ship_fis_1_PBS.cfm">    
