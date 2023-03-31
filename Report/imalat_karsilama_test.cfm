@@ -146,6 +146,7 @@
                         P.MANUFACT_CODE LIKE '%#attributes.keyword2#%'
                     )
          	</cfif>
+		</cfif>
 		GROUP BY 
            	TBL.PRODUCT_ID, 
             TBL.STOCK_ID, 
