@@ -31,6 +31,9 @@ LEFT JOIN (
 WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 
 </cfquery>
+<cfif session.ep.user_id eq 1146>
+    <cfdump var="#GetSiparisData#">
+</cfif>
 <cf_box title="Sevk Durumları">
 <cfform method="post" id="frm1" action="">
     <cf_grid_list>

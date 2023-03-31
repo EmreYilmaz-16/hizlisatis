@@ -1,3 +1,4 @@
+TODO:
 ----------------			SORULAR		----------------
 
 ** Gerçek Üretim Emrini Sanal Üretim Emri Bittiği Anda Oluşturup Sonlandırabilirim Ancak Şöyle Bir Sıkıtıyla Karşılaşabiliriz
