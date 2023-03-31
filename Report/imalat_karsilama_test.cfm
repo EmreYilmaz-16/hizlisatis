@@ -275,8 +275,8 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
 <!---<cfparam name="attributes.page" default=1>
 <cfparam name="attributes.totalrecords" default="#get_product_list.recordcount#">
 <cfset attributes.startrow=((attributes.page-1)*attributes.maxrows)+1>--->
-<cf_basket_form id="report_orders_">
-	<cfform name="list_order" method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&report_id=#attributes.report_id#&event=det">
+<cf_basket_form id="report_orders_" >
+	<cfform name="list_order" enctype="multipart/form-data"  method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&report_id=#attributes.report_id#&event=det">
 		<input type="hidden" name="is_submitted" id="is_submitted" value="1">
 			<table style="width:100%">
 				<tr>
