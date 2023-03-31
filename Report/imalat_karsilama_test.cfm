@@ -37,6 +37,39 @@
             SELECT PRODUCT_ID FROM PRODUCT WHERE PRODUCT_CODE LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="#attributes.product_code#.%">
         </cfquery>
     </cfif>
+	<cfif isDefined("attributes.FileName") and len(attributes.FileName)>
+		<cffile action = "upload"
+	fileField = "file_11"
+	destination = "#expandPath("./ExDosyalar")#" 
+	nameConflict = "Overwrite" result="resul"> 
+	
+	<cfspreadsheet  action="read" src = "#expandPath("./ExDosyalar/#attributes.fileName#")#" query = "res">
+	
+	<cfquery name = "get_invoice_no" dbtype = "query">
+		SELECT DISTINCT
+			col_1 as ORRS,
+			col_2 AS PRODUCT_CODE, 
+			col_3 AS QUANTITY                   
+		FROM
+			res     
+	</cfquery>
+	<cfquery name="DelTempTable" datasource="#dsn3#">
+		IF EXISTS(SELECT * FROM sys.tables where name = 'TempReportPBS_#session.ep.USERID#')
+		BEGIN
+			DROP TABLE #dsn3#.TempReportPBS_#session.ep.USERID#
+		END    
+	</cfquery>
+	<cfquery name="cr" datasource="#dsn3#">
+		CREATE TABLE #dsn3#.TempReportPBS_#session.ep.USERID#(PRODUCT_CODE NVARCHAR(max)) 
+	</cfquery>
+	<CFLOOP query="get_invoice_no">
+	<cfquery name="iinssertt" datasource="#dsn3#">
+		INSERT INTO #dsn3#.TempReportPBS_#session.ep.USERID#(PRODUCT_CODE) VALUES('#PRODUCT_CODE#')
+	</cfquery>
+	</CFLOOP>
+	</cfif>
+
+
     <cfquery name="get_product_list" datasource="#dsn2#">
 		SELECT     
         	SUM(TBL.SHIP_INTERNAL_STOCK) AS SHIP_INTERNAL_STOCK, 
@@ -93,14 +126,19 @@
             <cfif Len(attributes.product_code) and Len(attributes.product_cat)>
             	AND P.PRODUCT_ID IN (#ValueList(get_categories.product_id,',')#)
           	</cfif>
-            <cfif len(attributes.keyword)>
-             	AND
-                	(
-                     	P.PRODUCT_NAME LIKE '%#attributes.keyword#%' OR
-                        P.PRODUCT_CODE LIKE '%#attributes.keyword#%' OR
-                      	P.PRODUCT_CODE_2 LIKE '%#attributes.keyword#%'
-                    )
-         	</cfif>
+           <cfif isdefined("attributes.FileName") and len(attributes.FileName)>
+            AND P.PRODUCT_CODE IN (select TRIM(PRODUCT_CODE) from #dsn3#.TempReportPBS_#session.ep.USERID#)
+           
+            <cfelse>
+        
+        <cfif len(attributes.keyword)>
+        AND
+            (
+                P.PRODUCT_NAME LIKE '%#attributes.keyword#%' OR
+                P.PRODUCT_CODE LIKE '%#attributes.keyword#%' OR
+                P.PRODUCT_CODE_2 LIKE '%#attributes.keyword#%'
+            )
+        </cfif>
 			
              <cfif len(attributes.keyword2)>
              	AND
@@ -298,6 +336,10 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
 						<cfinput type="text" name="maxrows" maxlength="3" onKeyUp="isNumber(this)" id="maxrows" value="#attributes.maxrows#" validate="integer" range="1,#maxrows_#" required="yes" message="#message#" style="width:25px;">
 					</td>--->
                     <td width="35">
+						<td>
+							<input type="file" name="file_11" id="file_11">
+							<input type="hidden"  name="FileName" id="FileName">
+						</td>
                     <cfsavecontent variable="message1"><cf_get_lang_main no ='499.Çalistir'></cfsavecontent>
                     <!----<cf_workcube_buttons is_upd='0' is_cancel='0' insert_info='#message1#' insert_alert=''>---->
 						<input type="submit">
@@ -608,4 +650,9 @@ $(document).ready( function () {
         } ],
     } );
 } );
+
+$('#file_11').change(function(e){
+        var fileName = e. target. files[0]. name;
+        $("#FileName").val(fileName)
+    });
 </script>
