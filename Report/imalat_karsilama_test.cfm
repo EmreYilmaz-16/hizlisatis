@@ -139,7 +139,7 @@
                 P.PRODUCT_CODE_2 LIKE '%#attributes.keyword#%'
             )
         </cfif>
-			
+			<!---mergha--->
              <cfif len(attributes.keyword2)>
              	AND
                 	(
