@@ -53,6 +53,7 @@ function parcaliKontrol(iid) {
       return false; //Sonra Açılacak
     }
   }
+  return true;
 }
 
 function checkAll() {
