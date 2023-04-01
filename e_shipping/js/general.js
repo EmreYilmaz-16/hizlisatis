@@ -22,7 +22,7 @@ function sbm(tip) {
 function parcaliKontrol(iid) {
   var q = wrk_query(
     "SELECT ISNULL(IS_PARCALI,0) as IS_PARCALI  FROM PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID=" +
-      14715,
+    belgeId,
     "dsn3"
   );
   //var rowX = 21;
