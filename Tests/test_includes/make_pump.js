@@ -349,8 +349,25 @@ function SaveForPump() {
           O.TAX,
           O.DISCOUNT_RATE,
           O.PRODUCT_TYPE,
-          O.SHELF_CODE
+          O.SHELF_CODE,
+          O.OTHER_MONEY,
+          O.PRICE_OTHER,
+          O.OFFER_ROW_CURRENCY,
+          O.IS_MANUEL,
+          O.COST,
+          O.MAIN_UNIT,
+          "",
+          "",
+          0,
+          O.ROW_NUM,
+          "",
+          1,
+          O.ROW_UNIQ_ID,
+          "",
+          "",
+          O.VIRMAN_ID
         );
+        this.close();
       },
     });
   }

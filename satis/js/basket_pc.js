@@ -2425,3 +2425,7 @@ function CheckSatilabilir() {
     // console.log(sid)
   }
 }
+
+function openPump(iid){
+  windowopen("/index.cfm?fuseaction=objects.devextreme_test&page=4","page");
+}
