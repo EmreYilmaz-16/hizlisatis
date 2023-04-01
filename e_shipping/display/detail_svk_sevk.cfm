@@ -1,3 +1,4 @@
+
 <cfquery name="GetSiparisData" datasource="#dsn3#">
 SELECT ORR.QUANTITY
     ,ORR.UNIQUE_RELATION_ID
@@ -75,7 +76,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
             <input type="hidden" name="relation_id_#ORDER_ROW_ID#" value="#UNIQUE_RELATION_ID#">
         </td>
         <td>            
-            <input type="checkbox" class="cssxbx" onclick="checkKontrol(this,#currentrow#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
+            <input type="checkbox" class="cssxbx" onclick="checkKontrol(this,#ORDER_ROW_ID#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
                         
         </td>
     </tr>
@@ -87,70 +88,9 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 <button class="btn btn-warning" type="button" onclick="sbm(2)">İrsaliye Kes</button>
 </cfform>
 </cf_box>
-
-
 <script>
-    function checkKontrol(el,id){
-        if($(el).is(":checked")){
-            document.getElementById("txt_"+id).removeAttribute("disabled")
-        }else{
-            document.getElementById("txt_"+id).setAttribute("disabled","disabled")
-        }
-    }
-    function sbm(tip) {
-       var kntRes=parcaliKontrol(<cfoutput>#attributes.iid#</cfoutput>);
-       
-        var frm=document.getElementById("frm1")
-        if(tip==1){
-            frm.action="index.cfm?fuseaction=invoice.form_add_bill&is_from_pbs=1"
-        }
-        else if(tip==2){
-            frm.action="index.cfm?fuseaction=stock.form_add_sale&is_from_pbs=1"
-        }
-        if(kntRes){
-        frm.submit();}
-    }
-
-
-
-    function parcaliKontrol(iid){
-        var hata=false;
-        var rows=document.getElementsByClassName("rows")
-            for(let i=0;i<rows.length;i++){
-            var row=rows[i];
-            var OrderQuantity=trim($(row).find(".order_quantity").text())   
-                OrderQuantity=parseFloat(OrderQuantity)
-            var SevkQuantity=$(row).find(".qtyy").val()
-                SevkQuantity=parseFloat(SevkQuantity)
-            var cbx=$(row).find("input[type='checkbox']").is(":checked")
-                console.log(cbx)
-        
-            if(cbx){
-                if(OrderQuantity!=SevkQuantity){
-                    hata=true
-                }
-            }else{
-                hata=true
-            }
-                
-        }
-        
-        var q=wrk_query("SELECT ISNULL(IS_PARCALI,0) as IS_PARCALI  FROM PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID="+iid,"dsn3")
-        console.log(q)
-        if(parseInt(q.IS_PARCALI[0])==0){
-            hata=false
-        };
-        
-        if(hata){
-            alert("Ürünlerin Tamamını Sevk Etmediniz")
-            return false
-        }else{
-            return true
-        }
-    }
-
-    function checkAll(){
-        var cbx=$(".cssxbx")
-        for(let i=0;i<cbx.length;i++){cbx[i].click()}
-    }
+    var row_s=<cfoutput>#GetSiparisData.recordCount#</cfoutput>;
+    var belgeId=<cfoutput>#attributes.iid#</cfoutput>;
 </script>
+
+<script src="/AddOns/Partner/e_shipping/js/general.js"></script>
