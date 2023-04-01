@@ -25,7 +25,7 @@ function parcaliKontrol(iid) {
       14715,
     "dsn3"
   );
-  var rowX = 21;
+  //var rowX = 21;
   console.log(q);
   var hata = false;
   if (parseInt(q.IS_PARCALI[0]) == 0) {

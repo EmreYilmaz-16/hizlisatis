@@ -89,7 +89,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
 </cfform>
 </cf_box>
 <script>
-    var row_s=<cfoutput>#GetSiparisData.recordCount#</cfoutput>;
+    var rowX=<cfoutput>#GetSiparisData.recordCount#</cfoutput>;
     var belgeId=<cfoutput>#attributes.iid#</cfoutput>;
 </script>
 
