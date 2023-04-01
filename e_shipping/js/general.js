@@ -22,7 +22,7 @@ function sbm(tip) {
 function parcaliKontrol(iid) {
   var q = wrk_query(
     "SELECT ISNULL(IS_PARCALI,0) as IS_PARCALI  FROM PRTOTM_SHIP_RESULT WHERE SHIP_RESULT_ID=" +
-    belgeId,
+      belgeId,
     "dsn3"
   );
   //var rowX = 21;
@@ -44,6 +44,9 @@ function parcaliKontrol(iid) {
         rowY++;
         if (OrderQuantity != SevkQuantity) {
           alert("Hazırlanan Miktar Sipariş Miktarı İle Uyuşmuyor");
+          return false;
+        } else if (SevkQuantity == 0) {
+          alert("Hazırlanmamış Ürünler Var");
           return false;
         }
       }
