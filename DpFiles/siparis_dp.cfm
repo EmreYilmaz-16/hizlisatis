@@ -6,20 +6,20 @@ var elem=document.getElementsByClassName("detailHeadButton")
 $(elem[0].children).append("<li class='dropdown' id='transformation'><a style='color:#0489c7' title='Sevkiyat Talebi Oluştur' onclick='pencereac(1,"+fatid+")'><i class='icon-exchange'></i></a></li>")
 //$(elem[0].children).append("<li class='dropdown' id='transformation'><a style='color:#04c76c' title='Şube Sevkiyat Talebi Oluştur'onclick='pencereac(2,"+fatid+")'><i class='icon-industry'></i></a></li>")
 //$(elem[0].children).append("<li class='dropdown' id='transformation'><a style='color:#fcba03' title='Yazdır'onclick='pencereac(3,"+fatid+")'><i class='icon-print'></i></a></li>")
-var q="SELECT DISTINCT ORDER_ID FROM PRTOTM_SHIP_RESULT_ROW WHERE ORDER_ID="+fatid
-var res=wrk_query(q,"dsn3")
-console.log(res)
-if(res.recordcount >0){
-    $("#workcube_button").remove()
-   // $(".detailHeadButton").remove()
-    var drs=$(".detailHeadButton .dropdown a")
-    drs.each(function(i,e){
-        var att=$(e).attr("Title")
-        if(att=="Kaydet"){
-            $(e).remove()
-        }
-    })
-}
+// var q="SELECT DISTINCT ORDER_ID FROM PRTOTM_SHIP_RESULT_ROW WHERE ORDER_ID="+fatid
+// var res=wrk_query(q,"dsn3")
+// console.log(res)
+// if(res.recordcount >0){
+//     $("#workcube_button").remove()
+//     $(".detailHeadButton").remove()
+//     var drs=$(".detailHeadButton .dropdown a")
+//     drs.each(function(i,e){
+//         var att=$(e).attr("Title")
+//         if(att=="Kaydet"){
+//             $(e).remove()
+//         }
+//     })
+// }
 
 
 })
