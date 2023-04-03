@@ -27,7 +27,7 @@ LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SF.DEPARTMENT_OUT
             <tr>
                 <td>#FIS_NUMBER#</td>
                 <td>#FIS_NUMBER#</td>
-                <td>#dateFormat("dd/mm/yyyy")#</td>
+                <td>#dateFormat(FIS_DATE,"dd/mm/yyyy")#</td>
                 <td>#RECORD_EMP#</td>
                 <td>#DEPARTMENT_HEAD# #COMMENT#</td>
 
