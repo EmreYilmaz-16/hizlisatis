@@ -171,7 +171,7 @@ ORDER BY POR.OFFER_ROW_ID
     #getOfferRow.IS_VIRTUAL#,
     #getOfferRow.QUANTITY#,
     #getOfferRow.PRICE#,
-    '#getOfferRow.PRODUCT_NAME#',
+    '#EncodeForJavaScript(getOfferRow.PRODUCT_NAME)#',
     #getOfferRow.TAX#,
     #getOfferRow.DISCOUNT_1#,
     #getOfferRow.PRODUCT_TYPE#,
