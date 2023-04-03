@@ -24,6 +24,12 @@
              ,#0#
              )      
        </cfquery>
+       <CFSET IS_MANUEL=0>
+       <CFSET COST=datam.OlusacakUrun.PRICE>
+       <CFSET VIRMAN_ID=RESSSS.IDENTITYCOL>
+       <CFSET BRAND_NAME="">
+       <CFSET DISCOUNT_RATE=0>
+       <cfset RETURN_VAL=structNew()>   
       <cfif datam.IsRotate eq 1>
          <cfinclude template="../includes/YonDegistirme.cfm">
       <cfelse>
@@ -36,13 +42,9 @@
       </cfif>
 
 
-       <CFSET IS_MANUEL=0>
-       <CFSET COST=datam.OlusacakUrun.PRICE>
-       <CFSET VIRMAN_ID=RESSSS.IDENTITYCOL>
-       <CFSET BRAND_NAME="">
-       <CFSET DISCOUNT_RATE=0>
+       
        <cfdump var="#RESSSS#">
-       <cfset RETURN_VAL=structNew()>       
+           
        <cfif datam.IsRotate neq 1>
           <cfif datam.OlusacakUrun.IS_VIRTUAL eq 1>
              <cfset arguments.PRODUCT_CATID=4083>
