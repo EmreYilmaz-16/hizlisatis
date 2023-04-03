@@ -6,7 +6,7 @@
 </cfform>
 
 <cfif isDefined("attributes.is_submit")>
-    <cfquery name="getKontrol" datasource="#dsn3#">
+    <cfquery name="getKontrol" datasource="#dsn2#">
       
 SELECT 
 SF.FIS_NUMBER,
