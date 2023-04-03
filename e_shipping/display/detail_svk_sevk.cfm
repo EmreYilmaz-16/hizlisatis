@@ -53,7 +53,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
     </thead>
     <tbody>
     <cfoutput>
-        <input type="hidden" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""</cfif> value="#GetSiparisData.ORDER_ID#" name="order_id" id="row_order_id">
+        <input type="hidden" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""<cfelse>value="#GetSiparisData.ORDER_ID#" name="order_id" id="row_order_id"</cfif> >
 <cfloop query="GetSiparisData">
     <tr class="rows">
         <td>
@@ -73,11 +73,11 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         </td>
         <td class="ready_quantity" id="ready_quantity_#ORDER_ROW_ID#">#READY_QUANTITY#</td>
         <td>
-            <input <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""</cfif> type="text" class="qtyy" readonly id="txt_#ORDER_ROW_ID#" name="quantity_#ORDER_ROW_ID#"  value="#READY_QUANTITY-SHIPPED_QUANTITY#">
-            <input type="hidden" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""</cfif> name="relation_id_#ORDER_ROW_ID#" value="#UNIQUE_RELATION_ID#">
+            <input <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""<cfelse>class="qtyy"</cfif> type="text"  readonly id="txt_#ORDER_ROW_ID#" name="quantity_#ORDER_ROW_ID#"  value="#READY_QUANTITY-SHIPPED_QUANTITY#">
+            <input type="hidden" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""<cfelse> name="relation_id_#ORDER_ROW_ID#" value="#UNIQUE_RELATION_ID#"</cfif> >
         </td>
         <td>            
-            <input type="checkbox" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""</cfif> class="cssxbx" onclick="checkKontrol(this,#ORDER_ROW_ID#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
+            <input type="checkbox" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""<cfelse>class="cssxbx" onclick="checkKontrol(this,#ORDER_ROW_ID#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id"</cfif>  >            
                         
         </td>
     </tr>
