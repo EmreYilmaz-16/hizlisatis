@@ -23,15 +23,22 @@ LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SF.DEPARTMENT_OUT
  WHERE SF.REF_NO='#attributes.svk_no#'        
     </cfquery>
     <cf_big_list>
+        <thead>
+            <th>Hazırlama No</th>
+            <th>Hazırlama Tarihi</th>
+            <th>Hazırlayan Pers</th>
+            <th>Hazırlayan Depo</th>
+        </thead>
+        <tbody>
         <cfoutput query="getKontrol">
             <tr>
-                <td>#FIS_NUMBER#</td>
-                <td>#FIS_NUMBER#</td>
+                <td>#FIS_NUMBER#</td>                
                 <td>#dateFormat(FIS_DATE,"dd/mm/yyyy")#</td>
                 <td>#RECORD_EMP#</td>
                 <td>#DEPARTMENT_HEAD# #COMMENT#</td>
 
             </tr>
         </cfoutput>
+    </tbody>
     </cf_big_list>
 </cfif>
