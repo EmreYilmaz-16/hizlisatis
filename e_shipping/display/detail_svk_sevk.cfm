@@ -1,4 +1,4 @@
-
+<cfset nonInvoice="-9,-10,-3">
 <cfquery name="GetSiparisData" datasource="#dsn3#">
 SELECT ORR.QUANTITY
     ,ORR.UNIQUE_RELATION_ID
@@ -10,6 +10,7 @@ SELECT ORR.QUANTITY
 	,S.PRODUCT_CODE
     ,PSR.COMPANY_ID
     ,PSR.DEPARTMENT_ID
+    ,ORR.ORDER_ROW_CURRENCY
 FROM workcube_metosan_1.PRTOTM_SHIP_RESULT AS PSR
 LEFT JOIN workcube_metosan_1.PRTOTM_SHIP_RESULT_ROW AS PSRR ON PSRR.SHIP_RESULT_ID = PSR.SHIP_RESULT_ID
 LEFT JOIN workcube_metosan_1.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID = PSRR.ORDER_ROW_ID
@@ -18,7 +19,7 @@ LEFT JOIN (
 	SELECT SUM(AMOUNT) AS AMOUNT
 		,UNIQUE_RELATION_ID
 		,SHIP_ID
-	FROM workcube_metosan_2023_1.SHIP_ROW
+	FROM #DSN2#.SHIP_ROW
 	GROUP BY UNIQUE_RELATION_ID
 		,SHIP_ID
 	) AS SR ON SR.UNIQUE_RELATION_ID = orr.UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
@@ -26,7 +27,7 @@ LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID = ORR.STOCK_ID
 LEFT JOIN (
 	SELECT SUM(AMOUNT) AS AMOUNT_H
 		,UNIQUE_RELATION_ID
-	FROM workcube_metosan_2023_1.STOCK_FIS_ROW
+	FROM #DSN2#.STOCK_FIS_ROW
 	GROUP BY UNIQUE_RELATION_ID
 	) AS SIFR ON SIFR.UNIQUE_RELATION_ID = ORR.UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
 WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
@@ -52,7 +53,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
     </thead>
     <tbody>
     <cfoutput>
-        <input type="hidden" value="#GetSiparisData.ORDER_ID#" name="order_id" id="row_order_id">
+        <input type="hidden" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""</cfif> value="#GetSiparisData.ORDER_ID#" name="order_id" id="row_order_id">
 <cfloop query="GetSiparisData">
     <tr class="rows">
         <td>
@@ -72,11 +73,11 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid#
         </td>
         <td class="ready_quantity" id="ready_quantity_#ORDER_ROW_ID#">#READY_QUANTITY#</td>
         <td>
-            <input type="text" class="qtyy" readonly id="txt_#ORDER_ROW_ID#" name="quantity_#ORDER_ROW_ID#"  value="#READY_QUANTITY-SHIPPED_QUANTITY#">
-            <input type="hidden" name="relation_id_#ORDER_ROW_ID#" value="#UNIQUE_RELATION_ID#">
+            <input <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""</cfif> type="text" class="qtyy" readonly id="txt_#ORDER_ROW_ID#" name="quantity_#ORDER_ROW_ID#"  value="#READY_QUANTITY-SHIPPED_QUANTITY#">
+            <input type="hidden" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""</cfif> name="relation_id_#ORDER_ROW_ID#" value="#UNIQUE_RELATION_ID#">
         </td>
         <td>            
-            <input type="checkbox" class="cssxbx" onclick="checkKontrol(this,#ORDER_ROW_ID#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
+            <input type="checkbox" <cfif listFind(nonInvoice,ORDER_ROW_CURRENCY)>disabled=""</cfif> class="cssxbx" onclick="checkKontrol(this,#ORDER_ROW_ID#)" value="#ORDER_ROW_ID#" name="order_row_id" id="row_order_row_id">            
                         
         </td>
     </tr>
