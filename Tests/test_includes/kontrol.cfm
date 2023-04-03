@@ -10,6 +10,7 @@
       
 SELECT 
 SF.FIS_NUMBER,
+SF.FIS_ID
 SF.DEPARTMENT_OUT,
 SF.LOCATION_OUT,
 SF.FIS_DATE,
@@ -32,7 +33,7 @@ LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SF.DEPARTMENT_OUT
         <tbody>
         <cfoutput query="getKontrol">
             <tr>
-                <td>#FIS_NUMBER#</td>                
+                <td><a href="javascript://" onclick="GetRowData(#FIS_ID#)">#FIS_NUMBER#</a></td>                
                 <td>#dateFormat(FIS_DATE,"dd/mm/yyyy")#</td>
                 <td>#RECORD_EMP#</td>
                 <td>#DEPARTMENT_HEAD# #COMMENT#</td>
@@ -42,3 +43,19 @@ LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SF.DEPARTMENT_OUT
     </tbody>
     </cf_big_list>
 </cfif>
+
+<script>
+    function GetRowData(iid){
+        AjaxPageLoad(
+    "index.cfm?fuseaction=objects.devextreme_test&page=6&fis_id=" +iid,      
+    "resultArea",
+    1,
+    "Yükleniyor"
+  );
+    }
+</script>
+
+<div id="resultArea" name="resultArea">
+
+</div>
+
