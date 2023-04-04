@@ -28,7 +28,7 @@ function parcaliKontrol(iid) {
   //var rowX = 21;
   console.log(q);
   var hata = false;
-  if (parseInt(q.IS_PARCALI[0]) == 0) {
+  if (parseInt(q.IS_PARCALI[0]) != 0) {
     var rows = document.getElementsByClassName("rows");
     var rowY = 0;
     for (let i = 0; i < rows.length; i++) {
