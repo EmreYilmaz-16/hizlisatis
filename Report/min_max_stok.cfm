@@ -250,7 +250,7 @@
                 )
             </cfif>
             <cfif len(attributes.stock_id)>
-                    P.PRODUCT_ID=#attributes.product_id#
+                    P.PRODUCT_ID IN(select RELATED_PRODUCT_ID from workcube_metosan_1.RELATED_PRODUCT where PRODUCT_ID=#attributes.stock_id#)
                 </cfif>
         </cfif>
             <cfif len(attributes.keyword2)>
