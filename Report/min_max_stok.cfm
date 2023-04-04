@@ -3,7 +3,7 @@
     <cfparam name="attributes.maxrows" default='#session.ep.maxrows#'>
     <cfparam name="attributes.price_cat" default="-1">
     <cfparam name="attributes.page" default="1">
-    <cfparam name="attributes.start_date" default="#dateformat(now(),'dd/mm/yyyy')#">
+    <cfparam name="attributes.start_date" default="#dateformat(now(),'dd/mm/yyyy')#"> 
     <cfparam name="attributes.finish_date" default="#dateformat(now(),'dd/mm/yyyy')#">
     <cfparam name="attributes.department_id" default="26">
     <cfparam name="attributes.department_txt" default="">
@@ -24,6 +24,7 @@
     <cfparam name="attributes.brand_id" default="">
     <cfparam name="attributes.stok_type" default="">
     <cfparam name="attributes.isexcell" default="0">
+    
     <cfparam name="attributes.maxrows" default='#session.ep.maxrows#'>
     <cfset attributes.startrow=((attributes.page-1)*attributes.maxrows)+1>
     <cfform name="form_upd_product" method="post" enctype="multipart/form-data" >
@@ -120,6 +121,18 @@
     <td>
         <input type="file" name="file_11" id="file_11">
         <input type="hidden"  name="FileName" id="FileName">
+    </td>
+    <td>
+        <div class="form-group">
+            <label>B.Tarihi</label>
+        <input type="date" name="start_date">
+    </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <label>Bit.Tarihi</label>
+        <input type="date" name="finish_date">
+    </div>
     </td>
     <td><input type="submit"></td>
     </tr>
@@ -236,6 +249,9 @@
                     P.PRODUCT_CODE_2 LIKE '%#attributes.keyword#%'
                 )
             </cfif>
+            <cfif len(attributes.stock_id)>
+                    P.PRODUCT_ID=#attributes.product_id#
+                </cfif>
         </cfif>
             <cfif len(attributes.keyword2)>
             AND ( P.SHORT_CODE_ID IN
@@ -271,6 +287,7 @@
                 <cfif attributes.stok_type eq 2>AND TOTAL_STOCK<0</cfif>
                 <cfif attributes.stok_type eq 3>AND TOTAL_STOCK=0</cfif>
                 </cfif>
+                
         GROUP BY
         P.PRODUCT_NAME
             ,P.PRODUCT_CODE
@@ -609,7 +626,7 @@
         <tr>
             <td>#getStokcks_1.RowNum#</td>
             <td><a onclick="windowopen('index.cfm?fuseaction=objects.popup_detail_product&pid=#PRODUCT_ID#&sid=#STOCK_ID#','medium');">#getStokcks_1.PRODUCT_CODE#</a></td>
-            <td>#getStokcks_1.PRODUCT_CODE_2#</td>
+            <td><a href="javascript://" onclick="windowopen('/index.cfm?fuseaction=#attributes.fuseaction#&report_id=#attributes.report_id#&event=det&form_submitted=1')">#getStokcks_1.PRODUCT_CODE_2#</a></td>
             <td>#getStokcks_1.PRODUCT_NAME#</td>
             <td>#getStokcks_1.PROPERTY8#</td>
             <td>#getStokcks_1.PROPERTY9#</td>
