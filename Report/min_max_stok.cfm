@@ -626,7 +626,7 @@
         <tr>
             <td>#getStokcks_1.RowNum#</td>
             <td><a onclick="windowopen('index.cfm?fuseaction=objects.popup_detail_product&pid=#PRODUCT_ID#&sid=#STOCK_ID#','medium');">#getStokcks_1.PRODUCT_CODE#</a></td>
-            <td><a href="javascript://" onclick="windowopen('/index.cfm?fuseaction=#attributes.fuseaction#&report_id=#attributes.report_id#&event=det&form_submitted=1')">#getStokcks_1.PRODUCT_CODE_2#</a></td>
+            <td><a href="javascript://" onclick="windowopen('/index.cfm?fuseaction=#attributes.fuseaction#&report_id=#attributes.report_id#&event=det&form_submitted=1&stock_id=#PRODUCT_ID#')">#getStokcks_1.PRODUCT_CODE_2#</a></td>
             <td>#getStokcks_1.PRODUCT_NAME#</td>
             <td>#getStokcks_1.PROPERTY8#</td>
             <td>#getStokcks_1.PROPERTY9#</td>
