@@ -37,8 +37,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid# AND ORR.ORDER_ROW_CURRENCY NOT IN (#
     <cfdump var="#GetSiparisData#">
 </cfif>
 <cf_box title="Faturalanabilir">
-<cfform method="post" id="frm1" action="">
-    
+<cfform method="post" id="frm1" action="">    
     <cf_grid_list>
     <thead>
         <tr>
@@ -90,6 +89,11 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid# AND ORR.ORDER_ROW_CURRENCY NOT IN (#
 <button class="btn btn-warning" type="button" onclick="sbm(2)">İrsaliye Kes</button>
 </cfform>
 </cf_box>
+<script>
+    var rowX=<cfoutput>#GetSiparisData.recordCount#</cfoutput>;
+    var belgeId=<cfoutput>#attributes.iid#</cfoutput>;
+</script>
+
 <cfquery name="GetSiparisData" datasource="#dsn3#">
     SELECT ORR.QUANTITY
         ,ORR.UNIQUE_RELATION_ID
@@ -161,9 +165,6 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid# AND ORR.ORDER_ROW_CURRENCY NOT IN (#
 
     </cf_box>
 
-<script>
-    var rowX=<cfoutput>#GetSiparisData.recordCount#</cfoutput>;
-    var belgeId=<cfoutput>#attributes.iid#</cfoutput>;
-</script>
+
 
 <script src="/AddOns/Partner/e_shipping/js/general.js"></script>
