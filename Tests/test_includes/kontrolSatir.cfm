@@ -16,7 +16,7 @@ WHERE  FIS_ID=#attributes.fis_id#
             <td>#PRODUCT_NAME#</td>
             <td>#AMOUNT#</td>
             <td>#KONTROL_AMOUNT#</td>
-            <td><button type="button" <cfif AMOUNT-KONTROL_AMOUNT EQ 0>class="btn btn-success"<cfelse>onclick="Kontrol_Et(#AMOUNT-KONTROL_AMOUNT#)" class="btn btn-primary"</cfif> >Kontrol Et</button></td>
+            <td><button type="button" <cfif AMOUNT-KONTROL_AMOUNT EQ 0>class="btn btn-success"<cfelse>onclick="Kontrol_Et(#AMOUNT-KONTROL_AMOUNT#,#STOCK_FIS_ROW_ID#,'#UNIQUE_RELATION_ID#')" class="btn btn-primary"</cfif> >Kontrol Et</button></td>
         </tr>
     </cfoutput>
 </cf_big_list>
