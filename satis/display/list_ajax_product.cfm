@@ -97,7 +97,7 @@
 )---->
                     </cfif>
                     <cfif attributes.actType eq 4>
-                        <a onclick="AddArrItem(#attributes.arrayid#,#it.PRODUCT_ID#,'#it.PRODUCT_NAME#','#it.STOCK_CODE#',#it.STOCK_ID#,1,'',0,#it.PRICE#,#it.DISCOUNT_RATE#,'#it.MONEY#')">#it.PRODUCT_NAME#</a>
+                        <a onclick="AddArrItem(#attributes.arrayid#,#it.PRODUCT_ID#,'#it.PRODUCT_NAME#','#it.STOCK_CODE#',#it.STOCK_ID#,1,'',0,#it.PRICE#,#it.DISCOUNT_RATE#,'#it.MONEY#',#it.LAST_COST#,#it.PRICE#,#it.IS_MANUEL#)">#it.PRODUCT_NAME#</a>
                         <!----  ArrNum, PRODUCT_ID,PRODUCT_NAME,PRODUCT_CODE,STOCK_ID,QUANTITY = 1,DESCRIPTION = "",IS_VIRTUAL = 0,PRICE = 0, DISCOUNT = 0------>
                     </cfif>
                 <cfelse>

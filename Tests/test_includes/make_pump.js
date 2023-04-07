@@ -14,6 +14,9 @@ var OlusacakUrun = {
   PRICE: 0,
   DISCOUNT: 0,
   MONEY: "TL",
+  COST: 0,
+  PRICE_OTHER: 0,
+  IS_MANUEL:0
 };
 
 function AddArrItem(
@@ -27,7 +30,10 @@ function AddArrItem(
   IS_VIRTUAL = 0,
   PRICE = 0,
   DISCOUNT = 0,
-  MONEY = "TL"
+  MONEY = "TL",
+  COST = 0,
+  PRICE_OTHER = 0,
+  IS_MANUEL=0
 ) {
   var Obj = {
     PRODUCT_ID: PRODUCT_ID,
@@ -40,6 +46,9 @@ function AddArrItem(
     PRICE: PRICE,
     DISCOUNT: DISCOUNT,
     MONEY: MONEY,
+    COST: COST,
+    PRICE_OTHER: PRICE_OTHER,
+    IS_MANUEL:IS_MANUEL
   };
   if (ArrNum == 0) {
     OlusacakUrun = Obj;
