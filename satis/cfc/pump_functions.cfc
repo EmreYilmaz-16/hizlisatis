@@ -47,6 +47,7 @@
       <cfquery name="getShelf" datasource="#datam.dataSources.dsn3#">
          SELECT PRODUCT_PLACE_ID,SHELF_CODE  FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE=ltrim('#catParser(datam.HIERARCHY)#')
       </cfquery>
+      
       <cfif datam.IsRotate eq 1>
          <cfinclude template="../includes/YonDegistirme.cfm">
       <cfelse>
