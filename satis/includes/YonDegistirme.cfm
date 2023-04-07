@@ -5,7 +5,7 @@
    LEFT JOIN workcube_metosan_1.PRODUCT_INFO_PLUS AS PIP ON PIP.PRODUCT_ID=S.PRODUCT_ID 
    LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PU.IS_MAIN=1
    LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON S.BRAND_ID=PB.BRAND_ID
-   WHERE S.STOCK_ID=main_stock_id>                
+   WHERE S.STOCK_ID=#main_stock_id#
 </cfquery>
 <cfset attributes.STOCK_CODE=getMaster.PRODUCT_CODE>
 <CFSET BRAND_NAME="#getMaster.BRAND_NAME#">
