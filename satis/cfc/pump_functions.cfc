@@ -44,7 +44,9 @@
       <cfset DSN1=datam.dataSources.dsn1>
       <cfset main_product_id=datam.OlusacakUrun.PRODUCT_ID>
       <cfset main_stock_id=datam.OlusacakUrun.STOCK_ID>
-
+      <cfquery name="getShelf" datasource="#datam.dataSources.dsn3#">
+         SELECT PRODUCT_PLACE_ID,SHELF_CODE  FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE=ltrim('#catParser(datam.HIERARCHY)#')
+      </cfquery>
       <cfif datam.IsRotate eq 1>
          <cfinclude template="../includes/YonDegistirme.cfm">
       <cfelse>
@@ -57,9 +59,7 @@
 
 
       
-      <cfquery name="getShelf" datasource="#datam.dataSources.dsn3#">
-         SELECT PRODUCT_PLACE_ID,SHELF_CODE  FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE=ltrim('#catParser(datam.HIERARCHY)#')
-      </cfquery>
+     
 
       <cfset RETURN_VAL.VIRMAN_ID=VIRMAN_ID>
       <CFSET RETURN_VAL.PRODUCT_ID=RETURN_PRODUCT_ID>

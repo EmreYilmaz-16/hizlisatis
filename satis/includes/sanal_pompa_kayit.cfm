@@ -109,9 +109,7 @@ SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_S
              <cfquery name="ins" datasource="#dsn3#">
                  UPDATE VirmanProduct SET CREATED_PID=#main_product_id#,CREATED_SID=#main_stock_id# WHERE VIRMAN_ID=#VIRMAN_ID#               
              </cfquery>
-<cfquery name="getShelf" datasource="#datam.dataSources.dsn3#">
-    SELECT PRODUCT_PLACE_ID,SHELF_CODE  FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE=ltrim('#catParser(datam.HIERARCHY)#')
- </cfquery>
+
 <CFSET RETURN_PRODUCT_ID=main_product_id>
 <CFSET RETURN_STOCK_ID=main_stock_id>
 <CFSET RETURN_PRODUCT_CODE=attributes.PRODUCT_CODE>
