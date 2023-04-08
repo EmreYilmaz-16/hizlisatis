@@ -12,8 +12,6 @@ $(document).ready(function () {
   setDoom();
 });
 
-
-
 function setDoom() {
   $(".ui-form-list-btn").parent().hide();
   $("#basketArea")
@@ -2426,6 +2424,10 @@ function CheckSatilabilir() {
   }
 }
 
-function openPump(iid){
-  windowopen("/index.cfm?fuseaction=objects.devextreme_test&page=4","page");
+function openPump(iid) {
+  windowopen(
+    "index.cfm?fuseaction=product.emptypopup_virtual_main_partner&page=4&id=" +
+      iid,
+    "wwide"
+  );
 }

@@ -150,7 +150,7 @@
     </div>
 </div>
 </cfform>
-<script src="/AddOns/Partner/Tests/test_includes/make_pump.js"></script>
+<script src="/AddOns/Partner/satis/js/make_pump.js"></script>
 
 </cf_box>
 

@@ -1,8 +1,3 @@
-
-<!---
-
----->
-
 <cfif attributes.type eq 1>
     <cfif len(attributes.id)>
         <cfinclude template="../includes/upd_tube.cfm">
@@ -21,9 +16,9 @@
 
 <cfif attributes.type eq 3>
     <cfif len(attributes.id)>
-        <cfinclude template="../includes/upd_virtual_hydrolic.cfm">
+        <cfinclude template="../includes/make_pump.cfm">
     <cfelse>
-        <cfinclude template="../includes/add_virtual_hydrolic.cfm">
+        <cfinclude template="../includes/make_pump.cfm">
     </cfif>
 </cfif>
 
