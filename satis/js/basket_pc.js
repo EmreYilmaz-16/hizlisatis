@@ -2426,7 +2426,7 @@ function CheckSatilabilir() {
 
 function openPump(iid) {
   windowopen(
-    "index.cfm?fuseaction=product.emptypopup_virtual_main_partner&page=3&id=" +
+    "index.cfm?fuseaction=product.emptypopup_virtual_main_partner&type=3&id=" +
       iid,
     "wwide"
   );
