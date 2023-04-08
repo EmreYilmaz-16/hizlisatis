@@ -2425,9 +2425,10 @@ function CheckSatilabilir() {
 }
 
 function openPump(iid) {
+  
   windowopen(
     "index.cfm?fuseaction=product.emptypopup_virtual_main_partner&type=3&id=" +
-      iid,
+      iid+"&company_id="+CompanyData.COMPANY_ID+"&PRICE_CATID="+CompanyData.PRICE_CAT,
     "wwide"
   );
 }
