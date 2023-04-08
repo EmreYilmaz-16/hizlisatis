@@ -161,6 +161,7 @@ select count(*) AS RC from PBS_OFFER
     </cfquery>
     <CFSET RAF='#getS.STORE_ID#_#getS.LOCATION_ID#'>
     <cfset "attributes.deliver_dept#i#"='#getS.STORE_ID#-#getS.LOCATION_ID#'>
+    <cfset "attributes.converted_sid#i#"=it.converted_sid>
     <!----<cfset "attributes.deliver_loc_id#i#"=getS.LOCATION_ID>
     <cfif isdefined("attributes.raflar.sl_#RAF#")>
         <cfset "attributes.raflar.sl_#RAF#"="#evaluate("attributes.raflar.sl_#RAF#")#,#it.stock_id#_#filternum(it.amount)#">
