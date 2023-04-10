@@ -425,3 +425,9 @@ function YonKontrol() {
     return true;
   }
 }
+$(document).ready(function(){
+  SatirlariYaz_2(0);
+  SatirlariYaz_2(1);
+  SatirlariYaz_2(2);
+  SatirlariYaz_2(3);
+})

@@ -13,6 +13,18 @@ var BozulacakArr = [];
 --->
 <cfset fr_data=deserializeJSON(replace(getData.JSON_DATA,"//",""))>
 <cfdump var="#fr_data#">
+<cfoutput>
+    <script>
+       var BozulacakArr=#Replace(SerializeJSON(fr_data.BozulacakUrunler),'//','')#
+       var CikanArr=#Replace(SerializeJSON(fr_data.CikanUrunler),'//','')#
+       var GirenArr=#Replace(SerializeJSON(fr_data.GirenUrunler),'//','')#
+       var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')# 
+    
+
+    </script>
+</cfoutput>
+
+<!---------
 <script>
 var BozulacakArr=[
 <cfoutput>
@@ -75,12 +87,13 @@ var GirenArr=[
 var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
 </cfoutput>
 </script>
+--------->
 <!----------Replace(SerializeJSON(workArr),'//','')--------->
 <cfparam name="attributes.company_id" default="">
 <cfparam name="attributes.PRICE_CATID" default="">
 <cfoutput>
-<input type="hidden" name="company_id" id="company_id" value="#attributes.company_id#">
-<input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="#attributes.PRICE_CATID#"> 
+<input type="hidden" name="company_id" id="company_id" value="#fr_data.Offer_data.company_id#">
+<input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="#fr_data.Offer_data.price_catid#"> 
 </cfoutput>
 <cfset plkcddd=0>
 <cfinclude template="/AddOns/Partner/satis/includes/virtual_offer_parameters.cfm">
@@ -93,7 +106,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
             <div style="height:30vh">
                 
                 <div style="display: flex; margin-top: 10px; margin-right: 10px; justify-content: flex-end;">
-                    <button type="button" onclick="OpenBasketProducts(0,0)"  class="btn btn-success">+</button>
+                    <button <cfif isDefined("hide_buttons") and hide_buttons eq 1>style="display:none"</cfif>  type="button" onclick="OpenBasketProducts(0,0)"  class="btn btn-success">+</button>
                                             
                 </div>
                 <table class="table" style="">
@@ -101,7 +114,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                         <td>Ürün Adı</td>
                         <td>
                             <div class="form-group">
-                                <input type="text" style="font-size: 15pt !important;color:green !important" onchange="SetUrunAdi(this)" name="NamePumpa" id="NamePumpa">
+                                <input type="text" style="font-size: 15pt !important;color:green !important" onchange="SetUrunAdi(this)"  name="NamePumpa" id="NamePumpa" <cfif isDefined("hide_buttons") and hide_buttons eq 1>readonly</cfif>>
                                 <input type="hidden" name="pidPumpa" id="pidPumpa">
                                 <input type="hidden" name="SidPumpa" id="SidPumpa">
                                 <input type="hidden" name="isVirtualPumpa" id="isVirtualPumpa">
@@ -151,7 +164,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                         </tr>
                             
                 </tbody></table>
-                <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;">
+                <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;<cfif isDefined('hide_buttons') and hide_buttons eq 1>display:none</cfif>">
                 <button type="button" style="margin-inline-end: auto;" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>        
                 <button type="button" class="btn btn-warning" onclick="Temizle()">Temizle</button>        
                 <button type="button" style="margin-right:15px" class="btn btn-success" onclick="SaveForPump()">Kaydet</button>;
@@ -171,7 +184,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                             </th>
                             <th>Miktar</th>
                             <th>
-                                <button  onclick="OpenBasketProducts(1,0)" type="button" class="btn btn-success">+</button>
+                                <button  onclick="OpenBasketProducts(1,0)" <cfif isDefined("hide_buttons") and hide_buttons eq 1>style="display:none"</cfif> type="button" class="btn btn-success">+</button>
                                 
                             </th>
                         </tr>
@@ -196,7 +209,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                             </th>
                             <th>Miktar</th>
                             <th>
-                                <button onclick="OpenBasketProducts(2,0)" type="button" class="btn btn-success">+</button>
+                                <button onclick="OpenBasketProducts(2,0)" <cfif isDefined("hide_buttons") and hide_buttons eq 1>style="display:none"</cfif> type="button" class="btn btn-success">+</button>
                                 
                             </th>
                         </tr>
@@ -216,7 +229,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                             </th>
                             <th>Miktar</th>
                             <th>
-                                <button onclick="OpenBasketProducts(3,0)" type="button" class="btn btn-success">+</button>
+                                <button onclick="OpenBasketProducts(3,0)" <cfif isDefined("hide_buttons") and hide_buttons eq 1>style="display:none"</cfif> type="button" class="btn btn-success">+</button>
                                 
                             </th>
                         </tr>

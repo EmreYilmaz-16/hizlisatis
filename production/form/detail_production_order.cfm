@@ -126,6 +126,7 @@
 			<cfelseif gets.PRODUCT_TYPE eq 2>
 				<cfinclude template="../includes/agac_hyd.cfm">
 			<cfelseif gets.PRODUCT_TYPE eq 3>
+				<cfset hide_buttons=1>
 				<cfinclude template="../includes/virman_sh.cfm">
 			</cfif>
 			
