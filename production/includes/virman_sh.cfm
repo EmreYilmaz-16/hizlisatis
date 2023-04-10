@@ -92,7 +92,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
 <cfparam name="attributes.company_id" default="">
 <cfparam name="attributes.PRICE_CATID" default="">
 <cfoutput>
-<input type="hidden" name="company_id" id="company_id" value="#fr_data.Offer_data.company_id#">
+<input type="hidden" name="company_id" id="company_id" value="#fr_data.offer_data.comp_id#">
 <input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="#fr_data.Offer_data.price_catid#"> 
 </cfoutput>
 <cfset plkcddd=0>
