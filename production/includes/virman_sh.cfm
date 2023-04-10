@@ -13,7 +13,7 @@ var BozulacakUrunler=[
 <cfloop array="#fr_data.BozulacakUrunler#" item="it">
 {
     COST:#it.COST#,
-    DESCRIPTION:#it.DESCRIPTION#,
+    DESCRIPTION:'#it.DESCRIPTION#',
     DISCOUNT:#it.DISCOUNT#,
     IS_MANUEL:#it.IS_MANUEL#,
     IS_VIRTUAL:#it.IS_VIRTUAL#,
