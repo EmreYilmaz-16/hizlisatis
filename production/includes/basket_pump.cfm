@@ -3,7 +3,7 @@
 FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS AS VPO
 LEFT JOIN workcube_metosan_1.PBS_OFFER_ROW AS POR ON POR.UNIQUE_RELATION_ID = VPO.UNIQUE_RELATION_ID
 LEFT JOIN workcube_metosan_1.VirmanProduct AS VP ON VP.VIRMAN_ID = POR.CONVERTED_STOCK_ID
-WHERE VPO.V_P_ORDER_ID = #attributes.P_ORDER_ID#
+WHERE VPO.V_P_ORDER_ID = #attributes.VP_ORDER_ID#
 </cfquery>
 <!---
 var ArrForPum = [];
