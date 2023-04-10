@@ -27,6 +27,44 @@ var BozulacakUrunler=[
     STOCK_ID:#it.STOCK_ID#,
 },
 </cfloop>
+];
+var CikanUrunler=[
+<cfloop array="#fr_data.CikanUrunler#" item="it">
+{
+    COST:#it.COST#,
+    DESCRIPTION:'#it.DESCRIPTION#',
+    DISCOUNT:#it.DISCOUNT#,
+    IS_MANUEL:#it.IS_MANUEL#,
+    IS_VIRTUAL:#it.IS_VIRTUAL#,
+    MONEY:'#it.MONEY#',
+    PRICE:#it.PRICE#,
+    PRICE_OTHER:#it.PRICE_OTHER#,
+    PRODUCT_CODE:'#it.PRODUCT_CODE#',
+    PRODUCT_ID:#it.PRODUCT_ID#,
+    PRODUCT_NAME:'#it.PRODUCT_NAME#',
+    QUANTITY:#it.QUANTITY#,
+    STOCK_ID:#it.STOCK_ID#,
+},
+</cfloop>
+];
+var GirenUrunler=[
+<cfloop array="#fr_data.GirenUrunler#" item="it">
+{
+    COST:#it.COST#,
+    DESCRIPTION:'#it.DESCRIPTION#',
+    DISCOUNT:#it.DISCOUNT#,
+    IS_MANUEL:#it.IS_MANUEL#,
+    IS_VIRTUAL:#it.IS_VIRTUAL#,
+    MONEY:'#it.MONEY#',
+    PRICE:#it.PRICE#,
+    PRICE_OTHER:#it.PRICE_OTHER#,
+    PRODUCT_CODE:'#it.PRODUCT_CODE#',
+    PRODUCT_ID:#it.PRODUCT_ID#,
+    PRODUCT_NAME:'#it.PRODUCT_NAME#',
+    QUANTITY:#it.QUANTITY#,
+    STOCK_ID:#it.STOCK_ID#,
+},
+</cfloop>
 ]
 </cfoutput>
 </script>
