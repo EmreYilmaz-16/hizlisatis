@@ -167,7 +167,12 @@
    
    
       </cffunction>
-
+      <cffunction name="UpdatePumpa" access="remote" returntype="string" returnformat="JSON" httpMethod="POST">
+         <CFSET datam=deserializeJSON(arguments.FORM_DATA)>
+         <cfquery name="ins" datasource="#datam.datasources.dsn3#" result="RESSSS">
+            UPDATE VirmanProduct SET JSON_DATA='#Replace(SerializeJSON(datam),' //','')#' WHERE VIRMAN_ID=#datam.virman_id#
+         </cfquery>
+      </cffunction>
 
 
 <!-------

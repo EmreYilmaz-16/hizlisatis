@@ -1,7 +1,5 @@
 ﻿var pupRowC = 0;
 
-
-
 function AddArrItem(
   ArrNum,
   PRODUCT_ID,
@@ -16,7 +14,7 @@ function AddArrItem(
   MONEY = "TL",
   COST = 0,
   PRICE_OTHER = 0,
-  IS_MANUEL=0
+  IS_MANUEL = 0
 ) {
   var Obj = {
     PRODUCT_ID: PRODUCT_ID,
@@ -31,7 +29,7 @@ function AddArrItem(
     MONEY: MONEY,
     COST: COST,
     PRICE_OTHER: PRICE_OTHER,
-    IS_MANUEL:IS_MANUEL
+    IS_MANUEL: IS_MANUEL,
   };
   if (ArrNum == 0) {
     OlusacakUrun = Obj;
@@ -45,7 +43,7 @@ function AddArrItem(
     var ix = CikanArr.findIndex((p) => p.PRODUCT_ID == PRODUCT_ID);
     if (ix == -1) CikanArr.push(Obj);
   }
-
+  IsTreeUpdated = true;
   SatirlariYaz_2(ArrNum);
 }
 function SatirlariYaz_2(arb) {
@@ -298,7 +296,7 @@ function SaveForPump() {
 
   var company_id = document.getElementById("company_id").value;
   var price_catid = document.getElementById("PRICE_CATID").value;
-
+  var virman_id = document.getElementById("virman_id").value;
   var offer_data = {
     comp_id: company_id,
     price_catid: price_catid,
@@ -315,6 +313,7 @@ function SaveForPump() {
     BozulacakUrunlerArrLen: BozulacakArr.length,
     GirenUrunlerArrLen: GirenArr.length,
     CikanUrunlerArrLen: CikanArr.length,
+    virman_id: virman_id,
   };
   if (parseInt(ix) == 1) {
     var xx = YonKontrol();
@@ -325,41 +324,10 @@ function SaveForPump() {
 
   if (xx) {
     $.ajax({
-      url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=savePumpa",
+      url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=UpdatePumpa",
       data: "&FORM_DATA=" + JSON.stringify(ReturnObject),
       success: function (returnData) {
-        var O = JSON.parse(returnData);
-        window.opener.AddRow(
-          O.PRODUCT_ID,
-          O.STOCK_ID,
-          O.STOCK_CODE,
-          O.BRAND_NAME,
-          O.IS_VIRTUAL,
-          O.QUANTITY,
-          O.PRICE,
-          O.PRODUCT_NAME,
-          O.TAX,
-          O.DISCOUNT_RATE,
-          O.PRODUCT_TYPE,
-          O.SHELF_CODE,
-          O.OTHER_MONEY,
-          O.PRICE_OTHER,
-          O.OFFER_ROW_CURRENCY,
-          O.IS_MANUEL,
-          O.COST,
-          O.MAIN_UNIT,
-          "",
-          "",
-          0,
-          O.ROW_NUM,
-          "",
-          1,
-          O.ROW_UNIQ_ID,
-          "",
-          "",
-          O.VIRMAN_ID
-        );
-        this.close();
+        IsTreeUpdated = false;
       },
     });
   }
@@ -425,9 +393,9 @@ function YonKontrol() {
     return true;
   }
 }
-$(document).ready(function(){
+$(document).ready(function () {
   SatirlariYaz_2(0);
   SatirlariYaz_2(1);
   SatirlariYaz_2(2);
   SatirlariYaz_2(3);
-})
+});
