@@ -212,9 +212,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 </cfif>
 <cfelse>
 
-            <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
-            <cfset 'attributes.SHELF_NUMBER_#ix#' = SHELF_NUMBER>
-            <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>      
+              
         </cfif>
 
             <cfset 'attributes.stock_id#ix#' = STOCK_ID>
