@@ -7,6 +7,9 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 </cfquery>
 
 <cfset fr_data=deserializeJSON(replace(getData.JSON_DATA,"//",""))>
+<cfdump var="#fr_data#">
+<cfabort>
+
 <cfoutput>
     <script>
        var BozulacakArr=#Replace(SerializeJSON(fr_data.BozulacakUrunler),'//','')#
