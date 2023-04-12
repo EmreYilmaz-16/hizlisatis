@@ -8,7 +8,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 
 <cfset fr_data=deserializeJSON(replace(getData.JSON_DATA,"//",""))>
 <cfdump var="#fr_data#">
-<cfabort>
+
 
 <cfoutput>
     <script>
