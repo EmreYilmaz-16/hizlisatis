@@ -3,6 +3,13 @@
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#
 </cfquery>
 <cfif getVirtualProductionOrder.IS_FROM_VIRTUAL eq 1>
+    
+    
+    
+        <cfinclude template="add_virtual_production_order_result.cfm">
+    
+    
+<cfelse>
     <cfquery name="getOfferData" datasource="#dsn3#">
         SELECT PC.DETAIL FROM workcube_metosan_1.PBS_OFFER_ROW AS POR 
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID 
@@ -14,11 +21,8 @@ WHERE  UNIQUE_RELATION_ID=#getVirtualProductionOrder.UNIQUE_RELATION_ID#
         <cfinclude template="makeVirman.cfm">
         <cfabort>
     <cfelse>
-        <cfinclude template="add_virtual_production_order_result.cfm">
-    </cfif> 
-    
-<cfelse>
     <cfinclude template="realproduction_res.cfm">
+    </cfif>
 </cfif>
 
 
