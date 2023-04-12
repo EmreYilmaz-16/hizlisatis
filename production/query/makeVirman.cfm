@@ -26,7 +26,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
      WHERE STOCK_ID= #getData.STOCK_ID#
  </cfquery>
 <cfquery name="getS12" datasource="#dsn3#">
-    select STORE_ID,LOCATION_ID,PRODUCT_PLACE_ID from PRODUCT_PLACE where SHELF_CODE='#getRaf.shelf_code#'
+    select STORE_ID,LOCATION_ID,PRODUCT_PLACE_ID from PRODUCT_PLACE where SHELF_CODE='#getRaf12.shelf_code#'
 </cfquery>
 <cfset MainSL="#getS12.STORE_ID#-#getS12.LOCATION_ID#">
 <!------
