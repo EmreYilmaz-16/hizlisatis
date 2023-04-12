@@ -1,4 +1,4 @@
-﻿<cfset wrq_Ambar_1=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID,SAME_DEPO","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER")>
+﻿<cfset WRQ_AMBAR_1=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID,SAME_DEPO","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER")>
 <cfset wrq_Sarf_1=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID,SAME_DEPO","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER")>
 <cfloop array="#fr_data.BozulacakUrunler#" item="it" index="i">
     <cfquery name="getRaf" datasource="#dsn3#">
@@ -30,7 +30,7 @@
   </cfscript>
     <cfif MainSL neq SubSL> <!---- Ambar Fişi Kontrolü----->
     <cfscript>
-        queryAddRow(wrq_Ambar,O);
+        queryAddRow(WRQ_AMBAR_1,O);
     </cfscript>
     
     </cfif>
@@ -38,17 +38,17 @@
         queryAddRow(wrq_Sarf_1,O);
     </cfscript>
 </cfloop>
-<cfdump var="#wrq_Ambar#">
+<cfdump var="#WRQ_AMBAR_1#">
 <cfdump var="#MainSL#">
 
-<cfif wrq_Ambar.recordCount gt 0>
+<cfif WRQ_AMBAR_1.recordCount gt 0>
     <cfscript>
-        AddStockFis(wrq_Ambar,87,attributes.V_P_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"),0);
+        AddStockFis(WRQ_AMBAR_1,87,attributes.V_P_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"),0);
     </cfscript>
 </cfif>
 <cfif wrq_Sarf_1.recordCount gt 0>
     <cfset iopt=0>
-    <cfif wrq_Ambar.recordCount gt 0>
+    <cfif WRQ_AMBAR_1.recordCount gt 0>
         <cfset iopt=1>
     </cfif>
     <cfscript>
