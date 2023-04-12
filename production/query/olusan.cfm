@@ -6,7 +6,7 @@
        STORE_ID=getS12.STORE_ID,
        LOCATION_ID=getS12.LOCATION_ID,
        STOCK_ID=getData.CREATED_SID,
-       AMOUNT=fr_data.OlusacakUrun.QUANTITY,
+       AMOUNT=1,
        SHELF_NUMBER=getS12.PRODUCT_PLACE_ID,
        SHELF_NUMBER_TXT=getRaf12.shelf_code,
        SAME_DEPO=sameDepo           
