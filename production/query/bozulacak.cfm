@@ -1,5 +1,5 @@
-﻿<cfset wrq_Ambar=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID,SAME_DEPO","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER")>
-<cfset wrq_Sarf=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID,SAME_DEPO","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER")>
+﻿<cfset wrq_Ambar_1=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID,SAME_DEPO","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER")>
+<cfset wrq_Sarf_1=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID,SAME_DEPO","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER")>
 <cfloop array="#fr_data.BozulacakUrunler#" item="it" index="i">
     <cfquery name="getRaf" datasource="#dsn3#">
        SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR
@@ -35,7 +35,7 @@
     
     </cfif>
     <cfscript>
-        queryAddRow(wrq_Sarf,O);
+        queryAddRow(wrq_Sarf_1,O);
     </cfscript>
 </cfloop>
 <cfdump var="#wrq_Ambar#">
@@ -46,12 +46,12 @@
         AddStockFis(wrq_Ambar,87,attributes.V_P_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"),0);
     </cfscript>
 </cfif>
-<cfif wrq_Sarf.recordCount gt 0>
+<cfif wrq_Sarf_1.recordCount gt 0>
     <cfset iopt=0>
     <cfif wrq_Ambar.recordCount gt 0>
         <cfset iopt=1>
     </cfif>
     <cfscript>
-        AddStockFis(wrq_Sarf,241,attributes.V_P_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"),iopt);
+        AddStockFis(wrq_Sarf_1,241,attributes.V_P_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"),iopt);
     </cfscript>
 </cfif>
