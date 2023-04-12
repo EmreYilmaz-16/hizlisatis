@@ -14,7 +14,7 @@
         SELECT PC.DETAIL FROM workcube_metosan_1.PBS_OFFER_ROW AS POR 
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID 
 LEFT JOIN workcube_metosan_1.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID
-WHERE  UNIQUE_RELATION_ID=#getVirtualProductionOrder.UNIQUE_RELATION_ID#
+WHERE  UNIQUE_RELATION_ID='#getVirtualProductionOrder.UNIQUE_RELATION_ID#'
     </cfquery>
     <cfset VirmanList="3,5,6,7,8,9">
     <cfif  listFind(VirmanList,getOfferData.DETAIL)>
