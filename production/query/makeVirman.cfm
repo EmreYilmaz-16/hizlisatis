@@ -92,6 +92,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.VP_ORDER_ID#
         <cfset ix=1>      
         <cfset attributes.active_period=session.ep.period_id> 
         <cfset attributes.REF_NO="UE_ID-#arguments.RefNo#">
+        <CFSET form.process_cat=arguments.FisType>
         <cf_papers paper_type="stock_fis">
         <cfif isdefined("paper_full") and isdefined("paper_number")>
             <cfset system_paper_no = paper_full>
