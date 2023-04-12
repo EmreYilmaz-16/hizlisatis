@@ -23,8 +23,9 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 <cfquery name="getRaf12" datasource="#dsn3#">
     SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR
      LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
-     WHERE STOCK_ID= #getData.STOCK_ID#
+     WHERE STOCK_ID= #getData.CREATED_SID#
  </cfquery>
+ <cfdump var="#getRaf12#">
 <cfquery name="getS12" datasource="#dsn3#">
     select STORE_ID,LOCATION_ID,PRODUCT_PLACE_ID from PRODUCT_PLACE where SHELF_CODE='#getRaf12.shelf_code#'
 </cfquery>
@@ -34,54 +35,15 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
     Sarf    Fişi    (Bozulacak)         241
     Sarf    Fişi    (Çıkan)             242
     Sayım   Fişi    (Giren)             243
+
     Ambar   Fişi                        87
 -------->
 
-<cfset wrq_Ambar=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR")>
-<cfset wrq_Sarf=queryNew("STORE_ID,LOCATION_ID,STOCK_ID,SHELF_NUMBER,SHELF_NUMBER_TXT,AMOUNT,ROW_UNIQ_ID","INTEGER,INTEGER,INTEGER,INTEGER,VARCHAR,DECIMAL,VARCHAR")>
-<cfloop array="#fr_data.BozulacakUrunler#" item="it" index="i">
-    <cfquery name="getRaf" datasource="#dsn3#">
-       SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR
-        LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
-        WHERE STOCK_ID= #it.stock_id#
-    </cfquery>
-    <cfset "attributes.SHELF_CODE#i#"=getRaf.shelf_code>
-    <cfquery name="getS" datasource="#dsn3#">
-    select STORE_ID,LOCATION_ID,PRODUCT_PLACE_ID from PRODUCT_PLACE where SHELF_CODE='#getRaf.shelf_code#'
-    </cfquery>
-    <CFSET RAF='#getS.STORE_ID#_#getS.LOCATION_ID#'>
-    <cfset SUBSL='#getS.STORE_ID#-#getS.LOCATION_ID#'>
-    <cfscript>
-        O={
-           STORE_ID=getS.STORE_ID,
-           LOCATION_ID=getS.LOCATION_ID,
-           STOCK_ID=it.STOCK_ID,
-           AMOUNT=filternum(it.QUANTITY),
-           SHELF_NUMBER=getS.PRODUCT_PLACE_ID,
-           SHELF_NUMBER_TXT=getRaf.shelf_code           
-       };       
-  </cfscript>
-    <cfif MainSL neq SubSL> <!---- Ambar Fişi Kontrolü----->
-    <cfscript>
-        queryAddRow(wrq_Ambar,O);
-    </cfscript>
-    
-    </cfif>
-    <cfscript>
-        queryAddRow(wrq_Sarf,O);
-    </cfscript>
-</cfloop>
+<cfinclude template="bozulacak.cfm">
+<cfinclude template="cikan.cfm">
 
-<cfif wrq_Ambar.recordCount gt 0>
-    <cfscript>
-        AddStockFis(wrq_Ambar,87,attributes.V_P_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"));
-    </cfscript>
-</cfif>
-<cfif wrq_Sarf.recordCount gt 0>
-    <cfscript>
-        AddStockFis(wrq_Sarf,241,attributes.V_P_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"));
-    </cfscript>
-</cfif>
+
+
 
 
 
@@ -96,10 +58,11 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
     <cfargument name="RefNo">
     <cfargument name="Din">
     <cfargument name="Lin">
+    <cfargument name="ioopt">
     <cfloop query="ResQuery" group="LOCATION_ID">               
         <cfset ix=1>      
         <cfset attributes.active_period=session.ep.period_id> 
-        <cfset attributes.REF_NO="UE_ID-#arguments.RefNo#">
+        <cfset attributes.REF_NO="UEID-#arguments.RefNo#">
         <CFSET form.process_cat=arguments.FisType>
         <cf_papers paper_type="stock_fis">
         <cfif isdefined("paper_full") and isdefined("paper_number")>
@@ -114,15 +77,24 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
         <cfinclude template="/v16/stock/query/check_our_period.cfm"> 
         <cfinclude template="/v16/stock/query/get_process_cat.cfm">
         <cfset attributes.fis_type = get_process_type.PROCESS_TYPE>
+<cfif arguments.ioopt eq 1>
+    <cfset attributes.LOCATION_IN=Lin>
+    <cfset attributes.LOCATION_OUT=Lin>
+    <cfset attributes.department_out=Din>
+    <cfset attributes.department_in =Din>
+<cfelse>
+
         <cfset attributes.LOCATION_IN=Lin>
         <cfset attributes.LOCATION_OUT=LOCATION_ID>
+        <cfset attributes.department_out=STORE_ID>
+        <cfset attributes.department_in =Din>
+    </cfif>
         <cfset ATTRIBUTES.XML_MULTIPLE_COUNTING_FIS =1>
         <cfset attributes.fis_date=now()>
         <cfset attributes.fis_date_h=0>
         <cfset attributes.fis_date_m=0>
         <cfset attributes.process_cat = form.process_cat>
-        <cfset attributes.department_out=STORE_ID>
-        <cfset attributes.department_in =Din>
+
         <cfset attributes.PROD_ORDER = ''>  
         <cfset attributes.PROD_ORDER_NUMBER = ''>  
         <cfset attributes.PROJECT_HEAD = ''> 
@@ -142,8 +114,19 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
                 where STOCK_ID=#STOCK_ID#
             </cfquery>
             <cfset attributes.rows_=attributes.rows_+1>
+<cfif arguments.ioopt eq 1>
+    <cfif SAME_DEPO eq 1>
+    <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
+    <cfset 'attributes.SHELF_NUMBER_#ix#' = SHELF_NUMBER>
+    <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>      
+</cfif>
+<cfelse>
+
             <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
             <cfset 'attributes.SHELF_NUMBER_#ix#' = SHELF_NUMBER>
+            <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>      
+        </cfif>
+
             <cfset 'attributes.stock_id#ix#' = STOCK_ID>
             <cfset 'attributes.amount#ix#' = AMOUNT>
             <cfset 'attributes.unit#ix#' = getSinfo.MAIN_UNIT>
@@ -152,7 +135,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
             <cfset 'attributes.product_id#ix#' = getSinfo.PRODUCT_ID>
             <cfset 'attributes.is_inventory#ix#' = getSinfo.IS_INVENTORY>
             <cfset 'attributes.WRK_ROW_ID#ix#' = "#round(rand()*65)##dateformat(now(),'YYYYMMDD')##timeformat(now(),'HHmmssL')##session.ep.userid##round(rand()*100)#">
-            <cfset 'attributes.shelf_number#ix#' = SHELF_NUMBER>            
+                  
             <cfset ix=ix+1>                        
         </cfloop>
         <cfinclude template="/v16/stock/query/add_ship_fis_1_PBS.cfm">    
