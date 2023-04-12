@@ -74,6 +74,11 @@ WHERE VPO.V_P_ORDER_ID = #attributes.VP_ORDER_ID#
         AddStockFis(wrq_Ambar,87,attributes.VP_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"));
     </cfscript>
 </cfif>
+<cfif wrq_Sarf.recordCount gt 0>
+    <cfscript>
+        AddStockFis(wrq_Sarf,241,attributes.VP_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"));
+    </cfscript>
+</cfif>
 
 
 
