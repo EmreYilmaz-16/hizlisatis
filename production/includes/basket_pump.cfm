@@ -162,7 +162,18 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                             </div>
                             </td>---->
                         </tr>
-                            
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="checkbox checbox-switch">
+                                            <label>
+                                                <input type="checkbox" name="" checked="checked">
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                 </tbody></table>
                 <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;<cfif isDefined('hide_buttons') and hide_buttons eq 1>display:none</cfif>">
                 <button type="button" style="margin-inline-end: auto;" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>        
