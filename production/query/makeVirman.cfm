@@ -146,6 +146,8 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
     <cfargument name="ioopt">
     <cfargument name="DOut" default="">
     <cfargument name="LOut" default="">
+    <cfdump var="#arguments#">
+    <cfdump var="#arguments.ResQuery#">
     <cfloop query="ResQuery" group="LOCATION_ID">               
         <cfset ix=1>      
         <cfset attributes.active_period=session.ep.period_id> 
