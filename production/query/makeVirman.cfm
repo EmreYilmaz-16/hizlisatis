@@ -115,7 +115,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
     <cfinclude template="/v16/stock/query/add_ship_fis_1_PBS.cfm">    
     <cfinclude template="/v16/stock/query/add_ship_fis_2_PBS.cfm">
     <cfif isdefined("attributes.rows_")>            
-        <cfinclude template="/v16/stock/query/add_ship_fis_3.cfm">
+        <cfinclude template="/v16/stock/query/add_ship_fis_3_PBS.cfm">
         <cfinclude template="/v16/stock/query/add_ship_fis_4.cfm">                    
     <cfelse>
         <cfquery name="ADD_STOCK_FIS_ROW" datasource="#dsn2#">
@@ -243,3 +243,4 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 
 
 </cffunction>
+
