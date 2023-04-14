@@ -92,7 +92,7 @@ function SatirlariYaz_2(arb) {
       var td = document.createElement("td");
       var input = document.createElement("input");
       input.setAttribute("type", "text");
-      input.setAttribute("onchange", "ChangeRowQ(" + i + ",this)");
+      input.setAttribute("onchange", "ChangeRowQ(" + arb + "," + i + ",this)");
       input.setAttribute("value", BozulacakArr[i].QUANTITY);
       var div = document.createElement("div");
       div.setAttribute("class", "form-group");
@@ -126,7 +126,7 @@ function SatirlariYaz_2(arb) {
       var td = document.createElement("td");
       var input = document.createElement("input");
       input.setAttribute("type", "text");
-      input.setAttribute("onchange", "ChangeRowQ(" + i + ",this)");
+      input.setAttribute("onchange", "ChangeRowQ(" + arb + "," + i + ",this)");
       input.setAttribute("value", GirenArr[i].QUANTITY);
       var div = document.createElement("div");
       div.setAttribute("class", "form-group");
@@ -160,7 +160,7 @@ function SatirlariYaz_2(arb) {
       var td = document.createElement("td");
       var input = document.createElement("input");
       input.setAttribute("type", "text");
-      input.setAttribute("onchange", "ChangeRowQ(" + i + ",this)");
+      input.setAttribute("onchange", "ChangeRowQ(" + arb + "," + i + ",this)");
       input.setAttribute("value", CikanArr[i].QUANTITY);
       var div = document.createElement("div");
       div.setAttribute("class", "form-group");
@@ -393,6 +393,18 @@ function YonKontrol() {
     return true;
   }
 }
+function ChangeRowQ(arr, ix, el) {
+  if (arr == 1) {
+    BozulacakArr[ix].QUANTITY = el.value;
+  }
+  if (arr == 2) {
+    GirenArr[ix].QUANTITY = el.value;
+  }
+  if (arr == 3) {
+    CikanArr[ix].QUANTITY = el.value;
+  }
+}
+
 $(document).ready(function () {
   SatirlariYaz_2(0);
   SatirlariYaz_2(1);
