@@ -395,13 +395,13 @@ function YonKontrol() {
 }
 function ChangeRowQ(arr, ix, el) {
   if (arr == 1) {
-    BozulacakArr[ix].QUANTITY = el.value;
+    BozulacakArr[ix].QUANTITY = parseFloat(el.value);
   }
   if (arr == 2) {
-    GirenArr[ix].QUANTITY = el.value;
+    GirenArr[ix].QUANTITY = parseFloat(el.value);
   }
   if (arr == 3) {
-    CikanArr[ix].QUANTITY = el.value;
+    CikanArr[ix].QUANTITY = parseFloat(el.value);
   }
 }
 
