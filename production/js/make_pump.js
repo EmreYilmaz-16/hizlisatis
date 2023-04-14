@@ -333,8 +333,9 @@ function SaveForPump() {
   }
 }
 
-function changeRotation(el, tt = 0) {
+function changeRotation(ela, tt = 0) {
   var ix = $("#is_rotation").val();
+  var el=document.getElementById("btnRotate")
   console.log(ix);
   if (parseInt(ix) == 0) {
     if (tt != 1) {
