@@ -12,7 +12,7 @@ var CikanArr = [];
 var BozulacakArr = [];
 --->
 <cfset fr_data=deserializeJSON(replace(getData.JSON_DATA,"//",""))>
-<cfdump var="#fr_data#">
+
 <cfoutput>
     <script>
        var BozulacakArr=#Replace(SerializeJSON(fr_data.BozulacakUrunler),'//','')#
