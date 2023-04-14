@@ -120,7 +120,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                                 <input type="hidden" name="isVirtualPumpa" id="isVirtualPumpa" value="<cfoutput>#fr_data.OlusacakUrun.IS_VIRTUAL#</cfoutput>">
                                 <input type="hidden" name="PricePumpa" id="PricePumpa" value="<cfoutput>#fr_data.OlusacakUrun.PRICE#</cfoutput>">
                                 <input type="hidden" name="DiscountPumpa" id="DiscountPumpa" value="<cfoutput>#fr_data.OlusacakUrun.DISCOUNT#</cfoutput>">
-                                <input type="hidden" name="is_rotation" id="is_rotation" value="<cfoutput>#fr_data.is_IsRotate#</cfoutput>">
+                                <input type="hidden" name="is_rotation" id="is_rotation" value="<cfoutput>#fr_data.IsRotate#</cfoutput>">
                             </div>
                         </td>
                     </tr>
