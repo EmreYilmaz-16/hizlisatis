@@ -333,16 +333,20 @@ function SaveForPump() {
   }
 }
 
-function changeRotation(el) {
+function changeRotation(el, tt = 0) {
   var ix = $("#is_rotation").val();
   console.log(ix);
   if (parseInt(ix) == 0) {
-    $("#is_rotation").val(1);
+    if (tt != 1) {
+      $("#is_rotation").val(1);
+    }
     // document.getElementById("r").setAttribute("class","btn btn-success") .removeAttribute("class")
     el.removeAttribute("class");
     el.setAttribute("class", "btn btn-success");
   } else {
-    $("#is_rotation").val(0);
+    if (tt != 1) {
+      $("#is_rotation").val(0);
+    }
     el.removeAttribute("class");
     el.setAttribute("class", "btn btn-secondary");
   }
@@ -410,4 +414,5 @@ $(document).ready(function () {
   SatirlariYaz_2(1);
   SatirlariYaz_2(2);
   SatirlariYaz_2(3);
+  changeRotation(document.getElementById("btnRotate"),1)
 });

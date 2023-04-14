@@ -176,7 +176,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                             </tr>
                 </tbody></table>
                 <div style=" display: flex;bottom: 0px;position: absolute;margin-bottom: 10px;width: 100%;justify-content: flex-end;<cfif isDefined('hide_buttons') and hide_buttons eq 1>display:none</cfif>">
-                <button type="button" style="margin-inline-end: auto;" class="btn btn-secondary" onclick="changeRotation(this)">Yön Değiştir</button>        
+                <button type="button" style="margin-inline-end: auto;" class="btn btn-secondary" onclick="changeRotation(this)" id="btnRotate">Yön Değiştir</button>        
                 <button type="button" class="btn btn-warning" onclick="Temizle()">Temizle</button>        
                 <button type="button" style="margin-right:15px" class="btn btn-success" onclick="SaveForPump()">Kaydet</button>;
             </div>
