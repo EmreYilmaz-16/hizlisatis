@@ -20,7 +20,7 @@
     LEFT JOIN #DSN1#.PRICE_STANDART AS PS ON PS.PRODUCT_ID=S.PRODUCT_ID AND PRICESTANDART_STATUS=1  AND PURCHASESALES=1
     WHERE S.PRODUCT_ID = #getPo.STOCK_ID# 
 </cfquery>
-
+<cfdump var="#gets#">
 <cfquery name="getsTree" datasource="#dsn3#">
    SELECT *
 	,PU.MAIN_UNIT
