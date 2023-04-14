@@ -352,6 +352,25 @@ function changeRotation(ela, tt = 0) {
     el.setAttribute("class", "btn btn-secondary");
   }
 }
+function setRotation(ela, tt = 0) {
+  var ix = $("#is_rotation").val();
+  var el=document.getElementById("btnRotate")
+  console.log(ix);
+  if (parseInt(ix) == 1) {
+    if (tt != 1) {
+      $("#is_rotation").val(1);
+    }
+    // document.getElementById("r").setAttribute("class","btn btn-success") .removeAttribute("class")
+    el.removeAttribute("class");
+    el.setAttribute("class", "btn btn-success");
+  } else {
+    if (tt != 1) {
+      $("#is_rotation").val(0);
+    }
+    el.removeAttribute("class");
+    el.setAttribute("class", "btn btn-secondary");
+  }
+}
 function Temizle() {
   document.getElementById("NamePumpa").value = "";
   document.getElementById("NamePumpa").removeAttribute("readonly");
@@ -415,5 +434,5 @@ $(document).ready(function () {
   SatirlariYaz_2(1);
   SatirlariYaz_2(2);
   SatirlariYaz_2(3);
-  changeRotation(document.getElementById("btnRotate"),1)
+  setRotation(document.getElementById("btnRotate"),1)
 });
