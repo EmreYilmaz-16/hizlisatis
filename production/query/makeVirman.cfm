@@ -23,7 +23,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 <cfquery name="getRaf12" datasource="#dsn3#">
     SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR
      LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
-     WHERE STOCK_ID= #getData.CREATED_SID#
+     WHERE STOCK_ID= <cfif getData.CREATED_SID neq 0>#getData.CREATED_SID# <cfelse>#fr_data.OlusacakUrun.STOCK_ID#</cfif>
  </cfquery>
  <cfdump var="#getRaf12#">
 <cfquery name="getS12" datasource="#dsn3#">
