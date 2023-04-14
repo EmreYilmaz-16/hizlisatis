@@ -115,12 +115,12 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                         <td>
                             <div class="form-group">
                                 <input type="text" style="font-size: 15pt !important;color:green !important" onchange="SetUrunAdi(this)"  name="NamePumpa" id="NamePumpa" <cfif isDefined("hide_buttons") and hide_buttons eq 1>readonly</cfif>>
-                                <input type="hidden" name="pidPumpa" id="pidPumpa">
-                                <input type="hidden" name="SidPumpa" id="SidPumpa">
-                                <input type="hidden" name="isVirtualPumpa" id="isVirtualPumpa">
-                                <input type="hidden" name="PricePumpa" id="PricePumpa">
-                                <input type="hidden" name="DiscountPumpa" id="DiscountPumpa">
-                                <input type="hidden" name="is_rotation" id="is_rotation" value="0">
+                                <input type="hidden" name="pidPumpa" id="pidPumpa" value="<cfoutput>#fr_data.OlusacakUrun.PRODUCT_ID#</cfoutput>">
+                                <input type="hidden" name="SidPumpa" id="SidPumpa" value="<cfoutput>#fr_data.OlusacakUrun.STOCK_ID#</cfoutput>">
+                                <input type="hidden" name="isVirtualPumpa" id="isVirtualPumpa" value="<cfoutput>#fr_data.OlusacakUrun.IS_VIRTUAL#</cfoutput>">
+                                <input type="hidden" name="PricePumpa" id="PricePumpa" value="<cfoutput>#fr_data.OlusacakUrun.PRICE#</cfoutput>">
+                                <input type="hidden" name="DiscountPumpa" id="DiscountPumpa" value="<cfoutput>#fr_data.OlusacakUrun.DISCOUNT#</cfoutput>">
+                                <input type="hidden" name="is_rotation" id="is_rotation" value="<cfoutput>#fr_data.is_IsRotate#</cfoutput>">
                             </div>
                         </td>
                     </tr>
@@ -132,7 +132,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                         <tr>
                             <td colspan="2">
                                 <div class="form-group">
-                                <textarea onchange="ChangeDesc(this)" name="AciklamaPUMPA" id="AciklamaPUMPA"></textarea>
+                                <textarea onchange="ChangeDesc(this)" name="AciklamaPUMPA" id="AciklamaPUMPA"><cfoutput>#fr_data.OlusacakUrun.DESCRIPTION#</cfoutput></textarea>
                             </div>
                             </td>
                         </tr>
