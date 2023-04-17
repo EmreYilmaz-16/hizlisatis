@@ -91,8 +91,26 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
 </div>
 <div class="col col-6 col-md-6 col-sm-12 homeSortArea ui-sortable" id="homeColumnCenter" style="position: absolute; left: 477.5px; top: 5px;">		
 <cf_box>
-    
+    <cfform name="order_form">
 <table>
+    <tr>
+        <td colspan="2">
+            <div class="form-group" id="item-record_emp_id">
+                <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='57899.Kaydeden'></label>	
+                <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="input-group">
+                    <cfoutput>
+                        <input type="hidden" name="record_emp_id" id="record_emp_id" value="#attributes.record_emp_id#">
+                        <input type="hidden" name="record_cons_id" id="record_cons_id" value="#attributes.record_cons_id#">
+                        <input type="hidden" name="record_part_id" id="record_part_id" value="#attributes.record_part_id#">
+                        <input name="record_name" id="record_name" type="text" placeholder="<cfoutput><cf_get_lang dictionary_id='57899.Kaydeden'></cfoutput>" onfocus="AutoComplete_Create('record_name','MEMBER_NAME,MEMBER_PARTNER_NAME','MEMBER_PARTNER_NAME2,MEMBER_NAME2','get_member_autocomplete','\'1,2,3\',0,0,0','CONSUMER_ID,PARTNER_ID,EMPLOYEE_ID,MEMBER_NAME','record_cons_id,record_part_id,record_emp_id,record_name','','3','250');" value="#attributes.record_name#" autocomplete="off">
+                        <span class="input-group-addon btnPointer icon-ellipsis" onclick="openBoxDraggable('#request.self#?fuseaction=objects.popup_list_pars&field_emp_id=order_form.record_emp_id&field_name=order_form.record_name&field_consumer=order_form.record_cons_id&field_partner=order_form.record_part_id<cfif session.ep.isBranchAuthorization>&is_store_module=1</cfif>&select_list=1,2,3');"></span>
+                    </cfoutput>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
     <tr>
         <td>
             <div class="form-group" id="item-sales_departments">
@@ -134,7 +152,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
         </td>
     </tr>
 </table>
-
+</cfform>
 </cf_box>
 </div>
 </div>
