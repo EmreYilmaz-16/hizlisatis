@@ -31,7 +31,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
 <cfloop query="GETDETTA">
     <CFSET "DEPO.DEP_#D_ID#"="#DEPARTMENT_HEAD# #COMMENT#">
 </cfloop>
-<cfdump var="#DEPO#">
+
 <cf_grid_list>
     <thead>
     <tr>
@@ -239,7 +239,13 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
         </td>
     </tr>
 </table>
+<input type="hidden" name="is_submit">
+<input type="submit">
+
 </cfform>
 </cf_box>
 </div>
 </div>
+<cfif isDefined("attributes.is_submit")>
+    <cfdump var="#attributes#">
+</cfif>
