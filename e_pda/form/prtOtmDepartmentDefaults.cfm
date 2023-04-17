@@ -5,7 +5,7 @@
 <cfparam name="attributes.location_name_2" default="">
 <cfparam name="attributes.location_id_2" default="">
 <div class="row myhomeBox" style="position: relative; height: 477px;">	 		
-    <div class="col col-6 col-md-6 col-sm-12 " id="homeColumnLeft" style="position: absolute; left: 0px; top: 5px;">	
+    <div class="col col-3 col-md-6 col-sm-12 homeSortArea ui-sortable" id="homeColumnLeft" style="position: absolute; left: 0px; top: 5px;">
 <cf_box title="Depo Tanımlama">
 <cfquery name="getD" datasource="#dsn3#">
     SELECT *,#dsn#.getEmployeeWithId(EPLOYEE_ID) AS EMP FROM workcube_metosan.PRTOTM_PDA_DEPARTMENT_DEFAULTS
@@ -89,7 +89,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
 </cf_grid_list>
 </cf_box>
 </div>
-<div class="col col-6 col-md-6 col-sm-12 " id="homeColumnLeft" style="position: absolute; left: 0px; top: 5px;">	
+<div class="col col-6 col-md-6 col-sm-12 homeSortArea ui-sortable" id="homeColumnCenter" style="position: absolute; left: 477.5px; top: 5px;">		
 <cf_box>
     
 <table>
