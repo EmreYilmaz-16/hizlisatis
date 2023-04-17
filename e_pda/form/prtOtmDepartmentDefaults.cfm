@@ -257,6 +257,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
             '#attributes.department_id_3#,#attributes.department_id_4#','#attributes.location_id_3#,#attributes.location_id_4#',#attributes.record_emp_id#)
     </cfquery>
 </cfif>
+
 </cf_box>
 
 </div>
