@@ -127,7 +127,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
 </div>
 <div class="col col-6 col-md-6 col-sm-12 homeSortArea ui-sortable" id="homeColumnCenter" style="position: absolute; left: 477.5px; top: 5px;">		
 <cf_box>
-    <cfform name="order_form">
+    <cfform name="order_form" method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
 <table>
     <tr>
         <td colspan="2">
