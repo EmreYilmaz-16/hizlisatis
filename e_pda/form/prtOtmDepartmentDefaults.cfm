@@ -4,6 +4,11 @@
 <cfparam name="attributes.department_id_2" default="">
 <cfparam name="attributes.location_name_2" default="">
 <cfparam name="attributes.location_id_2" default="">
+<cfparam name="attributes.record_emp_id " default="">
+<cfparam name="attributes.record_cons_id " default="">
+<cfparam name="attributes.record_part_id " default="">
+<cfparam name="attributes.record_name " default="">
+
 <div class="row myhomeBox" style="position: relative; height: 477px;">	 		
     <div class="col col-3 col-md-6 col-sm-12 homeSortArea ui-sortable" id="homeColumnLeft" style="position: absolute; left: 0px; top: 5px;">
 <cf_box title="Depo Tanımlama">
@@ -99,7 +104,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
                 <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='57899.Kaydeden'></label>	
                 <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="input-group">
-                    <cfoutput>
+                    <cfoutput> 
                         <input type="hidden" name="record_emp_id" id="record_emp_id" value="#attributes.record_emp_id#">
                         <input type="hidden" name="record_cons_id" id="record_cons_id" value="#attributes.record_cons_id#">
                         <input type="hidden" name="record_part_id" id="record_part_id" value="#attributes.record_part_id#">
