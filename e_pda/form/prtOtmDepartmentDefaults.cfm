@@ -1,4 +1,10 @@
-﻿<div class="row myhomeBox" style="position: relative; height: 477px;">	 		
+﻿<cfparam name="attributes.department_id_1" default="">
+<cfparam name="attributes.location_name_1" default="">
+<cfparam name="attributes.location_id_1" default="">
+<cfparam name="attributes.department_id_2" default="">
+<cfparam name="attributes.location_name_2" default="">
+<cfparam name="attributes.location_id_2" default="">
+<div class="row myhomeBox" style="position: relative; height: 477px;">	 		
     <div class="col col-6 col-md-6 col-sm-12 " id="homeColumnLeft" style="position: absolute; left: 0px; top: 5px;">	
 <cf_box title="Depo Tanımlama">
 <cfquery name="getD" datasource="#dsn3#">
