@@ -7,7 +7,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
 
 </cfquery>
 <cfloop query="GETDETTA">
-    <CFSET "DEPO.DEP_#DID#"="#DEPARTMENT_HEAD# #COMMENT#">
+    <CFSET "DEPO.DEP_#D_ID#"="#DEPARTMENT_HEAD# #COMMENT#">
 </cfloop>
 <cfdump var="#DEPO#">
 <cf_big_list>
