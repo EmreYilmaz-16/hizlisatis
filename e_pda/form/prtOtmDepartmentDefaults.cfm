@@ -11,6 +11,7 @@
 <cfparam name="attributes.location_name_4" default="">
 <cfparam name="attributes.location_id_4" default="">
 
+
 <cfparam name="attributes.record_emp_id " default="">
 <cfparam name="attributes.record_cons_id " default="">
 <cfparam name="attributes.record_part_id " default="">
@@ -68,31 +69,54 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
             <CFSET L_2=listGetAt(DEFAULT_MK_TO_RF_LOC,2)>
             <cfset dl_1="#D_1#_#L_1#">
             <cfset dl_2="#D_2#_#L_2#">
+            <cfset dx1=evaluate("DEPO.DEP_#dl_1#")>
+            <cfset dx2=evaluate("DEPO.DEP_#dl_2#")>
+                
+                <CFSET D_3=listGetAt(DEFAULT_RF_TO_SV_DEP,1)>
+                <CFSET D_4=listGetAt(DEFAULT_RF_TO_SV_DEP,2)>
+                <CFSET L_3=listGetAt(DEFAULT_RF_TO_SV_LOC,1)>
+                <CFSET L_4=listGetAt(DEFAULT_RF_TO_SV_LOC,2)>
+                <cfset dl_1="#D_3#_#L_3#">
+                <cfset dl_2="#D_4#_#L_4#">
+                <cfset dx3=evaluate("DEPO.DEP_#dl_1#")>
+                <cfset dx4=evaluate("DEPO.DEP_#dl_2#")>
+                <cfset adres="">
+<cfset adres="#adres#&department_id_1=#D_1#">
+<cfset adres="#adres#&location_name_1=#dx1#">
+<cfset adres="#adres#&location_id_1=#L_1#">
+
+<cfset adres="#adres#&department_id_2=#D_2#">
+<cfset adres="#adres#&location_name_2=#dx2#">
+<cfset adres="#adres#&location_id_2=#L_2#">                
+
+<cfset adres="#adres#&department_id_3=#D_3#">
+<cfset adres="#adres#&location_name_3=#dx3#">
+<cfset adres="#adres#&location_id_3=#L_3#">                
+
+<cfset adres="#adres#&department_id_4=#D_4#">
+<cfset adres="#adres#&location_name_4=#dx4#">
+<cfset adres="#adres#&location_id_4=#L_4#">                
+
+<cfset adres="#adres#&record_emp_id=#EPLOYEE_ID#">
+<cfset adres="#adres#&record_name=#EMP#">                
+
+
             <tr>
                 <td>
-                    #EMP#
+<a href="#request.self#?fuseaction=#attributes.fuseaction##adres#">#EMP#</a>                    
                 </td>
                 <td>
-                    #evaluate("DEPO.DEP_#dl_1#")#
+                    #dx1#
                 </td>
                 <td>
-                    #evaluate("DEPO.DEP_#dl_2#")#
+                    #dx2#
                 </td>
-                <CFSET D_1="">
-                <CFSET D_2="">
-                <CFSET L_1="">
-                <CFSET L_2="">
-                <CFSET D_1=listGetAt(DEFAULT_RF_TO_SV_DEP,1)>
-                <CFSET D_2=listGetAt(DEFAULT_RF_TO_SV_DEP,2)>
-                <CFSET L_1=listGetAt(DEFAULT_RF_TO_SV_LOC,1)>
-                <CFSET L_2=listGetAt(DEFAULT_RF_TO_SV_LOC,2)>
-                <cfset dl_1="#D_1#_#L_1#">
-                <cfset dl_2="#D_2#_#L_2#">
+                
                 <td>
-                    #evaluate("DEPO.DEP_#dl_1#")#
+                    #dx3#
                 </td>
                 <td>
-                    #evaluate("DEPO.DEP_#dl_2#")#
+                    #dx4#
                 </td>
             </tr>
         </cfloop>
