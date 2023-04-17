@@ -1,4 +1,7 @@
-﻿<cfquery name="getD" datasource="#dsn3#">
+﻿<div class="row myhomeBox" style="position: relative; height: 477px;">	 		
+    <div class="col col-6 col-md-6 col-sm-12 " id="homeColumnLeft" style="position: absolute; left: 0px; top: 5px;">	
+<cf_box title="Depo Tanımlama">
+<cfquery name="getD" datasource="#dsn3#">
     SELECT *,#dsn#.getEmployeeWithId(EPLOYEE_ID) AS EMP FROM workcube_metosan.PRTOTM_PDA_DEPARTMENT_DEFAULTS
 </cfquery>
 <cfquery name="GETDETTA" datasource="#DSN#">
@@ -78,3 +81,54 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
     </cfoutput>
 </tbody>
 </cf_grid_list>
+</cf_box>
+</div>
+<div class="col col-6 col-md-6 col-sm-12 " id="homeColumnLeft" style="position: absolute; left: 0px; top: 5px;">	
+<cf_box>
+    
+<table>
+    <tr>
+        <td>
+            <div class="form-group" id="item-sales_departments">
+                <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
+                <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
+                    <cf_wrkdepartmentlocation 
+                        returninputvalue="location_name_1,department_id_1,location_id_1"
+                        returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
+                        fieldname="location_name_1"
+                        fieldid="department_id_1"
+                        branch_fldId=""
+                        department_fldid="department_id_1"
+                        department_id="#attributes.department_id_1#"
+                        location_name="#attributes.location_name_1#"
+                        location_id="#attributes.location_id_1#"
+                        user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
+                        width="120">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="item-sales_departments">
+                <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
+                <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
+                    <cf_wrkdepartmentlocation 
+                        returninputvalue="location_name_2,department_id_2,location_id_2"
+                        returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
+                        fieldname="location_name_2"
+                        fieldid="department_id_2"
+                        branch_fldId=""
+                        department_fldid="department_id_2"
+                        department_id="#attributes.department_id_2#"
+                        location_name="#attributes.location_name_2#"
+                        location_id="#attributes.location_id_2#"
+                        user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
+                        width="120">
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</cf_box>
+</div>
+</div>
