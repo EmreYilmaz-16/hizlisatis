@@ -4,6 +4,13 @@
 <cfparam name="attributes.department_id_2" default="">
 <cfparam name="attributes.location_name_2" default="">
 <cfparam name="attributes.location_id_2" default="">
+<cfparam name="attributes.department_id_3" default="">
+<cfparam name="attributes.location_name_3" default="">
+<cfparam name="attributes.location_id_3" default="">
+<cfparam name="attributes.department_id_4" default="">
+<cfparam name="attributes.location_name_4" default="">
+<cfparam name="attributes.location_id_4" default="">
+
 <cfparam name="attributes.record_emp_id " default="">
 <cfparam name="attributes.record_cons_id " default="">
 <cfparam name="attributes.record_part_id " default="">
@@ -117,6 +124,11 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
         </td>
     </tr>
     <tr>
+        <td colspan="2">
+            Mal Kabulden - Rafa
+        </td>
+    </tr>
+    <tr>
         <td>
             <div class="form-group" id="item-sales_departments">
                 <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
@@ -150,6 +162,52 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
                         department_id="#attributes.department_id_2#"
                         location_name="#attributes.location_name_2#"
                         location_id="#attributes.location_id_2#"
+                        user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
+                        width="120">
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            Raftan - Sevke
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group" id="item-sales_departments">
+                <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
+                <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
+                    <cf_wrkdepartmentlocation 
+                        returninputvalue="location_name_3,department_id_3,location_id_3"
+                        returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
+                        fieldname="location_name_3"
+                        fieldid="department_id_3"
+                        branch_fldId=""
+                        department_fldid="department_id_3"
+                        department_id="#attributes.department_id_3#"
+                        location_name="#attributes.location_name_3#"
+                        location_id="#attributes.location_id_3#"
+                        user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
+                        width="120">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="item-sales_departments">
+                <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
+                <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
+                    <cf_wrkdepartmentlocation 
+                        returninputvalue="location_name_4,department_id_4,location_id_4"
+                        returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
+                        fieldname="location_name_4"
+                        fieldid="department_id_4"
+                        branch_fldId=""
+                        department_fldid="department_id_4"
+                        department_id="#attributes.department_id_4#"
+                        location_name="#attributes.location_name_4#"
+                        location_id="#attributes.location_id_4#"
                         user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
                         width="120">
                 </div>
