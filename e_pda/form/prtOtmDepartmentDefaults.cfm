@@ -11,6 +11,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
 </cfloop>
 <cfdump var="#DEPO#">
 <cf_grid_list>
+    <thead>
     <tr>
         <th rowspan="2">Çalışan</th>
         <th colspan="2">
@@ -35,6 +36,8 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
             Sevk
         </th>
     </tr>
+</thead>
+<tbody>
     <cfoutput>
         <cfloop query="getD">
             
@@ -73,4 +76,5 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
             </tr>
         </cfloop>
     </cfoutput>
+</tbody>
 </cf_grid_list>
