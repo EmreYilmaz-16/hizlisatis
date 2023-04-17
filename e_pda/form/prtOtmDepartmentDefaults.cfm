@@ -10,7 +10,7 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
     <CFSET "DEPO.DEP_#D_ID#"="#DEPARTMENT_HEAD# #COMMENT#">
 </cfloop>
 <cfdump var="#DEPO#">
-<cf_big_list>
+<cf_grid_list>
     <tr>
         <th rowspan="2">Çalışan</th>
         <th colspan="2">
@@ -73,4 +73,4 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
             </tr>
         </cfloop>
     </cfoutput>
-</cf_big_list>
+</cf_grid_list>
