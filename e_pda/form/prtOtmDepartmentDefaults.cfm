@@ -248,14 +248,15 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
     <cfquery name="del" datasource="#dsn#">
         DELETE FROM PRTOTM_PDA_DEPARTMENT_DEFAULTS WHERE EPLOYEE_ID=#attributes.record_emp_id#
     </cfquery>
-    <cfquery name="ins" datasource="#dsn#">
+    <cfquery name="ins" datasource="#dsn#" result="res">
         INSERT  INTO PRTOTM_PDA_DEPARTMENT_DEFAULTS( DEFAULT_MK_TO_RF_DEP,
             DEFAULT_MK_TO_RF_LOC,
             DEFAULT_RF_TO_SV_DEP,
             DEFAULT_RF_TO_SV_LOC,
-            EPLOYEE_ID) VALUES ('#attributes.department_id_1#,#attributes.department_id_2#','#attributes.location_id_1#,#attributes.location_id_2#',
+            EPLOYEE_ID) VALUES (N'#attributes.department_id_1#,#attributes.department_id_2#','#attributes.location_id_1#,#attributes.location_id_2#',
             '#attributes.department_id_3#,#attributes.department_id_4#','#attributes.location_id_3#,#attributes.location_id_4#',#attributes.record_emp_id#)
     </cfquery>
+    <cfdump var="#res#">
 </cfif>
 
 </cf_box>
