@@ -1,5 +1,5 @@
 ﻿<cfquery name="getD" datasource="#dsn3#">
-    SELECT * FROM workcube_metosan.PRTOTM_PDA_DEPARTMENT_DEFAULTS
+    SELECT *,#dsn#.getEmployeeWithId(EPLOYEE_ID) AS EMP FROM workcube_metosan.PRTOTM_PDA_DEPARTMENT_DEFAULTS
 </cfquery>
 <cfquery name="GETDETTA" datasource="#DSN#">
     SELECT CONVERT(VARCHAR,SL.DEPARTMENT_ID)+'_'+CONVERT(VARCHAR,SL.LOCATION_ID) AS D_ID,SL.COMMENT,D.DEPARTMENT_HEAD,D.DEPARTMENT_ID,SL.LOCATION_ID FROM workcube_metosan.STOCKS_LOCATION AS SL
@@ -11,8 +11,33 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
 </cfloop>
 <cfdump var="#DEPO#">
 <cf_big_list>
+    <tr>
+        <th rowspan="2">Çalışan</th>
+        <th colspan="2">
+            Mal Kabulden - Rafa
+        </th>
+        <th colspan="2">
+            Raftan - Sevke
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Malkabul
+        </th>
+        <th>
+            Raf
+        </th>
+    
+        <th>
+            Raf
+        </th>
+        <th>
+            Sevk
+        </th>
+    </tr>
     <cfoutput>
         <cfloop query="getD">
+            
             <CFSET D_1=listGetAt(DEFAULT_MK_TO_RF_DEP,1)>
             <CFSET D_2=listGetAt(DEFAULT_MK_TO_RF_DEP,2)>
             <CFSET L_1=listGetAt(DEFAULT_MK_TO_RF_LOC,1)>
@@ -20,6 +45,9 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
             <cfset dl_1="#D_1#_#L_1#">
             <cfset dl_2="#D_2#_#L_2#">
             <tr>
+                <td>
+                    #EMP#
+                </td>
                 <td>
                     #evaluate("DEPO.DEP_#dl_1#")#
                 </td>
