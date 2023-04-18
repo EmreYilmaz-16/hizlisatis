@@ -473,11 +473,11 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                             <!---<td style="text-align:right;">#AmountFormat(SARF_STOCK)#</td>--->
                             <!---<td style="text-align:right;">#AmountFormat(SHIP_INTERNAL_STOCK)#</td>--->
                             <td style="text-align:right;">
-                            	<!--- kam <input type="text" name="row_total_need_#stock_id#" id="row_total_need_#stock_id#" value="#tlformat(row_total_need,0)#" class="box" style="width:60px;" onKeyup="return(FormatCurrency(this,event));" onBlur="hesapla(#stock_id#);"> --->
-                                <cfif row_total_need lt 0>
+                            	<input type="text" name="row_total_need_#stock_id#" id="row_total_need_#stock_id#" value="#tlformat(row_total_need,0)#" class="box" style="width:60px;" onKeyup="return(FormatCurrency(this,event));" onBlur="hesapla(#stock_id#);"> 
+                                <!---<cfif row_total_need lt 0>
                             	#AmountFormat(row_total_need,0)# 
                                <cfelse>
-                                <b><font color="red">#AmountFormat(row_total_need,0)#</b></font>
+                                <b><font color="red">#AmountFormat(row_total_need,0)#</b></font>---->
                             </cfif>
                                 
                             </td>
