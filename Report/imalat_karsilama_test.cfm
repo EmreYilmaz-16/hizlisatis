@@ -477,8 +477,8 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                                 <!---<cfif row_total_need lt 0>
                             	#AmountFormat(row_total_need,0)# 
                                <cfelse>
-                                <b><font color="red">#AmountFormat(row_total_need,0)#</b></font>---->
-                            </cfif>
+                                <b><font color="red">#AmountFormat(row_total_need,0)#</b></font>
+                            </cfif>---->
                                 
                             </td>
                             <!-- sil -->
