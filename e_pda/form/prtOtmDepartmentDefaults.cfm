@@ -1,15 +1,18 @@
-﻿<cfparam name="attributes.department_id_1" default="">
-<cfparam name="attributes.location_name_1" default="">
-<cfparam name="attributes.location_id_1" default="">
-<cfparam name="attributes.department_id_2" default="">
-<cfparam name="attributes.location_name_2" default="">
-<cfparam name="attributes.location_id_2" default="">
-<cfparam name="attributes.department_id_3" default="">
-<cfparam name="attributes.location_name_3" default="">
-<cfparam name="attributes.location_id_3" default="">
-<cfparam name="attributes.department_id_4" default="">
-<cfparam name="attributes.location_name_4" default="">
-<cfparam name="attributes.location_id_4" default="">
+﻿<cfparam name="attributes.department_id" default="">
+<cfparam name="attributes.location_name" default="">
+<cfparam name="attributes.location_id" default="">
+
+<cfparam name="attributes.department_id2" default="">
+<cfparam name="attributes.location_name2" default="">
+<cfparam name="attributes.location_id2" default="">
+
+<cfparam name="attributes.department_id3" default="">
+<cfparam name="attributes.location_name3" default="">
+<cfparam name="attributes.location_id3" default="">
+
+<cfparam name="attributes.department_id4" default="">
+<cfparam name="attributes.location_name4" default="">
+<cfparam name="attributes.location_id4" default="">
 
 
 <cfparam name="attributes.record_emp_id " default="">
@@ -81,21 +84,21 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
                 <cfset dx3=evaluate("DEPO.DEP_#dl_1#")>
                 <cfset dx4=evaluate("DEPO.DEP_#dl_2#")>
                 <cfset adres="">
-<cfset adres="#adres#&department_id_1=#D_1#">
-<cfset adres="#adres#&location_name_1=#dx1#">
-<cfset adres="#adres#&location_id_1=#L_1#">
+<cfset adres="#adres#&department_id=#D_1#">
+<cfset adres="#adres#&location_name=#dx1#">
+<cfset adres="#adres#&location_id=#L_1#">
 
-<cfset adres="#adres#&department_id_2=#D_2#">
-<cfset adres="#adres#&location_name_2=#dx2#">
-<cfset adres="#adres#&location_id_2=#L_2#">                
+<cfset adres="#adres#&department_id2=#D_2#">
+<cfset adres="#adres#&location_name2=#dx2#">
+<cfset adres="#adres#&location_id2=#L_2#">                
 
-<cfset adres="#adres#&department_id_3=#D_3#">
-<cfset adres="#adres#&location_name_3=#dx3#">
-<cfset adres="#adres#&location_id_3=#L_3#">                
+<cfset adres="#adres#&department_id3=#D_3#">
+<cfset adres="#adres#&location_name3=#dx3#">
+<cfset adres="#adres#&location_id3=#L_3#">                
 
-<cfset adres="#adres#&department_id_4=#D_4#">
-<cfset adres="#adres#&location_name_4=#dx4#">
-<cfset adres="#adres#&location_id_4=#L_4#">                
+<cfset adres="#adres#&department_id4=#D_4#">
+<cfset adres="#adres#&location_name4=#dx4#">
+<cfset adres="#adres#&location_id4=#L_4#">                
 
 <cfset adres="#adres#&record_emp_id=#EPLOYEE_ID#">
 <cfset adres="#adres#&record_name=#EMP#">                
@@ -154,40 +157,40 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
     </tr>
     <tr>
         <td>
-            <div class="form-group" id="item-sales_departments">
+            <div class="form-group" id="item-sales_departments1">
                 <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
                 <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
                     <cf_wrkdepartmentlocation 
-                        returninputvalue="location_name_1,department_id_1,location_id_1"
-                        returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
-                        fieldname="location_name_1"
-                        fieldid="department_id_1"
-                        branch_fldId=""
-                        department_fldid="department_id_1"
-                        department_id="#attributes.department_id_1#"
-                        location_name="#attributes.location_name_1#"
-                        location_id="#attributes.location_id_1#"
-                        user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
-                        width="120">
+                    returninputvalue="location_name,department_id,location_id"
+                    returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
+                    fieldname="location_name"
+                    fieldid="location_id"
+                    branch_fldId=""
+                    department_fldid="department_id"
+                    department_id="#attributes.department_id#"
+                    location_name="#attributes.location_name#"
+                    location_id="#attributes.location_id#"
+                    user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
+                    width="120">
                 </div>
             </div>
         </td>
         <td>
-            <div class="form-group" id="item-sales_departments">
+            <div class="form-group" id="item-sales_departments2">
                 <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
                 <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
                     <cf_wrkdepartmentlocation 
-                        returninputvalue="location_name_2,department_id_2,location_id_2"
-                        returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
-                        fieldname="location_name_2"
-                        fieldid="department_id_2"
-                        branch_fldId=""
-                        department_fldid="department_id_2"
-                        department_id="#attributes.department_id_2#"
-                        location_name="#attributes.location_name_2#"
-                        location_id="#attributes.location_id_2#"
-                        user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
-                        width="120">
+                    returninputvalue="location_name2,department_id2,location_id2"
+                    returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
+                    fieldname="location_name2"
+                    fieldid="location_id2"
+                    branch_fldId=""
+                    department_fldid="department_id2"
+                    department_id="#attributes.department_id2#"
+                    location_name="#attributes.location_name2#"
+                    location_id="#attributes.location_id2#"
+                    user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
+                    width="120">
                 </div>
             </div>
         </td>
@@ -200,40 +203,40 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
     </tr>
     <tr>
         <td>
-            <div class="form-group" id="item-sales_departments">
+            <div class="form-group" id="item-sales_departments3">
                 <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
                 <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
                     <cf_wrkdepartmentlocation 
-                        returninputvalue="location_name_3,department_id_3,location_id_3"
-                        returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
-                        fieldname="location_name_3"
-                        fieldid="department_id_3"
-                        branch_fldId=""
-                        department_fldid="department_id_3"
-                        department_id="#attributes.department_id_3#"
-                        location_name="#attributes.location_name_3#"
-                        location_id="#attributes.location_id_3#"
-                        user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
-                        width="120">
+                    returninputvalue="location_name3,department_id3,location_id3"
+                    returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
+                    fieldname="location_name3"
+                    fieldid="location_id3"
+                    branch_fldId=""
+                    department_fldid="department_id3"
+                    department_id="#attributes.department_id3#"
+                    location_name="#attributes.location_name3#"
+                    location_id="#attributes.location_id3#"
+                    user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
+                    width="120">
                 </div>
             </div>
         </td>
         <td>
-            <div class="form-group" id="item-sales_departments">
+            <div class="form-group" id="item-sales_departments4">
                 <label class="col col-12 col-md-12 col-sm-12 col-xs-12"><cf_get_lang dictionary_id='41184.Depo- Lokasyon'></label>			
                 <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
                     <cf_wrkdepartmentlocation 
-                        returninputvalue="location_name_4,department_id_4,location_id_4"
-                        returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
-                        fieldname="location_name_4"
-                        fieldid="department_id_4"
-                        branch_fldId=""
-                        department_fldid="department_id_4"
-                        department_id="#attributes.department_id_4#"
-                        location_name="#attributes.location_name_4#"
-                        location_id="#attributes.location_id_4#"
-                        user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
-                        width="120">
+                    returninputvalue="location_name4,department_id4,location_id4"
+                    returnqueryvalue="LOCATION_NAME,DEPARTMENT_ID,LOCATION_ID"
+                    fieldname="location_name4"
+                    fieldid="location_id4"
+                    branch_fldId=""
+                    department_fldid="department_id4"
+                    department_id="#attributes.department_id4#"
+                    location_name="#attributes.location_name4#"
+                    location_id="#attributes.location_id4#"
+                    user_level_control="#session.ep.OUR_COMPANY_INFO.IS_LOCATION_FOLLOW#"
+                    width="120">
                 </div>
             </div>
         </td>
@@ -253,8 +256,8 @@ LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID
             DEFAULT_MK_TO_RF_LOC,
             DEFAULT_RF_TO_SV_DEP,
             DEFAULT_RF_TO_SV_LOC,
-            EPLOYEE_ID) VALUES (N'#attributes.department_id_1#,#attributes.department_id_2#','#attributes.location_id_1#,#attributes.location_id_2#',
-            '#attributes.department_id_3#,#attributes.department_id_4#','#attributes.location_id_3#,#attributes.location_id_4#',#attributes.record_emp_id#)
+            EPLOYEE_ID) VALUES (N'#attributes.department_id#,#attributes.department_id2#','#attributes.location_id#,#attributes.location_id2#',
+            '#attributes.department_id3#,#attributes.department_id4#','#attributes.location_id3#,#attributes.location_id4#',#attributes.record_emp_id#)
     </cfquery>
     <cfdump var="#res#">
 </cfif>

@@ -1,5 +1,5 @@
 ﻿<cfquery name="getData" datasource="#dsn3#">
-    SELECT *
+    SELECT *,CASE WHEN VP.CREATED_SID=0 THEN POR.STOCK_ID ELSE VP.CREATED_SID END AS CREATED_SID
 FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS AS VPO
 LEFT JOIN workcube_metosan_1.PBS_OFFER_ROW AS POR ON POR.UNIQUE_RELATION_ID = VPO.UNIQUE_RELATION_ID
 LEFT JOIN workcube_metosan_1.VirmanProduct AS VP ON VP.VIRMAN_ID = POR.CONVERTED_STOCK_ID
@@ -96,6 +96,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
             left join #dsn3#.PRODUCT_UNIT on PRODUCT_UNIT.PRODUCT_ID=STOCKS.PRODUCT_ID and IS_MAIN=1                            
             where STOCK_ID=#STOCK_ID#
         </cfquery>
+        <cfdump var="#getSinfo#">
         <cfset attributes.rows_=attributes.rows_+1>
 
         <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
