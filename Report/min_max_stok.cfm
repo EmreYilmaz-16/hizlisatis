@@ -747,7 +747,7 @@
                             <cfdump var="#infPls#">
                             <cfif infPls.PROPERTY1 eq "Satın Alma Talebi">
                                 <input class="ui-wrk-btn" type="button" value="Satın Alma Talebi Ekle" name="satin_alma_talebi" id="satin_alma_talebi" onClick="kota_kontrol();" style="width:140px;">
-                            <cfelseif infPls.PROPERTY1 eq "Satın Alma Siparişi">
+                            <cfelseif trim(infPls.PROPERTY1) eq "Satın Alma Siparişi">
                                 <input class="ui-wrk-btn" type="button" value="Satın Alma Siparişi Ekle" name="satin_alma_talebi" id="satin_alma_talebi" onClick="kota_kontrol(2);" style="width:140px;">
                             </cfif>
                                 
