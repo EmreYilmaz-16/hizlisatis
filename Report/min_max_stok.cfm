@@ -316,8 +316,10 @@
                     CTE2.*
                 FROM
                     CTE2
-              <!----  WHERE
-                    RowNum BETWEEN #attributes.startrow# and #attributes.startrow#+(#attributes.maxrows#-1)----->
+                <cfif  not isDefined("attributes.isexcell") and attributes.isexcell neq 1>
+                WHERE
+                    RowNum BETWEEN #attributes.startrow# and #attributes.startrow#+(#attributes.maxrows#-1)
+                </cfif>
         </cfquery>
         
         <cfset attributes.totalrecords=getStokcks_1.QUERY_COUNT>
