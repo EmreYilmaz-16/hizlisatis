@@ -744,7 +744,7 @@
                             <cfquery name="infPls" datasource="#dsn3#">
                                 SELECT PROPERTY1 FROM workcube_metosan.INFO_PLUS WHERE INFO_OWNER_TYPE=-4 AND OWNER_ID=#session.ep.USERID#
                             </cfquery>
-                            <cfdump var="#infPls#">
+                            
                             <cfif infPls.PROPERTY1 eq "Satın Alma Talebi">
                                 <input class="ui-wrk-btn" type="button" value="Satın Alma Talebi Ekle" name="satin_alma_talebi" id="satin_alma_talebi" onClick="kota_kontrol();" style="width:140px;">
                             <cfelseif trim(infPls.PROPERTY1) eq "Satın Alma Siparişi">

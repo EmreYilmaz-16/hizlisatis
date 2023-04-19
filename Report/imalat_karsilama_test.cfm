@@ -509,7 +509,15 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
            	<tfoot>
                 <tr>
                     <td colspan="30" style="text-align:right">
-                    		<input type="button" value="Satın Alma Talebi Ekle" name="satin_alma_talebi" id="satin_alma_talebi" onClick="kota_kontrol();" style="width:140px;">
+						<cfquery name="infPls" datasource="#dsn3#">
+							SELECT PROPERTY1 FROM workcube_metosan.INFO_PLUS WHERE INFO_OWNER_TYPE=-4 AND OWNER_ID=#session.ep.USERID#
+						</cfquery>
+						
+						<cfif trim(infPls.PROPERTY1) eq "Satın Alma Talebi">
+							<input class="ui-wrk-btn" type="button" value="Satın Alma Talebi Ekle" name="satin_alma_talebi" id="satin_alma_talebi" onClick="kota_kontrol();" style="width:140px;">
+						<cfelseif trim(infPls.PROPERTY1) eq "Satın Alma Siparişi">
+							<input class="ui-wrk-btn" type="button" value="Satın Alma Siparişi Ekle" name="satin_alma_talebi" id="satin_alma_talebi" onClick="kota_kontrol(2);" style="width:140px;">
+						</cfif>
                     </td>
                 </tr>
             </tfoot>  
@@ -596,7 +604,11 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
 		if(convert_list)//Ürün Seçili ise
 		{
 			windowopen('','wide','cc_paym');
-		  	aktar_form.action="<cfoutput>#request.self#?fuseaction=correspondence.add_internaldemand&type=convert</cfoutput>";
+			if(tipa==2){
+                    aktar_form.action="<cfoutput>#request.self#?fuseaction=purchase.list_order&event=add&type=convert</cfoutput>";
+                }else{
+                    aktar_form.action="<cfoutput>#request.self#?fuseaction=purchase.list_purchasedemand&event=add&type=convert</cfoutput>";
+                }
 			document.getElementById('satin_alma_talebi').disabled=true;
 		 	aktar_form.target='cc_paym';
 			aktar_form.submit();
