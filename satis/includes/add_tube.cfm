@@ -35,7 +35,7 @@
         <tr>
             <td>
                 <div class="form-group">                    
-                    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                                         
+                    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,1)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,1)">                                         
                     <input type="hidden" name="LRekor_PId" id="LRekor_PId">
                     <input type="hidden" name="LRekor_SId" id="LRekor_SId">
                     <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="0">                    
@@ -63,7 +63,7 @@
         </tr>
         <tr>
             <td><div class="form-group">    
-                <input data-type="Tube" type="text" name="Tube" id="Tube"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                
+                <input data-type="Tube" type="text" name="Tube" id="Tube"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,2)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,2)">                
                 <input type="hidden" name="Tube_PId" id="Tube_PId">
                 <input type="hidden" name="Tube_SId" id="Tube_SId">
                 <input type="hidden" name="Tube_Prc" id="Tube_Prc" value="0">
@@ -87,7 +87,7 @@
         <tr>
             <td><div class="form-group">
     
-    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">    
+    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,3)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,3)">    
     <input type="hidden" name="RRekor_PId" id="RRekor_PId">
     <input type="hidden" name="RRekor_SId" id="RRekor_SId">
     <input type="hidden" name="RRekor_Prc" id="RRekor_Prc" value="0">    
@@ -107,7 +107,7 @@
         <tr>
             <td><div class="form-group">
     
-    <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">
+    <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,5)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,5)">
     
     <input type="hidden" name="Kabuk_PId" id="Kabuk_PId">
     <input type="hidden" name="Kabuk_SId" id="Kabuk_SId">

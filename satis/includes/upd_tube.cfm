@@ -271,7 +271,7 @@ ORDER BY VP_ID
                 <div class="form-group">
                     <cfquery name="get1" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=1</cfquery>
                     <CFSET PRODUCT=getProduct(get1.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-                    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" value="#PRODUCT.PRODUCT.PRODUCT_NAME#" onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct22(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                                        
+                    <input data-type="LRekor" type="text" name="LRekor" id="LRekor" value="#PRODUCT.PRODUCT.PRODUCT_NAME#" onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,1)"  placeholder="Keyword" onchange="FindProduct22(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,1)">                                        
                     <input type="hidden" name="LRekor_PId" id="LRekor_PId" value="#PRODUCT.PRODUCT.PRODUCT_ID#">
                     <input type="hidden" name="LRekor_SId" id="LRekor_SId" value="#PRODUCT.PRODUCT.STOCK_ID#">           
                     <input type="hidden" name="LRekor_Prc" id="LRekor_Prc" value="<cfif len(get1.PRICE)>#get1.PRICE#<cfelse>0</cfif>">                    
@@ -292,7 +292,7 @@ ORDER BY VP_ID
             <td><div class="form-group">    
                 <cfquery name="get2" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=2</cfquery>
                 <CFSET PRODUCT2=getProduct(get2.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>        
-                <input data-type="Tube" type="text" name="Tube" id="Tube" value="#PRODUCT2.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
+                <input data-type="Tube" type="text" name="Tube" id="Tube" value="#PRODUCT2.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,2)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,2)">               
                 <input type="hidden" name="Tube_PId" id="Tube_PId" value="#PRODUCT2.PRODUCT.PRODUCT_ID#">
                 <input type="hidden" name="Tube_SId" id="Tube_SId" value="#PRODUCT2.PRODUCT.STOCK_ID#">                
                 <input type="hidden" name="Tube_Prc" id="Tube_Prc" value="<cfif len(get2.PRICE)>#get2.PRICE#<cfelse>0</cfif>">                
@@ -313,7 +313,7 @@ ORDER BY VP_ID
                 <div class="form-group">  
                     <cfquery name="get3" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=3</cfquery>
                     <CFSET PRODUCT3=getProduct(get3.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>                  
-                    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor" value="#PRODUCT3.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">                   
+                    <input  data-type="RRekor" type="text" name="RRekor" id="RRekor" value="#PRODUCT3.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,3)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,3)">                   
                     <input type="hidden" name="RRekor_PId" id="RRekor_PId" value="#PRODUCT3.PRODUCT.PRODUCT_ID#">
                     <input type="hidden" name="RRekor_SId" id="RRekor_SId" value="#PRODUCT3.PRODUCT.STOCK_ID#">                    
                     <input type="hidden" name="RRekor_Prc" id="RRekor_Prc" value="<cfif len(get3.PRICE)>#get3.PRICE#<cfelse>0</cfif>">                    
@@ -334,7 +334,7 @@ ORDER BY VP_ID
             <td><div class="form-group">
                 <cfquery name="get5" dbtype="query">SELECT * FROM getVirtualTree WHERE QUESTION_ID=5</cfquery> 
                 <CFSET PRODUCT5=getProduct(get5.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
-                <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk" value="#PRODUCT5.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#)">               
+                <input  data-type="Kabuk" type="text" name="Kabuk" id="Kabuk" value="#PRODUCT5.PRODUCT.PRODUCT_NAME#"  onkeydown="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,5)"  placeholder="Keyword" onchange="FindProduct2(event,this,#session.ep.userid#,'#dsn2#','#dsn1#','#dsn3#',#attributes.price_catid#,#attributes.comp_id#,5)">               
                 <input type="hidden" name="Kabuk_PId" id="Kabuk_PId" value="#PRODUCT5.PRODUCT.PRODUCT_ID#">
                 <input type="hidden" name="Kabuk_SId" id="Kabuk_SId" value="#PRODUCT5.PRODUCT.STOCK_ID#">                
                 <input type="hidden" name="Kabuk_Prc" id="Kabuk_Prc" value="<cfif len(get5.PRICE)>#get5.PRICE#<cfelse>0</cfif>">

@@ -249,6 +249,7 @@
     <cfargument name="get_company" default="">
     <cfargument name="product_hierarchy" default="">
     <cfargument name="brand_id" default="">
+    <cfargument name="question_id" default="0">
 
     <cfquery name="DelTempTable" datasource="#arguments.dsn1#">
         IF EXISTS(SELECT * FROM sys.tables where name = 'TempProductList_#arguments.userid#')
@@ -375,6 +376,9 @@
                         <cfif ListLast(arguments.keyword,';') neq kw>AND</cfif>
                     </cfloop>
                 )
+            </cfif>
+            <cfif isDefined("arguments.question_id") and arguments.question_id neq 0>
+                AND PRODUCT.PRODUCT_CATID IN (select PRODUCT_CATID from  workcube_metosan_1.PRODUCT_CAT_QUESTIONS where QUESTION_ID=#arguments.question_id#)
             </cfif>
             <cfif Len(arguments.get_company)>
                 AND PRODUCT.COMPANY_ID = #attributes.get_company#

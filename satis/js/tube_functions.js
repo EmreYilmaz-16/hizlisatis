@@ -57,14 +57,14 @@ function FindProduct(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
   }
 }
 
-function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id) {
+function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id,question_id=0) {
   var keyword = el.value;
   var elemanAtt = el.getAttribute("data-type");
   var NameElem = document.getElementById(elemanAtt + "_lbs");
   keyword = urlencode(keyword.toLowerCase());
   if ((ev.keyCode == 13 || ev.type == "change") && keyword.length > 5) {
     // var Product = getProductMultiUse(keyword, comp_id, price_catid);
-    var Product = getProductMultiUseA(keyword, comp_id, price_catid);
+    var Product = getProductMultiUseA(keyword, comp_id, price_catid,question_id);
     if (Product.RECORDCOUNT != 0) {
       $("#sildiv").remove();
 

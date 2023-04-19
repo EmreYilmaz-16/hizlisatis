@@ -2146,7 +2146,7 @@ function getProductMultiUse(keyword, comp_id, price_catid) {
   return new_query;
 }
 
-function getProductMultiUseA(keyword, comp_id, price_catid) {
+function getProductMultiUseA(keyword, comp_id, price_catid, question_id = 0) {
   var new_query = new Object();
   var req;
 
@@ -2182,6 +2182,8 @@ function getProductMultiUseA(keyword, comp_id, price_catid) {
       req.send(
         "keyword=" +
           keyword +
+          "&question_id=" +
+          question_id +
           "&userid=" +
           generalParamsSatis.userData.user_id +
           "&dsn2=" +
@@ -2425,10 +2427,13 @@ function CheckSatilabilir() {
 }
 
 function openPump(iid) {
-  
   windowopen(
     "index.cfm?fuseaction=product.emptypopup_virtual_main_partner&type=3&id=" +
-      iid+"&company_id="+CompanyData.COMPANY_ID+"&PRICE_CATID="+CompanyData.PRICE_CAT,
+      iid +
+      "&company_id=" +
+      CompanyData.COMPANY_ID +
+      "&PRICE_CATID=" +
+      CompanyData.PRICE_CAT,
     "wwide"
   );
 }
