@@ -741,7 +741,15 @@
                 <tfoot>
                     <tr>
                         <td colspan="19" style="text-align:right">
+                            <cfquery name="infPls" datasource="#dsn3#">
+                                SELECT PROPERTY1 FROM workcube_metosan.INFO_PLUS WHERE INFO_OWNER_TYPE=-4 AND OWNER_ID=#session.ep.USERID#
+                            </cfquery>
+                            <cfif infPls.PROPERTY1 eq "Satın Alma Talebi">
                                 <input class="ui-wrk-btn" type="button" value="Satın Alma Talebi Ekle" name="satin_alma_talebi" id="satin_alma_talebi" onClick="kota_kontrol();" style="width:140px;">
+                            <cfelseif infPls.PROPERTY1 eq "Satın Alma Siparişi">
+                                <input class="ui-wrk-btn" type="button" value="Satın Alma Talebi Ekle" name="satin_alma_talebi" id="satin_alma_talebi" onClick="kota_kontrol(2);" style="width:140px;">
+                            </cfif>
+                                
                         </td>
                     </tr>
                 </tfoot> 
@@ -805,7 +813,7 @@
     </form>
     <script type="text/javascript">
         document.getElementById('keyword').focus();
-        function kota_kontrol()
+        function kota_kontrol(tipa)
         {
              var convert_list ="";
              var convert_list_amount ="";
@@ -836,7 +844,12 @@
             if(convert_list)//Ürün Seçili ise
             {
                 windowopen('','wide','cc_paym');
-                  aktar_form.action="<cfoutput>#request.self#?fuseaction=purchase.list_purchasedemand&event=add&type=convert</cfoutput>";
+                if(tip==2){
+                    aktar_form.action="<cfoutput>#request.self#?fuseaction=purchase.list_order&event=add&type=convert</cfoutput>";
+                }else{
+                    aktar_form.action="<cfoutput>#request.self#?fuseaction=purchase.list_purchasedemand&event=add&type=convert</cfoutput>";
+                }
+                  
                  aktar_form.target='cc_paym';
                 aktar_form.submit();
              }
