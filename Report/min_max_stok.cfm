@@ -722,13 +722,13 @@
         
     </cfoutput>
     <cfif attributes.isexcell eq 1>
-     <cfset file_name = "Uretim_Planlama_#dateformat(now(),'ddmmyyyy')#.xls">
+     <cfset file_name = "MinumumMaximumStok_#dateformat(now(),'ddmmyyyy')#.xls">
         <cfset drc_name_ = "#dateformat(now(),'yyyymmdd')#">
         <cfif not directoryexists("#upload_folder#reserve_files#dir_seperator##drc_name_#")>
         <cfdirectory action="create" directory="#upload_folder#reserve_files#dir_seperator##drc_name_#">
         </cfif>
     <cfspreadsheet action="write" filename="#upload_folder#reserve_files#dir_seperator##drc_name_#/#file_name#" name="theSheet"
-        sheetname="Uretim_Planlama" overwrite=true>
+        sheetname="MinumumMaximumStok" overwrite=true>
     
        <script type="text/javascript">
         <cfoutput>
@@ -782,11 +782,13 @@
             <cfset adres = "#adres#&product_code=#attributes.product_code#">
         </cfif>
         <!-- sil -->
+        <cfif getStokcks_1.recordCount neq attributes.totalrecords>
         <cf_paging page="#attributes.page#"
             maxrows="#attributes.maxrows#"
             totalrecords="#attributes.totalrecords#"
             startrow="#attributes.startrow#"
             adres="#adres#">
+        </cfif>
             <!-- sil -->
     </cfif>
     </cfif>
