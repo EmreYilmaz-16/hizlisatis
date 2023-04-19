@@ -845,7 +845,7 @@
             if(convert_list)//Ürün Seçili ise
             {
                 windowopen('','wide','cc_paym');
-                if(tip==2){
+                if(tipa==2){
                     aktar_form.action="<cfoutput>#request.self#?fuseaction=purchase.list_order&event=add&type=convert</cfoutput>";
                 }else{
                     aktar_form.action="<cfoutput>#request.self#?fuseaction=purchase.list_purchasedemand&event=add&type=convert</cfoutput>";
