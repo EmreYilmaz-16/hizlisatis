@@ -575,7 +575,7 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
 </form>
 <script type="text/javascript">
 	document.getElementById('keyword').focus();
-	function kota_kontrol()
+	function kota_kontrol(tipa)
 	{
 		 var convert_list ="";
 		 var convert_list_amount ="";
