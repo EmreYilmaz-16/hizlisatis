@@ -62,7 +62,7 @@ function FindProduct2(ev, el, userid, dsn2, dsn1, dsn3, price_catid, comp_id,que
   var elemanAtt = el.getAttribute("data-type");
   var NameElem = document.getElementById(elemanAtt + "_lbs");
   keyword = urlencode(keyword);
-  if ((ev.keyCode == 13 || ev.type == "change") && keyword.length > 5) {
+  if ((ev.keyCode == 13 || ev.type == "change") && keyword.length > 4) {
     // var Product = getProductMultiUse(keyword, comp_id, price_catid);
     var Product = getProductMultiUseA(keyword, comp_id, price_catid,question_id);
     if (Product.RECORDCOUNT != 0) {
