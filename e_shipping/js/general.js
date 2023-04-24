@@ -28,8 +28,8 @@ function parcaliKontrol(iid) {
   //var rowX = 21;
   console.log(q);
   var hata = false;
+  var rows = document.getElementsByClassName("rows");
   if (parseInt(q.IS_PARCALI[0]) != 0) {
-    var rows = document.getElementsByClassName("rows");
     var rowY = 0;
     for (let i = 0; i < rows.length; i++) {
       var row = rows[i];
@@ -54,6 +54,17 @@ function parcaliKontrol(iid) {
     if (rowX != rowY) {
       alert("Eksik Ürün Seçimi !");
       return false; //Sonra Açılacak
+    }
+  }
+  for (let i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    var OrderQuantity = trim($(row).find(".order_quantity").text());
+    OrderQuantity = parseFloat(OrderQuantity);
+    var SevkQuantity = trim($(row).find(".qtyy").val());
+    SevkQuantity = parseFloat(SevkQuantity);
+    var cbx = $(row).find("input[type='checkbox']").is(":checked");
+    if(SevkQuantity==0){
+      return false
     }
   }
   return true;
