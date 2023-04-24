@@ -63,10 +63,10 @@
     </td>
     <td>
         <div style="align-self: self-end;float:right">
-            <button class="btn btn-primary" onclick="openHose('')" type="button">T</button>
-            <button class="btn btn-danger" onclick="openHydrolic('')" type="button">H</button>
-            <button class="btn btn-warning" onclick="openPump('')" type="button">P</button>
-            <button class="btn btn-success" onclick="openVirtualProduct('')" type="button">VP</button>
+            <button class="btn btn-primary" id="hoseBtn" onclick="openHose('')" type="button">T</button>
+            <button class="btn btn-danger" id="hydBtn" onclick="openHydrolic('')" type="button">H</button>
+            <button class="btn btn-warning" id="pumpBtn" onclick="openPump('')" type="button">P</button>
+            <button class="btn btn-success" id="vpBtn" onclick="openVirtualProduct('')" type="button">VP</button>
         </div>
     </td>
 </tr>

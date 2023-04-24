@@ -20,6 +20,19 @@ function setDoom() {
 
   $("#scrollbarProject").attr("style", "margin-bottom:0;overflow-y:hidden");
   document.body.addEventListener("click", hideP);
+
+  if (generalParamsSatis.workingParams.SHOW_HYDROLIC == 0) {
+    $("#hydBtn").hide();
+  }
+  if (generalParamsSatis.workingParams.SHOW_PUMP == 0) {
+    $("#pumpBtn").hide();
+  }
+  if (generalParamsSatis.workingParams.SHOW_TUBE == 0) {
+    $("#hoseBtn").hide();
+  }
+  if (generalParamsSatis.workingParams.SHOW_VIRTUAL_PRODUCT == 0) {
+    $("#vpBtn").hide();
+  }
 }
 
 function hideP() {

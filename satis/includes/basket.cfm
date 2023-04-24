@@ -43,9 +43,10 @@
         <span class="input-group-addon icon-ellipsis btnPoniter" title="Ürün Kategorisi Ekle  !" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_product_cat_names&amp;field_id=form_upd_product.product_catid&amp;field_name=form_upd_product.product_cat&amp;field_min=form_upd_product.MIN_MARGIN&amp;field_max=form_upd_product.MAX_MARGIN');"></span>------->
 </div>
     <div style="align-self: self-end;float:right">
-        <button class="btn btn-primary" onclick="openHose('')" type="button">T</button>
-        <button class="btn btn-danger" onclick="openHydrolic('')" type="button">H</button>
-        <button class="btn btn-warning" type="button">P</button>
+        <button class="btn btn-primary" id="hoseBtn" onclick="openHose('')" type="button">T</button>
+        <button class="btn btn-danger" id="hydBtn" onclick="openHydrolic('')" type="button">H</button>
+        <button class="btn btn-warning" id="pumpBtn" onclick="openPump('')" type="button">P</button>
+        <button class="btn btn-success" id="vpBtn" onclick="openVirtualProduct('')" type="button">VP</button>
         
     </div>
 </div>
