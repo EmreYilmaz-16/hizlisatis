@@ -8,9 +8,9 @@
     LEFT JOIN #dsn#.SETUP_CITY AS SC ON SC.CITY_ID=C.CITY
     LEFT JOIN #dsn#.COMPANY_CREDIT AS CC ON CC.COMPANY_ID=C.COMPANY_ID
          WHERE 1=1 AND (
-            UPPER(C.NICKNAME) LIKE '%#uCase(attributes.keyword)#%' OR
-            UPPER(C.FULLNAME) LIKE '%#uCase(attributes.keyword)#%' OR
-            UPPER(C.MEMBER_CODE) LIKE '%#uCase(attributes.keyword)#%' 
+            C.NICKNAME LIKE '%#attributes.keyword#%' OR
+            C.FULLNAME LIKE '%#attributes.keyword#%' OR
+            C.MEMBER_CODE LIKE '%#attributes.keyword#%' 
         )
         
     </cfquery>
