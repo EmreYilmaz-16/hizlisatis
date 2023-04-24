@@ -63,9 +63,11 @@ function parcaliKontrol(iid) {
     var SevkQuantity = trim($(row).find(".qtyy").val());
     SevkQuantity = parseFloat(SevkQuantity);
     var cbx = $(row).find("input[type='checkbox']").is(":checked");
-    if(SevkQuantity==0){
-      alert("Miktar 0 Olamaz")
-      return false
+    if (cbx) {
+      if (SevkQuantity == 0) {
+        alert("Miktar 0 Olamaz");
+        return false;
+      }
     }
   }
   return true;
