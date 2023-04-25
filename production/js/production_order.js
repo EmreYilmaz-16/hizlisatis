@@ -466,3 +466,9 @@ function CloseProductionOrders(p_order_id) {
       p_order_id
   );
 }
+
+function DeleteProductionOrders(p_order_id) {
+
+window.location.href="/index.cfm?fuseaction=production.emptypopup_del_virtual_prod_order&V_P_ORDER_ID=" +p_order_id;
+
+}
