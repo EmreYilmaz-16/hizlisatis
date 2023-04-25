@@ -427,7 +427,7 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
                 <cfinclude template="min_max_inner.cfm">
             </cfif>
         <cfelseif attributes.stok_type eq 5>
-            <cfif getInv.recordCount neq 0>
+            <cfif getInv.AMOUNT neq 0>
                 <cfinclude template="min_max_inner.cfm">
             </cfif>
         <cfelse>
