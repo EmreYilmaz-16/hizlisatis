@@ -19,6 +19,15 @@ WHERE  UNIQUE_RELATION_ID='#getVirtualProductionOrder.UNIQUE_RELATION_ID#'
     <cfset VirmanList="3,5,6,7,8,9">
     <cfif  listFind(VirmanList,getOfferData.DETAIL)>
         <cfinclude template="makeVirman.cfm">
+        <cfquery name="up2" datasource="#dsn3#">
+   
+            update #dsn3#.ORDER_ROW set ORDER_ROW_CURRENCY=-6 WHERE UNIQUE_RELATION_ID=(select UNIQUE_RELATION_ID from #dsn3#.VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#)
+            </cfquery>
+        
+        <script>
+            window.opener.location.reload();
+            this.close();
+        </script>
         <cfabort>
     <cfelse>
     <cfinclude template="realproduction_res.cfm">

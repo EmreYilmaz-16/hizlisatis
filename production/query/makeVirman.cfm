@@ -44,7 +44,15 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 <cfinclude template="giren.cfm">
 <cfinclude template="olusan.cfm">
 
+<cfquery name="AddVirtualResult" datasource="#dsn3#">
+	INSERT INTO VIRTUAL_PRODUCTION_ORDERS_RESULT (
+		P_ORDER_ID,RECORD_DATE,RECORD_EMP,RESULT_AMOUNT
+		)
+	VALUES(
+		#attributes.V_P_ORDER_ID#,#NOW()#,#session.ep.userid#,#getData.QUANTITY#
+		)
 
+</cfquery>
 
 <cffunction name="AddSayimFis">
     <cfargument name="ResQuery">
@@ -251,4 +259,3 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 
 
 </cffunction>
-
