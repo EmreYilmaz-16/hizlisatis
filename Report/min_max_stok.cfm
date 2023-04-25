@@ -114,6 +114,7 @@
     <option <cfif attributes.stok_type eq 2>selected</cfif> value="2">Negatif Stoklar</option>
     <option <cfif attributes.stok_type eq 3>selected</cfif> value="3">"0" Stoklar</option>
     <option <cfif attributes.stok_type eq 4>selected</cfif> value="4">Stok Stratejisi Girilmeyenler Gelmesin</option>
+    <option <cfif attributes.stok_type eq 5>selected</cfif> value="5">Satışı Olmayanlar Gelmesin</option>
     </select>
     </div>
     </div>
@@ -405,8 +406,28 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
         <cfquery name="GETMax_Min" datasource="#dsn3#">
             SELECT ISNULL(SUM(MINIMUM_STOCK),0) as MINIMUM_STOCK,ISNULL(SUM(MAXIMUM_STOCK),0) as MAXIMUM_STOCK FROM STOCK_STRATEGY WHERE STOCK_ID=#getStokcks_1.STOCK_ID#
         </cfquery>
+            <cfquery name="getInv" datasource="#dsn2#">
+                SELECT ISNULL(SUM(IR.AMOUNT),0) AS AMOUNT FROM INVOICE AS I 
+                INNER JOIN INVOICE_ROW AS IR ON I.INVOICE_ID=IR.INVOICE_ID
+                WHERE 
+                I.PURCHASE_SALES=1
+                AND I.INVOICE_CAT NOT IN(67,69)
+                AND I.IS_IPTAL=0
+                <cfif isdefined('attributes.start_date') and isdate(attributes.start_date)>
+                AND I.INVOICE_DATE >= <cfqueryparam cfsqltype="cf_sql_timestamp" value="#attributes.start_date#">
+                </cfif>
+                <cfif isDefined("attributes.finish_date") and isdate(attributes.finish_date)>
+                AND I.INVOICE_DATE < <cfqueryparam cfsqltype="cf_sql_timestamp" value="#date_add('d',1,attributes.finish_date)#">
+                </cfif> 
+                AND IR.STOCK_ID=#getStokcks_1.STOCK_ID#
+                <cfif isDefined("attributes.department") and len(attributes.department)>AND   I.DEPARTMENT_ID=#attributes.department# </cfif>
+            </cfquery>
         <cfif attributes.stok_type eq 4>
             <cfif GETMax_Min.MAXIMUM_STOCK neq 0 and GETMax_Min.MINIMUM_STOCK neq 0>
+                <cfinclude template="min_max_inner.cfm">
+            </cfif>
+        <cfelseif attributes.stok_type eq 5>
+            <cfif getInv.recordCount neq 0>
                 <cfinclude template="min_max_inner.cfm">
             </cfif>
         <cfelse>
