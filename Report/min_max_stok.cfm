@@ -167,8 +167,13 @@
         myFormatFatura.color="dark_teal";
         myFormatFatura.bold="true";
         hucre=1;
-           SpreadsheetAddRow(theSheet,"Sıra,Ürün Kodu,Özel Kod,Ürün Adı,Raf,Depo(i),Depo,Mevcut,V.Sipariş,Ü.Gelecek,T.Artan,A.Sipariş,Ü.Gidecek,T.Azalan,Satılabilir,Satış,Sarf,Min,Max,İhtiyaç,#dateFormat(now(),'dd/mm/yyyy')#",SatirSayaci,hucre);
-        hucre=21;
+        spreadsheetAddRow(theSheet,"Minumum - Maximum Stok Raporu  (#dateFormat(now(),'dd.mm.yyyy')#)",SatirSayaci,hucre);
+        spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,1,20);
+        spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
+        SatirSayaci=SatirSayaci+1;
+        hucre=1;
+           SpreadsheetAddRow(theSheet,"Sıra,Ürün Kodu,Özel Kod,Ürün Adı,Raf,Depo(i),Depo,Mevcut,V.Sipariş,Ü.Gelecek,T.Artan,A.Sipariş,Ü.Gidecek,T.Azalan,Satılabilir,Satış,Sarf,Min,Max,İhtiyaç",SatirSayaci,hucre);
+        hucre=20;
         spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
         
     </cfscript>
