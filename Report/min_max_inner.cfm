@@ -1,4 +1,5 @@
-﻿<!---REZERVER SİPARİŞLER ---->
+﻿<cfoutput>
+<!---REZERVER SİPARİŞLER ---->
 <cfquery name="getReserved_1" datasource="#dsn3#">
     SELECT ISNULL(SUM(STOCK_AZALT),0) AS STOCK_AZALT,ISNULL(SUM(STOCK_ARTIR),0) AS STOCK_ARTIR FROM (            SELECT
                 SUM((ORR.RESERVE_STOCK_OUT-ORR.STOCK_OUT) * PU.MULTIPLIER) AS STOCK_AZALT,
@@ -320,3 +321,4 @@ hucre=hucre+1;
                                               
 </cfscript>
 </cfif>
+</cfoutput>
