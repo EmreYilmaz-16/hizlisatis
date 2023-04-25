@@ -198,22 +198,7 @@
 
 <cfset tartan=TOTAL_STOCK+getReserved_2.STOCK_ARTIR+getReserved_1.STOCK_ARTIR>
 <cfset tazlan=getReserved_2.STOCK_AZALT+getReserved_1.STOCK_AZALT>
-    <cfquery name="getInv" datasource="#dsn2#">
-    SELECT ISNULL(SUM(IR.AMOUNT),0) AS AMOUNT FROM INVOICE AS I 
-    INNER JOIN INVOICE_ROW AS IR ON I.INVOICE_ID=IR.INVOICE_ID
-    WHERE 
-    I.PURCHASE_SALES=1
-    AND I.INVOICE_CAT NOT IN(67,69)
-    AND I.IS_IPTAL=0
-    <cfif isdefined('attributes.start_date') and isdate(attributes.start_date)>
-    AND I.INVOICE_DATE >= <cfqueryparam cfsqltype="cf_sql_timestamp" value="#attributes.start_date#">
-    </cfif>
-    <cfif isDefined("attributes.finish_date") and isdate(attributes.finish_date)>
-    AND I.INVOICE_DATE < <cfqueryparam cfsqltype="cf_sql_timestamp" value="#date_add('d',1,attributes.finish_date)#">
-    </cfif> 
-    AND IR.STOCK_ID=#getStokcks_1.STOCK_ID#
-    <cfif isDefined("attributes.department") and len(attributes.department)>AND   I.DEPARTMENT_ID=#attributes.department# </cfif>
-</cfquery>
+
 <cfquery name="getSf" datasource="#dsn2#"> 
     SELECT ISNULL(SUM(SFR.AMOUNT),0) AS AMOUNT FROM STOCK_FIS  AS SF 
     INNER JOIN STOCK_FIS_ROW AS SFR ON SF.FIS_ID=SFR.FIS_ID
