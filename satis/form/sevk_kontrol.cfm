@@ -67,7 +67,7 @@ WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
             <td>#PRODUCT_CODE#</td>
             <td>#PRODUCT_NAME#</td>
             <td>#KONTROL_AMOUNT#</td>
-            <td>#KONTROL_EDILECEK#</td>
+            <td>#KONTROL_EDILECEK-KONTROL_AMOUNT#</td>
             <td>
                 <input type="checkbox" name="uniqKeys" value="#UNIQUE_RELATION_ID#">
             </td>
