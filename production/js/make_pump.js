@@ -111,9 +111,9 @@ function SatirlariYaz_2(arb) {
       var button=document.createElement("button");
       button.setAttribute("class","btn btn-danger");
       input.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
-      var i=document.createElement("i");
-      i.setAttribute("class","icn-md fa fa-minus");
-      button.appendChild(i);
+      var isx=document.createElement("i");
+      isx.setAttribute("class","icn-md fa fa-minus");
+      button.appendChild(isx);
       td.appendChild(button);
       tr.appendChild(td)
       tbody.appendChild(tr);
@@ -154,9 +154,9 @@ function SatirlariYaz_2(arb) {
       var button=document.createElement("button");
       button.setAttribute("class","btn btn-danger");
       input.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
-      var i=document.createElement("i");
-      i.setAttribute("class","icn-md fa fa-minus");
-      button.appendChild(i);
+      var isx=document.createElement("i");
+      isx.setAttribute("class","icn-md fa fa-minus");
+      button.appendChild(isx);
       td.appendChild(button);
       tr.appendChild(td)
       tbody.appendChild(tr);
@@ -197,9 +197,9 @@ function SatirlariYaz_2(arb) {
       var button=document.createElement("button");
       button.setAttribute("class","btn btn-danger");
       input.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
-      var i=document.createElement("i");
-      i.setAttribute("class","icn-md fa fa-minus");
-      button.appendChild(i);
+      var isx=document.createElement("i");
+      isx.setAttribute("class","icn-md fa fa-minus");
+      button.appendChild(isx);
       td.appendChild(button);
       tr.appendChild(td)
       tbody.appendChild(tr);
