@@ -82,5 +82,15 @@ WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
 </cfif>
 
 <cfif attributes.islem eq "kayit">
-    <cfdump var="#attributes#">
+    <cfquery name="getKontrol" datasource="#dsn2#">
+        SELECT ISNULL(PSK.KONTROL_AMOUNT,0) AS KONTROL_AMOUNT,SFR.AMOUNT AS KONTROL_EDILECEK,S.PRODUCT_NAME,S.PRODUCT_CODE,PSK.UNIQUE_RELATION_ID  FROM  workcube_metosan_2023_1.PRTOTM_SVK_KONTROL AS PSK
+        LEFT JOIN workcube_metosan_2023_1.STOCK_FIS_ROW AS SFR ON SFR.UNIQUE_RELATION_ID=PSK.UNIQUE_RELATION_ID
+        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=SFR.STOCK_ID
+        WHERE PSK.UNIQUE_RELATION_ID IN (#attributes.uniqKeys#)
+    </cfquery>
+    <cfloop query="getKontrol">
+        <cfquery name="upd" datasource="#dsn2#">
+            UPDATE workcube_metosan_2023_1.PRTOTM_SVK_KONTROL SET KONTROL_AMOUNT=#KONTROL_EDILECEK# WHERE UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' AND SHIP_FIS_ID=#attributes.ship_fis_id#
+        </cfquery>
+    </cfloop> 
 </cfif>
