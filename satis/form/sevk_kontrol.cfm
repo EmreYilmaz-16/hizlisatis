@@ -75,7 +75,9 @@ WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
     </cfoutput>
 </tbody>
 </cf_big_list>
-<cfoutput><input type="hidden" name="fis_id" value="#attributes.ship_fis_id#"></cfoutput>
+<cfoutput>
+    
+    <input <cfif (KONTROL_EDILECEK-KONTROL_AMOUNT) eq 0>disabled</cfif> type="hidden" name="fis_id" value="#attributes.ship_fis_id#"></cfoutput>
 <input type="submit" value="Kontrol Kaydet">
 </cfform>
 
