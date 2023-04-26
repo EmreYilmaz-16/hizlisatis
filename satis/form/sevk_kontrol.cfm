@@ -69,7 +69,7 @@ WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
             <td>#KONTROL_AMOUNT#</td>
             <td>#KONTROL_EDILECEK#</td>
             <td>
-                <input type="checkbox" value="uniqKeys" value="#UNIQUE_RELATION_ID#">
+                <input type="checkbox" name="uniqKeys" value="#UNIQUE_RELATION_ID#">
             </td>
         </tr>
     </cfoutput>
