@@ -69,7 +69,7 @@ WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
             <td>#KONTROL_AMOUNT#</td>
             <td>#KONTROL_EDILECEK-KONTROL_AMOUNT#</td>
             <td>
-                <input type="checkbox" name="uniqKeys" value="#UNIQUE_RELATION_ID#">
+                <input <cfif (KONTROL_EDILECEK-KONTROL_AMOUNT) eq 0>disabled</cfif> type="checkbox" name="uniqKeys" value="#UNIQUE_RELATION_ID#">
             </td>
         </tr>
     </cfoutput>
@@ -77,7 +77,7 @@ WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
 </cf_big_list>
 <cfoutput>
     
-    <input <cfif (KONTROL_EDILECEK-KONTROL_AMOUNT) eq 0>disabled</cfif> type="hidden" name="fis_id" value="#attributes.ship_fis_id#"></cfoutput>
+    <input  type="hidden" name="fis_id" value="#attributes.ship_fis_id#"></cfoutput>
 <input type="submit" value="Kontrol Kaydet">
 </cfform>
 
