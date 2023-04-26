@@ -1,3 +1,8 @@
+<style>
+    .btn i {
+ margin:0 !important;
+}
+</style>
 <cfquery name="getData" datasource="#dsn3#">
     SELECT *
 FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS AS VPO
