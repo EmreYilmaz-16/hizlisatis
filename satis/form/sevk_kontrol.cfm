@@ -97,7 +97,7 @@ WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
     </cfquery>
     <cfloop query="getKontrol">
         <cfquery name="upd" datasource="#dsn2#">
-            UPDATE #dsn2#.PRTOTM_SVK_KONTROL SET KONTROL_AMOUNT=#KONTROL_EDILECEK# WHERE UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' AND SHIP_FIS_ID=#attributes.fis_id#
+            UPDATE #dsn2#.PRTOTM_SVK_KONTROL SET KONTROL_AMOUNT=#KONTROL_EDILECEK#,IS_CONTROL=1 WHERE UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' AND SHIP_FIS_ID=#attributes.fis_id# 
         </cfquery>
     </cfloop> 
 </cfif>
