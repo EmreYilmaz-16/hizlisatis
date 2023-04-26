@@ -1,5 +1,7 @@
-﻿<cf_box title="Sevk Kontrol">
-    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
+﻿<cfparam name="attributes.islem" default="getir">
+<cfif attributes.islem eq "getir">
+<cf_box title="Sevk Kontrol">
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&islem=getir">
         <div class="form-group">
             <input type="text" placeholder="SVK Numarası" id="svk_number" name="svk_number">
             
@@ -30,7 +32,7 @@ INNER JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID 
         <tbody>
         <cfoutput query="getS">
             <tr>
-                <td><a href="##">#FIS_NUMBER#</a></td>
+                <td><a href="#request.self#?fuseaction=#attributes.fuseaction#&islem=detay&ship_fis_id=#FIS_ID#">#FIS_NUMBER#</a></td>
                 <td>#dateFormat(FIS_DATE,"dd/mm/yyyy")#</td>
                 <td>#DEPARTMENT_HEAD#-#COMMENT#</td>
                 <td>#RECORD_EMP#</td>
@@ -39,4 +41,45 @@ INNER JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID 
         </cfoutput>
     </tbody>
     </cf_big_list>
+</cfif>
+</cfif>
+<cfif attributes.islem eq "detay">
+    <cfquery name="getKontrol" datasource="#dsn2#">
+SELECT ISNULL(PSK.KONTROL_AMOUNT,0) AS KONTROL_AMOUNT,SFR.AMOUNT AS KONTROL_EDILECEK,S.PRODUCT_NAME,S.PRODUCT_CODE,PSK.UNIQUE_RELATION_ID  FROM  workcube_metosan_2023_1.PRTOTM_SVK_KONTROL AS PSK
+LEFT JOIN workcube_metosan_2023_1.STOCK_FIS_ROW AS SFR ON SFR.UNIQUE_RELATION_ID=PSK.UNIQUE_RELATION_ID
+LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=SFR.STOCK_ID
+WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
+    </cfquery>
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&islem=kayit">
+<cf_big_list>
+    <thead>
+        <tr>
+            <th>Ürün K</th>
+            <th>Ürün A</th>
+            <th>Kontrol Edilen</th>
+            <th>Kontrol Edilecek</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <cfoutput query="getKontrol">
+        <tr>            
+            <td>#PRODUCT_CODE#</td>
+            <td>#PRODUCT_NAME#</td>
+            <td>#KONTROL_AMOUNT#</td>
+            <td>#KONTROL_EDILECEK#</td>
+            <td>
+                <input type="checkbox" value="uniqKeys" value="#UNIQUE_RELATION_ID#">
+            </td>
+        </tr>
+    </cfoutput>
+</tbody>
+</cf_big_list>
+<input type="submit" value="Kontrol Kaydet">
+</cfform>
+
+</cfif>
+
+<cfif attributes.islem eq "kayit">
+    <cfdump var="#attributes#">
 </cfif>
