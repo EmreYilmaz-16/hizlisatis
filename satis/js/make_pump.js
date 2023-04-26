@@ -126,6 +126,15 @@ function SatirlariYaz_2(arb) {
       div.appendChild(input);
       td.appendChild(div);
       tr.appendChild(td);
+      var td = document.createElement("td");
+      var button = document.createElement("button");
+      button.setAttribute("class", "btn btn-danger");
+      input.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
+      var i = document.createElement("i");
+      i.setAttribute("class", "icn-md fa fa-minus");
+      button.appendChild(i);
+      td.appendChild(button);
+      tr.appendChild(td);
       tbody.appendChild(tr);
     }
     $("#tbod_" + arb).remove();
@@ -160,6 +169,15 @@ function SatirlariYaz_2(arb) {
       div.appendChild(input);
       td.appendChild(div);
       tr.appendChild(td);
+      var td = document.createElement("td");
+      var button = document.createElement("button");
+      button.setAttribute("class", "btn btn-danger");
+      input.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
+      var i = document.createElement("i");
+      i.setAttribute("class", "icn-md fa fa-minus");
+      button.appendChild(i);
+      td.appendChild(button);
+      tr.appendChild(td);
       tbody.appendChild(tr);
     }
     $("#tbod_" + arb).remove();
@@ -193,6 +211,15 @@ function SatirlariYaz_2(arb) {
       input.setAttribute("value", CikanArr[i].DISCOUNT);
       div.appendChild(input);
       td.appendChild(div);
+      tr.appendChild(td);
+      var td = document.createElement("td");
+      var button = document.createElement("button");
+      button.setAttribute("class", "btn btn-danger");
+      input.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
+      var i = document.createElement("i");
+      i.setAttribute("class", "icn-md fa fa-minus");
+      button.appendChild(i);
+      td.appendChild(button);
       tr.appendChild(td);
       tbody.appendChild(tr);
     }
@@ -445,4 +472,16 @@ function YonKontrol() {
   } else {
     return true;
   }
+}
+function delRow(arb, ix) {
+  if (arb == 1) {
+    BozulacakArr.splice(ix, 1);
+  }
+  if (arb == 2) {
+    GirenArr.splice(ix, 1);
+  }
+  if (arb == 3) {
+    CikanArr.splice(ix, 1);
+  }
+  SatirlariYaz_2(arb);
 }
