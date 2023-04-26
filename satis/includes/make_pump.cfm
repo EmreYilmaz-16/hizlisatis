@@ -1,4 +1,9 @@
-﻿<cfparam name="attributes.company_id" default="">
+﻿<style>
+    .btn i {
+ margin:0 !important;
+}
+</style>
+<cfparam name="attributes.company_id" default="">
 <cfparam name="attributes.PRICE_CATID" default="">
 <cfoutput>
 <input type="hidden" name="company_id" id="company_id" value="#attributes.company_id#">
