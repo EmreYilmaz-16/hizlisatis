@@ -86,7 +86,12 @@ WHERE SHIP_FIS_ID=#attributes.ship_fis_id#
         SELECT ISNULL(PSK.KONTROL_AMOUNT,0) AS KONTROL_AMOUNT,SFR.AMOUNT AS KONTROL_EDILECEK,S.PRODUCT_NAME,S.PRODUCT_CODE,PSK.UNIQUE_RELATION_ID  FROM  workcube_metosan_2023_1.PRTOTM_SVK_KONTROL AS PSK
         LEFT JOIN workcube_metosan_2023_1.STOCK_FIS_ROW AS SFR ON SFR.UNIQUE_RELATION_ID=PSK.UNIQUE_RELATION_ID
         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=SFR.STOCK_ID
-        WHERE PSK.UNIQUE_RELATION_ID IN (#attributes.uniqKeys#)
+        WHERE PSK.UNIQUE_RELATION_ID IN (
+        <cfloop list="#attributes.uniqKeys#" item="ix">
+            '#ix#',
+        </cfloop>
+        ''
+        )
     </cfquery>
     <cfloop query="getKontrol">
         <cfquery name="upd" datasource="#dsn2#">
