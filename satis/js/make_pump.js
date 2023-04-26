@@ -127,16 +127,16 @@ function SatirlariYaz_2(arb) {
       td.appendChild(div);
       tr.appendChild(td);
       var td = document.createElement("td");
-      td.setAttribute("style","text-align:center")
+      td.setAttribute("style", "text-align:center");
       var button = document.createElement("button");
       button.setAttribute("class", "btn btn-danger");
-      button.setAttribute("type","button");
-      button.setAttribute("type","button");
+      button.setAttribute("type", "button");
+      button.setAttribute("type", "button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
       /*var isx = document.createElement("i");
       isx.setAttribute("class", "icn-md fa fa-minus");
       button.appendChild(isx);*/
-      button.innerText="-"
+      button.innerText = "-";
       td.appendChild(button);
       tr.appendChild(td);
       tbody.appendChild(tr);
@@ -174,15 +174,15 @@ function SatirlariYaz_2(arb) {
       td.appendChild(div);
       tr.appendChild(td);
       var td = document.createElement("td");
-      td.setAttribute("style","text-align:center")
+      td.setAttribute("style", "text-align:center");
       var button = document.createElement("button");
       button.setAttribute("class", "btn btn-danger");
-      button.setAttribute("type","button");
+      button.setAttribute("type", "button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
       /*var isx = document.createElement("i");
       isx.setAttribute("class", "icn-md fa fa-minus");
       button.appendChild(isx);*/
-      button.innerText="-"
+      button.innerText = "-";
       td.appendChild(button);
       tr.appendChild(td);
       tbody.appendChild(tr);
@@ -220,15 +220,15 @@ function SatirlariYaz_2(arb) {
       td.appendChild(div);
       tr.appendChild(td);
       var td = document.createElement("td");
-      td.setAttribute("style","text-align:center")
+      td.setAttribute("style", "text-align:center");
       var button = document.createElement("button");
       button.setAttribute("class", "btn btn-danger");
-      button.setAttribute("type","button");
+      button.setAttribute("type", "button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
       /*var isx = document.createElement("i");
       isx.setAttribute("class", "icn-md fa fa-minus");
       button.appendChild(isx);*/
-      button.innerText="-"
+      button.innerText = "-";
       td.appendChild(button);
       tr.appendChild(td);
       tbody.appendChild(tr);
@@ -341,7 +341,8 @@ function ParaHesapla() {
 function SaveForPump() {
   var ix = $("#is_rotation").val();
   var cx = $("#Pumpa_cat").val();
-  if (cx.length == 0) {
+
+  if (OlusacakUrun.IS_VIRTUAL == 1 && cx.length == 0) {
     alert("Kategori Seçiniz");
     return false;
   }
