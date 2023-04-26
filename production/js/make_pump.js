@@ -112,9 +112,10 @@ function SatirlariYaz_2(arb) {
       button.setAttribute("class","btn btn-danger");
       button.setAttribute("type","button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
-      var isx=document.createElement("i");
+      /*var isx=document.createElement("i");
       isx.setAttribute("class","icn-md fa fa-minus");
-      button.appendChild(isx);
+      button.appendChild(isx);*/
+      button.innerText="-"
       td.appendChild(button);
       tr.appendChild(td)
       tbody.appendChild(tr);
@@ -156,9 +157,10 @@ function SatirlariYaz_2(arb) {
       button.setAttribute("class","btn btn-danger");
       button.setAttribute("type","button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
-      var isx=document.createElement("i");
+      /*var isx=document.createElement("i");
       isx.setAttribute("class","icn-md fa fa-minus");
-      button.appendChild(isx);
+      button.appendChild(isx);*/
+      button.innerText="-"
       td.appendChild(button);
       tr.appendChild(td)
       tbody.appendChild(tr);
@@ -200,9 +202,10 @@ function SatirlariYaz_2(arb) {
       button.setAttribute("class","btn btn-danger");
       button.setAttribute("type","button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
-      var isx=document.createElement("i");
+     /* var isx=document.createElement("i");
       isx.setAttribute("class","icn-md fa fa-minus");
-      button.appendChild(isx);
+      button.appendChild(isx);*/
+      button.innerText="-"
       td.appendChild(button);
       tr.appendChild(td)
       tbody.appendChild(tr);
