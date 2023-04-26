@@ -18,7 +18,16 @@ FROM workcube_metosan_2023_1.STOCK_FIS AS SF
 INNER JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.LOCATION_ID=SF.LOCATION_OUT AND SL.DEPARTMENT_ID=SF.DEPARTMENT_OUT
 INNER JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID  WHERE REF_NO='#attributes.svk_number#'
     </cfquery>
-    <table>
+    <cf_big_list>
+        <thead>
+            <tr>
+                <th>Hazırlama</th>
+                <th>Hazırlama Tarihi</th>
+                <th>Hazırlama Deposu</th>
+                <th>Hazırlayan</th>
+            </tr>
+        </thead>
+        <tbody>
         <cfoutput query="getS">
             <tr>
                 <td><a href="##">#FIS_NUMBER#</a></td>
@@ -28,5 +37,6 @@ INNER JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID 
                 
             </tr>
         </cfoutput>
-    </table>
+    </tbody>
+    </cf_big_list>
 </cfif>
