@@ -89,7 +89,10 @@
                     <thead>
                         <tr>
                             <th>
-                                Ürün 
+                                Ürün Kodu 
+                            </th>
+                            <th>
+                                Ürün Adı 
                             </th>
                             <th>Miktar</th>
                             <th>
@@ -114,10 +117,13 @@
                     <thead>
                         <tr>
                             <th>
-                                Ürün 
+                                Ürün Kodu 
+                            </th>
+                            <th>
+                                Ürün Adı 
                             </th>
                             <th>Miktar</th>
-                            <th>
+                            <th >
                                 <button onclick="OpenBasketProducts(2,0)" type="button" class="btn btn-success">+</button>
                                 
                             </th>
@@ -134,7 +140,10 @@
                     <thead>
                         <tr>
                             <th>
-                                Ürün 
+                                Ürün Kodu 
+                            </th>
+                            <th>
+                                Ürün Adı 
                             </th>
                             <th>Miktar</th>
                             <th>

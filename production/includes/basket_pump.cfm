@@ -191,7 +191,10 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                     <thead>
                         <tr>
                             <th>
-                                Ürün 
+                                Ürün Kodu 
+                            </th>
+                            <th>
+                                Ürün Adı 
                             </th>
                             <th>Miktar</th>
                             <th>
@@ -216,7 +219,10 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                     <thead>
                         <tr>
                             <th>
-                                Ürün 
+                                Ürün Kodu 
+                            </th>
+                            <th>
+                                Ürün Adı 
                             </th>
                             <th>Miktar</th>
                             <th>
@@ -236,7 +242,10 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                     <thead>
                         <tr>
                             <th>
-                                Ürün 
+                                Ürün Kodu 
+                            </th>
+                            <th>
+                                Ürün Adı 
                             </th>
                             <th>Miktar</th>
                             <th>
