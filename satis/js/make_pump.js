@@ -127,6 +127,7 @@ function SatirlariYaz_2(arb) {
       td.appendChild(div);
       tr.appendChild(td);
       var td = document.createElement("td");
+      td.setAttribute("style","text-align:center")
       var button = document.createElement("button");
       button.setAttribute("class", "btn btn-danger");
       button.setAttribute("type","button");
@@ -173,6 +174,7 @@ function SatirlariYaz_2(arb) {
       td.appendChild(div);
       tr.appendChild(td);
       var td = document.createElement("td");
+      td.setAttribute("style","text-align:center")
       var button = document.createElement("button");
       button.setAttribute("class", "btn btn-danger");
       button.setAttribute("type","button");
@@ -218,6 +220,7 @@ function SatirlariYaz_2(arb) {
       td.appendChild(div);
       tr.appendChild(td);
       var td = document.createElement("td");
+      td.setAttribute("style","text-align:center")
       var button = document.createElement("button");
       button.setAttribute("class", "btn btn-danger");
       button.setAttribute("type","button");
