@@ -7,7 +7,7 @@
         <cf_box title="Görevlisi Olduğum İşler">
            <div class="row">
             <cfoutput query="getProcess">
-                <div class="col col-4 col-md-4 col-sm-4 col-xs-12" style="border-right: solid 1px ##E08283;">
+                <div class="col col-6 col-md-6 col-sm-6 col-xs-12" style="border-right: solid 1px ##E08283;">
                     <h3>#STAGE#</h3>
                     <cfquery name="W1" datasource="#dsn#">
     
@@ -65,7 +65,7 @@
         <cf_box title="Atadığım İşler">
             <div class="row">
                 <cfoutput query="getProcess">
-                    <div class="col col-4 col-md-4 col-sm-4 col-xs-12" style="border-right: solid 1px ##E08283;">
+                    <div class="col col-6 col-md-6 col-sm-6 col-xs-12" style="border-right: solid 1px ##E08283;">
                         <h3>#STAGE#</h3>
                         <cfquery name="W1" datasource="#dsn#">
         
