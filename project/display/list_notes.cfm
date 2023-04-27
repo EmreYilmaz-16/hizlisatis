@@ -28,7 +28,7 @@
         select NOTE_HEAD,NOTE_ID,NOTE_BODY,IS_WARNING,ACTION_SECTION,ACTION_ID,workcube_metosan.getEmployeeWithId(N.RECORD_EMP) RECORD_EMP,N.RECORD_DATE,PP.PROJECT_HEAD,PP.PROJECT_NUMBER 
         from workcube_metosan.NOTES AS N
         LEFT JOIN workcube_metosan.PRO_PROJECTS AS PP ON PP.PROJECT_ID=N.ACTION_ID
-         WHERE ACTION_SECTION='PROJECT_ID' AND RECORD_EMP=#session.ep.userid#
+         WHERE ACTION_SECTION='PROJECT_ID' AND N.RECORD_EMP=#session.ep.userid#
     </cfquery>
     <div style="clear:both"></div>
     <div class="row">
