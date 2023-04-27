@@ -98,7 +98,7 @@
                                     <th>
                                         Termin Tarihi
                                     </th>                             
-                                    <th>Atayan</th>
+                                    <th>Atanan</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -108,7 +108,7 @@
                                         <td>#WORK_ID#</td>
                                         <td>#WORK_HEAD#</td>                                    
                                         <td>#dateFormat(TERMINATE_DATE,"dd/mm/yyyy")#</td>                     
-                                        <td>#RECORD_AUTHOR#</td>
+                                        <td>#PROJECT_EMP#</td>
                                         <td><span onclick="openBoxDraggable('#request.self#?fuseaction=project.emptypopup_work_detail_pbs&work_id=#WORK_ID#')" class="icn-md icon-search"></span></td>
                                     </tr>
                                 </cfloop>
