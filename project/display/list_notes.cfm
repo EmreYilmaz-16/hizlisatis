@@ -9,13 +9,10 @@
     <div class="col col-3 col-md-3 col-sm-6 col-xs-12">
         <div class="ui-cards">            
             <div class="ui-cards-text">
-                <h1>#NOTE_HEAD#</h1>
+                <h1>#NOTE_HEAD# <a href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_form_upd_note&note_id=#NOTE_ID#&is_delete=1&style=1&design_id=1&is_special=0&action_type=0&is_delete=1&action_section=PROJECT_ID&action_id=#attributes.action_id#&is_open_det=1')" class="tableyazi" style="float: right;"><i class="fa fa-pencil" title="Güncelle "></i></a></h1>
                 <p style="text-align:justify">#NOTE_BODY#</p>
                 <code><span class="icn-md icon-save"></span> #dateFormat(RECORD_DATE,'dd/mm/yyyy')# #timeFormat(RECORD_DATE,"HH:mm")# - #RECORD_EMP#</code>
-                <ul class="ui-icon-list">
-                    <li><a href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_form_upd_note&note_id=#NOTE_ID#&is_delete=1&style=1&design_id=1&is_special=0&action_type=0&is_delete=1&action_section=PROJECT_ID&action_id=2558&is_open_det=1')" class="tableyazi"><i class="fa fa-pencil" title="Güncelle "></i></a></li>
-                   
-                </ul>
+                
             </div>
         </div>
     </div>
