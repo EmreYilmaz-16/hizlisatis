@@ -1,0 +1,60 @@
+﻿
+<cfquery name="getProcess" datasource="#dsn#">
+    SELECT * FROM workcube_metosan.PROCESS_TYPE_ROWS WHERE PROCESS_ID=19
+</cfquery>
+<div class="row">    
+    <div class="col col-6 col-md-6 col-sm-6 col-xs-12">
+        <cf_box title="Görevlisi Olduğum İşler">
+           <div class="row">
+            <cfoutput query="getProcess">
+                <div class="col col-3 col-md-3 col-sm-3 col-xs-12">
+                    <h3>#STAGE#</h3>
+                </div>
+            </cfoutput>
+        </div>
+        </cf_box>
+    </div>
+    <div class="col col-6 col-md-6 col-sm-6 col-xs-12">
+        <cf_box title="Atadığım İşler">
+            
+        </cf_box>
+    </div>
+</div>
+
+
+<cfquery name="W1" datasource="#dsn#">
+    
+SELECT WORK_ID
+	,WORK_STATUS
+	,RELATED_WORK_ID
+	,WORK_HEAD
+	,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
+	,TARGET_START
+	,TARGET_FINISH
+	,TERMINATE_DATE
+	,workcube_metosan.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
+    ,PTR.STAGE
+	,RECORD_AUTHOR as RECORD_AUTHOR_ID
+	,PROJECT_EMP_ID
+FROM workcube_metosan.PRO_WORKS as PWH
+LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
+WHERE PROJECT_EMP_ID = #session.ep.userid#
+</cfquery>
+<cfquery name="W2" datasource="#dsn#">
+    
+    SELECT WORK_ID
+        ,WORK_STATUS
+        ,RELATED_WORK_ID
+        ,WORK_HEAD
+        ,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
+        ,TARGET_START
+        ,TARGET_FINISH
+        ,TERMINATE_DATE
+        ,workcube_metosan.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
+        ,PTR.STAGE
+        ,RECORD_AUTHOR as RECORD_AUTHOR_ID
+        ,PROJECT_EMP_ID
+    FROM workcube_metosan.PRO_WORKS as PWH
+    LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
+    WHERE PROJECT_EMP_ID = #session.ep.userid#
+    </cfquery>

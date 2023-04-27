@@ -6,8 +6,9 @@
     <div class="prSt prReport">Proje Raporları</div>
     <div class="prSt prProds">Proje Ürünleri</div>
     <div class="prSt prPtype">Proje Ürün Tipleri</div>
-    <div class="prSt prBekle">Bekleyen İşlerim</div>
+    <div class="prSt prBekle" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'">Bekleyen İşlerim</div>
     <div class="prSt prNotes" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&act=list_my'">Notlarım</div>
 </cf_box>
 
 <script src="/AddOns/Partner/project/content/project_welcome.js"></script>
+
