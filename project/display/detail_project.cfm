@@ -66,7 +66,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_related_projects_pbs&project_id=#attributes.project_id#</cfoutput>'">İlişkili Projeler</div>
         <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'"> Belgeler</div>
         <div class="prSt prGray">Üretim Emirleri</div>
-        <div class="prSt prGray" onclick="window.location.href='index.cfm?fuseaction=objects.ajax_notes&&style=1&design_id=1&is_special=0&action_type=0&is_delete=1&action_section=PROJECT_ID&action_id=<cfoutput>#attributes.project_id#</cfoutput>&is_open_det=1&period_id='">Notlar</div>
+        <div class="prSt prGray" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'">Notlar</div>
         <div class="prSt prGray">Malzeme İhtiyaçları</div>
         <div class="prSt prGray">Teklife Dönüştür</div>
         <div class="prSt prGray">İlişkili İşlemler</div>
