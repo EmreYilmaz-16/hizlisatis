@@ -36,21 +36,10 @@
                                 <th>
                                     Görev
                                 </th>
-                                <th>
-                                    Görevli
-                                </th>
-                                <th>
-                                    Süreç
-                                </th>
+                                
                                 <th>
                                     Termin Tarihi
-                                </th>
-                                <th>
-                                    Hedef Başlangıç
-                                </th>
-                                <th>
-                                    Hedef Bitiş
-                                </th>
+                                </th>                             
                                 <th>Atayan</th>
                                 <th></th>
                             </tr>
@@ -59,12 +48,8 @@
                             <cfloop query="W1">
                                 <tr>
                                     <td>#WORK_ID#</td>
-                                    <td>#WORK_HEAD#</td>
-                                    <td>#PROJECT_EMP#</td>
-                                    <td>#STAGE#</td>
-                                    <td>#dateFormat(TERMINATE_DATE,"dd/mm/yyyy")#</td>
-                                    <td>#dateFormat(TARGET_START,"dd/mm/yyyy")#</td>
-                                    <td>#dateFormat(TARGET_FINISH,"dd/mm/yyyy")#</td>
+                                    <td>#WORK_HEAD#</td>                                    
+                                    <td>#dateFormat(TERMINATE_DATE,"dd/mm/yyyy")#</td>                     
                                     <td>#RECORD_AUTHOR#</td>
                                     <td><span onclick="openBoxDraggable('#request.self#?fuseaction=project.emptypopup_work_detail_pbs&work_id=#WORK_ID#')" class="icn-md icon-search"></span></td>
                                 </tr>
