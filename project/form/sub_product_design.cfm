@@ -4,10 +4,7 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
 
 <cfquery name="getP" datasource="#dsn3#">
     SELECT *,1 AS IS_MAIN FROM VIRTUAL_PRODUCTS_PRT WHERE PROJECT_ID=#attributes.PROJECT_ID#
-    <cfif relProjects.recordCount>
-        UNION
-        SELECT *,0 AS IS_MAIN FROM VIRTUAL_PRODUCTS_PRT WHERE PROJECT_ID IN(#valuelist(relProjects.PROJECT_ID)#) 
-    </cfif>
+   
 
 </cfquery>
 <cfset PListe=0>
