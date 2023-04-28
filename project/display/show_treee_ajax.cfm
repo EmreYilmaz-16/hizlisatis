@@ -1,10 +1,11 @@
-﻿<cfdump var="#attributes#">
+﻿
+<cfdump var="#attributes#">
 
 <cfquery name="getTree" datasource="#dsn3#">
     SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#attributes.vp_id#
 </cfquery>
 
-<ul>
+<ul class="sortable1">
     <cfoutput query="getTree">
         <cfset seviye=0>
         <cfquery name="getSInfo" datasource="#dsn3#">
@@ -26,7 +27,7 @@
             </cfif>
         </cfquery>
         <cfif ishvTree.recordCount>
-            <ul>
+            <ul class="sortable1">
                 <cfloop query="ishvTree">
                     <cfset seviye=1>
                     <cfquery name="getSInfoa" datasource="#dsn3#">
