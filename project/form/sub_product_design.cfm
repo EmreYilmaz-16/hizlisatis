@@ -76,11 +76,18 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
         </div>
     </cf_box>
     </div>
-    <div class="col col-9 col-md-9 col-sm-9 col-xs-12" >
+    <div class="col col-7 col-md-7 col-sm-7 col-xs-12" >
 <cf_box title="Ürün Ağacı">
     <div id="TreeArea" style="height:90vh">
 
 </div>
 </cf_box>
 </div>
+<div class="col col-2 col-md-2 col-sm-2 col-xs-12" >
+    <cf_box title="....">
+        <div  style="height:90vh">
+    
+    </div>
+    </cf_box>
+    </div>
 </div>
