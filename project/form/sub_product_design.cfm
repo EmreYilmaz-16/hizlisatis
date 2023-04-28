@@ -3,7 +3,9 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
 </cfquery>
 
 <cfquery name="getP" datasource="#dsn3#">
-    SELECT *,1 AS IS_MAIN FROM VIRTUAL_PRODUCTS_PRT WHERE PROJECT_ID=#attributes.PROJECT_ID#
+    SELECT VP.*,1 AS IS_MAIN,PTR.STAGE FROM VIRTUAL_PRODUCTS_PRT  AS VP
+        LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS AS PTR ON PTR.PROCESS_ROW_ID=VP.PRODUCT_STAGE
+    WHERE PROJECT_ID=#attributes.PROJECT_ID#
    
 
 </cfquery>
@@ -12,7 +14,8 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
     <cfset PListe=valuelist(relProjects.PROJECT_ID)>
 </cfif>
 <cfquery name="getP2" datasource="#dsn3#"> 
-        SELECT *,0 AS IS_MAIN FROM VIRTUAL_PRODUCTS_PRT WHERE PROJECT_ID IN(#PListe#)   
+        SELECT VP.*,0 AS AS IS_MAIN,PTR.STAGE FROM VIRTUAL_PRODUCTS_PRT  AS VP
+        LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS AS PTR ON PTR.PROCESS_ROW_ID=VP.PRODUCT_STAGEWHERE PROJECT_ID IN(#PListe#)   
 </cfquery>
 
 
@@ -37,7 +40,7 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
                                     </i>
                                 </li>
                                 <li>
-                                    Durum : <i>Stokda Var</i>
+                                    Durum : <i>#STAGE#</i>
                                 </li>                              
                             </ul>
                             <ul class="ui-icon-list">
