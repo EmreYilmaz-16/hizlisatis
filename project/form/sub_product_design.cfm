@@ -10,9 +10,12 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
     </cfif>
 
 </cfquery>
-
+<cfset PListe=0>
+<cfif listLen(valuelist(relProjects.PROJECT_ID))>
+    <cfset PListe=valuelist(relProjects.PROJECT_ID)>
+</cfif>
 <cfquery name="getP2" datasource="#dsn3#"> 
-        SELECT *,0 AS IS_MAIN FROM VIRTUAL_PRODUCTS_PRT WHERE PROJECT_ID IN(0,#valuelist(relProjects.PROJECT_ID)#0)   
+        SELECT *,0 AS IS_MAIN FROM VIRTUAL_PRODUCTS_PRT WHERE PROJECT_ID IN(#PListe#)   
 </cfquery>
 
 
