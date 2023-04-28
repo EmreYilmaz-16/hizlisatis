@@ -22,9 +22,9 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
     <div class="col col-3 col-md-3 col-sm-3 col-xs-12" style="border-right: solid 1px ##E08283;">
         <cf_box title="Ürünler">
        <div style="height:90vh">
-            <ul>
+            <ul style="margin: 0;list-style: none;"> 
         <cfoutput query="getP">
-            <li>                
+            <li style="background: lightgrey;border-radius: 5px;">                
                     <div class="ui-cards ui-cards-vertical">                        
                         <div class="ui-cards-text">
                             <ul class="ui-info-list">
