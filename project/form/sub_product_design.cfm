@@ -15,7 +15,7 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
 </cfif>
 <cfquery name="getP2" datasource="#dsn3#"> 
         SELECT VP.*,0 AS  IS_MAIN,PTR.STAGE FROM VIRTUAL_PRODUCTS_PRT  AS VP
-        LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS AS PTR ON PTR.PROCESS_ROW_ID=VP.PRODUCT_STAGEWHERE PROJECT_ID IN(#PListe#)   
+        LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS AS PTR ON PTR.PROCESS_ROW_ID=VP.PRODUCT_STAGE WHERE PROJECT_ID IN(#PListe#)   
 </cfquery>
 
 
