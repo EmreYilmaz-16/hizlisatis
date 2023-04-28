@@ -1,7 +1,7 @@
 ﻿<style>
     .sortable1, #sortable2 {
       border: 1px solid #eee;
-      width: 142px;
+     
       min-height: 20px;
       list-style-type: none;
       margin: 0;
@@ -13,7 +13,7 @@
       margin: 0 5px 5px 5px;
       padding: 5px;
       font-size: 1.2em;
-      width: 120px;
+      
     }
     </style>
 <cfquery name="relProjects" datasource="#dsn#">
