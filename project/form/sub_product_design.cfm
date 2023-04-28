@@ -6,7 +6,7 @@
       list-style-type: none;
       margin: 0;
       padding: 5px 0 0 0;
-      float: left;
+      
       margin-right: 10px;
     }
     .sortable1 li, #sortable2 li {
