@@ -57,7 +57,7 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
                                 </li>                              
                             </ul>
                             <ul class="ui-icon-list">
-                                <li><a href="javascript://" onclick="AjaxPageLoad('index.cfm?fuseaction=project.emptypopup_show_tree_bs&vp_id=#VIRTUAL_PRODUCT_ID#','TreeArea','Yükleniyor')" title="Görüntüle"><i class="icon-search"></i></a></li>
+                                <li><a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1)" title="Görüntüle"><i class="icon-search"></i></a></li>
                             </ul>
                         </div>
                     </div>               
@@ -107,3 +107,5 @@ SELECT * FROM workcube_metosan.PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes
     </cf_box>
     </div>
 </div>
+
+<script src="/AddOns/Partner/project/js/sub_product_design.js"></script>

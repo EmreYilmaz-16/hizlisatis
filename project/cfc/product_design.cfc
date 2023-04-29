@@ -1,6 +1,7 @@
 ﻿<cfcomponent>
     <cfset dsn=application.systemparam.dsn>
-        <cffunction name="getTree" access="remote">
+    <cfset dsn3="#dsn#_1">
+        <cffunction name="getTree" access="remote" httpMethod="POST" returntype="any" returnFormat="json">
             <cfargument name="product_id">
             <cfargument name="isVirtual">
             <cfset TreeArr=arrayNew(1)>
@@ -9,6 +10,7 @@
             <cfelse>
                 <cfset TreeArr=getTreeFromRealProduct(product_id)>
             </cfif>
+            <cfreturn replace(serializeJSON(TreeArr),"//","")>
         </cffunction>
 
     
