@@ -17,7 +17,7 @@
     <cffunction name="getTreeFromVirtual" >
         <cfargument name="product_id">        
         <cfquery name="getTree" datasource="#dsn3#">
-            SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#attributes.product_id#
+            SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.product_id#
         </cfquery>
         <cfset ReturnArr=arrayNew(1)>
         <cfloop query="getTree">
@@ -61,7 +61,7 @@
         
 
         <cfquery name="getTreeFromVirtual" datasource="#dsn3#">
-            SELECT * FROM workcube_metosan_1.PRODUCT_TREE WHERE STOCK_ID=#attributes.product_id#
+            SELECT * FROM workcube_metosan_1.PRODUCT_TREE WHERE STOCK_ID=#arguments.product_id#
         </cfquery>
         <cfset ReturnArr=arrayNew(1)>
         <cfset ReturnArr=arrayNew(1)>
