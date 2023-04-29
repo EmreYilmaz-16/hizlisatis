@@ -48,7 +48,7 @@
                 </cfif>
             </cfif>
             <cfscript>
-                arrayAppend(ReturnArr,O)>
+                arrayAppend(ReturnArr,O);
             </cfscript>
         </cfloop>
         <cfreturn ReturnArr>
@@ -80,7 +80,7 @@
                     <cfset O.Tree=getTreeFromRealProduct(PRODUCT_ID)>               
             </cfif>
             <cfscript>
-                arrayAppend(ReturnArr,O)>
+                arrayAppend(ReturnArr,O);
             </cfscript>
         </cfloop>
         <cfreturn ReturnArr>
