@@ -218,7 +218,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
 <hr>
 <div style="display:flex">
     <div style="width:50%;">
-        <cf_box title="Giren Ürünler" collapsable="0" resize="0">
+        <cf_box title="Artan Ürünler (Depoya Giren)" collapsable="0" resize="0">
             <div style="height:30vh">
                 <cf_big_list id="tbl_2">
                     <thead>
@@ -241,7 +241,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
         </cf_box>
     </div>
     <div style="width:50%;margin-left:2%">
-        <cf_box title="Çıkan Ürünler" collapsable="0" resize="0">
+        <cf_box title="Kullanılan Ürünler (Depodan Çıkan)" collapsable="0" resize="0">
             <div style="height:30vh">
                 <cf_big_list id="tbl_3">
                     <thead>
