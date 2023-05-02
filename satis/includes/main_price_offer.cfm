@@ -2,9 +2,8 @@
 <cfquery name="getMoney" datasource="#dsn#">
     SELECT MONEY,RATE1, EFFECTIVE_SALE AS RATE2 FROM SETUP_MONEY WHERE PERIOD_ID = #session.ep.period_id# ORDER BY MONEY_ID
 </cfquery>
-<cfquery name="getPo" datasource="#dsn3#">
-	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE V_P_ORDER_ID=#attributes.VP_ORDER_ID#
-</cfquery>
+
+
 <script>
     var moneyArr=[
         <cfoutput query="getMoney">
@@ -29,7 +28,7 @@
         select POR.*,DETAIL from PBS_OFFER_ROW  AS POR 
         LEFT JOIN STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID
         LEFT JOIN #dsn1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID 
-        WHERE UNIQUE_RELATION_ID='#getProductionOrders.UNIQUE_RELATION_ID#'
+        WHERE UNIQUE_RELATION_ID='#getPor.UNIQUE_RELATION_ID#'
     </cfquery>
     <cfquery name="getOfferMain" datasource="#dsn3#">
         SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
@@ -44,7 +43,7 @@
         <input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="#getOfferMain.PRICE_CAT_ID#">
         <input type="hidden" name="company_id" id="company_id" value="#getOfferMain.COMPANY_ID#">
         <input type="hidden" name="company_name" id="company_name" value="#getOfferMain.COMPANY_ID#">
-        <input type="hidden" name="vpoorderid" id="vpoorderid" value="#attributes.VP_ORDER_ID#">
+        
         <cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
         <cfquery name="getVirtualProduct"  datasource="#dsn3#">
             SELECT * FROM #dsn3#.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#
