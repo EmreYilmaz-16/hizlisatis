@@ -443,6 +443,7 @@
 			<cfset ACTION_TYPE_ID = 1>
 			<cfset attributes.product_id = evaluate("attributes.product_id#i#")>
 			<cfinclude template="save_virtual_production_orders.cfm">
+			<cfinclude template="add_price_offer.cfm">			
 		</cfloop>
 
 		<cfscript>
