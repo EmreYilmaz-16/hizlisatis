@@ -37,30 +37,20 @@
 <cfform method="post" name="production_form" id="production_form" onsubmit="event.preventDefault()">
     <cfoutput>
         <input type="hidden" name="offer_row_id" value="#getOffer.OFFER_ROW_ID#"> 
-        <input type="hidden" name="main_product_id" id="main_product_id" value="#getProductionOrders.STOCK_ID#">
-        <input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#getProductionOrders.UNIQUE_RELATION_ID#">
+        <input type="hidden" name="main_product_id" id="main_product_id" value="#getOffer.STOCK_ID#">
+        <input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#getOffer.UNIQUE_RELATION_ID#">
         <input type="hidden" name="price_cat" id="price_cat" value="#getOfferMain.PRICE_CAT_ID#">
         <input type="hidden" name="PRICE_CATID" id="PRICE_CATID" value="#getOfferMain.PRICE_CAT_ID#">
         <input type="hidden" name="company_id" id="company_id" value="#getOfferMain.COMPANY_ID#">
-        <input type="hidden" name="company_name" id="company_name" value="#getOfferMain.COMPANY_ID#">
-        
-        <cfif getProductionOrders.IS_FROM_VIRTUAL EQ 1>
-        <cfquery name="getVirtualProduct"  datasource="#dsn3#">
-            SELECT * FROM #dsn3#.VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getProductionOrders.STOCK_ID#
-        </cfquery>
-        <input type="hidden" name="product_type" id="product_type" value="#getVirtualProduct.product_type#">
-
-        production\includes\basket_pump.cfm
-            <cfif getVirtualProduct.product_type eq 1>
+        <input type="hidden" name="company_name" id="company_name" value="#getOfferMain.COMPANY_ID#">        
+            <cfif getPor.KKD eq 1>
                 <cfinclude template="/AddOns/partner/Production/includes/basket_tube.cfm">
-            <cfelseif getVirtualProduct.product_type eq 2>
+            <cfelseif getPor.KKD eq 2>
                 <cfinclude template="/AddOns/partner/Production/includes/basket_hydrolik.cfm">
-            <cfelseif getVirtualProduct.product_type eq 3>
+            <cfelseif getPor.KKD eq 3>
                 <cfinclude template="/AddOns/partner/Production/includes/basket_pump.cfm">
             </cfif>
-        <cfelse>
-            <cfinclude template="/AddOns/partner/Production/includes/basket_normal.cfm">
-        </cfif>     
+     
 <input type="hidden" name="total_price" id="total_price">
     </cfoutput>
     
