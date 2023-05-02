@@ -1195,6 +1195,12 @@ function AsamaYapici(rc, selv) {
   opt.setAttribute("value", -10);
   opt.innerText = "Kapatıldı";
   sel_1.appendChild(opt);
+
+  var opt = document.createElement("option");
+  opt.setAttribute("value", 1);
+  opt.innerText = "Fiyat Talep";
+  sel_1.appendChild(opt);
+
   sel_1.value = selv;
   return sel_1;
 }
@@ -1684,6 +1690,10 @@ function KntO() {
     }
     if (parseInt(d) == -1 && isChecked) {
       alert("Sipariş Yapmak İçin Açıkta Aşama Kalmış Olmaması Gerekmektedir ");
+      Hata = true;
+    }
+    if (parseInt(d) == 1 && isChecked) {
+      alert("Fiyat Talep Aşamasında  Kalmış Olmaması Gerekmektedir ");
       Hata = true;
     }
   }
