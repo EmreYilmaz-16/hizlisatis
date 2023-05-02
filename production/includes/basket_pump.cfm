@@ -3,6 +3,15 @@
  margin:0 !important;
 }
 </style>
+<cfif isDefined("isfrom_price_offer")>
+    <cfquery name="getData" datasource="#dsn3#">
+        SELECT *
+    FROM 
+        workcube_metosan_1.VirmanProduct AS VP 
+    WHERE VP.VIRMAN_ID = #getPor.CONVERTED_STOCK_ID#
+    </cfquery>
+
+<cfelse>
 <cfquery name="getData" datasource="#dsn3#">
     SELECT *
 FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS AS VPO
@@ -10,6 +19,7 @@ LEFT JOIN workcube_metosan_1.PBS_OFFER_ROW AS POR ON POR.UNIQUE_RELATION_ID = VP
 LEFT JOIN workcube_metosan_1.VirmanProduct AS VP ON VP.VIRMAN_ID = POR.CONVERTED_STOCK_ID
 WHERE VPO.V_P_ORDER_ID = #attributes.VP_ORDER_ID#
 </cfquery>
+</cfif>
 <!---
 var ArrForPum = [];
 var GirenArr = [];
