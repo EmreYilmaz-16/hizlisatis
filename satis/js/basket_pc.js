@@ -1812,7 +1812,7 @@ function BasketSelControl() {
     var e = selectedArr[0];
     var RwId = e.getAttribute("data-rc");
     var Ptype = e.getAttribute("data-producttype");
-    var ff=e.getAttribute("data-priceOffer");
+    var ff = e.getAttribute("data-priceOffer");
     var isVirt = $(e)
       .find("#is_virtual_" + RwId)
       .val();
@@ -1853,7 +1853,6 @@ function BasketSelControl() {
         evnt: "showTree(" + RwId + ")",
         att: "",
       };
-    
     }
     if (parseInt(ff) == 1) {
       var TurnButton = {
@@ -1885,8 +1884,13 @@ function showTree(el) {
   );
 }
 function TurnOut(el, rwid) {
-  var unq=document.getElementById("row_uniq_id_"+rwid).value;
-  openBoxDraggable("index.cfm?fuseaction=sales.emptypopup_add_pbs_offer_price_offerings&OfferrowUniqId="+unq+"&row_id="+rwid);
+  var unq = document.getElementById("row_uniq_id_" + rwid).value;
+  openBoxDraggable(
+    "index.cfm?fuseaction=sales.emptypopup_add_pbs_offer_price_offerings&OfferrowUniqId=" +
+      unq +
+      "&row_id=" +
+      rwid
+  );
 }
 function rowaListener(tr) {
   $(tr).on("contextmenu", function (ev) {
@@ -2486,6 +2490,7 @@ function FiyatTalepKontrol(i = 0) {
 function setFiyatA(row, price, money, modal_id) {
   $("#price_" + row).val(price);
   $("#other_money_" + row).val(money);
+  $("orderrow_currency_" + row).val(-6);
   hesapla("price", row);
   closeBoxDraggable(modal_id);
 }
