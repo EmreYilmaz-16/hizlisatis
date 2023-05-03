@@ -30,6 +30,9 @@ var BozulacakArr = [];
 <cfset fr_data=deserializeJSON(replace(getData.JSON_DATA,"//",""))>
 
 <cfdump var="#fr_data#">
+<cfquery name="getC" datasource="#dsn3#">
+    SELECT * FROM PRODUCT_CAT WHERE HIERARCHY='#fr_data.HIERARCHY#'
+</cfquery>
 <cfoutput>
     <script>
        var BozulacakArr=#Replace(SerializeJSON(fr_data.BozulacakUrunler),'//','')#
@@ -159,11 +162,13 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                                 <div class="form-group" id="item-cat_id">
                                     <label>Kategori </label>
                                     <div class="input-group">
-                                        <input type="hidden" name="Pumpa_cat_id" id="Pumpa_cat_id" value="">
-                                        <input type="hidden" name="Pumpa_cat" id="Pumpa_cat" value="">
-                                        <input name="Pumpa_category_name" type="text" id="Pumpa_category_name" onfocus="AutoComplete_Create('Pumpa_category_name','PRODUCT_CATID,PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','','PRODUCT_CATID,HIERARCHY','Pumpa_cat_id,Pumpa_cat','','3','200','','1');" value="" autocomplete="off"><div id="category_name_div_2" name="category_name_div_2" class="completeListbox" autocomplete="on" style="width: 463px; max-height: 150px; overflow: auto; position: absolute; left: 487.5px; top: 145px; z-index: 159; display: none;"></div>
+        <cfoutput>                                <input type="hidden" name="Pumpa_cat_id" id="Pumpa_cat_id" value="#getC.PRODUCT_CATID#">
+                                        <input type="hidden" name="Pumpa_cat" id="Pumpa_cat" value="#getC.HIERARCHY#">
+                                        <input name="Pumpa_category_name" type="text" id="Pumpa_category_name" onfocus="AutoComplete_Create('Pumpa_category_name','PRODUCT_CATID,PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','','PRODUCT_CATID,HIERARCHY','Pumpa_cat_id,Pumpa_cat','','3','200','','1');" value="#getC.PRODUCT_CAT#" autocomplete="off"><div id="category_name_div_2" name="category_name_div_2" class="completeListbox" autocomplete="on" style="width: 463px; max-height: 150px; overflow: auto; position: absolute; left: 487.5px; top: 145px; z-index: 159; display: none;"></div>
                                         <span class="input-group-addon icon-ellipsis btnPointer" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_product_cat_names&is_sub_category=1&field_id=search_product.Pumpa_cat_id&field_code=search_product.Pumpa_cat&field_name=search_product.Pumpa_category_name');"></span>
+                                    </cfoutput>
                                     </div>
+
                                 </div>
                             </td>
                           <!---  <cfquery name="getPcats" datasource="#dsn1#">
