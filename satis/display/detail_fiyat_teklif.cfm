@@ -19,7 +19,7 @@
 #PRICE_EMP#
     </td>
     <td>
-        <a onclick="setFiyatA(#attributes.row_id#,#OFFERED_PRICE#,#PRICE_MONEY#,'#attributes.modal_id#')">#OFFERED_PRICE# #PRICE_MONEY#</a>
+        <a onclick="setFiyatA(#attributes.row_id#,#OFFERED_PRICE#,'#PRICE_MONEY#','#attributes.modal_id#')">#OFFERED_PRICE# #PRICE_MONEY#</a>
     </td>
 </tr>
 </cfoutput>
