@@ -8,6 +8,7 @@
         SELECT *
     FROM 
         workcube_metosan_1.VirmanProduct AS VP 
+        LEFT JOIN workcube_metosan_1.PBS_OFFER_ROW AS POR ON POR.UNIQUE_RELATION_ID = #getPor.UNIQUE_RELATION_ID#
     WHERE VP.VIRMAN_ID = #getPor.CONVERTED_STOCK_ID#
     </cfquery>
 
