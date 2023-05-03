@@ -6,6 +6,7 @@
     <cfcase value="4"><cfinclude template="test_includes/make_pump_v2.cfm"></cfcase>
     <cfcase value="5"><cfinclude template="test_includes/kontrol.cfm"></cfcase>
     <cfcase value="6"><cfinclude template="test_includes/kontrolSatir.cfm"></cfcase>
+    <cfcase value="7"><cfinclude template="test_includes/basket_guncelle_que.cfm"></cfcase>
   </cfswitch>
 </cfif>
 
