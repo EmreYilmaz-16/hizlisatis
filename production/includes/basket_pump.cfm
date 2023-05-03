@@ -137,6 +137,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                                 <input type="hidden" name="PricePumpa" id="PricePumpa" value="<cfoutput>#fr_data.OlusacakUrun.PRICE#</cfoutput>">
                                 <input type="hidden" name="DiscountPumpa" id="DiscountPumpa" value="<cfoutput>#fr_data.OlusacakUrun.DISCOUNT#</cfoutput>">
                                 <input type="hidden" name="is_rotation" id="is_rotation" value="<cfoutput>#fr_data.IsRotate#</cfoutput>">
+                                <input type="hidden" name="isfrom_price_offer" id="isfrom_price_offer" value="<cfif isdefined("attributes.isfrom_price_offer")>1<cfelse>0</cfif>">
                             </div>
                         </td>
                     </tr>

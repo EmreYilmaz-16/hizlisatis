@@ -107,18 +107,18 @@ function SatirlariYaz_2(arb) {
       div.appendChild(input);
       td.appendChild(div);
       tr.appendChild(td);
-      var td=document.createElement("td");
-      td.setAttribute("style","text-align:center")
-      var button=document.createElement("button");
-      button.setAttribute("class","btn btn-danger");
-      button.setAttribute("type","button");
+      var td = document.createElement("td");
+      td.setAttribute("style", "text-align:center");
+      var button = document.createElement("button");
+      button.setAttribute("class", "btn btn-danger");
+      button.setAttribute("type", "button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
       /*var isx=document.createElement("i");
       isx.setAttribute("class","icn-md fa fa-minus");
       button.appendChild(isx);*/
-      button.innerText="-"
+      button.innerText = "-";
       td.appendChild(button);
-      tr.appendChild(td)
+      tr.appendChild(td);
       tbody.appendChild(tr);
     }
     $("#tbod_" + arb).remove();
@@ -153,18 +153,18 @@ function SatirlariYaz_2(arb) {
       div.appendChild(input);
       td.appendChild(div);
       tr.appendChild(td);
-      var td=document.createElement("td");
-      td.setAttribute("style","text-align:center")
-      var button=document.createElement("button");
-      button.setAttribute("class","btn btn-danger");
-      button.setAttribute("type","button");
+      var td = document.createElement("td");
+      td.setAttribute("style", "text-align:center");
+      var button = document.createElement("button");
+      button.setAttribute("class", "btn btn-danger");
+      button.setAttribute("type", "button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
       /*var isx=document.createElement("i");
       isx.setAttribute("class","icn-md fa fa-minus");
       button.appendChild(isx);*/
-      button.innerText="-"
+      button.innerText = "-";
       td.appendChild(button);
-      tr.appendChild(td)
+      tr.appendChild(td);
       tbody.appendChild(tr);
     }
     $("#tbod_" + arb).remove();
@@ -199,18 +199,18 @@ function SatirlariYaz_2(arb) {
       div.appendChild(input);
       td.appendChild(div);
       tr.appendChild(td);
-      var td=document.createElement("td");
-      td.setAttribute("style","text-align:center")
-      var button=document.createElement("button");
-      button.setAttribute("class","btn btn-danger");
-      button.setAttribute("type","button");
+      var td = document.createElement("td");
+      td.setAttribute("style", "text-align:center");
+      var button = document.createElement("button");
+      button.setAttribute("class", "btn btn-danger");
+      button.setAttribute("type", "button");
       button.setAttribute("onclick", "delRow(" + arb + "," + i + ",this)");
-     /* var isx=document.createElement("i");
+      /* var isx=document.createElement("i");
       isx.setAttribute("class","icn-md fa fa-minus");
       button.appendChild(isx);*/
-      button.innerText="-"
+      button.innerText = "-";
       td.appendChild(button);
-      tr.appendChild(td)
+      tr.appendChild(td);
       tbody.appendChild(tr);
     }
     $("#tbod_" + arb).remove();
@@ -333,6 +333,7 @@ function SaveForPump() {
   var company_id = document.getElementById("company_id").value;
   var price_catid = document.getElementById("PRICE_CATID").value;
   var virman_id = document.getElementById("virman_id").value;
+  var isPriceOffering = document.getElementById("isfrom_price_offer").value;
   var offer_data = {
     comp_id: company_id,
     price_catid: price_catid,
@@ -350,6 +351,7 @@ function SaveForPump() {
     GirenUrunlerArrLen: GirenArr.length,
     CikanUrunlerArrLen: CikanArr.length,
     virman_id: virman_id,
+    isPriceOffering: isPriceOffering,
   };
   if (parseInt(ix) == 1) {
     var xx = YonKontrol();
@@ -371,7 +373,7 @@ function SaveForPump() {
 
 function changeRotation(ela, tt = 0) {
   var ix = $("#is_rotation").val();
-  var el=document.getElementById("btnRotate")
+  var el = document.getElementById("btnRotate");
   console.log(ix);
   if (parseInt(ix) == 0) {
     if (tt != 1) {
@@ -390,7 +392,7 @@ function changeRotation(ela, tt = 0) {
 }
 function setRotation(ela, tt = 0) {
   var ix = $("#is_rotation").val();
-  var el=document.getElementById("btnRotate")
+  var el = document.getElementById("btnRotate");
   console.log(ix);
   if (parseInt(ix) == 1) {
     if (tt != 1) {
@@ -470,18 +472,17 @@ $(document).ready(function () {
   SatirlariYaz_2(1);
   SatirlariYaz_2(2);
   SatirlariYaz_2(3);
-  setRotation(document.getElementById("btnRotate"),1)
+  setRotation(document.getElementById("btnRotate"), 1);
 });
 
-function delRow(arb,ix){
-if(arb==1){
-  BozulacakArr.splice(ix,1);
-}
-if(arb==2){
-  GirenArr.splice(ix,1);
-}
-if(arb==3){
-  CikanArr.splice(ix,1);
-}
-
+function delRow(arb, ix) {
+  if (arb == 1) {
+    BozulacakArr.splice(ix, 1);
+  }
+  if (arb == 2) {
+    GirenArr.splice(ix, 1);
+  }
+  if (arb == 3) {
+    CikanArr.splice(ix, 1);
+  }
 }
