@@ -334,6 +334,7 @@ function SaveForPump() {
   var price_catid = document.getElementById("PRICE_CATID").value;
   var virman_id = document.getElementById("virman_id").value;
   var isPriceOffering = document.getElementById("isfrom_price_offer").value;
+  var uniqRelationId=document.getElementById("uniqRelationId").value;
   var offer_data = {
     comp_id: company_id,
     price_catid: price_catid,
@@ -352,6 +353,7 @@ function SaveForPump() {
     CikanUrunlerArrLen: CikanArr.length,
     virman_id: virman_id,
     isPriceOffering: isPriceOffering,
+    uniqRelationId:uniqRelationId,
   };
   if (parseInt(ix) == 1) {
     var xx = YonKontrol();
