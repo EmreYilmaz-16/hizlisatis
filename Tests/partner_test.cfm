@@ -15,7 +15,9 @@
     <cfcase value="5">
         <cfset sayfa="display/row_data.cfm">
     </cfcase>
-    
+    <cfcase value="6">
+        <cfset sayfa="display/basket_guncelle_que.cfm">
+    </cfcase>
     <cfdefaultcase></cfdefaultcase>
 </cfswitch>
 
