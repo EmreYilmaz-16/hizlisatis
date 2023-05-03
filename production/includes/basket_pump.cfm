@@ -29,6 +29,7 @@ var BozulacakArr = [];
 --->
 <cfset fr_data=deserializeJSON(replace(getData.JSON_DATA,"//",""))>
 
+<cfdump var="#fr_data#">
 <cfoutput>
     <script>
        var BozulacakArr=#Replace(SerializeJSON(fr_data.BozulacakUrunler),'//','')#
@@ -279,6 +280,8 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
 </div>
 </cfform>
 <script src="/AddOns/Partner/production/js/make_pump.js"></script>
+
+
 
 </cf_box>
 
