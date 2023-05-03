@@ -177,7 +177,7 @@
             <cffile action="write" file = "c:\PBS\pump_functions_UpdatePumpa.html" output="#control5#"></cffile>
 <cfif datam.isPriceOffering eq 1>
    <cfquery name="UP" datasource="#datam.datasources.dsn3#">
-      UPDATE PBS_OFFER_ROW_PRICE_OFFER SET PRICE_EMP=#session.ep.userid#,PRICE=#datam.OlusacakUrun.PRICE#,PRICE_MONEY='#datam.OlusacakUrun.MONEY#' WHERE UNIQUE_RELATION_ID='#datam.uniqRelationId#'
+      UPDATE PBS_OFFER_ROW_PRICE_OFFER SET PRICE_EMP=#session.ep.userid#,PRICE=#datam.OlusacakUrun.PRICE#,PRICE_MONEY='#datam.OlusacakUrun.MONEY#',IS_ACCCEPTED=1 WHERE UNIQUE_RELATION_ID='#datam.uniqRelationId#'
    </cfquery>
 </cfif>
          <cfquery name="ins" datasource="#datam.datasources.dsn3#" result="RESSSS">

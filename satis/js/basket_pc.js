@@ -1166,6 +1166,7 @@ function AddRow_pbso(
   hesapla("other_money", rowCount);
   manuelControl();
   RowControlForVirtual();
+  FiyatTalepKontrol(rowCount);
 }
 function AsamaYapici(rc, selv) {
   var sel_1 = document.createElement("select");
@@ -1792,7 +1793,7 @@ function BasketSelControl() {
   };
   var TurnButton = {
     icon: "icn-md fa fa-recycle",
-    txt: "Yön Değiştir",
+    txt: "Fiyat Detay",
     evntType: "onclick",
     evnt: "TurnOut(this)",
     att: "disabled",
@@ -1810,6 +1811,7 @@ function BasketSelControl() {
     var e = selectedArr[0];
     var RwId = e.getAttribute("data-rc");
     var Ptype = e.getAttribute("data-producttype");
+    var ff=e.getAttribute("data-priceOffer");
     var isVirt = $(e)
       .find("#is_virtual_" + RwId)
       .val();
@@ -1850,15 +1852,16 @@ function BasketSelControl() {
         evnt: "showTree(" + RwId + ")",
         att: "",
       };
-      if (parseInt(Ptype) == 3) {
-        var TurnButton = {
-          icon: "icn-md fa fa-recycle",
-          txt: "Yön Değiştir",
-          evntType: "onclick",
-          evnt: "TurnOut(this," + RwId + ")",
-          att: "",
-        };
-      }
+    
+    }
+    if (parseInt(ff) == 1) {
+      var TurnButton = {
+        icon: "icn-md fa fa-recycle",
+        txt: "Fiyat Talep Sonuçları",
+        evntType: "onclick",
+        evnt: "TurnOut(this," + RwId + ")",
+        att: "",
+      };
     }
   }
   buttonGroups.push(
@@ -1881,29 +1884,8 @@ function showTree(el) {
   );
 }
 function TurnOut(el, rwid) {
-  console.log(el);
-  var cp_id = document.getElementById("company_id").value;
-  var cp_name = document.getElementById("company_id").value;
-
-  var p_cat = document.getElementById("PRICE_CATID").value;
-  var p_cat_id = document.getElementById("PRICE_CATID").value;
-
-  openBoxDraggable(
-    "http://erp.metosan.com.tr/index.cfm?fuseaction=objects.emptypopup_list_products_partner&price_cat=" +
-      p_cat +
-      "&PRICE_CATID=" +
-      p_cat_id +
-      "&company_id=" +
-      cp_id +
-      "&company_name=" +
-      cp_name +
-      "&question_id=&columnsa=&actType=" +
-      99 +
-      "&SIPARIS_MIKTARI=" +
-      1 +
-      "&row_iid=" +
-      rwid
-  );
+  var unq=document.getElementById("row_uniq_id_"+rwid).value;
+  openBoxDraggable("index.cfm?fuseaction=sales.emptypopup_add_pbs_offer_price_offerings&OfferrowUniqId="+unq+"&row_id="+rwid);
 }
 function rowaListener(tr) {
   $(tr).on("contextmenu", function (ev) {
@@ -2459,4 +2441,50 @@ function openPump(iid) {
       CompanyData.PRICE_CAT,
     "wwide"
   );
+}
+
+function FiyatTalepKontrol(i = 0) {
+  if (i != 0) {
+    var uniqid = $("#row_uniq_id_" + i).val();
+    var curr = $("#orderrow_currency_" + i).val();
+    if (parseInt(curr) == 1) {
+      console.log(uniqid);
+      var q =
+        "SELECT * FROM PBS_OFFER_ROW_PRICE_OFFER WHERE UNIQUE_RELATION_ID='" +
+        uniqid +
+        "'";
+      var res = wrk_query(q, "dsn3");
+      if (parseInt(res.IS_ACCCEPTED[0]) == 1) {
+        var r = document.getElementById("row_" + i);
+        r.setAttribute("style", "background:#ffd70069");
+        r.setAttribute("data-priceOffer", "1");
+      }
+    }
+  } else {
+    for (let i = 1; i <= row_count; i++) {
+      var uniqid = $("#row_uniq_id_" + i).val();
+      var curr = $("#orderrow_currency_" + i).val();
+      if (parseInt(curr) == 1) {
+        console.log(uniqid);
+        var q =
+          "SELECT * FROM PBS_OFFER_ROW_PRICE_OFFER WHERE UNIQUE_RELATION_ID='" +
+          uniqid +
+          "'";
+        var res = wrk_query(q, "dsn3");
+        if (parseInt(res.IS_ACCCEPTED[0]) == 1) {
+          var r = document.getElementById("row_" + i);
+          r.setAttribute("style", "background:#ffd70069");
+          r.setAttribute("data-priceOffer", "1");
+        }
+        console.log(res);
+      }
+    }
+  }
+}
+
+function setFiyatA(row, price, money, modal_id) {
+  $("#price_" + row).val(price);
+  $("#other_money_" + row).val(money);
+  hesapla("price", row);
+  closeBoxDraggable(modal_id);
 }
