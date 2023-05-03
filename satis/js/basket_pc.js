@@ -33,6 +33,7 @@ function setDoom() {
   if (generalParamsSatis.workingParams.SHOW_VIRTUAL_PRODUCT == 0) {
     $("#vpBtn").hide();
   }
+  FiyatTalepKontrol(0);
 }
 
 function hideP() {
