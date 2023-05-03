@@ -11,6 +11,6 @@
 		WHERE PPROR.ID=#attributes.id#
 </cfquery>
 <cfdump var="#getPor#">
-
+<cfset attributes.isfrom_price_offer=1>
 <cfinclude template="../includes/main_price_offer.cfm">
 
