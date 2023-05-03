@@ -3,7 +3,7 @@
  margin:0 !important;
 }
 </style>
-<cfif isDefined("isfrom_price_offer")>
+<cfif isDefined("attributes.isfrom_price_offer")>
     <cfquery name="getData" datasource="#dsn3#">
         SELECT *
     FROM 
