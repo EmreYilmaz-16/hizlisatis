@@ -179,6 +179,15 @@
    <cfquery name="UP" datasource="#datam.datasources.dsn3#">
       UPDATE PBS_OFFER_ROW_PRICE_OFFER SET PRICE_EMP=#session.ep.userid#,PRICE=#datam.OlusacakUrun.PRICE#,PRICE_MONEY='#datam.OlusacakUrun.MONEY#',IS_ACCCEPTED=1 WHERE UNIQUE_RELATION_ID='#datam.uniqRelationId#'
    </cfquery>
+<cfset attributes.price_offer_from_offering=datam.OlusacakUrun.PRICE>
+<cfset attributes.priceMoney_offer_from_offering=datam.OlusacakUrun.MONEY>
+
+
+
+
+
+
+
 </cfif>
          <cfquery name="ins" datasource="#datam.datasources.dsn3#" result="RESSSS">
             UPDATE VirmanProduct SET JSON_DATA='#Replace(SerializeJSON(datam),' //','')#' WHERE VIRMAN_ID=#datam.virman_id#
