@@ -9,7 +9,9 @@
         LEFT JOIN workcube_metosan.EMPLOYEES AS EMP ON EMP.EMPLOYEE_ID=PO.EMPLOYEE_ID
 		LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID
         LEFT JOIN PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID
-		   
+		   <cfif isDefined("attributes.offer_id") and len(attributes.offer_id)>
+        WHERE PO.OFFER_ID=#attributes.OFFER_ID#
+           </cfif>
 </cfquery>
 <cf_grid_list>
     <cfoutput>
