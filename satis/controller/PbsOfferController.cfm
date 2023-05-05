@@ -33,6 +33,9 @@
 			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['copy']['text'] = 'Kopyala';
 			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['copy']['onClick'] = "windowopen('#request.self#?fuseaction=sales.emptypopup_copy_pbs_offer&offer_id=#url.offer_id#','page');";
 
+			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['copy']['text'] = 'Fiyat Talepleri';
+			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['money']['onClick'] = "windowopen('#request.self#?fuseaction=sales.emptypopup_list_pbs_offer_price_offerings&offer_id=#url.offer_id#','page');";
+
 			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['print']['text'] = 'Yazdır';
 			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['print']['onClick'] = "window.open('#request.self#?fuseaction=objects.popup_print_files&action=#attributes.fuseaction#&action_id=#url.offer_id#&print_type=1451&action_type=','WOC');";
 		}
