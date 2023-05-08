@@ -2,6 +2,7 @@
 
 <cf_box title="Üretim Projeler">
     <div class="prSt prList" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'">Projeler</div>
+    <div class="prSt prList" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&list_my_projects=1'">Görevlisi Olduğum Projeler</div>
     <div class="prSt prNew" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')">Yeni Proje</div>    
     <div class="prSt prReport">Proje Raporları</div>
     <div class="prSt prProds">Proje Ürünleri</div>
