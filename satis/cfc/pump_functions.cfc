@@ -182,7 +182,7 @@
 <cfset attributes.price_offer_from_offering=datam.OlusacakUrun.PRICE>
 <cfset attributes.priceMoney_offer_from_offering=datam.OlusacakUrun.MONEY>
 
-
+<cfinclude template="../includes/updateOfferFromPriceOffer.cfm">
 
 
 

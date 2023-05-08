@@ -1,18 +1,16 @@
-<link rel="stylesheet" href="/AddOns/Partner/project/content/project.css">
+﻿<cfquery name="getProjects">
+select WEP.ROLE_HEAD,PP.PROJECT_NUMBER,PROJECT_HEAD,PP.PROJECT_ID,PP.MAIN_PROCESS_CAT,PP.TARGET_START,TARGET_FINISH,pp.STAGE,YONETICI,PRIORITY,COLOR,NICKNAME from workcube_metosan.WORKGROUP_EMP_PAR AS WEP
+LEFT JOIN (
+SELECT ptp.STAGE,SMP.MAIN_PROCESS_CAT, PROJECT_ID,RELATED_PROJECT_ID, PP.PROJECT_NUMBER,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS YONETICI,PROJECT_HEAD,TARGET_START,TARGET_FINISH,SETUP_PRIORITY.PRIORITY,SETUP_PRIORITY.COLOR,COMPANY.NICKNAME from workcube_metosan.PRO_PROJECTS AS PP
+LEFT JOIN workcube_metosan.SETUP_MAIN_PROCESS_CAT AS SMP ON SMP.MAIN_PROCESS_CAT_ID=PP.PROCESS_CAT
+LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS AS PTP ON PTP.PROCESS_ROW_ID=PP.PRO_CURRENCY_ID
+INNER JOIN workcube_metosan.SETUP_PRIORITY ON SETUP_PRIORITY.PRIORITY_ID=PP.PRO_PRIORITY_ID
+INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PP.COMPANY_ID 
+) as PP on PP.PROJECT_ID=WEP.PROJECT_ID
+where EMPLOYEE_ID=1146 and WEP.PROJECT_ID is not null
 
-<cfif isDefined("attributes.list_my_projects")>
-    <cfinclude template="list_my_projects.cfm">
-    <cfabort>
-</cfif>
-
-<cf_box title="Projeler">
-<cfquery name="getProjects" datasource="#dsn#">
-SELECT PROJECT_ID,RELATED_PROJECT_ID, PRO_PROJECTS.PROJECT_NUMBER,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS YONETICI,PROJECT_HEAD,TARGET_START,TARGET_FINISH,SETUP_PRIORITY.PRIORITY,SETUP_PRIORITY.COLOR,COMPANY.NICKNAME from workcube_metosan.PRO_PROJECTS
-INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PRO_PROJECTS.PROCESS_CAT=PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID
-INNER JOIN workcube_metosan.SETUP_PRIORITY ON SETUP_PRIORITY.PRIORITY_ID=PRO_PROJECTS.PRO_PRIORITY_ID
-INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_ID where RELATED_PROJECT_ID IS NULL
 </cfquery>
-
+<cf_box title="Projelerim">
 <cf_grid_list>
     <thead>
     <tr>
@@ -37,6 +35,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <th>
             Öncelik
         </th>
+        <th>Rolüm</th>
         <th></th>
     </tr>
 </thead>
@@ -54,6 +53,9 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             <td>
                 <span style="padding: 5px !important;display: block;border-radius: 4px;" class="color#COLOR#">#PRIORITY#</span>
 
+            </td>
+            <td>
+                #ROLE_HEAD#
             </td>
             <td><a onclick="window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#PROJECT_ID#'"><span class="icn-md icon-pencil-square-o"></span></a></td>
         </tr>
