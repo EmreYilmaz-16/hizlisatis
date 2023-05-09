@@ -21,15 +21,7 @@ LEFT JOIN workcube_metosan_1.VirmanProduct AS VP ON VP.VIRMAN_ID = POR.CONVERTED
 WHERE VPO.V_P_ORDER_ID = #attributes.VP_ORDER_ID#
 </cfquery>
 </cfif>
-<!---
-var ArrForPum = [];
-var GirenArr = [];
-var CikanArr = [];
-var BozulacakArr = [];
---->
 <cfset fr_data=deserializeJSON(replace(getData.JSON_DATA,"//",""))>
-
-<cfdump var="#fr_data#">
 <cfquery name="getC" datasource="#dsn3#">
     SELECT * FROM PRODUCT_CAT WHERE HIERARCHY='#fr_data.HIERARCHY#'
 </cfquery>
@@ -39,85 +31,15 @@ var BozulacakArr = [];
        var CikanArr=#Replace(SerializeJSON(fr_data.CikanUrunler),'//','')#
        var GirenArr=#Replace(SerializeJSON(fr_data.GirenUrunler),'//','')#
        var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')# 
-    
-
     </script>
 </cfoutput>
-
-<!---------
-<script>
-var BozulacakArr=[
-<cfoutput>
-<cfloop array="#fr_data.BozulacakUrunler#" item="it">
-{
-    COST:#it.COST#,
-    DESCRIPTION:'#it.DESCRIPTION#',
-    DISCOUNT:#it.DISCOUNT#,
-    IS_MANUEL:#it.IS_MANUEL#,
-    IS_VIRTUAL:#it.IS_VIRTUAL#,
-    MONEY:'#it.MONEY#',
-    PRICE:#it.PRICE#,
-    PRICE_OTHER:#it.PRICE_OTHER#,
-    PRODUCT_CODE:'#it.PRODUCT_CODE#',
-    PRODUCT_ID:#it.PRODUCT_ID#,
-    PRODUCT_NAME:'#it.PRODUCT_NAME#',
-    QUANTITY:#it.QUANTITY#,
-    STOCK_ID:#it.STOCK_ID#,
-},
-</cfloop>
-];
-var CikanArr=[
-<cfloop array="#fr_data.CikanUrunler#" item="it">
-{
-    COST:#it.COST#,
-    DESCRIPTION:'#it.DESCRIPTION#',
-    DISCOUNT:#it.DISCOUNT#,
-    IS_MANUEL:#it.IS_MANUEL#,
-    IS_VIRTUAL:#it.IS_VIRTUAL#,
-    MONEY:'#it.MONEY#',
-    PRICE:#it.PRICE#,
-    PRICE_OTHER:#it.PRICE_OTHER#,
-    PRODUCT_CODE:'#it.PRODUCT_CODE#',
-    PRODUCT_ID:#it.PRODUCT_ID#,
-    PRODUCT_NAME:'#it.PRODUCT_NAME#',
-    QUANTITY:#it.QUANTITY#,
-    STOCK_ID:#it.STOCK_ID#,
-},
-</cfloop>
-];
-var GirenArr=[
-<cfloop array="#fr_data.GirenUrunler#" item="it">
-{
-    COST:#it.COST#,
-    DESCRIPTION:'#it.DESCRIPTION#',
-    DISCOUNT:#it.DISCOUNT#,
-    IS_MANUEL:#it.IS_MANUEL#,
-    IS_VIRTUAL:#it.IS_VIRTUAL#,
-    MONEY:'#it.MONEY#',
-    PRICE:#it.PRICE#,
-    PRICE_OTHER:#it.PRICE_OTHER#,
-    PRODUCT_CODE:'#it.PRODUCT_CODE#',
-    PRODUCT_ID:#it.PRODUCT_ID#,
-    PRODUCT_NAME:'#it.PRODUCT_NAME#',
-    QUANTITY:#it.QUANTITY#,
-    STOCK_ID:#it.STOCK_ID#,
-},
-</cfloop>
-]
-var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
-</cfoutput>
-</script>
---------->
-<!----------Replace(SerializeJSON(workArr),'//','')--------->
 <cfparam name="attributes.company_id" default="">
 <cfparam name="attributes.PRICE_CATID" default="">
 <cfoutput>
-
 <input type="hidden" name="virman_id" id="virman_id" value="#getData.CONVERTED_STOCK_ID#">
 </cfoutput>
 <cfset plkcddd=0>
 <cfinclude template="/AddOns/Partner/satis/includes/virtual_offer_parameters.cfm">
-
 <cf_box title="">
     <cfform name="search_product">
     <div style="display:flex">
@@ -171,20 +93,7 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
                                     </div>
 
                                 </div>
-                            </td>
-                          <!---  <cfquery name="getPcats" datasource="#dsn1#">
-                                SELECT PRODUCT_CATID,HIERARCHY,PRODUCT_CAT FROM PRODUCT_CAT WHERE DETAIL IN ('1','2','3','4')
-                            </cfquery>
-                            <td colspan="2">
-                                <div class="form-group">
-                                <select name="CatPumpa" id="CatPumpa">
-                                    <option value="">Ürün Tipi Seçiniz</option>
-                                    <cfoutput query="getPcats">
-                                        <option value="#HIERARCHY#">#HIERARCHY# - #PRODUCT_CAT#</option>
-                                    </cfoutput>
-                                </select>
-                            </div>
-                            </td>---->
+                            </td>                         
                         </tr>
                             <tr>
                                 <td>
@@ -232,8 +141,6 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
         </cf_box>
     </div>
 </div>
-
-
 <hr>
 <div style="display:flex">
     <div style="width:50%;">
@@ -286,17 +193,4 @@ var OlusacakUrun=#Replace(SerializeJSON(fr_data.OlusacakUrun),'//','')#
 </div>
 </cfform>
 <script src="/AddOns/Partner/production/js/make_pump.js"></script>
-
-
-
 </cf_box>
-
-<!----function OpenBasketProducts(
-  ArrNum,
-  question_id,
-  from_row = 0,
-  col = "",
-  actType = "4",
-  SIPARIS_MIKTARI = 1,
-  
-) ----->

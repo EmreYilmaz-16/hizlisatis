@@ -2,8 +2,6 @@
 <cfquery name="getMoney" datasource="#dsn#">
     SELECT MONEY,RATE1, EFFECTIVE_SALE AS RATE2 FROM SETUP_MONEY WHERE PERIOD_ID = #session.ep.period_id# ORDER BY MONEY_ID
 </cfquery>
-
-
 <script>
     var moneyArr=[
         <cfoutput query="getMoney">
@@ -20,10 +18,6 @@
     <input type="hidden" id="txt_rate1_#CurrentRow#" name="txt_rate1_#CurrentRow#" value="#RATE1#">
     <input type="hidden" id="txt_rate2_#CurrentRow#" name="txt_rate2_#CurrentRow#" value="#RATE2#">
 </cfoutput>
-
-
-
-
     <cfquery name="getOffer" datasource="#dsn3#">
         select POR.*,DETAIL from PBS_OFFER_ROW  AS POR 
         LEFT JOIN STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID
@@ -33,7 +27,6 @@
     <cfquery name="getOfferMain" datasource="#dsn3#">
         SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
     </cfquery>
-
 <cfform method="post" name="production_form" id="production_form" onsubmit="event.preventDefault()">
     <cfoutput>
         <input type="hidden" name="offer_row_id" value="#getOffer.OFFER_ROW_ID#"> 
@@ -52,9 +45,6 @@
             </cfif>
      
 <input type="hidden" name="total_price" id="total_price">
-    </cfoutput>
-    
-
+    </cfoutput>    
 </cfform>
-
-    <script src="/AddOns/Partner/production/js/production_order.js"></script>
+<script src="/AddOns/Partner/production/js/production_order.js"></script>

@@ -1,15 +1,6 @@
 ﻿
 <cfset FORM.ACTIVE_COMPANY=session.ep.company_id>
 <cfset ATTRIBUTES.ACTIVE_COMPANY=session.ep.company_id>
-<!------
-    <cfset attributes.price_offer_from_offering=datam.OlusacakUrun.PRICE>
-<cfset attributes.priceMoney_offer_from_offering=datam.OlusacakUrun.MONEY>
-
-
-<cfparam name="datam.uniqRelationId" default="PBS114620230502115624633Z">
-<cfparam name="attributes.price_offer_from_offering" default="324.00">
-<cfparam name="attributes.priceMoney_offer_from_offering" default="TL">
-------->
 <cfset dsn3="workcube_metosan_1">
 <cfquery name="getOfferId" datasource="#dsn3#">
     SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#datam.uniqRelationId#'
@@ -22,8 +13,6 @@
     LEFT JOIN #DSN#.COMPANY AS C ON C.COMPANY_ID=O.COMPANY_ID
     WHERE OFFER_ID=#getOfferId.OFFER_ID#
 </cfquery>
-<cfdump var="#getOffer#">
-<cfdump var="#getRows#">
 <cfset attributes.offer_id=getOfferId.OFFER_ID>
 <cfset attributes.offer_date=createODBCDate(getOffer.OFFER_DATE)>
 <cfset attributes.DELIVERDATE=createODBCDate(getOffer.DELIVERDATE)>
@@ -161,9 +150,7 @@ merhaba dünya
 <cfset attributes.reserved=1>
 <cfset attributes.rows_=getRows.recordCount>
 <cfdump var="#attributes#">
-
 <cfinclude template="/AddOns/partner/satis/includes/upd_offer_tv.cfm">
-
 <script>
     alert("Fiyat kayıt Edildi")
     this.close();
