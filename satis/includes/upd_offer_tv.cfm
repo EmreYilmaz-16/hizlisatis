@@ -1,6 +1,6 @@
-<cfif isDefined("caller.fuseaction")>
+<cfif isDefined("fuseaction")>
 <cfelse>
-	<cfset caller.fuseaction="sales.emptypopup_add_pbs_offer_price_offerings">
+	<cfset fuseaction="sales.emptypopup_add_pbs_offer_price_offerings">
 </cfif>
 <cfset workcube_mode="">
 <cf_xml_page_edit fuseact="sales.form_add_offer">
