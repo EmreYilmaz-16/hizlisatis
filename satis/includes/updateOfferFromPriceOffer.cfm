@@ -152,7 +152,7 @@ ghgj
 <cfset attributes.basket_money=pos[1].MONEY>
 <cfset attributes.basket_rate1=pos[1].RATE1>
 <cfset attributes.basket_rate2=pos[1].RATE2>
-
+merhaba dünya
 
 <cfset attributes.basket_net_total=SUBNETTOTAL_2>
 <cfset attributes.basket_tax_total=SUBNETTOTAL-SUBNETTOTAL_2>
@@ -166,5 +166,5 @@ ghgj
 
 <script>
     alert("Fiyat kayıt Edildi")
-    this.clos();
+    this.close();
 </script>
