@@ -367,7 +367,7 @@ function GetBasketData116() {
 
 function SaveForPump() {
   var BasketData = GetBasketData116();
-  if (KntO()) {
+  
     if (BasketData) {
       var mapForm = document.createElement("form");
       mapForm.target = "Map";
@@ -395,7 +395,7 @@ function SaveForPump() {
         alert("You must allow popups for this map to work.");
       }
     }
-  }
+  
 }
 
 function changeRotation(ela, tt = 0) {
