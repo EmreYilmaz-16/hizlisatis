@@ -89,7 +89,7 @@ WHERE OI.ORDER_ID=#getOrders.ORDER_ID#
     <cfoutput query="getoi">
         <tr>
             
-                <td>#INVOICE_NUMBER# (#dateformat(ACTION_DATE,"dd/mm/yyyy")#)</td>
+                <td>#ACTION_NUMBER# (#dateformat(ACTION_DATE,"dd/mm/yyyy")#)</td>
                 <td>#TIP#</td>                                                
                 <td> (#dateformat(ACTION_DATE,"dd/mm/yyyy")#)</td>       
             
