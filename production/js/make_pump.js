@@ -318,7 +318,7 @@ function ParaHesapla() {
   return TotalPrice;
 }
 
-function GetBasketData() {
+function GetBasketData116() {
   var ix = $("#is_rotation").val();
   var cx = $("#Pumpa_cat").val();
   if (cx.length == 0) {
@@ -362,19 +362,11 @@ function GetBasketData() {
   }
   console.log(ReturnObject);
   return ReturnObject;
-  if (xx) {
-    $.ajax({
-      url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=UpdatePumpa",
-      data: "&FORM_DATA=" + JSON.stringify(ReturnObject),
-      success: function (returnData) {
-        IsTreeUpdated = false;
-      },
-    });
-  }
+
 }
 
 function SaveForPump() {
-  var BasketData = GetBasketData();
+  var BasketData = GetBasketData116();
   if (KntO()) {
     if (BasketData) {
       var mapForm = document.createElement("form");
