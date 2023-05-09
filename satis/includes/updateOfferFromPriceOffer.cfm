@@ -166,4 +166,5 @@ ghgj
 
 <script>
     alert("Fiyat kayıt Edildi")
+    this.clos();
 </script>
