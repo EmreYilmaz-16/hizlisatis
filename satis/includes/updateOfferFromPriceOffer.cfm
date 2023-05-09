@@ -153,7 +153,7 @@ ghgj
 <cfset attributes.basket_rate1=pos[1].RATE1>
 <cfset attributes.basket_rate2=pos[1].RATE2>
 merhaba dünya
-
+merhaba dünya
 <cfset attributes.basket_net_total=SUBNETTOTAL_2>
 <cfset attributes.basket_tax_total=SUBNETTOTAL-SUBNETTOTAL_2>
 <cfset attributes.ref_member_type ="">
