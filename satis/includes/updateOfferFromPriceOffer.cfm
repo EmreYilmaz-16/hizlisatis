@@ -163,3 +163,7 @@ ghgj
 <cfdump var="#attributes#">
 
 <cfinclude template="/AddOns/partner/satis/includes/upd_offer_tv.cfm">
+
+<script>
+    alert("Fiyat kayıt Edildi")
+</script>
