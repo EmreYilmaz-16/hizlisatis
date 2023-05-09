@@ -1,15 +1,4 @@
-<cfset dateformat_style="dd/mm/yyyy">
-<cfif isDefined("fuseaction")>
-	<cf_xml_page_edit fuseact="sales.form_add_offer">
-<cfelse>
-	<cfset fuseaction="sales.emptypopup_add_pbs_offer_price_offerings">
-</cfif>
-<cfset workcube_mode="">
-<cfif isDefined("index_folder")>
-<cfelse>
-	<cfset index_folder="/.">
-</cfif>
-
+<cf_xml_page_edit fuseact="sales.form_add_offer">
 <cfif form.active_company neq session.ep.company_id>
 	<script type="text/javascript">
 		alert("<cf_get_lang no ='588.İşlemin Şirketi İle Aktif Şirketiniz Farklı Çalıştığınız Şirketi Kontrol Ediniz'>!");
@@ -134,7 +123,6 @@
 			DELETE FROM PBS_OFFER_ROW WHERE OFFER_ID = #attributes.offer_id#
 		</cfquery>
 		<cfloop from="1" to="#attributes.rows_#" index="i">
-			
 			<cf_date tarih="attributes.deliver_date#i#">
 			<cfif session.ep.our_company_info.spect_type and isdefined('attributes.is_production#i#') and evaluate('attributes.is_production#i#') eq 1>
 				<cfif attributes.member_type is "consumer">
