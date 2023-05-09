@@ -247,7 +247,7 @@
 					#evaluate("attributes.product_id#i#")#,
 					#evaluate("attributes.stock_id#i#")#,
 					#evaluate("attributes.amount#i#")#,
-					'#evaluate('attributes.unit#i#')#',
+					<cfqueryparam cfsqltype="cf_sql_varchar" value="#evaluate('attributes.unit#i#')#">,
 					#evaluate("attributes.unit_id#i#")#,
 					#evaluate("attributes.price#i#")#,
 					#evaluate("attributes.tax#i#")#,
@@ -256,7 +256,7 @@
 				<cfelse>
 					NULL
 				</cfif>,
-					'#evaluate('attributes.product_name#i#')#',
+					<cfqueryparam cfsqltype="cf_sql_varchar" value="#evaluate('attributes.product_name#i#')#">,
 				<cfif isdefined('attributes.deliver_date#i#') and isdate(evaluate("attributes.deliver_date#i#"))>
 					#evaluate('attributes.deliver_date#i#')#,
 				</cfif>
@@ -280,7 +280,7 @@
 				<cfif isdefined('attributes.indirim8#i#') and len(evaluate('attributes.indirim8#i#'))>#evaluate('attributes.indirim8#i#')#<cfelse>0</cfif>,
 				<cfif isdefined('attributes.indirim9#i#') and len(evaluate('attributes.indirim9#i#'))>#evaluate('attributes.indirim9#i#')#<cfelse>0</cfif>,
 				<cfif isdefined('attributes.indirim10#i#') and len(evaluate('attributes.indirim10#i#'))>#evaluate('attributes.indirim10#i#')#<cfelse>0</cfif>,
-				<cfif isdefined('attributes.other_money_#i#')>'#evaluate('attributes.other_money_#i#')#'<cfelse>NULL</cfif>,
+				<cfif isdefined('attributes.other_money_#i#')><cfqueryparam cfsqltype="cf_sql_varchar" value="#evaluate('attributes.other_money_#i#')#"><cfelse>NULL</cfif>,
 				<cfif isdefined('attributes.other_money_value_#i#') and len(evaluate("attributes.other_money_value_#i#"))>#evaluate('attributes.other_money_value_#i#')#<cfelse>NULL</cfif>,
 				<cfif isdefined('attributes.spect_id#i#') and len(evaluate('attributes.spect_id#i#'))>
 					#evaluate('attributes.spect_id#i#')#,
@@ -321,7 +321,7 @@
 				<cfelse>
 					NULL,
 				</cfif>
-				<cfif isdefined('attributes.row_unique_relation_id#i#') and len(evaluate('attributes.row_unique_relation_id#i#'))>'#evaluate('attributes.row_unique_relation_id#i#')#'<cfelse>NULL</cfif>,
+				<cfif isdefined('attributes.row_unique_relation_id#i#') and len(evaluate('attributes.row_unique_relation_id#i#'))><cfqueryparam cfsqltype="cf_sql_varchar" value="#evaluate('attributes.row_unique_relation_id#i#')#"><cfelse>NULL</cfif>,
 				<cfif isdefined('attributes.product_name_other#i#') and len(evaluate('attributes.product_name_other#i#'))><cfqueryparam cfsqltype="cf_sql_varchar" value="#evaluate('attributes.product_name_other#i#')#"><cfelse>NULL</cfif>,
 				<cfif isdefined('attributes.amount_other#i#') and len(evaluate('attributes.amount_other#i#'))>#evaluate('attributes.amount_other#i#')#<cfelse>NULL</cfif>,
 				<cfif isdefined('attributes.unit_other#i#') and len(evaluate('attributes.unit_other#i#'))><cfqueryparam cfsqltype="cf_sql_varchar" value="#evaluate('attributes.unit_other#i#')#"><cfelse>NULL</cfif>,

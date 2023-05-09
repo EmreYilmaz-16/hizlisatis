@@ -100,7 +100,7 @@
     <cfset "attributes.tax#i#"=TAX>
     <cfset "attributes.product_name#i#"=PRODUCT_NAME>    
     <cfset "attributes.indirim1#i#"=DISCOUNT_1>
-    <cfset "attributes.indirim1#i#"=createODBCDateTime(DELIVER_DATE)>
+    <cfset "attributes.deliver_date#i#"=createODBCDateTime(DELIVER_DATE)>
 
 <cfif UNIQUE_RELATION_ID EQ datam.uniqRelationId>
      <cfset "attributes.price#i#"=attributes.price_offer_from_offering>
