@@ -1,4 +1,4 @@
-<cfif isDefined("caller.fuseaction")></cfif>
+<cfif isDefined("caller.fuseaction")>
 <cfelse>
 	<cfset caller.fuseaction="sales.emptypopup_add_pbs_offer_price_offerings">
 </cfif>
