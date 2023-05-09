@@ -247,7 +247,7 @@
 					#evaluate("attributes.product_id#i#")#,
 					#evaluate("attributes.stock_id#i#")#,
 					#evaluate("attributes.amount#i#")#,
-					<cfqueryparam cfsqltype="cf_sql_varchar" value="#evaluate('attributes.unit#i#')#">,
+					'#evaluate('attributes.unit#i#')#',
 					#evaluate("attributes.unit_id#i#")#,
 					#evaluate("attributes.price#i#")#,
 					#evaluate("attributes.tax#i#")#,
@@ -256,7 +256,7 @@
 				<cfelse>
 					NULL
 				</cfif>,
-					<cfqueryparam cfsqltype="cf_sql_varchar" value="#evaluate('attributes.product_name#i#')#">,
+					'#evaluate('attributes.product_name#i#')#',
 				<cfif isdefined('attributes.deliver_date#i#') and isdate(evaluate("attributes.deliver_date#i#"))>
 					#evaluate('attributes.deliver_date#i#')#,
 				</cfif>
