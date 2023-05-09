@@ -168,3 +168,4 @@ merhaba dünya
     alert("Fiyat kayıt Edildi")
     this.close();
 </script>
+merhaba dünya
