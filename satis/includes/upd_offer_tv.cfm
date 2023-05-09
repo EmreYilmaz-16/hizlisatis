@@ -1,9 +1,14 @@
 <cfif isDefined("fuseaction")>
+	<cf_xml_page_edit fuseact="sales.form_add_offer">
 <cfelse>
 	<cfset fuseaction="sales.emptypopup_add_pbs_offer_price_offerings">
 </cfif>
 <cfset workcube_mode="">
-<cf_xml_page_edit fuseact="sales.form_add_offer">
+<cfif isDefined("index_folder")>
+<cfelse>
+	<cfset index_folder="/.">
+</cfif>
+
 <cfif form.active_company neq session.ep.company_id>
 	<script type="text/javascript">
 		alert("<cf_get_lang no ='588.İşlemin Şirketi İle Aktif Şirketiniz Farklı Çalıştığınız Şirketi Kontrol Ediniz'>!");
