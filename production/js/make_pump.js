@@ -318,7 +318,7 @@ function ParaHesapla() {
   return TotalPrice;
 }
 
-function SaveForPump() {
+function GetBasketData() {
   var ix = $("#is_rotation").val();
   var cx = $("#Pumpa_cat").val();
   if (cx.length == 0) {
@@ -334,7 +334,7 @@ function SaveForPump() {
   var price_catid = document.getElementById("PRICE_CATID").value;
   var virman_id = document.getElementById("virman_id").value;
   var isPriceOffering = document.getElementById("isfrom_price_offer").value;
-  var uniqRelationId=document.getElementById("uniqRelationId").value;
+  var uniqRelationId = document.getElementById("uniqRelationId").value;
   var offer_data = {
     comp_id: company_id,
     price_catid: price_catid,
@@ -353,7 +353,7 @@ function SaveForPump() {
     CikanUrunlerArrLen: CikanArr.length,
     virman_id: virman_id,
     isPriceOffering: isPriceOffering,
-    uniqRelationId:uniqRelationId,
+    uniqRelationId: uniqRelationId,
   };
   if (parseInt(ix) == 1) {
     var xx = YonKontrol();
@@ -361,7 +361,7 @@ function SaveForPump() {
     var xx = true;
   }
   console.log(ReturnObject);
-
+  return ReturnObject;
   if (xx) {
     $.ajax({
       url: "/AddOns/Partner/satis/cfc/pump_functions.cfc?method=UpdatePumpa",
@@ -370,6 +370,39 @@ function SaveForPump() {
         IsTreeUpdated = false;
       },
     });
+  }
+}
+
+function SaveForPump() {
+  var BasketData = GetBasketData();
+  if (KntO()) {
+    if (BasketData) {
+      var mapForm = document.createElement("form");
+      mapForm.target = "Map";
+      mapForm.method = "POST"; // or "post" if appropriate
+      mapForm.action =
+        "/index.cfm?fuseaction=sales.emptypopup_savepumpa_pbs";
+
+      var mapInput = document.createElement("input");
+      mapInput.type = "hidden";
+      mapInput.name = "FORM_DATA";
+      mapInput.value = JSON.stringify(BasketData);
+      mapForm.appendChild(mapInput);
+
+      document.body.appendChild(mapForm);
+
+      map = window.open(
+        "/index.cfm?fuseaction=sales.emptypopup_savepumpa_pbs",
+        "Map",
+        "status=0,title=0,height=600,width=800,scrollbars=1"
+      );
+
+      if (map) {
+        mapForm.submit();
+      } else {
+        alert("You must allow popups for this map to work.");
+      }
+    }
   }
 }
 
