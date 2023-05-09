@@ -83,6 +83,7 @@
 <cfset i=1>
 <cfset SUBNETTOTAL=0>
 <CFSET SUBNETTOTAL_2=0>
+ghgj
 <!-------Satırlar------>
 <cfloop query="getRows">
 
