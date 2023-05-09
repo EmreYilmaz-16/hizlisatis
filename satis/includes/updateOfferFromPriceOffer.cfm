@@ -10,6 +10,7 @@
 <cfparam name="attributes.price_offer_from_offering" default="324.00">
 <cfparam name="attributes.priceMoney_offer_from_offering" default="TL">
 ------->
+<cfset dsn3="workcube_metosan_1">
 <cfquery name="getOfferId" datasource="#dsn3#">
     SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#datam.uniqRelationId#'
 </cfquery>
