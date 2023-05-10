@@ -1,12 +1,10 @@
 ﻿<cfquery name="getD" datasource="#dsn#">
-select DEPARTMENT_ID,LOCATION_ID from #dsn#.STOCKS_LOCATION where WIDTH=#session.EP.USERID# OR HEIGHT=#session.EP.USERID# OR DEPTH=#session.EP.USERID#
-
+select DEPARTMENT_ID,LOCATION_ID 
+from #dsn#.STOCKS_LOCATION 
+where WIDTH=#session.EP.USERID# OR HEIGHT=#session.EP.USERID# OR DEPTH=#session.EP.USERID#
 </cfquery>
 <cfset dep_id_list=valueList(getD.DEPARTMENT_ID)>
 <cfset loc_id_list=valueList(getD.LOCATION_ID)>
-
-
-
 <cfquery name="GETsEVKS" datasource="#dsn3#">
 SELECT DISTINCT  O.RECORD_DATE,
 SR.DELIVER_PAPER_NO,SR.COMPANY_ID,C.NICKNAME,SR.DELIVERY_DATE,DEPARTMENT_LOCATION,COMMENT,SR.SHIP_RESULT_ID,DELIVER_DEPT,DELIVER_LOCATION ,
