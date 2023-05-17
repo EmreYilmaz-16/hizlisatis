@@ -2111,7 +2111,7 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
 		{
 			if(document.all.branch_id.value !='' && document.all.listing_type.value ==2)
 			{
-				alert("<cf_get_lang_main no='3552.Liste Tipi Olarak Sevk Planları İle Şubeyi Birlikte Seçemezsiniz'>!!!.");
+				alert("Liste Tipi Olarak Sevk Planları İle Şubeyi Birlikte Seçemezsiniz!!!.");
 				return false
 			}
 			else
