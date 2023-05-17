@@ -2409,7 +2409,7 @@ function getSetNum(el) {
 
 function CheckSatilabilir() {
   //var rows=document.getElementsByClassName("sepetRow");
-  for (let i = 1; i <= row_count; i++) {
+  /* for (let i = 1; i <= row_count; i++) {
     var sid = document.getElementById("stock_id_" + i).value;
     var mik_ = document.getElementById("amount_" + i).value;
     var mik = parseFloat(filterNum(mik_));
@@ -2433,6 +2433,50 @@ function CheckSatilabilir() {
       }
     }
     // console.log(sid)
+  }*/
+
+  var sidArr = new Array();
+  //var rows=document.getElementsByClassName("sepetRow");
+  for (let i = 1; i <= row_count; i++) {
+    var sid = document.getElementById("stock_id_" + i).value;
+    var mik_ = document.getElementById("amount_" + i).value;
+    var mik = parseFloat(filterNum(mik_));
+    var rw = document.getElementById("row_" + i);
+    var inx = sidArr.findIndex((p) => p.STOCK_ID == sid);
+    if (inx == -1) {
+      var O = new Object();
+      O.STOCK_ID = sid;
+      O.MIKTAR = mik;
+      sidArr.push(O);
+    } else {
+      sidArr[inx].MIKTAR += mik;
+    }
+  }
+  for (let i = 0; i < sidArr.length; i++) {
+    var q = wrk_query(
+      "SELECT ISNULL(" +
+        generalParamsSatis.dataSources.dsn2 +
+        ".GET_SATILABILIR_STOCK(" +
+        sidArr[i].STOCK_ID +
+        "),0) as SATILABILIR",
+      "dsn2"
+    );
+    var ss = parseFloat(q.SATILABILIR[0]);
+    console.log(ss);
+    var dd = false;
+    if (ss < sidArr[i].MIKTAR) {
+      dd = true;
+    }
+    for (let j = 1; j <= row_count; j++) {
+      var sid = document.getElementById("stock_id_" + j).value;
+      var rw = document.getElementById("row_" + j);
+      if (sid == sidArr[i].STOCK_ID) {
+        if (dd) {
+          rw.setAttribute("style", "background:#ff5959");
+        }
+        console.log("miktar yok" + "row_" + j + "DD=" + dd);
+      }
+    }
   }
 }
 
