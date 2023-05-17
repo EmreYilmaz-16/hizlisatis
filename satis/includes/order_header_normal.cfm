@@ -29,7 +29,7 @@
                 <input type="text" onkeyup="getCustomer(event,this)" name="company_name" id="company_name" autocomplete="off" >
                 <input type="hidden" name="company_id" id="company_id">
                 <button id="btncari" onclick="openCariExtre()" type="button" class="btn btn-primary">Cari Extre</button>
-                <button id="btnanaliz" onclick="openAnaliz()" type="button" class="btn btn-warning">Satış Analiz</button>
+                <button id="btnanaliz" onclick="openAnaliz('01/01/<cfoutput>#year(now())#</cfoutput>','<cfoutput>#dateFormat(now(),"dd/mm/yyyy")#</cfoutput>')" type="button" class="btn btn-warning">Satış Analiz</button>
             </div>
         </td>
         <td>
