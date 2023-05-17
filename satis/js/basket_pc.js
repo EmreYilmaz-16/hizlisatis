@@ -2473,6 +2473,8 @@ function CheckSatilabilir() {
       if (sid == sidArr[i].STOCK_ID) {
         if (dd) {
           rw.setAttribute("style", "background:#ff5959");
+        } else {
+          rw.removeAttribute("style");
         }
         console.log("miktar yok" + "row_" + j + "DD=" + dd);
       }
