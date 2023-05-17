@@ -59,7 +59,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                                 </li>                              
                             </ul>
                             <ul class="ui-icon-list">
-                                <li><a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1)" title="Görüntüle"><i class="icon-search">Görüntüle</i></a></li>
+                                <li><a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')" title="Görüntüle"><i class="icon-search">Görüntüle</i></a></li>
                             </ul>
                         </div>
                     </div>               
