@@ -1068,7 +1068,7 @@
 				<!-- sil -->
 				<th rowspan="2" style="width:20px" class="header_icn_none" nowrap="nowrap">
                 	
-                	<a href="javascript://" onclick="windowopen('<cfoutput>#request.self#?fuseaction=objects.popup_print_files&print_type=79&action_id=#lnk_str#</cfoutput>','wide');"><img src="/images/print_plus.gif" alt="<cf_get_lang_main no='62.Yazdır'>" border="0" title="<cf_get_lang_main no='62.Yazdır'>">
+                	<a href="javascript://" onclick="yazdirGulum()"><img src="/images/print_plus.gif" alt="<cf_get_lang_main no='62.Yazdır'>" border="0" title="<cf_get_lang_main no='62.Yazdır'>">
                		</a>
                 </th>
                 <th rowspan="2" style="width:20px;text-align:center"><input type="checkbox" alt="<cf_get_lang_main no='559.Şehir'>" onClick="grupla(-1);"></th>
@@ -2157,4 +2157,18 @@
 				}
 			}
 		}
+        function yazdirGulum(){
+            var r =document.getElementsByName("select_production")
+var accList="0";
+for(let i=0;i<r.length;i++){
+    var e=r[i]
+    if($(e).is(":checked")){
+        console.log(e.value)
+        
+        accList+=","+list_getat(e.value,2,"-")
+    }
+}
+
+windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_ids="+accList)
+        }
 </script>
