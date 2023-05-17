@@ -346,10 +346,9 @@ function SaveForPump() {
     alert("Kategori Seçiniz");
     return false;
   }
-  if (OlusacakUrun.IS_VIRTUAL == 1) {
-    var tp = ParaHesapla();
-    OlusacakUrun.PRICE = tp;
-  }
+
+  var tp = ParaHesapla();
+  OlusacakUrun.PRICE = tp;
 
   var company_id = document.getElementById("company_id").value;
   var price_catid = document.getElementById("PRICE_CATID").value;
