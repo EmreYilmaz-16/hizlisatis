@@ -668,3 +668,18 @@ function openCariExtre() {
     alert("Müşteri Seçmediniz");
   }
 }
+function openAnaliz() {
+  var cp_id = $("#company_id").val();
+  var cp_name = $("#company_name").val();
+  if (cp_id.length > 0) {
+    var uri =
+      "http://erp.metosan.com.tr/index.cfm?fuseaction=report.sale_analyse_report&company_id=" +
+      cp_id +
+      "&company=" +
+      cp_name +
+      "&process_type_=235,42,222,43,30,32,179,199,120,123,190,191,236,122,223,200,121,193,240,216,201,189,34,204,38,203,198,33,225,35,192,237,229,224,194,127,205,176,206,36,207,29,209,31";
+    windowopen(uri, "list");
+  } else {
+    alert("Müşteri Seçmediniz");
+  }
+}
