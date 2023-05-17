@@ -2146,7 +2146,7 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
 			{
 				if(type == -3)
 				{
-					var soru = confirm("<cf_get_lang_main no='3553.Birleştirilen Sevk Planını Tekrar Geri Alamazsınız'>. <cf_get_lang_main no='1176.Emin misiniz ?'>");
+					var soru = confirm("Birleştirilen Sevk Planını Tekrar Geri Alamazsınız Emin misiniz ?");
 					if(soru==true)
 					{
 						window.open('<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_upd_ezgi_shipping_row&shipping_id_list='+shipping_id_list);
@@ -2154,7 +2154,7 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
 				}
 				else if(type == -4)
 				{
-					var soru = confirm("<cf_get_lang_main no='3554.Sevkiyatları ilgili Tarihe Gönderiyorum.'> <cf_get_lang_main no='1176.Emin misiniz ?'>");
+					var soru = confirm("Sevkiyatları ilgili Tarihe Gönderiyorum.Emin misiniz ?");
 					if(soru==true)
 					{
 						send_date = document.getElementById('send_date').value;
@@ -2162,7 +2162,7 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
 						window.open('<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_upd_ezgi_shipping_date&shipping_id_list='+shipping_id_list+'&send_date='+send_date);
 						else
 						{
-							alert("<cf_get_lang_main no='3555.Gönderilecek Tarih Boş Olamaz !'>");
+							alert("Gönderilecek Tarih Boş Olamaz !");
 							return false;
 						}
 					}
