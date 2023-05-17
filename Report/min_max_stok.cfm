@@ -258,7 +258,9 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
                 )
             </cfif>
             <cfif len(attributes.stock_id)>
-                    AND P.PRODUCT_ID IN(select PRODUCT_ID from workcube_metosan_1.RELATED_PRODUCT where RELATED_PRODUCT_ID=#attributes.stock_id#)
+                    AND P.PRODUCT_ID IN(select PRODUCT_ID from workcube_metosan_1.RELATED_PRODUCT where RELATED_PRODUCT_ID=#attributes.stock_id# UNION 
+                    select RELATED_PRODUCT_ID AS PRODUCT_ID from workcube_metosan_1.RELATED_PRODUCT where PRODUCT_ID=#attributes.stock_id#
+                    )
                 </cfif>
         </cfif>
             <cfif len(attributes.keyword2)>
