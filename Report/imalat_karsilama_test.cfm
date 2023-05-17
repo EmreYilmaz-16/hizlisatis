@@ -465,11 +465,11 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                             <td style="text-align:right;">
                             	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=1&pid=#product_id#','medium');">#AmountFormat(RESERVE_SALE_ORDER_STOCK,0)#</a>
                             </td>
-                            <td style="text-align:right;">#AmountFormat(toplam_satis,2)#</td>
-                            <td style="text-align:right;">#AmountFormat(aylik_ortalama_satis,2)#</td>
-                            <td style="text-align:right;">#AmountFormat(elde_stok_tutma_miktari,2)#</td>
-                            <td style="text-align:right;">#AmountFormat(katsayi_stok,2)#</td>
-                            <td style="text-align:right;">#AmountFormat(toplam_stok_tutma_miktari,2)#</td>
+                            <td style="text-align:right;">#AmountFormat(toplam_satis,0)#</td>
+                            <td style="text-align:right;">#AmountFormat(aylik_ortalama_satis,0)#</td>
+                            <td style="text-align:right;">#AmountFormat(elde_stok_tutma_miktari,0)#</td>
+                            <td style="text-align:right;">#AmountFormat(katsayi_stok,0)#</td>
+                            <td style="text-align:right;">#AmountFormat(toplam_stok_tutma_miktari,0)#</td>
                             <!---<td style="text-align:right;">#AmountFormat(SARF_STOCK)#</td>--->
                             <!---<td style="text-align:right;">#AmountFormat(SHIP_INTERNAL_STOCK)#</td>--->
                             <td style="text-align:right;">
