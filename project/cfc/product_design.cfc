@@ -86,8 +86,9 @@
     <cffunction name="getTrees">
         <cfargument name="pid">
         <cfargument name="isVirtual">
-        <cfargument name="dsn3">
-        <cfset dsn3=arguments.dsn3>
+        <cfargument name="ddsn3">
+        <cfdump var="#arguments#">
+        <cfset dsn3=arguments.ddsn3>
         <cfquery name="getTree" datasource="#dsn3#">
             <cfif arguments.isVirtual eq 1>
             SELECT *,VPT_ID AS PRODUCT_TREE_ID FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.pid#

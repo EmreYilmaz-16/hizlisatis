@@ -9,7 +9,7 @@ function ngetTree(product_id, is_virtual, dsn3) {
       product_id +
       "&isVirtual=" +
       is_virtual +
-      "&dsn3=" +
+      "&ddsn3=" +
       dsn3,
     success: function (asd) {
       var jsonStr = strToJson(asd);
