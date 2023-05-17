@@ -237,11 +237,11 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             ,GSLP.DEPARTMENT_ID
             ,SUM(GSLP.TOTAL_STOCK) AS TOTAL_STOCK
         FROM #dsn2#.GET_STOCK_LOCATION_Partner AS GSLP
-            ,#dsn1#.PRODUCT AS P
-            ,LEFT JOIN #dsn3#.PRODUCT_INFO_PLUS AS PIP ON GSLP.PRODUCT_ID = PIP.PRODUCT_ID 
+            LEFT JOIN #dsn1#.PRODUCT AS P ON GSLP.PRODUCT_ID = P.PRODUCT_ID
+            LEFT JOIN #dsn3#.PRODUCT_INFO_PLUS AS PIP ON GSLP.PRODUCT_ID = PIP.PRODUCT_ID 
         WHERE 1=1
           <cfif isDefined("attributes.department") and len(attributes.department)>  AND DEPARTMENT_ID = #attributes.department#</cfif>
-            AND GSLP.PRODUCT_ID = P.PRODUCT_ID
+            
             
            <cfif len(attributes.product_cat)> AND P.PRODUCT_CATID IN(#CATLIST#)</cfif>
             <cfif isdefined("attributes.FileName") and len(attributes.FileName)>
