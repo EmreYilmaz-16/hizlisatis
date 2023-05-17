@@ -1,35 +1,5 @@
-﻿<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-</script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.1.72/dx-diagram.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-gantt/4.1.43/dx-gantt.min.css" rel="stylesheet">
+﻿<cfparam name="attributes.project_id" default="2563">
 
-
-<script src="https://code.jquery.com/jquery-3.6.3.js"
-integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous">
-</script>
-<!-- Diagram and Gantt -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.1.72/dx-diagram.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/devexpress-gantt/4.1.43/dx-gantt.min.js"></script>
- 
-<!-- DevExtreme Quill (required by the HtmlEditor UI component) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme-quill/1.5.20/dx-quill.min.js"></script>
- 
-<!-- DevExtreme library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme/22.2.6/js/dx.all.js"></script>
- 
-<!-- DevExpress.AspNet.Data -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme-aspnet-data/2.9.2/dx.aspnet.data.min.js"></script>
-
-<cfparam name="attributes.project_id" default="2563">
-<cfset dsn3=dsn>
 <style>
     .sortable1, #sortable2 {
       border: 1px solid #eee;
