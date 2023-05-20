@@ -8,13 +8,22 @@
         
         <cfset CalisanPersoneller="">
         <cfloop query="isactpbsp">
-            <cfset CalisanPersoneller="#CalisanPersoneller# <br> #C_EMP# ">
+            <CFSET ACS="">
+            <cfif listlen(C_EMP," ") gt 1>
+                <cfset ACS=left(listGetAt(C_EMP,1," "),1)&""&left(listGetAt(C_EMP,2," "),1)>
+            </cfif>
+            <cfset CalisanPersoneller="#CalisanPersoneller# , #ACS# ">
         </cfloop>
         <cfif isactpbsp.recordCount>
-            HataGoster('Bu sayfada Çalışan var <cfoutput>#CalisanPersoneller#</cfoutput>','danger',1500)
+            //HataGoster('Bu sayfada Çalışan var <cfoutput>#CalisanPersoneller#</cfoutput>','danger',1500)
             $("#btnsave2").hide();
             $("#btnsave").hide();
             $("#btnsil").hide()
+            var span=document.createElement("span")
+span.setAttribute("style","color:red;font-weight:bold")
+span.innerText="Bu Sayfada Çalışan Var ! <cfoutput>#CalisanPersoneller#</cfoutput>"
+$("#btnsave2").parent()[0].appendChild(span)
+$("#btnsave").parent()[0].appendChild(span)
             return false
         </cfif>
         return true;
