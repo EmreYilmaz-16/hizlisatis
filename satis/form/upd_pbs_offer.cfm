@@ -1,14 +1,21 @@
-﻿<cfquery name="isactpbsp" datasource="#dsn#">
-    SELECT * FROM WRK_SESSION WHERE ACTION_PAGE_Q_STRING LIKE '%#CGI.QUERY_STRING#%'
-</cfquery>
-<cfif isactpbsp.recordCount>
-    <script>
-    HataGoster('Bu sayfada çalışan var','danger',1000)
-        $("#btnsave2").hide();
-        $("#btnsave").hide();
-        $("#btnsil").hide()
-    </script>
-</cfif>
+﻿
+
+<script>
+    function CalisanKontrolPbs(){
+        <cfquery name="isactpbsp" datasource="#dsn#">
+            SELECT * FROM WRK_SESSION WHERE ACTION_PAGE_Q_STRING LIKE '%#CGI.QUERY_STRING#%'
+        </cfquery>
+        <cfif isactpbsp.recordCount>
+            HataGoster('Bu sayfada Çalışan var','danger',1000)
+            $("#btnsave2").hide();
+            $("#btnsave").hide();
+            $("#btnsil").hide()
+            return false
+        </cfif>
+        return true;
+    }
+</script>
+
 <link rel="stylesheet" href="/AddOns/Partner/satis/style/pbs_offer_pc.css">
 <cfparam name="attributes.offer_id" default="">
 <cfparam name="attributes.defaultOpen" default="sayfa_1">
