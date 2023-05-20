@@ -3,7 +3,7 @@ function HataGoster(mesaj, tip, sure) {
   var d = document.createElement("div");
   d.setAttribute(
     "style",
-    "  border: 1px solid;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);padding: 10px;);z-index:999999"
+    "  border: 1px solid;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);padding: 10px;);z-index:999999;font-size:22pt"
   );
   d.setAttribute("class", "alert alert-" + tip);
   d.innerText = mesaj;
