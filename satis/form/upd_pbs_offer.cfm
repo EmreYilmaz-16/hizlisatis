@@ -1,4 +1,10 @@
-﻿<link rel="stylesheet" href="/AddOns/Partner/satis/style/pbs_offer_pc.css">
+﻿<cfquery name="isactpbsp" datasource="#dsn#">
+    SELECT * FROM WRK_SESSION WHERE ACTION_PAGE_Q_STRING LIKE '%#CGI.QUERY_STRING#%'
+</cfquery>
+<cfif isactpbsp.recordCount>
+    <b>bu sayfada çalışan var</b>
+</cfif>
+<link rel="stylesheet" href="/AddOns/Partner/satis/style/pbs_offer_pc.css">
 <cfparam name="attributes.offer_id" default="">
 <cfparam name="attributes.defaultOpen" default="sayfa_1">
 <cfif attributes.event eq "UPD">
