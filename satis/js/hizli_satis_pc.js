@@ -1,3 +1,19 @@
+function HataGoster(mesaj, tip, sure) {
+  //success,warning,danger
+  var d = document.createElement("div");
+  d.setAttribute(
+    "style",
+    "  border: 1px solid;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);padding: 10px;);z-index:999999"
+  );
+  d.setAttribute("class", "alert alert-" + tip);
+  d.innerText = mesaj;
+  document.body.appendChild(d);
+  $(d).show(500);
+
+  window.setTimeout(function () {
+    $(d).remove();
+  }, sure);
+}
 function openNoteBox() {
   if ($("#company_id_").val())
     openBoxDraggable(
