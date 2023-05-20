@@ -3,10 +3,15 @@
 <script>
     function CalisanKontrolPbs(){
         <cfquery name="isactpbsp" datasource="#dsn#">
-            SELECT * FROM WRK_SESSION WHERE ACTION_PAGE_Q_STRING LIKE '%#CGI.QUERY_STRING#%'
+            SELECT *,workcube_metosan.getEmployeeWithId(USERID) as C_EMP FROM WRK_SESSION WHERE ACTION_PAGE_Q_STRING LIKE '%#CGI.QUERY_STRING#%'
         </cfquery>
-        <cfif isactpbsp.recordCount>
-            HataGoster('Bu sayfada Çalışan var','danger',1000)
+        
+        <cfset CalisanPersoneller="">
+        <cfloop query="isactpbsp">
+            <cfset CalisanPersoneller="#CalisanPersoneller# <br> #C_EMP# ">
+        </cfloop>
+        <cfif isactpbsp.recordCount and isactpbsp.USERID neq session.ep.userid>
+            HataGoster('Bu sayfada Çalışan var <cfoutput>#CalisanPersoneller#</cfoutput>','danger',1000)
             $("#btnsave2").hide();
             $("#btnsave").hide();
             $("#btnsil").hide()

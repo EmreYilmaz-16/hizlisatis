@@ -6,7 +6,7 @@ function HataGoster(mesaj, tip, sure) {
     "  border: 1px solid;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);padding: 10px;);z-index:999999;font-size:22pt"
   );
   d.setAttribute("class", "alert alert-" + tip);
-  d.innerText = mesaj;
+  $(d).html(mesaj);
   document.body.appendChild(d);
   $(d).show(500);
 
