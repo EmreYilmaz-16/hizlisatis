@@ -11,7 +11,7 @@
             <cfset CalisanPersoneller="#CalisanPersoneller# <br> #C_EMP# ">
         </cfloop>
         <cfif isactpbsp.recordCount>
-            HataGoster('Bu sayfada Çalışan var <cfoutput>#CalisanPersoneller#</cfoutput>','danger',1000)
+            HataGoster('Bu sayfada Çalışan var <cfoutput>#CalisanPersoneller#</cfoutput>','danger',1500)
             $("#btnsave2").hide();
             $("#btnsave").hide();
             $("#btnsil").hide()
