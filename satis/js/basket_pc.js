@@ -10,7 +10,7 @@ var selectedArr = [];
 var CompanyData = new Object();
 $(document).ready(function () {
   setDoom();
-  CalisanKontrolPbs();
+  //CalisanKontrolPbs();
 });
 
 function setDoom() {
