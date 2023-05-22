@@ -15,10 +15,9 @@ function ngetTree(product_id, is_virtual, dsn3) {
       var jsonStr = strToJson(asd);
       o = JSON.parse(jsonStr);
       AgaciYaz(o, 0);
-      var esd=document.getElementById("TreeArea");
-      esd.innerHTML="";
+      var esd = document.getElementById("TreeArea");
+      esd.innerHTML = "";
       esd.appendChild(ulx);
-      
     },
   });
 }
@@ -51,19 +50,22 @@ function AgaciYaz(arr, isoq, address = "0") {
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
+    var diva= document.createElement("div");
     var btn = document.createElement("button");
     btn.innerText = "+";
     btn.setAttribute("onclick", "getitem(this)");
-    btn.setAttribute("type", "button");
-    btn.setAttribute("style", "float:right");
+    btn.setAttribute("type", "button");    
     btn.setAttribute("class", "btn btn-success");
     var inp = document.createElement("input");
     inp.setAttribute("type", "text");
     inp.setAttribute("onchange", "console.log(this)");
     inp.setAttribute("value", arr[i].AMOUNT);
     inp.setAttribute("name", "amount");
-    li.appendChild(inp);
-    li.appendChild(btn);
+    diva.setAttribute("style","display:flex")
+    diva.appendChild(inp);
+    diva.appendChild(btn);
+    li.appendChild(diva);
+    
 
     //  li.setAttribute("onclick", "getitem(this)");
 
