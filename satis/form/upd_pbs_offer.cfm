@@ -3,15 +3,15 @@
 <script>
     function CalisanKontrolPbs(){
         <cfquery name="isactpbsp" datasource="#dsn#">
-            SELECT *,workcube_metosan.getEmployeeWithId(USERID) as C_EMP FROM WRK_SESSION WHERE ACTION_PAGE_Q_STRING LIKE '%#CGI.QUERY_STRING#%' AND USERID <> #session.ep.userid#
+            SELECT * FROM WRK_SESSION WHERE ACTION_PAGE_Q_STRING LIKE '%#CGI.QUERY_STRING#%' AND USERID <> #session.ep.userid#
         </cfquery>
         
         <cfset CalisanPersoneller="">
         <cfloop query="isactpbsp">
             <CFSET ACS="">
-            <cfif listlen(C_EMP," ") gt 1>
-                <cfset ACS=left(listGetAt(C_EMP,1," "),1)&""&left(listGetAt(C_EMP,2," "),1)>
-            </cfif>
+            
+                <cfset ACS="#left(NAME,1)#.#left(SURNAME,1)#">
+            
             <cfset CalisanPersoneller="#CalisanPersoneller# , #ACS# ">
         </cfloop>
         <cfif isactpbsp.recordCount>

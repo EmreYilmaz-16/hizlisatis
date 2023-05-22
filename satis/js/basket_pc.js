@@ -10,7 +10,9 @@ var selectedArr = [];
 var CompanyData = new Object();
 $(document).ready(function () {
   setDoom();
-  //CalisanKontrolPbs();
+  if (getParameterByName("event") == "upd") {
+    CalisanKontrolPbs();
+  }
 });
 
 function setDoom() {
