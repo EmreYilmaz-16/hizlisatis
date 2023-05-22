@@ -50,7 +50,7 @@ function AgaciYaz(arr, isoq, address = "0") {
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
-   
+   li.setAttribute("style","margin-bottom:15px")
     var diva= document.createElement("div");
     var btn = document.createElement("button");
     btn.innerText = "+";
@@ -62,7 +62,7 @@ function AgaciYaz(arr, isoq, address = "0") {
     inp.setAttribute("onchange", "console.log(this)");
     inp.setAttribute("value", arr[i].AMOUNT);
     inp.setAttribute("name", "amount");
-    diva.setAttribute("style","display:flex;align-items:baseline;")
+    diva.setAttribute("style","display:flex;align-items:baseline;float:rigth")
     diva.appendChild(inp);
     diva.appendChild(btn);
     li.appendChild(diva);
