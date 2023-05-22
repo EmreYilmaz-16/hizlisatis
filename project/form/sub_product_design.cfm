@@ -131,8 +131,15 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
 </div>
 <div class="col col-2 col-md-2 col-sm-2 col-xs-12" >
     <cf_box title="....">
-        <div  style="height:90vh">
-    
+        <div  style="height:84vh">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+              </div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
+                <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
+              </div>
     </div>
     </cf_box>
     </div>
