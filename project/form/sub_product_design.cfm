@@ -58,11 +58,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
         <cf_box title="Ürünler">
             
        <div style="height:90vh">
-        <div>
-            <button class="btn btn-outline-success" onclick="addProdMain()">RP</button>
-            <button class="btn btn-outline-warning" onclick="addProdMain()">VP</button>
-        </div>
-        <div style="position: absolute;bottom: 0;right: 0;"><button class="btn btn-primary">Kaydet</button></div>
+    
         <cfoutput query="getP">
            <!---- <li style="background: lightgrey;border-radius: 5px;">                
                     <div class="ui-cards ui-cards-vertical">                        
@@ -123,6 +119,11 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     </div>
     <div class="col col-7 col-md-7 col-sm-7 col-xs-12" >
 <cf_box title="Ürün Ağacı">
+    <div>
+        <button class="btn btn-outline-success" onclick="addProdMain()">RP</button>
+        <button class="btn btn-outline-warning" onclick="addProdMain()">VP</button>
+    </div>
+    <div style="position: absolute;bottom: 0;right: 0;"><button class="btn btn-primary">Kaydet</button></div>
     <div id="TreeArea" style="height:90vh">
 
 </div>
