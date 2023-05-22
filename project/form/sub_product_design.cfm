@@ -48,23 +48,34 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
        <div style="height:90vh">
             <ul style="margin: 0;list-style: none;"> 
         <cfoutput query="getP">
-            <li style="background: lightgrey;border-radius: 5px;">                
+           <!---- <li style="background: lightgrey;border-radius: 5px;">                
                     <div class="ui-cards ui-cards-vertical">                        
                         <div class="ui-cards-text">
                             <ul class="ui-info-list">
                                 <li>
-                                    Ürün Adı : <i>#PRODUCT_NAME#</i>
+                                    Ürün Adı : <i></i>
                                 </li>                               
                                 <li>
-                                    Durum : <i>#STAGE#</i>
+                                    Durum : <i></i>
                                 </li>                              
                             </ul>
                             <ul class="ui-icon-list">
-                                <li><a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')" title="Görüntüle"><i class="icon-search">Görüntüle</i></a></li>
+                                <li><a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')" title="Görüntüle"></a></li>
                             </ul>
                         </div>
                     </div>               
-            </li>    
+            </li>    ------>
+
+            <div class="card">
+                <div class="card-header">
+                    #PRODUCT_NAME#
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Durum</h5>
+                  <p class="card-text">#STAGE#</p>
+                  <a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')"  class="btn btn-primary"><i class="icon-search"></i> Görüntüle</a>
+                </div>
+              </div>
         </cfoutput>
         </ul>
         <hr>
