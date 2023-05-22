@@ -38,6 +38,9 @@ function AgaciYaz(arr, isoq, address = "0") {
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
   ul.setAttribute("data-seviye", isoq);
+  if(address!= "0"){
+    ul.setAttribute("style","width:90%");
+  }
   var address = address;
 
   address += isoq.toString();
