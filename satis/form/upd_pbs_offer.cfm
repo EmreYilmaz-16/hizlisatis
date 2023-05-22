@@ -14,7 +14,7 @@
             $("#btnsave").hide();
             $("#btnsil").hide()
             console.log(CalisanPersoneller)
-            var span=document.createElement("span")
+            var span=document.createElement("div")
 
 span.setAttribute("style","color:red;font-weight:bold")
 span.innerText="Bu Sayfada Çalışan Var !"
