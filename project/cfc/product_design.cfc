@@ -1,4 +1,5 @@
 ﻿<cfcomponent>   
+    <cfset dsn=application.systemparam.dsn>
     <cffunction name="getTree" access="remote" httpMethod="POST" returntype="any" returnformat="plain">
             <cfargument name="product_id">
             <cfargument name="isVirtual">
