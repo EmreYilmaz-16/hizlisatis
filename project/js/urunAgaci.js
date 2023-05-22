@@ -64,7 +64,7 @@ function AgaciYaz(arr, isoq, address = "0") {
     inp.setAttribute("onchange", "console.log(this)");
     inp.setAttribute("value", arr[i].AMOUNT);
     inp.setAttribute("name", "amount");
-    diva.setAttribute("style","display:flex;align-items:baseline;float:right")
+    diva.setAttribute("style","display:flex;align-items:baseline;float:right;margin-left:auto")
     diva.appendChild(inp);
     diva.appendChild(btn);
     var divb=document.createElement("div");
