@@ -26,6 +26,9 @@
     padding: 1.25rem !important;
     margin-top: 0px !important;
 }
+.btn i {
+    margin: 0px 0px 0px 0px !important;
+}
     </style>
 <cfquery name="relProjects" datasource="#dsn#">
 SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
@@ -53,8 +56,13 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
 <div class="row">
     <div class="col col-3 col-md-3 col-sm-3 col-xs-12" style="border-right: solid 1px ##E08283;">
         <cf_box title="Ürünler">
+            
        <div style="height:90vh">
-         
+        <div>
+            <button class="btn btn-outline-success" onclick="addProdMain()">RP</button>
+            <button class="btn btn-outline-warning" onclick="addProdMain()">VP</button>
+        </div>
+        <div style="position: absolute;bottom: 0;right: 0;"><button class="btn btn-primary">Kaydet</button></div>
         <cfoutput query="getP">
            <!---- <li style="background: lightgrey;border-radius: 5px;">                
                     <div class="ui-cards ui-cards-vertical">                        
