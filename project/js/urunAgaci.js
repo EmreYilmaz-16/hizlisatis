@@ -38,8 +38,8 @@ function AgaciYaz(arr, isoq, address = "0") {
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
   ul.setAttribute("data-seviye", isoq);
-  if(address!= "0"){
-    ul.setAttribute("style","width:90%");
+  if (address != "0") {
+    ul.setAttribute("style", "width:90%");
   }
   var address = address;
 
@@ -49,33 +49,36 @@ function AgaciYaz(arr, isoq, address = "0") {
     if (isoq <= 0) {
       isoq = arr[i].RNDM_ID;
     }
-    var spn=document.createElement("span");
+    var spn = document.createElement("span");
     spn.innerHTML = arr[i].PRODUCT_NAME;
-    
+
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
-   li.setAttribute("style","margin-bottom:15px")
-    var diva= document.createElement("div");
+    li.setAttribute("style", "margin-bottom:15px");
+    var diva = document.createElement("div");
     var btn = document.createElement("button");
     btn.innerText = "+";
     btn.setAttribute("onclick", "getitem(this)");
-    btn.setAttribute("type", "button");    
-    btn.setAttribute("class", "btn btn-success");
+    btn.setAttribute("type", "button");
+    btn.setAttribute("class", "btn btn-outline-success");
     var inp = document.createElement("input");
     inp.setAttribute("type", "text");
     inp.setAttribute("onchange", "console.log(this)");
+    inp.setAttribute("class", "form-control form-control-sm");
     inp.setAttribute("value", arr[i].AMOUNT);
     inp.setAttribute("name", "amount");
-    diva.setAttribute("style","display:flex;align-items:baseline;float:right;margin-left:auto")
+    diva.setAttribute(
+      "style",
+      "display:flex;align-items:baseline;float:right;margin-left:auto"
+    );
     diva.appendChild(inp);
     diva.appendChild(btn);
-    var divb=document.createElement("div");
-    divb.setAttribute("style","display:flex");
+    var divb = document.createElement("div");
+    divb.setAttribute("style", "display:flex");
     divb.appendChild(spn);
-    divb.appendChild(diva)
+    divb.appendChild(diva);
     li.appendChild(divb);
-    
 
     //  li.setAttribute("onclick", "getitem(this)");
 
@@ -123,3 +126,9 @@ function getDs() {
     columnAutoWidth: true,
   });
 }
+
+$(document).ready(function () {
+  var d = document.getElementById("wrk_main_layout");
+  d.removeAttribute("class");
+  d.setAttribute("class", "container-fluid");
+});
