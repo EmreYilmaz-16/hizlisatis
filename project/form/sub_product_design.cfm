@@ -1,4 +1,5 @@
-﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+﻿
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <cfparam name="attributes.project_id" default="2563">
 
 <style>
@@ -18,6 +19,12 @@
       font-size: 1.2em;
       
     }
+    .card-body {
+    -ms-flex: 1 1 auto !important;
+    flex: 1 1 auto !important;
+    min-height: 1px !important;
+    padding: 1.25rem !important;
+}
     </style>
 <cfquery name="relProjects" datasource="#dsn#">
 SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
@@ -71,7 +78,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                 <div class="card-body">
                   <h5 class="card-title">#PRODUCT_NAME#</h5>
                   <p class="card-text">#STAGE#</p>
-                  <a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')"  class="btn btn-primary"><i class="icon-search"></i> Görüntüle</a>
+                  <button type="button" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')"  class="btn btn-primary"><i class="icon-search"></i> Görüntüle</button>
                 </div>
               </div>
             
