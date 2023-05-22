@@ -46,11 +46,11 @@ function AgaciYaz(arr, isoq, address = "0") {
     if (isoq <= 0) {
       isoq = arr[i].RNDM_ID;
     }
-    li.innerHTML = arr[i].PRODUCT_NAME + "<b>(" + isoq + ")</b>";
+    li.innerHTML = arr[i].PRODUCT_NAME;
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
-    li.setAttribute("style","display:flex;align-content: stretch;justify-content: space-between;align-items: center")
+   
     var diva= document.createElement("div");
     var btn = document.createElement("button");
     btn.innerText = "+";
