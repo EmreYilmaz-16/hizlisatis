@@ -46,7 +46,9 @@ function AgaciYaz(arr, isoq, address = "0") {
     if (isoq <= 0) {
       isoq = arr[i].RNDM_ID;
     }
-    li.innerHTML = arr[i].PRODUCT_NAME;
+    var spn=document.createElement("span");
+    spn.innerHTML = arr[i].PRODUCT_NAME;
+    
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
@@ -65,7 +67,11 @@ function AgaciYaz(arr, isoq, address = "0") {
     diva.setAttribute("style","display:flex;align-items:baseline;float:right")
     diva.appendChild(inp);
     diva.appendChild(btn);
-    li.appendChild(diva);
+    var divb=document.createElement("div");
+    divb.setAttribute("style","display:flex");
+    divb.appendChild(spn);
+    divb.appendChild(diva)
+    li.appendChild(divb);
     
 
     //  li.setAttribute("onclick", "getitem(this)");
