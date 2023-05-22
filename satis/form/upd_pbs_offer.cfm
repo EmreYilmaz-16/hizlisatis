@@ -17,10 +17,19 @@
             var span=document.createElement("span")
 
 span.setAttribute("style","color:red;font-weight:bold")
-span.innerText="Bu Sayfada Çalışan Var ! <cfoutput>#CalisanPersoneller#</cfoutput>"
+span.innerText="Bu Sayfada Çalışan Var !"
 $("#btnsave2").parent()[0].appendChild(span)
 $("#btnsave").parent()[0].appendChild(span)
-            return false
+for(let i=0;i<CalisanPersoneller.length;i++){
+    var d=document.createElement("div")
+d.innerText=CalisanPersoneller[i];
+d.setAttribute("style","border-radius:50% !important ;max-width:25%;padding:5px")
+d.setAttribute("class","btn btn-danger")
+
+$("#btnsave2").parent().append(d)  
+$("#btnsave").parent().append(d)  
+}
+return false
         </cfif>
         return true;
     }
