@@ -39,7 +39,7 @@ function AgaciYaz(arr, isoq, address = "0") {
   ul.setAttribute("class", "list-group");
   ul.setAttribute("data-seviye", isoq);
   if (address != "0") {
-    ul.setAttribute("style", "width:90%");
+   // ul.setAttribute("style", "width:90%");
   }
   var address = address;
 
