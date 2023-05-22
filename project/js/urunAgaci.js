@@ -17,7 +17,7 @@ function ngetTree(product_id, is_virtual, dsn3) {
       AgaciYaz(o, 0);
       var esd = document.getElementById("TreeArea");
       esd.innerHTML = "";
-      ulx.innerHTML="";
+      
       esd.appendChild(ulx);
     },
   });
@@ -36,6 +36,7 @@ function strToJson(str) {
 }
 
 function AgaciYaz(arr, isoq, address = "0") {
+  ulx.innerHTML="";
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
   ul.setAttribute("data-seviye", isoq);
