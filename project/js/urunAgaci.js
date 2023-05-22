@@ -15,7 +15,10 @@ function ngetTree(product_id, is_virtual, dsn3) {
       var jsonStr = strToJson(asd);
       o = JSON.parse(jsonStr);
       AgaciYaz(o, 0);
-      document.body.appendChild(ulx);
+      var esd=document.getElementById("TreeArea");
+      esd.innerHTML="";
+      esd.appendChild(ulx);
+      
     },
   });
 }
