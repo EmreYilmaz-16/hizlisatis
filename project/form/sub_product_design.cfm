@@ -65,7 +65,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                         </div>
                     </div>               
             </li>    ------>
-
+            <li>
             <div class="card">
                 <div class="card-header">
                     #PRODUCT_NAME#
@@ -76,6 +76,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                   <a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')"  class="btn btn-primary"><i class="icon-search"></i> Görüntüle</a>
                 </div>
               </div>
+            </li>
         </cfoutput>
         </ul>
         <hr>
