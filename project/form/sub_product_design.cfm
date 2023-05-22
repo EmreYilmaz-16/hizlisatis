@@ -46,7 +46,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     <div class="col col-3 col-md-3 col-sm-3 col-xs-12" style="border-right: solid 1px ##E08283;">
         <cf_box title="Ürünler">
        <div style="height:90vh">
-            <ul style="margin: 0;list-style: none;"> 
+         
         <cfoutput query="getP">
            <!---- <li style="background: lightgrey;border-radius: 5px;">                
                     <div class="ui-cards ui-cards-vertical">                        
@@ -65,20 +65,18 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                         </div>
                     </div>               
             </li>    ------>
-            <li>
+           
             <div class="card">
-                <div class="card-header">
-                    #PRODUCT_NAME#
-                </div>
+              
                 <div class="card-body">
-                  <h5 class="card-title">Durum</h5>
+                  <h5 class="card-title">#PRODUCT_NAME#</h5>
                   <p class="card-text">#STAGE#</p>
                   <a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')"  class="btn btn-primary"><i class="icon-search"></i> Görüntüle</a>
                 </div>
               </div>
-            </li>
+            
         </cfoutput>
-        </ul>
+        
         <hr>
         <ul>
             <cfoutput query="getP2">
