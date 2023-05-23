@@ -17,7 +17,7 @@ function ngetTree(product_id, is_virtual, dsn3) {
       AgaciYaz(o, 0);
       var esd = document.getElementById("TreeArea");
       esd.innerHTML = "";
-      
+
       esd.appendChild(ulx);
     },
   });
@@ -36,12 +36,12 @@ function strToJson(str) {
 }
 
 function AgaciYaz(arr, isoq, address = "0") {
-  ulx.innerHTML="";
+  ulx.innerHTML = "";
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
   ul.setAttribute("data-seviye", isoq);
   if (address != "0") {
-   // ul.setAttribute("style", "width:90%");
+    // ul.setAttribute("style", "width:90%");
   }
   var address = address;
 
@@ -134,3 +134,41 @@ $(document).ready(function () {
   d.removeAttribute("class");
   d.setAttribute("class", "container-fluid");
 });
+
+function LoadSettings() {
+  var table = document.createElement("table");
+  for (let i = 0; i < ProductDesingSetting.length; i++) {
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    if (ProductDesingSetting.elementType == "bool") {
+      var div = document.createElement("div");
+      div.setAttribute("class", "custom-control custom-switch");
+      var input = document.createElement("input");
+      input.setAttribute("type", "checkbox");
+      input.setAttribute("name", ProductDesingSetting.paramName);
+      input.setAttribute("id", ProductDesingSetting.paramName);
+      input.setAttribute("class", "custom-control-input");
+      if (ProductDesingSetting.paramValue == "OFF")
+        input.setAttribute("checked", "true");
+      div.appendChild(input);
+      var lbl=document.createElement("label");
+      lbl.setAttribute("class","custom-control-label");
+      lbl.setAttribute("for",ProductDesingSetting[i].paramName);
+      div.appendChild(lbl);
+      td.appendChild(div);
+    }
+    tr.appendChild(td);
+    var td=document.createElement("td");
+    td.innerText=ProductDesingSetting.paramDescripton;
+    tr.appendChild(td);
+    table.appendChild(tr)
+  };
+  document.getElementById("settingsArea").appendChild(table);
+}
+
+/*
+  <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+              </div>
+*/
