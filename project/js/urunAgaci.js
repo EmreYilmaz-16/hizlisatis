@@ -140,29 +140,30 @@ function LoadSettings() {
   for (let i = 0; i < ProductDesingSetting.length; i++) {
     var tr = document.createElement("tr");
     var td = document.createElement("td");
-    if (ProductDesingSetting.elementType == "bool") {
+    if (ProductDesingSetting[i].elementType == "bool") {
       var div = document.createElement("div");
       div.setAttribute("class", "custom-control custom-switch");
       var input = document.createElement("input");
       input.setAttribute("type", "checkbox");
-      input.setAttribute("name", ProductDesingSetting.paramName);
-      input.setAttribute("id", ProductDesingSetting.paramName);
+      input.setAttribute("name", ProductDesingSetting[i].paramName);
+      input.setAttribute("id", ProductDesingSetting[i].paramName);
       input.setAttribute("class", "custom-control-input");
-      if (ProductDesingSetting.paramValue == "OFF")
+      input.setAttribute("value", "ON");
+      if (ProductDesingSetting[i].paramValue == "ON")
         input.setAttribute("checked", "true");
       div.appendChild(input);
-      var lbl=document.createElement("label");
-      lbl.setAttribute("class","custom-control-label");
-      lbl.setAttribute("for",ProductDesingSetting[i].paramName);
+      var lbl = document.createElement("label");
+      lbl.setAttribute("class", "custom-control-label");
+      lbl.setAttribute("for", ProductDesingSetting[i].paramName);
       div.appendChild(lbl);
       td.appendChild(div);
     }
     tr.appendChild(td);
-    var td=document.createElement("td");
-    td.innerText=ProductDesingSetting.paramDescripton;
+    var td = document.createElement("td");
+    td.innerText = ProductDesingSetting[i].paramDescripton;
     tr.appendChild(td);
-    table.appendChild(tr)
-  };
+    table.appendChild(tr);
+  }
   document.getElementById("settingsArea").appendChild(table);
 }
 
