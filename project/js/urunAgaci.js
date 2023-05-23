@@ -133,6 +133,7 @@ $(document).ready(function () {
   var d = document.getElementById("wrk_main_layout");
   d.removeAttribute("class");
   d.setAttribute("class", "container-fluid");
+  LoadSettings();
 });
 
 function LoadSettings() {
@@ -148,8 +149,7 @@ function LoadSettings() {
       input.setAttribute("name", ProductDesingSetting[i].paramName);
       input.setAttribute("id", ProductDesingSetting[i].paramName);
       input.setAttribute("class", "custom-control-input");
-      input.setAttribute("value", "ON");
-      if (ProductDesingSetting[i].paramValue == "ON")
+      if (ProductDesingSetting[i].paramValue == "OFF")
         input.setAttribute("checked", "true");
       div.appendChild(input);
       var lbl = document.createElement("label");
