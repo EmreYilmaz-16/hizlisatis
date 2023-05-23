@@ -145,7 +145,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     <div class="col col-7 col-md-7 col-sm-7 col-xs-12" >
 <cf_box title="Ürün Ağacı">
     <div>
-        <button class="btn btn-outline-success" onclick="addProdMain()">RP</button>
+        <button class="btn btn-outline-success" onclick="OpenBasketProducts(0,5)">RP</button>
         <button class="btn btn-outline-warning" onclick="addProdMain()">VP</button>
     </div>
     <div style="position: absolute;bottom: 0;right: 0;"><button class="btn btn-primary">Kaydet</button></div>

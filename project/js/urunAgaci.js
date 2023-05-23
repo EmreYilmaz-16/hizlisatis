@@ -232,3 +232,25 @@ function getParameterByName(name, url) {
   if (!results[2]) return "";
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+function OpenBasketProducts(col = "", actType = "5") {
+  var cp_id = _compId;
+  var cp_name = _compId;
+
+  var p_cat = _priceCatId;
+  var p_cat_id = _priceCatId;
+  openBoxDraggable(
+    "http://erp.metosan.com.tr/index.cfm?fuseaction=objects.emptypopup_list_products_partner&price_cat=" +
+      p_cat +
+      "&PRICE_CATID=" +
+      p_cat_id +
+      "&company_id=" +
+      cp_id +
+      "&company_name=" +
+      cp_name +
+      "&columnsa=" +
+      col +
+      "&actType=" +
+      actType
+  );
+}
