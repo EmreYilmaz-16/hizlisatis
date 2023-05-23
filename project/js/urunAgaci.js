@@ -251,6 +251,8 @@ function OpenBasketProducts(col = "", actType = "5") {
       "&columnsa=" +
       col +
       "&actType=" +
-      actType
+      actType +
+      "question_id=" +
+      ""
   );
 }
