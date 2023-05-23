@@ -71,11 +71,12 @@ function AgaciYaz(arr, isoq, address = "0") {
     inp.setAttribute("type", "text");
     inp.setAttribute("onchange", "console.log(this)");
     inp.setAttribute("class", "form-control form-control-sm");
+    inp.setAttribute("style","width:33%");
     inp.setAttribute("value", arr[i].AMOUNT);
     inp.setAttribute("name", "amount");
     diva.setAttribute(
       "style",
-      "display:flex;align-items:baseline;float:right;margin-left:auto"
+      "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
     );
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
