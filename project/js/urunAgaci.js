@@ -2,6 +2,8 @@ var o = new Object();
 var ulx = document.createElement("div");
 ulx.setAttribute("id", "ppidarea");
 var sonEleman = "";
+var _compId;
+var _priceCatId;
 function ngetTree(product_id, is_virtual, dsn3) {
   $.ajax({
     url:
@@ -71,7 +73,7 @@ function AgaciYaz(arr, isoq, address = "0") {
     inp.setAttribute("type", "text");
     inp.setAttribute("onchange", "console.log(this)");
     inp.setAttribute("class", "form-control form-control-sm");
-    inp.setAttribute("style","width:33%");
+    inp.setAttribute("style", "width:33%");
     inp.setAttribute("value", arr[i].AMOUNT);
     inp.setAttribute("name", "amount");
     diva.setAttribute(
@@ -142,6 +144,14 @@ $(document).ready(function () {
   d.removeAttribute("class");
   d.setAttribute("class", "container-fluid");
   LoadSettings();
+  var PROJECT_ID = getParameterByName("project_id");
+  var cp_id = wrk_query(
+    "select COMPANY_ID FROM PRO_PROJECTS WHERE PROJECT_ID=" + PROJECT_ID,
+    "DSN"
+  ).COMPANY_ID[0];
+  let compInfo = GetAjaxQuery("CompanyInfo", cp_id);
+  _priceCatId = compInfo.PRICE_LISTS.find((p) => p.IS_DEFAULT == 1).PRICE_CATID;
+  _compId = cp_id;
 });
 
 function LoadSettings() {
@@ -181,3 +191,44 @@ function LoadSettings() {
                 <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
               </div>
 */
+
+function GetAjaxQuery(type, type_id) {
+  var CompanyInfo = new Object();
+  var url =
+    "/index.cfm?fuseaction=objects.get_qs_info&ajax=1&ajax_box_page=1&isAjax=1";
+  var myAjaxConnector = GetAjaxConnector();
+  if (myAjaxConnector) {
+    data = "type_id=" + type_id + "&q_type=" + type;
+    myAjaxConnector.open("post", url + "&xmlhttp=1", false);
+    myAjaxConnector.setRequestHeader(
+      "If-Modified-Since",
+      "Sat, 1 Jan 2000 00:00:00 GMT"
+    );
+    myAjaxConnector.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded; charset=utf-8"
+    );
+    myAjaxConnector.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    myAjaxConnector.send(data);
+    if (myAjaxConnector.readyState == 4 && myAjaxConnector.status == 200) {
+      try {
+        CompanyInfo = eval(
+          myAjaxConnector.responseText.replace(/\u200B/g, "")
+        )[0];
+      } catch (e) {
+        CompanyInfo = false;
+      }
+    }
+  }
+  return CompanyInfo;
+}
+
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
