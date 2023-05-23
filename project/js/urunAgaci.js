@@ -252,7 +252,7 @@ function OpenBasketProducts(col = "", actType = "5") {
       col +
       "&actType=" +
       actType +
-      "question_id=" +
+      "&question_id=" +
       ""
   );
 }
