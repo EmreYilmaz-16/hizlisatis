@@ -36,7 +36,9 @@ function strToJson(str) {
 }
 
 function AgaciYaz(arr, isoq, address = "0") {
- var upProduct=ProductDesingSetting.find(p=>p.paramName=='update_real_product').paramValue;
+  var upProduct = ProductDesingSetting.find(
+    (p) => p.paramName == "update_real_product"
+  ).paramValue;
   ulx.innerHTML = "";
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
@@ -75,9 +77,9 @@ function AgaciYaz(arr, isoq, address = "0") {
       "style",
       "display:flex;align-items:baseline;float:right;margin-left:auto"
     );
-    if(upProduct=='OFF'){
-      inp.setAttribute("readonly","true");
-      btn.setAttribute("disabled","true")
+    if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
+      inp.setAttribute("readonly", "true");
+      btn.setAttribute("disabled", "true");
     }
     diva.appendChild(inp);
     diva.appendChild(btn);
