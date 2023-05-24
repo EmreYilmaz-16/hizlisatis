@@ -71,6 +71,11 @@ function AgaciYaz(arr, isoq, address = "0") {
     btn.setAttribute("onclick", "getitem(this)");
     btn.setAttribute("type", "button");
     btn.setAttribute("class", "btn btn-outline-success");
+    var btn2 = document.createElement("button");
+    btn2.innerText = "-";
+    btn2.setAttribute("onclick", "remItem(this)");
+    btn2.setAttribute("type", "button");
+    btn2.setAttribute("class", "btn btn-outline-danger");
     var inp = document.createElement("input");
     inp.setAttribute("type", "text");
     inp.setAttribute("onchange", "console.log(this)");
@@ -85,9 +90,11 @@ function AgaciYaz(arr, isoq, address = "0") {
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
+      btn2.setAttribute("disabled","true");
     }
     diva.appendChild(inp);
     diva.appendChild(btn);
+    diva.appendChild(btn2);
     var divb = document.createElement("div");
     divb.setAttribute("style", "display:flex");
     divb.appendChild(spn);
