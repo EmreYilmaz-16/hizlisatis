@@ -257,3 +257,6 @@ function OpenBasketProducts(col = "", actType = "5") {
       ""
   );
 }
+function newDraft(){
+  console.log("Yeni Taslak")
+}
