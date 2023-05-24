@@ -5,6 +5,7 @@ var sonEleman = "";
 var _compId;
 var _priceCatId;
 var SonAgac = new Array();
+var idA = 1000;
 function ngetTree(product_id, is_virtual, dsn3) {
   $.ajax({
     url:
@@ -46,6 +47,8 @@ function AgaciYaz(arr, isoq, address = "0") {
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
   ul.setAttribute("data-seviye", isoq);
+  ul.setAttribute("id", idA);
+  idA = idA + 1;
   if (address != "0") {
     // ul.setAttribute("style", "width:90%");
   }
@@ -431,5 +434,5 @@ function addProdMain() {
 }
 
 function OpenBasketProducts_Pars(el) {
-  console.log(el)
+  console.log(el);
 }
