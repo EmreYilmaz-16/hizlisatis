@@ -321,8 +321,15 @@ function AddRowItem(
     button.setAttribute("class", "btn btn-outline-success");
     button.setAttribute("disabled", "true");
     button.innerText = "+";
+    var btn2 = document.createElement("button");
+    btn2.innerText = "-";
+    btn2.setAttribute("onclick", "remItem(this)");
+    btn2.setAttribute("type", "button");
+    btn2.setAttribute("class", "btn btn-outline-danger");
+
     div2.appendChild(input);
     div2.appendChild(button);
+    div2.appendChild(btn2);
     div.appendChild(div2);
     li.appendChild(div);
     e.appendChild(li);
