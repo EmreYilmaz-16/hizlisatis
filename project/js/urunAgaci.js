@@ -472,8 +472,15 @@ function addProdMain() {
   btn2.setAttribute("type", "button");
   btn2.setAttribute("class", "btn btn-outline-danger");
 
+  var btn3 = document.createElement("button");
+  btn3.innerText = "VP";
+  btn3.setAttribute("onclick", "addProdSub(this)");
+  btn3.setAttribute("type", "button");
+  btn3.setAttribute("class", "btn btn-outline-warning");
+
   div2.appendChild(input);
   div2.appendChild(button);
+  div2.appendChild(btn3);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -492,4 +499,59 @@ function OpenBasketProducts_Pars(el) {
   es.appendChild(ul);
   OpenBasketProducts(idA, "5");
   idA++;
+}
+
+function addProdSub(el) {
+  var li = document.createElement("li");
+  li.setAttribute("data-product_id", 0);
+  li.setAttribute("data-is_virtual", 1);
+  li.setAttribute("class", "list-group-item");
+  var span = document.createElement("span");
+  span.setAttribute("name", "product_name_");
+  span.innerText = prompt("Ürün Adı");
+  var div = document.createElement("div");
+  div.setAttribute("style", "display:flex");
+  div.appendChild(span);
+  var div2 = document.createElement("div");
+  div2.setAttribute(
+    "style",
+    "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
+  );
+  var input = document.createElement("input");
+  input.setAttribute("type", "text");
+  input.setAttribute("onchange", "console.log(this)");
+  input.setAttribute("class", "form-control form-control-sm");
+  input.setAttribute("style", "width:33%");
+  input.setAttribute("name", "amount");
+  input.setAttribute("value", 1);
+  input.setAttribute("readonly", "true");
+  var button = document.createElement("button");
+  button.setAttribute("type", "button");
+  button.setAttribute("class", "btn btn-outline-success");
+  button.setAttribute("onclick", "OpenBasketProducts_Pars(this)");
+  button.innerText = "+";
+  var btn2 = document.createElement("button");
+  btn2.innerText = "-";
+  btn2.setAttribute("onclick", "remItem(this)");
+  btn2.setAttribute("type", "button");
+  btn2.setAttribute("class", "btn btn-outline-danger");
+
+  var btn3 = document.createElement("button");
+  btn3.innerText = "VP";
+  btn3.setAttribute("onclick", "addProdSub(this)");
+  btn3.setAttribute("type", "button");
+  btn3.setAttribute("class", "btn btn-outline-warning");
+
+  div2.appendChild(input);
+  div2.appendChild(button);
+  div2.appendChild(btn3);
+  div2.appendChild(btn2);
+  div.appendChild(div2);
+  li.appendChild(div);
+  /*var ul = document.createElement("ul");
+  li.appendChild(ul);*/
+  // var e = document.getElementById("ppidarea").children[0];
+  var es = el.parentElement.parentElement.parentElement;
+  console.log(es);
+  //  e.appendChild(li);
 }
