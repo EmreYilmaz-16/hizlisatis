@@ -430,6 +430,7 @@ function Kaydet() {
   var obj = "";
   var ee = document.getElementById("ppidarea");
   var agacim12 = ee.children[0].children;
+  SonAgac.splice(0,SonAgac.length)
   AgacGetir(agacim12);
   console.log(SonAgac);
 }
