@@ -141,52 +141,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                 </li>    
             </cfoutput>
             </ul>
-        </div>var obj = "";
-        var ee = document.getElementById("ppidarea");
-        var agacim12 = ee.children[0].children;
-        var SonAgac = new Array();
-        
-        function AgacGetir(agacim, sx = 0) {
-          console.log(sx);
-          sx++;
-          var at = new Array();
-          for (let i = 0; i < agacim.length; i++) {
-            // console.log(agacim[i])
-            var pid = agacim[i].getAttribute("data-product_id");
-            
-            //console.log(agacim[i])
-            obj = agacim[i];
-            var amount = $(obj).find("input[name='amount']")[0].value;
-            var pname=$(obj).find("span[name='product_name_']")[0].innerText
-              var agacItem = new Object();
-            agacItem.PRODUCT_ID = pid;
-            agacItem.PRODUCT_NAME=pname
-            agacItem.AMOUNT = amount;
-            agacItem.AGAC = new Array();
-            var a = agacim[i].children;
-            // obj=a
-            //console.log(a)
-            var agaciVar = false;
-            var agac;
-            for (let j = 0; j < a.length; j++) {
-              if (a[j].tagName == "UL") {
-                agaciVar = true;
-                var agac = a[j].children;
-              }
-            }
-            console.log(agac);
-            if (agaciVar == true) {
-              agacItem.AGAC = AgacGetir(agac, sx);
-            }
-        
-            at.push(agacItem);
-          }
-          SonAgac.push(at);
-          //console.log(at)
-          return at;
-        }
-        
-        AgacGetir(agacim12);
+        </div>
     </cf_box>
     </div>
     <div class="col col-7 col-md-7 col-sm-7 col-xs-12" >

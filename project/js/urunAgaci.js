@@ -57,7 +57,7 @@ function AgaciYaz(arr, isoq, address = "0") {
       isoq = arr[i].RNDM_ID;
     }
     var spn = document.createElement("span");
-    spn.setAttribute("name","product_name_")
+    spn.setAttribute("name", "product_name_");
     spn.innerHTML = arr[i].PRODUCT_NAME;
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
@@ -257,6 +257,57 @@ function OpenBasketProducts(col = "", actType = "5") {
       ""
   );
 }
-function newDraft(){
-  console.log("Yeni Taslak")
+function newDraft() {
+  console.log("Yeni Taslak");
+}
+function AddRowItem(
+  PRODUCT_ID,
+  PRODUCT_NAME,
+  STOCK_CODE,
+  STOCK_ID,
+  PRICE,
+  DISCOUNT_RATE,
+  MONEY,
+  LAST_COST,
+  PRICE,
+  IS_MANUEL,
+  COLUMNSA
+) {
+  console.log(arguments);
+  if (COLUMNSA == 0) {
+    var e = document.getElementById("ppidarea").children[0];
+    var li = document.createElement("li");
+    li.setAttribute("data-product_id", PRODUCT_ID);
+    li.setAttribute("data-is_virtual", 0);
+    li.setAttribute("data-is_virtual", 0);
+    li.setAttribute("class", "list-group-item");
+    var div = document.createElement("div");
+    div.setAttribute("style", "display:flex");
+    var span = document.createElement("span");
+    span.innerText = PRODUCT_NAME;
+
+    div.appendChild(span);
+    var div2 = document.createElement("div");
+    div2.setAttribute(
+      "style",
+      "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
+    );
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("onchange", "console.log(this)");
+    input.setAttribute("class", "form-control form-control-sm");
+    input.setAttribute("style", "width:33%");
+    input.setAttribute("value", 1);
+    input.setAttribute("readonly", "true");
+    var button = document.createElement("button");
+    button.setAttribute("type", "button");
+    button.setAttribute("class", "btn btn-outline-success");
+    button.setAttribute("disabled", "true");
+    button.innerText = "+";
+    div2.appendChild(input);
+    div2.appendChild(button);
+    div.appendChild(div2);
+    li.appendChild(div);
+    e.appendChild(li);
+  }
 }
