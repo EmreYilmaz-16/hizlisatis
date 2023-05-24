@@ -74,6 +74,7 @@ function AgaciYaz(arr, isoq, address = "0") {
     btn.setAttribute("onclick", "getitem(this)");
     btn.setAttribute("type", "button");
     btn.setAttribute("class", "btn btn-outline-success");
+    button.setAttribute("onclick", "OpenBasketProducts_Pars(this)");
     var btn2 = document.createElement("button");
     btn2.innerText = "-";
     btn2.setAttribute("onclick", "remItem(this)");
@@ -369,6 +370,7 @@ function AddRowItem(
     var button = document.createElement("button");
     button.setAttribute("type", "button");
     button.setAttribute("class", "btn btn-outline-success");
+    
     button.setAttribute("disabled", "true");
     button.innerText = "+";
     var btn2 = document.createElement("button");
