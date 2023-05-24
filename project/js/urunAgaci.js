@@ -480,5 +480,11 @@ function addProdMain() {
 }
 
 function OpenBasketProducts_Pars(el) {
-  console.log(el);
+  var es = el.parentElement.parentElement.parentElement;
+
+  var ul = document.createElement("ul");
+  ul.setAttribute("id", idA);
+  es.appendChild(ul);
+  OpenBasketProducts(idA, "5");
+  idA++;
 }
