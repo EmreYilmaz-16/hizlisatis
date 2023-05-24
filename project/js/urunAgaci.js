@@ -90,7 +90,7 @@ function AgaciYaz(arr, isoq, address = "0") {
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
-      btn2.setAttribute("disabled","true");
+      btn2.setAttribute("disabled", "true");
     }
     diva.appendChild(inp);
     diva.appendChild(btn);
@@ -272,7 +272,7 @@ function newDraft() {
   var ul = document.createElement("ul");
   d.appendChild(ul);
   var e = document.getElementById("TreeArea");
-  e.innerHTML="";
+  e.innerHTML = "";
   e.appendChild(d);
 }
 function AddRowItem(
@@ -382,4 +382,54 @@ function Kaydet() {
   var agacim12 = ee.children[0].children;
   AgacGetir(agacim12);
   console.log(SonAgac);
+}
+
+function addProdMain() {
+  var li = document.createElement("li");
+  li.setAttribute("data-product_id", 0);
+  li.setAttribute("data-is_virtual", 1);
+  li.setAttribute("class", "list-group-item");
+  var span = document.createElement("span");
+  span.setAttribute("name", "product_name_");
+  span.innerText = prompt("Ürün Adı");
+  var div = document.createElement("div");
+  div.setAttribute("style", "display:flex");
+  div.appendChild(span);
+  var div2 = document.createElement("div");
+  div2.setAttribute(
+    "style",
+    "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
+  );
+  var input = document.createElement("input");
+  input.setAttribute("type", "text");
+  input.setAttribute("onchange", "console.log(this)");
+  input.setAttribute("class", "form-control form-control-sm");
+  input.setAttribute("style", "width:33%");
+  input.setAttribute("name", "amount");
+  input.setAttribute("value", 1);
+  input.setAttribute("readonly", "true");
+  var button = document.createElement("button");
+  button.setAttribute("type", "button");
+  button.setAttribute("class", "btn btn-outline-success");
+  button.setAttribute("onclick", "OpenBasketProducts_Pars(this)");
+  button.innerText = "+";
+  var btn2 = document.createElement("button");
+  btn2.innerText = "-";
+  btn2.setAttribute("onclick", "remItem(this)");
+  btn2.setAttribute("type", "button");
+  btn2.setAttribute("class", "btn btn-outline-danger");
+
+  div2.appendChild(input);
+  div2.appendChild(button);
+  div2.appendChild(btn2);
+  div.appendChild(div2);
+  li.appendChild(div);
+  var ul = document.createElement("ul");
+  li.appendChild(ul);
+  var e = document.getElementById("ppidarea").children[0];
+  e.appendChild(li);
+}
+
+function OpenBasketProducts_Pars(el) {
+  console.log(el)
 }
