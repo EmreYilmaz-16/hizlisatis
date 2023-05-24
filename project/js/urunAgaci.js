@@ -370,7 +370,7 @@ function AddRowItem(
     var button = document.createElement("button");
     button.setAttribute("type", "button");
     button.setAttribute("class", "btn btn-outline-success");
-    
+
     button.setAttribute("disabled", "true");
     button.innerText = "+";
     var btn2 = document.createElement("button");
@@ -432,7 +432,7 @@ function Kaydet() {
   var obj = "";
   var ee = document.getElementById("ppidarea");
   var agacim12 = ee.children[0].children;
-  SonAgac.splice(0,SonAgac.length)
+  SonAgac.splice(0, SonAgac.length);
   AgacGetir(agacim12);
   console.log(SonAgac);
 }
@@ -488,6 +488,7 @@ function OpenBasketProducts_Pars(el) {
 
   var ul = document.createElement("ul");
   ul.setAttribute("id", idA);
+  ul.setAttribute("data-is_virtual", 1);
   es.appendChild(ul);
   OpenBasketProducts(idA, "5");
   idA++;
