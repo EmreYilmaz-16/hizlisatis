@@ -269,10 +269,12 @@ function OpenBasketProducts(col = "", actType = "5") {
   );
 }
 function newDraft() {
+  idA = 1000;
   console.log("Yeni Taslak");
   var d = document.createElement("div");
   d.setAttribute("id", "ppidarea");
   var ul = document.createElement("ul");
+  ul.setAttribute("id", idA);
   d.appendChild(ul);
   var e = document.getElementById("TreeArea");
   e.innerHTML = "";
