@@ -284,6 +284,7 @@ function AddRowItem(
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
+    span.setAttribute("name","product_name_");
     span.innerText = PRODUCT_NAME;
 
     div.appendChild(span);
@@ -297,6 +298,7 @@ function AddRowItem(
     input.setAttribute("onchange", "console.log(this)");
     input.setAttribute("class", "form-control form-control-sm");
     input.setAttribute("style", "width:33%");
+    input.setAttribute("name","amount");
     input.setAttribute("value", 1);
     input.setAttribute("readonly", "true");
     var button = document.createElement("button");
