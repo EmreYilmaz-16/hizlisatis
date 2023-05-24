@@ -150,7 +150,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
         <button class="btn btn-outline-success" onclick="OpenBasketProducts(0,5)">RP</button>
         <button class="btn btn-outline-warning" onclick="addProdMain()">VP</button>
     </div>
-    <div style="position: absolute;bottom: 0;right: 0;"><button class="btn btn-primary">Kaydet</button></div>
+    <div style="position: absolute;bottom: 0;right: 0;"><button onclick="Kaydet()" class="btn btn-primary">Kaydet</button></div>
     <div id="TreeArea" style="height:90vh">
 
 </div>

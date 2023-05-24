@@ -4,6 +4,7 @@ ulx.setAttribute("id", "ppidarea");
 var sonEleman = "";
 var _compId;
 var _priceCatId;
+var SonAgac = new Array();
 function ngetTree(product_id, is_virtual, dsn3) {
   $.ajax({
     url:
@@ -284,7 +285,7 @@ function AddRowItem(
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
-    span.setAttribute("name","product_name_");
+    span.setAttribute("name", "product_name_");
     span.innerText = PRODUCT_NAME;
 
     div.appendChild(span);
@@ -298,7 +299,7 @@ function AddRowItem(
     input.setAttribute("onchange", "console.log(this)");
     input.setAttribute("class", "form-control form-control-sm");
     input.setAttribute("style", "width:33%");
-    input.setAttribute("name","amount");
+    input.setAttribute("name", "amount");
     input.setAttribute("value", 1);
     input.setAttribute("readonly", "true");
     var button = document.createElement("button");
@@ -312,4 +313,52 @@ function AddRowItem(
     li.appendChild(div);
     e.appendChild(li);
   }
+}
+
+function AgacGetir(agacim, sx = 0) {
+  console.log(sx);
+  sx++;
+  var at = new Array();
+  for (let i = 0; i < agacim.length; i++) {
+    // console.log(agacim[i])
+    var pid = agacim[i].getAttribute("data-product_id");
+
+    //console.log(agacim[i])
+    obj = agacim[i];
+    var amount = $(obj).find("input[name='amount']")[0].value;
+    var pname = $(obj).find("span[name='product_name_']")[0].innerText;
+    var agacItem = new Object();
+    agacItem.PRODUCT_ID = pid;
+    agacItem.PRODUCT_NAME = pname;
+    agacItem.AMOUNT = amount;
+    agacItem.AGAC = new Array();
+    var a = agacim[i].children;
+    // obj=a
+    //console.log(a)
+    var agaciVar = false;
+    var agac;
+    for (let j = 0; j < a.length; j++) {
+      if (a[j].tagName == "UL") {
+        agaciVar = true;
+        var agac = a[j].children;
+      }
+    }
+    console.log(agac);
+    if (agaciVar == true) {
+      agacItem.AGAC = AgacGetir(agac, sx);
+    }
+
+    at.push(agacItem);
+  }
+  SonAgac.push(at);
+  //console.log(at)
+  return at;
+}
+
+function Kaydet() {
+  var obj = "";
+  var ee = document.getElementById("ppidarea");
+  var agacim12 = ee.children[0].children;
+  AgacGetir(agacim12);
+  console.log(SonAgac);
 }
