@@ -549,7 +549,7 @@ function addProdSub(el) {
   div.appendChild(div2);
   li.appendChild(div);
   var ul = document.createElement("ul");
-  li.appendChild(ul);
+  ul.appendChild(li);
   // var e = document.getElementById("ppidarea").children[0];
   var es = el.parentElement.parentElement.parentElement;
   es.appendChild(ul);
