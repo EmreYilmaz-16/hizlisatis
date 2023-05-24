@@ -57,6 +57,7 @@ function AgaciYaz(arr, isoq, address = "0") {
       isoq = arr[i].RNDM_ID;
     }
     var spn = document.createElement("span");
+    spn.setAttribute("name","product_name_")
     spn.innerHTML = arr[i].PRODUCT_NAME;
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
