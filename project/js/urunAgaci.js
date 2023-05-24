@@ -275,6 +275,7 @@ function newDraft() {
   d.setAttribute("id", "ppidarea");
   var ul = document.createElement("ul");
   ul.setAttribute("id", idA);
+  idA++;
   d.appendChild(ul);
   var e = document.getElementById("TreeArea");
   e.innerHTML = "";
