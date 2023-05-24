@@ -260,6 +260,13 @@ function OpenBasketProducts(col = "", actType = "5") {
 }
 function newDraft() {
   console.log("Yeni Taslak");
+  var d = document.createElement("div");
+  d.setAttribute("id", "ppidarea");
+  var ul = document.createElement("ul");
+  d.appendChild(ul);
+  var e = document.getElementById("TreeArea");
+  e.innerHTML="";
+  e.appendChild(d);
 }
 function AddRowItem(
   PRODUCT_ID,
