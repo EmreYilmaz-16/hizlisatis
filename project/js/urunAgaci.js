@@ -477,8 +477,11 @@ function Kaydet() {
   AgacGetir(agacim12);
   console.log(SonAgac);
 }
+function addProdMain(){
+  openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_add_vp_project.cfm")
+}
 
-function addProdMain() {
+function addProdMain_() {
   var li = document.createElement("li");
   li.setAttribute("data-product_id", 0);
   li.setAttribute("data-is_virtual", 1);
