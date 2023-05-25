@@ -1,4 +1,4 @@
-﻿<cfbox title="Yeni Sanal Ürün">
+﻿<cf_box title="Yeni Sanal Ürün">
     <div class="form-group">
         <input type="text" name="productNameVp" id="productNameVp" placeholder="Ürün Adı" class="form-control form-control-sm">        
     </div>
@@ -10,4 +10,4 @@
     <button type="button" class="btn btn-sm btn-danger">İptal</button>
     <button type="button" class="btn btn-sm btn-success">Tamam</button>
 </div>
-</cfbox>
+</cf_box>
