@@ -309,7 +309,8 @@ function newDraft() {
   d.setAttribute("id", "ppidarea");
   var ul = document.createElement("ul");
   ul.setAttribute("id", idA);
-  ul.setAttribute("class","list-group")
+  ul.setAttribute("data-is_virtual", "1");
+  ul.setAttribute("class", "list-group");
   idA++;
   d.appendChild(ul);
   var e = document.getElementById("TreeArea");
@@ -368,6 +369,10 @@ function AddRowItem(
       "remItem(this)",
       "-"
     );
+    var elsx = e.getAttribute("data-is_virtual");
+    if (parseInt(elsx) == 1) {
+      input.removeAttribute("readonly");
+    }
     div2.appendChild(input);
     div2.appendChild(button);
     div2.appendChild(btn2);
@@ -542,7 +547,7 @@ function OpenBasketProducts_Pars(el) {
     var ul = document.createElement("ul");
     ul.setAttribute("id", idA);
     ul.setAttribute("data-is_virtual", 1);
-    ul.setAttribute("class","list-group")
+    ul.setAttribute("class", "list-group");
     var es = el.parentElement.parentElement.parentElement;
     es.appendChild(ul);
     OpenBasketProducts(idA, "5");
@@ -612,7 +617,7 @@ function addProdSub(el) {
   li.appendChild(div);
   if (sonul == undefined) {
     sonul = document.createElement("ul");
-    sonul.setAttribute("class","list-group")
+    sonul.setAttribute("class", "list-group");
     sonul.setAttribute("id", idA);
     idA++;
     sonul.appendChild(li);

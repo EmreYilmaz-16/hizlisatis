@@ -146,10 +146,11 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     </div>
     <div class="col col-7 col-md-7 col-sm-7 col-xs-12" >
 <cf_box title="Ürün Ağacı">
-    <div>
+    <div style="display:flex;margin-bottom:5px">
         <button class="btn btn-outline-success" onclick="OpenBasketProducts(0,5)">RP</button>
-        <button class="btn btn-outline-warning" onclick="addProdMain()">VP</button>
-        <button onclick="Kaydet()" class="btn btn-outline-primary">Kaydet</button>
+        <button class="btn btn-outline-warning" style="margin-left:5px" onclick="addProdMain()">VP</button>
+        <button onclick="Kaydet()" style="margin-left:5px"  class="btn btn-outline-primary">Kaydet</button>
+        <input type="text" class="form-control" value="" id="pnamemain" name="pnamemain" style="margin-left: 15px;color: var(--success);">
     </div>
     <div style="position: absolute;bottom: 0;right: 0;"></div>
     <div id="TreeArea" style="height:90vh">
