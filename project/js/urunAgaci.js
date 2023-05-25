@@ -482,8 +482,8 @@ function addProdMain() {
 }
 
 function addProdMain_() {
-  var pname = document.getElementById("productNameVp").value();
-  var p_cat_id = document.getElementById("productCatIdVp").value();
+  var pname = document.getElementById("productNameVp").value;
+  var p_cat_id = document.getElementById("productCatIdVp").value;
   var li = document.createElement("li");
   li.setAttribute("data-product_id", 0);
   li.setAttribute("data-is_virtual", 1);
