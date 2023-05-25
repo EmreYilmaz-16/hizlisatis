@@ -74,7 +74,7 @@ function AgaciYaz(arr, isoq, address = "0") {
     btn.setAttribute("onclick", "getitem(this)");
     btn.setAttribute("type", "button");
     btn.setAttribute("class", "btn btn-outline-success");
-    button.setAttribute("onclick", "OpenBasketProducts_Pars(this)");
+    btn.setAttribute("onclick", "OpenBasketProducts_Pars(this)");
     var btn2 = document.createElement("button");
     btn2.innerText = "-";
     btn2.setAttribute("onclick", "remItem(this)");
