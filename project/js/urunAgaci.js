@@ -676,6 +676,14 @@ function getCats(el, ev) {
 
         tt.appendChild(tr);
       }
+      
     }
+    $('#catRdiv').show(500);
   }
+}
+
+function setCat(id,cat){
+  $("#productCatIdVp").val(id)
+  $("#productCatVp").val(cat)
+  $('#catRdiv').hide(500);
 }
