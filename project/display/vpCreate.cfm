@@ -16,6 +16,14 @@
             </cf_box>  
         </div>
     </div>
+    <div class="form-group">
+        <cfquery name="getAq" datasource="#dsn#">
+            SELECT QUESTION_ID,QUESTION_NAME FROM workcube_metosan.SETUP_ALTERNATIVE_QUESTIONS
+        </cfquery>
+        <select name="saquestion" id="saquestion">
+            <cfoutput query="getAq"><option value="#QUESTION_ID#">#QUESTION_NAME#</option></cfoutput>
+        </select>
+    </div>
         <div style="display:flex;justify-content: flex-end;">
             <button type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')" class="btn btn-sm btn-danger">İptal</button>
             <button type="button" class="btn btn-sm btn-success" onclick="addProdMain_()">Tamam</button>       
