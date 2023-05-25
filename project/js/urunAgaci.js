@@ -303,6 +303,7 @@ function OpenBasketProducts(col = "", actType = "5") {
   );
 }
 function newDraft() {
+  var enmae = prompt("Ürün Adı");
   idA = 1000;
   console.log("Yeni Taslak");
   var d = document.createElement("div");
@@ -316,6 +317,7 @@ function newDraft() {
   var e = document.getElementById("TreeArea");
   e.innerHTML = "";
   e.appendChild(d);
+  $("#pnamemain").val(enmae);
 }
 function AddRowItem(
   PRODUCT_ID,
