@@ -69,30 +69,34 @@ function AgaciYaz(arr, isoq, address = "0") {
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
 
     var diva = document.createElement("div");
-    var btn = buttonCreator("","btn btn-outline-success","onclick","getitem(this)","+");
-    /*document.createElement("button");
-    btn.innerText = "+";
-    btn.setAttribute("onclick", "getitem(this)");
-    btn.setAttribute("type", "button");
-    btn.setAttribute("class", "btn btn-outline-success");*/
-    //btn.setAttribute("onclick", "OpenBasketProducts_Pars(this)");
-    var btn2 = buttonCreator("","btn btn-outline-danger","onclick","remItem(this)","-");
-    /*document.createElement("button");
-    btn2.innerText = "-";
-    btn2.setAttribute("onclick", "remItem(this)");
-    btn2.setAttribute("type", "button");
-    btn2.setAttribute("class", "btn btn-outline-danger");*/
-    var inp = document.createElement("input");
-    inp.setAttribute("type", "text");
-    inp.setAttribute("onchange", "console.log(this)");
-    inp.setAttribute("class", "form-control form-control-sm");
-    inp.setAttribute("style", "width:33%");
-    inp.setAttribute("value", arr[i].AMOUNT);
-    inp.setAttribute("name", "amount");
+    var btn = buttonCreator(
+      "",
+      "btn btn-outline-success",
+      "onclick",
+      "getitem(this)",
+      "+"
+    );
+    var btn2 = buttonCreator(
+      "",
+      "btn btn-outline-danger",
+      "onclick",
+      "remItem(this)",
+      "-"
+    );
+    var inp = inputCreator(
+      "text",
+      "amount",
+      "onchange",
+      "console.log(this)",
+      "form-control form-control-sm",
+      "width:33%",
+      arr[i].AMOUNT
+    );
     diva.setAttribute(
       "style",
       "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
     );
+
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
@@ -121,17 +125,32 @@ function AgaciYaz(arr, isoq, address = "0") {
   ulx.appendChild(ul);
   return ul;
 }
-
+/*
+attributeArr:[
+  {
+    att:'',
+    vl:''
+  }
+]
+*/
 function buttonCreator(style, cls, ev, evvl, itext) {
   var btn = document.createElement("button");
   btn.innerText = itext;
-  btn.setAttribute(ev, evvl);
+  if (ev.length > 0) btn.setAttribute(ev, evvl);
   btn.setAttribute("type", "button");
   btn.setAttribute("class", cls);
-  if (style.length > 0) {
-    btn.setAttribute("style", style);
-  }
+  if (style.length > 0) btn.setAttribute("style", style);
   return btn;
+}
+function inputCreator(type, name, ev, evl, cls, style, vl) {
+  var inp = document.createElement("input");
+  inp.setAttribute("type", type);
+  inp.setAttribute(ev, evl);
+  inp.setAttribute("class", cls);
+  inp.setAttribute("style", style);
+  inp.setAttribute("value", vl);
+  inp.setAttribute("name", name);
+  return inp;
 }
 
 function getitem(el) {
@@ -329,25 +348,19 @@ function AddRowItem(
       "style",
       "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
     );
-    var input = document.createElement("input");
-    input.setAttribute("type", "text");
-    input.setAttribute("onchange", "console.log(this)");
-    input.setAttribute("class", "form-control form-control-sm");
-    input.setAttribute("style", "width:33%");
-    input.setAttribute("name", "amount");
-    input.setAttribute("value", 1);
+    var input = inputCreator(
+      "text",
+      "amount",
+      "onchange",
+      "console.log(this)",
+      "form-control form-control-sm",
+      "width:33%",
+      1
+    );   
     input.setAttribute("readonly", "true");
-    var button = document.createElement("button");
-    button.setAttribute("type", "button");
-    button.setAttribute("class", "btn btn-outline-success");
+    var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
     button.setAttribute("disabled", "true");
-    button.innerText = "+";
-    var btn2 = document.createElement("button");
-    btn2.innerText = "-";
-    btn2.setAttribute("onclick", "remItem(this)");
-    btn2.setAttribute("type", "button");
-    btn2.setAttribute("class", "btn btn-outline-danger");
-
+    var btn2 = buttonCreator('','btn btn-outline-danger','onclick','remItem(this)','-')
     div2.appendChild(input);
     div2.appendChild(button);
     div2.appendChild(btn2);
@@ -373,26 +386,11 @@ function AddRowItem(
       "style",
       "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
     );
-    var input = document.createElement("input");
-    input.setAttribute("type", "text");
-    input.setAttribute("onchange", "console.log(this)");
-    input.setAttribute("class", "form-control form-control-sm");
-    input.setAttribute("style", "width:33%");
-    input.setAttribute("name", "amount");
-    input.setAttribute("value", 1);
+    var input = inputCreator('text','amount','onchange','console.log(this)','form-control form-control-sm','width:33%',1);
     input.setAttribute("readonly", "true");
-    var button = document.createElement("button");
-    button.setAttribute("type", "button");
-    button.setAttribute("class", "btn btn-outline-success");
-
+    var button = buttonCreator('','btn btn-outline-success','','','+');    
     button.setAttribute("disabled", "true");
-    button.innerText = "+";
-    var btn2 = document.createElement("button");
-    btn2.innerText = "-";
-    btn2.setAttribute("onclick", "remItem(this)");
-    btn2.setAttribute("type", "button");
-    btn2.setAttribute("class", "btn btn-outline-danger");
-
+    var btn2 =buttonCreator('','btn btn-outline-danger','onclick','remItem(this)','-'); 
     div2.appendChild(input);
     div2.appendChild(button);
     div2.appendChild(btn2);
