@@ -5,10 +5,10 @@
     <div class="form-group">
         <input type="hidden" name="productCatIdVp" id="productCatIdVp">
         <input type="text" name="productCatVp" id="productCatVp" placeholder="Kategori" onchange="getCats(this,event)" onkeyup="getCats(this,event)" class="form-control form-control-sm">    
-        <div style="position: absolute;background: white;width: 80%;">
+        <div style="position: absolute;background: white;width: 80%;display:none" id="catRdiv" >
             <cf_box title="Ürün Kategorileri">
                 <div style="height: 15vh;">
-                    <table>
+                    <table id="tblCat">
                     </table>            
                 </div>
             </cf_box>  

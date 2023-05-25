@@ -477,8 +477,8 @@ function Kaydet() {
   AgacGetir(agacim12);
   console.log(SonAgac);
 }
-function addProdMain(){
-  openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_add_vp_project")
+function addProdMain() {
+  openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_add_vp_project");
 }
 
 function addProdMain_() {
@@ -632,6 +632,50 @@ function addProdSub(el) {
     sonul.appendChild(li);
   }
 }
-function getCats(el,ev){
-  console.log(ev)
+function getCats(el, ev) {
+  console.log(ev);
+  var bul = false;
+  if (ev.type == "change") {
+    if (el.value.length > 3) {
+      bul = true;
+    }
+  } else if (ev.type == "keyup") {
+    if (el.value.length > 3 && ev.keyCode == 13) {
+      bul = true;
+    }
+  }
+  if (bul) {
+    var q = wrk_query(
+      "SELECT * FROM PRODUCT_CAT WHERE PRODUCT_CAT LIKE '%" +
+        el.value +
+        "%' OR HIERARCHY LIKE '%" +
+        el.value +
+        "%'",
+      "dsn3"
+    );
+    if (q.recordcount > 0) {
+      var tt = document.getElementById("tblCat");
+      $("#tblCat").html("");
+      tt.innerHtml = "";
+      for (let i = 0; i < q.recordcount; i++) {
+        var cid = q.PRODUCT_CATID[i];
+        var cn = q.PRODUCT_CAT[i];
+        var hi = q.HIERARCHY[i];
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        var a = document.createElement("a");
+        a.innerText = hi;
+        td.appendChild(a);
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        var a = document.createElement("a");
+        a.innerText = cn;
+        td.appendChild(a);
+        tr.appendChild(td);
+
+        tt.appendChild(tr);
+      }
+    }
+  }
 }
