@@ -632,3 +632,6 @@ function addProdSub(el) {
     sonul.appendChild(li);
   }
 }
+function getCats(el,ev){
+  console.log(ev)
+}
