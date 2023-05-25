@@ -664,26 +664,29 @@ function getCats(el, ev) {
         var tr = document.createElement("tr");
         var td = document.createElement("td");
         var a = document.createElement("a");
+        a.setAttribute("href", "javascript://");
+        a.setAttribute("onclick", "setCat(" + cid + ",'" + cn + "')");
         a.innerText = hi;
         td.appendChild(a);
         tr.appendChild(td);
 
         var td = document.createElement("td");
         var a = document.createElement("a");
+        a.setAttribute("href", "javascript://");
+        a.setAttribute("onclick", "setCat(" + cid + ",'" + cn + "')");
         a.innerText = cn;
         td.appendChild(a);
         tr.appendChild(td);
 
         tt.appendChild(tr);
       }
-      
     }
-    $('#catRdiv').show(500);
+    $("#catRdiv").show(500);
   }
 }
 
-function setCat(id,cat){
-  $("#productCatIdVp").val(id)
-  $("#productCatVp").val(cat)
-  $('#catRdiv').hide(500);
+function setCat(id, cat) {
+  $("#productCatIdVp").val(id);
+  $("#productCatVp").val(cat);
+  $("#catRdiv").hide(500);
 }
