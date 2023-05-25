@@ -356,11 +356,17 @@ function AddRowItem(
       "form-control form-control-sm",
       "width:33%",
       1
-    );   
+    );
     input.setAttribute("readonly", "true");
     var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
     button.setAttribute("disabled", "true");
-    var btn2 = buttonCreator('','btn btn-outline-danger','onclick','remItem(this)','-')
+    var btn2 = buttonCreator(
+      "",
+      "btn btn-outline-danger",
+      "onclick",
+      "remItem(this)",
+      "-"
+    );
     div2.appendChild(input);
     div2.appendChild(button);
     div2.appendChild(btn2);
@@ -386,11 +392,25 @@ function AddRowItem(
       "style",
       "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
     );
-    var input = inputCreator('text','amount','onchange','console.log(this)','form-control form-control-sm','width:33%',1);
+    var input = inputCreator(
+      "text",
+      "amount",
+      "onchange",
+      "console.log(this)",
+      "form-control form-control-sm",
+      "width:33%",
+      1
+    );
     input.setAttribute("readonly", "true");
-    var button = buttonCreator('','btn btn-outline-success','','','+');    
+    var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
     button.setAttribute("disabled", "true");
-    var btn2 =buttonCreator('','btn btn-outline-danger','onclick','remItem(this)','-'); 
+    var btn2 = buttonCreator(
+      "",
+      "btn btn-outline-danger",
+      "onclick",
+      "remItem(this)",
+      "-"
+    );
     div2.appendChild(input);
     div2.appendChild(button);
     div2.appendChild(btn2);
@@ -512,8 +532,21 @@ function OpenBasketProducts_Pars(el) {
   OpenBasketProducts(idA, "5");
   idA++;
 }
-
 function addProdSub(el) {
+  //console.log(el.parentElement)
+  var es = el.parentElement.parentElement.parentElement.children;
+  console.log(es);
+
+  var sonul;
+  for (let i = 0; i < es.length; i++) {
+    var ls = es[i];
+    // console.log(ls)
+    if (ls.tagName == "UL") {
+      sonul = ls;
+    }
+  }
+  console.log(sonul);
+
   var li = document.createElement("li");
   li.setAttribute("data-product_id", 0);
   li.setAttribute("data-is_virtual", 1);
@@ -560,11 +593,13 @@ function addProdSub(el) {
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
-  var ul = document.createElement("ul");
-  ul.appendChild(li);
-  // var e = document.getElementById("ppidarea").children[0];
-  var es = el.parentElement.parentElement.parentElement;
-  es.appendChild(ul);
-  console.log(es);
-  //  e.appendChild(li);
+  if (sonul == undefined) {
+    sonul = document.createElement("ul");
+    sonul.setAttribute("id", idA);
+    idA++;
+    sonul.appendChild(li);
+    el.parentElement.parentElement.parentElement.appendChild(sonul);
+  } else {
+    sonul.appendChild(li);
+  }
 }
