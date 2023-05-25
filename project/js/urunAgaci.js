@@ -482,13 +482,17 @@ function addProdMain() {
 }
 
 function addProdMain_() {
+  var pname = document.getElementById("productNameVp").value();
+  var p_cat_id = document.getElementById("productCatIdVp").value();
   var li = document.createElement("li");
   li.setAttribute("data-product_id", 0);
   li.setAttribute("data-is_virtual", 1);
   li.setAttribute("class", "list-group-item");
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
-  span.innerText = prompt("Ürün Adı");
+  span.innerText = pname;
+  //prompt("Ürün Adı");
+  span.setAttribute("data-product_catid", p_cat_id);;
   var div = document.createElement("div");
   div.setAttribute("style", "display:flex");
   div.appendChild(span);
