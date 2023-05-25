@@ -309,6 +309,7 @@ function newDraft() {
   d.setAttribute("id", "ppidarea");
   var ul = document.createElement("ul");
   ul.setAttribute("id", idA);
+  ul.setAttribute("class","list-group")
   idA++;
   d.appendChild(ul);
   var e = document.getElementById("TreeArea");
@@ -523,14 +524,30 @@ function addProdMain() {
 }
 
 function OpenBasketProducts_Pars(el) {
-  var es = el.parentElement.parentElement.parentElement;
-
-  var ul = document.createElement("ul");
-  ul.setAttribute("id", idA);
-  ul.setAttribute("data-is_virtual", 1);
-  es.appendChild(ul);
-  OpenBasketProducts(idA, "5");
-  idA++;
+  var es = el.parentElement.parentElement.parentElement.children;
+  console.log(es);
+  var sonul;
+  for (let i = 0; i < es.length; i++) {
+    var ls = es[i];
+    // console.log(ls)
+    if (ls.tagName == "UL") {
+      sonul = ls;
+    }
+  }
+  console.log(sonul);
+  if (sonul != undefined) {
+    var idd = sonul.getAttribute("id");
+    OpenBasketProducts(idd, "5");
+  } else {
+    var ul = document.createElement("ul");
+    ul.setAttribute("id", idA);
+    ul.setAttribute("data-is_virtual", 1);
+    ul.setAttribute("class","list-group")
+    var es = el.parentElement.parentElement.parentElement;
+    es.appendChild(ul);
+    OpenBasketProducts(idA, "5");
+    idA++;
+  }
 }
 function addProdSub(el) {
   //console.log(el.parentElement)
@@ -595,6 +612,7 @@ function addProdSub(el) {
   li.appendChild(div);
   if (sonul == undefined) {
     sonul = document.createElement("ul");
+    sonul.setAttribute("class","list-group")
     sonul.setAttribute("id", idA);
     idA++;
     sonul.appendChild(li);
