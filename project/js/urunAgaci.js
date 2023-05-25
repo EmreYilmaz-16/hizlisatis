@@ -6,6 +6,7 @@ var _compId;
 var _priceCatId;
 var SonAgac = new Array();
 var idA = 1000;
+var isUpdated = false;
 function ngetTree(product_id, is_virtual, dsn3) {
   $.ajax({
     url:
