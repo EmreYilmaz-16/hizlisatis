@@ -69,17 +69,19 @@ function AgaciYaz(arr, isoq, address = "0") {
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
 
     var diva = document.createElement("div");
-    var btn = document.createElement("button");
+    var btn = buttonCreator("","btn btn-outline-success","onclick","getitem(this)","+");
+    /*document.createElement("button");
     btn.innerText = "+";
     btn.setAttribute("onclick", "getitem(this)");
     btn.setAttribute("type", "button");
-    btn.setAttribute("class", "btn btn-outline-success");
-    btn.setAttribute("onclick", "OpenBasketProducts_Pars(this)");
-    var btn2 = document.createElement("button");
+    btn.setAttribute("class", "btn btn-outline-success");*/
+    //btn.setAttribute("onclick", "OpenBasketProducts_Pars(this)");
+    var btn2 = buttonCreator("","btn btn-outline-danger","onclick","remItem(this)","-");
+    /*document.createElement("button");
     btn2.innerText = "-";
     btn2.setAttribute("onclick", "remItem(this)");
     btn2.setAttribute("type", "button");
-    btn2.setAttribute("class", "btn btn-outline-danger");
+    btn2.setAttribute("class", "btn btn-outline-danger");*/
     var inp = document.createElement("input");
     inp.setAttribute("type", "text");
     inp.setAttribute("onchange", "console.log(this)");
@@ -118,6 +120,18 @@ function AgaciYaz(arr, isoq, address = "0") {
 
   ulx.appendChild(ul);
   return ul;
+}
+
+function buttonCreator(style, cls, ev, evvl, itext) {
+  var btn = document.createElement("button");
+  btn.innerText = itext;
+  btn.setAttribute(ev, evvl);
+  btn.setAttribute("type", "button");
+  btn.setAttribute("class", cls);
+  if (style.length > 0) {
+    btn.setAttribute("style", style);
+  }
+  return btn;
 }
 
 function getitem(el) {
