@@ -478,7 +478,7 @@ function Kaydet() {
   console.log(SonAgac);
 }
 function addProdMain(){
-  openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_add_vp_project.cfm")
+  openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_add_vp_project")
 }
 
 function addProdMain_() {
