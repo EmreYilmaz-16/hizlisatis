@@ -15,7 +15,7 @@
         </div>
     </div>
         <div style="display:flex;justify-content: flex-end;">
-            <button type="button" class="btn btn-sm btn-danger">İptal</button>
+            <button type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')" class="btn btn-sm btn-danger">İptal</button>
             <button type="button" class="btn btn-sm btn-success">Tamam</button>       
         </div>
 </cf_box>
