@@ -81,6 +81,7 @@ function AgaciYaz(arr, isoq, address = "0") {
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
+    ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
 
@@ -816,12 +817,25 @@ function agacGosterEkle() {
 }
 
 function sortableYap() {
-  /*var e = $("#ppidarea *ul").sortable({
+  var e = $("#ppidarea *ul").sortable({
     connectWith: ".list-group",
-    sort: function( event, ui ) {
-      console.log(event)
-      console.log(ui)
-    }
-  });*/
-  return true
+    sort: function (event, ui) {
+      console.log("sort");
+    },
+    start: function (event, ui) {
+      console.log("start");
+    },
+    stop: function (event, ui) {
+      console.log("stop");
+    },
+    update: function (event, ui) {
+      console.log("update");
+    },
+    receive: function (event, ui) {
+      console.log("receive");
+      console.log(ui.sender[0]);
+      console.log(event.target);
+    },
+  });
+  return true;
 }
