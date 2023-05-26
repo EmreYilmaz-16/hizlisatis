@@ -717,10 +717,11 @@ function addAltrnativeQ(dsn3, modalid) {
   openBoxDraggable(
     "index.cfm?fuseaction=objects.emptypopup_add_alternative_question_pbs"
   );
-  var QUESTION_NAME = document.getElementById("questionName").value;
+  
 }
 
 function saveAlternative(dsn3, modalid) {
+  var QUESTION_NAME = document.getElementById("questionName").value;
   $.ajax({
     url:
       "/AddOns/Partner/cfc/generalFunctions.cfc?method=saveAlternative&QUESTION_NAME=" +
