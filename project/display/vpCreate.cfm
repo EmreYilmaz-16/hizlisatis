@@ -30,6 +30,6 @@
     </div>
         <div style="display:flex;justify-content: flex-end;">
             <button type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')" class="btn btn-sm btn-danger">İptal</button>
-            <button type="button" class="btn btn-sm btn-success" onclick="addProdMain_()">Tamam</button>       
+            <button type="button" style="margin-left:5px" class="btn btn-sm btn-success" onclick="addProdMain_()">Tamam</button>       
         </div>
 </cf_box>
