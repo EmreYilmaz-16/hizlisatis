@@ -492,7 +492,7 @@ function addProdMain_() {
   span.setAttribute("name", "product_name_");
   span.innerText = pname;
   //prompt("Ürün Adı");
-  span.setAttribute("data-product_catid", p_cat_id);;
+  span.setAttribute("data-product_catid", p_cat_id);
   var div = document.createElement("div");
   div.setAttribute("style", "display:flex");
   div.appendChild(span);
@@ -694,3 +694,35 @@ function setCat(id, cat) {
   $("#productCatVp").val(cat);
   $("#catRdiv").hide(500);
 }
+
+function loadQuestions() {
+  var q = "SELECT QUESTION_ID,QUESTION FROM VIRTUAL_PRODUCT_TREE_QUESTIONS";
+  var r = wrk_query(q, "dsn3");
+  $("#saquestion").html("");
+  var opt = document.createElement("option");
+  opt.setAttribute("value", "");
+  opt.innerText = "Alternatif Sorusu";
+  document.getElementById("saquestion").appendChild(opt);
+  for (let i = 0; i < r.recordcount; i++) {
+    var id = r.QUESTION_ID[i];
+    var nm = r.QUESTION[i];
+    var opt = document.createElement("option");
+    opt.setAttribute("value", id);
+    opt.innerText = nm;
+    document.getElementById("saquestion").appendChild(opt);
+  }
+}
+
+function addAltrnativeQ(dsn3,modalid){
+  var QUESTION_NAME=document.getElementById("questionName").value;
+  $.ajax({
+    url:'/AddOns/Partner/cfc/generalFunctions.cfc?method=saveAlternative&QUESTION_NAME='+QUESTION_NAME+"&dsn3="+dsn3,
+    success:function(retDat){
+      console.log(retDat);
+      closeBoxDraggable(modalid)
+      loadQuestions();
+
+    }
+  })
+}
+
