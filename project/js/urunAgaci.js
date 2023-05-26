@@ -45,7 +45,7 @@ function strToJson(str) {
   return newStr;
 }
 
-function AgaciYaz(arr, isoq, address = "0", vrt) {
+function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
   var upProduct = ProductDesingSetting.find(
     (p) => p.paramName == "update_real_product"
   ).paramValue;
