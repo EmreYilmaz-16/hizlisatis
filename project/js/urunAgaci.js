@@ -27,6 +27,7 @@ function ngetTree(product_id, is_virtual, dsn3, btn) {
 
       esd.appendChild(ulx);
       agacGosterEkle();
+      sortableYap();
     },
   });
 }
