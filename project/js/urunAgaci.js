@@ -115,6 +115,7 @@ function AgaciYaz(arr, isoq, address = "0") {
 
     diva.appendChild(inp);
     diva.appendChild(btn);
+    diva.appendChild(btn3);
     diva.appendChild(btn2);
     var divb = document.createElement("div");
     divb.setAttribute("style", "display:flex");
@@ -552,9 +553,17 @@ function addProdMain_() {
   btn3.setAttribute("type", "button");
   btn3.setAttribute("class", "btn btn-outline-warning");
 
+  var btn4 = buttonCreator(
+    "",
+    "btn btn-outline-primary",
+    "onclick",
+    "setQuestion(this)",
+    "Q"
+  );
   div2.appendChild(input);
   div2.appendChild(button);
   div2.appendChild(btn3);
+  div2.appendChild(btn4);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -644,10 +653,17 @@ function addProdSub(el) {
   btn3.setAttribute("onclick", "addProdSub(this)");
   btn3.setAttribute("type", "button");
   btn3.setAttribute("class", "btn btn-outline-warning");
-
+  var btn4 = buttonCreator(
+    "",
+    "btn btn-outline-primary",
+    "onclick",
+    "setQuestion(this)",
+    "Q"
+  );
   div2.appendChild(input);
   div2.appendChild(button);
   div2.appendChild(btn3);
+  div2.appendChild(btn4);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
