@@ -715,7 +715,7 @@ function loadQuestions() {
 
 function addAltrnativeQ(dsn3, modalid) {
   openBoxDraggable(
-    "/index.cfm?fuseaction=objects.emptypopup_add_alternative_question_pbs"
+    "index.cfm?fuseaction=objects.emptypopup_add_alternative_question_pbs"
   );
   var QUESTION_NAME = document.getElementById("questionName").value;
 }
