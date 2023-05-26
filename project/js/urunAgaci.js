@@ -29,6 +29,7 @@ function ngetTree(product_id, is_virtual, dsn3, btn) {
       esd.appendChild(ulx);
       agacGosterEkle();
       sortableYap();
+      virtuallariYerlestir();
     },
   });
 }
@@ -845,4 +846,31 @@ function sortableYap() {
     },
   });
   return true;
+}
+
+function virtuallariYerlestir() {
+  var e = $("#ppidarea *ul");
+  for (let i = 0; i < e.length; i++) {
+    var ees = e[i].parentElement;
+    if (ees.getAttribute("id") == "ppidarea") {
+      console.log("ek");
+      e[i].setAttribute("data-is_virtual", "1");
+      var emount = $(e[i]).find("input[name='amount']");
+      console.log(emount);
+      emount.removeAttr("readonly");
+    } else {
+      var eesa = ees.getAttribute("data-is_virtual");
+      if (parseInt(eesa) == 1) {
+        console.log(eesa);
+        e[i].setAttribute("data-is_virtual", "1");
+        var emount = $(e[i]).find("input[name='amount']");
+        console.log(emount);
+        emount.removeAttr("readonly");
+      } else {
+        var emount = $(e[i]).find("input[name='amount']");
+        console.log(emount);
+        emount.attr("readonly", "true");
+      }
+    }
+  }
 }
