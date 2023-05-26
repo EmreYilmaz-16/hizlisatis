@@ -110,7 +110,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                 <div class="card-body">
                   <h5 class="card-title">#PRODUCT_NAME#</h5>
                   <p class="card-text">#STAGE#</p>
-                  <button type="button" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')"  class="btn btn-primary"><i class="icon-search"></i> Görüntüle</button>
+                  <button type="button" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this)"  class="btn btn-primary"><i class="icon-search"></i> Görüntüle</button>
                 </div>
               </div>
             

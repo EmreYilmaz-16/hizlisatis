@@ -23,6 +23,7 @@
         <div class="input-group mb-3">
            
         <select name="saquestion" class="form-control" id="saquestion">
+            <option value="">Alternatif Sorusu</option>
             <cfoutput query="getAq"><option value="#QUESTION_ID#">#QUESTION#</option></cfoutput>
         </select>
         <button class="btn btn-sm btn-outline-secondary" type="button" id="button-addon2" onclick="addAltrnativeQ()" title="Alternatif Sorusu Ekle">+</button>

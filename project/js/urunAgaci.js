@@ -7,7 +7,9 @@ var _priceCatId;
 var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
-function ngetTree(product_id, is_virtual, dsn3) {
+function ngetTree(product_id, is_virtual, dsn3,btn) {
+  var pn=btn.parentElement.children[0].innerText
+  $("#pnamemain").val(pn);
   $.ajax({
     url:
       "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
