@@ -17,13 +17,13 @@
         </div>
     </div>
     <div class="form-group">
-        <cfquery name="getAq" datasource="#dsn#">
+        <cfquery name="getAq" datasource="#dsn3#">
             SELECT QUESTION_ID,QUESTION FROM VIRTUAL_PRODUCT_TREE_QUESTIONS
         </cfquery>
         <div class="input-group">
            
         <select name="saquestion" id="saquestion">
-            <cfoutput query="getAq"><option value="#QUESTION_ID#">#QUESTION_NAME#</option></cfoutput>
+            <cfoutput query="getAq"><option value="#QUESTION_ID#">#QUESTION#</option></cfoutput>
         </select>
         <button class="btn btn-outline-success" type="button" id="button-addon2" onclick="addAltrnativeQ()" title="Alternatif Sorusu Ekle">+</button>
     </div>
