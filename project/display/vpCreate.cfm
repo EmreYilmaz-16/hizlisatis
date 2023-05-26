@@ -29,7 +29,7 @@
         <button class="btn btn-sm btn-outline-secondary" type="button" id="button-addon2" onclick="addAltrnativeQ()" title="Alternatif Sorusu Ekle">+</button>
     </div>
     <div class="form-group">
-        <select name="currencyOrr" id="currencyOrr">
+        <select class="form-control" name="currencyOrr" id="currencyOrr">
             <option value="">Aşama</option>                           
             <option value="-1">Açık</option>
             <option value="-2">Tedarik</option>
