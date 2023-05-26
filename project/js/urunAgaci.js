@@ -816,11 +816,12 @@ function agacGosterEkle() {
 }
 
 function sortableYap() {
-  var e = $("#ppidarea *ul").sortable({
+  /*var e = $("#ppidarea *ul").sortable({
     connectWith: ".list-group",
     sort: function( event, ui ) {
       console.log(event)
       console.log(ui)
     }
-  });
+  });*/
+  return true
 }
