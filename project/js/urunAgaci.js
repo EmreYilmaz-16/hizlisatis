@@ -7,8 +7,8 @@ var _priceCatId;
 var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
-function ngetTree(product_id, is_virtual, dsn3,btn) {
-  var pn=btn.parentElement.children[0].innerText
+function ngetTree(product_id, is_virtual, dsn3, btn) {
+  var pn = btn.parentElement.children[0].innerText;
   $("#pnamemain").val(pn);
   $.ajax({
     url:
@@ -99,12 +99,20 @@ function AgaciYaz(arr, isoq, address = "0") {
       "style",
       "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
     );
-
+    var btn3 = buttonCreator(
+      "",
+      "btn btn-outline-primary",
+      "onclick",
+      "setQuestion(this)",
+      "Q"
+    );
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
       btn2.setAttribute("disabled", "true");
+      btn3.setAttribute("disabled", "true");
     }
+
     diva.appendChild(inp);
     diva.appendChild(btn);
     diva.appendChild(btn2);
@@ -378,7 +386,13 @@ function AddRowItem(
     if (parseInt(elsx) == 1) {
       input.removeAttribute("readonly");
     }
-    var btn3=buttonCreator('','btn btn-outline-primary','onclick','setQuestion(this)','Q');
+    var btn3 = buttonCreator(
+      "",
+      "btn btn-outline-primary",
+      "onclick",
+      "setQuestion(this)",
+      "Q"
+    );
     div2.appendChild(input);
     div2.appendChild(button);
     div2.appendChild(btn3);
@@ -424,7 +438,13 @@ function AddRowItem(
       "remItem(this)",
       "-"
     );
-    var btn3=buttonCreator('','btn btn-outline-primary','onclick','setQuestion(this)','Q');
+    var btn3 = buttonCreator(
+      "",
+      "btn btn-outline-primary",
+      "onclick",
+      "setQuestion(this)",
+      "Q"
+    );
     div2.appendChild(input);
     div2.appendChild(button);
     div2.appendChild(btn3);
@@ -723,7 +743,6 @@ function addAltrnativeQ(dsn3, modalid) {
   openBoxDraggable(
     "index.cfm?fuseaction=objects.emptypopup_add_alternative_question_pbs"
   );
-  
 }
 
 function saveAlternative(dsn3, modalid) {
