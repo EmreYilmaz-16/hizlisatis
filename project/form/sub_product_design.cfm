@@ -1,6 +1,19 @@
 ﻿<cfquery name="getSettings" datasource="#dsn3#">
     SELECT * FROM PROJECT_PRODUCT_DESIGN_PARAMS_PBS
 </cfquery>
+<cfquery name="getQuestions" datasource="#dsn3#">
+    SELECT * FROM VIRTUAL_PRODUCT_TREE_QUESTIONS
+</cfquery>
+<script>
+    var VIRTUAL_PRODUCT_TREE_QUESTIONS=[
+        <cfoutput query="getQuestions">
+            {
+                QUESTION_ID:#ID#,
+                QUESTION:'#QUESTION#'
+            },
+        </cfoutput>
+    ]
+</script>
 <script>
     var ProductDesingSetting=[
         <cfoutput query="getSettings">
