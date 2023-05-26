@@ -70,7 +70,7 @@ function AgaciYaz(arr, isoq, address = "0") {
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
-
+    li.setAttribute("data-question_id", arr[i].QUESTION_ID);
     var diva = document.createElement("div");
     var btn = buttonCreator(
       "",
