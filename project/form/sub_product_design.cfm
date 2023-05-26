@@ -67,6 +67,11 @@
 .btn i {
     margin: 0px 0px 0px 0px !important;
 }
+.btn-link {
+    font-weight: 400;
+    color: #007bff !important;
+    text-decoration: none;
+}
     </style>
 <cfquery name="relProjects" datasource="#dsn#">
 SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#

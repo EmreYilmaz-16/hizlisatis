@@ -26,6 +26,7 @@ function ngetTree(product_id, is_virtual, dsn3, btn) {
       esd.innerHTML = "";
 
       esd.appendChild(ulx);
+      agacGosterEkle();
     },
   });
 }
@@ -70,7 +71,8 @@ function AgaciYaz(arr, isoq, address = "0") {
     );
     var str = arr[i].PRODUCT_NAME;
     if (qname != undefined) {
-      qname = "<span style='color:var(--danger)'>(" + qname.QUESTION + ")</span>";
+      qname =
+        "<span style='color:var(--danger)'>(" + qname.QUESTION + ")</span>";
     } else {
       qname = "";
     }
@@ -581,6 +583,8 @@ function addProdMain_() {
   li.appendChild(ul);*/
   var e = document.getElementById("ppidarea").children[0];
   e.appendChild(li);
+  agacGosterEkle();
+  sortableYap();
 }
 
 function OpenBasketProducts_Pars(el) {
@@ -687,6 +691,8 @@ function addProdSub(el) {
   } else {
     sonul.appendChild(li);
   }
+  agacGosterEkle();
+  sortableYap();
 }
 function getCats(el, ev) {
   console.log(ev);
@@ -784,5 +790,32 @@ function saveAlternative(dsn3, modalid) {
       closeBoxDraggable(modalid);
       loadQuestions();
     },
+  });
+}
+
+function agacGosterEkle() {
+  var e = $("#ppidarea *ul");
+  for (let i = 0; i < e.length; i++) {
+    var ees = e[i].parentElement;
+    console.log(ees.tagName);
+    if (ees.tagName == "LI") {
+      var btn = document.createElement("button");
+      var ix = document.createElement("i");
+      ix.setAttribute("class", "icn-md icon-down");
+      btn.setAttribute("class", "btn btn-sm btn-link");
+      btn.appendChild(ix);
+      btn.setAttribute(
+        "onclick",
+        "$(this.parentElement.parentElement.lastChild).toggle(500)"
+      );
+      console.log(btn);
+      ees.children[0].prepend(btn);
+    }
+  }
+}
+
+function sortableYap() {
+  var e = $("#ppidarea *ul").sortable({
+    connectWith: ".list-group",
   });
 }
