@@ -65,14 +65,16 @@ function AgaciYaz(arr, isoq, address = "0") {
     }
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
-
-    spn.innerHTML =
-      arr[i].PRODUCT_NAME +
-      "(" +
-      VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
-        (p) => p.QUESTION_ID == arr[i].QUESTION_ID
-      ).QUESTION +
-      ")";
+    var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
+      (p) => p.QUESTION_ID == arr[i].QUESTION_ID
+    );
+    var str = arr[i].PRODUCT_NAME;
+    if (qname != undefined) {
+      qname = "<span style='color:var(--danger)'>(" + qname.QUESTION + ")</span>";
+    } else {
+      qname = "";
+    }
+    spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname;
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
