@@ -378,8 +378,10 @@ function AddRowItem(
     if (parseInt(elsx) == 1) {
       input.removeAttribute("readonly");
     }
+    var btn3=buttonCreator('','btn btn-outline-primary','onclick','setQuestion(this)','Q');
     div2.appendChild(input);
     div2.appendChild(button);
+    div2.appendChild(btn3);
     div2.appendChild(btn2);
     div.appendChild(div2);
     li.appendChild(div);
@@ -422,8 +424,10 @@ function AddRowItem(
       "remItem(this)",
       "-"
     );
+    var btn3=buttonCreator('','btn btn-outline-primary','onclick','setQuestion(this)','Q');
     div2.appendChild(input);
     div2.appendChild(button);
+    div2.appendChild(btn3);
     div2.appendChild(btn2);
     div.appendChild(div2);
     li.appendChild(div);
