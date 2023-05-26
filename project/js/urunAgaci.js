@@ -65,12 +65,20 @@ function AgaciYaz(arr, isoq, address = "0") {
     }
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
-    spn.innerHTML = arr[i].PRODUCT_NAME;
+
+    spn.innerHTML =
+      arr[i].PRODUCT_NAME +
+      "(" +
+      VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
+        (p) => p.QUESTION_ID == arr[i].QUESTION_ID
+      ).QUESTION +
+      ")";
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
+
     var diva = document.createElement("div");
     var btn = buttonCreator(
       "",
