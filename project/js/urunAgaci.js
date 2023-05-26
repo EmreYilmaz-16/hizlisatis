@@ -21,6 +21,7 @@ function ngetTree(product_id, is_virtual, dsn3, btn) {
     success: function (asd) {
       var jsonStr = strToJson(asd);
       o = JSON.parse(jsonStr);
+      
       AgaciYaz(o, 0);
       var esd = document.getElementById("TreeArea");
       esd.innerHTML = "";
@@ -51,6 +52,9 @@ function AgaciYaz(arr, isoq, address = "0") {
   ulx.innerHTML = "";
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
+  if(isoq==0){
+    ul.setAttribute("data-is_virtual","1");
+  }
   ul.setAttribute("data-seviye", isoq);
   ul.setAttribute("id", idA);
   idA = idA + 1;
