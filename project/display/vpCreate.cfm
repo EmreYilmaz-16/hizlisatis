@@ -20,7 +20,7 @@
         <cfquery name="getAq" datasource="#dsn3#">
             SELECT QUESTION_ID,QUESTION FROM VIRTUAL_PRODUCT_TREE_QUESTIONS
         </cfquery>
-        <div class="input-group">
+        <div class="input-group mb-3">
            
         <select name="saquestion" id="saquestion">
             <cfoutput query="getAq"><option value="#QUESTION_ID#">#QUESTION#</option></cfoutput>
