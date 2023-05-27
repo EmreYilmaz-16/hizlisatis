@@ -62,7 +62,7 @@
         </cfquery>
         <cfset ReturnArr=arrayNew(1)>
         <cfset ReturnArr=arrayNew(1)>
-        <cfloop query="getTree">
+        <cfloop query="getTreeFromVirtual">
             <cfset O=structNew()>
             <cfset O.PRODUCT_ID=PRODUCT_ID>
             <cfquery name="getSInfo" datasource="#dsn#">              
