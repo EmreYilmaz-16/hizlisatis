@@ -8,7 +8,7 @@
             <cfif arguments.isVirtual eq 1>                
                 <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3)>
             <cfelse>               
-                <cfset TreeArr=getTreeFromRealProduct(product_id)>
+                <cfset TreeArr=getTreeFromRealProduct(product_id,ddsn3)>
             </cfif>
             <cfreturn replace(TreeArr,"//","")>
         </cffunction>    
@@ -56,6 +56,7 @@
 
     <cffunction name="getTreeFromRealProduct" >
         <cfargument name="product_id">
+        <cfargument name="ddsn3"
         <cfquery name="getTreeFromVirtual" datasource="#dsn#">
             SELECT * FROM #arguments.ddsn3#.PRODUCT_TREE WHERE STOCK_ID=#arguments.product_id#
         </cfquery>
