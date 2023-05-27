@@ -56,7 +56,7 @@
 
     <cffunction name="getTreeFromRealProduct" >
         <cfargument name="product_id">
-        <cfargument name="ddsn3"
+        <cfargument name="ddsn3">
         <cfquery name="getTreeFromVirtual" datasource="#dsn#">
             SELECT * FROM #arguments.ddsn3#.PRODUCT_TREE WHERE STOCK_ID=#arguments.product_id#
         </cfquery>
