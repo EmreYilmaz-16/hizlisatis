@@ -8,7 +8,7 @@
             <cfif arguments.isVirtual eq 1>                
                 <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3)>
             <cfelse>               
-                <cfset TreeArr=getTreeFromRealProduct(product_id,ddsn3)>
+                <cfset TreeArr=getTrees(product_id,0,ddsn3)>
             </cfif>
             <cfreturn replace(TreeArr,"//","")>
         </cffunction>    
