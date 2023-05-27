@@ -7,31 +7,56 @@ var _priceCatId;
 var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
-function ngetTree(product_id, is_virtual, dsn3, btn) {
-  var pn = btn.parentElement.children[0].innerText;
-  $("#pnamemain").val(pn);
-  $.ajax({
-    url:
-      "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
-      product_id +
-      "&isVirtual=" +
-      is_virtual +
-      "&ddsn3=" +
-      dsn3,
-    success: function (asd) {
-      var jsonStr = strToJson(asd);
-      o = JSON.parse(jsonStr);
+function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1) {
+  if (tip == 1) {
+    var pn = btn.parentElement.children[0].innerText;
+    $("#pnamemain").val(pn);
+    $.ajax({
+      url:
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
+        product_id +
+        "&isVirtual=" +
+        is_virtual +
+        "&ddsn3=" +
+        dsn3,
+      success: function (asd) {
+        var jsonStr = strToJson(asd);
+        o = JSON.parse(jsonStr);
 
-      AgaciYaz(o, 0, "0", 1);
-      var esd = document.getElementById("TreeArea");
-      esd.innerHTML = "";
+        AgaciYaz(o, 0, "0", 1);
+        var esd = document.getElementById("TreeArea");
+        esd.innerHTML = "";
 
-      esd.appendChild(ulx);
-      agacGosterEkle();
-      sortableYap();
-      virtuallariYerlestir();
-    },
-  });
+        esd.appendChild(ulx);
+        agacGosterEkle();
+        sortableYap();
+        virtuallariYerlestir();
+      },
+    });
+  } else {
+    $.ajax({
+      url:
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
+        product_id +
+        "&isVirtual=" +
+        is_virtual +
+        "&ddsn3=" +
+        dsn3,
+      success: function (asd) {
+        var jsonStr = strToJson(asd);
+        o = JSON.parse(jsonStr);
+        console.log(o);
+        /*AgaciYaz(o, 0, "0", 1);
+        var esd = document.getElementById("TreeArea");
+        esd.innerHTML = "";
+
+        esd.appendChild(ulx);
+        agacGosterEkle();
+        sortableYap();
+        virtuallariYerlestir();*/
+      },
+    });
+  }
 }
 function strToJson(str) {
   var newStr = "";
@@ -476,6 +501,13 @@ function AddRowItem(
     li.appendChild(div);
     e.appendChild(li);
   }
+
+  var q = wrk_query(
+    "SELECT * FROM PRODUCT_TREE WHERE STOCK_ID=" + STOCK_ID,
+    "dsn3"
+  );
+  console.log(q.recordcount);
+  ngetTree(STOCK_ID, 0, "workcube_metosan_1", "", 2);
 }
 
 function AgacGetir(agacim, sx = 0) {
