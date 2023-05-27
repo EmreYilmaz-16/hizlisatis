@@ -507,7 +507,9 @@ function AddRowItem(
     "dsn3"
   );
   console.log(q.recordcount);
-  ngetTree(STOCK_ID, 0, "workcube_metosan_1", "", 2);
+  if (q.recordcount) {
+    ngetTree(STOCK_ID, 0, "workcube_metosan_1", "", 2);
+  }
 }
 
 function AgacGetir(agacim, sx = 0) {
