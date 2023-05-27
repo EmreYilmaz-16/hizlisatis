@@ -6,9 +6,9 @@
             <cfargument name="ddsn3">
             <cfset TreeArr="">
             <cfif arguments.isVirtual eq 1>                
-                <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3)>
+                <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3,product_id)>
             <cfelse>               
-                <cfset TreeArr=getTrees(product_id,0,ddsn3)>
+                <cfset TreeArr=getTrees(product_id,0,ddsn3,product_id)>
             </cfif>
             <cfreturn replace(TreeArr,"//","")>
         </cffunction>    
@@ -96,7 +96,7 @@
       </cfsavecontent>
       <cffile action="write" file = "c:\PBS\hizlisatiscfc_saveVirtualTube00#arguments.pid#.html" output="#test1#"></cffile>
             <cfset say=0> 
-       <cfsavecontent variable="myV">[<cfloop query="getTree"><cfset say=say+1><cfset O=structNew()><cfif IS_VIRTUAL eq 1><cfset O.STOCK_ID=STOCK_ID><CFELSE><CFSET O.STOCK_ID=RELATED_ID></cfif><cfset O.IS_VIRTUAL=IS_VIRTUAL><cfset O.VIRTUAL_PRODUCT_TREE_ID=0><CFSET O.PRODUCT_TREE_ID=PRODUCT_TREE_ID><cfset O.PRODUCT_ID=PRODUCT_ID><cfquery name="getSInfo" datasource="#dsn3#"><cfif IS_VIRTUAL EQ 1>SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#PRODUCT_ID#<cfelse>SELECT * FROM STOCKS AS S WHERE PRODUCT_ID=#PRODUCT_ID#</cfif></cfquery><cfset O.PRODUCT_NAME=getSInfo.PRODUCT_NAME><cfset O.AMOUNT=AMOUNT><cfquery name="ishvTree" datasource="#dsn3#"><cfif IS_VIRTUAL EQ 1>SELECT * FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#PRODUCT_ID#<cfelse>SELECT * FROM PRODUCT_TREE AS S WHERE STOCK_ID=#STOCK_ID#</cfif></cfquery><cfoutput>{"PRODUCT_ID":#O.PRODUCT_ID#,"PRODUCT_NAME":"#O.PRODUCT_NAME#","AMOUNT":#O.AMOUNT#,"IS_VIRTUAL":"#O.IS_VIRTUAL#","VIRTUAL_PRODUCT_TREE_ID":#O.VIRTUAL_PRODUCT_TREE_ID#,"PRODUCT_TREE_ID":"#O.PRODUCT_TREE_ID#","QUESTION_ID":"#QUESTION_ID#","RNDM_ID":#GetRndmNmbr()#,"AGAC":<cfif ishvTree.recordCount><cfscript>writeOutput(getTrees(pid=O.PRODUCT_ID,isVirtual=IS_VIRTUAL,ddsn3=dsn3,O.STOCK_ID))</cfscript><cfelse>""</cfif>,"ASDF":#say#},</cfoutput></cfloop>]</cfsavecontent>
+       <cfsavecontent variable="myV">[<cfloop query="getTree"><cfset say=say+1><cfset O=structNew()><cfif IS_VIRTUAL eq 1><cfset O.STOCK_ID=STOCK_ID><CFELSE><CFSET O.STOCK_ID=RELATED_ID></cfif><cfset O.IS_VIRTUAL=IS_VIRTUAL><cfset O.VIRTUAL_PRODUCT_TREE_ID=0><CFSET O.PRODUCT_TREE_ID=PRODUCT_TREE_ID><cfset O.PRODUCT_ID=PRODUCT_ID><cfquery name="getSInfo" datasource="#dsn3#"><cfif IS_VIRTUAL EQ 1>SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#PRODUCT_ID#<cfelse>SELECT * FROM STOCKS AS S WHERE PRODUCT_ID=#PRODUCT_ID#</cfif></cfquery><cfset O.PRODUCT_NAME=getSInfo.PRODUCT_NAME><cfset O.AMOUNT=AMOUNT><cfquery name="ishvTree" datasource="#dsn3#"><cfif IS_VIRTUAL EQ 1>SELECT * FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#PRODUCT_ID#<cfelse>SELECT * FROM PRODUCT_TREE AS S WHERE STOCK_ID=#STOCK_ID#</cfif></cfquery><cfoutput>{"PRODUCT_ID":#O.PRODUCT_ID#,"PRODUCT_NAME":"#O.PRODUCT_NAME#","AMOUNT":#O.AMOUNT#,"IS_VIRTUAL":"#O.IS_VIRTUAL#","VIRTUAL_PRODUCT_TREE_ID":#O.VIRTUAL_PRODUCT_TREE_ID#,"PRODUCT_TREE_ID":"#O.PRODUCT_TREE_ID#","QUESTION_ID":"#QUESTION_ID#","RNDM_ID":#GetRndmNmbr()#,"AGAC":<cfif ishvTree.recordCount><cfscript>writeOutput(getTrees(pid=O.PRODUCT_ID,isVirtual=IS_VIRTUAL,ddsn3=dsn3,sid=O.STOCK_ID))</cfscript><cfelse>""</cfif>,"ASDF":#say#},</cfoutput></cfloop>]</cfsavecontent>
     <cfreturn trim(myV)>
     </cffunction>
 
