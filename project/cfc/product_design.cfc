@@ -57,7 +57,7 @@
     <cffunction name="getTreeFromRealProduct" >
         <cfargument name="product_id">
         <cfquery name="getTreeFromVirtual" datasource="#dsn#">
-            SELECT * FROM PRODUCT_TREE WHERE STOCK_ID=#arguments.product_id#
+            SELECT * FROM #arguments.ddsn3#.PRODUCT_TREE WHERE STOCK_ID=#arguments.product_id#
         </cfquery>
         <cfset ReturnArr=arrayNew(1)>
         <cfset ReturnArr=arrayNew(1)>
@@ -65,13 +65,13 @@
             <cfset O=structNew()>
             <cfset O.PRODUCT_ID=PRODUCT_ID>
             <cfquery name="getSInfo" datasource="#dsn#">              
-                    SELECT * FROM STOCKS AS S WHERE PRODUCT_ID=#PRODUCT_ID#              
+                    SELECT * FROM #arguments.ddsn3#.STOCKS AS S WHERE PRODUCT_ID=#PRODUCT_ID#              
             </cfquery>
             <cfset O.PRODUCT_NAME=getSInfo.PRODUCT_NAME>
             <cfset O.AMOUNT=AMOUNT>
             <cfset O.PRODUCT_TREE_ID=PRODUCT_TREE_ID>
             <cfquery name="ishvTree" datasource="#dsn#">            
-                    SELECT * FROM PRODUCT_TREE AS S WHERE STOCK_ID=#STOCK_ID#            
+                    SELECT * FROM #arguments.ddsn3#.PRODUCT_TREE AS S WHERE STOCK_ID=#STOCK_ID#            
             </cfquery>
             <!----<cfif ishvTree.recordCount>              
                     <cfset O.Tree=getTreeFromRealProduct(PRODUCT_ID)>               
