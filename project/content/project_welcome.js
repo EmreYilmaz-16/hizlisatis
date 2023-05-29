@@ -16,24 +16,26 @@ function ProjectNameGet(el) {
     nmr += "0";
   }
   nmr += num.toString();
-  document.getElementById("project_head").value=nmr;
+  document.getElementById("project_head").value = nmr;
 }
 
-$("#add_project_form").submit(function(e) {
+$("#add_project_form").submit(function (e) {
+  e.preventDefault(); // avoid to execute the actual submit of the form.
 
-    e.preventDefault(); // avoid to execute the actual submit of the form.
+  var form = $(this);
+  var actionUrl = form.attr("action");
 
-    var form = $(this);
-    var actionUrl = form.attr('action');
-    
-    $.ajax({
-        type: "POST",
-        url: actionUrl,
-        data: form.serialize(), // serializes the form's elements.
-        success: function(data)
-        {
-          alert(data); // show response from the php script.
-        }
-    });
-    
+  $.ajax({
+    type: "POST",
+    url: actionUrl,
+    data: form.serialize(), // serializes the form's elements.
+    success: function (data) {
+      alert(data); // show response from the php script.
+    },
+  });
+});
+$(document).ready(function () {
+  var d = document.getElementById("wrk_main_layout");
+  d.removeAttribute("class");
+  d.setAttribute("class", "container-fluid");
 });
