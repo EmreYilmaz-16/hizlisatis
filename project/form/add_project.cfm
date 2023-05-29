@@ -65,7 +65,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
         <tr>
             <td>
                 <div class="form-group">
-                    <select name="PRIORITY_CAT" class="form-select">
+                    <select name="PRIORITY_CAT" class="form-select  form-select-sm">
                         <cfoutput query="GET_PRIORITY">
                             <option value="#PRIORITY_ID#">#PRIORITY#</option>
                         </cfoutput>                        
