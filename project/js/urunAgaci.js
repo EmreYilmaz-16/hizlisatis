@@ -46,6 +46,7 @@ function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
         console.log(o);
+        partnerEkle(0);
         /*AgaciYaz(o, 0, "0", 1);
         var esd = document.getElementById("TreeArea");
         esd.innerHTML = "";
@@ -57,6 +58,9 @@ function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1) {
       },
     });
   }
+}
+function patnerEkle(oo) {
+  console.log(oo);
 }
 function strToJson(str) {
   var newStr = "";
