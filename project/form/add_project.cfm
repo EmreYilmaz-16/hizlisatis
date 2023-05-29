@@ -58,7 +58,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
             </td>
             <td>
                 <div class="form-group">
-                <cf_workcube_process class="form-control form-control-sm"is_upd='0'  is_detail='0'>
+                <cf_workcube_process cls="form-control form-control-sm" is_upd='0'  is_detail='0'>
                 </div>
             </td>
         </tr>
