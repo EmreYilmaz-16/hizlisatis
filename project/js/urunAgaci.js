@@ -45,8 +45,9 @@ function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1) {
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
-        console.log(o);
-        partnerEkle(0);
+        console.log("Buradayım");
+        /* console.log(o);
+        partnerEkle(0);*/
         /*AgaciYaz(o, 0, "0", 1);
         var esd = document.getElementById("TreeArea");
         esd.innerHTML = "";
