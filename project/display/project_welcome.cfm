@@ -7,14 +7,14 @@
 
 
 
-    <a class="list-group-item " onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'">Projeler</a>
-    <a class="list-group-item " onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&list_my_projects=1'">Görevlisi Olduğum Projeler</a>
-    <a class="list-group-item " onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')">Yeni Proje</a>    
-    <a class="list-group-item ">Proje Raporları</a>
-    <a class="list-group-item ">Proje Ürünleri</a>
-    <a class="list-group-item ">Proje Ürün Tipleri</a>
-    <a class="list-group-item " onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'">Bekleyen İşlerim</a>
-    <a class="list-group-item " onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&act=list_my'">Notlarım</a>
+    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'">Projeler</a>
+    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&list_my_projects=1'">Görevlisi Olduğum Projeler</a>
+    <a class="list-group-item list-group-item-action" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')">Yeni Proje</a>    
+    <a class="list-group-item list-group-item-action">Proje Raporları</a>
+    <a class="list-group-item list-group-item-action">Proje Ürünleri</a>
+    <a class="list-group-item list-group-item-action">Proje Ürün Tipleri</a>
+    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'">Bekleyen İşlerim</a>
+    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&act=list_my'">Notlarım</a>
 </div>
 </cf_box>
 
