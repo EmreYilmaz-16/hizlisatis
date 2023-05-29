@@ -48,7 +48,8 @@ function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "") {
         o = JSON.parse(jsonStr);
         console.log("Buradayım");
         partnerEkle(o);
-        AgaciYaz_12(o, 0, "", 0, li);
+        var et = AgaciYaz_12(o, 0, "", 0);
+        li.appendChild(et);
         /* console.log(o);
         ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -1017,7 +1018,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     li.setAttribute("class", "list-group-item");
     if (arr[i].AGAC.length > 0) {
       li.appendChild(
-        AgaciYaz(arr[i].AGAC, arr[i].RNDM_ID, address, arr[i].IS_VIRTUAL)
+        AgaciYaz_12(arr[i].AGAC, arr[i].RNDM_ID, address, arr[i].IS_VIRTUAL)
       );
     } else {
     }
