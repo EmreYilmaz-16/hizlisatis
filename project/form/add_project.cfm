@@ -77,9 +77,11 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
             <td>
                 <div class="form-group" id="item_about_company">                    
                     <label>Şirket </label>                                        
-                    <div class="input-group">
-                        <input type="text" name="about_company" onblur="" id="about_company" placeholder="" value="" onchange="" class="" data-gdpr="">
-                        <span class="input-group-addon icon-ellipsis" href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_pars&field_comp_id=add_project_form.company_id&is_period_kontrol=0&field_comp_name=add_project_form.about_company&field_partner=add_project_form.partner_id&field_consumer=add_project_form.consumer_id&field_name=add_project_form.about_par_name&par_con=1&select_list=2,3')"></span>                    
+                    <div class="input-group mb-3">
+                        <input type="text" name="about_company" onblur="" id="about_company" placeholder="" value="" onchange="" class="form-control form-contro-sm" data-gdpr="">
+                        <span class="input-group-text" href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_pars&field_comp_id=add_project_form.company_id&is_period_kontrol=0&field_comp_name=add_project_form.about_company&field_partner=add_project_form.partner_id&field_consumer=add_project_form.consumer_id&field_name=add_project_form.about_par_name&par_con=1&select_list=2,3')">
+                        <span class="icon-ellipsis"></span>
+                        </span>                    
                     </div>
                 </div>
             </td>
@@ -87,8 +89,10 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
                 <div class="form-group" id="item_responsable_name">
                     <label>Yönetici *</label>
                     <div class="input-group">
-                        <input type="text" name="responsable_name" onblur="" required="yes" id="responsable_name" placeholder="" value="" onchange="" class="" data-gdpr="">
-                        <span class="input-group-addon icon-ellipsis" href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_positions&field_partner=add_project_form.task_partner_id&field_emp_id=add_project_form.project_emp_id&field_code=add_project_form.project_pos_code&field_comp_id=add_project_form.task_company_id&field_name=add_project_form.responsable_name&select_list=1,2')"></span>
+                        <input type="text" name="responsable_name" onblur="" required="yes" id="responsable_name" placeholder="" value="" onchange="" class="form-control form-control-sm" data-gdpr="">
+                        <span class="input-group-text" href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_positions&field_partner=add_project_form.task_partner_id&field_emp_id=add_project_form.project_emp_id&field_code=add_project_form.project_pos_code&field_comp_id=add_project_form.task_company_id&field_name=add_project_form.responsable_name&select_list=1,2')">
+                            <span class="icon-ellipsis"></span>
+                        </span>
                     </div>
                 </div>
             </td>
