@@ -47,7 +47,7 @@ function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "") {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
         console.log("Buradayım");
-     //   partnerEkle(o);
+        //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
         li.appendChild(et);
         agacGosterEkle();
@@ -1030,4 +1030,8 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
   }
 
   return ul;
+}
+
+function UrunKaydet() {
+  
 }
