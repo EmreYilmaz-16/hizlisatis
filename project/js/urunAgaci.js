@@ -8,6 +8,7 @@ var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
 function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1) {
+  console.log(arguments)
   if (tip == 1) {
     var pn = btn.parentElement.children[0].innerText;
     $("#pnamemain").val(pn);
