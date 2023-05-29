@@ -50,6 +50,9 @@ function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "") {
         partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
         li.appendChild(et);
+        agacGosterEkle();
+        sortableYap();
+        virtuallariYerlestir();
         /* console.log(o);
         ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -57,9 +60,9 @@ function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "") {
         esd.innerHTML = "";
 
         esd.appendChild(ulx);
-        agacGosterEkle();
-        sortableYap();
-        virtuallariYerlestir();*/
+        
+       ;
+        ;*/
       },
     });
   }
