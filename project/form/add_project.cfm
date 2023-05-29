@@ -101,13 +101,13 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
             <td>
                 <div class="form-group">
                     <label>Başlangıç Tarihi</label>
-                    <input type="date" name="start_date" placeholder="Başlangıç Tarihi">
+                    <input type="date" class="form-control form-control-sm" name="start_date" placeholder="Başlangıç Tarihi">
                 </div>
             </td>
             <td>
                 <div class="form-group">
                     <label>Bitiş Tarihi</label>
-                    <input type="date" name="finish_date" placeholder="Bitiş Tarihi">
+                    <input type="date" class="form-control form-control-sm" name="finish_date" placeholder="Bitiş Tarihi">
                 </div>
             </td>
         </tr>
@@ -115,13 +115,13 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
             <td>
                 <div class="form-group">
                     <label>Proje Adı</label>
-                    <input type="text" name="project_head" id="project_head">
+                    <input type="text" class="form-control form-control-sm" name="project_head" id="project_head">
                 </div>
             </td>
             <td>
                 <div class="form-group">
                     <label>Proje No</label>
-                    <input type="text" name="project_number" id="project_number">
+                    <input type="text" class="form-control form-control-sm" name="project_number" id="project_number">
                 </div>
             </td>
         </tr>
@@ -129,7 +129,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
             <td colspan="2" style="text-align:right">
                 <div class="form-group">
                     <label>Açıklama</label>
-                    <textarea name="project_detail" id="project_detail"></textarea>
+                    <textarea class="form-control form-control-sm" name="project_detail" id="project_detail"></textarea>
                 </div>
             </td>
         </tr>
