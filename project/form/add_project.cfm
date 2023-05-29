@@ -22,26 +22,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
     ]
 </script>
 <cfparam name="attributes.upper_project_id" default="">
-<span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
-<div class="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Modal body text goes here.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</span>
-<cfabort>
+
 <span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
     <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
      <h3 style="color:orange">Yeni Proje</h3>
