@@ -22,6 +22,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
     ]
 </script>
 <cfparam name="attributes.upper_project_id" default="">
+<span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
 <div class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -39,7 +40,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
         </div>
       </div>
     </div>
-
+</span>
 <cfabort>
 <span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
     <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
