@@ -48,7 +48,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
         <tr>
             <td>
                 <div class="form-group">
-                    <select name="projectCat" required onchange="ProjectNameGet(this)">
+                    <select name="projectCat" required onchange="ProjectNameGet(this)" class="form-control form-control-sm">
                         <option value="">Ürün Tipi</option>
                         <cfoutput query="getCats">
                             <option value="#MAIN_PROCESS_CAT_ID#">#MAIN_PROCESS_CAT#</option>
@@ -58,14 +58,14 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
             </td>
             <td>
                 <div class="form-group">
-                <cf_workcube_process is_upd='0'  is_detail='0'>
+                <cf_workcube_process class="form-control form-control-sm"is_upd='0'  is_detail='0'>
                 </div>
             </td>
         </tr>
         <tr>
             <td>
                 <div class="form-group">
-                    <select name="PRIORITY_CAT" class="form-select  form-select-sm">
+                    <select name="PRIORITY_CAT" class="form-control form-control-sm">
                         <cfoutput query="GET_PRIORITY">
                             <option value="#PRIORITY_ID#">#PRIORITY#</option>
                         </cfoutput>                        
