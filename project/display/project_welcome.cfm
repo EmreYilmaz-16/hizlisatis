@@ -16,9 +16,15 @@
     <a class="list-group-item list-group-item-action" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')">
         <img src="/images/e-pd/add.png">
         Yeni Proje</a>    
-    <a class="list-group-item list-group-item-action">Proje Raporları</a>
-    <a class="list-group-item list-group-item-action">Proje Ürünleri</a>
-    <a class="list-group-item list-group-item-action">Proje Ürün Tipleri</a>
+    <a class="list-group-item list-group-item-action">
+        <img src="/images/e-pd/rpt.png">
+        Proje Raporları</a>
+    <a class="list-group-item list-group-item-action">
+        <img src="/images/e-pd/prp.png">
+        Proje Ürünleri</a>
+    <a class="list-group-item list-group-item-action">
+        <img src="/images/e-pd/prts.png">
+        Proje Ürün Tipleri</a>
     <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'">Bekleyen İşlerim</a>
     <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&act=list_my'">Notlarım</a>
 </div>
