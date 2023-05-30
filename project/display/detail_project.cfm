@@ -14,6 +14,7 @@ INNER JOIN workcube_metosan.SETUP_PRIORITY ON SETUP_PRIORITY.PRIORITY_ID=PRO_PRO
 INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_ID where PROJECT_ID=#attributes.project_id#
 </cfquery>
 <cf_box title="Proje Detay">
+<div style="height:90vh">
     <div style="width:50%">
         <table style="width:100%">
             <tr>
@@ -85,6 +86,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             </cf_grid_list>
         </cf_box>
         </div>
+    </div>
     </cf_box>
     
     <script>
