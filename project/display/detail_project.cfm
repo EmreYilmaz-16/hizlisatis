@@ -15,7 +15,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
 </cfquery>
 <cf_box title="Proje Detay">
 <div style="height:90vh">
-    <div style="width:50%">
+    <div >
         <table style="width:100%">
             <tr>
                 <th colspan="2" style="color:orange;font-size:14pt;text-align:left">
