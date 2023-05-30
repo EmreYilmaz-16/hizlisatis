@@ -17,7 +17,7 @@
         <img src="/images/e-pd/add.png">
         Yeni Proje</a>    
     <a class="list-group-item list-group-item-action">
-        <img src="/images/e-pd/rpt.png">
+        <img src="/images/e-pd/rprt.png">
         Proje Raporları</a>
     <a class="list-group-item list-group-item-action">
         <img src="/images/e-pd/prp.png">
@@ -25,8 +25,12 @@
     <a class="list-group-item list-group-item-action">
         <img src="/images/e-pd/prts.png">
         Proje Ürün Tipleri</a>
-    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'">Bekleyen İşlerim</a>
-    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&act=list_my'">Notlarım</a>
+    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'">
+        <img src="/images/e-pd/wrks.png">
+        Bekleyen İşlerim</a>
+    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&act=list_my'">
+        <img src="/images/e-pd/nt.png">
+        Notlarım</a>
 </div>
 </cf_box>
 
