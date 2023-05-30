@@ -68,11 +68,11 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <div class="prSt btn btn-outline-danger"  onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_works&project_id=#attributes.project_id#</cfoutput>'">İşler</div>
         <div class="prSt btn btn-outline-primary" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_related_projects_pbs&project_id=#attributes.project_id#</cfoutput>'">İlişkili Projeler</div>
         <div class="prSt btn btn-outline-dark" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'"> Belgeler</div>
-        <div class="prSt btn btn-outline-success">Üretim Emirleri</div>
-        <div class="prSt btn btn-outline-warning" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'">Notlar</div>
-        <div class="prSt btn btn-outline-danger">Malzeme İhtiyaçları</div>
-        <div class="prSt btn btn-outline-primary">Teklife Dönüştür</div>
-        <div class="prSt btn btn-outline-dark">İlişkili İşlemler</div>
+        <div class="prSt btn btn-outline-info">Üretim Emirleri</div>
+        <div class="prSt btn btn-outline-success" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'">Notlar</div>
+        <div class="prSt btn btn-outline-warning">Malzeme İhtiyaçları</div>
+        <div class="prSt btn btn-outline-danger">Teklife Dönüştür</div>
+        <div class="prSt btn btn-outline-primary">İlişkili İşlemler</div>
         </div>
         <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none">
             <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
