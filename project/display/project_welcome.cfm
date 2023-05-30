@@ -7,9 +7,15 @@
 
 
 
-    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'">Projeler</a>
-    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&list_my_projects=1'">Görevlisi Olduğum Projeler</a>
-    <a class="list-group-item list-group-item-action" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')">Yeni Proje</a>    
+    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'">
+        <img src="pr.png">
+        Projeler</a>
+    <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&list_my_projects=1'">
+        <img src="mpr.png">
+        Görevlisi Olduğum Projeler</a>
+    <a class="list-group-item list-group-item-action" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')">
+        <img src="add.png">
+        Yeni Proje</a>    
     <a class="list-group-item list-group-item-action">Proje Raporları</a>
     <a class="list-group-item list-group-item-action">Proje Ürünleri</a>
     <a class="list-group-item list-group-item-action">Proje Ürün Tipleri</a>
