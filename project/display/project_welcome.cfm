@@ -8,13 +8,13 @@
 
 
     <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'">
-        <img src="pr.png">
+        <img src="/images/e-pd/pr.png">
         Projeler</a>
     <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&list_my_projects=1'">
-        <img src="mpr.png">
+        <img src="/images/e-pd/mpr.png">
         Görevlisi Olduğum Projeler</a>
     <a class="list-group-item list-group-item-action" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')">
-        <img src="add.png">
+        <img src="/images/e-pd/add.png">
         Yeni Proje</a>    
     <a class="list-group-item list-group-item-action">Proje Raporları</a>
     <a class="list-group-item list-group-item-action">Proje Ürünleri</a>
