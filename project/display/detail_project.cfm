@@ -61,6 +61,20 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             </tr>
         </table>
     </div>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link " onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_product_pbs&project_id=#attributes.project_id#</cfoutput>'"  href="#">Ürün Dizayn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul><!----
     <div style="display:flex;width: 50%;flex-direction: row;flex-wrap: wrap;align-content: stretch;justify-content: flex-start;align-items: flex-end;">
         <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_product_pbs&project_id=#attributes.project_id#</cfoutput>'">Ürün Dizayn</div>
         <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'">Çalışma Gurupları</div>
@@ -73,6 +87,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <div class="prSt prGray">Teklife Dönüştür</div>
         <div class="prSt prGray">İlişkili İşlemler</div>
         </div>
+        ----->
         <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none">
             <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
             <cf_grid_list>
