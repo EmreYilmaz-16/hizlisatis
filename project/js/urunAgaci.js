@@ -7,6 +7,7 @@ var _priceCatId;
 var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
+var idB = 5000;
 function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "") {
   console.log(arguments);
   if (tip == 1) {
@@ -127,6 +128,8 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
+    li.setAttribute("data-idb", idB);
+    idB++;
 
     var diva = document.createElement("div");
     var btn = buttonCreator(
@@ -411,6 +414,8 @@ function AddRowItem(
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("class", "list-group-item");
+    li.setAttribute("data-idb", idB);
+    idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
@@ -467,6 +472,8 @@ function AddRowItem(
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("class", "list-group-item");
+    li.setAttribute("data-idb", idB);
+    idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
@@ -583,6 +590,8 @@ function addProdMain_() {
   li.setAttribute("data-product_id", 0);
   li.setAttribute("data-is_virtual", 1);
   li.setAttribute("class", "list-group-item");
+  li.setAttribute("data-idb", idB);
+    idB++;
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
   span.innerText = pname;
@@ -688,6 +697,8 @@ function addProdSub(el) {
   li.setAttribute("data-product_id", 0);
   li.setAttribute("data-is_virtual", 1);
   li.setAttribute("class", "list-group-item");
+  li.setAttribute("data-idb", idB);
+    idB++;
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
   span.innerText = prompt("Ürün Adı");
@@ -963,7 +974,8 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
-
+    li.setAttribute("data-idb", idB);
+    idB++;
     var diva = document.createElement("div");
     var btn = buttonCreator(
       "",
@@ -1032,6 +1044,4 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
   return ul;
 }
 
-function UrunKaydet() {
-  
-}
+function UrunKaydet() {}
