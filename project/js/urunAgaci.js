@@ -555,7 +555,7 @@ function AgacGetir(agacim, sx = 0) {
   for (let i = 0; i < agacim.length; i++) {
     // console.log(agacim[i])
     var pid = agacim[i].getAttribute("data-product_id");
-
+    var is_virtual=agacim[i].getAttribute("data-is_virtual");
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
@@ -564,7 +564,8 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.PRODUCT_ID = pid;
     agacItem.PRODUCT_NAME = pname;
     agacItem.AMOUNT = amount;
-    agacItem.AGAC = new Array();
+    agacItem.IS_VIRTUAL=is_virtual;
+    agacItem.PRODUCT_TREE = new Array();
     var a = agacim[i].children;
     // obj=a
     //console.log(a)
