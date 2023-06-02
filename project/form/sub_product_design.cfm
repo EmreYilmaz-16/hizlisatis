@@ -128,7 +128,16 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
            
             <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this)">
                 #PRODUCT_NAME#
-                <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
+                <cfif PRODUCT_STAGE eq 339>
+                    <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
+                <cfelseif PRODUCT_STAGE eq 340>
+                    <span style="float:right;font-size:11pt" class="badge bg-success rounded-pill">#STAGE#</span>
+                <cfelseif PRODUCT_STAGE eq 341>
+                    <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
+                <cfelse>
+                    <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
+                </cfif>
+                
             </a> 
             <!---<div class="card-body">
                   <h5 class="card-title"></h5>
