@@ -23,20 +23,7 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
 </script>
 <cfparam name="attributes.upper_project_id" default="">
 
-<span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
-     
-    <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </span>
-<cfabort>
+
     <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
      <h3 style="color:orange">Yeni Proje</h3>
      <button style="margin-left:auto" class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
