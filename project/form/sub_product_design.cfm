@@ -217,7 +217,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     </cf_box>
     
         <cf_box title="Maliyet">
-            <input type="text" class="form-control" value="15.465,000">
+            <input type="text" class="form-control" style="text-align:right" value="<cfoutput>#tlformat(0)#</cfoutput>">
         </cf_box>
         
 </div>

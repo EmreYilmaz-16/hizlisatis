@@ -555,7 +555,7 @@ function AgacGetir(agacim, sx = 0) {
   for (let i = 0; i < agacim.length; i++) {
     // console.log(agacim[i])
     var pid = agacim[i].getAttribute("data-product_id");
-    var is_virtual=agacim[i].getAttribute("data-is_virtual");
+    var is_virtual = agacim[i].getAttribute("data-is_virtual");
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
@@ -564,7 +564,7 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.PRODUCT_ID = pid;
     agacItem.PRODUCT_NAME = pname;
     agacItem.AMOUNT = amount;
-    agacItem.IS_VIRTUAL=is_virtual;
+    agacItem.IS_VIRTUAL = is_virtual;
     agacItem.PRODUCT_TREE = new Array();
     var a = agacim[i].children;
     // obj=a
@@ -1078,7 +1078,7 @@ function UrunKaydet() {
     PRODUCT_STAGE: stg,
     PRODUCT_TREE: agacim,
   };
-  
+
   if (BasketData) {
     var mapForm = document.createElement("form");
     mapForm.target = "Map";
@@ -1106,4 +1106,14 @@ function UrunKaydet() {
       alert("You must allow popups for this map to work.");
     }
   }
+}
+
+function setQuestion(el) {
+  var e = el.parentElement.parentElement.parentElement;
+  console.log(e);
+  var ev = e.getAttribute("data-idb");
+  console.log(ev);
+  openBoxDraggable(
+    "index.cfm?fuseaction=project.emptypopup_mini_tools&idb=" + ev
+  );
 }
