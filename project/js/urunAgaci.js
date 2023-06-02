@@ -595,6 +595,7 @@ function Kaydet() {
   SonAgac.splice(0, SonAgac.length);
   AgacGetir(agacim12);
   console.log(SonAgac);
+  UrunKaydet();
 }
 function addProdMain() {
   openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_add_vp_project");
