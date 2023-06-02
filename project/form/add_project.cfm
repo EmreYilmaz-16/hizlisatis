@@ -24,28 +24,6 @@ INNER JOIN workcube_metosan.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAI
 <cfparam name="attributes.upper_project_id" default="">
 
 
-    <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
-     <h3 style="color:orange">Yeni Proje</h3>
-     <button style="margin-left:auto" class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
- </div> 
- <cfform name="add_project_form" id="add_project_form" action="#request.self#?fuseaction=project.emptypopup_save_project">
-     <input type="hidden" name="consumer_id" id="consumer_id" value="">
-     <input type="hidden" name="company_id" id="company_id" value="">
-     <div class="form-group" id="form_ul_about_par_name" style="display: none;">
-         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Yetkili </label>
-         <div class="col col-8 col-md-8 col-sm-8 col-xs-12">
-             <input type="hidden" name="partner_id" id="partner_id" value="">
-             <input type="text" name="about_par_name" id="about_par_name" value="">
-         </div>
-     </div>
-     <input type="hidden" name="task_partner_id" id="task_partner_id" value="" class="">
-     <input type="hidden" name="project_pos_code" id="project_pos_code" value="">
-     <input type="hidden" name="task_company_id" id="task_company_id" value="" class="">
-     <input type="hidden" name="project_emp_id" id="project_emp_id" value="" class="">
- <input type="hidden" name="RELATED_PROJECT_ID" value="<cfoutput>#attributes.upper_project_id#</cfoutput>">
-     
- 
-   
 <span style="border-radius: 10px;background-color:white;padding: 5px 10px 15px 10px;" id="scrollList">
    <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
     <h3 style="color:orange">Yeni Proje</h3>

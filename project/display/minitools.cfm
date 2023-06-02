@@ -9,7 +9,7 @@
             <option value="#QUESTION_ID#">#QUESTION_NAME#</option>
         </cfoutput>
     </select>
-<button type="button" class="btn btn-danger" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')">İptal</button>
+<button type="button" style="float:right;margin-top:5px" class="btn btn-danger" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')">İptal</button>
 </cf_box>
 <cfelseif attributes.tool_type eq ''>
 <cfelse>
