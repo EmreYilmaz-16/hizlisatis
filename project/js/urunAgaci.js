@@ -391,7 +391,7 @@ function OpenBasketProducts(col = "", actType = "5") {
 function newDraft() {
   var enmae = prompt("Ürün Adı");
   console.log(enmae);
-  if (enmae == null || enmae.length == 0) return false;
+  if (enmae == null || enmae.trim().length == 0) return false;
   idA = 1000;
   console.log("Yeni Taslak");
   var d = document.createElement("div");
@@ -404,11 +404,11 @@ function newDraft() {
   d.appendChild(ul);
   var e = document.getElementById("TreeArea");
   e.innerHTML = "";
-  var product_name = $("#pnamemain").val("");
-  var product_id = $("#vp_id").val("");
-  var is_virtual = $("#is_virtual").val("1");
+  $("#pnamemain").val("");
+  $("#vp_id").val("");
+  $("#is_virtual").val("1");
   //var project_id = $("#project_id").val();
-  var stg = $("#pstage").val("");
+  $("#pstage").val("");
   e.appendChild(d);
   $("#pnamemain").val(enmae);
 }
