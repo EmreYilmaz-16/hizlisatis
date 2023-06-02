@@ -61,7 +61,22 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             </tr>
         </table>
     </div>
-    
+    <div class="list-group list-group-horizontal">
+       <!----
+        <a class="list-group-item list-group-item-action"</a>---->
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_product_pbs&project_id=#attributes.project_id#</cfoutput>'">Ürün Dizayn</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'">Çalışma Gurupları</a>
+        <a class="list-group-item list-group-item-action"  onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_works&project_id=#attributes.project_id#</cfoutput>'">İşler</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_related_projects_pbs&project_id=#attributes.project_id#</cfoutput>'">İlişkili Projeler</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'"> Belgeler</a>
+        <a class="list-group-item list-group-item-action">Üretim Emirleri</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'">Notlar</a>
+        <a class="list-group-item list-group-item-action">Malzeme İhtiyaçları</a>
+        <a class="list-group-item list-group-item-action">Teklife Dönüştür</a>
+        <a class="list-group-item list-group-item-action">İlişkili İşlemler</a>
+   
+    </div>
+<!----
     <div style="display:flex;flex-direction: row;flex-wrap: wrap;align-content: stretch;justify-content: flex-start;align-items: flex-end;">
         <div class="prSt btn btn-outline-success" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_product_pbs&project_id=#attributes.project_id#</cfoutput>'">Ürün Dizayn</div>
         <div class="prSt btn btn-outline-warning" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'">Çalışma Gurupları</div>
@@ -73,7 +88,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <div class="prSt btn btn-outline-warning">Malzeme İhtiyaçları</div>
         <div class="prSt btn btn-outline-danger">Teklife Dönüştür</div>
         <div class="prSt btn btn-outline-primary">İlişkili İşlemler</div>
-        </div>
+        </div>----->
         <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none">
             <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
             <cf_grid_list>
