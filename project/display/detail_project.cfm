@@ -61,7 +61,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             </tr>
         </table>
     </div>
-    <div class="list-group list-group-horizontal">
+    <div class="list-group list-group-horizontal-lg">
        <!----
         <a class="list-group-item list-group-item-action"</a>---->
         <a class="list-group-item list-group-item-action" style="display: inline-grid;align-content: center;text-align: center;justify-items: center;" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_product_pbs&project_id=#attributes.project_id#</cfoutput>'">   <img src="/images/e-pd/pdesign.png"> Ürün Dizayn</a>
