@@ -8,7 +8,16 @@ var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
 var idB = 5000;
-function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "",pna="",stg="") {
+function ngetTree(
+  product_id,
+  is_virtual,
+  dsn3,
+  btn,
+  tip = 1,
+  li = "",
+  pna = "",
+  stg = ""
+) {
   console.log(arguments);
   if (tip == 1) {
     var pn = btn.parentElement.children[0].innerText;
@@ -393,6 +402,10 @@ function newDraft() {
   d.appendChild(ul);
   var e = document.getElementById("TreeArea");
   e.innerHTML = "";
+  var product_name = $("#pnamemain").val("");
+  var product_id = $("#vp_id").val("");
+  var is_virtual = $("#is_virtual").val("1");
+  //var project_id = $("#project_id").val();
   e.appendChild(d);
   $("#pnamemain").val(enmae);
 }
@@ -594,7 +607,7 @@ function addProdMain_() {
   li.setAttribute("data-is_virtual", 1);
   li.setAttribute("class", "list-group-item");
   li.setAttribute("data-idb", idB);
-    idB++;
+  idB++;
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
   span.innerText = pname;
@@ -701,7 +714,7 @@ function addProdSub(el) {
   li.setAttribute("data-is_virtual", 1);
   li.setAttribute("class", "list-group-item");
   li.setAttribute("data-idb", idB);
-    idB++;
+  idB++;
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
   span.innerText = prompt("Ürün Adı");
@@ -1048,17 +1061,46 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
 }
 
 function UrunKaydet() {
-   var agacim=SonAgac[SonAgac.length-1];
-   var product_name=$("#pnamemain").val();
-   var product_id=$("#vp_id").val();
-   var is_virtual=$("#is_virtual").val();
-   var project_id=$("#project_id").val();
-   var O={
-    PRODUCT_NAME:product_name,
-    PRODUCT_ID:product_id,
-    IS_VIRTUAL:is_virtual,
-    PROJECT_ID:project_id,
-    PRODUCT_TREE:agacim
-   };
-   
+  var agacim = SonAgac[SonAgac.length - 1];
+  var product_name = $("#pnamemain").val();
+  var product_id = $("#vp_id").val();
+  var is_virtual = $("#is_virtual").val();
+  var project_id = $("#project_id").val();
+  var stg = $("#pstage").val();
+  var BasketData = {
+    PRODUCT_NAME: product_name,
+    PRODUCT_ID: product_id,
+    IS_VIRTUAL: is_virtual,
+    PROJECT_ID: project_id,
+    PRODUCT_STAGE: stg,
+    PRODUCT_TREE: agacim,
+  };
+  
+  if (BasketData) {
+    var mapForm = document.createElement("form");
+    mapForm.target = "Map";
+    mapForm.method = "POST"; // or "post" if appropriate
+    mapForm.action =
+      "/index.cfm?fuseaction=project.emptypopup_query_save_project_product";
+
+    var mapInput = document.createElement("input");
+    mapInput.type = "hidden";
+    mapInput.name = "data";
+    mapInput.value = JSON.stringify(BasketData);
+    mapForm.appendChild(mapInput);
+
+    document.body.appendChild(mapForm);
+
+    map = window.open(
+      "/index.cfm?fuseaction=project.emptypopup_query_save_project_product",
+      "Map",
+      "status=0,title=0,height=600,width=800,scrollbars=1"
+    );
+
+    if (map) {
+      mapForm.submit();
+    } else {
+      alert("You must allow popups for this map to work.");
+    }
+  }
 }
