@@ -3,7 +3,7 @@
    <cfquery name="getAlternativeQuestions" datasource="#dsn#">
         SELECT QUESTION_NAME,QUESTION_ID FROM SETUP_ALTERNATIVE_QUESTIONS
     </cfquery>
-    <select name="aquestion" id="aquestion" onchange="setAQuestions(<cfoutput>#attributes.idb#</cfoutput>,this.value,'<cfoutput>#attributes.modal_id#</cfoutput>')">
+    <select class="form-control" name="aquestion" id="aquestion" onchange="setAQuestions(<cfoutput>#attributes.idb#</cfoutput>,this.value,'<cfoutput>#attributes.modal_id#</cfoutput>')">
         <option value="">Alternatif Sorusu</option>
         <cfoutput query="getAlternativeQuestions">
             <option value="#QUESTION_ID#">#QUESTION_NAME#</option>
