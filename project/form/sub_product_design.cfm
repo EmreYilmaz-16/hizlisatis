@@ -215,12 +215,13 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
               </div>
         </div>
     </cf_box>
+    <div style="height: 8vh;position: absolute;bottom: 3px;background: red;width: 100%;">
+        <cf_box title="Maliyet">
+            <input type="text" class="form-control" value="15.465,000">
+        </cf_box>
+        </div>
 </div>
-<div style="height: 8vh;position: absolute;bottom: 3px;background: red;width: 100%;">
-<cf_box title="Maliyet">
-    <input type="text" class="form-control" value="15.465,000">
-</cf_box>
-</div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
