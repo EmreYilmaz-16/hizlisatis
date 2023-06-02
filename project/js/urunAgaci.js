@@ -390,6 +390,7 @@ function OpenBasketProducts(col = "", actType = "5") {
 }
 function newDraft() {
   var enmae = prompt("Ürün Adı");
+  if(enmae.length==0) return false;
   idA = 1000;
   console.log("Yeni Taslak");
   var d = document.createElement("div");
