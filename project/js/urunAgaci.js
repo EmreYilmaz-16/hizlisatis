@@ -1117,3 +1117,15 @@ function setQuestion(el) {
     "index.cfm?fuseaction=project.emptypopup_mini_tools&idb=" + ev
   );
 }
+
+function setAQuestions(idb, queid, modalid) {
+  var el=document.getElementByIdb(idb);
+  el.setAttribute("data-question_id",queid);
+  closeBoxDraggable(modalid);
+}
+
+document.getElementByIdb = function (idb) {
+  var str = idb.toString();
+  var el = $("*").find("* [data-idb='" + str + "']")[0];
+  return el;
+};
