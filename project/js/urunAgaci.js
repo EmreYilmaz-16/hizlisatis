@@ -1114,7 +1114,7 @@ function setQuestion(el) {
   var ev = e.getAttribute("data-idb");
   console.log(ev);
   openBoxDraggable(
-    "index.cfm?fuseaction=project.emptypopup_mini_tools&idb=" + ev
+    "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=alternativeQuestion&idb=" + ev
   );
 }
 
