@@ -8,11 +8,11 @@ var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
 var idB = 5000;
-function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "") {
+function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "",pna) {
   console.log(arguments);
   if (tip == 1) {
     var pn = btn.parentElement.children[0].innerText;
-    $("#pnamemain").val(pn);
+    $("#pnamemain").val(pna);
     $.ajax({
       url:
         "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
