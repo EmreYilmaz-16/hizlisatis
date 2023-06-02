@@ -126,7 +126,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                     </div>               
             </li>    ------>
            
-            <a class="list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this)">
+            <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this)">
                 #PRODUCT_NAME#
                 <span class="badge bg-primary rounded-pill">#STAGE#</span>
             </a> 
