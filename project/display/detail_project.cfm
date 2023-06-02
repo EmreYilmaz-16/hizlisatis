@@ -64,16 +64,16 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
     <div class="list-group list-group-horizontal">
        <!----
         <a class="list-group-item list-group-item-action"</a>---->
-        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_product_pbs&project_id=#attributes.project_id#</cfoutput>'">Ürün Dizayn</a>
-        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'">Çalışma Gurupları</a>
-        <a class="list-group-item list-group-item-action"  onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_works&project_id=#attributes.project_id#</cfoutput>'">İşler</a>
-        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_related_projects_pbs&project_id=#attributes.project_id#</cfoutput>'">İlişkili Projeler</a>
-        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'"> Belgeler</a>
-        <a class="list-group-item list-group-item-action">Üretim Emirleri</a>
-        <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'">Notlar</a>
-        <a class="list-group-item list-group-item-action">Malzeme İhtiyaçları</a>
-        <a class="list-group-item list-group-item-action">Teklife Dönüştür</a>
-        <a class="list-group-item list-group-item-action">İlişkili İşlemler</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_product_pbs&project_id=#attributes.project_id#</cfoutput>'">   <img src="/images/e-pd/pdesign.png"> Ürün Dizayn</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'"><img src="/images/e-pd/wrkls.png"> Çalışma Gurupları</a>
+        <a class="list-group-item list-group-item-action"  onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_works&project_id=#attributes.project_id#</cfoutput>'"> <img src="/images/e-pd/wrks.png">İşler</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_related_projects_pbs&project_id=#attributes.project_id#</cfoutput>'"><img src="/images/e-pd/pr.png"> İlişkili Projeler</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'"> <img src="/images/e-pd/fld.png"> Belgeler</a>
+        <a class="list-group-item list-group-item-action"> <img src="/images/e-pd/oppr.png"> Üretim Emirleri</a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'"> <img src="/images/e-pd/nt.png"> Notlar</a>
+        <a class="list-group-item list-group-item-action"><img src="/images/e-pd/pord.png"> Malzeme İhtiyaçları</a>
+        <a class="list-group-item list-group-item-action"><img src="/images/e-pd/ordrr.png"> Teklife Dönüştür</a>
+        <a class="list-group-item list-group-item-action"><img src="/images/e-pd/rel.png"> İlişkili İşlemler</a>
    
     </div>
 <!----
