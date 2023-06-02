@@ -598,8 +598,10 @@ function Kaydet() {
   console.log(SonAgac);
   UrunKaydet();
 }
-function addProdMain() {
-  openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_add_vp_project");
+function addProdMain(idbb = 0) {
+  openBoxDraggable(
+    "index.cfm?fuseaction=objects.emptypopup_add_vp_project&idb=" + idbb
+  );
 }
 
 function addProdMain_(idb) {
@@ -708,6 +710,11 @@ function OpenBasketProducts_Pars(el) {
   }
 }
 function addProdSub(el) {
+  var idbb =
+    el.parentElement.parentElement.parentElement.getAttribute("data-idb");
+  addProdMain(idbb);
+}
+function addProdSub_(el) {
   //console.log(el.parentElement)
   var es = el.parentElement.parentElement.parentElement.children;
   console.log(es);
