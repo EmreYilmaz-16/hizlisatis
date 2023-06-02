@@ -1118,9 +1118,14 @@ function setQuestion(el) {
   );
 }
 
-function setAQuestions(idb, queid, modalid) {
+function setAQuestions(idb, queid, modalid,QUESTION_NAME) {
   var el=document.getElementByIdb(idb);
   el.setAttribute("data-question_id",queid);
+  var es=$(el).find("span[name='product_name_']")[0]
+var span=document.createElement("span");
+ span.innerText="("+QUESTION_NAME+")";
+ span.setAttribute("style","color:var(--danger)");
+ es.appendChild(span);
   closeBoxDraggable(modalid);
 }
 
