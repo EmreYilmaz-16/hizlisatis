@@ -126,7 +126,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                     </div>               
             </li>    ------>
            
-            <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#')">
+            <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
                 #PRODUCT_NAME#
                 <cfif PRODUCT_STAGE eq 339>
                     <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
@@ -183,6 +183,18 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
         <button class="btn btn-outline-warning" style="margin-left:5px" onclick="addProdMain()">VP</button>
         <button onclick="Kaydet()" style="margin-left:5px"  class="btn btn-outline-primary">Kaydet</button>
         <input type="text" class="form-control" value="" id="pnamemain" name="pnamemain" style="margin-left: 15px;color: var(--success);" readonly>
+        <cfquery name="getStages" datasource="#dsn3#">
+            SELECT STAGE,PROCESS_ROW_ID FROM workcube_metosan.PROCESS_TYPE_ROWS WHERE PROCESS_ID=200
+        </cfquery>
+        <select name="form-control" name="pstage" id="pstage">
+            <option value="">Aşama</option>
+            <cfoutput query="getStages">
+                <option value="#PROCESS_ROW_ID#">#STAGE#</option>
+            </cfoutput>
+        </select>
+        <input type="hidden" name="vp_id" id="vp_id" value="0">
+        <input type="hidden" name="is_virtual" id="is_virtual" value="1">
+        <input type="hidden" name="project_id" id="project_id" value="<cfoutput>#attributes.project_id#</cfoutput>">
     </div>
     <div style="position: absolute;bottom: 0;right: 0;"></div>
     <div id="TreeArea" style="height:90vh">

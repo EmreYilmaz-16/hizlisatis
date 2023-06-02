@@ -8,11 +8,14 @@ var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
 var idB = 5000;
-function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "",pna) {
+function ngetTree(product_id, is_virtual, dsn3, btn, tip = 1, li = "",pna="",stg="") {
   console.log(arguments);
   if (tip == 1) {
     var pn = btn.parentElement.children[0].innerText;
     $("#pnamemain").val(pna);
+    $("#vp_id").val(product_id);
+    $("#is_virtual").val(is_virtual);
+    $("#pstage").val(stg);
     $.ajax({
       url:
         "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
@@ -1044,4 +1047,18 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
   return ul;
 }
 
-function UrunKaydet() {}
+function UrunKaydet() {
+   var agacim=SonAgac[SonAgac.length-1];
+   var product_name=$("#pnamemain").val();
+   var product_id=$("#vp_id").val();
+   var is_virtual=$("#is_virtual").val();
+   var project_id=$("#project_id").val();
+   var O={
+    PRODUCT_NAME:product_name,
+    PRODUCT_ID:product_id,
+    IS_VIRTUAL:is_virtual,
+    PROJECT_ID:project_id,
+    PRODUCT_TREE:agacim
+   };
+   
+}
