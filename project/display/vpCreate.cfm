@@ -1,4 +1,5 @@
-﻿<cf_box title="Yeni Sanal Ürün">
+﻿<cfparam name="idb" default="0">
+<cf_box title="Yeni Sanal Ürün">
     <div class="form-group">
         <label>Ürün Adı</label>
         <input type="text" name="productNameVp" id="productNameVp" placeholder="Ürün Adı" class="form-control form-control-sm">        
@@ -39,7 +40,7 @@
     </div>
         <div style="display:flex;justify-content: flex-end;">
             <button type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')" class="btn btn-sm btn-danger">İptal</button>
-            <button type="button" style="margin-left:5px" class="btn btn-sm btn-success" onclick="addProdMain_()">Tamam</button>       
+            <button type="button" style="margin-left:5px" class="btn btn-sm btn-success" onclick="addProdMain_(<cfoutput>#idb#</cfoutput>)">Tamam</button>       
         </div>
 </cf_box>
 

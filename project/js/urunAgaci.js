@@ -602,7 +602,7 @@ function addProdMain() {
   openBoxDraggable("index.cfm?fuseaction=objects.emptypopup_add_vp_project");
 }
 
-function addProdMain_() {
+function addProdMain_(idb) {
   var pname = document.getElementById("productNameVp").value;
   var p_cat_id = document.getElementById("productCatIdVp").value;
   var li = document.createElement("li");
@@ -665,8 +665,18 @@ function addProdMain_() {
   li.appendChild(div);
   /*var ul = document.createElement("ul");
   li.appendChild(ul);*/
-  var e = document.getElementById("ppidarea").children[0];
-  e.appendChild(li);
+  if (idb == 0) {
+    var e = document.getElementById("ppidarea").children[0];
+    e.appendChild(li);
+  } else {
+    var ul = document.createElement("ul");
+    ul.setAttribute("id", idA);
+    ul.setAttribute("data-is_virtual", 1);
+    ul.setAttribute("class", "list-group");
+    idA++;
+    ul.appendChild(li);
+    document.getElementByIdb(idb).appendChild(ul);
+  }
   agacGosterEkle();
   sortableYap();
 }
@@ -1114,18 +1124,19 @@ function setQuestion(el) {
   var ev = e.getAttribute("data-idb");
   console.log(ev);
   openBoxDraggable(
-    "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=alternativeQuestion&idb=" + ev
+    "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=alternativeQuestion&idb=" +
+      ev
   );
 }
 
-function setAQuestions(idb, queid, modalid,QUESTION_NAME) {
-  var el=document.getElementByIdb(idb);
-  el.setAttribute("data-question_id",queid);
-  var es=$(el).find("span[name='product_name_']")[0]
-var span=document.createElement("span");
- span.innerText="("+QUESTION_NAME+")";
- span.setAttribute("style","color:var(--danger)");
- es.appendChild(span);
+function setAQuestions(idb, queid, modalid, QUESTION_NAME) {
+  var el = document.getElementByIdb(idb);
+  el.setAttribute("data-question_id", queid);
+  var es = $(el).find("span[name='product_name_']")[0];
+  var span = document.createElement("span");
+  span.innerText = "(" + QUESTION_NAME + ")";
+  span.setAttribute("style", "color:var(--danger)");
+  es.appendChild(span);
   closeBoxDraggable(modalid);
 }
 
