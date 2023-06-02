@@ -104,6 +104,9 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     <div>
         <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
     </div>
+    <div class="list-group">
+
+   
         <cfoutput query="getP">
            <!---- <li style="background: lightgrey;border-radius: 5px;">                
                     <div class="ui-cards ui-cards-vertical">                        
@@ -123,17 +126,19 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                     </div>               
             </li>    ------>
            
-            <div class="card">
-              
-                <div class="card-body">
-                  <h5 class="card-title">#PRODUCT_NAME#</h5>
-                  <p class="card-text">#STAGE#</p>
-                  <button type="button" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this)"  class="btn btn-primary"><i class="icon-search"></i> Görüntüle</button>
+            <a class="list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this)">
+                #PRODUCT_NAME#
+                <span class="badge bg-primary rounded-pill">#STAGE#</span>
+            </a> 
+            <!---<div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text"></p>
+                  <button type="button" ><i class="icon-search"></i> Görüntüle</button>
                 </div>
               </div>
-            
+            ---->
         </cfoutput>
-        
+    </div>
         <hr>
         <ul>
             <cfoutput query="getP2">
