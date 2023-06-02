@@ -406,6 +406,7 @@ function newDraft() {
   var product_id = $("#vp_id").val("");
   var is_virtual = $("#is_virtual").val("1");
   //var project_id = $("#project_id").val();
+  var stg = $("#pstage").val("");
   e.appendChild(d);
   $("#pnamemain").val(enmae);
 }
