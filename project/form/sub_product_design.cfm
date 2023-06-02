@@ -128,7 +128,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
            
             <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this)">
                 #PRODUCT_NAME#
-                <span class="badge bg-primary rounded-pill">#STAGE#</span>
+                <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
             </a> 
             <!---<div class="card-body">
                   <h5 class="card-title"></h5>
