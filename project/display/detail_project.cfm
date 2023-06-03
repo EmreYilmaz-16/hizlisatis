@@ -89,7 +89,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <div class="prSt btn btn-outline-danger">Teklife Dönüştür</div>
         <div class="prSt btn btn-outline-primary">İlişkili İşlemler</div>
         </div>----->
-        <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none">
+        <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none;z-index:9999">
             <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
                 <div style="height:90vh">
             <cf_grid_list>

@@ -197,14 +197,14 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
         <input type="hidden" name="project_id" id="project_id" value="<cfoutput>#attributes.project_id#</cfoutput>">
     </div>
     <div style="position: absolute;bottom: 0;right: 0;"></div>
-    <div id="TreeArea" style="height:90vh">
+    <div id="TreeArea" style="height:85vh">
 
 </div>
 </cf_box>
 </div>
 <div class="col col-2 col-md-2 col-sm-2 col-xs-12" >
     <cf_box title="....">
-        <div  style="height:80vh" id="settingsArea">
+        <div  style="height:79vh" id="settingsArea">
             <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customSwitch1">
                 <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
