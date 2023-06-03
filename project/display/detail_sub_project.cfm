@@ -117,5 +117,10 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         $(leftMenuPss).hide(500);
     }
 })
-        
+$(document).ready(function () {
+  var d = document.getElementById("wrk_main_layout");
+  d.removeAttribute("class");
+  d.setAttribute("class", "container-fluid");
+});
+ 
     </script>
