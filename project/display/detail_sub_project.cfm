@@ -54,14 +54,35 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
     </div>
   
     
-    <div style="display:flex;width: 50%;flex-direction: row;flex-wrap: wrap;align-content: stretch;justify-content: flex-start;align-items: flex-end;">
-        <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_sub_product_pbs&project_id=#attributes.project_id#</cfoutput>'">Ürün Dizayn</div>
-        <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'">Çalışma Gurupları</div>
-        <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_works&project_id=#attributes.project_id#</cfoutput>'">İşler</div>        
-        <div class="prSt prGray" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'">Belgeler</div>
-        <div class="prSt prGray">Üretim Emirleri</div>
-        <div class="prSt prGray">Notlar</div>
-        <div class="prSt prGray">Malzeme İhtiyaçları</div>
+    <div class="list-group list-group-horizontal-lg">
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_sub_product_pbs&project_id=#attributes.project_id#</cfoutput>'">
+            <img src="/images/e-pd/pdesign.png"> 
+            Ürün Dizayn
+        </a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_group_employees&project_id=#attributes.project_id#</cfoutput>'">
+            <img src="/images/e-pd/wrkls.png">
+            Çalışma Gurupları
+        </a>
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_works&project_id=#attributes.project_id#</cfoutput>'">
+            <img src="/images/e-pd/wrks.png">
+            İşler
+        </a>        
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'">
+            <img src="/images/e-pd/fld.png">
+            Belgeler
+        </a>
+        <a class="list-group-item list-group-item-action">
+            <img src="/images/e-pd/oppr.png">
+            Üretim Emirleri
+        </a>
+        <a class="list-group-item list-group-item-action">
+            <img src="/images/e-pd/nt.png">
+            Notlar
+        </a>
+        <a class="list-group-item list-group-item-action">
+            <img src="/images/e-pd/pord.png">
+            Malzeme İhtiyaçları
+        </a>
         </div>
         <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none">
             <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
