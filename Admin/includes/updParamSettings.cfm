@@ -130,11 +130,11 @@ WHERE PCS.ID=#attributes.ID#
             <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_GIFT_CARD" id="IS_GIFT_CARD" value="1" <cfif getData.IS_GIFT_CARD eq 1>checked="checked"</cfif> ></div>
         </div>
     
-    
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <button type="button" class="btn btn-danger"  onclick="sil(<cfoutput>#attributes.id#</cfoutput>)">Sil</button>
     </div>
     <input type="hidden" name="is_submit">
-    <button type="submit" class="btn btn-success">Kaydet</button>
-    <button type="button" class="btn btn-danger"  onclick="sil(<cfoutput>#attributes.id#</cfoutput>)">Sil</button>
+    
     </cfform>
     </cf_box>
     <script>
