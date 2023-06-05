@@ -5,3 +5,25 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
 
 <cfdump var="#RES#">
 <cfdump var="#getList#">
+<table>
+    <tr>
+        <cfloop list="#RES.COLUMNLIST#" item="li">
+            <cfoutput>
+                <td>
+                    #li#
+                </td>
+            </cfoutput>
+        </cfloop>
+    </tr>
+    <cfoutput query="getList">
+        <tr>
+            <cfloop list="#RES.COLUMNLIST#" item="li">
+                <cfoutput>
+                    <td>
+                        #evaluate("#li#")#
+                    </td>
+                </cfoutput>
+            </cfloop>            
+        </tr>
+    </cfoutput>
+</table>
