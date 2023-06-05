@@ -21,9 +21,11 @@
     {column_name='PRODUCT_UNIT',descr='Birim'},
     {column_name='TAX',descr='Satış Kdv Oranı'},
     {column_name='TAX_PURCHASE',descr='Alış Kdv Oranı'},
-    {column_name='ACC_CODE_CAT',descr='Muhasebe Kod Grubu'},
-    {column_name='TAX',descr='Satış Kdv'},
-    {column_name='TAX_PURCHASE',descr='Alış Kdv'}
+    {column_name='ACC_CODE_CAT',descr='Muhasebe Kod Grubu'},    
+    {column_name='ID',descr='ID'},
+    {column_name='PRODUCT_CAT',descr='Ürün Kategorisi'},
+    {column_name='HIERARCHY',descr='HIERARCHY'}
+    
 ]>
 
 <cfif attributes.ev eq "add">

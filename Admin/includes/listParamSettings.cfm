@@ -9,9 +9,14 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
     <thead>
     <tr>
         <cfloop list="#RES.COLUMNLIST#" item="li">
+            <cfscript>
+                pos = ArrayFilter(ColumnData, function(item) {
+                return item.column_name == '#li#';
+            })[1];
+            </cfscript>
             <cfoutput>
                 <th>
-                    #li#
+                    #pos.column_name#
                 </th>
             </cfoutput>
         </cfloop>
