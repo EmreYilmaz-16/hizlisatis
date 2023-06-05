@@ -134,7 +134,7 @@ WHERE PCS.ID=#attributes.ID#
         <button type="submit" class="btn btn-success">Kaydet</button>
         <button type="button" class="btn btn-danger"  onclick="sil(<cfoutput>#attributes.id#</cfoutput>)">Sil</button>
     </div>
-    <input type="hidden" name="is_del" id="is_del" value="0"
+    <input type="hidden" name="is_del" id="is_del" value="0">
     <input type="hidden" name="is_submit">
     
     </cfform>
