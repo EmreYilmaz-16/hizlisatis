@@ -34,6 +34,7 @@
     </cfif>
 <cfelseif attributes.ev eq "list">
     
+    <cfinclude template="includes/listParamSettings.cfm">
 <cfelseif attributes.ev eq "upd">
 </cfif>
 
