@@ -17,11 +17,12 @@
         <cfquery name="getUnit" datasource="#dsn#">
             select * from workcube_metosan.SETUP_UNIT
             </cfquery>
-            <select name="ProductUnit">
+            <select name="UNIT_ID" id="UNIT_ID" >
             <cfoutput query="getUnit">
                 <option value="#UNIT_ID#">#UNIT#</option>
             </cfoutput>
             </select>
+            <input type="text" name="PRODUCT_UNIT" id="PRODUCT_UNIT">
        </div>
        <cfquery name="getTax" datasource="#dsn2#">
         select * from SETUP_TAX
@@ -130,3 +131,8 @@
 <input type="submit">
 </cfform>
 </cf_box>
+<script>
+    $(document).ready(function (params) {
+        
+    })
+</script>
