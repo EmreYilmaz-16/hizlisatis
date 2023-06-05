@@ -14,7 +14,7 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
             </cfscript>
             <cfoutput>
                 <th>
-                    #pos#
+                    <cfdump var="#pos#">
                 </th>
             </cfoutput>
         </cfloop>
