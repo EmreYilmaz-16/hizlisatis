@@ -23,7 +23,27 @@
             </cfoutput>
             </select>
        </div>
-
+       <cfquery name="getTax" datasource="#dsn2#">
+        select * from SETUP_TAX
+       </cfquery>
+       <div class="form-group">
+        <label>Satış Kdv</label>
+        <select name="TAX">
+            <cfoutput query="getTax">
+                <option value="#TAX#">% #TAX#</option>
+            </cfoutput>
+        </select>
+       </div>
+       <div class="form-group">
+        <label>
+            Alış Kdv
+        </label>
+        <select name="TAX_PURCHASE">
+            <cfoutput query="getTax">
+                <option value="#TAX#">% #TAX#</option>
+            </cfoutput>
+        </select>
+       </div>
     <div class="form-group" id="item-is_inventory">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Envanter </label>
         <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_INVENTORY" id="IS_INVENTORY" value="1" checked="">Envantere Dahil </div>
