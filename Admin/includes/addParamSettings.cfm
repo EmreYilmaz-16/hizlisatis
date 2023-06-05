@@ -126,7 +126,7 @@
 
 
 </div>
-
+<input type="hidden" name="is_submit">
 <input type="submit">
 </cfform>
 </cf_box>
