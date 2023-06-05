@@ -25,7 +25,7 @@
     {column_name='ID',descr='ID'},
     {column_name='PRODUCT_CAT',descr='Ürün Kategorisi'},
     {column_name='HIERARCHY',descr='HIERARCHY'},
-    {column_name='IS_QUALITY',descr='Kalite Takip Ediliyor'}
+    {column_name='IS_QUALITY',descr='Kalite Takip Ediliyor'},
     {column_name='UNIT_ID',descr='UNIT_ID'}
     
     
