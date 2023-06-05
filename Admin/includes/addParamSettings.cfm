@@ -1,4 +1,5 @@
-﻿<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&ev=add" name="search_product">
+﻿<cf_box title="Kategori Parametreleri Ekle">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&ev=add" name="search_product">
 <div class="col col-3 col-md-4 col-sm-6 col-xs-12" type="column" index="1" sort="true">
     <div class="form-group" id="item-cat_id">
         <label>Kategori </label>
@@ -93,15 +94,18 @@
         <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_GIFT_CARD" id="IS_GIFT_CARD" value="1" onclick="kontrol_day();"></div>
     </div>
 
-    =1 AND 
+   <div class="form-group">
+    <cfquery name="getUnit" datasource="#dsn#">
+        select * from workcube_metosan.SETUP_UNIT
+        </cfquery>
+        <select name="ProductUnit">
+        <cfoutput query="getUnit">
+            <option value="#UNIT_ID#">#UNIT#</option>
+        </cfoutput>
+        </select>
+   </div>
 </div>
-<cfquery name="getUnit" datasource="#dsn#">
-select * from workcube_metosan.SETUP_UNIT
-</cfquery>
-<select name="ProductUnit">
-<cfoutput query="getUnit">
-    <option value="#UNIT_ID#">#UNIT#</option>
-</cfoutput>
-</select>
+
 <input type="submit">
 </cfform>
+</cf_box>
