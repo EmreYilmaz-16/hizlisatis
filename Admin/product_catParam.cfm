@@ -41,6 +41,11 @@
     
     <cfinclude template="includes/listParamSettings.cfm">
 <cfelseif attributes.ev eq "upd">
+    <cfif not isDefined("attributes.is_submit")>
+        <cfinclude template="includes/updParamSettings.cfm">
+    <cfelse>
+        <cfinclude template="includes/updParamSettingsQuery.cfm">
+    </cfif>
 </cfif>
 
 
