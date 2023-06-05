@@ -10,10 +10,20 @@
             <span class="input-group-addon icon-ellipsis btnPointer" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_product_cat_names&is_sub_category=1&field_id=search_product.cat_id&field_code=search_product.cat&field_name=search_product.category_name');"></span>
         </div>
     </div>
-    <div class="form-group" id="item-product_status">
-        <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Durum </label>
-        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="product_status" id="product_status" value="1" checked="">Aktif /Pasif </div>
-    </div>
+    <div class="form-group">
+        <label>
+            Birim
+        </label>
+        <cfquery name="getUnit" datasource="#dsn#">
+            select * from workcube_metosan.SETUP_UNIT
+            </cfquery>
+            <select name="ProductUnit">
+            <cfoutput query="getUnit">
+                <option value="#UNIT_ID#">#UNIT#</option>
+            </cfoutput>
+            </select>
+       </div>
+
     <div class="form-group" id="item-is_inventory">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Envanter </label>
         <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_INVENTORY" id="IS_INVENTORY" value="1" checked="">Envantere Dahil </div>
@@ -94,16 +104,7 @@
         <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_GIFT_CARD" id="IS_GIFT_CARD" value="1" onclick="kontrol_day();"></div>
     </div>
 
-   <div class="form-group">
-    <cfquery name="getUnit" datasource="#dsn#">
-        select * from workcube_metosan.SETUP_UNIT
-        </cfquery>
-        <select name="ProductUnit">
-        <cfoutput query="getUnit">
-            <option value="#UNIT_ID#">#UNIT#</option>
-        </cfoutput>
-        </select>
-   </div>
+
 </div>
 
 <input type="submit">
