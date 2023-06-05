@@ -1,14 +1,4 @@
-﻿<cfif attributes.ev eq "add">
-    <cfif not isDefined("attributes.is_submit")>
-        <cfinclude template="includes/addParamSettings.cfm">
-    <cfelse>
-        <cfinclude template="includes/addParamSettingsQuery.cfm">
-    </cfif>
-<cfelseif attributes.ev eq "list">
-    
-<cfelseif attributes.ev eq "upd">
-</cfif>
-<cfset ColumnData=[
+﻿<cfset ColumnData=[
     {column_name='PRODUCT_CATID',descr='Ürün Kategorisi'},
     {column_name='IS_INVENTORY',descr='Envantere Dahil'},
     {column_name='IS_PRODUCTION',descr='Üretiliyor'},
@@ -31,8 +21,22 @@
     {column_name='PRODUCT_UNIT',descr='Birim'},
     {column_name='TAX',descr='Satış Kdv Oranı'},
     {column_name='TAX_PURCHASE',descr='Alış Kdv Oranı'},
-    {column_name='ACC_CODE_CAT',descr='Muhasebe Kod Grubu'}    
+    {column_name='ACC_CODE_CAT',descr='Muhasebe Kod Grubu'},
+    {column_name='TAX',descr='Satış Kdv'},
+    {column_name='TAX_PURCHASE',descr='Alış Kdv'}
 ]>
+
+<cfif attributes.ev eq "add">
+    <cfif not isDefined("attributes.is_submit")>
+        <cfinclude template="includes/addParamSettings.cfm">
+    <cfelse>
+        <cfinclude template="includes/addParamSettingsQuery.cfm">
+    </cfif>
+<cfelseif attributes.ev eq "list">
+    
+<cfelseif attributes.ev eq "upd">
+</cfif>
+
 
 
 
