@@ -22,7 +22,7 @@
                 <option value="#UNIT_ID#">#UNIT#</option>
             </cfoutput>
             </select>
-            <input type="text" name="PRODUCT_UNIT" id="PRODUCT_UNIT">
+            <input type="hidden" name="PRODUCT_UNIT" id="PRODUCT_UNIT">
        </div>
        <cfquery name="getTax" datasource="#dsn2#">
         select * from SETUP_TAX
@@ -133,6 +133,11 @@
 </cf_box>
 <script>
     $(document).ready(function (params) {
-        
+        setR();
     })
+    function setR(){
+        var e=document.getElementById("UNIT_ID")
+        var t=e.options[e.selectedIndex].text
+        document.getElementById("PRODUCT_UNIT").value=t;
+    }
 </script>
