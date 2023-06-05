@@ -21,7 +21,7 @@
     {column_name='PRODUCT_UNIT',descr='Birim'},
     {column_name='TAX',descr='Satış Kdv Oranı'},
     {column_name='TAX_PURCHASE',descr='Alış Kdv Oranı'},
-    {column_name='ACC_CODE_CAT',descr='Muhasebe Kod Grubu'},    
+    {column_name='ACC_CODE_CAT',descr='Muhasebe Kod Grubu'}    
 ]>
 
 
@@ -44,88 +44,83 @@
         </div>
         <div class="form-group" id="item-is_inventory">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Envanter </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_inventory" id="is_inventory" value="1" checked="">Envantere Dahil </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_INVENTORY" id="IS_INVENTORY" value="1" checked="">Envantere Dahil </div>
         </div>
         <div class="form-group" id="item-is_production">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Üretim </label>
             <div class="col col-8 col-md-8 col-sm-8 col-xs-12"> 
-                <input type="checkbox" name="is_production" id="is_production" value="1" checked="checked">Üretiliyor 
+                <input type="checkbox" name="IS_PRODUCTION" id="IS_PRODUCTION" value="1" checked="checked">Üretiliyor 
             </div>
         </div>
         <div class="form-group" id="item-is_sales">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Satış </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_sales" id="is_sales" value="1" checked="">Satışta </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_SALES" id="IS_SALES" value="1" checked="">Satışta </div>
         </div>
         <div class="form-group" id="item-is_purchase">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Tedarik </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_purchase" id="is_purchase" value="1" checked="">Tedarik Ediliyor </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_PURCHASE" id="IS_PURCHASE" value="1" checked="">Tedarik Ediliyor </div>
         </div>
         <div class="form-group" id="item-is_prototype">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Prototip </label>
             <div class="col col-8 col-md-8 col-sm-8 col-xs-12">
-                <input type="checkbox" name="is_prototype" id="is_prototype" value="1">Özelleştirilebilir 
+                <input type="checkbox" name="IS_PROTOTYPE" id="IS_PROTOTYPE" value="1">Özelleştirilebilir 
             </div>
         </div>
         <div class="form-group" id="item-is_internet">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Internet </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_internet" id="is_internet" value="1">Satılıyor </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_INTERNET" id="IS_INTERNET" value="1">Satılıyor </div>
         </div>
         <div class="form-group" id="item-is_extranet">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Extranet </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_extranet" id="is_extranet" value="1">Satılıyor </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_EXTRANET" id="IS_EXTRANET" value="1">Satılıyor </div>
         </div>
         <div class="form-group" id="item-is_terazi">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Terazi </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_terazi" id="is_terazi" value="1">Teraziye Gidiyor </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_TERAZI" id="IS_TERAZI" value="1">Teraziye Gidiyor </div>
         </div>
         <div class="form-group" id="item-is_karma">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Karma Koli </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_karma" id="is_karma" value="1"> Evet </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_KARMA" id="IS_KARMA" value="1"> Evet </div>
         </div>
         <div class="form-group" id="item-is_zero_stock">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Sıfır Stok </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_zero_stock" id="is_zero_stock" value="1">İle Çalış </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_ZERO_STOCK" id="IS_ZERO_STOCK" value="1">İle Çalış </div>
         </div>
         <div class="form-group" id="item-is_limited_stock">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Stoklarla Sınırlı </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_limited_stock" id="is_limited_stock" value="1"> Evet </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_LIMITED_STOCK" id="IS_LIMITED_STOCK" value="1"> Evet </div>
         </div>
         
             <div class="form-group" id="item-is_serial_no">
                 <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Seri No </label>
-                <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_serial_no" id="is_serial_no" value="1">Takibi Yapılıyor </div>
+                <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_SERIAL_NO" id="IS_SERIAL_NO" value="1">Takibi Yapılıyor </div>
             </div>
         
         <div class="form-group" id="item-is_lot_no">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Lot No </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_lot_no" id="is_lot_no" value="1">Takibi Yapılıyor </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_LOT_NO" id="IS_LOT_NO" value="1">Takibi Yapılıyor </div>
         </div>
         <div class="form-group" id="item-is_cost">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Maliyet </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_cost" id="is_cost" value="1" checked="">Takip Ediliyor </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_COST" id="IS_COST" value="1" checked="">Takip Ediliyor </div>
         </div>
         <div class="form-group" id="item-is_imported">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">İthal </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_imported" id="is_imported" value="1">İthal Ediliyor </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_IMPORTED" id="IS_IMPORTED" value="1">İthal Ediliyor </div>
         </div>
         <div class="form-group" id="item-is_quality">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Kalite </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_quality" id="is_quality" value="1">Takip Ediliyor </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_QUALITY" id="IS_QUALITY" value="1">Takip Ediliyor </div>
         </div>
         <div class="form-group" id="item-is_commission">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Pos Komisyonu </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_commission" id="is_commission" value="1">Hesapla </div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_COMMISION" id="IS_COMMISION" value="1">Hesapla </div>
         </div>
         
         <div class="form-group" id="item-is_gift_card">
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Hediye Çeki </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="is_gift_card" id="is_gift_card" value="1" onclick="kontrol_day();"></div>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_GIFT_CARD" id="IS_GIFT_CARD" value="1" onclick="kontrol_day();"></div>
         </div>
-        
-        
-        <div class="form-group" id="item-gift_valid_day" style="display:none">
-            <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Geçerlilik Gün </label>
-            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="input" name="gift_valid_day" id="gift_valid_day" value="" maxlength="4" onkeyup="isNumber(this);" class="moneybox"></div>
-        </div>
+
         
     </div>
