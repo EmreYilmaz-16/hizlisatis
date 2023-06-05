@@ -3,11 +3,12 @@
     select PCS.*,PC.PRODUCT_CAT,PC.HIERARCHY from workcube_metosan_1.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS PCS
 INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PRODUCT_CATID
 </cfquery>
+<cfset YenListe=ListSort(RES.COLUMNLIST,'text',"asc")>
 <cfdump var="#RES#">
 <cf_big_list>
     <thead>
     <tr>
-        <cfloop list="#RES.COLUMNLIST#" item="li">
+        <cfloop list="#YenListe#" item="li">
             <cfscript>
                 pos = ArrayFilter(ColumnData, function(item) {
                 return item.column_name == '#li#';
@@ -25,7 +26,7 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
 <tbody>
     <cfoutput query="getList">
         <tr>
-            <cfloop list="#RES.COLUMNLIST#" item="li">
+            <cfloop list="#YenListe#" item="li">
                
                     <td>
                         #evaluate("#li#")#
