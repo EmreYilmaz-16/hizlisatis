@@ -17,12 +17,14 @@
     )
     VALUES (
         <cfoutput query="getA">
-            <cfif isDefined("attributes.COLUMN_NAME") and len(evaluate("attributes.#COLUMN_NAME#"))>
+            <cfif isDefined("attributes.#COLUMN_NAME#") and len(evaluate("attributes.#COLUMN_NAME#"))>
                 <cfif DATA_TYPE EQ "nvarchar">
                 '#evaluate("attributes.#COLUMN_NAME#")#'
                     <CFELSE>
                 #evaluate("attributes.#COLUMN_NAME#")#
             </cfif>
+        <cfelse>
+            NULL
             </cfif>
             <cfif iy lt getA.recordCount>
                 ,
