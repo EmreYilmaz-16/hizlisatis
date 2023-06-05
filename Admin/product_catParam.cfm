@@ -1,5 +1,9 @@
 ﻿<cfif attributes.ev eq "add">
-<cfinclude template="includes/addParamSettings.cfm">
+    <cfif not isDefined("attributes.is_submit")>
+        <cficlude template="includes/addParamSettings.cfm">
+    <cfelse>
+        <cficlude template="includes/addParamSettingsQuery.cfm">
+    </cfif>
 <cfelseif attributes.ev eq "list">
     
 <cfelseif attributes.ev eq "upd">
