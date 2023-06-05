@@ -4,8 +4,7 @@
 INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PRODUCT_CATID
 </cfquery>
 
-<cfdump var="#RES#">
-<cfdump var="#getList#">
+
 <cf_big_list>
     <thead>
     <tr>
@@ -27,7 +26,10 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
                         #evaluate("#li#")#
                     </td>
                
-            </cfloop>            
+            </cfloop>   
+            <td>
+                <a href="#request.self#?fuseaction=#attributes.fuseaction#&event=upd&id=#ID#">Güncelle</a>
+            </td>
         </tr>
     </cfoutput>
 </tbody>
