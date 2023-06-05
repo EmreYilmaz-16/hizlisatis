@@ -51,7 +51,7 @@
     <div class="form-group" id="item-is_production">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Üretim </label>
         <div class="col col-8 col-md-8 col-sm-8 col-xs-12"> 
-            <input type="checkbox" name="IS_PRODUCTION" id="IS_PRODUCTION" value="1" checked="checked">Üretiliyor 
+            <input type="checkbox" name="IS_PRODUCTION" id="IS_PRODUCTION" value="1" >Üretiliyor 
         </div>
     </div>
     <div class="form-group" id="item-is_sales">
