@@ -17,7 +17,7 @@
         <cfquery name="getUnit" datasource="#dsn#">
             select * from workcube_metosan.SETUP_UNIT
             </cfquery>
-            <select name="UNIT_ID" id="UNIT_ID" >
+            <select name="UNIT_ID" id="UNIT_ID" onchange="setR()">
             <cfoutput query="getUnit">
                 <option value="#UNIT_ID#">#UNIT#</option>
             </cfoutput>
