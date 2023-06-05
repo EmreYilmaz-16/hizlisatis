@@ -5,7 +5,7 @@
 </cfquery>
 <cfset ix=1>
 <cfset iy=1>
-
+<cfquery name="INS" datasource="#DSN3#">
     INSERT INTO PRODUCT_CAT_PRODUCT_PARAM_SETTINGS (
         <cfoutput query="getA">
             #COLUMN_NAME#
@@ -33,3 +33,5 @@
         </cfoutput>
     )
     
+
+</cfquery>
