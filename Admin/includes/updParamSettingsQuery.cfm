@@ -1,4 +1,11 @@
-﻿
+﻿<cfif attributes.is_del eq 1>
+    <cfquery name="up" datasource="#dsn3#">
+        DELETE FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS WHERE ID=#attributes.ID#
+    </cfquery>
+     <script>
+        window.location.href='/index.cfm?fuseaction=settings.emptypopup_product_cat_param_settings&ev=list';
+    </script>
+</cfif>
 
 <cfquery name="up" datasource="#dsn3#">
     DELETE FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS WHERE ID=#attributes.ID#
