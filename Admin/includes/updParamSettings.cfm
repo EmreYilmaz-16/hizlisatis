@@ -4,7 +4,7 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
 WHERE PCS.ID=#attributes.ID#
 </cfquery>
 <cf_box title="Kategori Parametreleri Güncelle">
-    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&ev=upd" name="search_product">
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&ev=upd" name="search_product" id="search_product">
     <input type="hidden" name="ID" id="ID" value="<cfoutput>#attributes.ID#</cfoutput>">
         <div class="col col-3 col-md-4 col-sm-6 col-xs-12" type="column" index="1" sort="true">
         <div class="form-group" id="item-cat_id">
@@ -134,6 +134,7 @@ WHERE PCS.ID=#attributes.ID#
         <button type="submit" class="btn btn-success">Kaydet</button>
         <button type="button" class="btn btn-danger"  onclick="sil(<cfoutput>#attributes.id#</cfoutput>)">Sil</button>
     </div>
+    <input type="hidden" name="is_del" id="is_del" value="0"
     <input type="hidden" name="is_submit">
     
     </cfform>
@@ -146,6 +147,10 @@ WHERE PCS.ID=#attributes.ID#
             var e=document.getElementById("UNIT_ID")
             var t=e.options[e.selectedIndex].text
             document.getElementById("PRODUCT_UNIT").value=t;
+        }
+        function sil(){
+            document.getElementById("is_del").value=1
+            $("#search_product").submit();
         }
     </script>
     
