@@ -4,8 +4,9 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
 WHERE PCS.ID=#attributes.ID#
 </cfquery>
 <cf_box title="Kategori Parametreleri Güncelle">
-    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&ev=add" name="search_product">
-    <div class="col col-3 col-md-4 col-sm-6 col-xs-12" type="column" index="1" sort="true">
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&ev=upd" name="search_product">
+    <input type="hidden" name="ID" id="ID" value="<cfoutput>#attributes.ID#</cfoutput>">
+        <div class="col col-3 col-md-4 col-sm-6 col-xs-12" type="column" index="1" sort="true">
         <div class="form-group" id="item-cat_id">
             <label>Kategori </label>
             <div class="input-group">
