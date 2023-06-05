@@ -5,6 +5,7 @@
      <script>
         window.location.href='/index.cfm?fuseaction=settings.emptypopup_product_cat_param_settings&ev=list';
     </script>
+    <cfabort>
 </cfif>
 
 <cfquery name="up" datasource="#dsn3#">
