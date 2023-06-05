@@ -133,7 +133,8 @@ WHERE PCS.ID=#attributes.ID#
     
     </div>
     <input type="hidden" name="is_submit">
-    <input type="submit">
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <button type="button" class="btn btn-danger"  onclick="sil(<cfoutput>#attributes.id#</cfoutput>)">Sil</button>
     </cfform>
     </cf_box>
     <script>
