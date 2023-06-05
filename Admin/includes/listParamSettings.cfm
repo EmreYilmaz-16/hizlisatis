@@ -3,8 +3,6 @@
     select PCS.*,PC.PRODUCT_CAT,PC.HIERARCHY from workcube_metosan_1.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS PCS
 INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PRODUCT_CATID
 </cfquery>
-
-
 <cf_big_list>
     <thead>
     <tr>
@@ -12,11 +10,11 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
             <cfscript>
                 pos = ArrayFilter(ColumnData, function(item) {
                 return item.column_name == '#li#';
-            })[1];
+            });
             </cfscript>
             <cfoutput>
                 <th>
-                    #pos.column_name#
+                    #pos#
                 </th>
             </cfoutput>
         </cfloop>
