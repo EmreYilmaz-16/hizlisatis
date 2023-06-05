@@ -1,20 +1,24 @@
-﻿<cfquery name="getList" datasource="#dsn3#" result="RES">
+﻿<cf_box title="Kategori Parametreleri">
+<cfquery name="getList" datasource="#dsn3#" result="RES">
     select PCS.*,PC.PRODUCT_CAT,PC.HIERARCHY from workcube_metosan_1.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS PCS
 INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PRODUCT_CATID
 </cfquery>
 
 <cfdump var="#RES#">
 <cfdump var="#getList#">
-<table>
+<cf_big_list>
+    <thead>
     <tr>
         <cfloop list="#RES.COLUMNLIST#" item="li">
             <cfoutput>
-                <td>
+                <th>
                     #li#
-                </td>
+                </th>
             </cfoutput>
         </cfloop>
     </tr>
+</thead>
+<tbody>
     <cfoutput query="getList">
         <tr>
             <cfloop list="#RES.COLUMNLIST#" item="li">
@@ -26,4 +30,6 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
             </cfloop>            
         </tr>
     </cfoutput>
-</table>
+</tbody>
+</cf_big_list>
+</cf_box>
