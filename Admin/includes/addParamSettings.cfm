@@ -46,7 +46,7 @@
        </div>
     <div class="form-group" id="item-is_inventory">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Envanter </label>
-        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_INVENTORY" id="IS_INVENTORY" value="1" checked="">Envantere Dahil </div>
+        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_INVENTORY" id="IS_INVENTORY" value="1" >Envantere Dahil </div>
     </div>
     <div class="form-group" id="item-is_production">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Üretim </label>
@@ -56,11 +56,11 @@
     </div>
     <div class="form-group" id="item-is_sales">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Satış </label>
-        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_SALES" id="IS_SALES" value="1" checked="">Satışta </div>
+        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_SALES" id="IS_SALES" value="1" >Satışta </div>
     </div>
     <div class="form-group" id="item-is_purchase">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Tedarik </label>
-        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_PURCHASE" id="IS_PURCHASE" value="1" checked="">Tedarik Ediliyor </div>
+        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_PURCHASE" id="IS_PURCHASE" value="1" >Tedarik Ediliyor </div>
     </div>
     <div class="form-group" id="item-is_prototype">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Prototip </label>
@@ -104,7 +104,7 @@
     </div>
     <div class="form-group" id="item-is_cost">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Maliyet </label>
-        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_COST" id="IS_COST" value="1" checked="">Takip Ediliyor </div>
+        <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_COST" id="IS_COST" value="1" >Takip Ediliyor </div>
     </div>
     <div class="form-group" id="item-is_imported">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">İthal </label>
