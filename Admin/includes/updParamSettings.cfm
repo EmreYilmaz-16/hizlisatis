@@ -3,7 +3,7 @@
 INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PRODUCT_CATID
 WHERE PCS.ID=#attributes.ID#
 </cfquery>
-<cf_box title="Kategori Parametreleri Ekle">
+<cf_box title="Kategori Parametreleri Güncelle">
     <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&ev=add" name="search_product">
     <div class="col col-3 col-md-4 col-sm-6 col-xs-12" type="column" index="1" sort="true">
         <div class="form-group" id="item-cat_id">
@@ -11,8 +11,8 @@ WHERE PCS.ID=#attributes.ID#
             <div class="input-group">
                 <input type="hidden" name="PRODUCT_CATID" id="PRODUCT_CATID" value="<CFOUTPUT>#getData.PRODUCT_CATID#</CFOUTPUT>">
                 <input type="hidden" name="cat" id="cat" value="<CFOUTPUT>#getData.HIERARCHY#</CFOUTPUT>">
-                <input name="category_name" type="text" id="category_name" onfocus="AutoComplete_Create('category_name','PRODUCT_CATID,PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','','PRODUCT_CATID,HIERARCHY','PRODUCT_CATID,cat','','3','200','','1');" value="<CFOUTPUT>#getData.PRODUCT_CAT#</CFOUTPUT>" autocomplete="off">
-                <span class="input-group-addon icon-ellipsis btnPointer" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_product_cat_names&is_sub_category=1&field_id=search_product.PRODUCT_CATID&field_code=search_product.cat&field_name=search_product.category_name');"></span>
+                <input name="category_name" type="text" readonly id="category_name" onfocus="AutoComplete_Create('category_name','PRODUCT_CATID,PRODUCT_CAT,HIERARCHY','PRODUCT_CAT_NAME','get_product_cat','','PRODUCT_CATID,HIERARCHY','PRODUCT_CATID,cat','','3','200','','1');" value="<CFOUTPUT>#getData.PRODUCT_CAT#</CFOUTPUT>" autocomplete="off">
+              
             </div>
         </div>
         <div class="form-group">
