@@ -7,16 +7,16 @@
 <cfset iy=1>
 
     INSERT INTO PRODUCT_CAT_PRODUCT_PARAM_SETTINGS (
-        <CFLOOP query="getA">
+        <cfoutput query="getA">
             #COLUMN_NAME#
             <cfif ix lt getA.recordCount>
                 ,
             </cfif>
             <cfset ix=ix+1>
-        </CFLOOP>
+        </cfoutput>
     )
     VALUES (
-        <CFLOOP query="getA">
+        <cfoutput query="getA">
             <cfif isDefined("attributes.COLUMN_NAME") and len(evaluate("attributes.#COLUMN_NAME#"))>
                 <cfif DATA_TYPE EQ "nvarchar">
                 '#evaluate("attributes.#COLUMN_NAME#")#'
@@ -28,6 +28,6 @@
                 ,
             </cfif>
             <cfset iy=iy+1>
-        </CFLOOP>
+        </cfoutput>
     )
     
