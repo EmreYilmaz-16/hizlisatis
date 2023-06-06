@@ -136,6 +136,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname;
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
+    li.setAttribute("data-stock_id", arr[i].STOCK_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
@@ -430,6 +431,7 @@ function AddRowItem(
     var e = document.getElementById("ppidarea").children[0];
     var li = document.createElement("li");
     li.setAttribute("data-product_id", PRODUCT_ID);
+    li.setAttribute("data-stock_id", STOCK_ID);
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("class", "list-group-item");
@@ -488,6 +490,7 @@ function AddRowItem(
     var e = document.getElementById(COLUMNSA);
     var li = document.createElement("li");
     li.setAttribute("data-product_id", PRODUCT_ID);
+    li.setAttribute("data-stock_id", STOCK_ID);
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("class", "list-group-item");
@@ -557,7 +560,9 @@ function AgacGetir(agacim, sx = 0) {
   for (let i = 0; i < agacim.length; i++) {
     // console.log(agacim[i])
     var pid = agacim[i].getAttribute("data-product_id");
+    var sid=agacim[i].getAttribute("data-stock_id");
     var is_virtual = agacim[i].getAttribute("data-is_virtual");
+    var question_id=agacim[i].getAttribute("data-question_id")
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
@@ -567,6 +572,8 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.PRODUCT_NAME = pname;
     agacItem.AMOUNT = amount;
     agacItem.IS_VIRTUAL = is_virtual;
+    agacItem.STOCK_ID=sid;
+    agacItem.QUESTION_ID=question_id;
     agacItem.PRODUCT_TREE = new Array();
     var a = agacim[i].children;
     // obj=a
@@ -611,6 +618,7 @@ function addProdMain_(idb) {
   var p_cat_id = document.getElementById("productCatIdVp").value;
   var li = document.createElement("li");
   li.setAttribute("data-product_id", 0);
+  li.setAttribute("data-stock_id", 0);
   li.setAttribute("data-is_virtual", 1);
   li.setAttribute("class", "list-group-item");
   li.setAttribute("data-idb", idB);
@@ -733,6 +741,7 @@ function addProdSub_(el) {
 
   var li = document.createElement("li");
   li.setAttribute("data-product_id", 0);
+  li.setAttribute("data-stock_id", 0);
   li.setAttribute("data-is_virtual", 1);
   li.setAttribute("class", "list-group-item");
   li.setAttribute("data-idb", idB);
@@ -1008,6 +1017,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname;
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
+    li.setAttribute("data-stock_id", arr[i].STOCK_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
