@@ -639,7 +639,7 @@ function addProdMain_(idb) {
   span.setAttribute("name", "product_name_");
   span.innerText = pname;
   //prompt("Ürün Adı");
-  span.setAttribute("data-product_catid", p_cat_id);
+  li.setAttribute("data-product_catid", p_cat_id);
   var div = document.createElement("div");
   div.setAttribute("style", "display:flex");
   div.appendChild(span);
