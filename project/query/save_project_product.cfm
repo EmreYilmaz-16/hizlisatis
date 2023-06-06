@@ -43,6 +43,34 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
     <cfscript>
         InsertedItem=InsertTree(VP_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,ai.QUESTION_ID,ai.PRICE,ai.DISCOUNT,ai.MONEY,ai.IS_VIRTUAL);
     </cfscript>
+<cfelse>
+    <cfquery name="getParams" datasource="#dsn3#">
+        SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS WEHRE PRODUCT_CATID=#ai.PRODUCT_CATID#
+    </cfquery>
+    <cfscript>
+        CreatedProduct= CreateVirtualProduct(
+            ai.PRODUCT_NAME,
+            ai.PRODUCT_CATID,
+            0,
+            0,
+            99,
+            1,
+            '',
+            getParams.PRODUCT_UNIT,
+            FormData.PROJECT_ID,
+            '0',
+            0,
+            -6
+        );
+        CreatedProductId=CreatedProduct.IDENTITYCOL        
+    </cfscript>
+    <cfif arraylen(ai.AGAC)>
+        <cfloop array="#ai.AGAC#" index="idx">
+            <cfscript>
+                InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,idx.QUESTION_ID,idx.PRICE,idx.DISCOUNT,idx.MONEY,idx.IS_VIRTUAL);
+            </cfscript>
+        </cfloop>
+    </cfif>
 </cfif>
 <cfdump var="#InsertedItem#">
 </cfloop>
