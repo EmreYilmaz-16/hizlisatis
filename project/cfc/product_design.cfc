@@ -120,7 +120,7 @@
         <cfargument name="COMPANY_ID">
         <cfargument name="PRICE_CATID">
         <cfargument name="ddsn3">
-<cfif arguments.IS_VIRTUAL neq 1>
+<cfif arguments.IS_VIRTUAL neq 1 and len(arguments.PRODUCT_ID)>
 
             <cfquery name="getPrice" datasource="#arguments.ddsn3#">
                  SELECT
