@@ -38,6 +38,13 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 <cfif arrayLen(FormData.PRODUCT_TREE)>
 <cfloop array="#FormData.PRODUCT_TREE#" index="ai">
 <cfdump var="#ai#">
+<cfset VP_ID=1048>
+<cfif ai.PRODUCT_ID neq 0>
+    <cfscript>
+        InsertedItem=InsertTree(VP_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,ai.QUESTION_ID,ai.PRICE,ai.DISCOUNT,ai.MONEY,ai.IS_VIRTUAL);
+    </cfscript>
+</cfif>
+<cfdump var="#InsertedItem#">
 </cfloop>
 </cfif>
 </cfif>
