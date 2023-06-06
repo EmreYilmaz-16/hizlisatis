@@ -143,7 +143,12 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
         }else{
             mny="TL";
         }
-        InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,ai.QUESTION_ID,prcex,dsc,mny,ai.IS_VIRTUAL);
+        if(isDefined("ai.QUESTION_ID")){
+            queid=ai.QUESTION_ID;
+    }else{
+        queid="NULL";
+    }
+        InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL);
     </cfscript>
 <cfelse>
     <cfoutput>
