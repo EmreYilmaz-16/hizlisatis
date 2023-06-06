@@ -249,7 +249,7 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
         '#arguments.PRODUCT_UNIT#',
         #arguments.PROJECT_ID#,
         '#arguments.PRODUCT_VERSION#',
-        #arguments.PRODUCT_STAGE#,
+        <cfif len(arguments.PRODUCT_STAGE)>#arguments.PRODUCT_STAGE#<cfelse>339</cfif>,
         #arguments.PORCURRENCY#
     )
    </cfquery>
