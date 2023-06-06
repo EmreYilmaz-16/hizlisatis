@@ -12,8 +12,8 @@ LEFT JOIN #DSN3#.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS as PCPS ON PCPS.PRODUCT_CATI
 WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 </cfquery>
 
-
-<cfif FormData.PRODUCT_ID neq 0 and len(FormData.PRODUCT_ID)>
+FormData.PRODUCT_ID neq 0 and len(FormData.PRODUCT_ID)
+<cfif 1 eq 0>
 
 <cfelse>
     <!----
@@ -35,7 +35,10 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
     CreatedProductId=CreatedProduct.IDENTITYCOL
 </cfscript>
 <cfdump var="#CreatedProduct#">---->
+<cfdump var="#arrayLen(FormData.PRODUCT_TREE)#">
 <cfif arrayLen(FormData.PRODUCT_TREE)>
+    <cfdump var="#arrayLen(FormData.PRODUCT_TREE)#">
+    agacim var
 <cfloop array="#FormData.PRODUCT_TREE#" index="ai">
 <cfdump var="#ai#">
 <cfset VP_ID=1048>
@@ -44,8 +47,12 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
         InsertedItem=InsertTree(VP_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,ai.QUESTION_ID,ai.PRICE,ai.DISCOUNT,ai.MONEY,ai.IS_VIRTUAL);
     </cfscript>
 <cfelse>
+    <cfoutput>
+        #ai.PRODUCT_CATID#
+    </cfoutput>
+    
     <cfquery name="getParams" datasource="#dsn3#">
-        SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS WEHRE PRODUCT_CATID=#ai.PRODUCT_CATID#
+        SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#ai.PRODUCT_CATID#
     </cfquery>
     <cfscript>
         CreatedProduct= CreateVirtualProduct(
@@ -63,17 +70,48 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
             -6
         );
         CreatedProductId=CreatedProduct.IDENTITYCOL        
-        InsertedItem=InsertTree(VP_ID,CreatedProductId.PRODUCT_ID,0,ai.AMOUNT,ai.QUESTION_ID,ai.PRICE,ai.DISCOUNT,ai.MONEY,ai.IS_VIRTUAL);
+        if(isDefined("ai.price")){
+            prcex=ai.price;
+        }else{
+            prcex=0;
+        }
+        if(isDefined("ai.discount")){
+            dsc=ai.discount;
+        }else{
+            dsc=0;
+        }
+        if(isDefined("ai.MONEY")){
+            mny=ai.MONEY;
+        }else{
+            mny="TL";
+        }
+        InsertedItem=InsertTree(VP_ID,CreatedProductId,0,ai.AMOUNT,ai.QUESTION_ID,prcex,dsc,mny,ai.IS_VIRTUAL);
     </cfscript>
     <cfif arraylen(ai.AGAC)>
         <cfloop array="#ai.AGAC#" index="idx">
+            
             <cfscript>
-                InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,idx.QUESTION_ID,idx.PRICE,idx.DISCOUNT,idx.MONEY,idx.IS_VIRTUAL);
+                if(isDefined("idx.price")){
+                    prcex1=idx.price;
+                }else{
+                    prcex1=0;
+                }
+                if(isDefined("idx.discount")){
+                    dsc1=idx.discount;
+                }else{
+                    dsc1=0;
+                }
+                if(isDefined("idx.MONEY")){
+                    mny1=idx.MONEY;
+                }else{
+                    mny1="TL";
+                }
+                InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,idx.QUESTION_ID,prcex1,dsc1,mny1,idx.IS_VIRTUAL);
             </cfscript>
         </cfloop>
     </cfif>
 </cfif>
-<cfdump var="#InsertedItem#">
+
 </cfloop>
 </cfif>
 </cfif>
