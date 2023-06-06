@@ -150,7 +150,7 @@
                     AND ISNULL(P.SPECT_VAR_ID, 0) = 0 
 					AND P.PRODUCT_ID=#arguments.product_id#
             </cfquery>
-            <cfquery name="getDiscount" datasource="#arguments.dsn3#">
+            <cfquery name="getDiscount" datasource="#arguments.ddsn3#">
                 SELECT TOP 1
                     PCE.DISCOUNT_RATE
                 FROM
