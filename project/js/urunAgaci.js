@@ -40,7 +40,7 @@ function ngetTree(
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
-
+console.log(o);
         AgaciYaz(o, 0, "0", 1);
         var esd = document.getElementById("TreeArea");
         esd.innerHTML = "";
@@ -67,6 +67,7 @@ function ngetTree(
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
+        console.log(o);
         console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
