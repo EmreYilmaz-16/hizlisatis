@@ -36,9 +36,8 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 </cfscript>
 <cfdump var="#CreatedProduct#">---->
 <cfif arrayLen(FormData.PRODUCT_TREE)>
-<cfloop array="#FormData.PRODUCT_TREE#" index="i">
-    <CFSET AI=FormData.PRODUCT_TREE[i]>
-    <cfdump var="#AI#">
+<cfloop array="#FormData.PRODUCT_TREE#" index="ai">
+<cfdump var="#ai#">
 </cfloop>
 </cfif>
 </cfif>
@@ -148,7 +147,7 @@ SET PRODUCT_NAME = '#arguments.PRODUCT_NAME#'
     <cfargument name="DISCOUNT">
     <cfargument name="MONEY">
     <cfargument name="IS_VIRTUAL">
-    
+
 <cfquery name="ins" datasource="#dsn3#" result="res">
     
 
