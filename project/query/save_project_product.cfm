@@ -63,6 +63,7 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
             -6
         );
         CreatedProductId=CreatedProduct.IDENTITYCOL        
+        InsertedItem=InsertTree(VP_ID,CreatedProductId.PRODUCT_ID,0,ai.AMOUNT,ai.QUESTION_ID,ai.PRICE,ai.DISCOUNT,ai.MONEY,ai.IS_VIRTUAL);
     </cfscript>
     <cfif arraylen(ai.AGAC)>
         <cfloop array="#ai.AGAC#" index="idx">
