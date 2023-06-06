@@ -99,7 +99,7 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 
 
 <cfelse>
-    <!----
+   
 <cfscript>
    CreatedProduct= CreateVirtualProduct(
         FormData.PRODUCT_NAME,
@@ -117,7 +117,8 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
     );
     CreatedProductId=CreatedProduct.IDENTITYCOL
 </cfscript>
-<cfdump var="#CreatedProduct#">---->
+<cfdump var="#CreatedProduct#">
+
 <cfdump var="#arrayLen(FormData.PRODUCT_TREE)#">
 <cfif arrayLen(FormData.PRODUCT_TREE)>
     <cfdump var="#arrayLen(FormData.PRODUCT_TREE)#">
@@ -127,7 +128,7 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 
 <cfif ai.PRODUCT_ID neq 0>
     <cfscript>
-        InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,ai.QUESTION_ID,ai.PRICE,ai.DISCOUNT,ai.MONEY,ai.IS_VIRTUAL);
+        InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,ai.QUESTION_ID,ai.PRICE,ai.DISCOUNT,ai.MONEY,ai.IS_VIRTUAL);
     </cfscript>
 <cfelse>
     <cfoutput>
