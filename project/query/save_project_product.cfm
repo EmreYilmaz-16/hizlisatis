@@ -63,7 +63,7 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
                     }else{
                         mny="TL";
                     }
-                    InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,ai.QUESTION_ID,prcex,dsc,mny,ai.IS_VIRTUAL);
+                    InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,aiq,prcex,dsc,mny,ai.IS_VIRTUAL);
                 </cfscript>
                 <cfif arraylen(ai.AGAC)>
                     <cfloop array="#ai.AGAC#" index="idx">
