@@ -84,7 +84,12 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
                             }else{
                                 mny1="TL";
                             }
-                            InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,idx.QUESTION_ID,prcex1,dsc1,mny1,idx.IS_VIRTUAL);
+                            if(isDefined("idx.QUESTION_ID")){
+                                queid=idx.QUESTION_ID;
+                            }else{
+                                queid="TL";
+                            }
+                            InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,queid,prcex1,dsc1,mny1,idx.IS_VIRTUAL);
                         </cfscript>
                     </cfloop>
                 </cfif>
