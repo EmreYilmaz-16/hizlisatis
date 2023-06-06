@@ -324,7 +324,7 @@ SET PRODUCT_NAME = '#arguments.PRODUCT_NAME#'
     #arguments.PRODUCT_ID#,
     <cfif arguments.stock_id neq "undefined">#arguments.STOCK_ID#<cfelse>0</cfif>,
     #arguments.AMOUNT#,
-    #arguments.QUESTION_ID#,
+    <cfif len(arguments.QUESTION_ID)>#arguments.QUESTION_ID#<cfelse>NULL</cfif>,
     <cfif len(arguments.price)>#arguments.PRICE#<cfelse>0</cfif>,
     <cfif len(arguments.discount)>#arguments.DISCOUNT#<cfelse>0</cfif>,
     <cfif len(arguments.money)>'#arguments.MONEY#'<cfelse>'TL'</cfif>,
