@@ -579,6 +579,9 @@ function AgacGetir(agacim, sx = 0) {
     var p_cat_id = agacim[i].getAttribute("data-product_catid");
     var is_virtual = agacim[i].getAttribute("data-is_virtual");
     var question_id = agacim[i].getAttribute("data-question_id");
+    var price = agacim[i].getAttribute("data-price");
+    var money = agacim[i].getAttribute("data-other_money");
+    var discount = agacim[i].getAttribute("data-discount");
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
@@ -590,6 +593,9 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.IS_VIRTUAL = is_virtual;
     agacItem.STOCK_ID = sid;
     agacItem.QUESTION_ID = question_id;
+    agacItem.PRICE = price;
+    agacItem.MONEY = money;
+    agacItem.DISCOUNT = discount;
     if (p_cat_id != undefined) {
       agacItem.PRODUCT_CATID = p_cat_id;
     } else {
