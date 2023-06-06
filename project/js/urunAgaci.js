@@ -32,7 +32,11 @@ function ngetTree(
         "&isVirtual=" +
         is_virtual +
         "&ddsn3=" +
-        dsn3,
+        dsn3 +
+        "&company_id=" +
+        _compId +
+        "&price_catid=" +
+        _priceCatId,
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
@@ -55,7 +59,11 @@ function ngetTree(
         "&isVirtual=" +
         is_virtual +
         "&ddsn3=" +
-        dsn3,
+        dsn3 +
+        "&company_id=" +
+        _compId +
+        "&price_catid=" +
+        _priceCatId,
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
@@ -137,6 +145,8 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
+    li.setAttribute("data-price", arr[i], PRICE);
+    li.setAttribute("data-other_money", arr[i], OTHER_MONEY);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
@@ -560,9 +570,9 @@ function AgacGetir(agacim, sx = 0) {
   for (let i = 0; i < agacim.length; i++) {
     // console.log(agacim[i])
     var pid = agacim[i].getAttribute("data-product_id");
-    var sid=agacim[i].getAttribute("data-stock_id");
+    var sid = agacim[i].getAttribute("data-stock_id");
     var is_virtual = agacim[i].getAttribute("data-is_virtual");
-    var question_id=agacim[i].getAttribute("data-question_id")
+    var question_id = agacim[i].getAttribute("data-question_id");
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
@@ -572,8 +582,8 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.PRODUCT_NAME = pname;
     agacItem.AMOUNT = amount;
     agacItem.IS_VIRTUAL = is_virtual;
-    agacItem.STOCK_ID=sid;
-    agacItem.QUESTION_ID=question_id;
+    agacItem.STOCK_ID = sid;
+    agacItem.QUESTION_ID = question_id;
     agacItem.PRODUCT_TREE = new Array();
     var a = agacim[i].children;
     // obj=a
