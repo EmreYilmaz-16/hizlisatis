@@ -139,8 +139,6 @@ SET PRODUCT_NAME = '#arguments.PRODUCT_NAME#'
 </cffunction>
 
 <cffunction name="InsertTree">
-    
-<cfquery name="ins" datasource="#dsn3#" result="res">
     <cfargument name="VP_ID">
     <cfargument name="PRODUCT_ID">
     <cfargument name="STOCK_ID">
@@ -150,6 +148,10 @@ SET PRODUCT_NAME = '#arguments.PRODUCT_NAME#'
     <cfargument name="DISCOUNT">
     <cfargument name="MONEY">
     <cfargument name="IS_VIRTUAL">
+    
+<cfquery name="ins" datasource="#dsn3#" result="res">
+    
+
     INSERT INTO VIRTUAL_PRODUCT_TREE_PRT (    
     VP_ID,
     PRODUCT_ID,
