@@ -128,7 +128,22 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 
 <cfif ai.PRODUCT_ID neq 0>
     <cfscript>
-        InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,ai.QUESTION_ID,ai.PRICE,ai.DISCOUNT,ai.MONEY,ai.IS_VIRTUAL);
+        if(isDefined("ai.price")){
+            prcex=ai.price;
+        }else{
+            prcex=0;
+        }
+        if(isDefined("ai.discount")){
+            dsc=ai.discount;
+        }else{
+            dsc=0;
+        }
+        if(isDefined("ai.MONEY")){
+            mny=ai.MONEY;
+        }else{
+            mny="TL";
+        }
+        InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,ai.QUESTION_ID,prcex,dsc,mny,ai.IS_VIRTUAL);
     </cfscript>
 <cfelse>
     <cfoutput>
