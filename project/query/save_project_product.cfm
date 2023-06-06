@@ -184,7 +184,12 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
         }else{
             mny="TL";
         }
-        InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,ai.QUESTION_ID,prcex,dsc,mny,ai.IS_VIRTUAL);
+        if(isDefined("ai.QUESTION_ID")){
+                queid=ai.QUESTION_ID;
+        }else{
+            queid="NULL";
+        }
+        InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL);
     </cfscript>
     <cfif arraylen(ai.AGAC)>
         <cfloop array="#ai.AGAC#" index="idx">
