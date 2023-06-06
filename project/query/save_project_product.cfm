@@ -16,6 +16,7 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 <cfif FormData.PRODUCT_ID neq 0 and len(FormData.PRODUCT_ID)>
 
 <cfelse>
+    <!----
 <cfscript>
    CreatedProduct= CreateVirtualProduct(
         FormData.PRODUCT_NAME,
@@ -31,8 +32,15 @@ WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
         FormData.PRODUCT_STAGE,
         -6
     );
+    CreatedProductId=CreatedProduct.IDENTITYCOL
 </cfscript>
-<cfdump var="#CreatedProduct#">
+<cfdump var="#CreatedProduct#">---->
+<cfif arrayLen(FormData.PRODUCT_TREE)>
+<cfloop array="#FormData.PRODUCT_TREE#" index="i">
+    <CFSET AI=FormData.PRODUCT_TREE[i]>
+    <cfdump var="#AI#">
+</cfloop>
+</cfif>
 </cfif>
 
 
@@ -128,4 +136,43 @@ SET PRODUCT_NAME = '#arguments.PRODUCT_NAME#'
     
    
 
+</cffunction>
+
+<cffunction name="InsertTree">
+    
+<cfquery name="ins" datasource="#dsn3#" result="res">
+    <cfargument name="VP_ID">
+    <cfargument name="PRODUCT_ID">
+    <cfargument name="STOCK_ID">
+    <cfargument name="AMOUNT">
+    <cfargument name="QUESTION_ID">
+    <cfargument name="PRICE">
+    <cfargument name="DISCOUNT">
+    <cfargument name="MONEY">
+    <cfargument name="IS_VIRTUAL">
+    INSERT INTO VIRTUAL_PRODUCT_TREE_PRT (    
+    VP_ID,
+    PRODUCT_ID,
+    STOCK_ID,
+    AMOUNT,
+    QUESTION_ID,
+    PRICE,
+    DISCOUNT,
+    MONEY,
+    IS_VIRTUAL
+    )
+    VALUES(
+        #arguments.VP_ID#,
+    #arguments.PRODUCT_ID#,
+    #arguments.STOCK_ID#,
+    #arguments.AMOUNT#,
+    #arguments.QUESTION_ID#,
+    #arguments.PRICE#,
+    #arguments.DISCOUNT#,
+    '#arguments.MONEY#',
+    #arguments.IS_VIRTUAL#
+    )
+
+</cfquery>
+<cfreturn res>
 </cffunction>
