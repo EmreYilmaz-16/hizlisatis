@@ -4,7 +4,7 @@
 INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PRODUCT_CATID
 </cfquery>
 <cfset YenListe=ListSort(RES.COLUMNLIST,'text',"asc")>
-<cfdump var="#RES#">
+
 <cf_big_list>
     <thead>
     <tr>
