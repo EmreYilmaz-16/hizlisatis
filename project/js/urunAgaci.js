@@ -147,8 +147,8 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
     li.setAttribute("data-price", arr[i].PRICE);
-    li.setAttribute("data-other_money", arr[i]. MONEY);
-    li.setAttribute("data-discount", arr[i]. DISCOUNT);
+    li.setAttribute("data-other_money", arr[i].MONEY);
+    li.setAttribute("data-discount", arr[i].DISCOUNT);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
@@ -573,6 +573,7 @@ function AgacGetir(agacim, sx = 0) {
     // console.log(agacim[i])
     var pid = agacim[i].getAttribute("data-product_id");
     var sid = agacim[i].getAttribute("data-stock_id");
+    var p_cat_id = agacim[i].getAttribute("data-product_catid");
     var is_virtual = agacim[i].getAttribute("data-is_virtual");
     var question_id = agacim[i].getAttribute("data-question_id");
     //console.log(agacim[i])
@@ -586,6 +587,11 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.IS_VIRTUAL = is_virtual;
     agacItem.STOCK_ID = sid;
     agacItem.QUESTION_ID = question_id;
+    if (p_cat_id != undefined) {
+      agacItem.PRODUCT_CATID = p_cat_id;
+    } else {
+      agacItem.PRODUCT_CATID = 0;
+    }
     agacItem.PRODUCT_TREE = new Array();
     var a = agacim[i].children;
     // obj=a
