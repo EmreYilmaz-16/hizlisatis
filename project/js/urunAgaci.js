@@ -40,7 +40,7 @@ function ngetTree(
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
-console.log(o);
+        console.log(o);
         AgaciYaz(o, 0, "0", 1);
         var esd = document.getElementById("TreeArea");
         esd.innerHTML = "";
@@ -146,7 +146,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
 
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
-    li.setAttribute("data-price", arr[i], PRICE);
+    li.setAttribute("data-price", arr[i].PRICE);
     li.setAttribute("data-other_money", arr[i], OTHER_MONEY);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
