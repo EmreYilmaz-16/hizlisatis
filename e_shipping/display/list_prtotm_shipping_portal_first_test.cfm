@@ -93,7 +93,7 @@
 		<cfelse>
 WHERE TTQ.AA_ORDER>0
 	</cfif>
-	ORDER BY DD ASC 
+	ORDER BY DD DESC 
 	</cfquery>
 	<cfdump var="#GetLocationStocks#">
 	<cfset kayitsayisi=GetLocationStocks.recordcount>
