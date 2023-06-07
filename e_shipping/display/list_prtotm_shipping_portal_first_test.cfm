@@ -137,7 +137,7 @@ WHERE TTQ.AA_ORDER>0
 		<cfif getOrderAmount.recordCount>
 			<cfset SiparisMiktari=getOrderAmount.QUANTITY>
 		</cfif>
-	<cf_box title="#GetLocationStocks.PRODUCT_CODE[i]# --&gt; #GetLocationStocks.PRODUCT_NAME[i]# --&gt;#dateFormat(DD,'dd/mm/yyyy')#" resize="0" collapsable="0">
+	<cf_box title="#GetLocationStocks.PRODUCT_CODE[i]# --&gt; #GetLocationStocks.PRODUCT_NAME[i]# --&gt;#dateFormat(GetLocationStocks.DD,'dd/mm/yyyy')#" resize="0" collapsable="0">
 		
 		<table>
 			<tr><td>
