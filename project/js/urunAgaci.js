@@ -416,7 +416,7 @@ function newDraft() {
   var p_unit = res.PRODUCT_UNIT[0];
   $.ajax({
     url:
-      "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&productName=" +
+      "/AddOns/Partner/project/cfc/product_design.cfc?method=NewDraft&productName=" +
       enmae +
       "&PRODUCT_CATID=" +
       p_cat_id +
