@@ -65,7 +65,8 @@
 	</style>
 	<cfquery name="GetLocationStocks" datasource="#dsn2#">
 	SELECT * FROM (
-	SELECT  S.*,P.PRODUCT_CODE,P.PRODUCT_NAME,(select MAX(PROCESS_DATE) from #dsn2#.STOCKS_ROW where STOCK_ID=S.STOCK_ID AND STOCK_IN IS NOT NULL) DD,
+	SELECT  S.*,P.PRODUCT_CODE,P.PRODUCT_NAME,(select MAX(PROCESS_DATE) from #dsn2#.STOCKS_ROW where STOCK_ID=S.STOCK_ID AND STOCK_IN IS NOT NULL AND STORE_LOCATION = #attributes.loc#
+			AND STORE=#attributes.dep#) DD,
 	(	SELECT SUM(ordr.QUANTITY) AS QUANTITY
 			FROM workcube_metosan_1.ORDER_ROW AS ordr
 				,workcube_metosan_1.ORDERS AS ord
