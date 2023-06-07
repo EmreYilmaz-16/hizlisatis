@@ -424,8 +424,7 @@ function newDraft() {
       p_unit +
       "&PROJECT_ID=" +
       project_id +
-      "&ddsn3=" +
-      dsn3,
+      "&ddsn3=workcube_metosan_1",
     success: function (retDat) {
       console.log(retDat);
     },
