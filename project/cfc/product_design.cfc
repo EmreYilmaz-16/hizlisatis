@@ -194,4 +194,51 @@
         </cfif>
         
     </cffunction>
+
+    <cffunction name="NewDraft" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
+        <cfargument name="PRODUCT_NAME">
+        <cfargument name="PRODUCT_CATID">
+        <cfargument name="PRODUCT_UNIT">
+        <cfargument name="PROJECT_ID">
+        <cfargument name="ddsn3">
+<cfquery name="ins" datasource="#arguments.ddsn3#">
+    INSERT INTO VIRTUAL_PRODUCTS_PRT (
+    PRODUCT_NAME,
+    PRODUCT_CATID,
+    PRICE,
+    MARJ,
+    PRODUCT_TYPE,
+    IS_CONVERT_REAL,
+    IS_PRODUCTION,
+    RECORD_EMP,
+    RECORD_DATE,
+    PRODUCT_DESCRIPTION,
+    PRODUCT_UNIT,
+    PROJECT_ID,
+    PRODUCT_VERSION,
+    PRODUCT_STAGE,
+    PORCURRENCY
+)
+VALUES (
+    '#arguments.PRODUCT_NAME#',
+    #arguments.PRODUCT_CATID#,
+    0,
+    0,
+    0,
+    0,
+    1,
+    #session.ep.userid#,
+    GETDATE(),
+    '',
+    '#arguments.PRODUCT_UNIT#',
+    #arguments.PROJECT_ID#,
+    '',
+    339,
+    -6
+)
+</cfquery>
+
+
+
+    </cffunction>
 </cfcomponent>

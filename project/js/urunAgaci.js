@@ -407,7 +407,24 @@ function newDraft() {
   if (enmae == null || enmae.trim().length == 0) return false;
   idA = 1000;
   console.log("Yeni Taslak");
-  var d = document.createElement("div");
+  var project_id = getParameterByName("project_id");
+  $.ajax({
+    url:
+      "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&productName=" +
+      enmae +
+      "&PRODUCT_CATID=" +
+      p_cat_id +
+      "&PRODUCT_UNIT=" +
+      p_unit +
+      "&PROJECT_ID=" +
+      project_id +
+      "&ddsn3=" +
+      dsn3,
+    success: function (retDat) {
+      console.log(retDat);
+    },
+  });
+  /*var d = document.createElement("div");
   d.setAttribute("id", "ppidarea");
   var ul = document.createElement("ul");
   ul.setAttribute("id", idA);
@@ -423,7 +440,7 @@ function newDraft() {
   //var project_id = $("#project_id").val();
   $("#pstage").val("");
   e.appendChild(d);
-  $("#pnamemain").val(enmae);
+  $("#pnamemain").val(enmae);*/
 }
 function AddRowItem(
   PRODUCT_ID,
@@ -505,9 +522,9 @@ function AddRowItem(
     li.setAttribute("data-stock_id", STOCK_ID);
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("data-is_virtual", 0);
-    li.setAttribute("data-price",PRICE);
-    li.setAttribute("data-other_money",MONEY)
-    li.setAttribute("data-discount",DISCOUNT_RATE)
+    li.setAttribute("data-price", PRICE);
+    li.setAttribute("data-other_money", MONEY);
+    li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
     idB++;
