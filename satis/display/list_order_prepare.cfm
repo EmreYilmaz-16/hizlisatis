@@ -28,6 +28,8 @@ AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
 
 AND SRR.PREPARE_PERSONAL=#session.EP.USERID#
 AND ORR.ORDER_ROW_CURRENCY NOT IN(-3,-10)
+
+ORDER BY DELIVER_PAPER_NO
 </cfquery>
 <cfif session.ep.userid eq 1146>
     <cfdump var="#GETsEVKS#">
