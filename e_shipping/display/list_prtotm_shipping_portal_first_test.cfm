@@ -93,7 +93,7 @@
 		<cfelse>
 WHERE TTQ.AA_ORDER>0
 	</cfif>
-	ORDER BY DD 
+	ORDER BY DD DESC 
 	</cfquery>
 	
 	<cfset kayitsayisi=GetLocationStocks.recordcount>
@@ -130,7 +130,7 @@ WHERE TTQ.AA_ORDER>0
 			AND c.COMPANY_ID = ord.COMPANY_ID
 			AND ord.PURCHASE_SALES=1
 			GROUP BY C.FULLNAME,ord.ORDER_DATE,ord.ORDER_ID,ord.ORDER_NUMBER
-			order by ord.ORDER_DATE asc
+			order by ord.ORDER_DATE desc
 					
 		</cfquery>
 		<cfset SiparisMiktari=0>
