@@ -408,6 +408,12 @@ function newDraft() {
   idA = 1000;
   console.log("Yeni Taslak");
   var project_id = getParameterByName("project_id");
+  var q =
+    "select * from workcube_metosan_1.GetCatParamsPBS where PROJECT_ID=" +
+    project_id;
+  var res = wrk_query(q, "dsn3");
+  var p_cat_id = res.PRODUCT_CATID[0];
+  var p_unit = res.PRODUCT_UNIT[0];
   $.ajax({
     url:
       "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&productName=" +
