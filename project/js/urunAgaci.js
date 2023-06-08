@@ -176,7 +176,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
       "text",
       "amount",
       "onchange",
-      "console.log(this)",
+      "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
       arr[i].AMOUNT
@@ -490,7 +490,7 @@ function AddRowItem(
       "text",
       "amount",
       "onchange",
-      "console.log(this)",
+      "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
       1
@@ -552,7 +552,7 @@ function AddRowItem(
       "text",
       "amount",
       "onchange",
-      "console.log(this)",
+      "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
       1
@@ -691,7 +691,7 @@ function addProdMain_(idb) {
   );
   var input = document.createElement("input");
   input.setAttribute("type", "text");
-  input.setAttribute("onchange", "console.log(this)");
+  input.setAttribute("onchange", "MaliyetHesapla();");
   input.setAttribute("class", "form-control form-control-sm");
   input.setAttribute("style", "width:33%");
   input.setAttribute("name", "amount");
@@ -813,7 +813,7 @@ function addProdSub_(el) {
   );
   var input = document.createElement("input");
   input.setAttribute("type", "text");
-  input.setAttribute("onchange", "console.log(this)");
+  input.setAttribute("onchange", "MaliyetHesapla();");
   input.setAttribute("class", "form-control form-control-sm");
   input.setAttribute("style", "width:33%");
   input.setAttribute("name", "amount");
@@ -1098,7 +1098,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
       "text",
       "amount",
       "onchange",
-      "console.log(this)",
+      "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
       arr[i].AMOUNT
