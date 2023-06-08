@@ -428,6 +428,7 @@ function newDraft() {
       "&ddsn3=workcube_metosan_1",
     success: function (retDat) {
       console.log(retDat);
+      getProjectProducts(project_id)
     },
   });
   /*var d = document.createElement("div");
