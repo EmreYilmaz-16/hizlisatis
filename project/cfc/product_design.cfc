@@ -263,7 +263,7 @@ VALUES (
           </cfquery>
         <cfsavecontent variable="leftMenu">
             <cfoutput query="getP">             
-                <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
+                <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#arguments.ddsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
                     #PRODUCT_NAME#
                     <cfif PRODUCT_STAGE eq 339>
                         <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
