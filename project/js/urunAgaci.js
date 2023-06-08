@@ -52,7 +52,7 @@ function ngetTree(
         MaliyetHesapla();
       },
     });
-  } else {
+  } else if (tip == 2) {
     $.ajax({
       url:
         "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
@@ -89,6 +89,8 @@ function ngetTree(
         ;*/
       },
     });
+  } else if (tip == 3) {
+    console.log(arguments);
   }
 }
 function patnerEkle(oo) {
@@ -428,7 +430,7 @@ function newDraft() {
       "&ddsn3=workcube_metosan_1",
     success: function (retDat) {
       console.log(retDat);
-      getProjectProducts(project_id)
+      getProjectProducts(project_id);
     },
   });
   /*var d = document.createElement("div");
@@ -1284,3 +1286,7 @@ function getProjectProducts(projectId) {
         <cfargument name="projectId">
         <cfargument name="ddsn3">
 */
+
+function addToCurrentTree(vp_id) {
+  var e = ngetTree(vp_id, 1, "workcube_metosan_1", "", 3, "", "", "");
+}
