@@ -1214,3 +1214,32 @@ document.getElementByIdb = function (idb) {
   var el = $("*").find("* [data-idb='" + str + "']")[0];
   return el;
 };
+
+function MaliyetHesapla() {
+  var TotalPrice = 0;
+  var Products = $("#ppidarea *li");
+  Products.each(function (ix, Product) {
+    // console.log(Product)
+    console.log($(Product).find("input[name='amount']"));
+    var miktar = $(Product).find("input[name='amount']").val();
+    var price = Product.getAttribute("data-price");
+    var money = Product.getAttribute("data-other_money");
+    var discount = Product.getAttribute("data-discount");
+    //  console.log(price,money,discount)
+
+    if (price == undefined) price = 0;
+    if (money == undefined) money = "TL";
+    if (discount == undefined) discount = 0;
+    price = parseFloat(price);
+    discount = parseFloat(discount);
+    miktar = parseFloat(miktar);
+    var Rate2 = moneyArr[moneyArr.findIndex((p) => p.MONEY == money)].RATE2;
+    Rate2 = parseFloat(Rate2);
+    var indirimli = price - (price * discount) / 100;
+    var Tprice = indirimli * Rate2 * miktar;
+    console.log(Tprice);
+    TotalPrice += Tprice;
+  });
+  var Mn = commaSplit(TotalPrice);
+  $("#maliyet").val(Mn);
+}
