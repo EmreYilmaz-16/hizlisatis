@@ -125,7 +125,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     <div>
         <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
     </div>
-    <div class="list-group">
+    <div class="list-group" id="leftMenuProject">
 
    
         <cfoutput query="getP">             
