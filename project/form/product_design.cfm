@@ -37,6 +37,27 @@
       </cfoutput>
   ]
 </script>
+<cfquery name="getMoney" datasource="#dsn#">
+  SELECT 
+(SELECT RATE1 FROM workcube_metosan.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
+SELECT MAX(MONEY_HISTORY_ID) FROM workcube_metosan.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE1,
+(SELECT RATE2 FROM workcube_metosan.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
+SELECT MAX(MONEY_HISTORY_ID) FROM workcube_metosan.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE2,
+SM.MONEY
+FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
+</cfquery>
+
+<script>
+   var moneyArr=[
+       <cfoutput query="getMoney">
+           {
+               MONEY:"#MONEY#",
+               RATE1:"#RATE1#",
+               RATE2:"#RATE2#",
+           },
+       </cfoutput>
+   ]
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <cfparam name="attributes.project_id" default="2563">
 
