@@ -46,7 +46,7 @@
  SM.MONEY
  FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
  </cfquery>
- </cfif>
+ 
  <script>
      var moneyArr=[
          <cfoutput query="getMoney">
