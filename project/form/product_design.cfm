@@ -138,7 +138,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
               <cfelse>
                   <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
               </cfif>    
-              <code><small>#MAIN_PROCESS_CAT#</small></code>            
+              <code style="display: table-cell;color:##e83e8c"><small style="font-size:7pt">#MAIN_PROCESS_CAT#</small></code>            
           </a>      
           
           </cfoutput>
