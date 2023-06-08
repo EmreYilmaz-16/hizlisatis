@@ -2,7 +2,7 @@
 <cfset FormData=deserializeJSON(attributes.data)>
 
 <cfdump var="#FormData#">
-<cfabort>
+
 <cfquery name="getFr" datasource="#dsn3#">
     SELECT PCPS.*,PC.HIERARCHY,PC.PRODUCT_CAT,PC.DETAIL FROM #DSN#.PRO_PROJECTS AS PP
     LEFT JOIN #DSN#.SETUP_MAIN_PROCESS_CAT AS SMC ON SMC.MAIN_PROCESS_CAT_ID=PP.PROCESS_CAT
@@ -44,7 +44,7 @@
                     getParams.PRODUCT_UNIT,
                     FormData.PROJECT_ID,
                     '0',
-                    0,
+                    FormData.PRODUCT_STAGE,
                     -6
                 );
                 CreatedProductId=CreatedProduct.IDENTITYCOL        
