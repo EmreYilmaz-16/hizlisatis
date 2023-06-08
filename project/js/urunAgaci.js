@@ -49,6 +49,7 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
+        MaliyetHesapla();
       },
     });
   } else {
@@ -75,6 +76,7 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
+        MaliyetHesapla();
         /* console.log(o);
         ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -589,6 +591,7 @@ function AddRowItem(
   if (q.recordcount > 0) {
     ngetTree(STOCK_ID, 0, "workcube_metosan_1", "", 2, li);
   }
+  MaliyetHesapla();
 }
 
 function AgacGetir(agacim, sx = 0) {
@@ -741,6 +744,7 @@ function addProdMain_(idb) {
   }
   agacGosterEkle();
   sortableYap();
+  MaliyetHesapla();
 }
 
 function OpenBasketProducts_Pars(el) {
@@ -857,6 +861,7 @@ function addProdSub_(el) {
   }
   agacGosterEkle();
   sortableYap();
+  MaliyetHesapla();
 }
 function getCats(el, ev) {
   console.log(ev);
@@ -1220,16 +1225,16 @@ function MaliyetHesapla() {
   var Products = $("#ppidarea *li");
   Products.each(function (ix, Product) {
     // console.log(Product)
-    console.log($(Product).find("input[name='amount']"));
+    //console.log($(Product).find("input[name='amount']"))
     var miktar = $(Product).find("input[name='amount']").val();
     var price = Product.getAttribute("data-price");
     var money = Product.getAttribute("data-other_money");
     var discount = Product.getAttribute("data-discount");
-    //  console.log(price,money,discount)
+    //console.log(price,money,discount)
 
-    if (price == undefined) price = 0;
-    if (money == undefined) money = "TL";
-    if (discount == undefined) discount = 0;
+    if (price == undefined || price.length == 0) price = 0;
+    if (money == undefined || money.trim().length == 0) money = "TL";
+    if (discount == undefined || discount.length == 0) discount = 0;
     price = parseFloat(price);
     discount = parseFloat(discount);
     miktar = parseFloat(miktar);
