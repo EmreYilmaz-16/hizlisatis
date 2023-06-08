@@ -1249,13 +1249,19 @@ function MaliyetHesapla() {
   $("#maliyet").val(Mn);
 }
 
-function updateStage(el,projectId){
-  var vp_id=document.getElementById("vp_id").value;
+function updateStage(el, projectId) {
+  var vp_id = document.getElementById("vp_id").value;
   $.ajax({
-    url:"/AddOns/Partner/project/cfc/product_design.cfc?method=updateStage&vp_id="+vp_id+"&psatge="+el.value+"&ddsn3=workcube_metosan_1" ,
-
-  })
-
+    url:
+      "/AddOns/Partner/project/cfc/product_design.cfc?method=updateStage&vp_id=" +
+      vp_id +
+      "&psatge=" +
+      el.value +
+      "&ddsn3=workcube_metosan_1",
+    success: function (retDat) {
+      console.log(retDat);
+    },
+  });
 }
 /*
  <cfargument name="vp_id">
