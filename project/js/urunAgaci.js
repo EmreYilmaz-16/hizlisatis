@@ -1264,11 +1264,11 @@ function updateStage(el, projectId) {
   });
 }
 function getProjectProducts(projectId) {
-  var vp_id = document.getElementById("vp_id").value;
+ // var vp_id = document.getElementById("vp_id").value;
   $.ajax({
     url:
       "/AddOns/Partner/project/cfc/product_design.cfc?method=getProjectProducts&PROJECT_ID=" +
-      vp_id +
+      projectId +
       "&ddsn3=workcube_metosan_1",
     success: function (retDat) {
       console.log(retDat);
