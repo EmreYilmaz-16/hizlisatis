@@ -123,8 +123,8 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
       <hr>
       <div class="list-group" id="leftMenuProject"> 
           <cfoutput query="getP2">
-            <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
-              <span style="float:left;font-size:11pt" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">+</span>#PRODUCT_NAME#
+            <a class="list-group-item list-group-item-action">
+              <span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">+</span>#PRODUCT_NAME#
               <cfif PRODUCT_STAGE eq 339>
                   <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
               <cfelseif PRODUCT_STAGE eq 340>
