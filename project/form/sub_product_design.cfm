@@ -128,25 +128,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     <div class="list-group">
 
    
-        <cfoutput query="getP">
-           <!---- <li style="background: lightgrey;border-radius: 5px;">                
-                    <div class="ui-cards ui-cards-vertical">                        
-                        <div class="ui-cards-text">
-                            <ul class="ui-info-list">
-                                <li>
-                                    Ürün Adı : <i></i>
-                                </li>                               
-                                <li>
-                                    Durum : <i></i>
-                                </li>                              
-                            </ul>
-                            <ul class="ui-icon-list">
-                                <li><a href="javascript://" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#')" title="Görüntüle"></a></li>
-                            </ul>
-                        </div>
-                    </div>               
-            </li>    ------>
-           
+        <cfoutput query="getP">             
             <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
                 #PRODUCT_NAME#
                 <cfif PRODUCT_STAGE eq 339>
@@ -157,16 +139,8 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                     <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
                 <cfelse>
                     <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
-                </cfif>
-                
-            </a> 
-            <!---<div class="card-body">
-                  <h5 class="card-title"></h5>
-                  <p class="card-text"></p>
-                  <button type="button" ><i class="icon-search"></i> Görüntüle</button>
-                </div>
-              </div>
-            ---->
+                </cfif>                
+            </a>     
         </cfoutput>
     </div>
         <hr>

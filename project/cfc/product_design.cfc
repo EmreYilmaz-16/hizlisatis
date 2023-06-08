@@ -252,4 +252,31 @@ VALUES (
         </cfquery>
         <cfreturn "Kayit Başarılı">
     </cffunction>
+
+    <cffunction name="getProjectProducts" access="remote" httpMethod="POST" returntype="any" returnformat="plain">
+        <cfargument name="PROJECT_ID">
+        <cfargument name="ddsn3">
+        <cfquery name="getP" datasource="#arguments.ddsn3#">
+            SELECT VP.*,1 AS IS_MAIN,PTR.STAGE FROM VIRTUAL_PRODUCTS_PRT  AS VP
+                LEFT JOIN #dsn#.PROCESS_TYPE_ROWS AS PTR ON PTR.PROCESS_ROW_ID=VP.PRODUCT_STAGE
+            WHERE PROJECT_ID=#arguments.PROJECT_ID#           
+          </cfquery>
+        <cfsavecontent variable="leftMenu">
+            <cfoutput query="getP">             
+                <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
+                    #PRODUCT_NAME#
+                    <cfif PRODUCT_STAGE eq 339>
+                        <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
+                    <cfelseif PRODUCT_STAGE eq 340>
+                        <span style="float:right;font-size:11pt" class="badge bg-success rounded-pill">#STAGE#</span>
+                    <cfelseif PRODUCT_STAGE eq 341>
+                        <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
+                    <cfelse>
+                        <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
+                    </cfif>                
+                </a>     
+            </cfoutput>
+        </cfsavecontent>
+        <cfreturn leftMenu>
+    </cffunction>
 </cfcomponent>
