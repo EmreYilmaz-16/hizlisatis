@@ -177,7 +177,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
       <cfquery name="getStages" datasource="#dsn3#">
           SELECT STAGE,PROCESS_ROW_ID FROM workcube_metosan.PROCESS_TYPE_ROWS WHERE PROCESS_ID=200
       </cfquery>
-      <select class="form-control" name="pstage" id="pstage" style="width:33%">
+      <select class="form-control" name="pstage" id="pstage" style="width:33%" onchange="updateStage(this,<cfoutput>#attributes.project_id#</cfoutput>)">
           <option value="">Aşama</option>
           <cfoutput query="getStages">
               <option value="#PROCESS_ROW_ID#">#STAGE#</option>
