@@ -170,7 +170,7 @@ agacim var
         getParams.PRODUCT_UNIT,
         FormData.PROJECT_ID,
         '0',
-        0,
+        FormData.PRODUCT_STAGE,
         -6
     );
     CreatedProductId=CreatedProduct.IDENTITYCOL        
