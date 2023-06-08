@@ -150,7 +150,6 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-other_money", arr[i].MONEY);
     li.setAttribute("data-discount", arr[i].DISCOUNT);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
-    ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
     li.setAttribute("data-idb", idB);
@@ -467,7 +466,9 @@ function AddRowItem(
     li.setAttribute("data-product_id", PRODUCT_ID);
     li.setAttribute("data-stock_id", STOCK_ID);
     li.setAttribute("data-is_virtual", 0);
-    li.setAttribute("data-is_virtual", 0);
+    li.setAttribute("data-price", PRICE);
+    li.setAttribute("data-other_money", MONEY);
+    li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
     idB++;
