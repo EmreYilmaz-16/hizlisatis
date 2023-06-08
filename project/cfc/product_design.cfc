@@ -241,4 +241,15 @@ VALUES (
 
 
     </cffunction>
+
+    <cffunction name="updateStage" access="remote" httpMethod="POST" returntype="any" returnformat="plain">
+        <cfargument name="vp_id">
+        <cfargument name="psatge">
+        <cfargument name="projectId">
+        <cfargument name="ddsn3">
+        <cfquery name="upd" datasource="#arguments.ddsn3#">
+            UPDATE VIRTUAL_PRODUCTS_PRT SET PRODUCT_STAGE=#arguments.psatge# where VIRTUAL_PRODUCT_ID=#arguments.vp_id#
+        </cfquery>
+        <cfreturn "Kayit Başarılı">
+    </cffunction>
 </cfcomponent>

@@ -1248,3 +1248,18 @@ function MaliyetHesapla() {
   var Mn = commaSplit(TotalPrice);
   $("#maliyet").val(Mn);
 }
+
+function updateStage(el,projectId){
+  var vp_id=document.getElementById("vp_id").value;
+  $.ajax({
+    url:"/AddOns/Partner/project/cfc/product_design.cfc?method=updateStage&vp_id="+vp_id+"&psatge="+el.value+"&ddsn3=workcube_metosan_1" ,
+
+  })
+
+}
+/*
+ <cfargument name="vp_id">
+        <cfargument name="psatge">
+        <cfargument name="projectId">
+        <cfargument name="ddsn3">
+*/
