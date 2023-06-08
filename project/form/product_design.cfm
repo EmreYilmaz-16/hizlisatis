@@ -137,9 +137,10 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                   <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
               <cfelse>
                   <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
-              </cfif>              
+              </cfif>    
+              <code><small>#MAIN_PROCESS_CAT#</small></code>            
           </a>      
-          <code><small>#MAIN_PROCESS_CAT#</small></code>  
+          
           </cfoutput>
         </div>
       </div>
