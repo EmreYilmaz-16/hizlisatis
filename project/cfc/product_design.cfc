@@ -271,6 +271,8 @@ VALUES (
                         <span style="float:right;font-size:11pt" class="badge bg-success rounded-pill">#STAGE#</span>
                     <cfelseif PRODUCT_STAGE eq 341>
                         <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
+                    <cfelseif PRODUCT_STAGE eq 342>
+                        <span style="float:right;font-size:11pt" class="badge bg-primary rounded-pill">#STAGE#</span>
                     <cfelse>
                         <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
                     </cfif>                
