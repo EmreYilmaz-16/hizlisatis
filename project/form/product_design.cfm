@@ -121,30 +121,22 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
       </cfoutput>
   </div>
       <hr>
-      <ul>
+      <div class="list-group" id="leftMenuProject"> 
           <cfoutput query="getP2">
-              <li>                
-                      <div class="ui-cards ui-cards-vertical">                        
-                          <div class="ui-cards-text">
-                              <ul class="ui-info-list">
-                                  <li>
-                                      Ürün Adı : <i>Apple XR</i>
-                                  </li>
-                                  <li>
-                                      Kategori : <i>Telefon</i>
-                                  </li>
-                                  <li>
-                                      Durum : <i>Stokda Var</i>
-                                  </li>                              
-                              </ul>
-                              <ul class="ui-icon-list">
-                                  <li><a href="javascript://" title="Görüntüle"><i class="icon-search"></i></a></li>
-                              </ul>
-                          </div>
-                      </div>               
-              </li>    
+            <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
+              #PRODUCT_NAME#
+              <cfif PRODUCT_STAGE eq 339>
+                  <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
+              <cfelseif PRODUCT_STAGE eq 340>
+                  <span style="float:right;font-size:11pt" class="badge bg-success rounded-pill">#STAGE#</span>
+              <cfelseif PRODUCT_STAGE eq 341>
+                  <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
+              <cfelse>
+                  <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
+              </cfif>              
+          </a>        
           </cfoutput>
-          </ul>
+        </div>
       </div>
   </cf_box>
   </div>
