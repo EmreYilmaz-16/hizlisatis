@@ -72,11 +72,7 @@ function ngetTree(
         console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
-        var e = document.getElementById("ppidarea").children[0];
-        var li = document.createElement("li");
         li.appendChild(et);
-        e.appendChild(li);
-        
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
@@ -113,8 +109,10 @@ function ngetTree(
         console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
-        
-        //li.appendChild(et);
+        var e = document.getElementById("ppidarea").children[0];
+        var li = document.createElement("li");    
+        li.appendChild(et);
+        e.appendChild(li);
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
