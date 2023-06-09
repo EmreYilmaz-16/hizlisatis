@@ -8,7 +8,7 @@
             
         </th>
     </tr>
-    <cfoutput query="">
+    <cfoutput query="getProjectNeeds">
         <tr style="<cfif IS_VIRTUAL eq 1>background:##ff00006b<cfelse></cfif>">
             <td>
                 #PRODUCT_NAME#
