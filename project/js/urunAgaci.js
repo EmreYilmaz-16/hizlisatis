@@ -112,7 +112,7 @@ function ngetTree(
         var e = document.getElementById("ppidarea").children[0];
         var li = document.createElement("li");    
         li.appendChild(et);*/
-        AddRowItemVirtual(o.PRODUCT_ID,o.PRODUCT_NAME,'',0,0,0,'TL',0,0,0,0);
+        //AddRowItemVirtual(o.PRODUCT_ID,o.PRODUCT_NAME,'',0,0,0,'TL',0,0,0,0);
 
         //e.appendChild(li);
         agacGosterEkle();
@@ -1592,5 +1592,7 @@ function getProjectProducts(projectId) {
 */
 
 function addToCurrentTree(vp_id) {
-  var e = ngetTree(vp_id, 1, "workcube_metosan_1", "", 3, "", "", "");
+ // var e = ngetTree(vp_id, 1, "workcube_metosan_1", "", 3, "", "", ""); AddRowItemVirtual
+ //AddRowItemVirtual(o.PRODUCT_ID,o.PRODUCT_NAME;
+ AddRowItemVirtual(vp_id,product_name,'',0,0,0,'TL',0,0,0,0)
 }
