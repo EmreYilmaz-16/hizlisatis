@@ -90,7 +90,42 @@ function ngetTree(
       },
     });
   } else if (tip == 3) {
-    console.log(arguments);
+    $.ajax({
+      url:
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
+        product_id +
+        "&isVirtual=" +
+        is_virtual +
+        "&ddsn3=" +
+        dsn3 +
+        "&company_id=" +
+        _compId +
+        "&price_catid=" +
+        _priceCatId,
+      success: function (asd) {
+        var jsonStr = strToJson(asd);
+        o = JSON.parse(jsonStr);
+        console.log(o);
+        console.log("Buradayım");
+        //   partnerEkle(o);
+        var et = AgaciYaz_12(o, 0, "", 0);
+        li.appendChild(et);
+        agacGosterEkle();
+        sortableYap();
+        virtuallariYerlestir();
+        MaliyetHesapla();
+        /* console.log(o);
+        ;*/
+        /*AgaciYaz(o, 0, "0", 1);
+        var esd = document.getElementById("TreeArea");
+        esd.innerHTML = "";
+
+        esd.appendChild(ulx);
+        
+       ;
+        ;*/
+      },
+    });
   }
 }
 function patnerEkle(oo) {

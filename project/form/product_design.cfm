@@ -148,12 +148,12 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
       <hr>
       <div class="list-group" id="leftMenuProject"> 
           <cfoutput query="getP2">
-            <a class="list-group-item list-group-item-action">
+            <a class="list-group-item list-group-item-action" >
            
-              <button class="btn btn-outline-primary">
+              <button class="btn btn-sm btn-outline-primary" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">
                 <i class="icn-md fa fa-plus"></i>
               </button>
-              <button class="btn btn-outline-warning">
+              <button class="btn btn-sm btn-outline-warning" onclick="showTree(#VIRTUAL_PRODUCT_ID#)">
                   <i class="icn-md fa fa-search"></i>
               </button>
               <!----<span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">
@@ -172,8 +172,10 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
                   <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
               <cfelse>
                   <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
-              </cfif>    
+              </cfif> 
+              <div>
               <code style="display: table-cell;color:##e83e8c"><small style="font-size:8pt">#MAIN_PROCESS_CAT#</small></code>            
+            </div>   
           </a>      
           
           </cfoutput>
