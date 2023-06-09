@@ -1591,7 +1591,7 @@ function getProjectProducts(projectId) {
         <cfargument name="ddsn3">
 */
 
-function addToCurrentTree(vp_id) {
+function addToCurrentTree(vp_id,product_name) {
  // var e = ngetTree(vp_id, 1, "workcube_metosan_1", "", 3, "", "", ""); AddRowItemVirtual
  //AddRowItemVirtual(o.PRODUCT_ID,o.PRODUCT_NAME;
  AddRowItemVirtual(vp_id,product_name,'',0,0,0,'TL',0,0,0,0)
