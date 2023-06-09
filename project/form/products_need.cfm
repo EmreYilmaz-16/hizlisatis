@@ -1,7 +1,7 @@
 ﻿<cfquery name="getProjectNeeds" datasource="#dsn3#">
     EXEC GET_PROJECT_NEEDS #attributes.PROJECT_ID#
 </cfquery>
-
+<cfdump var="#getProjectNeeds#">
 <cf_grid_list>
     <tr>
         <th>
