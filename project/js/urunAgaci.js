@@ -108,11 +108,13 @@ function ngetTree(
         console.log(o);
         console.log("Buradayım");
         //   partnerEkle(o);
-        var et = AgaciYaz_12(o, 0, "", 0);
+       /* var et = AgaciYaz_12(o, 0, "", 0);
         var e = document.getElementById("ppidarea").children[0];
         var li = document.createElement("li");    
-        li.appendChild(et);
-        e.appendChild(li);
+        li.appendChild(et);*/
+        AddRowItemVirtual(O.PRODUCT_ID,O.PRODUCT_NAME,'',0,0,0,'TL',0,0,0,0);
+
+        //e.appendChild(li);
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
@@ -634,6 +636,156 @@ function AddRowItem(
   }
   MaliyetHesapla();
 }
+
+
+function AddRowItemVirtual(
+  PRODUCT_ID,
+  PRODUCT_NAME,
+  STOCK_CODE,
+  STOCK_ID,
+  PRICE,
+  DISCOUNT_RATE,
+  MONEY,
+  LAST_COST,
+  PRICE,
+  IS_MANUEL,
+  COLUMNSA
+) {
+  console.log(arguments);
+  if (COLUMNSA == 0) {
+    var e = document.getElementById("ppidarea").children[0];
+    var li = document.createElement("li");
+    li.setAttribute("data-product_id", PRODUCT_ID);
+    li.setAttribute("data-stock_id", STOCK_ID);
+    li.setAttribute("data-is_virtual", 1);
+    li.setAttribute("data-price", PRICE);
+    li.setAttribute("data-other_money", MONEY);
+    li.setAttribute("data-discount", DISCOUNT_RATE);
+    li.setAttribute("class", "list-group-item");
+    li.setAttribute("data-idb", idB);
+    idB++;
+    var div = document.createElement("div");
+    div.setAttribute("style", "display:flex");
+    var span = document.createElement("span");
+    span.setAttribute("name", "product_name_");
+    span.innerText = PRODUCT_NAME;
+
+    div.appendChild(span);
+    var div2 = document.createElement("div");
+    div2.setAttribute(
+      "style",
+      "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
+    );
+    var input = inputCreator(
+      "text",
+      "amount",
+      "onchange",
+      "MaliyetHesapla();",
+      "form-control form-control-sm",
+      "width:33%",
+      1
+    );
+    input.setAttribute("readonly", "true");
+    var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
+    button.setAttribute("disabled", "true");
+    var btn2 = buttonCreator(
+      "",
+      "btn btn-outline-danger",
+      "onclick",
+      "remItem(this)",
+      "-"
+    );
+    var elsx = e.getAttribute("data-is_virtual");
+    if (parseInt(elsx) == 1) {
+      input.removeAttribute("readonly");
+    }
+    var btn3 = buttonCreator(
+      "",
+      "btn btn-outline-primary",
+      "onclick",
+      "setQuestion(this)",
+      "Q"
+    );
+    div2.appendChild(input);
+    div2.appendChild(button);
+    div2.appendChild(btn3);
+    div2.appendChild(btn2);
+    div.appendChild(div2);
+    li.appendChild(div);
+    e.appendChild(li);
+  } else {
+    var e = document.getElementById(COLUMNSA);
+    var li = document.createElement("li");
+    li.setAttribute("data-product_id", PRODUCT_ID);
+    li.setAttribute("data-stock_id", STOCK_ID);
+    li.setAttribute("data-is_virtual", 1);
+    li.setAttribute("data-is_virtual", 1);
+    li.setAttribute("data-price", PRICE);
+    li.setAttribute("data-other_money", MONEY);
+    li.setAttribute("data-discount", DISCOUNT_RATE);
+    li.setAttribute("class", "list-group-item");
+    li.setAttribute("data-idb", idB);
+    idB++;
+    var div = document.createElement("div");
+    div.setAttribute("style", "display:flex");
+    var span = document.createElement("span");
+    span.setAttribute("name", "product_name_");
+    span.innerText = PRODUCT_NAME;
+
+    div.appendChild(span);
+    var div2 = document.createElement("div");
+    div2.setAttribute(
+      "style",
+      "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
+    );
+    var input = inputCreator(
+      "text",
+      "amount",
+      "onchange",
+      "MaliyetHesapla();",
+      "form-control form-control-sm",
+      "width:33%",
+      1
+    );
+    input.setAttribute("readonly", "true");
+    var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
+    button.setAttribute("disabled", "true");
+    var btn2 = buttonCreator(
+      "",
+      "btn btn-outline-danger",
+      "onclick",
+      "remItem(this)",
+      "-"
+    );
+    var btn3 = buttonCreator(
+      "",
+      "btn btn-outline-primary",
+      "onclick",
+      "setQuestion(this)",
+      "Q"
+    );
+    div2.appendChild(input);
+    div2.appendChild(button);
+    div2.appendChild(btn3);
+    div2.appendChild(btn2);
+    div.appendChild(div2);
+    li.appendChild(div);
+    e.appendChild(li);
+  }
+
+  var q = wrk_query(
+    "SELECT * FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=" + STOCK_ID,
+    "dsn3"
+  );
+  console.log(q.recordcount);
+  if (q.recordcount > 0) {
+    ngetTree(STOCK_ID, 1, "workcube_metosan_1", "", 2, li);
+  }
+  MaliyetHesapla();
+}
+
+
+
 
 function AgacGetir(agacim, sx = 0) {
   console.log(sx);
