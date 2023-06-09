@@ -149,13 +149,20 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
       <div class="list-group" id="leftMenuProject"> 
           <cfoutput query="getP2">
             <a class="list-group-item list-group-item-action">
+           
+              <button class="btn btn-outline-primary">
+                <i class="icn-md fa fa-plus"></i>
+              </button>
+              <button class="btn btn-outline-warning">
+                  <i class="icn-md fa fa-search"></i>
+              </button>
+              <!----<span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">
+                <i class="fa fa-plus"></i>
+                </span>
               <span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">
-              <i class="fa fa-plus"></i>
+              <i class="icn-md fa fa-search"></i>
               </span>
-              <span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-warning rounded-pill" onclick="showTree(#VIRTUAL_PRODUCT_ID#)">
-              <i class=" fa fa-search"></i>
-              </span>
-              <span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">+</span>
+              ---->
               #PRODUCT_NAME#
               <cfif PRODUCT_STAGE eq 339>
                   <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
