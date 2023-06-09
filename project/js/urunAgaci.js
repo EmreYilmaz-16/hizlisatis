@@ -112,7 +112,7 @@ function ngetTree(
         var e = document.getElementById("ppidarea").children[0];
         var li = document.createElement("li");    
         li.appendChild(et);*/
-        AddRowItemVirtual(O.PRODUCT_ID,O.PRODUCT_NAME,'',0,0,0,'TL',0,0,0,0);
+        AddRowItemVirtual(o.PRODUCT_ID,o.PRODUCT_NAME,'',0,0,0,'TL',0,0,0,0);
 
         //e.appendChild(li);
         agacGosterEkle();
