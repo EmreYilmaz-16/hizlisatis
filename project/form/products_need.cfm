@@ -14,7 +14,7 @@
                 #PRODUCT_NAME#
             </td>
             <td>
-                #tlformat(AMOUNT)#
+                #tlformat(COMPUTED_COLUMN_1)#
             </td>
         </tr>
     </cfoutput>
