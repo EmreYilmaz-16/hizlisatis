@@ -72,7 +72,11 @@ function ngetTree(
         console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
+        var e = document.getElementById("ppidarea").children[0];
+        var li = document.createElement("li");
         li.appendChild(et);
+        e.appendChild(li);
+        
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
@@ -109,7 +113,8 @@ function ngetTree(
         console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
-        li.appendChild(et);
+        
+        //li.appendChild(et);
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
@@ -1076,6 +1081,120 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
   var upProduct = ProductDesingSetting.find(
     (p) => p.paramName == "update_real_product"
   ).paramValue;
+  var ul = document.createElement("ul");
+  ul.setAttribute("class", "list-group");
+
+  ul.setAttribute("data-is_virtual", vrt);
+
+  ul.setAttribute("data-seviye", isoq);
+  ul.setAttribute("id", idA);
+  idA = idA + 1;
+  if (address != "0") {
+    // ul.setAttribute("style", "width:90%");
+  }
+  var address = address;
+
+  address += isoq.toString();
+  for (let i = 0; i < arr.length; i++) {
+    var li = document.createElement("li");
+    if (isoq <= 0) {
+      isoq = arr[i].RNDM_ID;
+    }
+    var spn = document.createElement("span");
+    spn.setAttribute("name", "product_name_");
+    var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
+      (p) => p.QUESTION_ID == arr[i].QUESTION_ID
+    );
+    var str = arr[i].PRODUCT_NAME;
+    if (qname != undefined) {
+      qname =
+        "<span style='color:var(--danger)'>(" + qname.QUESTION + ")</span>";
+    } else {
+      qname = "";
+    }
+    spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname;
+
+    li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
+    li.setAttribute("data-stock_id", arr[i].STOCK_ID);
+    li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
+    ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
+    li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
+    li.setAttribute("data-question_id", arr[i].QUESTION_ID);
+    li.setAttribute("data-idb", idB);
+    idB++;
+    var diva = document.createElement("div");
+    var btn = buttonCreator(
+      "",
+      "btn btn-outline-success",
+      "onclick",
+      "getitem(this)",
+      "+"
+    );
+    var btn2 = buttonCreator(
+      "",
+      "btn btn-outline-danger",
+      "onclick",
+      "remItem(this)",
+      "-"
+    );
+    var inp = inputCreator(
+      "text",
+      "amount",
+      "onchange",
+      "MaliyetHesapla();",
+      "form-control form-control-sm",
+      "width:33%",
+      arr[i].AMOUNT
+    );
+    diva.setAttribute(
+      "style",
+      "display:flex;align-items:baseline;float:right;margin-left:auto;justify-content: flex-end"
+    );
+    var btn3 = buttonCreator(
+      "",
+      "btn btn-outline-primary",
+      "onclick",
+      "setQuestion(this)",
+      "Q"
+    );
+    if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
+      inp.setAttribute("readonly", "true");
+      btn.setAttribute("disabled", "true");
+      btn2.setAttribute("disabled", "true");
+      btn3.setAttribute("disabled", "true");
+    }
+
+    diva.appendChild(inp);
+    diva.appendChild(btn);
+    diva.appendChild(btn3);
+    diva.appendChild(btn2);
+    var divb = document.createElement("div");
+    divb.setAttribute("style", "display:flex");
+    divb.appendChild(spn);
+    divb.appendChild(diva);
+    li.appendChild(divb);
+
+    //  li.setAttribute("onclick", "getitem(this)");
+
+    li.setAttribute("class", "list-group-item");
+    if (arr[i].AGAC.length > 0) {
+      li.appendChild(
+        AgaciYaz_12(arr[i].AGAC, arr[i].RNDM_ID, address, arr[i].IS_VIRTUAL)
+      );
+    } else {
+    }
+
+    ul.appendChild(li);
+  }
+
+  return ul;
+}
+
+function AgaciYaz_13(arr, isoq, address = "0", vrt = "1", li) {
+  var upProduct = ProductDesingSetting.find(
+    (p) => p.paramName == "update_real_product"
+  ).paramValue;
+  
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
 
