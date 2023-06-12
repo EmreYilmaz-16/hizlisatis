@@ -150,7 +150,7 @@ WHERE S.PRODUCT_ID=#it.product_id#
                             1,
                             0,
                             '',
-                            #getProductData.IS_PRODUCTION#,
+                            #getProductInfo.IS_PRODUCTION#,
                             '',
                             ''
 
