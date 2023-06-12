@@ -1692,7 +1692,7 @@ function setSettings(el) {
       "/AddOns/Partner/project/cfc/product_design.cfc?method=updateSettings&paramName=" +
       paramName +
       "&paramValue=" +
-      paramValue +
+      newParamValue +
       "&ddsn3=workcube_metosan_1",
     success: function (returnDat) {
       console.log(returnDat);
