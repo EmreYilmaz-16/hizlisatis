@@ -26,6 +26,7 @@
                 ISNULL(SUM(CRT.BORC-CRT.ALACAK),0) AS BAKIYE,
                 (CR.BAKIYE+#get_open_order_ships.SHIP_TOTAL#+#get_open_order_ships.ORDER_TOTAL#+CR.CEK_ODENMEDI+CR.SENET_ODENMEDI+CR.CEK_KARSILIKSIZ+CR.SENET_KARSILIKSIZ) AS RISK,
                 CONCAT(EP.EMPLOYEE_NAME,' ',EP.EMPLOYEE_SURNAME) AS PLASIYER,
+                CONCAT(CP.COMPANY_PARTNER_NAME,' ',CP.COMPANY_PARTNER_SURNAME) AS MANAGER,
                 EP.EMPLOYEE_ID AS PLASIYER_ID,
                 SM.SHIP_METHOD,
 		        SM.SHIP_METHOD_ID
@@ -40,6 +41,7 @@
                 LEFT JOIN #dsn2_alias#.COMPANY_RISK CR ON CR.COMPANY_ID = C.COMPANY_ID
                 LEFT JOIN EMPLOYEE_POSITIONS EP ON EP.POSITION_CODE = ISNULL(C.POS_CODE,#session.ep.position_code#)
                 LEFT JOIN SHIP_METHOD AS SM ON SM.SHIP_METHOD_ID=CC.SHIP_METHOD_ID
+                LEFT JOIN COMPANY_PARTNER AS CP ON CP.PARTNER_ID=C.MANAGER_PARTNER_ID
             WHERE
                 C.COMPANY_ID = <cfqueryparam cfsqltype = "cf_sql_integer" value = "#attributes.type_id#">
             GROUP BY
@@ -62,7 +64,9 @@
                 EP.EMPLOYEE_SURNAME,
                 SM.SHIP_METHOD_ID,
 	            SM.SHIP_METHOD,
-                EP.EMPLOYEE_ID
+                EP.EMPLOYEE_ID,
+                CP.COMPANY_PARTNER_NAME,
+				CP.COMPANY_PARTNER_SURNAME
         </cfquery>
         <cfquery name="getPriceLists" datasource="#dsn3#">
             SELECT
@@ -95,6 +99,7 @@
         <cfset CompInfoStruct.SHIP_METHOD = GetCompInfo.SHIP_METHOD>
         <cfset CompInfoStruct.SHIP_METHOD_ID = GetCompInfo.SHIP_METHOD_ID>
         <cfset CompInfoStruct.VADE = GetCompInfo.DUE_DAY>
+        <cfset CompInfoStruct.MANAGER = GetCompInfo.MANAGER>
         <cfset CompInfoStruct.NOTE_COUNT = GETnOTES.NOTE_COUNT>
         <cfset VADE2 = 0>
         <cfset attributes.company_id = attributes.type_id>
