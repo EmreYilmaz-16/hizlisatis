@@ -1598,7 +1598,7 @@ function convertToOffer() {
   var company_id = _compId;
   var price_catid = _priceCatId;
   var vp_id = document.getElementById("vp_id").value;
-  var project_id = document.getElementById("project_id");
+  var project_id = document.getElementById("project_id").value;
 
   var BasketData = {
     Maliyet: Maliyet,
