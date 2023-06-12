@@ -1611,7 +1611,7 @@ function convertToOffer() {
   mapForm.target = "Map";
   mapForm.method = "POST"; // or "post" if appropriate
   mapForm.action =
-    "/index.cfm?fuseaction=project.emptypopup_query_save_project_product";
+    "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert";
 
   var mapInput = document.createElement("input");
   mapInput.type = "hidden";
@@ -1622,7 +1622,7 @@ function convertToOffer() {
   document.body.appendChild(mapForm);
 
   map = window.open(
-    "/index.cfm?fuseaction=project.emptypopup_query_save_project_product",
+    "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert",
     "Map",
     "status=0,title=0,height=600,width=800,scrollbars=1"
   );
