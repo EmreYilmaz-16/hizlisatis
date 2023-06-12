@@ -40,7 +40,7 @@ function ngetTree(
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
-       // console.log(o);
+        // console.log(o);
         AgaciYaz(o, 0, "0", 1);
         var esd = document.getElementById("TreeArea");
         esd.innerHTML = "";
@@ -68,8 +68,8 @@ function ngetTree(
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
-      // console.log(o);
-      //  console.log("Buradayım");
+        // console.log(o);
+        //  console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
         li.appendChild(et);
@@ -105,7 +105,7 @@ function ngetTree(
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
-      /*  console.log(o);
+        /*  console.log(o);
         console.log("Buradayım");*/
         //   partnerEkle(o);
         /* var et = AgaciYaz_12(o, 0, "", 0);
@@ -141,7 +141,7 @@ function strToJson(str) {
   for (let i = 0; i < str.length; i++) {
     var currentChar = str.charAt(i).trim();
     if (currentChar == "," && str.charAt(i + 1).trim() == "]") {
-     // console.log("ebe");
+      // console.log("ebe");
       currentChar = "";
     }
     newStr += currentChar;
@@ -150,7 +150,7 @@ function strToJson(str) {
 }
 
 function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
- // console.log("AgaciYaz Virtual=" + vrt);
+  // console.log("AgaciYaz Virtual=" + vrt);
   var upProduct = ProductDesingSetting.find(
     (p) => p.paramName == "update_real_product"
   ).paramValue;
@@ -187,7 +187,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
       qname = "";
     }
     spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname;
-    console.log(arr[i]);///burası kalacak
+    console.log(arr[i]); ///burası kalacak
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
     li.setAttribute("data-price", arr[i].PRICE);
@@ -297,7 +297,7 @@ function inputCreator(type, name, ev, evl, cls, style, vl) {
 
 function getitem(el) {
   sonEleman = el;
- // console.log(el);
+  // console.log(el);
 }
 
 function getDs() {
@@ -350,9 +350,9 @@ function LoadSettings() {
     if (ProductDesingSetting[i].elementType == "bool") {
       var div = document.createElement("div");
       div.setAttribute("class", "custom-control custom-switch");
-      div.setAttribute("onclick","console.log(this)");
-      div.setAttribute("data-paramName",ProductDesingSetting[i].paramName)
-      div.setAttribute("data-paramValue",ProductDesingSetting[i].paramValue)
+      div.setAttribute("onclick", "setSettings(this)");
+      div.setAttribute("data-paramName", ProductDesingSetting[i].paramName);
+      div.setAttribute("data-paramValue", ProductDesingSetting[i].paramValue);
       var input = document.createElement("input");
       input.setAttribute("type", "checkbox");
       input.setAttribute("name", ProductDesingSetting[i].paramName);
@@ -449,10 +449,10 @@ function OpenBasketProducts(col = "", actType = "5") {
 }
 function newDraft() {
   var enmae = prompt("Ürün Adı");
- // console.log(enmae);
+  // console.log(enmae);
   if (enmae == null || enmae.trim().length == 0) return false;
   idA = 1000;
-//  console.log("Yeni Taslak");
+  //  console.log("Yeni Taslak");
   var project_id = getParameterByName("project_id");
   var q =
     "select * from workcube_metosan_1.GetCatParamsPBS where PROJECT_ID=" +
@@ -472,7 +472,7 @@ function newDraft() {
       project_id +
       "&ddsn3=workcube_metosan_1",
     success: function (retDat) {
-     // console.log(retDat);
+      // console.log(retDat);
       getProjectProducts(project_id);
     },
   });
@@ -507,7 +507,7 @@ function AddRowItem(
   IS_MANUEL,
   COLUMNSA
 ) {
- // console.log(arguments);
+  // console.log(arguments);
   if (COLUMNSA == 0) {
     var e = document.getElementById("ppidarea").children[0];
     var li = document.createElement("li");
@@ -779,7 +779,7 @@ function AddRowItemVirtual(
     "SELECT * FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=" + STOCK_ID,
     "dsn3"
   );
- // console.log(q.recordcount);
+  // console.log(q.recordcount);
   if (q.recordcount > 0) {
     ngetTree(STOCK_ID, 1, "workcube_metosan_1", "", 2, li);
   }
@@ -787,7 +787,7 @@ function AddRowItemVirtual(
 }
 
 function AgacGetir(agacim, sx = 0) {
-//  console.log(sx);
+  //  console.log(sx);
   sx++;
   var at = new Array();
   for (let i = 0; i < agacim.length; i++) {
@@ -831,7 +831,7 @@ function AgacGetir(agacim, sx = 0) {
         var agac = a[j].children;
       }
     }
-   // console.log(agac);
+    // console.log(agac);
     if (agaciVar == true) {
       agacItem.AGAC = AgacGetir(agac, sx);
     }
@@ -941,7 +941,7 @@ function addProdMain_(idb) {
 
 function OpenBasketProducts_Pars(el) {
   var es = el.parentElement.parentElement.parentElement.children;
- // console.log(es);
+  // console.log(es);
   var sonul;
   for (let i = 0; i < es.length; i++) {
     var ls = es[i];
@@ -973,7 +973,7 @@ function addProdSub(el) {
 function addProdSub_(el) {
   //console.log(el.parentElement)
   var es = el.parentElement.parentElement.parentElement.children;
- // console.log(es);
+  // console.log(es);
 
   var sonul;
   for (let i = 0; i < es.length; i++) {
@@ -983,7 +983,7 @@ function addProdSub_(el) {
       sonul = ls;
     }
   }
- // console.log(sonul);
+  // console.log(sonul);
 
   var li = document.createElement("li");
   li.setAttribute("data-product_id", 0);
@@ -1056,7 +1056,7 @@ function addProdSub_(el) {
   MaliyetHesapla();
 }
 function getCats(el, ev) {
- // console.log(ev);
+  // console.log(ev);
   var bul = false;
   if (ev.type == "change") {
     if (el.value.length > 3) {
@@ -1204,22 +1204,22 @@ function virtuallariYerlestir() {
   for (let i = 0; i < e.length; i++) {
     var ees = e[i].parentElement;
     if (ees.getAttribute("id") == "ppidarea") {
-    //  console.log("ek");
+      //  console.log("ek");
       e[i].setAttribute("data-is_virtual", "1");
       var emount = $(e[i]).find("input[name='amount']");
-    //  console.log(emount);
+      //  console.log(emount);
       emount.removeAttr("readonly");
     } else {
       var eesa = ees.getAttribute("data-is_virtual");
       if (parseInt(eesa) == 1) {
-       // console.log(eesa);
+        // console.log(eesa);
         e[i].setAttribute("data-is_virtual", "1");
         var emount = $(e[i]).find("input[name='amount']");
-      //  console.log(emount);
+        //  console.log(emount);
         emount.removeAttr("readonly");
       } else {
         var emount = $(e[i]).find("input[name='amount']");
-       // console.log(emount);
+        // console.log(emount);
         emount.attr("readonly", "true");
       }
     }
@@ -1500,7 +1500,7 @@ function UrunKaydet() {
 
 function setQuestion(el) {
   var e = el.parentElement.parentElement.parentElement;
- // console.log(e);
+  // console.log(e);
   var ev = e.getAttribute("data-idb");
   //console.log(ev);
   openBoxDraggable(
@@ -1565,7 +1565,7 @@ function updateStage(el, projectId) {
       el.value +
       "&ddsn3=workcube_metosan_1",
     success: function (retDat) {
-    //  console.log(retDat);
+      //  console.log(retDat);
       getProjectProducts(projectId);
     },
   });
@@ -1578,7 +1578,7 @@ function getProjectProducts(projectId) {
       projectId +
       "&ddsn3=workcube_metosan_1",
     success: function (retDat) {
-    //  console.log(retDat);
+      //  console.log(retDat);
       $("#leftMenuProject").html(retDat);
     },
   });
@@ -1674,4 +1674,10 @@ function getsettingByName(settingName) {
   for (let i = 0; i < ProductDesingSetting.length; i++)
     if (ProductDesingSetting[i].paramName == settingName)
       return ProductDesingSetting[i].paramValue;
+}
+
+function setSettings(el) {
+  var paramName = el.getAttribute("data-paramName");
+  var paramValue = el.getAttribute("data-paramValue");
+  console.log(paramName, paramValue);
 }
