@@ -23,6 +23,7 @@
                 SP.PAYMETHOD,
 		        SP.PAYMENT_VEHICLE,
                 SP.DUE_DAY,
+                C.FULLNAME,
                 ISNULL(SUM(CRT.BORC-CRT.ALACAK),0) AS BAKIYE,
                 (CR.BAKIYE+#get_open_order_ships.SHIP_TOTAL#+#get_open_order_ships.ORDER_TOTAL#+CR.CEK_ODENMEDI+CR.SENET_ODENMEDI+CR.CEK_KARSILIKSIZ+CR.SENET_KARSILIKSIZ) AS RISK,
                 CONCAT(EP.EMPLOYEE_NAME,' ',EP.EMPLOYEE_SURNAME) AS PLASIYER,
@@ -68,7 +69,8 @@
                 EP.EMPLOYEE_ID,
                 CP.COMPANY_PARTNER_NAME,
 				CP.COMPANY_PARTNER_SURNAME,
-                C.MANAGER_PARTNER_ID
+                C.MANAGER_PARTNER_ID,
+                C.FULLNAME
         </cfquery>
         <cfquery name="getPriceLists" datasource="#dsn3#">
             SELECT
@@ -103,6 +105,7 @@
         <cfset CompInfoStruct.VADE = GetCompInfo.DUE_DAY>
         <cfset CompInfoStruct.MANAGER = GetCompInfo.MANAGER>
         <cfset CompInfoStruct.MANAGER_PARTNER_ID = GetCompInfo.MANAGER_PARTNER_ID>
+        <cfset CompInfoStruct.FULLNAME = GetCompInfo.FULLNAME>
         <cfset CompInfoStruct.NOTE_COUNT = GETnOTES.NOTE_COUNT>
         <cfset VADE2 = 0>
         <cfset attributes.company_id = attributes.type_id>
