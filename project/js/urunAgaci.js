@@ -1680,4 +1680,7 @@ function setSettings(el) {
   var paramName = el.getAttribute("data-paramName");
   var paramValue = el.getAttribute("data-paramValue");
   console.log(paramName, paramValue);
+  var newParamValue = "OFF";
+  paramValue == "OFF" ? (newParamValue = "ON") : (newParamValue = "OFF");
+  console.log(newParamValue);
 }
