@@ -162,9 +162,8 @@ INNER JOIN #dsn#.STOCKS_LOCATION AS SL ON SL.LOCATION_ID=TBL.LOCATION_ID AND SL.
     </cfcatch>
     <cffinally>
         <cfoutput>
-            #Replace(SerializeJSON(InfoArray),'//','')#
+            
         </cfoutput>
     </cffinally>
 </cftry>
 
-<cfdump var="#InfoArray#">
