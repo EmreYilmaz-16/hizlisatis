@@ -343,6 +343,7 @@ $(document).ready(function () {
 });
 
 function LoadSettings() {
+  document.getElementById("settingsArea").html = "";
   var table = document.createElement("table");
   for (let i = 0; i < ProductDesingSetting.length; i++) {
     var tr = document.createElement("tr");
