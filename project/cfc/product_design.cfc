@@ -281,4 +281,13 @@ VALUES (
         </cfsavecontent>
         <cfreturn leftMenu>
     </cffunction>
+    <cffunction name="updateSettings" access="remote" httpMethod="POST" returntype="any" returnformat="plain">
+        <cfargument name="paramValue">
+        <cfargument name="paramName">
+        <cfargument name="ddsn3">
+        <cfquery name="up" datasource="#arguments.ddsn3#" result="res">
+            update PROJECT_PRODUCT_DESIGN_PARAMS_PBS set PARAM_VALUE="#arguments.paramValue#" WHERE PARAM_NAME="#arguments.paramName#"
+        </cfquery>
+        <cfreturn replace(serializeJSON(res),"//","")>
+    </cffunction>
 </cfcomponent>

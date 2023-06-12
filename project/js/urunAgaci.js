@@ -1684,4 +1684,17 @@ function setSettings(el) {
   paramValue == "OFF" ? (newParamValue = "ON") : (newParamValue = "OFF");
   console.log(newParamValue);
   el.setAttribute("data-paramValue", newParamValue);
+  var ix = getsettingByName(paramName).indx;
+  ProductDesingSetting[ix].paramValue = newParamValue;
+  $.ajax({
+    url:
+      "/AddOns/Partner/project/cfc/product_design.cfc?method=updateSettings&paramName=" +
+      paramName +
+      "&paramValue=" +
+      paramValue +
+      "&ddsn3=workcube_hidtek_1",
+    success: function (returnDat) {
+      console.log(returnDat);
+    },
+  });
 }
