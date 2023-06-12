@@ -1619,7 +1619,7 @@ function convertToOffer() {
     var price = prod.getAttribute("data-price");
     var money = prod.getAttribute("data-money");
     var discount = prod.getAttribute("data-discount");
-    var sett = getsettingByName("is_show_tree");
+    var sett = getsettingByName("is_show_tree").paramValue;
     var O = {
       product_id: pid,
       isVirtual: isVirtual,
@@ -1673,7 +1673,7 @@ function convertToOffer() {
 function getsettingByName(settingName) {
   for (let i = 0; i < ProductDesingSetting.length; i++)
     if (ProductDesingSetting[i].paramName == settingName)
-      return ProductDesingSetting[i].paramValue;
+      return { paramValue: ProductDesingSetting[i].paramValue, indx: i };
 }
 
 function setSettings(el) {
@@ -1683,4 +1683,5 @@ function setSettings(el) {
   var newParamValue = "OFF";
   paramValue == "OFF" ? (newParamValue = "ON") : (newParamValue = "OFF");
   console.log(newParamValue);
+  el.setAttribute("data-paramValue", newParamValue);
 }
