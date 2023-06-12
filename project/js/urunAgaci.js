@@ -343,7 +343,7 @@ $(document).ready(function () {
 });
 
 function LoadSettings() {
-  document.getElementById("settingsArea").html = "";
+  $("#settingsArea").html("");
   var table = document.createElement("table");
   for (let i = 0; i < ProductDesingSetting.length; i++) {
     var tr = document.createElement("tr");
@@ -1696,7 +1696,7 @@ function setSettings(el) {
       "&ddsn3=workcube_metosan_1",
     success: function (returnDat) {
       console.log(returnDat);
-      LoadSettings()
+      LoadSettings();
     },
   });
 }
