@@ -50,7 +50,7 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
                             #getProductData.TAX#,
                             0,
                             #getProductData.PRODUCT_TYPE#,
-                            '#getOfferRow.SHELF_CODE#',
+                            '',
                             'TL,
                             #FormData.Maliyet#,
                             #getProductData.PORCURRENCY#,
