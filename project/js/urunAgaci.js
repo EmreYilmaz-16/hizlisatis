@@ -355,7 +355,7 @@ function LoadSettings() {
       input.setAttribute("name", ProductDesingSetting[i].paramName);
       input.setAttribute("id", ProductDesingSetting[i].paramName);
       input.setAttribute("class", "custom-control-input");
-      if (ProductDesingSetting[i].paramValue == "OFF")
+      if (ProductDesingSetting[i].paramValue == "ON")
         input.setAttribute("checked", "true");
       div.appendChild(input);
       var lbl = document.createElement("label");
