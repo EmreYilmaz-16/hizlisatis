@@ -4,7 +4,7 @@
 <cfset attributes.type_id=FormData.company_id>
 <cfset attributes.q_type="CompanyInfo">
 <cfinclude template="../includes/getCompInfoQuery.cfm">
-<cfdump var="#FormData#">
+
 <cfset FirmaDatasi=InfoArray[1]>
 <cfquery name="getProductData" datasource="#dsn3#">
 SELECT VP.VIRTUAL_PRODUCT_ID
@@ -69,7 +69,9 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
 
         )
 <cfelse>
-
+<cfloop array="#FormData.ProductList#" item="it">
+    <cfdump var="#it#">
+</cfloop>
 </cfif>
 
     </cfoutput>
