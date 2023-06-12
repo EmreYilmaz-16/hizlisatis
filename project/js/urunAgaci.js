@@ -350,6 +350,9 @@ function LoadSettings() {
     if (ProductDesingSetting[i].elementType == "bool") {
       var div = document.createElement("div");
       div.setAttribute("class", "custom-control custom-switch");
+      div.setAttribute("onclick","console.log(this)");
+      div.setAttribute("data-paramName",ProductDesingSetting[i].paramName)
+      div.setAttribute("data-paramValue",ProductDesingSetting[i].paramValue)
       var input = document.createElement("input");
       input.setAttribute("type", "checkbox");
       input.setAttribute("name", ProductDesingSetting[i].paramName);
