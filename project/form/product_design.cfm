@@ -188,8 +188,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
   <div style="display:flex;margin-bottom:5px">
       <button class="btn btn-outline-success" onclick="OpenBasketProducts(0,5)">RP</button>
       <button class="btn btn-outline-warning" style="margin-left:5px" onclick="addProdMain()">VP</button>
-      <button onclick="Kaydet()" style="margin-left:5px"  class="btn btn-outline-primary">Kaydet</button>
-      <button onclick="convertToOffer()" style="margin-left:5px"  class="btn btn-outline-secondary">Teklif Ver</button>
+      
       <input type="text" class="form-control" value="" id="pnamemain" name="pnamemain" style="margin-left: 15px;color: var(--success);" readonly>
       <cfquery name="getStages" datasource="#dsn3#">
           SELECT STAGE,PROCESS_ROW_ID FROM workcube_metosan.PROCESS_TYPE_ROWS WHERE PROCESS_ID=200
@@ -200,6 +199,8 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
               <option value="#PROCESS_ROW_ID#">#STAGE#</option>
           </cfoutput>
       </select>
+      <button onclick="Kaydet()" style="margin-left:5px"  class="btn btn-outline-primary">Kaydet</button>
+      <button onclick="convertToOffer()" style="margin-left:5px"  class="btn btn-outline-secondary">Teklif Ver</button>
       <input type="hidden" name="vp_id" id="vp_id" value="0">
       <input type="hidden" name="is_virtual" id="is_virtual" value="1">
       <input type="hidden" name="project_id" id="project_id" value="<cfoutput>#attributes.project_id#</cfoutput>">
