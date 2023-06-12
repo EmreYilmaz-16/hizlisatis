@@ -6,20 +6,26 @@
 <cf_grid_list>
     <tr>
         <th>
-            
+            Ürün
+        </th>
+        <th>Ürün Kategorisi</th>
+        <th>Bakiye</th>
+        <th>
+            Miktar 
         </th>
     </tr>
     <cfoutput query="getProjectNeeds">
         <tr style="<cfif IS_VIRTUAL eq 1>background:##ff00006b<cfelse></cfif>">
+            
             <td>
                 #PRODUCT_NAME#
             </td>
             <td>
                 #PRODUCT_CAT#
             </td>
-            <td>
-                #tlformat(AMOUNT)#
-            </td>
+            <td style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
+            <td style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
+            
         </tr>
     </cfoutput>
 </cf_grid_list>
