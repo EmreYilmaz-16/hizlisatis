@@ -91,6 +91,8 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
     ,PB.BRAND_ID
     ,PB.BRAND_NAME
     ,PC.DETAIL
+    ,'' AS PROPERTY1
+    ,0 AS LAST_COST
 FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP
 LEFT JOIN workcube_metosan_1.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS PCP ON PCP.PRODUCT_CATID = VP.PRODUCT_CATID
 LEFT JOIN workcube_metosan_1.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=VP.PRODUCT_CATID
@@ -99,15 +101,31 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #it.product_id#
     </cfquery>
     <cfelse>
 <cfquery name="getProductInfo" datasource="#dsn3#">
-SELECT S.PRODUCT_ID,S.STOCK_ID,S.PRODUCT_CODE AS STOCK_CODE,S.TAX,S.TAX_PURCHASE,S.BRAND_ID,S.IS_PRODUCTION,PP.SHELF_CODE,PC.DETAIL,PB.BRAND_NAME FROM workcube_metosan_1.STOCKS AS S 
+SELECT S.PRODUCT_ID,S.STOCK_ID,S.PRODUCT_CODE AS STOCK_CODE,S.TAX,S.TAX_PURCHASE,S.BRAND_ID,S.IS_PRODUCTION,PP.SHELF_CODE,PC.DETAIL,PB.BRAND_NAME,-6 as PORCURRENCY,PIP.PROPERTY1,PU.MAIN_UNIT AS PRODUCT_UNIT,'' PRODUCT_NAME2,'' DETAIL_INFO_EXTRA,
+,(  SELECT TOP 1
+                    IR.PRICE-(IR.DISCOUNTTOTAL/2) AS PRICE
+                FROM
+                    INVOICE I
+                    LEFT JOIN INVOICE_ROW IR ON IR.INVOICE_ID = I.INVOICE_ID
+                WHERE
+                    ISNULL(I.PURCHASE_SALES,0) = 0 AND
+                    IR.PRODUCT_ID = #S.PRODUCT_ID#
+                    AND I.PROCESS_CAT<>35
+                ORDER BY
+                    I.INVOICE_DATE DESC) AS LAST_COST
+ FROM workcube_metosan_1.STOCKS AS S 
 LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=S.STOCK_ID
 LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
 left JOIN workcube_metosan_1.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID
 LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_INFO_PLUS AS PIP ON PIP.PRODUCT_ID=S.PRODUCT_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID
 WHERE S.PRODUCT_ID=#it.product_id#
 </cfquery>
 </cfif>
-
+<CFIF getProductInfo.PROPERTY1 EQ "MANUEL">
+    <CFSET EMANUEL=1>
+</CFIF>
            AddRow(
                             #getProductInfo.VIRTUAL_PRODUCT_ID#,
                             #getProductInfo.STOCK_ID#,
@@ -120,15 +138,15 @@ WHERE S.PRODUCT_ID=#it.product_id#
                             #getProductInfo.TAX#,
                             <cfif len(it.discount)>#it.discount#<cfelse>0</cfif>,
                             #getProductInfo.DETAIL#,
-                            '#getProductInfo#',
-                            'TL',
-                            #FormData.Maliyet#,
-                            #getProductData.PORCURRENCY#,
-                            0,
-                            #FormData.Maliyet#,
-                            '#getProductData.PRODUCT_UNIT#',
-                            '#getProductData.PRODUCT_NAME2#',
-                            '#getProductData.DETAIL_INFO_EXTRA#',
+                            '#getProductInfo.SHELF_CODE#',
+                            '#it.money#',
+                            <cfif len(it.price)>#it.price#<cfelse>0</cfif>,
+                            #getProductInfo.PORCURRENCY#,
+                            #EMANUEL#,
+                            #getProductInfo.LAST_COST#,
+                            '#getProductInfo.PRODUCT_UNIT#',
+                            '#getProductInfo.PRODUCT_NAME2#',
+                            '#getProductInfo.DETAIL_INFO_EXTRA#',
                             1,
                             0,
                             '',
