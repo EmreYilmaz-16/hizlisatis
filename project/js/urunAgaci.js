@@ -1613,6 +1613,7 @@ function convertToOffer() {
     var price = prod.getAttribute("data-price");
     var money = prod.getAttribute("data-money");
     var discount = prod.getAttribute("data-discount");
+    var sett = getsettingByName("is_show_tree");
     var O = {
       product_id: pid,
       isVirtual: isVirtual,
@@ -1632,10 +1633,7 @@ function convertToOffer() {
     vp_id: vp_id,
     project_id: project_id,
     stock_id: 0,
-    is_show_tree:
-      ProductDesingSetting[
-        ProductDesingSetting.findIndex((p) => (p.paramName = "is_show_tree"))
-      ].paramValue,
+    is_show_tree: sett,
     ProductList: ProductList,
   };
   var mapForm = document.createElement("form");
@@ -1663,4 +1661,10 @@ function convertToOffer() {
   } else {
     alert("You must allow popups for this map to work.");
   }
+}
+
+function getsettingByName(settingName) {
+  for (let i = 0; i < ProductDesingSetting.length; i++)
+    if (ProductDesingSetting[i].paramName == settingName)
+      return ProductDesingSetting[i].paramValue;
 }
