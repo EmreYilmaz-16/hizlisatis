@@ -80,7 +80,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             <img src="/images/e-pd/nt.png">
             Notlar
         </a>
-        <a class="list-group-item list-group-item-action">
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_product_needs&project_id=#attributes.project_id#</cfoutput>'" >
             <img src="/images/e-pd/pord.png">
             Malzeme İhtiyaçları
         </a>
