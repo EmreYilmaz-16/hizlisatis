@@ -4,6 +4,7 @@
 </cfquery>
 
 <cf_grid_list>
+    <thead>
     <tr>
         <th>
             Ürün
@@ -14,6 +15,8 @@
             Miktar 
         </th>
     </tr>
+</thead>
+<tbody>
     <cfoutput query="getProjectNeeds">
         <tr style="<cfif IS_VIRTUAL eq 1>background:##ff00006b<cfelse></cfif>">
             
@@ -28,5 +31,6 @@
             
         </tr>
     </cfoutput>
+</tbody>
 </cf_grid_list>
 </cf_box>
