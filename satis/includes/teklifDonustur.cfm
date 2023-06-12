@@ -133,7 +133,7 @@ WHERE S.PRODUCT_ID=#it.product_id#
                             #getProductInfo.STOCK_ID#,
                             '#getProductInfo.STOCK_CODE#',
                             '#getProductInfo.BRAND_NAME#',
-                            #it.isVirtual#,
+                            <cfif len(it.isVirtual)>#it.isVirtual#<cfelse>0</cfif>,
                             #it.AMOUNT#,
                             <cfif len(it.price)>#it.price#<cfelse>0</cfif>,
                             '#getProductInfo.PRODUCT_NAME#',
