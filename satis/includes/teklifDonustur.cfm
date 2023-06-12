@@ -38,7 +38,7 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
             var sm=generalParamsSatis.SHIP_METHODS.filter(p=>p.SHIP_METHOD_ID==#FirmaDatasi.SHIP_METHOD_ID#)
             setSevkYontem(sm[0].SHIP_METHOD_ID, sm[0].SHIP_METHOD)
         </cfif>
-        <cfif FormData.is_show_tree eq "OFF">
+       
         AddRow(
                             #getProductData.VIRTUAL_PRODUCT_ID#,
                             0,
@@ -68,9 +68,10 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
                             ''
 
         )
+        <cfif FormData.is_show_tree eq "OFF">
 <cfelse>
 <cfloop array="#FormData.ProductList#" item="it">
-    <cfdump var="#it#">
+    console.log("#serializeJSON(it)#")
 </cfloop>
 </cfif>
 
