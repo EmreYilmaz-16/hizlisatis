@@ -1600,6 +1600,31 @@ function convertToOffer() {
   var vp_id = document.getElementById("vp_id").value;
   var project_id = document.getElementById("project_id").value;
   Maliyet = filterNum(Maliyet);
+
+  var pro = $("#ppidarea *li");
+  var ProductList = new Array();
+  for (let i = 0; i < pro.length; i++) {
+    var prod = pro[i];
+    var productName = $(prod.firstChild)
+      .find("span[name='product_name_']")
+      .text();
+    var pid = prod.getAttribute("data-product_id");
+    var isVirtual = prod.getAttribute("data-is_virtual");
+    var price = prod.getAttribute("data-price");
+    var money = prod.getAttribute("data-money");
+    var discount = prod.getAttribute("data-discount");
+    var O = {
+      product_id: pid,
+      isVirtual: isVirtual,
+      price: price,
+      money: money,
+      discount: discount,
+      productName: productName,
+    };
+    ProductList.push(O);
+    console.log(O);
+  }
+
   var BasketData = {
     Maliyet: Maliyet,
     company_id: company_id,
@@ -1607,6 +1632,11 @@ function convertToOffer() {
     vp_id: vp_id,
     project_id: project_id,
     stock_id: 0,
+    is_show_tree:
+      ProductDesingSetting[
+        ProductDesingSetting.findIndex((p) => (p.paramName = "is_show_tree"))
+      ].paramValue,
+    ProductList: ProductList,
   };
   var mapForm = document.createElement("form");
   mapForm.target = "Map";
