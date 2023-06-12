@@ -1599,13 +1599,14 @@ function convertToOffer() {
   var price_catid = _priceCatId;
   var vp_id = document.getElementById("vp_id").value;
   var project_id = document.getElementById("project_id").value;
-
+  Maliyet = filterNum(Maliyet);
   var BasketData = {
     Maliyet: Maliyet,
     company_id: company_id,
     price_catid: price_catid,
     vp_id: vp_id,
     project_id: project_id,
+    stock_id: 0,
   };
   var mapForm = document.createElement("form");
   mapForm.target = "Map";

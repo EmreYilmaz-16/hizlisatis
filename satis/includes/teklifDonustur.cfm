@@ -6,6 +6,24 @@
 <cfinclude template="../includes/getCompInfoQuery.cfm">
 
 <cfset FirmaDatasi=InfoArray[1]>
+<cfquery name="getProductData" datasource="#dsn3#">
+SELECT VP.VIRTUAL_PRODUCT_ID
+	,VP.PRODUCT_NAME
+	,VP.PRODUCT_CATID
+	,VP.PRODUCT_TYPE
+	,VP.IS_PRODUCTION
+	,PCP.PRODUCT_UNIT
+	,VP.PORCURRENCY
+	,PCP.PRODUCT_UNIT
+	,PCP.TAX
+	,PCP.TAX_PURCHASE
+	,'' PRODUCT_NAME2
+	,'' DETAIL_INFO_EXTRA
+FROM workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP
+LEFT JOIN workcube_metosan_1.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS PCP ON PCP.PRODUCT_CATID = VP.PRODUCT_CATID
+WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
+</cfquery>
+
 
 <script>
     $(document).ready(function(){
@@ -20,6 +38,36 @@
             var sm=generalParamsSatis.SHIP_METHODS.filter(p=>p.SHIP_METHOD_ID==#FirmaDatasi.SHIP_METHOD_ID#)
             setSevkYontem(sm[0].SHIP_METHOD_ID, sm[0].SHIP_METHOD)
         </cfif>
+        AddRow(
+                            #FormData.PRODUCT_ID#,
+                            #FormData.STOCK_ID#,
+                            '',
+                            '',
+                            1,
+                            1,
+                            #FormData.Maliyet#,
+                            '#getProductData.PRODUCT_NAME#',
+                            #getProductData.TAX#,
+                            0,
+                            #getProductData.PRODUCT_TYPE#,
+                            '#getOfferRow.SHELF_CODE#',
+                            'TL,
+                            #FormData.Maliyet#,
+                            #getProductData.PORCURRENCY#,
+                            0,
+                            #FormData.Maliyet#,
+                            '#getProductData.PRODUCT_UNIT#',
+                            '#getProductData.PRODUCT_NAME2#',
+                            '#getProductData.DETAIL_INFO_EXTRA#',
+                            1,
+                            0,
+                            '',
+                            #getProductData.IS_PRODUCTION#,
+                            '',
+                            ''
+
+        )
+
     </cfoutput>
     })
 </script>
