@@ -21,9 +21,11 @@
         <div id="unique_sayfa_4" class="ui-info-text uniqueBox"><cfinclude template="../includes/hizli_erisim_pc.cfm"></div>
     </cfform>
 </cf_box>
-
+<cfif isDefined("attributes.act") and attributes.act eq "copy">
 <cfinclude template="../includes/teklifKopyalamaIslemleri.cfm">
-
+<cfelseif isDefined("attributes.act") and attributes.act eq "convert">
+    <cfinclude template="../includes/teklifDonustur.cfm">
+</cfif>
 <script src="/AddOns/Partner/satis/js/basket_pc.js"></script>
 <script src="/AddOns/Partner/satis/js/hizli_satis_pc.js"></script>
 <script src="/AddOns/Partner/satis/js/tube_functions.js"></script>
