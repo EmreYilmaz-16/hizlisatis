@@ -108,7 +108,7 @@ function ngetTree(
         console.log(o);
         console.log("Buradayım");
         //   partnerEkle(o);
-       /* var et = AgaciYaz_12(o, 0, "", 0);
+        /* var et = AgaciYaz_12(o, 0, "", 0);
         var e = document.getElementById("ppidarea").children[0];
         var li = document.createElement("li");    
         li.appendChild(et);*/
@@ -637,7 +637,6 @@ function AddRowItem(
   MaliyetHesapla();
 }
 
-
 function AddRowItemVirtual(
   PRODUCT_ID,
   PRODUCT_NAME,
@@ -783,9 +782,6 @@ function AddRowItemVirtual(
   }
   MaliyetHesapla();
 }
-
-
-
 
 function AgacGetir(agacim, sx = 0) {
   console.log(sx);
@@ -1344,7 +1340,7 @@ function AgaciYaz_13(arr, isoq, address = "0", vrt = "1", li) {
   var upProduct = ProductDesingSetting.find(
     (p) => p.paramName == "update_real_product"
   ).paramValue;
-  
+
   var ul = document.createElement("ul");
   ul.setAttribute("class", "list-group");
 
@@ -1591,8 +1587,49 @@ function getProjectProducts(projectId) {
         <cfargument name="ddsn3">
 */
 
-function addToCurrentTree(vp_id,product_name) {
- // var e = ngetTree(vp_id, 1, "workcube_metosan_1", "", 3, "", "", ""); AddRowItemVirtual
- //AddRowItemVirtual(o.PRODUCT_ID,o.PRODUCT_NAME;
- AddRowItemVirtual(vp_id,product_name,'',0,0,0,'TL',0,0,0,0)
+function addToCurrentTree(vp_id, product_name) {
+  // var e = ngetTree(vp_id, 1, "workcube_metosan_1", "", 3, "", "", ""); AddRowItemVirtual
+  //AddRowItemVirtual(o.PRODUCT_ID,o.PRODUCT_NAME;
+  AddRowItemVirtual(vp_id, product_name, "", 0, 0, 0, "TL", 0, 0, 0, 0);
+}
+
+function convertToOffer() {
+  var Maliyet = document.getElementById("maliyet").value;
+  var company_id = _compId;
+  var price_catid = _priceCatId;
+  var vp_id = document.getElementById("vp_id").value;
+  var project_id = document.getElementById("project_id");
+
+  var BasketData = {
+    Maliyet: Maliyet,
+    company_id: company_id,
+    price_catid: price_catid,
+    vp_id: vp_id,
+    project_id: project_id,
+  };
+  var mapForm = document.createElement("form");
+  mapForm.target = "Map";
+  mapForm.method = "POST"; // or "post" if appropriate
+  mapForm.action =
+    "/index.cfm?fuseaction=project.emptypopup_query_save_project_product";
+
+  var mapInput = document.createElement("input");
+  mapInput.type = "hidden";
+  mapInput.name = "data";
+  mapInput.value = JSON.stringify(BasketData);
+  mapForm.appendChild(mapInput);
+
+  document.body.appendChild(mapForm);
+
+  map = window.open(
+    "/index.cfm?fuseaction=project.emptypopup_query_save_project_product",
+    "Map",
+    "status=0,title=0,height=600,width=800,scrollbars=1"
+  );
+
+  if (map) {
+    mapForm.submit();
+  } else {
+    alert("You must allow popups for this map to work.");
+  }
 }
