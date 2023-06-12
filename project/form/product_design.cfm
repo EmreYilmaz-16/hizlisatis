@@ -189,6 +189,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
       <button class="btn btn-outline-success" onclick="OpenBasketProducts(0,5)">RP</button>
       <button class="btn btn-outline-warning" style="margin-left:5px" onclick="addProdMain()">VP</button>
       <button onclick="Kaydet()" style="margin-left:5px"  class="btn btn-outline-primary">Kaydet</button>
+      <button onclick="convertToOffer()" style="margin-left:5px"  class="btn btn-outline-secondary">Teklif Ver</button>
       <input type="text" class="form-control" value="" id="pnamemain" name="pnamemain" style="margin-left: 15px;color: var(--success);" readonly>
       <cfquery name="getStages" datasource="#dsn3#">
           SELECT STAGE,PROCESS_ROW_ID FROM workcube_metosan.PROCESS_TYPE_ROWS WHERE PROCESS_ID=200
