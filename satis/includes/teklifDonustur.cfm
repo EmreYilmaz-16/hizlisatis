@@ -39,8 +39,8 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
             setSevkYontem(sm[0].SHIP_METHOD_ID, sm[0].SHIP_METHOD)
         </cfif>
         AddRow(
-                            #FormData.PRODUCT_ID#,
-                            #FormData.STOCK_ID#,
+                            #getProductData.VIRTUAL_PRODUCT_ID#,
+                            0,
                             '',
                             '',
                             1,
