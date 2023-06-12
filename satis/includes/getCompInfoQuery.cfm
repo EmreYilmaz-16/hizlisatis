@@ -29,7 +29,8 @@
                 CONCAT(CP.COMPANY_PARTNER_NAME,' ',CP.COMPANY_PARTNER_SURNAME) AS MANAGER,
                 EP.EMPLOYEE_ID AS PLASIYER_ID,
                 SM.SHIP_METHOD,
-		        SM.SHIP_METHOD_ID
+		        SM.SHIP_METHOD_ID,
+                C.MANAGER_PARTNER_ID
             FROM
                 COMPANY C
                 LEFT JOIN SETUP_CITY SC ON C.CITY = SC.CITY_ID
@@ -66,7 +67,8 @@
 	            SM.SHIP_METHOD,
                 EP.EMPLOYEE_ID,
                 CP.COMPANY_PARTNER_NAME,
-				CP.COMPANY_PARTNER_SURNAME
+				CP.COMPANY_PARTNER_SURNAME,
+                C.MANAGER_PARTNER_ID
         </cfquery>
         <cfquery name="getPriceLists" datasource="#dsn3#">
             SELECT
@@ -100,6 +102,7 @@
         <cfset CompInfoStruct.SHIP_METHOD_ID = GetCompInfo.SHIP_METHOD_ID>
         <cfset CompInfoStruct.VADE = GetCompInfo.DUE_DAY>
         <cfset CompInfoStruct.MANAGER = GetCompInfo.MANAGER>
+        <cfset CompInfoStruct.MANAGER_PARTNER_ID = GetCompInfo.MANAGER_PARTNER_ID>
         <cfset CompInfoStruct.NOTE_COUNT = GETnOTES.NOTE_COUNT>
         <cfset VADE2 = 0>
         <cfset attributes.company_id = attributes.type_id>
