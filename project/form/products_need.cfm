@@ -1,5 +1,5 @@
 ﻿<cfquery name="getProjectNeeds" datasource="#dsn3#">
-    EXEC GET_PROJECT_NEEDS #attributes.PROJECT_ID#
+    EXEC GET_PROJECT_NEED_PBS #attributes.PROJECT_ID#
 </cfquery>
 
 <cf_grid_list>
@@ -14,7 +14,7 @@
                 #PRODUCT_NAME#
             </td>
             <td>
-                #tlformat(COMPUTED_COLUMN_1)#
+                #tlformat(AMOUNT)#
             </td>
         </tr>
     </cfoutput>
