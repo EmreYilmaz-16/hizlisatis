@@ -127,6 +127,7 @@ WHERE S.PRODUCT_ID=#it.product_id#
 <CFIF getProductInfo.PROPERTY1 EQ "MANUEL">
     <CFSET EMANUEL=1>
 </CFIF>
+<cftry>
            AddRow(
                             #getProductInfo.VIRTUAL_PRODUCT_ID#,
                             #getProductInfo.STOCK_ID#,
@@ -156,6 +157,10 @@ WHERE S.PRODUCT_ID=#it.product_id#
                             ''
 
         )
+        <cfcatch>
+            console.log('<cfdump var="#cfcatch.message#">')
+        </cfcatch>
+    </cftry>
 </cfloop>
 </cfif>
 
@@ -164,31 +169,3 @@ WHERE S.PRODUCT_ID=#it.product_id#
 </script>
 
 
-AddRow(
-    #PRODUCT_ID#,
-    #STOCK_ID#,
-    '#STOCK_CODE#',
-    '#getOfferRow.BRAND_NAME#',
-    #getOfferRow.IS_VIRTUAL#,
-    #getOfferRow.QUANTITY#,
-    #getOfferRow.PRICE#,
-    '#getOfferRow.PRODUCT_NAME#',
-    #getOfferRow.TAX#,
-    #getOfferRow.DISCOUNT_1#,
-    #getOfferRow.PRODUCT_TYPE#,
-    '#getOfferRow.SHELF_CODE#',
-    '#getOfferRow.OTHER_MONEY#',
-    #getOfferRow.PRICE_OTHER#,
-    #getOfferRow.PBS_OFFER_ROW_CURRENCY#,
-    #EMANUEL#,
-    #lastCost#,
-    '#getOfferRow.MAIN_UNIT#',
-    '#getOfferRow.PRODUCT_NAME2#',
-    '#getOfferRow.DETAIL_INFO_EXTRA#',
-    1,
-    0,
-    '#dateFormat(getOfferRow.DELIVER_DATE,"yyyy-mm-dd")#',
-    #getOfferRow.IS_PRODUCTION#,
-    '#getOfferRow.UNIQUE_RELATION_ID#',
-    '#DESCRIPTION#'
-)    
