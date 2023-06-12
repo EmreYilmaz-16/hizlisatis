@@ -10,7 +10,7 @@
 <script>
     $(document).ready(function(){
         <cfoutput>
-            setCompany(#FirmaDatasi.COMPANY_ID#, '#FirmaDatasi.FULLNAME#',#FirmaDatasi.MANAGER_PARTNER_ID#,'#FirmaDatasi.MANAGER#')       
+            setCompany(#FormData.COMPANY_ID#, '#FirmaDatasi.FULLNAME#',#FirmaDatasi.MANAGER_PARTNER_ID#,'#FirmaDatasi.MANAGER#')       
         
         <cfif FirmaDatasi.PAYMETHOD_ID neq 0 and len(FirmaDatasi.PAYMETHOD_ID)>
             var pm=generalParamsSatis.PAY_METHODS.filter(p=>p.PAYMETHOD_ID==#FirmaDatasi.PAYMETHOD_ID#);
