@@ -1,6 +1,6 @@
 ﻿
 <cfset FormData=deserializeJSON(attributes.data)>
-<cfdump var="#FormData#">
+
 <cfset attributes.type_id=FormData.company_id>
 <cfset attributes.q_type="CompanyInfo">
 <cfinclude template="../includes/getCompInfoQuery.cfm">
@@ -73,7 +73,7 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
 <cfloop array="#FormData.ProductList#" item="it">
 <cfif it.isVirtual eq 1>
     <cfquery name="getProductInfo" datasource="#dsn3#">
-        SELECT VP.VIRTUAL_PRODUCT_ID
+        SELECT VP.VIRTUAL_PRODUCT_ID as PRODUCT_ID
 	,VP.PRODUCT_NAME
 	,VP.PRODUCT_CATID
 	,VP.PRODUCT_TYPE
@@ -101,15 +101,15 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #it.product_id#
     </cfquery>
     <cfelse>
 <cfquery name="getProductInfo" datasource="#dsn3#">
-SELECT S.PRODUCT_ID,S.STOCK_ID,S.PRODUCT_CODE AS STOCK_CODE,S.TAX,S.TAX_PURCHASE,S.BRAND_ID,S.IS_PRODUCTION,PP.SHELF_CODE,PC.DETAIL,PB.BRAND_NAME,-6 as PORCURRENCY,PIP.PROPERTY1,PU.MAIN_UNIT AS PRODUCT_UNIT,'' PRODUCT_NAME2,'' DETAIL_INFO_EXTRA,
+SELECT S.PRODUCT_ID,S.PRODUCT_NAME,S.STOCK_ID,S.PRODUCT_CODE AS STOCK_CODE,S.TAX,S.TAX_PURCHASE,S.BRAND_ID,S.IS_PRODUCTION,PP.SHELF_CODE,PC.DETAIL,PB.BRAND_NAME,-6 as PORCURRENCY,PIP.PROPERTY1,PU.MAIN_UNIT AS PRODUCT_UNIT,'' PRODUCT_NAME2,'' DETAIL_INFO_EXTRA
 ,(  SELECT TOP 1
                     IR.PRICE-(IR.DISCOUNTTOTAL/2) AS PRICE
                 FROM
-                    INVOICE I
-                    LEFT JOIN INVOICE_ROW IR ON IR.INVOICE_ID = I.INVOICE_ID
+                    #dsn2#.INVOICE I
+                    LEFT JOIN #dsn2#.INVOICE_ROW IR ON IR.INVOICE_ID = I.INVOICE_ID
                 WHERE
                     ISNULL(I.PURCHASE_SALES,0) = 0 AND
-                    IR.PRODUCT_ID = #S.PRODUCT_ID#
+                    IR.PRODUCT_ID = S.PRODUCT_ID
                     AND I.PROCESS_CAT<>35
                 ORDER BY
                     I.INVOICE_DATE DESC) AS LAST_COST
@@ -129,7 +129,7 @@ WHERE S.PRODUCT_ID=#it.product_id#
 </CFIF>
 <cftry>
            AddRow(
-                            #getProductInfo.VIRTUAL_PRODUCT_ID#,
+                            #getProductInfo.PRODUCT_ID#,
                             #getProductInfo.STOCK_ID#,
                             '#getProductInfo.STOCK_CODE#',
                             '#getProductInfo.BRAND_NAME#',
