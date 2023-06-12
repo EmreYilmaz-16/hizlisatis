@@ -123,6 +123,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID
 WHERE S.PRODUCT_ID=#it.product_id#
 </cfquery>
 </cfif>
+<cfset EMANUEL=0>
 <CFIF getProductInfo.PROPERTY1 EQ "MANUEL">
     <CFSET EMANUEL=1>
 </CFIF>
