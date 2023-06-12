@@ -1693,7 +1693,7 @@ function setSettings(el) {
       paramName +
       "&paramValue=" +
       paramValue +
-      "&ddsn3=workcube_hidtek_1",
+      "&ddsn3=workcube_metosan_1",
     success: function (returnDat) {
       console.log(returnDat);
       LoadSettings()
