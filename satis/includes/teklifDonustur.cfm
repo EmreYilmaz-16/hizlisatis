@@ -139,7 +139,7 @@ WHERE S.PRODUCT_ID=#it.product_id#
                             <cfif len(it.discount)>#it.discount#<cfelse>0</cfif>,
                             #getProductInfo.DETAIL#,
                             '#getProductInfo.SHELF_CODE#',
-                            '#it.money#',
+                            '<cfif (isdefined("it.money") and len(it.money)) and it.money neq 'undefined'>#it.money#<cfelse>TL</cfif>',
                             <cfif len(it.price)>#it.price#<cfelse>0</cfif>,
                             #getProductInfo.PORCURRENCY#,
                             #EMANUEL#,
