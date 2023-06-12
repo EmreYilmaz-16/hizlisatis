@@ -4,7 +4,7 @@
 <cfset attributes.type_id=FormData.company_id>
 <cfset attributes.q_type="CompanyInfo">
 <cfinclude template="../includes/getCompInfoQuery.cfm">
-
+<cfdump var="#FormData#">
 <cfset FirmaDatasi=InfoArray[1]>
 <cfquery name="getProductData" datasource="#dsn3#">
 SELECT VP.VIRTUAL_PRODUCT_ID
@@ -38,6 +38,7 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
             var sm=generalParamsSatis.SHIP_METHODS.filter(p=>p.SHIP_METHOD_ID==#FirmaDatasi.SHIP_METHOD_ID#)
             setSevkYontem(sm[0].SHIP_METHOD_ID, sm[0].SHIP_METHOD)
         </cfif>
+        <cfif FormData.is_show_tree eq "OFF">
         AddRow(
                             #getProductData.VIRTUAL_PRODUCT_ID#,
                             0,
@@ -67,6 +68,9 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
                             ''
 
         )
+<cfelse>
+
+</cfif>
 
     </cfoutput>
     })
