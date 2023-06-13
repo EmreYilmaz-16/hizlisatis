@@ -1,4 +1,4 @@
-﻿
+﻿<cf_box title="İlişkili Belgeler">
 <cfquery name="getDocuments" datasource="#dsn3#">
     SELECT OFFER_ID AS ACTION_ID
 	,OFFER_NUMBER AS ACTION_NUMBER
@@ -126,3 +126,4 @@ WHERE PROJECT_ID = 2906
 </cf_big_list>
 </cfoutput>
 </div>
+</cf_box>
