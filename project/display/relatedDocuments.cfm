@@ -33,7 +33,7 @@
                 <td>#getTree.IS_VIRTUAL#</td>
             </tr>
         </table>
-        <cfquery  name="isHvTree">
+        <cfquery  name="isHvTree" datasource="#dsn3#">
             SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT  WHERE VP_ID=#getTree.PRODUCT_ID#
         </cfquery>
         <cfif getTree.IS_VIRTUAL eq 1 and isHvTree.recordCount>
