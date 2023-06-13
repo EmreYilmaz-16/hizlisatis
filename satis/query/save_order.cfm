@@ -1,4 +1,5 @@
 <cfdump var="#attributes#">
+
 <cfset FORM.ACTIVE_COMPANY=session.ep.company_id>
 <cfset ATTRIBUTES.ACTIVE_COMPANY=session.ep.company_id>
 <cfdump var="#attributes#">
@@ -9,6 +10,9 @@ select count(*) AS RC from PBS_OFFER
 <cfset FormData=deserializeJSON(attributes.data)>
 
 <cfdump var="#FormData#">
+<cfif session.ep.userid eq 1146>
+    <cfabort>
+</cfif>
 <cfloop array="#FormData.OrderMoney#" item="it" index="i">
     <cfset "attributes._hidden_rd_money_#i#"=it.MONEY>
     <cfset "attributes._txt_rate1_#i#"=it.RATE1>
