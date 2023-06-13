@@ -5,11 +5,11 @@
 <cffunction name="getTree">
     <cfargument name="PRODUCT_ID">
     <cfargument name="IS_VIRTUAL">
-    <cfquery name="getTree" datasource="#dsn3#">
+    <cfquery name="getTreeas" datasource="#dsn3#">
         SELECT PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,IS_VIRTUAL FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS VPT  WHERE VP_ID=#arguments.PRODUCT_ID#
     </cfquery>
     <ul>
-    <cfoutput query="getTree">
+    <cfoutput query="getTreeas">
      <li>
         <table>
             <tr>
