@@ -109,6 +109,23 @@
     </td>
 </tr>
 <tr>
+    <td>
+        <div class="form-group" id="item-project_id">
+            
+            <label>Proje</label>
+                <input type="hidden" name="project_id" id="project_id" value="<cfif isdefined("attributes.project_id") and len(attributes.project_id)>#attributes.project_id#</cfif>">
+            
+                <div class="input-group">
+                    <input type="text" name="project_head" id="project_head" value="<cfif isdefined("attributes.project_id") and len(attributes.project_id)>#get_project_name(attributes.project_id)#</cfif>" onFocus="AutoComplete_Create('project_head','PROJECT_ID,PROJECT_HEAD','PROJECT_HEAD','get_project','','PROJECT_ID','project_id','form_basket','3','140')" autocomplete="off">
+                    <cfset str_linke_ait_prj="&comp_id='+document.form_basket.company_id.value+'&cons_id='+document.form_basket.consumer_id.value+'&comp_name='+document.form_basket.member_name.value+'">
+                    <span class="input-group-addon btnPointer icon-ellipsis" onClick="openBoxDraggable('#request.self#?fuseaction=objects.popup_list_projects#str_linke_ait_prj#&project_id=form_basket.project_id&project_head=form_basket.project_head');"></span>
+                    <span class="input-group-addon btnPointer icon-question" onClick="if(document.getElementById('project_id').value!='')windowopen('#request.self#?fuseaction=project.popup_list_project_actions&from_paper=OFFER&id='+document.getElementById('project_id').value+'','page_display');else alert('Proje Seçiniz');"></span>
+                </div>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
     <td colspan="2">
         <div class="form-group">    
             <label>Açıklama</label> 
