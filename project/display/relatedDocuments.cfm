@@ -56,6 +56,7 @@
      </li>   
     </cfoutput>
 </ul>
+<H3><cfoutput>#arguments.PRODUCT_ID#</cfoutput></H3>
 </cffunction>
 
 
