@@ -56,6 +56,7 @@
                 getTree(getTreeas.PRODUCT_ID,1)
             </cfscript>
         </cfif>
+    </cfif>
      </li>   
     </cfoutput>
 </ul>
