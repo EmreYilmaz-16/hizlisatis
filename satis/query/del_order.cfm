@@ -33,6 +33,6 @@
         </cftransaction>
 </cflock>
 <script type="text/javascript">
-	//window.location.href="<cfoutput>#request.self#?fuseaction=sales.list_pbs_offer</cfoutput>";
-    this.close();
+	window.location.href="<cfoutput>#request.self#?fuseaction=sales.list_pbs_offer</cfoutput>";
+   
 </script>
