@@ -1496,6 +1496,7 @@ function GetBasketData() {
     var amount = document.getElementById("amount_" + Old_rw_id).value;
     var price = document.getElementById("price_" + Old_rw_id).value;
     var other_money = document.getElementById("other_money_" + Old_rw_id).value;
+
     var row_nettotal = document.getElementById(
       "row_nettotal_" + Old_rw_id
     ).value;
@@ -1587,6 +1588,8 @@ function GetBasketData() {
   var COUNTY_ID = document.getElementById("county_id").value;
   var OFFER_DESCRIPTION = document.getElementById("offer_desc").value;
   var PRICE_CATID = document.getElementById("PRICE_CATID").value;
+  var PROJECT_NAME = document.getElementById("project_name").value;
+  var PROJECT_ID = document.getElementById("project_id").value;
   SUBTOTAL = filterNum(SUBTOTAL, 4);
   SUBTAXTOTAL = filterNum(SUBTAXTOTAL, 4);
   SUBNETTOTAL = filterNum(SUBNETTOTAL, 4);
@@ -1652,6 +1655,8 @@ function GetBasketData() {
     PLASIYER_ID: PLASIYER_ID,
     FACT: Fs,
     OFFER_DESCRIPTION: OFFER_DESCRIPTION,
+    PROJECT_NAME: PROJECT_NAME,
+    PROJECT_ID: PROJECT_ID,
   };
 
   var OrderFooter = {

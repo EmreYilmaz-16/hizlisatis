@@ -1604,7 +1604,11 @@ function convertToOffer() {
   var vp_id = document.getElementById("vp_id").value;
   var project_id = document.getElementById("project_id").value;
   Maliyet = filterNum(Maliyet);
-
+  var q =
+    "select PROJECT_NUMBER+'-'+PROJECT_HEAD as PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where PROJECT_ID=" +
+    project_id;
+  var res = wrk_query(q, "dsn");
+  var project_name = res.PROJECT_HEAD[0];
   var pro = $("#ppidarea *li");
   var ProductList = new Array();
   for (let i = 0; i < pro.length; i++) {
@@ -1621,6 +1625,7 @@ function convertToOffer() {
     var money = prod.getAttribute("data-money");
     var discount = prod.getAttribute("data-discount");
     var sett = getsettingByName("is_show_tree").paramValue;
+
     var O = {
       product_id: pid,
       isVirtual: isVirtual,
@@ -1640,6 +1645,7 @@ function convertToOffer() {
     price_catid: price_catid,
     vp_id: vp_id,
     project_id: project_id,
+    project_name: project_name,
     stock_id: 0,
     is_show_tree: sett,
     ProductList: ProductList,

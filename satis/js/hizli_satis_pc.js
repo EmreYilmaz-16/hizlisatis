@@ -703,7 +703,11 @@ function openAnaliz(d1, d2) {
     alert("Müşteri Seçmediniz");
   }
 }
-
+function setProjects(PROJECT_ID, PROJECT_HEAD) {
+  //var keyWord=el.value;
+  document.getElementById("project_id").value = PROJECT_ID;
+  document.getElementById("project_name").value = PROJECT_HEAD;
+}
 /*
 "report.sale_analyse_report
   &PRODUCT_ID=
