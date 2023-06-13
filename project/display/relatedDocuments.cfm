@@ -5,6 +5,7 @@
 <cffunction name="getTree">
     <cfargument name="PRODUCT_ID">
     <cfargument name="IS_VIRTUAL">
+    <cfargument name="MAIN_PRODUCT_ID" default="0">
     <cfquery name="getTreeas" datasource="#dsn3#">
         SELECT PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,IS_VIRTUAL FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS VPT  WHERE VP_ID=#arguments.PRODUCT_ID#
     </cfquery>
@@ -49,13 +50,15 @@
             SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT  WHERE VP_ID=#getTreeas.PRODUCT_ID#
         </cfquery>
         <cfif getTreeas.IS_VIRTUAL eq 1>
-            Burada Ürünü Kaydet #getTreeas.PRODUCT_ID# -> #getStokInfo.PRODUCT_NAME#
-        
+            Burada Ürünü Kaydet #getTreeas.PRODUCT_ID# -> #getStokInfo.PRODUCT_NAME#        
         <cfif isHvTree.recordCount>
             <cfscript>
                 getTree(getTreeas.PRODUCT_ID,1)
             </cfscript>
         </cfif>
+    <cfelse>
+        Burada Var Olanı Ağaca EKledim 
+        #getTreeas.PRODUCT_ID# -> #getStokInfo.PRODUCT_NAME#  
     </cfif>
      </li>   
     </cfoutput>
