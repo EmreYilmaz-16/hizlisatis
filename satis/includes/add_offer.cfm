@@ -1,7 +1,4 @@
-<cfif session.ep.userid eq 1146>
-	<cfabort>
-	<cfdump var="#attributes#">
-</cfif>
+
 <cf_xml_page_edit fuseact="sales.form_add_offer">
 <cfif form.active_company neq session.ep.company_id>
 	<script type="text/javascript">
