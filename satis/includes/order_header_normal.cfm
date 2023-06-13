@@ -113,7 +113,7 @@
         <div class="form-group">
             <label>Proje</label>
             <input type="hidden" name="project_id" id="project_id">
-            <input type="text" name="project_name" id="project_name">
+            <input type="text" readonly="" name="project_name" id="project_name">
         </div>
     </td>
 </tr>
