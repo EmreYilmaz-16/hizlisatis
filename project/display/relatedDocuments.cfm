@@ -14,25 +14,33 @@
         <table>
             <tr>
                 <td>PRODUCT_ID</td>
-                <td>#PRODUCT_ID#</td>
+                <td>#getTree.PRODUCT_ID#</td>
             </tr>
             <tr>
                 <td>STOCK_ID</td>
-                <td>#PRODUCT_ID#</td>
+                <td>#getTree.PRODUCT_ID#</td>
             </tr>
             <tr>
                 <td>AMOUNT</td>
-                <td>#AMOUNT#</td>
+                <td>#getTree.AMOUNT#</td>
             </tr>
             <tr>
                 <td>QUESTION_ID</td>
-                <td>#QUESTION_ID#</td>
+                <td>#getTree.QUESTION_ID#</td>
             </tr>
             <tr>
                 <td>IS_VIRTUAL</td>
-                <td>#IS_VIRTUAL#</td>
+                <td>#getTree.IS_VIRTUAL#</td>
             </tr>
         </table>
+        <cfquery  name="isHvTree">
+            SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT  WHERE VP_ID=#getTree.PRODUCT_ID#
+        </cfquery>
+        <cfif getTree.IS_VIRTUAL eq 1 and isHvTree.recordCount>
+            <cfscript>
+                getTree(getTree.PRODUCT_ID,1)
+            </cfscript>
+        </cfif>
      </li>   
     </cfoutput>
 </ul>
