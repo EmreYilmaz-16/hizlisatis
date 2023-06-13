@@ -48,7 +48,10 @@
         <cfquery  name="isHvTree" datasource="#dsn3#">
             SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT  WHERE VP_ID=#getTreeas.PRODUCT_ID#
         </cfquery>
-        <cfif getTreeas.IS_VIRTUAL eq 1 and isHvTree.recordCount>
+        <cfif getTreeas.IS_VIRTUAL eq 1>
+            Burada Ürünü Kaydet #getTreeas.PRODUCT_ID# -> #getStokInfo.PRODUCT_NAME#
+        
+        <cfif isHvTree.recordCount>
             <cfscript>
                 getTree(getTreeas.PRODUCT_ID,1)
             </cfscript>
@@ -56,7 +59,7 @@
      </li>   
     </cfoutput>
 </ul>
-<H3><cfoutput>#arguments.PRODUCT_ID#</cfoutput></H3>
+
 </cffunction>
 
 
