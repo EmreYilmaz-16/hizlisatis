@@ -41,15 +41,33 @@ return false
 <cfif attributes.event eq "UPD">
     
     <cfquery name="getOffer" datasource="#dsn3#">
-    select PO.OFFER_NUMBER,PO.OFFER_DESCRIPTION,C.COMPANY_ID,C.FULLNAME,CP.COMPANY_PARTNER_NAME+' '+CP.COMPANY_PARTNER_SURNAME AS NN,CP.PARTNER_ID,PO.OFFER_HEAD,PO.OFFER_DATE,ISNULL(PO.SHIP_METHOD,0) SHIP_METHOD,ISNULL(PO.PAYMETHOD,0) PAYMETHOD,
-    PO.RECORD_DATE, PO.UPDATE_DATE,#dsn#.getEmployeeWithId( PO.RECORD_MEMBER) as RECORD_MEMBER,#dsn#.getEmployeeWithId( PO.UPDATE_MEMBER) as UPDATE_MEMBER,PO.OFFER_DETAIL,ISNULL(PO.SA_DISCOUNT,0) SA_DISCOUNT
-     from PBS_OFFER AS PO
-LEFT JOIN #dsn#.COMPANY AS C ON PO.COMPANY_ID=C.COMPANY_ID
-LEFT JOIN #dsn#.COMPANY_PARTNER AS CP ON CP.PARTNER_ID=PO.PARTNER_ID
-WHERE OFFER_ID=#attributes.offer_id#
+SELECT PO.OFFER_NUMBER
+	,PO.OFFER_DESCRIPTION
+	,C.COMPANY_ID
+	,C.FULLNAME
+	,CP.COMPANY_PARTNER_NAME + ' ' + CP.COMPANY_PARTNER_SURNAME AS NN
+	,CP.PARTNER_ID
+	,PO.OFFER_HEAD
+	,PO.OFFER_DATE
+    ,ISNULL(PO.PROJECT_ID,0)
+	,ISNULL(PO.SHIP_METHOD, 0) SHIP_METHOD
+	,ISNULL(PO.PAYMETHOD, 0) PAYMETHOD
+	,PO.RECORD_DATE
+	,PO.UPDATE_DATE
+	,#dsn#.getEmployeeWithId(PO.RECORD_MEMBER) AS RECORD_MEMBER
+	,#dsn#.getEmployeeWithId(PO.UPDATE_MEMBER) AS UPDATE_MEMBER
+	,PO.OFFER_DETAIL
+	,ISNULL(PO.SA_DISCOUNT, 0) SA_DISCOUNT
+FROM PBS_OFFER AS PO
+LEFT JOIN #dsn#.COMPANY AS C ON PO.COMPANY_ID = C.COMPANY_ID
+LEFT JOIN #dsn#.COMPANY_PARTNER AS CP ON CP.PARTNER_ID = PO.PARTNER_ID
+WHERE OFFER_ID = #attributes.offer_id#
     </cfquery>
     
     <cfset TekNo="#getOffer.OFFER_NUMBER#">
+    <cfquery name="getProject" datasource="#DSN#">
+        select PROJECT_NUMBER+'-'+PROJECT_HEAD as PROJECT_HEAD,PROJECT_ID from workcube_metosan.PRO_PROJECTS where PROJECT_ID=#getOffer.PROJECT_ID#
+    </cfquery>
     <cfquery name="getOfferRow" datasource="#dsn3#">
         
 
@@ -67,7 +85,7 @@ WHERE OFFER_ID=#attributes.offer_id#
 	,POR.OTHER_MONEY
 	,POR.OTHER_MONEY_VALUE
 	,POR.TAX
-	,POR.SHELF_CODE
+	,POR.SHELF_CODE    
 	,POR.PBS_OFFER_ROW_CURRENCY
 	,POR.DETAIL_INFO_EXTRA
 	,POR.PRODUCT_NAME2
@@ -132,7 +150,8 @@ ORDER BY POR.OFFER_ROW_ID
             <script>    
             <cfoutput>
                 $(document).ready(function(){                     
-                        setCompany(#getOffer.COMPANY_ID#, '#getOffer.FULLNAME#',#getOffer.PARTNER_ID#,'#getOffer.NN#',0)           
+                        setCompany(#getOffer.COMPANY_ID#, '#getOffer.FULLNAME#',#getOffer.PARTNER_ID#,'#getOffer.NN#',0)      
+                        setProjects('#getProject.PROJECT_ID#','#getProject.PROJECT_HEAD#')     
                     <cfif getOffer.PAYMETHOD neq 0>var pm=generalParamsSatis.PAY_METHODS.filter(p=>p.PAYMETHOD_ID==#getOffer.PAYMETHOD#);
                         setOdemeYontem(pm[0].PAYMETHOD_ID, pm[0].PAYMETHOD, pm[0].DUE_DAY)
                     </cfif>
