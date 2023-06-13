@@ -108,5 +108,14 @@ WHERE PROJECT_ID = 2906
 <div>    
 <cfoutput query="getDocuments" group="MAIN_TIP">
     <h3>#MAIN_TIP#</h3>
+    <table>
+    <cfoutput group="TIP">
+        <tr>
+            <td>
+                #TIP#
+            </td>
+        </tr>
+    </cfoutput>
+</table>
 </cfoutput>
 </div>
