@@ -66,7 +66,7 @@ select count(*) AS RC from PBS_OFFER
 <cfset attributes.city_id=FormData.OrderHeader.CITY_ID>
 <cfset attributes.county_id=FormData.OrderHeader.COUNTY_ID>
 <cfset attributes.commission_rate="">
-<cfset attributes.project_head="">
+
 <cfset attributes.sales_add_option="">
 <cfset attributes.offer_head=FormData.OrderHeader.OFFER_HEAD>
 <cfset attributes.offer_detail="">
