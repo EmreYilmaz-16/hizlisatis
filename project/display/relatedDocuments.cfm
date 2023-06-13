@@ -10,11 +10,23 @@
     </cfquery>
     <ul>
     <cfoutput query="getTreeas">
+        <cfquery name="getStokInfo" datasource="#DSN3#">
+            <cfif getTreeas.IS_VIRTUAL eq 1>
+                SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#getTreeas.PRODUCT_ID#
+        <cfelse>
+            SELECT * FROM STOCKS WHERE PRODUCT_ID=#getTreeas.PRODUCT_ID#    
+        </cfif>
+            
+        </cfquery>
      <li>
         <table>
             <tr>
                 <td>PRODUCT_ID</td>
                 <td>#getTreeas.PRODUCT_ID#</td>
+            </tr>
+            <tr>
+                <td>PRODUCT_NAME</td>
+                <td>#getStokInfo.PRODUCT_NAME#</td>
             </tr>
             <tr>
                 <td>STOCK_ID</td>
