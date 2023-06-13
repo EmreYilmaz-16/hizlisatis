@@ -1,4 +1,48 @@
-﻿<cf_box title="İlişkili Belgeler">
+﻿
+<cfscript>
+    getTree(1178,1)
+</cfscript>
+<cffunction name="getTree">
+    <cfargument name="PRODUCT_ID">
+    <cfargument name="IS_VIRTUAL">
+    <cfquery name="getTree" datasource="#dsn3#">
+        SELECT PRODUCT_ID,STOCK_ID,AMOUNT,QUESTION_ID,IS_VIRTUAL FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS VPT  WHERE VP_ID=#arguments.PRODUCT_ID#
+    </cfquery>
+    <ul>
+    <cfoutput query="getTree">
+     <li>
+        <table>
+            <tr>
+                <td>PRODUCT_ID</td>
+                <td>#PRODUCT_ID#</td>
+            </tr>
+            <tr>
+                <td>STOCK_ID</td>
+                <td>#PRODUCT_ID#</td>
+            </tr>
+            <tr>
+                <td>AMOUNT</td>
+                <td>#AMOUNT#</td>
+            </tr>
+            <tr>
+                <td>QUESTION_ID</td>
+                <td>#QUESTION_ID#</td>
+            </tr>
+            <tr>
+                <td>IS_VIRTUAL</td>
+                <td>#IS_VIRTUAL#</td>
+            </tr>
+        </table>
+     </li>   
+    </cfoutput>
+</ul>
+</cffunction>
+
+
+
+
+<cfabort>
+<cf_box title="İlişkili Belgeler">
 <cfquery name="getDocuments" datasource="#dsn3#">
     SELECT OFFER_ID AS ACTION_ID
 	,OFFER_NUMBER AS ACTION_NUMBER
