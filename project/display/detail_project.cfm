@@ -73,8 +73,8 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <a class="list-group-item list-group-item-action" style="display: inline-grid;align-content: center;text-align: center;justify-items: center;"onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'"> <img src="/images/e-pd/nt.png"> Notlar</a>
         <a class="list-group-item list-group-item-action" style="display: inline-grid;align-content: center;text-align: center;justify-items: center;"><img src="/images/e-pd/pord.png" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_product_needs&project_id=#attributes.project_id#</cfoutput>'" > Malzeme İhtiyaçları</a>
         <a class="list-group-item list-group-item-action" style="display: inline-grid;align-content: center;text-align: center;justify-items: center;"><img src="/images/e-pd/ordrr.png"> Teklife Dönüştür</a>
-        <a class="list-group-item list-group-item-action" style="display: inline-grid;align-content: center;text-align: center;justify-items: center;"><img src="/images/e-pd/rel.png"> İlişkili İşlemler</a>
-   
+        <a class="list-group-item list-group-item-action" style="display: inline-grid;align-content: center;text-align: center;justify-items: center;" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_related_project_documents&project_id=#attributes.project_id#</cfoutput>'"><img src="/images/e-pd/rel.png"> İlişkili İşlemler</a>
+        
     </div>
 <!----
     <div style="display:flex;flex-direction: row;flex-wrap: wrap;align-content: stretch;justify-content: flex-start;align-items: flex-end;">
