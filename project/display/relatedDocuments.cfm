@@ -18,7 +18,13 @@
 <CFSET "A.STOCK_ID_1190"=K_URUN.STOCK_ID>
 <CFSET "A.SPECT_MAIN_LIST_1190"="">
 <cfscript>
-    queryAddRow(AcilanUrunler,"1190,#K_URUN.PRODUCT_ID#,#K_URUN.STOCK_ID#,0");
+    OX={
+        VP_ID=1190,
+        STOCK_ID=K_URUN.STOCK_ID,
+        PRODUCT_ID=K_URUN.PRODUCT_ID,
+        SEVIYE=0
+    }
+    queryAddRow(AcilanUrunler,OX);
 </cfscript>
 <cfdump var="#AcilanUrunler#">
 <!----- Sanal Ürünler Kayıt Ediliyor----->    
