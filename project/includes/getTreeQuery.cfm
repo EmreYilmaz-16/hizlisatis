@@ -2,7 +2,7 @@
     SELECT *
 	,0 AS SEVIYE
 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
-WHERE VP_ID = 1190
+WHERE VP_ID = #attributes.VIRTUAL_PRODUCT_ID#
 
 UNION
 
@@ -12,7 +12,7 @@ FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
 WHERE VP_ID IN (
 		SELECT PRODUCT_ID
 		FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
-		WHERE VP_ID = 1190
+		WHERE VP_ID = #attributes.VIRTUAL_PRODUCT_ID#
 			AND IS_VIRTUAL = 1
 		)
 
@@ -27,7 +27,7 @@ WHERE VP_ID IN (
 		WHERE VP_ID IN (
 				SELECT PRODUCT_ID
 				FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
-				WHERE VP_ID = 1190
+				WHERE VP_ID = #attributes.VIRTUAL_PRODUCT_ID#
 					AND IS_VIRTUAL = 1
 				)
 			AND IS_VIRTUAL = 1
@@ -47,7 +47,7 @@ WHERE VP_ID IN (
 				WHERE VP_ID IN (
 						SELECT PRODUCT_ID
 						FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
-						WHERE VP_ID = 1190
+						WHERE VP_ID = #attributes.VIRTUAL_PRODUCT_ID#
 							AND IS_VIRTUAL = 1
 						)
 					AND IS_VIRTUAL = 1
@@ -71,7 +71,7 @@ WHERE VP_ID IN (
 						WHERE VP_ID IN (
 								SELECT PRODUCT_ID
 								FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
-								WHERE VP_ID = 1190
+								WHERE VP_ID = #attributes.VIRTUAL_PRODUCT_ID#
 									AND IS_VIRTUAL = 1
 								)
 							AND IS_VIRTUAL = 1
@@ -99,7 +99,7 @@ WHERE VP_ID IN (
 								WHERE VP_ID IN (
 										SELECT PRODUCT_ID
 										FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
-										WHERE VP_ID = 1190
+										WHERE VP_ID = #attributes.VIRTUAL_PRODUCT_ID#
 											AND IS_VIRTUAL = 1
 										)
 									AND IS_VIRTUAL = 1

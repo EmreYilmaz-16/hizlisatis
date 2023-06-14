@@ -1,11 +1,14 @@
-﻿<cfinclude template="../includes/getTreeQuery.cfm">
+﻿<cfparam   name="attributes.VIRTUAL_PRODUCT_ID" default="">
+<!---- Eğer Ürün Gelmezse Durdurdum------>
+<cfif len(attributes.VIRTUAL_PRODUCT_ID)><cfelse><cfabort></cfif>
+<cfinclude template="../includes/getTreeQuery.cfm">
 <!--------- Sanallar Ayıklanıyor----->
 <cfquery name="getvirtuals" dbtype="query">
     SELECT * FROM getVirtualTree WHERE IS_VIRTUAL=1
 </cfquery>
 <!--------- Ana Ürün Bilgileri----->
 <cfquery name="productInfo" datasource="#dsn3#">
-    SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=1190
+    SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#attributes.VIRTUAL_PRODUCT_ID#
 </cfquery>
 <cfscript>
      AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE","INTEGER,INTEGER,INTEGER,INTEGER");
@@ -14,12 +17,12 @@
 
 <!----- Ana Ürün Kayıt Ediliyor----->    
 <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18)>	
-<CFSET "A.PRODUCT_ID_1190"=K_URUN.PRODUCT_ID>
-<CFSET "A.STOCK_ID_1190"=K_URUN.STOCK_ID>
-<CFSET "A.SPECT_MAIN_LIST_1190"="">
+<CFSET "A.PRODUCT_ID_#attributes.VIRTUAL_PRODUCT_ID#"=K_URUN.PRODUCT_ID>
+<CFSET "A.STOCK_ID_#attributes.VIRTUAL_PRODUCT_ID#"=K_URUN.STOCK_ID>
+<CFSET "A.SPECT_MAIN_LIST_#attributes.VIRTUAL_PRODUCT_ID#"="">
 <cfscript>
     OX={
-        VP_ID=1190,
+        VP_ID=#attributes.VIRTUAL_PRODUCT_ID#,
         STOCK_ID=K_URUN.STOCK_ID,
         PRODUCT_ID=K_URUN.PRODUCT_ID,
         SEVIYE=-1
@@ -29,7 +32,7 @@
 <cfdump var="#AcilanUrunler#">
 <!----- Sanal Ürünler Kayıt Ediliyor----->    
 <cfset SRaRR=[{
-    VP_ID=1190,
+    VP_ID=#attributes.VIRTUAL_PRODUCT_ID#,
     STOCK_ID=K_URUN.STOCK_ID
 }]>
 <cfoutput query="getvirtuals">    
@@ -191,7 +194,7 @@
     <cfdump var="#SEAL#">
     <cfabort>x"1
     <cfscript>
-        getTree_1453(1190,1)
+        getTree_1453(#attributes.VIRTUAL_PRODUCT_ID#,1)
     </cfscript>
     <cffunction name="getTree_1453">
         <cfargument name="PRODUCT_ID">
