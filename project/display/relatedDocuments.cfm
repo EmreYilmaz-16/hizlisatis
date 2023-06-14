@@ -78,14 +78,22 @@
       <td>
         <table>
             
-        
+        <CFSET spec_main_id_list="">
     <cfloop query="getPList">
 <tr>
     <td>
         <cfoutput>#getPList.PRODUCT_ID#</cfoutput>
+        <cfquery name="getStokInfo" datasource="#dsn3#">
+            SELECT * FROM workcube_metosan_1.STOCKS WHERE PRODUCT_ID=#PRODUCT_ID#
+        </cfquery>
+        <cfscript>AgacaEkle(MAIN_SID,MAIN_PID,getStokInfo.STOCK_ID,getStock_Info.PRODUCT_ID,getPList.AMOUNT,"",getPList.QUESTION_ID)</cfscript>
+        <CFSET spec_main_id_list="#spec_main_id_list#,#getStock_Info.STOCK_ID#">
     </td>
 </tr>
     </cfloop>
+    <cfscript>
+        AddSpects(MAIN_SID,spec_main_id_list);
+    </cfscript>
 </table>
 </td>
 </TR>
