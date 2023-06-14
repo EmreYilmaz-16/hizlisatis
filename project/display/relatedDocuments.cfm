@@ -37,13 +37,32 @@
 </cfoutput>
 <cfloop query="getvirtuals">
     <cfquery name="getPList" dbtype="query">
-        SELECT * FROM getVirtualTree WHERE VP_ID=#VP_ID#
+        SELECT * FROM getVirtualTree WHERE VP_ID=#getvirtuals.VP_ID#
     </cfquery> 
+    <cfset MAIN_PID=evaluate("A.PRODUCT_ID_#VP_ID#")>
+    <cfset MAIN_SID=evaluate("A.STOCK_ID_#VP_ID#")>    
+    <table>
+        <TR>
+            <TD>
+                <cfoutput>
+                    #MAIN_PID# ---- #MAIN_SID#
+                </cfoutput>
+            </TD>
+      <td>
+        <table>
+            
+        
     <cfloop query="getPList">
-        <cfoutput>
-            #getPList.PRODUCT_ID#
-        </cfoutput>
+<tr>
+    <td>
+        <cfoutput>#getPList.PRODUCT_ID#</cfoutput>
+    </td>
+</tr>
     </cfloop>
+</table>
+</td>
+</TR>
+</table>
 </cfloop>
 
 
