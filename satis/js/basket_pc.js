@@ -2567,7 +2567,7 @@ function setFiyatA(row, price, money, modal_id) {
 
 function ConvertRealProduct(pid,rwid) {
   $.ajax({
-    url:"index.cfm?fuseaction=objects.emptypopup_createRealProductPbs&VIRTUAL_PRODUCT_ID="+pid+"&ROW_ID="+rwid,
+    url:"index.cfm?fuseaction=objects.emptypopup_createRealProductPbs&ajax=1&ajax_box_page=1&isAjax=1&VIRTUAL_PRODUCT_ID="+pid+"&ROW_ID="+rwid,
     success:function(retDat){
       console.log(retDat);
       
