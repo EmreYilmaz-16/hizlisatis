@@ -8,7 +8,7 @@
     SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=1190
 </cfquery>
 <cfscript>
-    var AcilanUrunler=queryNew("VP_ID,STOCK_ID,SEVIYE","INTEGER,INTEGER,INTEGER");
+     AcilanUrunler=queryNew("VP_ID,STOCK_ID,SEVIYE","INTEGER,INTEGER,INTEGER");
 </cfscript>
 <!----- Ana Ürün Kayıt Ediliyor----->    
 <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18)>	
@@ -41,7 +41,7 @@
         </cfoutput>
     </cfloop>
 </cfloop>
-<cfabort>
+
 
 
 
