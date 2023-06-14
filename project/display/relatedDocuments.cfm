@@ -57,12 +57,17 @@
     </cfscript>
 </cfoutput>
 <cfdump var="#AcilanUrunler#">
-<cfloop query="getvirtuals">
+
+<cfquery name="AcilanUrunler" dbtype="query">
+    SELECT * FROM AcilanUrunler ORDER BY SEVIYE DESC
+</cfquery>
+
+<cfloop query="AcilanUrunler">
     <cfquery name="getPList" dbtype="query">
-        SELECT * FROM getVirtualTree WHERE VP_ID=#getvirtuals.VP_ID#
+        SELECT * FROM getVirtualTree WHERE VP_ID=#AcilanUrunler.VP_ID#
     </cfquery> 
-    <cfset MAIN_PID=evaluate("A.PRODUCT_ID_#VP_ID#")>
-    <cfset MAIN_SID=evaluate("A.STOCK_ID_#VP_ID#")>    
+    <cfset MAIN_PID=PRODUCT_ID>
+    <cfset MAIN_SID=STOCK_ID>    
     <table>
         <TR>
             <TD>
