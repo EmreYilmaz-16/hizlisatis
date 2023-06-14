@@ -2574,8 +2574,9 @@ function ConvertRealProduct(pid, rwid) {
       rwid,
     success: function (retDat) {
       console.log(retDat);
-      var PidE = eval("retDat[0].PRODUCT_ID_" + pid + "");
-      var SidE = eval("retDat[0].STOCK_ID_" + pid + "");
+      var O=JSON.parse(retDat);
+      var PidE = eval("O[0].PRODUCT_ID_" + pid + "");
+      var SidE = eval("O[0].STOCK_ID_" + pid + "");
       document.getElementById("product_id_" + rwid).value = PidE;
       document.getElementById("stock_id_" + rwid).value = SidE;
       document.getElementById("is_virtual_" + rwid).value = 0;
