@@ -81,7 +81,7 @@
     </cfscript>
 </cfloop>
 <cfoutput>
-    #replace(serializeJSON(A),"//","")#
+    [#replace(serializeJSON(A),"//","")#]
 </cfoutput>
 <cfscript>
     function get_spect_row(spect_id)
