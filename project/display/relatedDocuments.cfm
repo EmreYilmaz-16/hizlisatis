@@ -41,12 +41,22 @@
     <CFSET "A.STOCK_ID_#PRODUCT_ID#"=K_URUN.STOCK_ID>
     <CFSET "A.SPECT_MAIN_LIST_#PRODUCT_ID#"="">
     <cfscript>
+        OX={
+            VP_ID=PRODUCT_ID,
+            STOCK_ID=K_URUN.STOCK_ID,
+            PRODUCT_ID=K_URUN.PRODUCT_ID,
+            SEVIYE=0
+        }
+        queryAddRow(AcilanUrunler,OX);
+    </cfscript>
+    <cfscript>
         O={
             VP_ID=PRODUCT_ID,
             STOCK_ID=K_URUN.STOCK_ID}
         arrayAppend(SRaRR,O);
     </cfscript>
 </cfoutput>
+<cfdump var="#AcilanUrunler#">
 <cfloop query="getvirtuals">
     <cfquery name="getPList" dbtype="query">
         SELECT * FROM getVirtualTree WHERE VP_ID=#getvirtuals.VP_ID#
