@@ -45,7 +45,7 @@
             VP_ID=PRODUCT_ID,
             STOCK_ID=K_URUN.STOCK_ID,
             PRODUCT_ID=K_URUN.PRODUCT_ID,
-            SEVIYE=0
+            SEVIYE=SEVIYE
         }
         queryAddRow(AcilanUrunler,OX);
     </cfscript>
