@@ -84,7 +84,7 @@
     <td>
         <cfoutput>#getPList.PRODUCT_ID#</cfoutput>
         <cfquery name="getStokInfo" datasource="#dsn3#">
-            SELECT * FROM workcube_metosan_1.STOCKS WHERE PRODUCT_ID=#PRODUCT_ID#
+            SELECT * FROM workcube_metosan_1.STOCKS WHERE PRODUCT_ID=<cfif isDefined("A.PRODUCT_ID_#PRODUCT_ID#")>#evaluate("A.PRODUCT_ID_#PRODUCT_ID#")#<cfelse>#PRODUCT_ID#</cfif>
         </cfquery>
         <cfscript>AgacaEkle(MAIN_SID,MAIN_PID,getStokInfo.STOCK_ID,getStokInfo.PRODUCT_ID,getPList.AMOUNT,"",getPList.QUESTION_ID)</cfscript>
         <CFSET spec_main_id_list="#spec_main_id_list#,#getStokInfo.STOCK_ID#">
