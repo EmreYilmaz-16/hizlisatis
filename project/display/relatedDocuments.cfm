@@ -16,6 +16,10 @@
 <CFSET "A.STOCK_ID_1190"=K_URUN.STOCK_ID>
 <CFSET "A.SPECT_MAIN_LIST_1190"="">
 <!----- Sanal Ürünler Kayıt Ediliyor----->    
+<cfset SRaRR=[{
+    VP_ID=1190,
+    STOCK_ID=K_URUN.STOCK_ID
+}]>
 <cfoutput query="getvirtuals">    
     <cfquery name="productInfo" datasource="#dsn3#">
         SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#PRODUCT_ID#
