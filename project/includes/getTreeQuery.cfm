@@ -1,1 +1,112 @@
-﻿
+﻿<cfquery name="getVirtualTree" datasource="#dsn3#">
+    SELECT *
+	,0 AS SEVIYE
+FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+WHERE VP_ID = 1190
+
+UNION
+
+SELECT *
+	,1 AS SEVIYE
+FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+WHERE VP_ID IN (
+		SELECT PRODUCT_ID
+		FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+		WHERE VP_ID = 1190
+			AND IS_VIRTUAL = 1
+		)
+
+UNION
+
+SELECT *
+	,2 AS SEVIYE
+FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+WHERE VP_ID IN (
+		SELECT PRODUCT_ID
+		FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+		WHERE VP_ID IN (
+				SELECT PRODUCT_ID
+				FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+				WHERE VP_ID = 1190
+					AND IS_VIRTUAL = 1
+				)
+			AND IS_VIRTUAL = 1
+		)
+
+UNION
+
+SELECT *
+	,3 AS SEVIYE
+FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+WHERE VP_ID IN (
+		SELECT PRODUCT_ID
+		FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+		WHERE VP_ID IN (
+				SELECT PRODUCT_ID
+				FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+				WHERE VP_ID IN (
+						SELECT PRODUCT_ID
+						FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+						WHERE VP_ID = 1190
+							AND IS_VIRTUAL = 1
+						)
+					AND IS_VIRTUAL = 1
+				)
+		)
+
+UNION
+
+SELECT *
+	,4 AS SEVIYE
+FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+WHERE VP_ID IN (
+		SELECT PRODUCT_ID
+		FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+		WHERE VP_ID IN (
+				SELECT PRODUCT_ID AS SEVIYE
+				FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+				WHERE VP_ID IN (
+						SELECT PRODUCT_ID
+						FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+						WHERE VP_ID IN (
+								SELECT PRODUCT_ID
+								FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+								WHERE VP_ID = 1190
+									AND IS_VIRTUAL = 1
+								)
+							AND IS_VIRTUAL = 1
+						)
+				)
+		)
+
+UNION
+
+SELECT *
+	,5 AS SEVIYE
+FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+WHERE VP_ID IN (
+		SELECT PRODUCT_ID AS SEVIYE
+		FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+		WHERE VP_ID IN (
+				SELECT PRODUCT_ID
+				FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+				WHERE VP_ID IN (
+						SELECT PRODUCT_ID AS SEVIYE
+						FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+						WHERE VP_ID IN (
+								SELECT PRODUCT_ID
+								FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+								WHERE VP_ID IN (
+										SELECT PRODUCT_ID
+										FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT
+										WHERE VP_ID = 1190
+											AND IS_VIRTUAL = 1
+										)
+									AND IS_VIRTUAL = 1
+								)
+						)
+				)
+		)
+ORDER BY SEVIYE ASC
+	,VP_ID
+</cfquery>
