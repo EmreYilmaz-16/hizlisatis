@@ -1864,7 +1864,7 @@ function BasketSelControl() {
           icon: "icn-md icon-check",
           txt: "Gerçek Ürüne Dönüştür",
           evntType: "onclick",
-          evnt: "ConvertRealProduct(this)",
+          evnt: "ConvertRealProduct(" + pid + "," + RwId + ")",
           att: "",
         };
       }
@@ -2563,4 +2563,15 @@ function setFiyatA(row, price, money, modal_id) {
   $("orderrow_currency_" + row).val(-6);
   hesapla("price", row);
   closeBoxDraggable(modal_id);
+}
+
+function ConvertRealProduct(pid,rwid) {
+  $.ajax({
+    url:"index.cfm?fuseaction=objects.emptypopup_createRealProductPbs&VIRTUAL_PRODUCT_ID="+pid+"&ROW_ID="+rwid,
+    success:function(retDat){
+      console.log(retDat);
+      
+    }
+  })
+
 }

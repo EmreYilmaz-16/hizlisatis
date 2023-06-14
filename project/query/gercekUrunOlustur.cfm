@@ -11,10 +11,8 @@
     SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#attributes.VIRTUAL_PRODUCT_ID#
 </cfquery>
 <cfscript>
-     AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE","INTEGER,INTEGER,INTEGER,INTEGER");
-    
+     AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE","INTEGER,INTEGER,INTEGER,INTEGER");    
 </cfscript>
-
 <!----- Ana Ürün Kayıt Ediliyor----->    
 <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18)>	
 <CFSET "A.PRODUCT_ID_#attributes.VIRTUAL_PRODUCT_ID#"=K_URUN.PRODUCT_ID>
@@ -29,10 +27,9 @@
     }
     queryAddRow(AcilanUrunler,OX);
 </cfscript>
-<cfdump var="#AcilanUrunler#">
 <!----- Sanal Ürünler Kayıt Ediliyor----->    
 <cfset SRaRR=[{
-    VP_ID=#attributes.VIRTUAL_PRODUCT_ID#,
+    VP_ID=attributes.VIRTUAL_PRODUCT_ID,
     STOCK_ID=K_URUN.STOCK_ID
 }]>
 <cfoutput query="getvirtuals">    
@@ -59,7 +56,7 @@
         arrayAppend(SRaRR,O);
     </cfscript>
 </cfoutput>
-<cfdump var="#AcilanUrunler#">
+
 
 <cfquery name="AcilanUrunler" dbtype="query">
     SELECT * FROM AcilanUrunler ORDER BY SEVIYE DESC
@@ -70,39 +67,22 @@
         SELECT * FROM getVirtualTree WHERE VP_ID=#AcilanUrunler.VP_ID#
     </cfquery> 
     <cfset MAIN_PID=PRODUCT_ID>
-    <cfset MAIN_SID=STOCK_ID>    
-    <table>
-        <TR>
-            <TD>
-                <cfoutput>
-                    #MAIN_PID# ---- #MAIN_SID#
-                </cfoutput>
-            </TD>
-      <td>
-        <table>
-            
-        <CFSET spec_main_id_list="">
-    <cfloop query="getPList">
-<tr>
-    <td>
-        <cfoutput>#getPList.PRODUCT_ID#</cfoutput>
+    <cfset MAIN_SID=STOCK_ID>
+    <CFSET spec_main_id_list="">
+    <cfloop query="getPList">        
         <cfquery name="getStokInfo" datasource="#dsn3#">
             SELECT * FROM workcube_metosan_1.STOCKS WHERE PRODUCT_ID=<cfif isDefined("A.PRODUCT_ID_#PRODUCT_ID#")>#evaluate("A.PRODUCT_ID_#PRODUCT_ID#")#<cfelse>#PRODUCT_ID#</cfif>
         </cfquery>
         <cfscript>AgacaEkle(MAIN_SID,MAIN_PID,getStokInfo.STOCK_ID,getStokInfo.PRODUCT_ID,getPList.AMOUNT,"",getPList.QUESTION_ID)</cfscript>
         <CFSET spec_main_id_list="#spec_main_id_list#,#getStokInfo.STOCK_ID#">
-    </td>
-</tr>
     </cfloop>
     <cfscript>
         AddSpects(MAIN_SID,spec_main_id_list);
     </cfscript>
-</table>
-</td>
-</TR>
-</table>
 </cfloop>
-
+<cfoutput>
+    #replace(serializeJSON(A),"//","")#
+</cfoutput>
 <cfscript>
     function get_spect_row(spect_id)
     {										
