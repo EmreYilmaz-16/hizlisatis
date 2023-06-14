@@ -80,9 +80,7 @@
         AddSpects(MAIN_SID,spec_main_id_list);
     </cfscript>
 </cfloop>
-<cfoutput>
-    [#replace(serializeJSON(A),"//","")#]
-</cfoutput>
+<cfoutput>[#replace(serializeJSON(A),"//","")#]</cfoutput>
 <cfscript>
     function get_spect_row(spect_id)
     {										
