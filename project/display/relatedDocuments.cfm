@@ -8,13 +8,19 @@
     SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=1190
 </cfquery>
 <cfscript>
-     AcilanUrunler=queryNew("VP_ID,STOCK_ID,SEVIYE","INTEGER,INTEGER,INTEGER");
+     AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE","INTEGER,INTEGER,INTEGER,INTEGER");
+    
 </cfscript>
+
 <!----- Ana Ürün Kayıt Ediliyor----->    
 <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18)>	
 <CFSET "A.PRODUCT_ID_1190"=K_URUN.PRODUCT_ID>
 <CFSET "A.STOCK_ID_1190"=K_URUN.STOCK_ID>
 <CFSET "A.SPECT_MAIN_LIST_1190"="">
+<cfscript>
+    queryAddRow(AcilanUrunler,"1190,#K_URUN.PRODUCT_ID#,#K_URUN.STOCK_ID#,0");
+</cfscript>
+<cfdump var="#AcilanUrunler#">
 <!----- Sanal Ürünler Kayıt Ediliyor----->    
 <cfset SRaRR=[{
     VP_ID=1190,
