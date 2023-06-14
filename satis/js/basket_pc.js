@@ -1807,6 +1807,13 @@ function BasketSelControl() {
     evnt: "TurnOut(this)",
     att: "disabled",
   };
+  var ConvertRealButton = {
+    icon: "icn-md icon-check",
+    txt: "Gerçek Ürüne Dönüştür",
+    evntType: "onclick",
+    evnt: "ConvertRealProduct(this)",
+    att: "disabled",
+  };
   var buttonGroups = [];
   var sepetRows = document.getElementsByClassName("sepetRow");
   for (let i = 0; i < sepetRows.length; i++) {
@@ -1852,6 +1859,14 @@ function BasketSelControl() {
           evnt: "openVirtualProduct(" + pid + "," + RwId + ")",
           att: "",
         };
+      } else if (parseInt(Ptype) == 0) {
+        var ConvertRealButton = {
+          icon: "icn-md icon-check",
+          txt: "Gerçek Ürüne Dönüştür",
+          evntType: "onclick",
+          evnt: "ConvertRealProduct(this)",
+          att: "",
+        };
       }
     } else {
       var treeButton = {
@@ -1877,7 +1892,8 @@ function BasketSelControl() {
     UpdateButton,
     groupButton,
     treeButton,
-    TurnButton
+    TurnButton,
+    ConvertRealButton
   );
   //$(RemCell).show();
   return buttonGroups;
