@@ -22,7 +22,7 @@
         VP_ID=1190,
         STOCK_ID=K_URUN.STOCK_ID,
         PRODUCT_ID=K_URUN.PRODUCT_ID,
-        SEVIYE=0
+        SEVIYE=-1
     }
     queryAddRow(AcilanUrunler,OX);
 </cfscript>
