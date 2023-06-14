@@ -2565,13 +2565,20 @@ function setFiyatA(row, price, money, modal_id) {
   closeBoxDraggable(modal_id);
 }
 
-function ConvertRealProduct(pid,rwid) {
+function ConvertRealProduct(pid, rwid) {
   $.ajax({
-    url:"index.cfm?fuseaction=objects.emptypopup_createRealProductPbs&ajax=1&ajax_box_page=1&isAjax=1&VIRTUAL_PRODUCT_ID="+pid+"&ROW_ID="+rwid,
-    success:function(retDat){
+    url:
+      "index.cfm?fuseaction=objects.emptypopup_createRealProductPbs&ajax=1&ajax_box_page=1&isAjax=1&VIRTUAL_PRODUCT_ID=" +
+      pid +
+      "&ROW_ID=" +
+      rwid,
+    success: function (retDat) {
       console.log(retDat);
-      
-    }
-  })
-
+      var PidE = eval("retDat[0].PRODUCT_ID_" + pid + "");
+      var SidE = eval("retDat[0].STOCK_ID_" + pid + "");
+      document.getElementById("product_id_" + rwid).value = PidE;
+      document.getElementById("stock_id_" + rwid).value = SidE;
+      document.getElementById("is_virtual_" + rwid).value = 0;
+    },
+  });
 }
