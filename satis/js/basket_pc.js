@@ -2573,9 +2573,10 @@ function ConvertRealProduct(pid, rwid) {
       "&ROW_ID=" +
       rwid,
     beforeSend: function () {
-      openBoxDraggable("index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=showMessage")
+      openBoxDraggable("index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=showMessage&AlertType=warning","1453162606")
     },
     success: function (retDat) {
+      closeBoxDraggable("1453162606");
       console.log(retDat);
       var O = JSON.parse(retDat.trim());
       console.log(O);
