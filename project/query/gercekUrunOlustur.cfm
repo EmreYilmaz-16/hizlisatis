@@ -27,6 +27,9 @@
     }
     queryAddRow(AcilanUrunler,OX);
 </cfscript>
+<cfquery name="upd" datasource="#dsn3#">
+    UPDATE VIRTUAL_PRODUCTS_PRT SET  IS_CONVERT_REAL=1,REAL_PRODUCT_ID=#K_URUN.PRODUCT_ID# WHERE VIRTUAL_PRODUCT_ID=#attributes.VIRTUAL_PRODUCT_ID#
+</cfquery>
 <!----- Sanal Ürünler Kayıt Ediliyor----->    
 <cfset SRaRR=[{
     VP_ID=attributes.VIRTUAL_PRODUCT_ID,
@@ -40,6 +43,9 @@
     <CFSET "A.PRODUCT_ID_#PRODUCT_ID#"=K_URUN.PRODUCT_ID>
     <CFSET "A.STOCK_ID_#PRODUCT_ID#"=K_URUN.STOCK_ID>
     <CFSET "A.SPECT_MAIN_LIST_#PRODUCT_ID#"="">
+    <cfquery name="upd" datasource="#dsn3#">
+        UPDATE VIRTUAL_PRODUCTS_PRT SET  IS_CONVERT_REAL=1,REAL_PRODUCT_ID=#K_URUN.PRODUCT_ID# WHERE VIRTUAL_PRODUCT_ID=#PRODUCT_ID#
+    </cfquery>
     <cfscript>
         OX={
             VP_ID=PRODUCT_ID,
