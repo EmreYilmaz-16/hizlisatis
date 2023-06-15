@@ -107,15 +107,20 @@
     
     <div>    
         <cf_big_list>
-    <cfoutput query="getDocuments">        
+    <cfoutput query="getDocuments" group="MAIN_TIP">   
         <tr>
-            <td>#MAIN_TIP#</td>
+            <td colspan="5">#MAIN_TIP#</td>
+        </tr>
+        <cfoutput>
+        <tr>
+            
             <td>#TIP#</td>        
             <td>#ACTION_NUMBER#</td>
             <td>#ACTION_HEAD#</td>
             <td>#ACTION_DATE#</td>
             <td>#ACTION_VALUE#</td>    
         </tr>
+    </cfoutput>
     
     
     </cfoutput>
