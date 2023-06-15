@@ -2575,6 +2575,7 @@ function ConvertRealProduct(pid, rwid) {
     success: function (retDat) {
       console.log(retDat);
       var O = JSON.parse(retDat.trim());
+      console.log(O);
       var PidE = eval("O[0].PRODUCT_ID_" + pid + "");
       var SidE = eval("O[0].STOCK_ID_" + pid + "");
       document.getElementById("product_id_" + rwid).value = PidE;

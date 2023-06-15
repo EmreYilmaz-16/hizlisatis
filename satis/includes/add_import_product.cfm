@@ -96,7 +96,9 @@
         SHELF_LIFE,
         SEGMENT_ID,
 		BSMV,
-		OIV
+		OIV,
+        PROJECT_ID
+
 	)
 	VALUES
 	(
@@ -139,7 +141,8 @@
         <cfif len(shelf_life)>'#shelf_life#'<cfelse>NULL</cfif>,
         <cfif len(segment_id)>#segment_id#<cfelse>NULL</cfif>,
 		<cfif len(bsmv)>#bsmv#<cfelse>NULL</cfif>,
-		<cfif len(oiv)>#oiv#<cfelse>NULL</cfif>    
+		<cfif len(oiv)>#oiv#<cfelse>NULL</cfif>,
+        <cfif isDefined("attributes.project_id") and len(attributes.project_id)>#attributes.project_id#<cfelse>NULL</cfif>    
 	)
 </cfquery>
 <!--- ürünün unit kaydı--->

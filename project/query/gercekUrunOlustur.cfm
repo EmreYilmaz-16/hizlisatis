@@ -14,7 +14,7 @@
      AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE","INTEGER,INTEGER,INTEGER,INTEGER");    
 </cfscript>
 <!----- Ana Ürün Kayıt Ediliyor----->    
-<CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18)>	
+<CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18,productInfo.PROJECT_ID)>	
 <CFSET "A.PRODUCT_ID_#attributes.VIRTUAL_PRODUCT_ID#"=K_URUN.PRODUCT_ID>
 <CFSET "A.STOCK_ID_#attributes.VIRTUAL_PRODUCT_ID#"=K_URUN.STOCK_ID>
 <CFSET "A.SPECT_MAIN_LIST_#attributes.VIRTUAL_PRODUCT_ID#"="">
@@ -36,7 +36,7 @@
     <cfquery name="productInfo" datasource="#dsn3#">
         SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#PRODUCT_ID#
     </cfquery>
-    <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18)>	
+    <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18,productInfo.PROJECT_ID)>	
     <CFSET "A.PRODUCT_ID_#PRODUCT_ID#"=K_URUN.PRODUCT_ID>
     <CFSET "A.STOCK_ID_#PRODUCT_ID#"=K_URUN.STOCK_ID>
     <CFSET "A.SPECT_MAIN_LIST_#PRODUCT_ID#"="">
@@ -132,6 +132,7 @@
     <cfargument name="PURCHASE_PRICE">
     <cfargument name="SALE_PRICE">
     <cfargument name="TAX">
+    <cfargument name="project_id">
     
     <cfquery name="getMaster" datasource="#dsn3#">
         SELECT 
@@ -203,6 +204,7 @@
             max_margin=MAX_MARGIN;
             shelf_life=SHELF_LIFE;
             segment_id=SEGMENT_ID;
+            attributes.project_id=arguments.project_id;
             bsmv=BSMV;
             oiv=OIV;
             IS_ZERO_STOCK=IS_ZERO_STOCK;
