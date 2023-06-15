@@ -1859,7 +1859,7 @@ function BasketSelControl() {
           evnt: "openVirtualProduct(" + pid + "," + RwId + ")",
           att: "",
         };
-      } else if (parseInt(Ptype) == 0) {
+      } else if (parseInt(Ptype) == 0 || parseInt(Ptype == 99)) {
         var ConvertRealButton = {
           icon: "icn-md icon-check",
           txt: "Gerçek Ürüne Dönüştür",
@@ -2574,7 +2574,7 @@ function ConvertRealProduct(pid, rwid) {
       rwid,
     success: function (retDat) {
       console.log(retDat);
-      var O=JSON.parse(retDat.trim());
+      var O = JSON.parse(retDat.trim());
       var PidE = eval("O[0].PRODUCT_ID_" + pid + "");
       var SidE = eval("O[0].STOCK_ID_" + pid + "");
       document.getElementById("product_id_" + rwid).value = PidE;
