@@ -25,6 +25,7 @@ function ngetTree(
     $("#vp_id").val(product_id);
     $("#is_virtual").val(is_virtual);
     $("#pstage").val(stg);
+
     $.ajax({
       url:
         "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
@@ -50,6 +51,7 @@ function ngetTree(
         sortableYap();
         virtuallariYerlestir();
         MaliyetHesapla();
+        GercekKontrol(product_id);
       },
     });
   } else if (tip == 2) {
@@ -1555,7 +1557,30 @@ function MaliyetHesapla() {
   var Mn = commaSplit(TotalPrice);
   $("#maliyet").val(Mn);
 }
-
+function GercekKontrol(id) {
+  var q = wrk_query(
+    "SELECT IS_CONVERT_REAL FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=" +
+      id,
+    "dsn3"
+  );
+  console.log(q.IS_CONVERT_REAL[0]);
+  var ex = q.IS_CONVERT_REAL[0];
+  ex = parseInt(ex);
+  console.log(ex);
+  if (ex == 1) {
+    var b = document.getElementById("teklifButton");
+    b.removeAttribute("class");
+    b.setAttribute("class", "btn btn-outline-warning");
+    b.innerText = "Teklife Dönüştü";
+    b.setAttribute("disabled", "disabled");
+  } else {
+    var b = document.getElementById("teklifButton");
+    b.removeAttribute("class");
+    b.setAttribute("class", "btn btn-outline-secondary");
+    b.innerText = "Teklif Ver";
+    b.removeAttribute("disabled");
+  }
+}
 function updateStage(el, projectId) {
   var vp_id = document.getElementById("vp_id").value;
   $.ajax({

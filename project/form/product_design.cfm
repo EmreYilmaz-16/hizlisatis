@@ -200,7 +200,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
           </cfoutput>
       </select>
       <button onclick="Kaydet()" style="margin-left:5px"  class="btn btn-outline-primary">Kaydet</button>
-      <button onclick="convertToOffer()" style="margin-left:5px"  class="btn btn-outline-secondary">Teklif Ver</button>
+      <button onclick="convertToOffer()" style="margin-left:5px" id="teklifButton"  class="btn btn-outline-secondary">Teklif Ver</button>
       <input type="hidden" name="vp_id" id="vp_id" value="0">
       <input type="hidden" name="is_virtual" id="is_virtual" value="1">
       <input type="hidden" name="project_id" id="project_id" value="<cfoutput>#attributes.project_id#</cfoutput>">
