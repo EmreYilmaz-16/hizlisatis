@@ -1859,7 +1859,7 @@ function BasketSelControl() {
           evnt: "openVirtualProduct(" + pid + "," + RwId + ")",
           att: "",
         };
-      } else if (parseInt(Ptype) == 0 || parseInt(Ptype == 99)) {
+      } else if (parseInt(Ptype) == 0 || parseInt(Ptype) == 99) {
         var ConvertRealButton = {
           icon: "icn-md icon-check",
           txt: "Gerçek Ürüne Dönüştür",
