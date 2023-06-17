@@ -71,11 +71,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
         <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_list_project_documents&project_id=#attributes.project_id#</cfoutput>'">
             <img src="/images/e-pd/fld.png">
             Belgeler
-        </a>
-        <a class="list-group-item list-group-item-action">
-            <img src="/images/e-pd/oppr.png">
-            Üretim Emirleri
-        </a>
+        </a>        
         <a class="list-group-item list-group-item-action" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'">
             <img src="/images/e-pd/nt.png">
             Notlar
