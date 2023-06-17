@@ -11,7 +11,7 @@
             ELSE 'Alış Teklifi'
             END AS TIP
         ,'Teklif' AS MAIN_TIP
-    FROM workcube_metosan_1.PBS_OFFER
+    FROM #DSN3#.PBS_OFFER
     WHERE PROJECT_ID = #attributes.project_id#
     
     UNION
@@ -27,7 +27,7 @@
             ELSE 'Alış Siparişi'
             END AS TIP
         ,'Sipariş' AS MAIN_TIP
-    FROM workcube_metosan_1.ORDERS
+    FROM #DSN3#.ORDERS
     WHERE PROJECT_ID = #attributes.project_id#
     
     UNION

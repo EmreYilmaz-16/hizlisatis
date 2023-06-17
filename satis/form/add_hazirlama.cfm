@@ -175,7 +175,7 @@ FROM (
             
               <cfset attributes.rows_=attributes.rows_+1>
               <cfquery name="isShelfed" datasource="#dsn3#">
-                SELECT * FROM workcube_metosan_1.PRODUCT_PLACE WHERE SHELF_CODE='#SHELF_NUMBER_TXT#' AND STORE_ID=#attributes.department_out# AND LOCATION_ID=#attributes.LOCATION_OUT#
+                SELECT * FROM #DSN3#.PRODUCT_PLACE WHERE SHELF_CODE='#SHELF_NUMBER_TXT#' AND STORE_ID=#attributes.department_out# AND LOCATION_ID=#attributes.LOCATION_OUT#
               </cfquery>
               <cfif isShelfed.recordCount>
                 <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 

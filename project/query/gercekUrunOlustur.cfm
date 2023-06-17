@@ -100,7 +100,7 @@
         WHERE PRODUCT_CAT.PRODUCT_CATID=(SELECT PRODUCT_CATID FROM STOCKS WHERE STOCK_ID=#STOCK_ID#)
     </cfquery>
     <cfquery name="ins2" datasource="#dsn3#">
-     INSERT INTO workcube_metosan_1.WORKSTATIONS_PRODUCTS(
+     INSERT INTO #DSN3#.WORKSTATIONS_PRODUCTS(
         WS_ID,
         STOCK_ID,
         CAPACITY,

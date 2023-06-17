@@ -100,8 +100,8 @@
   	</cfif>      
 </cfif>
 <cfquery name="GETOrders" datasource="#dsn3#">
-	SELECT * FROM workcube_metosan_1.PBS_OFFER_TO_ORDER WHERE ORDER_ID IN (
-SELECT DISTINCT ORDER_ID FROM workcube_metosan_1.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID=#attributes.iid#)
+	SELECT * FROM #DSN3#.PBS_OFFER_TO_ORDER WHERE ORDER_ID IN (
+SELECT DISTINCT ORDER_ID FROM #DSN3#.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID=#attributes.iid#)
 </cfquery>
 <cfsavecontent variable="righimg">
 <img src="/images/e-pd/box48.png" onclick="windowopen('/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=<cfoutput>#GETOrders.OFFER_ID#</cfoutput>')"></img>

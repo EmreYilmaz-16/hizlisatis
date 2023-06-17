@@ -20,8 +20,8 @@
 <cfif isDefined("attributes.ev")>
     <cfif attributes.ev eq "search">
         <cfquery name="getPrepareData" datasource="#dsn3#">
-            SELECT DISTINCT workcube_metosan.getEmployeeWithId(PSRR.PREPARE_PERSONAL)AS PREPARE_EMP ,PSRR.SHIP_RESULT_ID,PSRR.PREPARE_PERSONAL  FROM workcube_metosan_1.PRTOTM_SHIP_RESULT AS PSR 
-            LEFT JOIN workcube_metosan_1.PRTOTM_SHIP_RESULT_ROW AS PSRR ON PSR.SHIP_RESULT_ID=PSRR.SHIP_RESULT_ID
+            SELECT DISTINCT workcube_metosan.getEmployeeWithId(PSRR.PREPARE_PERSONAL)AS PREPARE_EMP ,PSRR.SHIP_RESULT_ID,PSRR.PREPARE_PERSONAL  FROM #DSN3#.PRTOTM_SHIP_RESULT AS PSR 
+            LEFT JOIN #DSN3#.PRTOTM_SHIP_RESULT_ROW AS PSRR ON PSR.SHIP_RESULT_ID=PSRR.SHIP_RESULT_ID
             WHERE PSR.DELIVER_PAPER_NO='#attributes.svk_no#'
         </cfquery>
         <cf_big_list>

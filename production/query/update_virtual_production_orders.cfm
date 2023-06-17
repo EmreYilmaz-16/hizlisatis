@@ -3,7 +3,7 @@
 <cfset FormData=deserializeJSON(attributes.data)>
 
 <cfquery name="del" datasource="#dsn3#">
-    DELETE FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS_STOCKS WHERE V_P_ORDER_ID=#FormData.p_order_id#
+    DELETE FROM #DSN3#.VIRTUAL_PRODUCTION_ORDERS_STOCKS WHERE V_P_ORDER_ID=#FormData.p_order_id#
 </cfquery>
 
 

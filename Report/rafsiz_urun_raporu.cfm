@@ -54,8 +54,8 @@
 
 
 <cfquery name="Products" datasource="#dsn3#">
-    SELECT <cfif attributes.display_cost eq 1>D.DEPARTMENT_HEAD,SL.COMMENT,SR.*,<cfelse></cfif>S.*  FROM workcube_metosan_1.STOCKS AS S 
-	LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=S.STOCK_ID
+    SELECT <cfif attributes.display_cost eq 1>D.DEPARTMENT_HEAD,SL.COMMENT,SR.*,<cfelse></cfif>S.*  FROM #DSN3#.STOCKS AS S 
+	LEFT JOIN #DSN3#.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=S.STOCK_ID
 	<cfif attributes.display_cost eq 1>
     LEFT JOIN (
 	SELECT SUM(STOCK_IN-STOCK_OUT) AS BKY ,STOCK_ID,STORE,STORE_LOCATION FROM workcube_metosan_2023_1.STOCKS_ROW GROUP BY STOCK_ID,STORE,STORE_LOCATION

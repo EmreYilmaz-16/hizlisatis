@@ -79,7 +79,7 @@
 
 <!----- Para Birilmleri ----->
 <cfquery name="getOfferMoney" datasource="#dsn3#">
-    SELECT MONEY_TYPE,RATE1,RATE2,IS_SELECTED FROM workcube_metosan_1.PBS_OFFER_MONEY WHERE ACTION_ID=#getOfferId.OFFER_ID#
+    SELECT MONEY_TYPE,RATE1,RATE2,IS_SELECTED FROM #DSN3#.PBS_OFFER_MONEY WHERE ACTION_ID=#getOfferId.OFFER_ID#
 </cfquery>
 
 <CFSET i=1>

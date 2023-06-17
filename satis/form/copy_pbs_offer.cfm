@@ -41,9 +41,9 @@
             ,ISNULL(GPA.PRICE,0) AS PSS
             ,ISNULL((
                 SELECT TOP 1 PCE.DISCOUNT_RATE
-                FROM workcube_metosan_1.PRODUCT P
-                    ,workcube_metosan_1.PRICE_CAT_EXCEPTIONS PCE
-                LEFT JOIN workcube_metosan_1.PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
+                FROM #DSN3#.PRODUCT P
+                    ,#DSN3#.PRICE_CAT_EXCEPTIONS PCE
+                LEFT JOIN #DSN3#.PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
                 WHERE (
                         PCE.PRODUCT_ID = P.PRODUCT_ID
                         OR PCE.PRODUCT_ID IS NULL
@@ -88,8 +88,8 @@
                     AND MONEY = ISNULL(GPA.MONEY, 'TL')
                 ) AS R2
             ,GPA.*
-        FROM workcube_metosan_1.PBS_OFFER_ROW AS POR
-        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID = POR.STOCK_ID
+        FROM #DSN3#.PBS_OFFER_ROW AS POR
+        LEFT JOIN #DSN3#.STOCKS AS S ON S.STOCK_ID = POR.STOCK_ID
         LEFT JOIN #DSN1#.PRODUCT_BRANDS as PB ON PB.BRAND_ID=S.BRAND_ID
         LEFT JOIN #DSN1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID
         LEFT JOIN (
@@ -102,8 +102,8 @@
                 ,P.CATALOG_ID
                 ,P.PRICE_DISCOUNT
                 
-            FROM workcube_metosan_1.PRICE P
-                ,workcube_metosan_1.PRODUCT PR
+            FROM #DSN3#.PRICE P
+                ,#DSN3#.PRODUCT PR
             WHERE P.PRODUCT_ID = PR.PRODUCT_ID
                 AND P.PRICE_CATID = 19
                 AND (

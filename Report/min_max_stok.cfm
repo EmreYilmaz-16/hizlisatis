@@ -228,8 +228,8 @@
             SELECT P.PRODUCT_NAME
             ,P.PRODUCT_CODE
             ,P.PRODUCT_CODE_2
-            ,(SELECT TOP 1 PP.SHELF_CODE FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR 
-INNER JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
+            ,(SELECT TOP 1 PP.SHELF_CODE FROM #DSN3#.PRODUCT_PLACE_ROWS AS PPR 
+INNER JOIN #DSN3#.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
 WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             ,PIP.PROPERTY9
             ,GSLP.PRODUCT_ID
@@ -258,8 +258,8 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
                 )
             </cfif>
             <cfif len(attributes.stock_id)>
-                    AND P.PRODUCT_ID IN(select PRODUCT_ID from workcube_metosan_1.RELATED_PRODUCT where RELATED_PRODUCT_ID=#attributes.stock_id# UNION 
-                    select RELATED_PRODUCT_ID AS PRODUCT_ID from workcube_metosan_1.RELATED_PRODUCT where PRODUCT_ID=#attributes.stock_id#
+                    AND P.PRODUCT_ID IN(select PRODUCT_ID from #DSN3#.RELATED_PRODUCT where RELATED_PRODUCT_ID=#attributes.stock_id# UNION 
+                    select RELATED_PRODUCT_ID AS PRODUCT_ID from #DSN3#.RELATED_PRODUCT where PRODUCT_ID=#attributes.stock_id#
                     )
                 </cfif>
         </cfif>

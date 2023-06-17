@@ -68,8 +68,8 @@
 	SELECT  S.*,P.PRODUCT_CODE,P.PRODUCT_NAME,(select MAX(PROCESS_DATE) from #dsn2#.STOCKS_ROW where STOCK_ID=S.STOCK_ID AND STOCK_IN IS NOT NULL AND STORE_LOCATION = #attributes.loc#
 			AND STORE=#attributes.dep#) DD,
 	(	SELECT SUM(ordr.QUANTITY) AS QUANTITY
-			FROM workcube_metosan_1.ORDER_ROW AS ordr
-				,workcube_metosan_1.ORDERS AS ord
+			FROM #DSN3#.ORDER_ROW AS ordr
+				,#DSN3#.ORDERS AS ord
 			WHERE 1 = 1
 				 AND STOCK_ID = S.STOCK_ID
 				AND ORDER_ROW_CURRENCY = - 6
@@ -105,8 +105,8 @@ WHERE TTQ.AA_ORDER>0
 		</cfquery>
 		<cfquery name="getOrderAmount" datasource="#dsn3#">
 			SELECT SUM(ordr.QUANTITY) AS QUANTITY
-			FROM workcube_metosan_1.ORDER_ROW AS ordr
-				,workcube_metosan_1.ORDERS AS ord
+			FROM #DSN3#.ORDER_ROW AS ordr
+				,#DSN3#.ORDERS AS ord
 			WHERE 1 = 1
 				 AND STOCK_ID = #GetLocationStocks.STOCK_ID[i]#
 				AND ORDER_ROW_CURRENCY = - 6

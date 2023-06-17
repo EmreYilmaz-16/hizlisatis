@@ -1,7 +1,7 @@
 ﻿
 <cfset FORM.ACTIVE_COMPANY=session.ep.company_id>
 <cfset ATTRIBUTES.ACTIVE_COMPANY=session.ep.company_id>
-<cfset dsn3="workcube_metosan_1">
+<cfset dsn3="#DSN3#">
 <cfquery name="getOfferId" datasource="#dsn3#">
     SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='#datam.uniqRelationId#'
 </cfquery>
@@ -44,7 +44,7 @@
 <cfset attributes.offer_detail="#getOffer.OFFER_DETAIL#">
 <!----- Para Birilmleri ----->
 <cfquery name="getOfferMoney" datasource="#dsn3#">
-    SELECT MONEY_TYPE,RATE1,RATE2,IS_SELECTED FROM workcube_metosan_1.PBS_OFFER_MONEY WHERE ACTION_ID=#getOfferId.OFFER_ID#
+    SELECT MONEY_TYPE,RATE1,RATE2,IS_SELECTED FROM #DSN3#.PBS_OFFER_MONEY WHERE ACTION_ID=#getOfferId.OFFER_ID#
 </cfquery>
 
 <CFSET i=1>

@@ -190,7 +190,7 @@ function AddRow(
 
   if (price == 0) {
     var q =
-      "SELECT ISNULL(workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE(" +
+      "SELECT ISNULL("+generalParamsSatis.dataSources.dsn3+".GET_CURRENT_PRODUCT_PRICE(" +
       CompanyData.COMPANY_ID +
       "," +
       CompanyData.PRICE_CAT +
@@ -748,7 +748,7 @@ function AddRow_pbso(
 
   if (price == 0) {
     var q =
-      "SELECT ISNULL(workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE(" +
+      "SELECT ISNULL("+generalParamsSatis.dataSources.dsn3+".GET_CURRENT_PRODUCT_PRICE(" +
       CompanyData.COMPANY_ID +
       "," +
       CompanyData.PRICE_CAT +
@@ -1291,13 +1291,13 @@ function ShelfControl(pid, RafCode) {
 
 function getRafSml(stock_id, rafcode) {
   var q =
-    "SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ";
+    "SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FROM "+generalParamsSatis.dataSources.dsn3+".PRODUCT_PLACE_ROWS AS PPR ";
   q +=
-    " LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID=PP.PRODUCT_PLACE_ID";
+    " LEFT JOIN "+generalParamsSatis.dataSources.dsn3+".PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID=PP.PRODUCT_PLACE_ID";
   q +=
-    " LEFT JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID";
+    " LEFT JOIN "+generalParamsSatis.dataSources.dsn+".STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID";
   q +=
-    " LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID";
+    " LEFT JOIN "+generalParamsSatis.dataSources.dsn3+".DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID";
   q +=
     " WHERE PPR.STOCK_ID=" + stock_id + " AND PP.SHELF_CODE='" + rafcode + "'";
   var res = wrk_query(q);

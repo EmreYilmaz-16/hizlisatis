@@ -1,5 +1,5 @@
 ﻿<cfquery name="getData" datasource="#DSN3#">
-    select PCS.*,PC.PRODUCT_CAT,PC.HIERARCHY from workcube_metosan_1.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS PCS
+    select PCS.*,PC.PRODUCT_CAT,PC.HIERARCHY from #DSN3#.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS PCS
 INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PRODUCT_CATID
 WHERE PCS.ID=#attributes.ID#
 </cfquery>

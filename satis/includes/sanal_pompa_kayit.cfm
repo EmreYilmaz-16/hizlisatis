@@ -47,7 +47,7 @@ SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_S
 </cfquery>
 <cfset UrunAdi=datam.OlusacakUrun.PRODUCT_NAME>
 <cfquery name="getCat" datasource="#datam.dataSources.dsn#">
-    select * from workcube_metosan_1.PRODUCT_CAT WHERE HIERARCHY='#datam.HIERARCHY#'
+    select * from #DSN3#.PRODUCT_CAT WHERE HIERARCHY='#datam.HIERARCHY#'
 </cfquery>
              <CFOUTPUT query="getMaster">
                 <cfscript>

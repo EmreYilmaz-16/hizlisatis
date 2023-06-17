@@ -26,9 +26,9 @@
 	,PU.MAIN_UNIT
 	,(
 		SELECT TOP 1 PCE.DISCOUNT_RATE
-		FROM workcube_metosan_1.PRODUCT P
-			,workcube_metosan_1.PRICE_CAT_EXCEPTIONS PCE
-		LEFT JOIN workcube_metosan_1.PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
+		FROM #DSN3#.PRODUCT P
+			,#DSN3#.PRICE_CAT_EXCEPTIONS PCE
+		LEFT JOIN #DSN3#.PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
 		WHERE (
 				PCE.PRODUCT_ID = P.PRODUCT_ID
 				OR PCE.PRODUCT_ID IS NULL
@@ -53,9 +53,9 @@
 				)
 			AND PC.PRICE_CATID = #getOfferMain.PRICE_CAT_ID#
 		) AS DISCOUNT
-FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS_STOCKS AS PT
-LEFT JOIN workcube_metosan_1.STOCKS AS S ON PT.STOCK_ID = S.STOCK_ID
-LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID
+FROM #DSN3#.VIRTUAL_PRODUCTION_ORDERS_STOCKS AS PT
+LEFT JOIN #DSN3#.STOCKS AS S ON PT.STOCK_ID = S.STOCK_ID
+LEFT JOIN #DSN3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID
 	AND IS_MAIN = 1
 LEFT JOIN (
 	SELECT P.UNIT
@@ -66,8 +66,8 @@ LEFT JOIN (
 		,P.PRICE_CATID
 		,P.CATALOG_ID
 		,P.PRICE_DISCOUNT
-	FROM workcube_metosan_1.PRICE P
-		,workcube_metosan_1.PRODUCT PR
+	FROM #DSN3#.PRICE P
+		,#DSN3#.PRODUCT PR
 	WHERE P.PRODUCT_ID = PR.PRODUCT_ID
 		AND P.PRICE_CATID = #getOfferMain.PRICE_CAT_ID#
 		AND (
@@ -96,8 +96,8 @@ WHERE PT.V_P_ORDER_ID = #attributes.VP_ORDER_ID#
                         P.CATALOG_ID,
                         P.PRICE_DISCOUNT
                     FROM
-                        workcube_metosan_1.PRICE P,
-                        workcube_metosan_1.PRODUCT PR
+                        #DSN3#.PRICE P,
+                        #DSN3#.PRODUCT PR
                     WHERE
                         P.PRODUCT_ID = PR.PRODUCT_ID
                         AND P.PRICE_CATID = #getOfferMain.PRICE_CAT_ID#

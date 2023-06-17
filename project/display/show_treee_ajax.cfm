@@ -2,7 +2,7 @@
 <cfdump var="#attributes#">
 
 <cfquery name="getTree" datasource="#dsn3#">
-    SELECT * FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#attributes.vp_id#
+    SELECT * FROM #DSN3#.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#attributes.vp_id#
 </cfquery>
 
 <ul class="sortable1">
