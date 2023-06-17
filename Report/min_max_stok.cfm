@@ -249,7 +249,14 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             LEFT JOIN #dsn1#.PRODUCT AS P ON GSLP.PRODUCT_ID = P.PRODUCT_ID
             LEFT JOIN #dsn3#.PRODUCT_INFO_PLUS AS PIP ON GSLP.PRODUCT_ID = PIP.PRODUCT_ID 
         WHERE 1=1
-          <cfif isDefined("attributes.department") and len(attributes.department)>  AND DEPARTMENT_ID = #attributes.department#</cfif>
+          <cfif isDefined("attributes.branch") and len(attributes.branch)>
+            <cfif isDefined("attributes.department") and len(attributes.department)>  AND DEPARTMENT_ID = #attributes.department#
+                <cfelse>
+                    AND DEPARTMENT_ID IN(SELECT * FROM DEPARTMENT WHERE BRANCH_ID =#attributes.BRANCH#)
+        </cfif>
+            
+          </cfif>
+          
             
             
            <cfif len(attributes.product_cat)> AND P.PRODUCT_CATID IN(#CATLIST#)</cfif>
@@ -603,6 +610,24 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             var fileName = e. target. files[0]. name;
             $("#FileName").val(fileName)
         });
-        
+        function  getDepartments(el) {
+            var branchId=el.value;
+            if(branchId.length>0){
+                var departmentResult=wrk_query("SELECT * FROM DEPARTMENT WHERE BRANCH_ID="+branchId,"dsn")
+                console.log(departmentResult)
+                $("#department").html("")
+                var os=document.createElement("option")
+                    os.setAttribute("value","")
+                    os.innerText="Tüm Departmanlar";
+                document.getElementById("department").appendChild(os)
+                for (let i=0;i< departmentResult.recordcount;i++){
+                    var o=document.createElement("option");
+                    o.setAttribute("value",departmentResult.DEPARTMENT_ID[i])
+                    o.innerText=departmentResult.DEPARTMENT_HEAD[i]
+                document.getElementById("department").appendChild(o)
+                }
+                
+            }  
+        }
     </script>       
     </cf_box>
