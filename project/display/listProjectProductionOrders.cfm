@@ -49,6 +49,7 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
                     <td>#QUANTITY#</td>
                     <td>#dateFormat(START_DATE,"dd/mm/yyyy")#</td>
                     <td>#dateFormat(FINISH_DATE,"dd/mm/yyyy")#</td>
+                    <td><a onclick="windowopen('/index.cfm?fuseaction=prod.tracking&project_id=#attributes.project_id#&project_head=partner&is_submitted=1&durum_siparis=')"><i class="fa fa-plus"></i></a></td>
                     <td>
                         <cfif IS_STAGE eq 4>
                             
