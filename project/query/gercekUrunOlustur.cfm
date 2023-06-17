@@ -11,7 +11,7 @@
     SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#attributes.VIRTUAL_PRODUCT_ID#
 </cfquery>
 <cfscript>
-     AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE","INTEGER,INTEGER,INTEGER,INTEGER");    
+     AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE,PRODUCT_CATID","INTEGER,INTEGER,INTEGER,INTEGER");    
 </cfscript>
 <!----- Ana Ürün Kayıt Ediliyor----->    
 <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18,productInfo.PROJECT_ID)>	
@@ -77,7 +77,7 @@
     <CFSET spec_main_id_list="">
     <cfloop query="getPList">        
         <cfquery name="getStokInfo" datasource="#dsn3#">
-            SELECT * FROM workcube_metosan_1.STOCKS WHERE PRODUCT_ID=<cfif isDefined("A.PRODUCT_ID_#PRODUCT_ID#")>#evaluate("A.PRODUCT_ID_#PRODUCT_ID#")#<cfelse>#PRODUCT_ID#</cfif>
+            SELECT * FROM #DSN3#.STOCKS WHERE PRODUCT_ID=<cfif isDefined("A.PRODUCT_ID_#PRODUCT_ID#")>#evaluate("A.PRODUCT_ID_#PRODUCT_ID#")#<cfelse>#PRODUCT_ID#</cfif>
         </cfquery>
         <cfscript>AgacaEkle(MAIN_SID,MAIN_PID,getStokInfo.STOCK_ID,getStokInfo.PRODUCT_ID,getPList.AMOUNT,"",getPList.QUESTION_ID)</cfscript>
         <CFSET spec_main_id_list="#spec_main_id_list#,#getStokInfo.STOCK_ID#">
@@ -86,6 +86,50 @@
         AddSpects(MAIN_SID,spec_main_id_list);
     </cfscript>
 </cfloop>
+<cfquery name="getParamSet" datasource="#dsn3#">
+    select PRODUCT_CAT_PRODUCT_PARAM_SETTINGS.DEFAULT_STATION_ID,PRODUCT_CAT,PRODUCT_CAT.PRODUCT_CATID 
+    from #DSN3#.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS 
+    LEFT JOIN #DSN3#.PRODUCT_CAT ON PRODUCT_CAT_PRODUCT_PARAM_SETTINGS.PRODUCT_CATID=PRODUCT_CAT.PRODUCT_CATID
+    
+</cfquery>
+<cfloop query="AcilanUrunler">
+    <cfquery name="getParamSet" datasource="#dsn3#">
+        select PRODUCT_CAT_PRODUCT_PARAM_SETTINGS.DEFAULT_STATION_ID,PRODUCT_CAT,PRODUCT_CAT.PRODUCT_CATID 
+        from #DSN3#.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS 
+        LEFT JOIN #DSN3#.PRODUCT_CAT ON PRODUCT_CAT_PRODUCT_PARAM_SETTINGS.PRODUCT_CATID=PRODUCT_CAT.PRODUCT_CATID
+        WHERE PRODUCT_CAT.PRODUCT_CATID=(SELECT PRODUCT_CATID FROM STOCKS WHERE STOCK_ID=#STOCK_ID#)
+    </cfquery>
+    <cfquery name="ins2">
+     INSERT INTO workcube_metosan_1.WORKSTATIONS_PRODUCTS(
+        WS_ID,
+        STOCK_ID,
+        CAPACITY,
+        PRODUCTION_TIME,
+        PRODUCTION_TIME_TYPE,
+        SETUP_TIME,
+        MIN_PRODUCT_AMOUNT,
+        PRODUCTION_TYPE,
+        MAIN_STOCK_ID,
+        RECORD_EMP,
+        RECORD_IP,
+        RECORD_DATE)
+    VALUES (
+        #getParamSet.DEFAULT_STATION_ID#,
+        #STOCK_ID#,
+        60,
+        1,
+        1,
+        0,
+        1,
+        0,
+        #STOCK_ID#,
+        #session.ep.userid#, 
+        '#CGI.REMOTE_ADDR#', 
+        #now()#)
+                            
+    </cfquery>
+</cfloop>
+
 <cfoutput>[#replace(serializeJSON(A),"//","")#]</cfoutput>
 <cfscript>
     function get_spect_row(spect_id)
@@ -170,10 +214,10 @@
             ,PU.MAIN_UNIT_ID
           --  ,SS.STOCK_ID
             ,PC.HIERARCHY
-        FROM workcube_metosan_1.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS S 
-        LEFT JOIN workcube_metosan_1.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID   
-        LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=379
-        LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON MAIN_UNIT_ID=S.UNIT_ID              
+        FROM #DSN3#.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS S 
+        LEFT JOIN #DSN3#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID   
+        LEFT JOIN #DSN3#.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=379
+        LEFT JOIN #DSN3#.PRODUCT_UNIT AS PU ON MAIN_UNIT_ID=S.UNIT_ID              
         WHERE S.PRODUCT_CATID=#arguments.PRODUCT_CATID#
 
     </cfquery>
