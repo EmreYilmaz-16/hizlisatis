@@ -456,20 +456,20 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                                 </cfquery>
                                 <td style="text-align:center"><cfif get_stock_sales.recordcount>#TlFormat(get_stock_sales.satis,0)#<cfelse>#TlFormat(0,0)#</cfif></td>
                             </cfloop>
-                            <td style="text-align:right;">#AmountFormat(shelf_life,0)#</td>
-                            <td style="text-align:right;">#AmountFormat(REAL_STOCK,0)#</td>
-                            <td style="text-align:right;">#AmountFormat(kac_aylik_stok_var,0)#</td>
+                            <td style="text-align:right;">#TlFormat(shelf_life,0)#</td>
+                            <td style="text-align:right;">#TlFormat(REAL_STOCK,0)#</td>
+                            <td style="text-align:right;">#TlFormat(kac_aylik_stok_var,0)#</td>
                             <td style="text-align:right;">
-                            	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=0&pid=#product_id#','medium');">#AmountFormat(RESERVE_PURCHASE_ORDER_STOCK,0)#</a>
+                            	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=0&pid=#product_id#','medium');">#TlFormat(RESERVE_PURCHASE_ORDER_STOCK,0)#</a>
                             </td>
                             <td style="text-align:right;">
-                            	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=1&pid=#product_id#','medium');">#AmountFormat(RESERVE_SALE_ORDER_STOCK,0)#</a>
+                            	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=1&pid=#product_id#','medium');">#TlFormat(RESERVE_SALE_ORDER_STOCK,0)#</a>
                             </td>
-                            <td style="text-align:right;">#AmountFormat(toplam_satis,0)#</td>
-                            <td style="text-align:right;">#AmountFormat(aylik_ortalama_satis,0)#</td>
-                            <td style="text-align:right;">#AmountFormat(elde_stok_tutma_miktari,0)#</td>
-                            <td style="text-align:right;">#AmountFormat(katsayi_stok,0)#</td>
-                            <td style="text-align:right;">#AmountFormat(toplam_stok_tutma_miktari,0)#</td>
+                            <td style="text-align:right;">#TlFormat(toplam_satis,0)#</td>
+                            <td style="text-align:right;">#TlFormat(aylik_ortalama_satis,0)#</td>
+                            <td style="text-align:right;">#TlFormat(elde_stok_tutma_miktari,0)#</td>
+                            <td style="text-align:right;">#TlFormat(katsayi_stok,0)#</td>
+                            <td style="text-align:right;">#TlFormat(toplam_stok_tutma_miktari,0)#</td>
                             <!---<td style="text-align:right;">#AmountFormat(SARF_STOCK)#</td>--->
                             <!---<td style="text-align:right;">#AmountFormat(SHIP_INTERNAL_STOCK)#</td>--->
                             <td style="text-align:right;">
