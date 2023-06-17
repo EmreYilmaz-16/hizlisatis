@@ -254,7 +254,7 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
           <cfif isDefined("attributes.branch") and len(attributes.branch)>
             <cfif isDefined("attributes.department") and len(attributes.department)>  AND DEPARTMENT_ID = #attributes.department#
                 <cfelse>
-                    AND DEPARTMENT_ID IN(SELECT * FROM DEPARTMENT WHERE BRANCH_ID =#attributes.BRANCH#)
+                    AND DEPARTMENT_ID IN(SELECT DEPARTMENT_ID FROM #dsn#.DEPARTMENT WHERE BRANCH_ID =#attributes.BRANCH#)
         </cfif>
             
           </cfif>
