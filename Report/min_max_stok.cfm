@@ -27,6 +27,8 @@
     
     <cfparam name="attributes.maxrows" default='#session.ep.maxrows#'>
     <cfset attributes.startrow=((attributes.page-1)*attributes.maxrows)+1>
+
+
     <cfform name="form_upd_product" method="post" enctype="multipart/form-data" >
     <cfoutput>
     
@@ -78,9 +80,15 @@
         <div class="form-group" id="item-product_code">
             <label class="col col-3 col-xs-12">Departman</label>
                 <div class="col col-9 col-xs-12">   
+                    <select name="department" id="department" onchange="getDepartments(this)">
+                        <option value=''>Seçiniz</option>
+                        <cfloop query="GETBranchs">
+                            <option value='#BRANCH_ID#'>#BRANCH_NAME#</option>
+                        </cfloop>
+                    </select>                
     <select name="department" id="department" >
     <option value=''>Seçiniz</option>
-    <cfloop query="GETBranchs">
+    <!----<cfloop query="GETBranchs">
         <cfquery name="getDepartments" datasource="#dsn#">
             SELECT * FROM DEPARTMENT WHERE BRANCH_ID=#GETBranchs.BRANCH_ID#
         </cfquery>
@@ -91,7 +99,7 @@
             
         </cfloop>
         </optgroup>
-    </cfloop>
+    </cfloop>----->
     </select>
     </div>
     </div>
@@ -135,7 +143,8 @@
         <input type="date" name="finish_date">
     </div>
     </td>
-    <td><input type="submit"></td>
+
+    <!----<td><input type="submit"></td>----->
     </tr>
     </table>
     </cfoutput>
@@ -594,5 +603,6 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             var fileName = e. target. files[0]. name;
             $("#FileName").val(fileName)
         });
+        
     </script>       
     </cf_box>
