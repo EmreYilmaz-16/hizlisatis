@@ -78,8 +78,9 @@
     </cfquery>
     
         <div class="form-group" id="item-product_code">
-            <label class="col col-3 col-xs-12">Departman</label>
+            <label class="col col-3 col-xs-12">Şube/ Departman</label>
                 <div class="col col-9 col-xs-12">   
+                   <div style="display:flex">
                     <select name="branch" id="branch" onchange="getDepartments(this)">
                         <option value=''>Seçiniz</option>
                         <cfloop query="GETBranchs">
@@ -101,6 +102,7 @@
         </optgroup>
     </cfloop>----->
     </select>
+</div>
     </div>
     </div>
     <input type="hidden" name="form_submitted" value="1">
@@ -144,7 +146,7 @@
     </div>
     </td>
 
-    <!----<td><input type="submit"></td>----->
+    <td><input type="submit"></td>
     </tr>
     </table>
     </cfoutput>
