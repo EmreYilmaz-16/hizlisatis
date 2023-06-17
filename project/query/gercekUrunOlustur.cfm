@@ -11,7 +11,7 @@
     SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#attributes.VIRTUAL_PRODUCT_ID#
 </cfquery>
 <cfscript>
-     AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE,PRODUCT_CATID","INTEGER,INTEGER,INTEGER,INTEGER");    
+     AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE","INTEGER,INTEGER,INTEGER,INTEGER");    
 </cfscript>
 <!----- Ana Ürün Kayıt Ediliyor----->    
 <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18,productInfo.PROJECT_ID)>	
