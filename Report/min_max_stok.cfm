@@ -80,7 +80,7 @@
         <div class="form-group" id="item-product_code">
             <label class="col col-3 col-xs-12">Departman</label>
                 <div class="col col-9 col-xs-12">   
-                    <select name="department" id="department" onchange="getDepartments(this)">
+                    <select name="branch" id="branch" onchange="getDepartments(this)">
                         <option value=''>Seçiniz</option>
                         <cfloop query="GETBranchs">
                             <option value='#BRANCH_ID#'>#BRANCH_NAME#</option>
