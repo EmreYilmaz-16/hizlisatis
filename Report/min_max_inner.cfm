@@ -220,11 +220,12 @@
     <td>#getStokcks_1.PRODUCT_NAME#</td>
     <td>#getStokcks_1.PROPERTY8#</td>
     <td>#getStokcks_1.PROPERTY9#</td>
+    <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><td></td><cfelse>   
     <cfquery name="getDname" datasource="#dsn#">
     select TOP 1 * from DEPARTMENT where DEPARTMENT_ID=#DEPARTMENT_ID#
     </cfquery>
     <td>#getDname.DEPARTMENT_HEAD#</td>
-
+</cfif>
 
     <td> <cfif getStokcks_1.TOTAL_STOCK lt GETMax_Min.MAXIMUM_STOCK><span style="font-weight:bold;color:red">#AmountFormat(getStokcks_1.TOTAL_STOCK)#</span><cfelseif getStokcks_1.TOTAL_STOCK gt GETMax_Min.MAXIMUM_STOCK> <span style="font-weight:bold;color:blue">#AmountFormat(getStokcks_1.TOTAL_STOCK)#</span></cfif> </td>
     <td><a href="javascript://" onclick="windowopen('index.cfm?fuseaction=objects.popup_reserved_orders&taken=0&pid=#PRODUCT_ID#','medium');">#AmountFormat(getReserved_1.STOCK_ARTIR)#</a></td>

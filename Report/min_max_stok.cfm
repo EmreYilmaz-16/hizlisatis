@@ -254,6 +254,7 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             LEFT JOIN #dsn1#.PRODUCT AS P ON GSLP.PRODUCT_ID = P.PRODUCT_ID
             LEFT JOIN #dsn3#.PRODUCT_INFO_PLUS AS PIP ON GSLP.PRODUCT_ID = PIP.PRODUCT_ID 
         WHERE 1=1
+        <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>   
           <cfif isDefined("attributes.branch") and len(attributes.branch)>
             <cfif isDefined("attributes.department") and len(attributes.department)>  AND DEPARTMENT_ID = #attributes.department#
                 <cfelse>
@@ -261,7 +262,7 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
         </cfif>
             
           </cfif>
-          
+          </cfif>
             
             
            <cfif len(attributes.product_cat)> AND P.PRODUCT_CATID IN(#CATLIST#)</cfif>
