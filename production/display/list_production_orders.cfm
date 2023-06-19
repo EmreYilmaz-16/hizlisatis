@@ -78,7 +78,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM workcube_met
 				<tr>
 					
 					<td>
-						<a href="/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#V_P_ORDER_ID#">#V_P_ORDER_NO#</a>
+						<a href="/index.cfm?fuseaction=prod.order&event=upd&upd=#P_ORDER_ID#">#P_ORDER_NO#</a>
 					</td>
 					<td>#PRODUCT_NAME#</td>
 					<td>#NICKNAME#</td>
