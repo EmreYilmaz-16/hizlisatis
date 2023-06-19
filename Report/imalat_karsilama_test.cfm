@@ -677,4 +677,5 @@ $('#file_11').change(function(e){
 	<cfreturn Int(arguments.number)>
 <cfelse>
 	<cfreturn 0>
+</cfif>
 </cffunction>
