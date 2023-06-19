@@ -6,7 +6,7 @@
 			SELECT STATION_ID,EMP_ID FROM #DSN3#.WORKSTATIONS WHERE 1=1 AND EMP_ID LIKE '%#session.ep.userid#%'
 		</cfquery>
 	<CFSET TSLIST=valueList(getEmpStation.COMMENT)>
-	<CFSET TSLIS2T=valueList(getEmpStation.STATION_ID)>
+	<CFSET TSLIS2T=valueList(getEmpStation2.STATION_ID)>
 	<cfif getEmpStation.recordCount and len(getEmpStation.COMMENT)>	
 		<cfquery name="getProductionOrders" datasource="#dsn3#">			
 		SELECT T.*,C.NICKNAME,T.QUANTITY,POR.PRODUCT_NAME FROM (
