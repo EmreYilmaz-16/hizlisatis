@@ -50,7 +50,7 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
                     <td>#QUANTITY#</td>
                     <td>#dateFormat(START_DATE,"dd/mm/yyyy")#</td>
                     <td>#dateFormat(FINISH_DATE,"dd/mm/yyyy")#</td>                   
-                    <td colspan="2">
+                    <td colspan="2" style="text-align:center">
                         <cfif IS_STAGE eq 4>
                             
                                 <i class="fa fa-circle" style="color:##0DD8FC;font-size:13px" title="<cf_get_lang dictionary_id ='36583.Başlamadı'>"></i>
