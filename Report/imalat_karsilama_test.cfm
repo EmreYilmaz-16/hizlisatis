@@ -671,7 +671,7 @@ $('#file_11').change(function(e){
 </script>
 
 <cffunction name="pFormat">
-	<cfargument name="number">
+	<cfargument name="number" default="0">
 	<cfargument name="onumber">
 
 	<cfreturn Int(arguments.number)>
