@@ -34,7 +34,7 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
                 <th>Başlangıç Tarihi</th>
                 <th>Bitiş Tarihi</th>
                 <th>Durum</th>
-                <th><a onclick="windowopen('/index.cfm?fuseaction=prod.tracking&project_id=<cfoutput>#attributes.project_id#</cfoutput>&project_head=proje&is_submitted=1')"><i class="fa fa-plus"></i></a></th>
+                <th><a onclick="windowopen('/index.cfm?fuseaction=prod.tracking&project_id=<cfoutput>#attributes.project_id#</cfoutput>&project_head=proje&is_submitted=1','page')"><i class="fa fa-plus"></i></a></th>
             </tr>
         </thead>
         <tbody>
