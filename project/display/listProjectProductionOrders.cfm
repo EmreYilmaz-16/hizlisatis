@@ -24,8 +24,8 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
                 <th>
                     Lot no
                 </th>
-                <th>Miktar</th>
-                <th>Kalan Miktar</th>
+                
+               
                 <th>
                     Teslim Tarihi           
                 </th>
@@ -37,6 +37,7 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
                 </th>
                 <th>Ürün</th>
                 <th>Miktar</th>
+                <th>Kalan Miktar</th>
                 <th>Başlangıç Tarihi</th>
                 <th>Bitiş Tarihi</th>
                 <th>Durum</th>
@@ -49,13 +50,14 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
                     <td>#P_ORDER_NO#</td>
                     <td>#ORDER_NUMBER#</td>
                     <td>#LOT_NO#</td>
-                    <td>#AMOUNT_PQ#</td>
-                    <td>#AMOUNT_PQ-AMOUNT_P#</td>
+                    
+                    
                     <td>#dateformat(DELIVER_DATE,"dd/mm/yyyy")#</td>
                     <td>#STATION_NAME#</td>
                     <td>#PRODUCT_CODE#</td>
                     <td>#PRODUCT_NAME#</td>
                     <td>#QUANTITY#</td>
+                    <td>#AMOUNT_PQ-AMOUNT_P#</td>
                     <td>#dateFormat(START_DATE,"dd/mm/yyyy")#</td>
                     <td>#dateFormat(FINISH_DATE,"dd/mm/yyyy")#</td>                   
                     <td colspan="2" style="text-align:center">
