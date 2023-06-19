@@ -244,9 +244,11 @@
 INNER JOIN #DSN3#.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
 WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             ,PIP.PROPERTY9
-            ,GSLP.PRODUCT_ID
             ,GSLP.STOCK_ID
-            ,GSLP.DEPARTMENT_ID
+            ,GSLP.PRODUCT_ID
+            <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>              
+                ,GSLP.DEPARTMENT_ID
+            </cfif>
             ,SUM(GSLP.TOTAL_STOCK) AS TOTAL_STOCK
         FROM #dsn2#.GET_STOCK_LOCATION_Partner AS GSLP
             LEFT JOIN #dsn1#.PRODUCT AS P ON GSLP.PRODUCT_ID = P.PRODUCT_ID
@@ -325,7 +327,7 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             ,PIP.PROPERTY9
             ,GSLP.PRODUCT_ID
             ,GSLP.STOCK_ID
-            ,GSLP.DEPARTMENT_ID
+            <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>     ,GSLP.DEPARTMENT_ID</cfif>
          <!-----    <cfif isDefined("attributes.is_minumum")>
             HAVING
                 SUM(REAL_STOCK-(RESERVED_PROD_STOCK+RESERVE_SALE_ORDER_STOCK+NOSALE_STOCK)) <=ISNULL((
