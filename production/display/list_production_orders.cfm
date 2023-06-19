@@ -56,11 +56,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM workcube_met
 			</tr>
 		</thead>
 		<cfif isDefined("getProductionOrders")>
-			<tr>
-				<th colspan="4">
-					Gerçek Üretim Emirleri
-				</th>
-			</tr>
+		
 		<cfoutput query="getProductionOrders">
 			<tr>
 				
@@ -73,6 +69,11 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM workcube_met
 			</tr>
 		</cfoutput>
 		</cfif>
+		<tr>
+			<th colspan="4">
+				Gerçek Üretim Emirleri
+			</th>
+		</tr>
 		<cfif isDefined("getProductionOrders2")>
 			<cfoutput query="getProductionOrders2">
 				<tr>
