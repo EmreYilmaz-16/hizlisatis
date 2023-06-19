@@ -81,13 +81,13 @@
             <label class="col col-3 col-xs-12">Şube/ Departman</label>
                 <div class="col col-9 col-xs-12">   
                    <div style="display:flex">
-                    <select name="branch" id="branch" onchange="getDepartments(this)">
+                    <select name="branch" id="branch" onchange="getDepartments(this)" class="cls1">
                         <option value=''>Seçiniz</option>
                         <cfloop query="GETBranchs">
                             <option value='#BRANCH_ID#'>#BRANCH_NAME#</option>
                         </cfloop>
                     </select>                
-    <select name="department" id="department" >
+    <select name="department" id="department" class="cls1" >
     <option value=''>Seçiniz</option>
     <!----<cfloop query="GETBranchs">
         <cfquery name="getDepartments" datasource="#dsn#">
@@ -145,8 +145,9 @@
         <input type="date" name="finish_date">
     </div>
     </td>
-
+<td><input type="checkbox" name="isAll" onclick="if($(this).is(':checked'))$('.cls1').hide();else $('.cls1').show();" value="1"> Tüm Depolar Gelsin</td>
     <td><input type="submit"></td>
+
     </tr>
     </table>
     </cfoutput>
