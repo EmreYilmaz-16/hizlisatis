@@ -49,9 +49,8 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
                     <td>#PRODUCT_NAME#</td>
                     <td>#QUANTITY#</td>
                     <td>#dateFormat(START_DATE,"dd/mm/yyyy")#</td>
-                    <td>#dateFormat(FINISH_DATE,"dd/mm/yyyy")#</td>
-                    <td><a onclick="windowopen('/index.cfm?fuseaction=prod.tracking&project_id=#attributes.project_id#&project_head=partner&is_submitted=1&durum_siparis=')"><i class="fa fa-plus"></i></a></td>
-                    <td>
+                    <td>#dateFormat(FINISH_DATE,"dd/mm/yyyy")#</td>                   
+                    <td colspan="2">
                         <cfif IS_STAGE eq 4>
                             
                                 <i class="fa fa-circle" style="color:##0DD8FC;font-size:13px" title="<cf_get_lang dictionary_id ='36583.Başlamadı'>"></i>
