@@ -673,6 +673,10 @@ $('#file_11').change(function(e){
 <cffunction name="pFormat">
 	<cfargument name="number" default="0">
 	<cfargument name="onumber">
-
-	<cfreturn Int(arguments.number)>
+<cfif len(arguments.number)>
+	<cfset nrmbr=arguments.number>
+<cfelse>
+<cfset nrmbr=0>
+</cfif>
+	<cfreturn Int(nrmbr)>
 </cffunction>
