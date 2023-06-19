@@ -448,32 +448,32 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                             	<cfquery name="get_stock_sales" dbtype="query">
                                     SELECT satis FROM get_all_sales WHERE STOCK_ID = #STOCK_ID# AND YIL = #last_year# AND AY = #i#
                                 </cfquery>
-                                <td style="text-align:center"><cfif get_stock_sales.recordcount>#TlFormat(get_stock_sales.satis,0)#<cfelse>#TlFormat(0,0)#</cfif></td>
+                                <td style="text-align:center"><cfif get_stock_sales.recordcount>#pFormat(get_stock_sales.satis,0)#<cfelse>#pFormat(0,0)#</cfif></td>
                             </cfloop>
                             <cfloop from="#this_year_min_month#" to="#this_year_max_month#" index="j">
                                 <cfquery name="get_stock_sales" dbtype="query">
                                     SELECT satis FROM get_all_sales WHERE STOCK_ID = #STOCK_ID# AND YIL = #this_year# AND AY = #j#
                                 </cfquery>
-                                <td style="text-align:center"><cfif get_stock_sales.recordcount>#TlFormat(get_stock_sales.satis,0)#<cfelse>#TlFormat(0,0)#</cfif></td>
+                                <td style="text-align:center"><cfif get_stock_sales.recordcount>#pFormat(get_stock_sales.satis,0)#<cfelse>#pFormat(0,0)#</cfif></td>
                             </cfloop>
-                            <td style="text-align:right;">#TlFormat(shelf_life,0)#</td>
-                            <td style="text-align:right;">#TlFormat(REAL_STOCK,0)#</td>
-                            <td style="text-align:right;">#TlFormat(kac_aylik_stok_var,0)#</td>
+                            <td style="text-align:right;">#pFormat(shelf_life,0)#</td>
+                            <td style="text-align:right;">#pFormat(REAL_STOCK,0)#</td>
+                            <td style="text-align:right;">#pFormat(kac_aylik_stok_var,0)#</td>
                             <td style="text-align:right;">
-                            	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=0&pid=#product_id#','medium');">#TlFormat(RESERVE_PURCHASE_ORDER_STOCK,0)#</a>
+                            	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=0&pid=#product_id#','medium');">#pFormat(RESERVE_PURCHASE_ORDER_STOCK,0)#</a>
                             </td>
                             <td style="text-align:right;">
-                            	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=1&pid=#product_id#','medium');">#TlFormat(RESERVE_SALE_ORDER_STOCK,0)#</a>
+                            	<a href="javascript://" class="tableyazi" onclick="windowopen('#request.self#?fuseaction=objects.popup_reserved_orders&taken=1&pid=#product_id#','medium');">#pFormat(RESERVE_SALE_ORDER_STOCK,0)#</a>
                             </td>
-                            <td style="text-align:right;">#TlFormat(toplam_satis,0)#</td>
-                            <td style="text-align:right;">#TlFormat(aylik_ortalama_satis,0)#</td>
-                            <td style="text-align:right;">#TlFormat(elde_stok_tutma_miktari,0)#</td>
-                            <td style="text-align:right;">#TlFormat(katsayi_stok,0)#</td>
-                            <td style="text-align:right;">#TlFormat(toplam_stok_tutma_miktari,0)#</td>
+                            <td style="text-align:right;">#pFormat(toplam_satis,0)#</td>
+                            <td style="text-align:right;">#pFormat(aylik_ortalama_satis,0)#</td>
+                            <td style="text-align:right;">#pFormat(elde_stok_tutma_miktari,0)#</td>
+                            <td style="text-align:right;">#pFormat(katsayi_stok,0)#</td>
+                            <td style="text-align:right;">#pFormat(toplam_stok_tutma_miktari,0)#</td>
                             <!---<td style="text-align:right;">#AmountFormat(SARF_STOCK)#</td>--->
                             <!---<td style="text-align:right;">#AmountFormat(SHIP_INTERNAL_STOCK)#</td>--->
                             <td style="text-align:right;">
-                            	<input type="text" name="row_total_need_#stock_id#" id="row_total_need_#stock_id#" value="#tlformat(row_total_need,0)#" class="box" style="width:60px;" onKeyup="return(FormatCurrency(this,event));" onBlur="hesapla(#stock_id#);"> 
+                            	<input type="text" name="row_total_need_#stock_id#" id="row_total_need_#stock_id#" value="#pFormat(row_total_need,0)#" class="box" style="width:60px;" onKeyup="return(FormatCurrency(this,event));" onBlur="hesapla(#stock_id#);"> 
                                 <!---<cfif row_total_need lt 0>
                             	#AmountFormat(row_total_need,0)# 
                                <cfelse>
@@ -491,8 +491,8 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                             <cfelse>
                                 <cfset row_price = 0 >
                             </cfif>
-                            <input type="hidden" name="row_price_unit_#stock_id#" id="row_price_unit_#stock_id#" value="#tlformat(row_price)#">
-                            <input type="hidden" name="row_price_#stock_id#" id="row_price_#stock_id#" value="#tlformat(row_total_need*row_price)#" onKeyup="return(FormatCurrency(this,event));">
+                            <input type="hidden" name="row_price_unit_#stock_id#" id="row_price_unit_#stock_id#" value="#pFormat(row_price)#">
+                            <input type="hidden" name="row_price_#stock_id#" id="row_price_#stock_id#" value="#pFormat(row_total_need*row_price)#" onKeyup="return(FormatCurrency(this,event));">
                            <select name="row_stock_money_#stock_id#" id="row_stock_money_#stock_id#" style="width:45px;display:none;">
                                 <cfloop query="get_money">
                                                 <option value="#money#,#RATE2#"<cfif isdefined('product_money_#get_product_list.STOCK_ID#') and Evaluate('product_money_#get_product_list.STOCK_ID#') is money>selected</cfif>>#money#</option>
@@ -669,3 +669,10 @@ $('#file_11').change(function(e){
         $("#FileName").val(fileName)
     });
 </script>
+
+<cffunction name="pFormat">
+	<cfargument name="number">
+	<cfargument name="onumber">
+
+	<cfreturn Int(arguments.number)>
+</cffunction>
