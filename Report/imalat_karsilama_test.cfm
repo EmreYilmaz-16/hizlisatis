@@ -674,9 +674,7 @@ $('#file_11').change(function(e){
 	<cfargument name="number" default="0">
 	<cfargument name="onumber">
 <cfif len(arguments.number)>
-	<cfset nrmbr=arguments.number>
+	<cfreturn Int(arguments.number)>
 <cfelse>
-<cfset nrmbr=0>
-</cfif>
-	<cfreturn Int(nrmbr)>
+	<cfreturn 0>
 </cffunction>
