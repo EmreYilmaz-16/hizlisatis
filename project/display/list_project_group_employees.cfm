@@ -1,4 +1,4 @@
-<cf_box title="Çalışma Grubu">
+<cf_box title="Çalışma Grubu" add_href="openBoxDraggable('index.cfm?fuseaction=project.popup_add_workgroup&project_id=#attributes.project_id#')">
 <cfquery name="getWorkGroupEmployees" datasource="#dsn#">
     SELECT EMP_INFO.*,ROLE_HEAD FROM workcube_metosan.WORKGROUP_EMP_PAR  AS WEP
     LEFT JOIN (
