@@ -26,7 +26,7 @@
         sys.tables t ON  t.object_id=#ObjectId#
         INNER JOIN
         sys.schemas SC ON T.schema_id = SC.schema_id
-        WHERE ic.index_id=#IndexId# and ic.object_id=#ObjectId#
+        WHERE ic.index_id=#IndexId# and ic.object_id=#ObjectId#  AND t.is_ms_shipped = 0
     </cfquery>
     <cfif getcOL.recordCount>
         CREATE #TypeDescription# INDEX [#IndexName#] ON
