@@ -16,7 +16,18 @@
                   <li><a class="dropdown-item" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')"  style="font-size:9pt;display:flex" ><img src="/images/e-pd/add.png" style="width:20px;margin-right:10px">Yeni Proje</a></li>
                   <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'" style="font-size:9pt;display:flex" ><img src="/images/e-pd/wrks.png" style="width:20px;margin-right:10px">Bekleyen İşlerim</a></li>
                   <li><a class="dropdown-item"  onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&amp;act=list_my'"style="font-size:9pt;display:flex" ><img src="/images/e-pd/nt.png" style="width:20px;margin-right:10px">Notlarım</a></li>
-
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Proje
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'" style="font-size:9pt;display:flex" ><img src="/images/e-pd/pr.png" style="width:20px;margin-right:10px">Projeler</a></li>
+                  <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&list_my_projects=1'" style="font-size:9pt;display:flex" ><img src="/images/e-pd/mpr.png" style="width:20px;margin-right:10px">Görevlisi Olduğum Projeler</a></li>
+                  <li><a class="dropdown-item" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')"  style="font-size:9pt;display:flex" ><img src="/images/e-pd/add.png" style="width:20px;margin-right:10px">Yeni Proje</a></li>
+                  <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'" style="font-size:9pt;display:flex" ><img src="/images/e-pd/wrks.png" style="width:20px;margin-right:10px">Bekleyen İşlerim</a></li>
+                  <li><a class="dropdown-item"  onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&amp;act=list_my'"style="font-size:9pt;display:flex" ><img src="/images/e-pd/nt.png" style="width:20px;margin-right:10px">Notlarım</a></li>
                 </ul>
               </li>
           <li class="nav-item">
