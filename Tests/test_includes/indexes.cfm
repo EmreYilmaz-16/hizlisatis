@@ -29,22 +29,15 @@
     AND ind.is_unique_constraint = 0
     AND t.is_ms_shipped = 0
     ORDER BY
-    t.name,sc.name, ind.name, ind.index_id, ic.is_included_column, ic.key_ordinal;
+    sc.name,t.name, ind.name, ind.index_id, ic.is_included_column, ic.key_ordinal;
 
 
 
 
 
 </cfquery>
+<cfdump var="#getI#">
 
-<cfoutput query="getI" group="TableName">
-    CREATE  #TypeDescr# INDEX #SchemaName#.#TableName# (
-    <CFSET MKS=0>
-        <CFOUTPUT>
-            #ColumnName# #IsDescending# <cfif MKS lt CNN>,<cfelse></cfif>
-            <cfset MKS=MKS+1>
-
-        </CFOUTPUT>
-    )
-    '
+<cfoutput query="getI" group="SchemaName">
+   #TypeDescr# #SchemaName#
 </cfoutput>
