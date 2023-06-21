@@ -8,6 +8,7 @@ var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
 var idB = 5000;
+
 function ngetTree(
   product_id,
   is_virtual,
@@ -80,15 +81,15 @@ function ngetTree(
         virtuallariYerlestir();
         MaliyetHesapla();
         /* console.log(o);
-        ;*/
+                ;*/
         /*AgaciYaz(o, 0, "0", 1);
-        var esd = document.getElementById("TreeArea");
-        esd.innerHTML = "";
+                var esd = document.getElementById("TreeArea");
+                esd.innerHTML = "";
 
-        esd.appendChild(ulx);
-        
-       ;
-        ;*/
+                esd.appendChild(ulx);
+
+               ;
+                ;*/
       },
     });
   } else if (tip == 3) {
@@ -108,12 +109,12 @@ function ngetTree(
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
         /*  console.log(o);
-        console.log("Buradayım");*/
+                console.log("Buradayım");*/
         //   partnerEkle(o);
         /* var et = AgaciYaz_12(o, 0, "", 0);
-        var e = document.getElementById("ppidarea").children[0];
-        var li = document.createElement("li");    
-        li.appendChild(et);*/
+                var e = document.getElementById("ppidarea").children[0];
+                var li = document.createElement("li");
+                li.appendChild(et);*/
         //AddRowItemVirtual(o.PRODUCT_ID,o.PRODUCT_NAME,'',0,0,0,'TL',0,0,0,0);
 
         //e.appendChild(li);
@@ -122,22 +123,24 @@ function ngetTree(
         virtuallariYerlestir();
         MaliyetHesapla();
         /* console.log(o);
-        ;*/
+                ;*/
         /*AgaciYaz(o, 0, "0", 1);
-        var esd = document.getElementById("TreeArea");
-        esd.innerHTML = "";
+                var esd = document.getElementById("TreeArea");
+                esd.innerHTML = "";
 
-        esd.appendChild(ulx);
-        
-       ;
-        ;*/
+                esd.appendChild(ulx);
+
+               ;
+                ;*/
       },
     });
   }
 }
+
 function patnerEkle(oo) {
   //console.log(oo);
 }
+
 function strToJson(str) {
   var newStr = "";
   for (let i = 0; i < str.length; i++) {
@@ -269,6 +272,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
   ulx.appendChild(ul);
   return ul;
 }
+
 /*
 attributeArr:[
   {
@@ -286,6 +290,7 @@ function buttonCreator(style, cls, ev, evvl, itext) {
   if (style.length > 0) btn.setAttribute("style", style);
   return btn;
 }
+
 function inputCreator(type, name, ev, evl, cls, style, vl) {
   var inp = document.createElement("input");
   inp.setAttribute("type", type);
@@ -450,6 +455,7 @@ function OpenBasketProducts(col = "", actType = "5") {
       ""
   );
 }
+
 function newDraft() {
   var enmae = prompt("Ürün Adı");
   // console.log(enmae);
@@ -480,23 +486,24 @@ function newDraft() {
     },
   });
   /*var d = document.createElement("div");
-  d.setAttribute("id", "ppidarea");
-  var ul = document.createElement("ul");
-  ul.setAttribute("id", idA);
-  ul.setAttribute("data-is_virtual", "1");
-  ul.setAttribute("class", "list-group");
-  idA++;
-  d.appendChild(ul);
-  var e = document.getElementById("TreeArea");
-  e.innerHTML = "";
-  $("#pnamemain").val("");
-  $("#vp_id").val("");
-  $("#is_virtual").val("1");
-  //var project_id = $("#project_id").val();
-  $("#pstage").val("");
-  e.appendChild(d);
-  $("#pnamemain").val(enmae);*/
+    d.setAttribute("id", "ppidarea");
+    var ul = document.createElement("ul");
+    ul.setAttribute("id", idA);
+    ul.setAttribute("data-is_virtual", "1");
+    ul.setAttribute("class", "list-group");
+    idA++;
+    d.appendChild(ul);
+    var e = document.getElementById("TreeArea");
+    e.innerHTML = "";
+    $("#pnamemain").val("");
+    $("#vp_id").val("");
+    $("#is_virtual").val("1");
+    //var project_id = $("#project_id").val();
+    $("#pstage").val("");
+    e.appendChild(d);
+    $("#pnamemain").val(enmae);*/
 }
+
 function AddRowItem(
   PRODUCT_ID,
   PRODUCT_NAME,
@@ -855,13 +862,14 @@ function Kaydet() {
   //console.log(SonAgac);
   UrunKaydet();
 }
+
 function addProdMain(idbb = 0) {
   openBoxDraggable(
     "index.cfm?fuseaction=objects.emptypopup_add_vp_project&idb=" + idbb
   );
 }
 
-function addProdMain_(idb) {
+function addProdMain_(idb, modal_id) {
   var pname = document.getElementById("productNameVp").value;
   var p_cat_id = document.getElementById("productCatIdVp").value;
   var li = document.createElement("li");
@@ -924,7 +932,7 @@ function addProdMain_(idb) {
   div.appendChild(div2);
   li.appendChild(div);
   /*var ul = document.createElement("ul");
-  li.appendChild(ul);*/
+    li.appendChild(ul);*/
   if (idb == 0) {
     var e = document.getElementById("ppidarea").children[0];
     e.appendChild(li);
@@ -940,6 +948,7 @@ function addProdMain_(idb) {
   agacGosterEkle();
   sortableYap();
   MaliyetHesapla();
+  closeBoxDraggable(modal_id);
 }
 
 function OpenBasketProducts_Pars(el) {
@@ -968,11 +977,13 @@ function OpenBasketProducts_Pars(el) {
     idA++;
   }
 }
+
 function addProdSub(el) {
   var idbb =
     el.parentElement.parentElement.parentElement.getAttribute("data-idb");
   addProdMain(idbb);
 }
+
 function addProdSub_(el) {
   //console.log(el.parentElement)
   var es = el.parentElement.parentElement.parentElement.children;
@@ -1058,6 +1069,7 @@ function addProdSub_(el) {
   sortableYap();
   MaliyetHesapla();
 }
+
 function getCats(el, ev) {
   // console.log(ev);
   var bul = false;
@@ -1557,6 +1569,7 @@ function MaliyetHesapla() {
   var Mn = commaSplit(TotalPrice);
   $("#maliyet").val(Mn);
 }
+
 function GercekKontrol(id) {
   var q = wrk_query(
     "SELECT IS_CONVERT_REAL FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=" +
@@ -1581,6 +1594,7 @@ function GercekKontrol(id) {
     b.removeAttribute("disabled");
   }
 }
+
 function updateStage(el, projectId) {
   var vp_id = document.getElementById("vp_id").value;
   $.ajax({
@@ -1596,6 +1610,7 @@ function updateStage(el, projectId) {
     },
   });
 }
+
 function getProjectProducts(projectId) {
   // var vp_id = document.getElementById("vp_id").value;
   $.ajax({
@@ -1609,6 +1624,7 @@ function getProjectProducts(projectId) {
     },
   });
 }
+
 /*
  <cfargument name="vp_id">
         <cfargument name="psatge">
