@@ -1,11 +1,8 @@
-﻿<link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4.5.1/css/metro-all.min.css">
-<link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro.min.css">
-<link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-colors.min.css">
-<link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-rtl.min.css">
-<link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-icons.min.css">
-
-
-
+﻿<link rel="stylesheet" href="/AddOns/metrouii/build/css/metro-all.min.css">
+<script src="/AddOns/metrouii/build/js/metro.min.js"></script>
+<!---
+<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>---->
 <nav data-role="ribbonmenu">
     <ul class="tabs-holder">
         <li><a href="#section-group">Group</a></li>
