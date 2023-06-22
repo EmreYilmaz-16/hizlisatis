@@ -26,6 +26,20 @@
     background: no-repeat center center;
     background-size: 100% 100%;
 }
+.navbar-nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    z-index: 9999;
+    position: absolute !important;
+    background: white !important;
+    width: 100% !important;
+    padding-left: 15px !important;
+}
 </style>
 <cfquery name="getProjectInfo" datasource="#dsn#">
     select RELATED_PROJECT_ID,PROJECT_ID from workcube_metosan.PRO_PROJECTS where PROJECT_ID=#attributes.project_id#
