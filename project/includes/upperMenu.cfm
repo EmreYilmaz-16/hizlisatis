@@ -15,6 +15,7 @@
     line-height: 1;    
     border: none !important;
     background: none !important;
+    margin-top:3px !important;
 }
 .navbar-toggler-icon {
     display: inline-block;
