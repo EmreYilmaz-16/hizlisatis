@@ -21,7 +21,10 @@ function ngetTree(
 ) {
   //console.log(arguments);
   if (tip == 1) {
-    var pn = btn.parentElement.children[0].innerText;
+   /* var pn = btn.parentElement.children[0].innerText;
+    var */
+    var qqq=wrk_query("SELECT PRODUCT_NAME FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID="+product_id,"DSN3")
+var pna=qqq.PRODUCT_NAME[0]
     $("#pnamemain").val(pna);
     $("#vp_id").val(product_id);
     $("#is_virtual").val(is_virtual);
