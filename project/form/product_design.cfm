@@ -126,7 +126,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
   <div class="col col-3 col-md-3 col-sm-3 col-xs-12" style="border-right: solid 1px ##E08283;">
       <cf_box title="Ürünler">
           
-     <div style="height:90vh">
+     <div style="height:85vh">
   <div>
       <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
   </div>
@@ -207,14 +207,14 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
       <input type="hidden" name="project_id" id="project_id" value="<cfoutput>#attributes.project_id#</cfoutput>">
   </div>
   <div style="position: absolute;bottom: 0;right: 0;"></div>
-  <div id="TreeArea" style="height:85vh">
+  <div id="TreeArea" style="height:80vh">
 
 </div>
 </cf_box>
 </div>
 <div class="col col-2 col-md-2 col-sm-2 col-xs-12" >
   <cf_box title="....">
-      <div  style="height:79vh" id="settingsArea">
+      <div  style="height:75vh" id="settingsArea">
           
       </div>
   </cf_box>

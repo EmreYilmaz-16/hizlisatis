@@ -1,7 +1,7 @@
 ﻿<cfquery name="getProjectInfo" datasource="#dsn#">
     select RELATED_PROJECT_ID,PROJECT_ID from workcube_metosan.PRO_PROJECTS where PROJECT_ID=#attributes.project_id#
 </cfquery>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding:0">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
