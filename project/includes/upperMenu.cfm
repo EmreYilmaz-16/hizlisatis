@@ -1,12 +1,4 @@
 ﻿<style>
-.navbar-toggler-icon {
-    display: inline-block;
-    width: 0 !important;
-    height: 10px !important;
-    vertical-align: middle;
-    content: "";    
-   
-}
 .navbar .container, .navbar .container-fluid, .navbar .container-lg, .navbar .container-md, .navbar .container-sm, .navbar .container-xl {
     display: -ms-flexbox;
     display: flex;
