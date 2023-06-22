@@ -45,30 +45,6 @@
         </div>
     </cfoutput>
     </div>
-    <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none">
-        <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
-        <cf_grid_list>
-            <tr>
-            <td>
-                <a class="list-group-item" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_welcome</cfoutput>'">
-                Proje Ana Sayfa
-            </a>
-        </td>
-        </tr>
-        </cf_grid_list>
-    </cf_box>
-    </div>
+    
     </cf_box>
 </cfif>
-<script>
-        
-    $(document).on("mousemove",function(ev){
-
-if(ev.clientX >=window.innerWidth-100){
-$(leftMenuPss).show(500);
-}else if(ev.clientX <=window.innerWidth-300){
-$(leftMenuPss).hide(500);
-}
-})
-
-</script>

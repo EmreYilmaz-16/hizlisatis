@@ -81,40 +81,12 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
             Malzeme İhtiyaçları
         </a>
         </div>
-        <div id="leftMenuPss" style="width:10%;height:90vh;position: absolute;right: 0;top: 0;display:none;z-index:9999">
-            <cf_box title="Hızlı Erişim" expandable="0" id="box0001">
-           <div style="height:90vh">
-                <cf_grid_list>
-                <tr>
-                    <td>
-                        <a class="" onclick="<cfoutput>window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#getProject.RELATED_PROJECT_ID#'</cfoutput>">
-                               Üst Proje 
-                        </a>        
-                    </td>
-                </tr>
-                <tr>
-                <td>
-                    <a class="" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_project_welcome</cfoutput>'">
-                    Proje Ana Sayfa
-                </a>
-            </td>
-            </tr>
-            </cf_grid_list>
-        </div>
-        </cf_box>
-        </div>
+   
     </cf_box>
 
     <script>
         
-            $(document).on("mousemove",function(ev){
-   
-    if(ev.clientX >=window.innerWidth-100){
-        $(leftMenuPss).show(500);
-    }else if(ev.clientX <=window.innerWidth-300){
-        $(leftMenuPss).hide(500);
-    }
-})
+
 $(document).ready(function () {
   var d = document.getElementById("wrk_main_layout");
   d.removeAttribute("class");
