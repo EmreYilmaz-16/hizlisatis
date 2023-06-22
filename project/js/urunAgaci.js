@@ -21,10 +21,14 @@ function ngetTree(
 ) {
   //console.log(arguments);
   if (tip == 1) {
-   /* var pn = btn.parentElement.children[0].innerText;
+    /* var pn = btn.parentElement.children[0].innerText;
     var */
-    var qqq=wrk_query("SELECT PRODUCT_NAME FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID="+product_id,"DSN3")
-var pna=qqq.PRODUCT_NAME[0]
+    var qqq = wrk_query(
+      "SELECT PRODUCT_NAME FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=" +
+        product_id,
+      "DSN3"
+    );
+    var pna = qqq.PRODUCT_NAME[0];
     $("#pnamemain").val(pna);
     $("#vp_id").val(product_id);
     $("#is_virtual").val(is_virtual);
@@ -1533,6 +1537,21 @@ function setAQuestions(idb, queid, modalid, QUESTION_NAME) {
   var es = $(el).find("span[name='product_name_']")[0];
   var span = document.createElement("span");
   span.innerText = "(" + QUESTION_NAME + ")";
+  span.setAttribute("style", "color:var(--danger)");
+  es.appendChild(span);
+  closeBoxDraggable(modalid);
+}
+function setAQuestions2(idb, modalid) {
+  var el = document.getElementByIdb(idb);
+  var qqqs = document.getElementById("aquestion");
+  var queid = qqqs.value;
+  var QUESTION_NAME = qqqs.options[qqqs.selectedIndex].text;
+  var ds = document.getElementById("displayName").value;
+  el.setAttribute("data-question_id", queid);
+  el.setAttribute("data-displayName", ds);
+  var es = $(el).find("span[name='product_name_']")[0];
+  var span = document.createElement("span");
+  span.innerText = "(" + QUESTION_NAME + ") + " + ds;
   span.setAttribute("style", "color:var(--danger)");
   es.appendChild(span);
   closeBoxDraggable(modalid);
