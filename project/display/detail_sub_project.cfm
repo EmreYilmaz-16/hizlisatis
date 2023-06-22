@@ -56,7 +56,7 @@ INNER JOIN workcube_metosan.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_I
   
     
     <div class="list-group list-group-horizontal-lg">
-        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=product.emptypopup_design_sub_product_pbs&project_id=#getProject.RELATED_PROJECT_ID#</cfoutput>'">
+        <a class="list-group-item list-group-item-action" onclick="window.location.href='<cfoutput>#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#getProject.RELATED_PROJECT_ID#</cfoutput>'">
             <img src="/images/e-pd/up40.png"> 
            Üst Proje
         </a>
