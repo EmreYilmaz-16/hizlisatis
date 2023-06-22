@@ -51,6 +51,7 @@
                   <li><a class="dropdown-item"  onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&amp;act=list_my'"style="font-size:9pt;display:flex" ><img src="/images/e-pd/nt.png" style="width:20px;margin-right:10px">Notlarım</a></li>
                 </ul>
               </li>
+              <cfif isDefined("attributes.project_id")>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Proje
@@ -77,7 +78,7 @@
                 
                 </ul>
               </li>
-          
+            </cfif>
         </ul>
       </div>
     </div>
