@@ -5,7 +5,7 @@
         ,OFFER_HEAD ACTION_HEAD
         ,OFFER_DATE AS ACTION_DATE
         ,PRICE AS ACTION_VALUE
-        ,PURCHASE_SALES AS ITIP
+        ,PURCHASE_SALES 
         ,CASE
         WHEN PURCHASE_SALES = 1
         THEN 'Satış Teklifi'
