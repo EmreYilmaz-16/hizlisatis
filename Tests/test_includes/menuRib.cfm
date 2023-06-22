@@ -1,5 +1,5 @@
 ﻿<link rel="stylesheet" href="/AddOns/metrouii/build/css/metro-all.min.css">
-<script src="/AddOns/metrouii/build/js/metro.min.js"></script>
+
 <!---
 <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
 <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>---->
@@ -89,4 +89,4 @@
 </nav>
 
 
-<script src="https://cdn.korzh.com/metroui/v4.5.1/js/metro.min.js"></script>
+<script src="/AddOns/metrouii/build/js/metro.min.js"></script>
