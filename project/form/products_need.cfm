@@ -1,4 +1,5 @@
-﻿<cf_box title="Malzeme İhtiyaçları">
+﻿<cfinclude template="../includes/upperMenu.cfm">
+<cf_box title="Malzeme İhtiyaçları">
 <cfquery name="getProjectNeeds" datasource="#dsn3#">
     EXEC GET_PROJECT_NEED_PBS #attributes.PROJECT_ID#
 </cfquery>

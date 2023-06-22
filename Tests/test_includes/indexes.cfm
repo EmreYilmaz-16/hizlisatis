@@ -125,73 +125,19 @@ integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4B
 <div>
    
    
-    <cf_box>
-       <div>
-        Proje<br>
-        <div style="display:flex">
-            <a class="brtbtn" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'" title="Projeler">
-                <img src="/images/e-pd/pr.png">
-                </a>
-            <a class="brtbtn" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&amp;list_my_projects=1'" title="Görevlisi Olduğum Projeler">
-                <img src="/images/e-pd/mpr.png">
-                </a>
-            <a class="brtbtn" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')" title="Yeni Proje">
-                <img src="/images/e-pd/add.png">
-               </a>
-            <a class="brtbtn">
-                <img src="/images/e-pd/rprt.png" title="Proje Raporları" disabled>
-                </a>
-            <a class="brtbtn" tite="Proje Ürünleri" disabled>
-                <img src="/images/e-pd/prp.png">
-                </a>
-            <a class="brtbtn">
-                <img src="/images/e-pd/prts.png" title="Proje Ürün Tipleri" disabled>
-                </a>
-            <a class="brtbtn" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'" title="Bekleyen İşlerim">
-                <img src="/images/e-pd/wrks.png">
-                </a>
-            <a class="brtbtn" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&amp;act=list_my'" title="Notlarım">
-                <img src="/images/e-pd/nt.png">
-                </a>
+    <div class="list-group list-group-horizontal-lg">
+       
         
-        </div>
+            <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_project_group_employees&project_id=<cfoutput>#attributes.project_id#</cfoutput>'"><img src="/images/e-pd/wrkls.png"> Çalışma Gurupları</a></li>
+                <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_works&project_id=<cfoutput>#attributes.project_id#</cfoutput>'"> <img src="/images/e-pd/wrks.png">İşler</a></li>
+                    <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_related_projects_pbs&project_id=<cfoutput>#attributes.project_id#</cfoutput>'"><img src="/images/e-pd/pr.png"> İlişkili Projeler</a></li>
+                        <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_documents&project_id=<cfoutput>#attributes.project_id#</cfoutput>'"> <img src="/images/e-pd/fld.png"> Belgeler</a></li>
+                            <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_production_orders&project_id=<cfoutput>#attributes.project_id#</cfoutput>'"> <img src="/images/e-pd/oppr.png"> Üretim Emirleri</a></li>
+                                <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&action_id=<cfoutput>#attributes.project_id#</cfoutput>'"> <img src="/images/e-pd/nt.png"> Notlar</a></li>
+                                    
+                                        <li><a class="dropdown-item" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_related_project_documents&project_id=<cfoutput>#attributes.project_id#</cfoutput>'"><img src="/images/e-pd/rel.png"> İlişkili İşlemler</a></li>
         
     </div>
-    <div>
-        Proje<br>
-        <div style="display:flex">
-            <a class="brtbtn" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs'" title="Projeler">
-                <img src="/images/e-pd/pr.png">
-                </a>
-            <a class="brtbtn" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_projects_pbs&amp;list_my_projects=1'" title="Görevlisi Olduğum Projeler">
-                <img src="/images/e-pd/mpr.png">
-                </a>
-            <a class="brtbtn" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_add_project_fast')" title="Yeni Proje">
-                <img src="/images/e-pd/add.png">
-               </a>
-            <a class="brtbtn">
-                <img src="/images/e-pd/rprt.png" title="Proje Raporları" disabled>
-                </a>
-            <a class="brtbtn" tite="Proje Ürünleri" disabled>
-                <img src="/images/e-pd/prp.png">
-                </a>
-            <a class="brtbtn">
-                <img src="/images/e-pd/prts.png" title="Proje Ürün Tipleri" disabled>
-                </a>
-            <a class="brtbtn" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_myworks'" title="Bekleyen İşlerim">
-                <img src="/images/e-pd/wrks.png">
-                </a>
-            <a class="brtbtn" onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&amp;act=list_my'" title="Notlarım">
-                <img src="/images/e-pd/nt.png">
-                </a>
-        
-        </div>
-        
-    </div>
-    </cf_box>
-</div>
-
-
 
 
    

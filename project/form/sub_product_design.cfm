@@ -1,4 +1,5 @@
-﻿<cfquery name="getSettings" datasource="#dsn3#">
+﻿<cfinclude template="../includes/upperMenu.cfm">
+<cfquery name="getSettings" datasource="#dsn3#">
     SELECT * FROM PROJECT_PRODUCT_DESIGN_PARAMS_PBS
 </cfquery>
 <cfquery name="getQuestions" datasource="#dsn3#">

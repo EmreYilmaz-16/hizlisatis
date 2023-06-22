@@ -1,4 +1,5 @@
-﻿<cf_box title="İlişkili Belgeler">
+﻿<cfinclude template="../includes/upperMenu.cfm">
+<cf_box title="İlişkili Belgeler">
     <cfquery name="getDocuments" datasource="#dsn3#">
         SELECT 0 AS ALVER, OFFER_ID AS ACTION_ID
         ,OFFER_NUMBER AS ACTION_NUMBER

@@ -1,3 +1,4 @@
+<cfinclude template="../includes/upperMenu.cfm">
 <cfquery name="getWorkGroupEmployees" datasource="#dsn#">
 SELECT EMP_INFO.*,ROLE_HEAD FROM workcube_metosan.WORKGROUP_EMP_PAR  AS WEP
 LEFT JOIN (
