@@ -17,7 +17,14 @@
     -ms-flex-align: center;
     align-items: flex-end;
     -ms-flex-pack: justify;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
+}
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 2.25rem;
+    line-height: 1;    
+    border: none !important;
+    background: none !important;
 }
 </style>
 <cfquery name="getProjectInfo" datasource="#dsn#">
@@ -27,7 +34,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"><span class="icn-md fa fa-align-justify"></span></span>
+        <span class="navbar-toggler-icon"><span class="text-primary icn-md fa fa-align-justify"></span></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
