@@ -1,4 +1,5 @@
-﻿<cfinclude template="../includes/upperMenu.cfm">
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<cfinclude template="../includes/upperMenu.cfm">
 <cfquery name="getP_Orders" datasource="#dsn3#">
     SELECT PO.P_ORDER_ID,PO.P_ORDER_NO,PO.QUANTITY,WS.STATION_NAME,PO.SPECT_VAR_NAME,PO.START_DATE,PO.FINISH_DATE,PO.PROD_ORDER_STAGE,PO.LOT_NO,IS_STAGE,POR.ORDER_ROW_ID,ORR.DELIVER_DATE,O.ORDER_NUMBER,S.PRODUCT_CODE,S.PRODUCT_NAME,ISNULL(TKSS.AMOUNT,0) as AMOUNT_P,PO.QUANTITY AS AMOUNT_PQ FROM #DSN3#.PRODUCTION_ORDERS  AS PO
 LEFT JOIN #DSN3#.WORKSTATIONS AS WS ON WS.STATION_ID=PO.STATION_ID
@@ -82,3 +83,5 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
     </cf_grid_list>
 
 </cf_box>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
