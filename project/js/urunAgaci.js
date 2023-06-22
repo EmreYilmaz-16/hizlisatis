@@ -1551,8 +1551,12 @@ function setAQuestions2(idb, modalid) {
   el.setAttribute("data-displayName", ds);
   var es = $(el).find("span[name='product_name_']")[0];
   var span = document.createElement("span");
-  span.innerText = "(" + QUESTION_NAME + ") + " + ds;
+  span.innerText = "(" + QUESTION_NAME + ") + " ;
   span.setAttribute("style", "color:var(--danger)");
+  es.appendChild(span);
+  var span = document.createElement("span");
+  span.innerText = "(" + ds + ") + " ;
+  span.setAttribute("style", "color:var(--success)");
   es.appendChild(span);
   closeBoxDraggable(modalid);
 }
