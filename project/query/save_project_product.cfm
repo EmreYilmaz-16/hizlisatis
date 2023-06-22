@@ -2,7 +2,7 @@
 
 <cfset FormData=deserializeJSON(attributes.data)>
 
-<cfdump var="#FormData#">
+
 
 <cfquery name="getFr" datasource="#dsn3#">
     SELECT PCPS.*,PC.HIERARCHY,PC.PRODUCT_CAT,PC.DETAIL FROM #DSN#.PRO_PROJECTS AS PP
@@ -118,14 +118,14 @@ CreatedProduct= CreateVirtualProduct(
 );
 CreatedProductId=CreatedProduct.IDENTITYCOL
 </cfscript>
-<cfdump var="#CreatedProduct#">
 
-<cfdump var="#arrayLen(FormData.PRODUCT_TREE)#">
+
+
 <cfif arrayLen(FormData.PRODUCT_TREE)>
-<cfdump var="#arrayLen(FormData.PRODUCT_TREE)#">
+
 agacim var
 <cfloop array="#FormData.PRODUCT_TREE#" index="ai">
-<cfdump var="#ai#">
+
 
 <cfif ai.PRODUCT_ID neq 0>
 <cfscript>
@@ -231,7 +231,7 @@ agacim var
    this.close();
     
 </script>
-<cfdump var="#getFr#">
+
 
 <cffunction name="CreateVirtualProduct">
 <cfargument name="PRODUCT_NAME">
