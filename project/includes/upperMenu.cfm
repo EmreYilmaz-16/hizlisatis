@@ -11,10 +11,19 @@
 }
 .navbar-toggler {
     padding: 0.25rem 0.75rem;
-    font-size: 2.25rem;
+    font-size: 1.0rem;
     line-height: 1;    
     border: none !important;
     background: none !important;
+}
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: initial !important;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    background-size: 100% 100%;
 }
 </style>
 <cfquery name="getProjectInfo" datasource="#dsn#">
