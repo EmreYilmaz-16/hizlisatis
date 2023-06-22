@@ -8,6 +8,8 @@
     <cfcase value="6"><cfinclude template="test_includes/kontrolSatir.cfm"></cfcase>
     <cfcase value="7"><cfinclude template="test_includes/basket_guncelle_que.cfm"></cfcase>
       <cfcase value="8"><cfinclude template="test_includes/indexes.cfm"></cfcase>
+      <cfcase value="9"><cfinclude template="test_includes/menuRib.cfm"></cfcase>
+      
   </cfswitch>
 </cfif>
 
