@@ -188,6 +188,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     }
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
+    span.setAttribute("style","display:inline-grid")
     var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
       (p) => p.QUESTION_ID == arr[i].QUESTION_ID
     );
@@ -541,6 +542,7 @@ function AddRowItem(
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
+    span.setAttribute("style","display:inline-grid")
     span.innerText = PRODUCT_NAME;
 
     div.appendChild(span);
@@ -603,6 +605,7 @@ function AddRowItem(
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
+    span.setAttribute("style","display:inline-grid")
     span.innerText = PRODUCT_NAME;
 
     div.appendChild(span);
@@ -687,6 +690,7 @@ function AddRowItemVirtual(
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
+    span.setAttribute("style","display:inline-grid")
     span.innerText = PRODUCT_NAME;
 
     div.appendChild(span);
@@ -749,6 +753,7 @@ function AddRowItemVirtual(
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
+    span.setAttribute("style","display:inline-grid")
     span.innerText = PRODUCT_NAME;
 
     div.appendChild(span);
@@ -888,6 +893,7 @@ function addProdMain_(idb, modal_id) {
   idB++;
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
+  span.setAttribute("style","display:inline-grid")
   span.innerText = pname;
   //prompt("Ürün Adı");
   li.setAttribute("data-product_catid", p_cat_id);
@@ -1015,6 +1021,7 @@ function addProdSub_(el) {
   idB++;
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
+  span.setAttribute("style","display:inline-grid")
   span.innerText = prompt("Ürün Adı");
   var div = document.createElement("div");
   div.setAttribute("style", "display:flex");
@@ -1273,6 +1280,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     }
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
+    span.setAttribute("style","display:inline-grid")
     var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
       (p) => p.QUESTION_ID == arr[i].QUESTION_ID
     );
@@ -1387,6 +1395,7 @@ function AgaciYaz_13(arr, isoq, address = "0", vrt = "1", li) {
     }
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
+    span.setAttribute("style","display:inline-grid")
     var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
       (p) => p.QUESTION_ID == arr[i].QUESTION_ID
     );
@@ -1551,11 +1560,11 @@ function setAQuestions2(idb, modalid) {
   el.setAttribute("data-displayName", ds);
   var es = $(el).find("span[name='product_name_']")[0];
   var span = document.createElement("span");
-  span.innerText = "(" + QUESTION_NAME + ") + " ;
+  span.innerText = "(" + QUESTION_NAME + ")" ;
   span.setAttribute("style", "color:var(--danger)");
   es.appendChild(span);
   var span = document.createElement("span");
-  span.innerText = "(" + ds + ") + " ;
+  span.innerText = "(" + ds + ") " ;
   span.setAttribute("style", "color:var(--success)");
   es.appendChild(span);
   closeBoxDraggable(modalid);
