@@ -188,7 +188,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     }
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
-    span.setAttribute("style","display:inline-grid")
+    spn.setAttribute("style","display:inline-grid")
     var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
       (p) => p.QUESTION_ID == arr[i].QUESTION_ID
     );
@@ -1280,7 +1280,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     }
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
-    span.setAttribute("style","display:inline-grid")
+    spn.setAttribute("style","display:inline-grid")
     var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
       (p) => p.QUESTION_ID == arr[i].QUESTION_ID
     );
@@ -1395,7 +1395,7 @@ function AgaciYaz_13(arr, isoq, address = "0", vrt = "1", li) {
     }
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
-    span.setAttribute("style","display:inline-grid")
+    spn.setAttribute("style","display:inline-grid")
     var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
       (p) => p.QUESTION_ID == arr[i].QUESTION_ID
     );
