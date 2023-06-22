@@ -124,7 +124,7 @@
         WHERE PROJECT_ID = #attributes.project_id#
     </cfquery>
     
-    <div>    
+    <div style="height:90vh">    
         <cf_big_list>
             <CFSET toplamGider=0>
             <CFSET toplamGelir=0>
@@ -152,18 +152,22 @@
     
     </cfoutput>
     </cf_big_list>
+
+    <div style="display:flex;position:absolute;bottom:0;right:0;">
+        <div class="alert alert-success">
+            <cfoutput>#tlformat(toplamGelir)#</cfoutput>
+        </div>
+        <div class="alert alert-danger">
+        <cfoutput>#tlformat(toplamGider)#</cfoutput>
+        </div>
+        <cfset dng="success">
+        <cfif toplamGelir lt toplamGider>
+            <cfset dng="danger">
+        </cfif>
+        <div class="alert alert-<cfoutput>#dng#</cfoutput>">
+        <cfoutput>#tlformat(toplamGider)#</cfoutput>
+        </div>
     </div>
-    <div class="alert alert-success">
-        <cfoutput>#tlformat(toplamGelir)#</cfoutput>
     </div>
-    <div class="alert alert-danger">
-    <cfoutput>#tlformat(toplamGider)#</cfoutput>
-    </div>
-    <cfset dng="success">
-    <cfif toplamGelir lt toplamGider>
-        <cfset dng="danger">
-    </cfif>
-    <div class="alert alert-<cfoutput>#dng#</cfoutput>">
-    <cfoutput>#tlformat(toplamGider)#</cfoutput>
-    </div>
+
     </cf_box>
