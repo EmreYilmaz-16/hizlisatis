@@ -195,7 +195,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     var str = arr[i].PRODUCT_NAME;
     if (qname != undefined) {
       qname =
-        "<span style='color:var(--danger)'>(" + qname.QUESTION + ")</span>";
+        "<span name='question_name_' style='color:var(--danger)'>(" + qname.QUESTION + ")</span>";
     } else {
       qname = "";
     }
@@ -1561,11 +1561,13 @@ function setAQuestions2(idb, modalid) {
   var es = $(el).find("span[name='product_name_']")[0];
   var span = document.createElement("span");
   span.innerText = "(" + QUESTION_NAME + ")";
+  span.setAttribute("name","question_name_")
   span.setAttribute("style", "color:var(--danger)");
   es.appendChild(span);
   var span = document.createElement("span");
   span.innerText = "(" + ds + ") ";
   span.setAttribute("style", "color:var(--success)");
+  span.setAttribute("name","display_name_")
   es.appendChild(span);
   closeBoxDraggable(modalid);
 }
