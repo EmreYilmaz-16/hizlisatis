@@ -9,7 +9,7 @@
             <option value="#QUESTION_ID#">#QUESTION_NAME#</option>
         </cfoutput>
     </select>
-    <input type="text" name="displayName" id="displayName" class="form-control form-control-sm" placeholder="Gözükecek Ad">
+    <input type="text" name="displayName" id="displayName" class="form-control form-control" style="margin-top:10px" placeholder="Gözükecek Ad">
     <button type="button" style="float:right;margin-top:5px" class="btn btn-success" onclick="setAQuestions2(<cfoutput>#attributes.idb#</cfoutput>,'<cfoutput>#attributes.modal_id#</cfoutput>')">Tamam</button>
 <button type="button" style="float:right;margin-top:5px" class="btn btn-danger" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')">İptal</button>
 </cf_box>
