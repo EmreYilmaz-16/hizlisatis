@@ -195,7 +195,9 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     var str = arr[i].PRODUCT_NAME;
     if (qname != undefined) {
       qname =
-        "<span name='question_name_' style='color:var(--danger)'>(" + qname.QUESTION + ")</span>";
+        "<span name='question_name_' style='color:var(--danger)'>(" +
+        qname.QUESTION +
+        ")</span>";
     } else {
       qname = "";
     }
@@ -209,7 +211,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
-    li.setAttribute("data-displayname", arr[i].DISPLAY_NAME);
+    li.setAttribute("data-displayName", arr[i].DISPLAY_NAME);
     li.setAttribute("data-idb", idB);
     idB++;
 
@@ -823,6 +825,7 @@ function AgacGetir(agacim, sx = 0) {
     var price = agacim[i].getAttribute("data-price");
     var money = agacim[i].getAttribute("data-other_money");
     var discount = agacim[i].getAttribute("data-discount");
+    var displayName = agacim[i].getAttribute("data-displayName");
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
@@ -837,6 +840,7 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.PRICE = price;
     agacItem.MONEY = money;
     agacItem.DISCOUNT = discount;
+    agacItem.DISPLAY_NAME = displayName;
     if (p_cat_id != undefined) {
       agacItem.PRODUCT_CATID = p_cat_id;
     } else {
@@ -1562,13 +1566,13 @@ function setAQuestions2(idb, modalid) {
   var es = $(el).find("span[name='product_name_']")[0];
   var span = document.createElement("span");
   span.innerText = "(" + QUESTION_NAME + ")";
-  span.setAttribute("name","question_name_")
+  span.setAttribute("name", "question_name_");
   span.setAttribute("style", "color:var(--danger)");
   es.appendChild(span);
   var span = document.createElement("span");
   span.innerText = "(" + ds + ") ";
   span.setAttribute("style", "color:var(--success)");
-  span.setAttribute("name","display_name_")
+  span.setAttribute("name", "display_name_");
   es.appendChild(span);
   closeBoxDraggable(modalid);
 }

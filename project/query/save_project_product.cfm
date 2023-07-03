@@ -1,8 +1,10 @@
-﻿<div style="display:none">
+﻿
+<div style="display:none">
 
 <cfset FormData=deserializeJSON(attributes.data)>
 
-
+<cfdump var="#FormData#">
+<cfabort>
 
 <cfquery name="getFr" datasource="#dsn3#">
     SELECT PCPS.*,PC.HIERARCHY,PC.PRODUCT_CAT,PC.DETAIL FROM #DSN#.PRO_PROJECTS AS PP
@@ -26,7 +28,7 @@
                     <cfif isDefined("ai.MONEY")><cfset aim=ai.MONEY><cfelse><cfset aim="TL"></cfif>
         <cfif ai.PRODUCT_ID neq 0>
             <cfscript>
-                InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,aiq,aip,aid,aim,ai.IS_VIRTUAL);
+                InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,aiq,aip,aid,aim,ai.IS_VIRTUAL,ai.DISPLAY_NAME);
             </cfscript>
         <cfelse>
 
@@ -64,7 +66,7 @@
                 }else{
                     mny="TL";
                 }
-                InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,aiq,prcex,dsc,mny,ai.IS_VIRTUAL);
+                InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,aiq,prcex,dsc,mny,ai.IS_VIRTUAL,ai.DISPLAY_NAME);
             </cfscript>
             <cfif arraylen(ai.AGAC)>
                 <cfloop array="#ai.AGAC#" index="idx">
@@ -90,7 +92,7 @@
                         }else{
                             queid="0";
                         }
-                        InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,queid,prcex1,dsc1,mny1,idx.IS_VIRTUAL);
+                        InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,queid,prcex1,dsc1,mny1,idx.IS_VIRTUAL,idx.DISPLAY_NAME);
                     </cfscript>
                 </cfloop>
             </cfif>
@@ -149,7 +151,7 @@ agacim var
 }else{
     queid="NULL";
 }
-    InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL);
+    InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL,ai.DISPLAY_NAME);
 </cfscript>
 <cfelse>
 <cfoutput>
@@ -335,7 +337,7 @@ WHERE VIRTUAL_PRODUCT_ID=#arguments.VIRTUAL_PRODUCT_ID#
 <cfargument name="DISCOUNT">
 <cfargument name="MONEY">
 <cfargument name="IS_VIRTUAL">
-
+<cfargument name="DISPLAY_NAME" default="">
 <cfquery name="ins" datasource="#dsn3#" result="res">
 
 
@@ -348,7 +350,8 @@ QUESTION_ID,
 PRICE,
 DISCOUNT,
 MONEY,
-IS_VIRTUAL
+IS_VIRTUAL,
+DISPLAY_NAME,
 )
 VALUES(
     #arguments.VP_ID#,
@@ -359,7 +362,8 @@ VALUES(
 <cfif len(arguments.price)>#arguments.PRICE#<cfelse>0</cfif>,
 <cfif len(arguments.discount)>#arguments.DISCOUNT#<cfelse>0</cfif>,
 <cfif len(arguments.money)>'#arguments.MONEY#'<cfelse>'TL'</cfif>,
-#arguments.IS_VIRTUAL#
+#arguments.IS_VIRTUAL#,
+<cfif len(arguments.DISPLAY_NAME)>'#arguments.DISPLAY_NAME#'<CFELSE>NULL</cfif>
 )
 
 </cfquery>
