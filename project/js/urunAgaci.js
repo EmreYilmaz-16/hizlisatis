@@ -211,7 +211,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
-    li.setAttribute("data-displayName", arr[i].DISPLAY_NAME);
+    li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
     li.setAttribute("data-idb", idB);
     idB++;
 
