@@ -1575,6 +1575,10 @@ function setAQuestions2(idb, modalid) {
   el.setAttribute("data-question_id", queid);
   el.setAttribute("data-displayName", ds);
   var es = $(el).find("span[name='product_name_']")[0];
+  var qnn=$(el).find("span[name='question_name_']")[0];
+  var qnn2=$(el).find("span[name='display_name_']")[0];
+  $(qnn).remove()
+  $(qnn2).remove()
   var span = document.createElement("span");
   span.innerText = "(" + QUESTION_NAME + ")";
   span.setAttribute("name", "question_name_");
