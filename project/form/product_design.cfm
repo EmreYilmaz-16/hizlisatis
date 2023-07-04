@@ -119,6 +119,24 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
       AND VP.PRODUCT_STAGE=340
 </cfquery>
 
+<cfquery name="getP3" datasource="#dsn3#"> 
+  SELECT 
+PRODUCT.PRODUCT_NAME,
+PRODUCT.PRODUCT_ID,
+SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT,
+VIRTUAL_PRODUCTS_PRT.VIRTUAL_PRODUCT_ID,
+VIRTUAL_PRODUCTS_PRT.PRODUCT_NAME AS VIRTUAL_PRODUCT_NAME,
+PROCESS_TYPE_ROWS.STAGE,
+PROCESS_ROW_ID AS PRODUCT_STAGE
+ FROM workcube_metosan_product.PRODUCT 
+LEFT JOIN workcube_metosan_1.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS ON PRODUCT.PRODUCT_CATID=PRODUCT_CAT_PRODUCT_PARAM_SETTINGS.PRODUCT_CATID
+LEFT JOIN workcube_metosan_1.MAIN_PROCESS_CAT_TO_PRODUCT_CAT ON MAIN_PROCESS_CAT_TO_PRODUCT_CAT.PRODUCT_CATID=PRODUCT.PRODUCT_CATID
+LEFT JOIN workcube_metosan.SETUP_MAIN_PROCESS_CAT ON SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT_ID=MAIN_PROCESS_CAT_TO_PRODUCT_CAT.MAIN_PROCESS_CATID
+LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT ON VIRTUAL_PRODUCTS_PRT.REAL_PRODUCT_ID=PRODUCT.PRODUCT_ID
+LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PRODUCTS_PRT.PRODUCT_STAGE
+ WHERE PRODUCT.PROJECT_ID IN(#PListe#)   
+    
+</cfquery>
 
 
 <!----PRODUCT_NAME,PRODUCT_TYPE,PRODUCT_DESCRIPTION---->
@@ -181,6 +199,24 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
           
           </cfoutput>
         </div>
+        <HR>
+        <div class="list-group" id="leftMenuProject"> 
+          <cfoutput query="getP">      
+              <a class="list-group-item list-group-item-action" onclick="ngetTree(#PRODUCT_ID#,0,'#dsn3#',this,1,'','#PRODUCT_NAME#','#STAGE#')">
+                  #PRODUCT_NAME#
+                  <cfif PRODUCT_STAGE eq 339>
+                      <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
+                  <cfelseif PRODUCT_STAGE eq 340>
+                      <span style="float:right;font-size:11pt" class="badge bg-success rounded-pill">#STAGE#</span>
+                  <cfelseif PRODUCT_STAGE eq 341>
+                      <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
+                  <cfelse>
+                      <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
+                  </cfif>              
+              </a>     
+          </cfoutput>
+      </div>
+        
       </div>
   </cf_box>
   </div>
