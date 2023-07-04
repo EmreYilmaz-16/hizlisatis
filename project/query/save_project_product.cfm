@@ -4,7 +4,7 @@
 <cfset FormData=deserializeJSON(attributes.data)>
 
 <cfdump var="#FormData#">
-<cfabort>
+
 
 <cfquery name="getFr" datasource="#dsn3#">
     SELECT PCPS.*,PC.HIERARCHY,PC.PRODUCT_CAT,PC.DETAIL FROM #DSN#.PRO_PROJECTS AS PP
