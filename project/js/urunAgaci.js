@@ -1547,10 +1547,12 @@ function setQuestion(el) {
   var e = el.parentElement.parentElement.parentElement;
   // console.log(e);
   var ev = e.getAttribute("data-idb");
+  var question_id = e.getAttribute("data-question_id");
+  var displayName = e.getAttribute("data-displayname");
   //console.log(ev);
   openBoxDraggable(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=alternativeQuestion&idb=" +
-      ev
+      ev+"&question_id="+question_id+"&displayName="+displayName
   );
 }
 
