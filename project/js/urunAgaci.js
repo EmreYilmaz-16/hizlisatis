@@ -23,20 +23,22 @@ function ngetTree(
   if (tip == 1) {
     /* var pn = btn.parentElement.children[0].innerText;
     var */
-    if(is_virtual==1){
+    var sida = 0;
+    if (is_virtual == 1) {
       var qqq = wrk_query(
         "SELECT PRODUCT_NAME FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=" +
           product_id,
         "DSN3"
       );
-    }else{
+    } else {
       var qqq = wrk_query(
-        "SELECT PRODUCT_NAME FROM STOCKS WHERE PRODUCT_ID=" +
+        "SELECT PRODUCT_NAME,STOCK_ID FROM STOCKS WHERE PRODUCT_ID=" +
           product_id,
         "DSN3"
       );
+      sida = qqq.STOCK_ID[0];
     }
-    
+
     var pna = qqq.PRODUCT_NAME[0];
     $("#pnamemain").val(pna);
     $("#vp_id").val(product_id);
@@ -54,7 +56,9 @@ function ngetTree(
         "&company_id=" +
         _compId +
         "&price_catid=" +
-        _priceCatId,
+        _priceCatId +
+        "&stock_id=" +
+        sida,
       success: function (asd) {
         var jsonStr = strToJson(asd);
         o = JSON.parse(jsonStr);
@@ -1561,7 +1565,11 @@ function setQuestion(el) {
   //console.log(ev);
   openBoxDraggable(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=alternativeQuestion&idb=" +
-      ev+"&question_id="+question_id+"&displayName="+displayName
+      ev +
+      "&question_id=" +
+      question_id +
+      "&displayName=" +
+      displayName
   );
 }
 
@@ -1584,10 +1592,10 @@ function setAQuestions2(idb, modalid) {
   el.setAttribute("data-question_id", queid);
   el.setAttribute("data-displayName", ds);
   var es = $(el).find("span[name='product_name_']")[0];
-  var qnn=$(el).find("span[name='question_name_']")[0];
-  var qnn2=$(el).find("span[name='display_name_']")[0];
-  $(qnn).remove()
-  $(qnn2).remove()
+  var qnn = $(el).find("span[name='question_name_']")[0];
+  var qnn2 = $(el).find("span[name='display_name_']")[0];
+  $(qnn).remove();
+  $(qnn2).remove();
   var span = document.createElement("span");
   span.innerText = "(" + QUESTION_NAME + ")";
   span.setAttribute("name", "question_name_");
@@ -1816,9 +1824,6 @@ function setSettings(el) {
 }
 
 function remItem(params) {
-
-
-    var e = params.parentElement.parentElement.parentElement;
-    $(e).remove();
-
+  var e = params.parentElement.parentElement.parentElement;
+  $(e).remove();
 }

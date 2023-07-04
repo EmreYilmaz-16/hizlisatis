@@ -19,14 +19,16 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             <cfargument name="ddsn3">
             <cfargument name="company_id">
             <cfargument name="price_catid">
+            <cfargument name="stock_id" default="">
             <cfset TreeArr="">
             <cfif arguments.isVirtual eq 1>                
                 <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3,product_id,company_id,price_catid)>
             <cfelse>               
-                <cfset TreeArr=getTrees(product_id,0,ddsn3,product_id,company_id,price_catid)>
+                <cfset TreeArr=getTrees(product_id,0,ddsn3,stock_id,company_id,price_catid)>
             </cfif>
             <cfreturn replace(TreeArr,"//","")>
         </cffunction>    
+
     <cffunction name="getTreeFromVirtual" >
         <cfargument name="product_id">        
         <cfquery name="getTree" datasource="#dsn#">
