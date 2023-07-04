@@ -305,9 +305,12 @@ VALUES (
     </cffunction>
     <cffunction name="getQuestionData" access="remote" httpMethod="POST" returntype="any" returnformat="json">
         <cfargument name="question_id">
+        <cfset quid=arguments.question_id>;
+        <cfset v=arrayfind(QuestionArr,p=>p.QUESTION_ID==quid)>
         <cfset ret={
             QuestionArr=QuestionArr,
-            arg=arguments
+            arg=arguments,
+            ReturnData=V
         }>
         <cfreturn ret>
     </cffunction>
