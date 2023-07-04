@@ -306,7 +306,15 @@ VALUES (
     <cffunction name="getQuestionData">
         <cfargument name="question_id">
         <cfset quid=arguments.question_id>;
-        <cfset V=arrayfind(QuestionArr,p=>p.QUESTION_ID==quid)>      
-        <cfreturn QuestionArr[V]>
+        <cfset V=arrayfind(QuestionArr,p=>p.QUESTION_ID==quid)>    
+        <cfif V neq 0>
+            <cfreturn QuestionArr[V]>
+        <cfelse>
+            <cfreturn {
+                QUESTION_ID=arguments.question_id,
+                QUESTION_NAME=""
+            }>
+        </cfif>
+        
     </cffunction>
 </cfcomponent>
