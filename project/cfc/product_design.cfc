@@ -1,13 +1,13 @@
 ﻿<cfcomponent>   
     <cfset dsn=application.systemparam.dsn>
 <cfquery name="getQuestions" datasource="#dsn#">
-select ID,QUESTION from workcube_metosan_1.VIRTUAL_PRODUCT_TREE_QUESTIONS    
+select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE_QUESTIONS    
 </cfquery>
 <cfscript>
     QuestionArr=arrayNew(1);
     for(i=1;i<getQuestions.recordCount;i++){         
       obj={
-        QUESTION_ID=getQuestions.QUESTION_ID[i],
+        QUESTION_ID=getQuestions.ID[i],
         QUESTION_NAME=getQuestions.QUESTION_NAME[i]
       };
       arrayAppend(QuestionArr,obj)            
