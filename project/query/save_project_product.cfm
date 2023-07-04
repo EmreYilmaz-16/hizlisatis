@@ -26,7 +26,7 @@
             <cfif isDefined("ai.PRICE")><cfset aip=ai.PRICE><cfelse><cfset aip="0"></cfif>
                 <cfif isDefined("ai.DISCOUNT")><cfset aid=ai.DISCOUNT><cfelse><cfset aid="0"></cfif>
                     <cfif isDefined("ai.MONEY")><cfset aim=ai.MONEY><cfelse><cfset aim="TL"></cfif>
-                    <cfif isDefined("ai.DISPLAY_NAME")><cfset dName=ai.DISPLAY_NAME><cfelse><cfset dName=""></cfif>
+                    <cfif isDefined("ai.DISPLAY_NAME") and ai.DISPLAY_NAME neq "undefined"><cfset dName=ai.DISPLAY_NAME><cfelse><cfset dName=""></cfif>
         <cfif ai.PRODUCT_ID neq 0>
             <cfscript>
                 InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,aiq,aip,aid,aim,ai.IS_VIRTUAL,dName);
@@ -67,7 +67,7 @@
                 }else{
                     mny="TL";
                 }
-                if(isDefined("ai.DISPLAY_NAME")){
+                if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
                     dname=ai.DISPLAY_NAME
                 }else{
                     dName="";
@@ -97,7 +97,7 @@
                             queid=idx.QUESTION_ID;
                         }else{
                             queid="0";
-                        }   if(isDefined("idx.DISPLAY_NAME")){
+                        }   if(isDefined("idx.DISPLAY_NAME") && idx.DISPLAY_NAME != "undefined"){
                             dname=idx.DISPLAY_NAME
                         }else{
                             dName="";
@@ -161,7 +161,12 @@ agacim var
 }else{
     queid="NULL";
 }
-    InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL,ai.DISPLAY_NAME);
+if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
+    dname=ai.DISPLAY_NAME
+}else{
+    dName="";
+}
+    InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL,dName);
 </cfscript>
 <cfelse>
 <cfoutput>
@@ -207,7 +212,12 @@ agacim var
     }else{
         queid="NULL";
     }
-    InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL);
+    if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
+        dname=ai.DISPLAY_NAME
+    }else{
+        dName="";
+    }
+    InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL,dName);
 </cfscript>
 <cfif arraylen(ai.AGAC)>
     <cfloop array="#ai.AGAC#" index="idx">
@@ -228,7 +238,17 @@ agacim var
             }else{
                 mny1="TL";
             }
-            InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,idx.QUESTION_ID,prcex1,dsc1,mny1,idx.IS_VIRTUAL);
+            if(isDefined("idx.QUESTION_ID")){
+                queid=idx.QUESTION_ID;
+        }else{
+            queid="NULL";
+        }
+        if(isDefined("idx.DISPLAY_NAME") && idx.DISPLAY_NAME != "undefined" ){
+            dname=idx.DISPLAY_NAME
+        }else{
+            dName="";
+        }
+            InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,idx.QUESTION_ID,prcex1,dsc1,mny1,idx.IS_VIRTUAL,dname);
         </cfscript>
     </cfloop>
 </cfif>
