@@ -1807,10 +1807,9 @@ function setSettings(el) {
 }
 
 function remItem(params) {
-  if (GercekKontrol() == 0) {
+
+
     var e = params.parentElement.parentElement.parentElement;
     $(e).remove();
-  } else {
-    alert("Oluşmuş Ürün Ağacından  Silemezsiniz !");
-  }
+
 }
