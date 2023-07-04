@@ -1,5 +1,5 @@
 ﻿
-<div style="display:block">
+<div style="display:none">
 
 <cfset FormData=deserializeJSON(attributes.data)>
 
@@ -10,3 +10,4 @@
     <cfinclude template="../includes/svRlt.cfm">
 </cfif>
 <cfabort>
+</div>
