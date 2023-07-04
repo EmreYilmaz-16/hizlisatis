@@ -192,6 +192,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
       (p) => p.QUESTION_ID == arr[i].QUESTION_ID
     );
+    var dName = arr[i].DISPLAYNAME;
     var str = arr[i].PRODUCT_NAME;
     if (qname != undefined) {
       qname =
@@ -201,7 +202,15 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     } else {
       qname = "";
     }
-    spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname;
+    if (dName != undefined && dName.length > 0) {
+      dName =
+        "<span name='display_name_' style='color:var(--success)'>(" +
+        dName +
+        ")</span>";
+    } else {
+      dName = "";
+    }
+    spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname + " " + dName;
     console.log(arr[i]); ///burası kalacak
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
