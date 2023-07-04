@@ -1,5 +1,18 @@
 ﻿<cfcomponent>   
     <cfset dsn=application.systemparam.dsn>
+<cfquery name="getQuestions" datasource="#dsn#">
+select ID,QUESTION from workcube_metosan_1.VIRTUAL_PRODUCT_TREE_QUESTIONS    
+</cfquery>
+<cfscript>
+    QuestionArr=arrayNew(1);
+    for(i=1;i<getQuestions.recordCount;i++){         
+      obj={
+        QUESTION_ID=getQuestions.QUESTION_ID[i],
+        QUESTION_NAME=getQuestions.QUESTION_NAME[i]
+      };
+      arrayAppend(QuestionArr,obj)            
+    }    
+</cfscript>
     <cffunction name="getTree" access="remote" httpMethod="POST" returntype="any" returnformat="plain">
             <cfargument name="product_id">
             <cfargument name="isVirtual">
@@ -289,5 +302,13 @@ VALUES (
             update PROJECT_PRODUCT_DESIGN_PARAMS_PBS set PARAM_VALUE='#arguments.paramValue#' WHERE PARAM_NAME='#arguments.paramName#'
         </cfquery>
         <cfreturn replace(serializeJSON(res),"//","")>
+    </cffunction>
+    <cffunction name="getQuestionData" access="remote" httpMethod="POST" returntype="any" returnformat="json">
+        <cfargument name="question_id">
+        <cfset ret={
+            QuestionArr=QuestionArr,
+            arg=arguments
+        }>
+        <cfreturn ret>
     </cffunction>
 </cfcomponent>
