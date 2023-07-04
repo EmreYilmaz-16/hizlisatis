@@ -26,9 +26,10 @@
             <cfif isDefined("ai.PRICE")><cfset aip=ai.PRICE><cfelse><cfset aip="0"></cfif>
                 <cfif isDefined("ai.DISCOUNT")><cfset aid=ai.DISCOUNT><cfelse><cfset aid="0"></cfif>
                     <cfif isDefined("ai.MONEY")><cfset aim=ai.MONEY><cfelse><cfset aim="TL"></cfif>
+                    <cfif isDefined("ai.DISPLAY_NAME")><cfset dName=ai.DISPLAY_NAME><cfelse><cfset dName=""></cfif>
         <cfif ai.PRODUCT_ID neq 0>
             <cfscript>
-                InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,aiq,aip,aid,aim,ai.IS_VIRTUAL,ai.DISPLAY_NAME);
+                InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,aiq,aip,aid,aim,ai.IS_VIRTUAL,dName);
             </cfscript>
         <cfelse>
 
@@ -66,7 +67,12 @@
                 }else{
                     mny="TL";
                 }
-                InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,aiq,prcex,dsc,mny,ai.IS_VIRTUAL,ai.DISPLAY_NAME);
+                if(isDefined("ai.DISPLAY_NAME")){
+                    dname=ai.DISPLAY_NAME
+                }else{
+                    dName="";
+                }
+                InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,aiq,prcex,dsc,mny,ai.IS_VIRTUAL,dName);
             </cfscript>
             <cfif arraylen(ai.AGAC)>
                 <cfloop array="#ai.AGAC#" index="idx">
@@ -91,8 +97,12 @@
                             queid=idx.QUESTION_ID;
                         }else{
                             queid="0";
+                        }   if(isDefined("idx.DISPLAY_NAME")){
+                            dname=idx.DISPLAY_NAME
+                        }else{
+                            dName="";
                         }
-                        InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,queid,prcex1,dsc1,mny1,idx.IS_VIRTUAL,idx.DISPLAY_NAME);
+                        InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,queid,prcex1,dsc1,mny1,idx.IS_VIRTUAL,dName);
                     </cfscript>
                 </cfloop>
             </cfif>
