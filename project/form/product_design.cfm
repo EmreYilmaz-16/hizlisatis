@@ -201,7 +201,7 @@ LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID
         </div>
         <HR>
         <div class="list-group" id="leftMenuProject"> 
-          <cfoutput query="getP">      
+          <cfoutput query="getP3">      
               <a class="list-group-item list-group-item-action" onclick="ngetTree(#PRODUCT_ID#,0,'#dsn3#',this,1,'','#PRODUCT_NAME#','#STAGE#')">
                   #PRODUCT_NAME#
                   <cfif PRODUCT_STAGE eq 339>
