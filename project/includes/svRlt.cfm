@@ -187,13 +187,7 @@ burada speckt kaydet
     <cfargument name="QuestionId">
  
      
-     <cfscript>
-         main_stock_id = GET_MAX_STCK.MAX_STCK;
-         main_product_id =GET_PID.PRODUCT_ID;
-         spec_name="#urun_adi#";                          
-     </cfscript>  
-     <cfset product_tree_id_list = ''>
-     <cfset spec_main_id_list =''>
+ 
      
          <cfquery name="getStock_Info" datasource="#dsn3#" >
              SELECT TOP 1 PRODUCT_ID,PRODUCT_UNIT_ID,STOCK_ID,PRODUCT_NAME FROM STOCKS WHERE STOCK_ID=#arguments.StockId#
