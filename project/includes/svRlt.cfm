@@ -15,12 +15,21 @@
     Ürünü Oluştur Ve Urün Ağacına AgacaEkle
     SANAL URUN OLUSTUR    
     <cfset prc=0>
+
     <cfif isDefined("item.PRICE")>
         <cfset prc=item.PRICE>
+    </cfif>
+    <cfset qid="">
+    <cfif isDefined("item.QUESTION_ID")>
+        <cfset qid=item.QUESTION_ID >
     </cfif>
     <cfset K_URUN=SAVE_URUN(item.PRODUCT_CATID,item.PRODUCT_NAME,prc,prc,18,PROJECT_ID)>          
         bu arada oluşan ürünün ağacı kontrol edilecek        
         <cfloop array="#item.AGAC#" item="item2">
+            <cfset qid2="">
+            <cfif isDefined("item2.QUESTION_ID")>
+                <cfset qid2=item2.QUESTION_ID >
+            </cfif>
             <cfset prc2=0>
             <cfif isDefined("item2.PRICE")>
                 <cfset prc2=item2.PRICE>
@@ -34,9 +43,13 @@
                     <cfif isDefined("item3.PRICE")>
                         <cfset prc3=item3.PRICE>
                     </cfif>
+                    <cfset qid3="">
+                    <cfif isDefined("item3.QUESTION_ID")>
+                        <cfset qid3=item3.QUESTION_ID >
+                    </cfif>
                     <cfif item3.IS_VIRTUAL eq 1>
                         <cfset K_URUN3=SAVE_URUN(item3.PRODUCT_CATID,item3.PRODUCT_NAME,prc3,prc3,18,PROJECT_ID)>  
-                        <cfset e=AgacaEkle(K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,K_URUN3.STOCK_ID,K_URUN3.PRODUCT_ID,item3.AMOUNT,"",item3.QUESTION_ID)>
+                        <cfset e=AgacaEkle(K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,K_URUN3.STOCK_ID,K_URUN3.PRODUCT_ID,item3.AMOUNT,"",qid3)>
                         <cfset MAIN_SID_3=K_URUN3.STOCK_ID>
                     <cfelse>
                         burda direk ağaca ekle
@@ -47,7 +60,7 @@
                     <CFSET "A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#"="#evaluate("A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#")#,#MAIN_SID_3#">
                 </cfloop>
 
-                <cfset e=AgacaEkle(K_URUN.STOCK_ID,K_URUN.PRODUCT_ID,K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,item2.AMOUNT,"",item2.QUESTION_ID)>
+                <cfset e=AgacaEkle(K_URUN.STOCK_ID,K_URUN.PRODUCT_ID,K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,item2.AMOUNT,"",qid2)>
             
             <cfelse>
     
@@ -61,7 +74,7 @@
 <cfelse>
     ürünü direk Ağaca ekle
     <CFSET EL=getStockInfo(item.PRODUCT_ID)>
-    <cfset e=AgacaEkle(getMainStockInfo.STOCK_ID,getMainStockInfo.PRODUCT_ID,EL.STOCK_ID,EL.PRODUCT_ID,item.AMOUNT,"",item.QUESTION_ID)>
+    <cfset e=AgacaEkle(getMainStockInfo.STOCK_ID,getMainStockInfo.PRODUCT_ID,EL.STOCK_ID,EL.PRODUCT_ID,item.AMOUNT,"",qid)>
 </cfif>
 burada speckt kaydet
 
