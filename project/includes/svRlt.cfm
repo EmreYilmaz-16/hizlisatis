@@ -20,65 +20,61 @@
     <cfif isDefined("item.QUESTION_ID")>
         <cfset qid=item.QUESTION_ID >
     </cfif>
-<cfif item.IS_VIRTUAL eq 1>
-    Ürünü Oluştur Ve Urün Ağacına AgacaEkle
-    SANAL URUN OLUSTUR    
-
-    <cfset K_URUN=SAVE_URUN(item.PRODUCT_CATID,item.PRODUCT_NAME,prc,prc,18,PROJECT_ID)>          
-        bu arada oluşan ürünün ağacı kontrol edilecek        
-        <cfloop array="#item.AGAC#" item="item2">
-            <cfset qid2="">
-            <cfif isDefined("item2.QUESTION_ID")>
-                <cfset qid2=item2.QUESTION_ID >
-            </cfif>
-            <cfset prc2=0>
-            <cfif isDefined("item2.PRICE")>
-                <cfset prc2=item2.PRICE>
-            </cfif>
-            <cfif item2.IS_VIRTUAL eq 1>
-                <cfset K_URUN2=SAVE_URUN(item2.PRODUCT_CATID,item2.PRODUCT_NAME,prc2,prc2,18,PROJECT_ID)>  
-                burada agacında dolas 
-                <CFSET "A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#"="">
-                <cfloop array="#item2.AGAC#" item="item3">
-                    <cfset prc3=0>
-                    <cfif isDefined("item3.PRICE")>
-                        <cfset prc3=item3.PRICE>
-                    </cfif>
-                    <cfset qid3="">
-                    <cfif isDefined("item3.QUESTION_ID")>
-                        <cfset qid3=item3.QUESTION_ID >
-                    </cfif>
-                    <cfif item3.IS_VIRTUAL eq 1>
-                        <cfset K_URUN3=SAVE_URUN(item3.PRODUCT_CATID,item3.PRODUCT_NAME,prc3,prc3,18,PROJECT_ID)>  
-                        <cfset e=AgacaEkle(K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,K_URUN3.STOCK_ID,K_URUN3.PRODUCT_ID,item3.AMOUNT,"",qid3)>
-                        <cfset MAIN_SID_3=K_URUN3.STOCK_ID>
-                    <cfelse>
-                        burda direk ağaca ekle
-                        <CFSET EL=getStockInfo(item3.PRODUCT_ID)>
-                    <cfset e=AgacaEkle(K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,EL.STOCK_ID,EL.PRODUCT_ID,item3.AMOUNT,"",qid3)>
-                    <cfset MAIN_SID_3=EL.STOCK_ID>
-                    </cfif>
-                    <CFSET "A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#"="#evaluate("A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#")#,#MAIN_SID_3#">
-                </cfloop>
-
-                <cfset e=AgacaEkle(K_URUN.STOCK_ID,K_URUN.PRODUCT_ID,K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,item2.AMOUNT,"",qid2)>
-            
-            <cfelse>
-    
-                <CFSET EL=getStockInfo(item2.PRODUCT_ID)>
-                <cfset e=AgacaEkle(K_URUN.STOCK_ID,K_URUN.PRODUCT_ID,EL.STOCK_ID,EL.PRODUCT_ID,item2.AMOUNT,"",qid2)>
-            </cfif>
-        </cfloop>
+    <cfif item.IS_VIRTUAL eq 1>
+        <cfset K_URUN=SAVE_URUN(item.PRODUCT_CATID,item.PRODUCT_NAME,prc,prc,18,PROJECT_ID)>          
+        bu arada oluşan ürünün ağacı kontrol edilecek  
+        <cfif isDefined("item.AGAC")>
+            <cfloop array="#item.AGAC#" item="item2">
+                <cfset qid2="">
+                <cfif isDefined("item2.QUESTION_ID")>
+                    <cfset qid2=item2.QUESTION_ID >
+                </cfif>
+                <cfset prc2=0>
+                <cfif isDefined("item2.PRICE")>
+                    <cfset prc2=item2.PRICE>
+                </cfif>
+                <cfif item2.IS_VIRTUAL eq 1>
+                    <cfset K_URUN2=SAVE_URUN(item2.PRODUCT_CATID,item2.PRODUCT_NAME,prc2,prc2,18,PROJECT_ID)>  
+                    burada agacında dolas 
+                    <CFSET "A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#"="">
+                    <cfif isDefined("item2.AGAC")>
+                        <cfloop array="#item2.AGAC#" item="item3">
+                            <cfset prc3=0>
+                            <cfif isDefined("item3.PRICE")>
+                                <cfset prc3=item3.PRICE>
+                            </cfif>
+                            <cfset qid3="">
+                            <cfif isDefined("item3.QUESTION_ID")>
+                                <cfset qid3=item3.QUESTION_ID >
+                            </cfif>
+                            <cfif item3.IS_VIRTUAL eq 1>
+                                <cfset K_URUN3=SAVE_URUN(item3.PRODUCT_CATID,item3.PRODUCT_NAME,prc3,prc3,18,PROJECT_ID)>  
+                                <cfset e=AgacaEkle(K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,K_URUN3.STOCK_ID,K_URUN3.PRODUCT_ID,item3.AMOUNT,"",qid3)>
+                                <cfset MAIN_SID_3=K_URUN3.STOCK_ID>
+                            <cfelse>
+                                burda direk ağaca ekle
+                                    <CFSET EL=getStockInfo(item3.PRODUCT_ID)>
+                                    <cfset e=AgacaEkle(K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,EL.STOCK_ID,EL.PRODUCT_ID,item3.AMOUNT,"",qid3)>
+                                    <cfset MAIN_SID_3=EL.STOCK_ID>      
+                            </cfif>
+                            <CFSET "A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#"="#evaluate("A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#")#,#MAIN_SID_3#">
+                        </cfloop>
+                    </cfif>                    
+                    <cfset e=AgacaEkle(K_URUN.STOCK_ID,K_URUN.PRODUCT_ID,K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,item2.AMOUNT,"",qid2)>
+                <cfelse>
+                    <CFSET EL=getStockInfo(item2.PRODUCT_ID)>
+                    <cfset e=AgacaEkle(K_URUN.STOCK_ID,K_URUN.PRODUCT_ID,EL.STOCK_ID,EL.PRODUCT_ID,item2.AMOUNT,"",qid2)>
+                </cfif>
+            </cfloop>
+        </cfif>
         spect kaydet
-    <cfset e=AgacaEkle(getMainStockInfo.STOCK_ID,getMainStockInfo.PRODUCT_ID,K_URUN.STOCK_ID,K_URUN.PRODUCT_ID,item.AMOUNT,"",qid)>
-    
-<cfelse>
-    ürünü direk Ağaca ekle
-    <CFSET EL=getStockInfo(item.PRODUCT_ID)>
-    <cfset e=AgacaEkle(getMainStockInfo.STOCK_ID,getMainStockInfo.PRODUCT_ID,EL.STOCK_ID,EL.PRODUCT_ID,item.AMOUNT,"",qid)>
-</cfif>
-burada speckt kaydet
-
+        <cfset e=AgacaEkle(getMainStockInfo.STOCK_ID,getMainStockInfo.PRODUCT_ID,K_URUN.STOCK_ID,K_URUN.PRODUCT_ID,item.AMOUNT,"",qid)>
+    <cfelse>
+        ürünü direk Ağaca ekle
+        <CFSET EL=getStockInfo(item.PRODUCT_ID)>
+        <cfset e=AgacaEkle(getMainStockInfo.STOCK_ID,getMainStockInfo.PRODUCT_ID,EL.STOCK_ID,EL.PRODUCT_ID,item.AMOUNT,"",qid)>
+    </cfif>
+        burada speckt kaydet
 </cfloop>
 
 
