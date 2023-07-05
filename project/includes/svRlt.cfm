@@ -11,18 +11,18 @@
 
 
 <cfloop array="#FormData.PRODUCT_TREE#" item="item">
-<cfif item.isVirtual eq 1>
+<cfif item.IS_VIRTUAL eq 1>
     Ürünü Oluştur Ve Urün Ağacına AgacaEkle
     SANAL URUN OLUSTUR    
     <cfset K_URUN=SAVE_URUN(item.PRODUCT_CATID,item.PRODUCT_NAME,item.PRICE,item.PRICE,18,PROJECT_ID)>          
         bu arada oluşan ürünün ağacı kontrol edilecek        
         <cfloop array="#item.AGAC#" item="item2">
-            <cfif item2.isVirtual eq 1>
+            <cfif item2.IS_VIRTUAL eq 1>
                 <cfset K_URUN2=SAVE_URUN(item2.PRODUCT_CATID,item2.PRODUCT_NAME,item2.PRICE,item2.PRICE,18,PROJECT_ID)>  
                 burada agacında dolas 
                 <CFSET "A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#"="">
                 <cfloop array="#item2.AGAC#" item="item3">
-                    <cfif item3.isVirtual eq 1>
+                    <cfif item3.IS_VIRTUAL eq 1>
                         <cfset K_URUN3=SAVE_URUN(item3.PRODUCT_CATID,item3.PRODUCT_NAME,item3.PRICE,item3.PRICE,18,PROJECT_ID)>  
                         <cfset e=AgacaEkle(K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,K_URUN3.STOCK_ID,K_URUN3.PRODUCT_ID,item3.AMOUNT,"",item3.QUESTION_ID)>
                         <cfset MAIN_SID_3=K_URUN3.STOCK_ID>
