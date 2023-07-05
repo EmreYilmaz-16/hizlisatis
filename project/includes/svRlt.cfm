@@ -11,9 +11,6 @@
 
 
 <cfloop array="#FormData.PRODUCT_TREE#" item="item">
-<cfif item.IS_VIRTUAL eq 1>
-    Ürünü Oluştur Ve Urün Ağacına AgacaEkle
-    SANAL URUN OLUSTUR    
     <cfset prc=0>
 
     <cfif isDefined("item.PRICE")>
@@ -23,6 +20,10 @@
     <cfif isDefined("item.QUESTION_ID")>
         <cfset qid=item.QUESTION_ID >
     </cfif>
+<cfif item.IS_VIRTUAL eq 1>
+    Ürünü Oluştur Ve Urün Ağacına AgacaEkle
+    SANAL URUN OLUSTUR    
+
     <cfset K_URUN=SAVE_URUN(item.PRODUCT_CATID,item.PRODUCT_NAME,prc,prc,18,PROJECT_ID)>          
         bu arada oluşan ürünün ağacı kontrol edilecek        
         <cfloop array="#item.AGAC#" item="item2">
