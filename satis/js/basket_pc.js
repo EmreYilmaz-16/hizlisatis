@@ -1757,8 +1757,7 @@ function GruplaCanimBenim() {
     tax=filterNum(tax);
     var row_nettotal = parseFloat(prc) * parseFloat(Mik);
     //document.getElementById("row_nettotal_"+Rc).value;
-    row_nettotal = filterNum(row_nettotal);
-    TotalPrice += parseFloat(row_nettotal);
+    TotalPrice += row_nettotal;
     console.log(ProductId);
     var O = {
       PRODUCT_ID: ProductId,
