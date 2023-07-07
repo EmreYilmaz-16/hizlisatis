@@ -1738,6 +1738,7 @@ function GruplaCanimBenim() {
   var Hata = false;
   var KarmaName = prompt("Hortum Takımı Adı ?");
   var KarmaProducts = new Array();
+  var TotalPrice = 0;
   for (let i = 0; i < selectedArr.length; i++) {
     // console.log(selectedArr[i])
     var productType = selectedArr[i].getAttribute("data-producttype");
@@ -1745,9 +1746,16 @@ function GruplaCanimBenim() {
     var ProductId = document.getElementById("product_id_" + Rc).value;
     var StockId = document.getElementById("stock_id_" + Rc).value;
     var Mik = document.getElementById("amount_" + Rc).value;
+    Mik=filterNum(Mik);
     var MainUnit = document.getElementById("main_unit_" + Rc).value;
     var Price = document.getElementById("price_other_" + Rc).value;
+    Price=filterNum(Price);
     var Om = document.getElementById("other_money_" + Rc).value;
+    var prc = document.getElementById("price_" + Rc).value;
+    prc=filterNum(prc);
+    var row_nettotal=document.getElementById("row_nettotal_"+Rc).value;
+    row_nettotal=filterNum(row_nettotal);
+    TotalPrice += prc;
     console.log(ProductId);
     var O = {
       PRODUCT_ID: ProductId,
@@ -1755,6 +1763,7 @@ function GruplaCanimBenim() {
       AMOUNT: Mik,
       PRICE: Price,
       OTHER_MONEY: Om,
+      ROW_NET_TOTAL:row_nettotal
     };
 
     KarmaProducts.push(O);
@@ -1768,6 +1777,7 @@ function GruplaCanimBenim() {
   var Ox = {
     PRODUCT_NAME_MAIN: KarmaName,
     PRODUCT_LIST: KarmaProducts,
+    PRICE_TOTAL: TotalPrice,
   };
   if (Hata == true) return false;
 
