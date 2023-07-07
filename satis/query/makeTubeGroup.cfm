@@ -24,7 +24,7 @@
     <cfquery name="ins" datasource="#dsn1#">
         INSERT INTO KARMA_PRODUCTS (
         KARMA_PRODUCT_ID,PRODUCT_ID,MONEY,PURCHASE_PRICE,SALES_PRICE,TOTAL_PRODUCT_PRICE,TAX,TAX_PURCHASE,PRODUCT_UNIT_ID,UNIT,PRODUCT_AMOUNT,STOCK_ID,SPEC_MAIN_ID,LIST_PRICE,OTHER_LIST_PRICE)
-        VALUES (#OlusanUrun.PRODUCT_ID#,#it.PRODUCT_ID#,'#it.OTHER_MONEY#',0,#it.PRICE#,#it.ROW_NET_TOTAL#,#it.TAX#,#it.TAX#,#getUnitId.PRODUCT_UNIT_ID#,'#getUnitId.MAIN_UNIT#',<cfif getsm.recordCount>#getsm.SPECT_MAIN_ID#<cfelse>NULL</cfif>,0,0)
+        VALUES (#OlusanUrun.PRODUCT_ID#,#it.PRODUCT_ID#,'#it.OTHER_MONEY#',0,#it.PRICE#,#it.ROW_NET_TOTAL#,#it.TAX#,#it.TAX#,#getUnitId.PRODUCT_UNIT_ID#,'#getUnitId.MAIN_UNIT#',#it.STOCK_ID#,<cfif getsm.recordCount>#getsm.SPECT_MAIN_ID#<cfelse>NULL</cfif>,0,0)
 
     </cfquery>
 </cfloop>
