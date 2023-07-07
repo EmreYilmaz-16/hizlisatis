@@ -104,7 +104,7 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
         <th><input type="text" id="basket_bottom_discount" id="basket_bottom_discount" readonly></th>
         <th>Toplam</th>
         <th><input type="text" id="basket_bottom_total" id="basket_bottom_total" readonly></th>
-        <th><button type="button" id="btnsave2" class="btn btn-success" onclick="SaveOrder()">Kaydet</button></th>
+        <th><button type="button" id="btnsave2" class="btn btn-success" onclick="SaveOrder(this)">Kaydet</button></th>
     </tr>
   </tfoot>
 </cf_ajax_list>
