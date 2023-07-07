@@ -4,9 +4,23 @@
 
 <cfdump var="#FormData#">
 
+<cfabort>
+
+
 
 <CFSET PRODUCT_CAT_ID=4079>
+
+
 <cfset OlusanUrun=SAVE_URUN(PRODUCT_CAT_ID,FormData.PRODUCT_NAME_MAIN,0,FormData.PRICE_TOTAL,18,"")>
+
+<cfloop array="#FormData.PRODUCT_LIST#" item="it">
+    <cfquery name="ins" datasource="#dsn1#">
+        INSERT INTO KARMA_PRODUCTS (
+        KARMA_PRODUCT_ID,PRODUCT_ID,MONEY,PURCHASE_PRICE,SALES_PRICE,TOTAL_PRODUCT_PRICE,TAX,TAX_PURCHASE,PRODUCT_UNIT_ID,UNIT,PRODUCT_AMOUNT,STOCK_ID,SPEC_MAIN_ID,KARMA_PRODUCT_ID,LIST_PRICE,OTHER_LIST_PRICE)
+        VALUES (#OlusanUrun.PRODUCT_ID#,#it.PRODUCT_ID#,'#it.OTHER_MONEY#',0,#it.PRICE#,#it.PRICE*it.AMOUNT#)
+
+    </cfquery>
+</cfloop>
 <cffunction name="SAVE_URUN" >
     <cfargument name="PRODUCT_CATID">
     <cfargument name="PRODUCT_NAME">
