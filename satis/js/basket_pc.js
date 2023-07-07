@@ -1723,7 +1723,8 @@ function KntO() {
   else return true;
 }
 
-function SaveOrder() {
+function SaveOrder(el) {
+  el.setAttribute("disabled","true");
   var BasketData = GetBasketData();
   if (KntO()) {
     if (BasketData) {
