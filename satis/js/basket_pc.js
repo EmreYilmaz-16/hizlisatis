@@ -190,7 +190,9 @@ function AddRow(
 
   if (price == 0) {
     var q =
-      "SELECT ISNULL("+generalParamsSatis.dataSources.dsn3+".GET_CURRENT_PRODUCT_PRICE(" +
+      "SELECT ISNULL(" +
+      generalParamsSatis.dataSources.dsn3 +
+      ".GET_CURRENT_PRODUCT_PRICE(" +
       CompanyData.COMPANY_ID +
       "," +
       CompanyData.PRICE_CAT +
@@ -748,7 +750,9 @@ function AddRow_pbso(
 
   if (price == 0) {
     var q =
-      "SELECT ISNULL("+generalParamsSatis.dataSources.dsn3+".GET_CURRENT_PRODUCT_PRICE(" +
+      "SELECT ISNULL(" +
+      generalParamsSatis.dataSources.dsn3 +
+      ".GET_CURRENT_PRODUCT_PRICE(" +
       CompanyData.COMPANY_ID +
       "," +
       CompanyData.PRICE_CAT +
@@ -1291,13 +1295,21 @@ function ShelfControl(pid, RafCode) {
 
 function getRafSml(stock_id, rafcode) {
   var q =
-    "SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FROM "+generalParamsSatis.dataSources.dsn3+".PRODUCT_PLACE_ROWS AS PPR ";
+    "SELECT PP.SHELF_CODE,SL.COMMENT,D.DEPARTMENT_HEAD,PP.LOCATION_ID,PP.STORE_ID FROM " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".PRODUCT_PLACE_ROWS AS PPR ";
   q +=
-    " LEFT JOIN "+generalParamsSatis.dataSources.dsn3+".PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID=PP.PRODUCT_PLACE_ID";
+    " LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID=PP.PRODUCT_PLACE_ID";
   q +=
-    " LEFT JOIN "+generalParamsSatis.dataSources.dsn+".STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID";
+    " LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn +
+    ".STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID";
   q +=
-    " LEFT JOIN "+generalParamsSatis.dataSources.dsn3+".DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID";
+    " LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID";
   q +=
     " WHERE PPR.STOCK_ID=" + stock_id + " AND PP.SHELF_CODE='" + rafcode + "'";
   var res = wrk_query(q);
@@ -1715,32 +1727,77 @@ function SaveOrder() {
   var BasketData = GetBasketData();
   if (KntO()) {
     if (BasketData) {
-      var mapForm = document.createElement("form");
-      mapForm.target = "Map";
-      mapForm.method = "POST"; // or "post" if appropriate
-      mapForm.action =
-        "/index.cfm?fuseaction=sales.emptypopup_query_save_order";
-
-      var mapInput = document.createElement("input");
-      mapInput.type = "hidden";
-      mapInput.name = "data";
-      mapInput.value = JSON.stringify(BasketData);
-      mapForm.appendChild(mapInput);
-
-      document.body.appendChild(mapForm);
-
-      map = window.open(
+      SendFormData(
         "/index.cfm?fuseaction=sales.emptypopup_query_save_order",
-        "Map",
-        "status=0,title=0,height=600,width=800,scrollbars=1"
+        BasketData
       );
-
-      if (map) {
-        mapForm.submit();
-      } else {
-        alert("You must allow popups for this map to work.");
-      }
     }
+  }
+}
+function GruplaCanimBenim() {
+  var Hata = false;
+  var KarmaName = prompt("Hortum Takımı Adı ?");
+  var KarmaProducts = new Array();
+  for (let i = 0; i < selectedArr.length; i++) {
+    // console.log(selectedArr[i])
+    var productType = selectedArr[i].getAttribute("data-producttype");
+    var Rc = selectedArr[i].getAttribute("data-rc");
+    var ProductId = document.getElementById("product_id_" + Rc).value;
+    var StockId = document.getElementById("stock_id_" + Rc).value;
+    var Mik = document.getElementById("amount_" + Rc).value;
+    var MainUnit = document.getElementById("main_unit_" + Rc).value;
+    var Price = document.getElementById("price_other_" + Rc).value;
+    var Om = document.getElementById("other_money_" + Rc).value;
+    console.log(ProductId);
+    var O = {
+      PRODUCT_ID: ProductId,
+      STOCK_ID: StockId,
+      AMOUNT: Mik,
+      PRICE: Price,
+      OTHER_MONEY: Om,
+    };
+
+    KarmaProducts.push(O);
+    // console.log(productType)
+    if (parseInt(productType) != 1) {
+      Hata = true;
+      break;
+    }
+  }
+
+  var Ox = {
+    PRODUCT_NAME_MAIN: KarmaName,
+    PRODUCT_LIST: KarmaProducts,
+  };
+  if (Hata == true) return false;
+
+  SendFormData("/index.cfm?fuseaction=sales.makeTubeGroup", Ox);
+}
+
+function SendFormData(uri, BasketData) {
+  var mapForm = document.createElement("form");
+  mapForm.target = "Map";
+  mapForm.method = "POST"; // or "post" if appropriate
+  mapForm.action = uri;
+
+  var mapInput = document.createElement("input");
+  mapInput.type = "hidden";
+  mapInput.name = "data";
+  mapInput.value = JSON.stringify(BasketData);
+  mapForm.appendChild(mapInput);
+
+  document.body.appendChild(mapForm);
+
+  map = window.open(
+    uri,
+    "Map",
+    "status=0,title=0,height=600,width=800,scrollbars=1"
+  );
+
+  if (map) {
+    mapForm.submit();
+  } else {
+    alert("You must allow popups for this map to work.");
   }
 }
 
@@ -1761,7 +1818,7 @@ function selectrw(el) {
   BasketSelControl();
 }
 function groupControl() {
-  return true;
+  GruplaCanimBenim();
 }
 function BasketSelControl() {
   selectedArr.splice(0, selectedArr.length);
@@ -2573,7 +2630,10 @@ function ConvertRealProduct(pid, rwid) {
       "&ROW_ID=" +
       rwid,
     beforeSend: function () {
-      openBoxDraggable("index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=showMessage&AlertType=warning","1453162606")
+      openBoxDraggable(
+        "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=showMessage&AlertType=warning",
+        "1453162606"
+      );
     },
     success: function (retDat) {
       closeBoxDraggable("1453162606");
