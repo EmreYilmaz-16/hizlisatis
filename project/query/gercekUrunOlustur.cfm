@@ -208,11 +208,9 @@
             ,S.IS_INTERNET
             ,S.IS_EXTRANET                                        
             ,S.TAX
-          --  ,S.PRODUCT_STAGE
             ,PU.IS_MAIN
             ,PU.MAIN_UNIT
             ,PU.MAIN_UNIT_ID
-          --  ,SS.STOCK_ID
             ,PC.HIERARCHY
         FROM #DSN3#.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS S 
         LEFT JOIN #DSN3#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID   
@@ -272,7 +270,6 @@
     <cfelse>
         <cfset arguments.dsn=dsn>
     </cfif>
- 
     <cfset database_type="MSSQL">
     <cfinclude template="/AddOns/Partner/satis/Includes/add_import_product.cfm">
     <cfscript>
