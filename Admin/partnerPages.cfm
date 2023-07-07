@@ -104,7 +104,7 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
 
 
 
-<cfou
+
 <cf_box title="Sayfa Listesi">
     <div class="form-group">
         <input type="text" id="Search" name="Search" placeholder="Search">
