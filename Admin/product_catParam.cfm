@@ -28,9 +28,11 @@
     {column_name='IS_QUALITY',descr='Kalite Takip Ediliyor'},
     {column_name='UNIT_ID',descr='UNIT_ID'},
     {column_name='DEFAULT_STATION_ID',descr='DEFAULT_STATION_ID'},
+    {column_name='IS_KARMA_SEVK',descr='BU BIRIMLE SEVK EDILIR'}
     
     
 ]>
+
 <cfif attributes.ev eq "add">
     <cfif not isDefined("attributes.is_submit")>
         <cfinclude template="includes/addParamSettings.cfm">
