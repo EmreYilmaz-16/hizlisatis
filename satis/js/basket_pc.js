@@ -1746,15 +1746,18 @@ function GruplaCanimBenim() {
     var ProductId = document.getElementById("product_id_" + Rc).value;
     var StockId = document.getElementById("stock_id_" + Rc).value;
     var Mik = document.getElementById("amount_" + Rc).value;
-    Mik=filterNum(Mik);
+    Mik = filterNum(Mik);
     var MainUnit = document.getElementById("main_unit_" + Rc).value;
     var Price = document.getElementById("price_other_" + Rc).value;
-    Price=filterNum(Price);
+    Price = filterNum(Price);
     var Om = document.getElementById("other_money_" + Rc).value;
     var prc = document.getElementById("price_" + Rc).value;
-    prc=filterNum(prc);
-    var row_nettotal=document.getElementById("row_nettotal_"+Rc).value;
-    row_nettotal=filterNum(row_nettotal);
+    prc = filterNum(prc);
+    var tax= document.getElementById("Tax_" + Rc).value;
+    tax=filterNum(tax);
+    var row_nettotal = prc * Mik;
+    //document.getElementById("row_nettotal_"+Rc).value;
+    row_nettotal = filterNum(row_nettotal);
     TotalPrice += prc;
     console.log(ProductId);
     var O = {
@@ -1763,7 +1766,8 @@ function GruplaCanimBenim() {
       AMOUNT: Mik,
       PRICE: Price,
       OTHER_MONEY: Om,
-      ROW_NET_TOTAL:row_nettotal
+      ROW_NET_TOTAL: row_nettotal,
+      TAX:tax
     };
 
     KarmaProducts.push(O);

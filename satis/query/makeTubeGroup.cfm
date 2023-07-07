@@ -14,10 +14,17 @@
 <cfset OlusanUrun=SAVE_URUN(PRODUCT_CAT_ID,FormData.PRODUCT_NAME_MAIN,0,FormData.PRICE_TOTAL,18,"")>
 
 <cfloop array="#FormData.PRODUCT_LIST#" item="it">
+    <cfquery name="getUnitId" datasource="#dsn3#">
+    select PRODUCT_UNIT_ID,MAIN_UNIT from workcube_metosan_1.PRODUCT_UNIT where PRODUCT_ID=#it.PRODUCT_ID# and IS_MAIN=1
+        
+    </cfquery>
+    <cfquery name="getsm" datasource="#dsn3#">
+        select SPECT_MAIN_ID from SPECT_MAIN where PRODUCT_ID=#it.PRODUCT_ID# and SPECT_STATUS=1
+    </cfquery>
     <cfquery name="ins" datasource="#dsn1#">
         INSERT INTO KARMA_PRODUCTS (
-        KARMA_PRODUCT_ID,PRODUCT_ID,MONEY,PURCHASE_PRICE,SALES_PRICE,TOTAL_PRODUCT_PRICE,TAX,TAX_PURCHASE,PRODUCT_UNIT_ID,UNIT,PRODUCT_AMOUNT,STOCK_ID,SPEC_MAIN_ID,KARMA_PRODUCT_ID,LIST_PRICE,OTHER_LIST_PRICE)
-        VALUES (#OlusanUrun.PRODUCT_ID#,#it.PRODUCT_ID#,'#it.OTHER_MONEY#',0,#it.PRICE#,#it.PRICE*it.AMOUNT#)
+        KARMA_PRODUCT_ID,PRODUCT_ID,MONEY,PURCHASE_PRICE,SALES_PRICE,TOTAL_PRODUCT_PRICE,TAX,TAX_PURCHASE,PRODUCT_UNIT_ID,UNIT,PRODUCT_AMOUNT,STOCK_ID,SPEC_MAIN_ID,LIST_PRICE,OTHER_LIST_PRICE)
+        VALUES (#OlusanUrun.PRODUCT_ID#,#it.PRODUCT_ID#,'#it.OTHER_MONEY#',0,#it.PRICE#,#it.ROW_NET_TOTAL#,#it.TAX#,#it.TAX#,#getUnitId.PRODUCT_UNIT_ID#,'#getUnitId.MAIN_UNIT#',<cfif getsm.recordCount>#getsm.SPECT_MAIN_ID#<cfelse>NULL</cfif>,0,0)
 
     </cfquery>
 </cfloop>

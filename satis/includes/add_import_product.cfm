@@ -97,7 +97,8 @@
         SEGMENT_ID,
 		BSMV,
 		OIV,
-        PROJECT_ID
+        PROJECT_ID,
+        IS_KARMA_SEVK
 
 	)
 	VALUES
@@ -142,7 +143,8 @@
         <cfif len(segment_id)>#segment_id#<cfelse>NULL</cfif>,
 		<cfif len(bsmv)>#bsmv#<cfelse>NULL</cfif>,
 		<cfif len(oiv)>#oiv#<cfelse>NULL</cfif>,
-        <cfif isDefined("attributes.project_id") and len(attributes.project_id)>#attributes.project_id#<cfelse>NULL</cfif>    
+        <cfif isDefined("attributes.project_id") and len(attributes.project_id)>#attributes.project_id#<cfelse>NULL</cfif>,
+            <cfif isDefined("is_karma_sevk") and len(is_karma_sevk)>#is_karma_sevk#<cfelse>0</cfif>
 	)
 </cfquery>
 <!--- ürünün unit kaydı--->
@@ -178,6 +180,10 @@
             IS_MAIN,
             RECORD_EMP,
             RECORD_DATE
+            <cfif (isDefined("is_karma") and len(is_karma)) and is_karma eq 1>
+            ,PACKAGES
+            ,PACKAGE_CONTROL_TYPE
+            </cfif>
     
         )
         VALUES 
@@ -194,6 +200,10 @@
             1,
             <cfqueryparam cfsqltype="cf_sql_integer" value="#session.ep.userid#">,
             <cfqueryparam cfsqltype="cf_sql_timestamp" value="#now()#">
+            <cfif (isDefined("is_karma") and len(is_karma)) and is_karma eq 1>
+                ,#1#
+                ,#2#
+            </cfif>
         )					
 </cfquery>
 <cfquery name="GET_MAX_UNIT" datasource="#dsn1#">
