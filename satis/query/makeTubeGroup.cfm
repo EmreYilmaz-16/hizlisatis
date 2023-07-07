@@ -136,3 +136,47 @@
     <cfset RETURN_VAL.PRODUCT_ID=GET_PID.PRODUCT_ID>
     <CFRETURN RETURN_VAL>
 </cffunction>
+
+<cffunction name="getBarcode">
+      
+    <cfif  1 eq 1>
+        <cfquery name="get_barcode_no" datasource="#dsn1#">
+            SELECT PRODUCT_NO AS BARCODE FROM PRODUCT_NO
+        </cfquery>
+        <cfset barcode_on_taki = '100000000000'>
+        <cfset barcode = get_barcode_no.barcode>
+        <cfset barcode_len = len(barcode)>
+        <cfset barcode = left(barcode_on_taki,12-barcode_len)&barcode> 
+    <cfelse>
+        <cfquery name="get_barcode_no" datasource="#dsn1#">
+            SELECT LEFT(BARCODE, 12) AS BARCODE FROM PRODUCT_NO
+        </cfquery>
+        <cfset barcode = (get_barcode_no.barcode*1)+1>
+        <cfquery name="upd_barcode_no" datasource="#dsn1#">
+            UPDATE PRODUCT_NO SET BARCODE = '#barcode#X'
+        </cfquery>
+    </cfif>
+
+        <cfset barcode_tek = 0>
+        <cfset barcode_cift =0>
+        <cfif len(barcode) eq 12>
+            <cfloop from="1" to="11" step="2" index="i">
+                <cfset barcode_kontrol_1 = mid(barcode,i,1)>
+                <cfset barcode_kontrol_2 = mid(barcode,i+1,1)>
+                <cfset barcode_tek = (barcode_tek*1) + (barcode_kontrol_1*1)>
+                <cfset barcode_cift = (barcode_cift*1) + (barcode_kontrol_2*1)>
+            </cfloop>
+            <cfset barcode_toplam = (barcode_cift*3)+(barcode_tek*1)>
+            <cfset barcode_control_char = right(barcode_toplam,1)*1>
+            <cfif barcode_control_char gt 0>
+            <cfset barcode_control_char = 10-barcode_control_char>
+        <cfelse>
+            <cfset barcode_control_char = 0>
+        </cfif>
+        <cfset barcode_no = '#barcode##barcode_control_char#'>
+    <cfelse>
+        <cfset barcode_no = ''>
+    </cfif>
+    
+
+</cffunction>
