@@ -1746,19 +1746,19 @@ function GruplaCanimBenim() {
     var ProductId = document.getElementById("product_id_" + Rc).value;
     var StockId = document.getElementById("stock_id_" + Rc).value;
     var Mik = document.getElementById("amount_" + Rc).value;
-    Mik = filterNum(Mik);
+    Mik = parseFloat(filterNum(Mik));
     var MainUnit = document.getElementById("main_unit_" + Rc).value;
     var Price = document.getElementById("price_other_" + Rc).value;
-    Price = filterNum(Price);
+    Price = parseFloat(filterNum(Price));
     var Om = document.getElementById("other_money_" + Rc).value;
     var prc = document.getElementById("price_" + Rc).value;
-    prc = filterNum(prc);
+    prc = parseFloat(filterNum(prc));
     var tax= document.getElementById("Tax_" + Rc).value;
     tax=filterNum(tax);
-    var row_nettotal = prc * Mik;
+    var row_nettotal = parseFloat(prc) * parseFloat(Mik);
     //document.getElementById("row_nettotal_"+Rc).value;
     row_nettotal = filterNum(row_nettotal);
-    TotalPrice += prc;
+    TotalPrice += parseFloat(row_nettotal);
     console.log(ProductId);
     var O = {
       PRODUCT_ID: ProductId,
