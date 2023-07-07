@@ -1771,7 +1771,7 @@ function GruplaCanimBenim() {
   };
   if (Hata == true) return false;
 
-  SendFormData("/index.cfm?fuseaction=sales.makeTubeGroup", Ox);
+  SendFormData("/index.cfm?fuseaction=sales.emptypop_makeTubeGroup", Ox);
 }
 
 function SendFormData(uri, BasketData) {
