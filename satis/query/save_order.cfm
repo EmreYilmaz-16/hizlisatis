@@ -11,7 +11,7 @@ select count(*) AS RC from PBS_OFFER
 
 <cfdump var="#FormData#">
 <cfif session.ep.userid eq 1146>
-    
+    <cfabort>
 </cfif>
 <cfloop array="#FormData.OrderMoney#" item="it" index="i">
     <cfset "attributes._hidden_rd_money_#i#"=it.MONEY>
