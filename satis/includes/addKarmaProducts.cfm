@@ -1,4 +1,7 @@
-﻿<cfquery name="GETKARMAC" datasource="#dsn3#">
+﻿<h1>Karma Ürün Eklemedeyim</h1>
+<h3><cfoutput>#evaluate('attributes.product_id#i#')#
+</cfoutput></h3>
+<cfquery name="GETKARMAC" datasource="#dsn3#">
     SELECT * FROM #dsn1#.KARMA_PRODUCTS WHERE KARMA_PRODUCT_ID=#evaluate('attributes.product_id#i#')#
 </cfquery>
 <cfloop query="GETKARMAC">
