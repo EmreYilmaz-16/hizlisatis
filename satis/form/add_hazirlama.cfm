@@ -125,7 +125,9 @@ LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID WHER
                     <td>#PRODUCT_CODE#</td>
                     <td>#PRODUCT_NAME#</td>
                     <td>#BRAND_NAME#</td>
-                    <td>#(getS.QUANTITY-getS.AMOUNT)*AMOUNT#</td>
+                    <td>
+                        <input type="text" name="quantity#getS.currentrow#_#currentrow#" value="#tlformat(((getS.QUANTITY-getS.AMOUNT)*AMOUNT),2)#" style="padding-right: 0;text-align: right">
+                        </td>
                     <td>
                         <cfquery name="getSrQR" datasource="#dsn2#">
                             select sum(STOCK_IN-STOCK_OUT) AS BAKIYE from #dsn2#.STOCKS_ROW where 1=1
@@ -138,6 +140,13 @@ LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID WHER
                     <td>#getS.DESCRIPTION#</td>
                 </tr>
             </cfloop>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <button type="button" onclick="CheckKarmaKoli()">Karma Koli Kontrol</button>
+                    </td>
+                </tr>
+            </tfoot>
         </cfif>
     </cfoutput>
 </tbody>
