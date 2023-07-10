@@ -445,6 +445,9 @@
 			<cfset attributes.product_id = evaluate("attributes.product_id#i#")>
 			<cfinclude template="save_virtual_production_orders.cfm">
 			<cfinclude template="add_price_offer.cfm">			
+			<cfif evaluate("attributes.is_karma#i#") eq 1>
+				<cfinclude template="addKarmaProducts.cfm">
+			</cfif>
 		</cfloop>
 
 		<cfscript>

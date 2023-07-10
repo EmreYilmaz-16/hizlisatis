@@ -121,7 +121,15 @@ select count(*) AS RC from PBS_OFFER
     <cfset "attributes.unit_id#i#"=getUnit.PRODUCT_UNIT_ID>
     <cfset "attributes.price#i#"=filternum(it.price)>
     <cfset "attributes.tax#i#"=filternum(it.Tax)>
-    <cfset "attributes.is_karma#i#"=it.is_karma>
+    <cfif isDefined("it.is_karma")>
+        <cfset "attributes.is_karma#i#"=it.is_karma>
+        <cfquery name="del" datasource="#dsn3#">
+            DELETE FROM PBS_OFFER_ROW_KARMA_PRODUCTS WHERE REL_UNIQUE_RELATION_ID=''
+        </cfquery>
+    <cfelse>
+        <cfset "attributes.is_karma#i#"=0>
+    </cfif>
+    
     <cfset "attributes.product_name#i#"=it.product_name>
     <cfset "attributes.indirim1#i#"=filternum(it.indirim1)>
     <cfset "attributes.other_money_#i#"=it.other_money>
@@ -140,7 +148,14 @@ select count(*) AS RC from PBS_OFFER
         <cfset "attributes.row_unique_relation_id#i#"="PBS#session.ep.userid##dateFormat(now(),"yyyymmdd")##timeFormat(now(),"hhmmnnl")#">
         <cfset "attributes.wrk_row_id#i#"="PBS#session.ep.userid##dateFormat(now(),"yyyymmdd")##timeFormat(now(),"hhmmnnl")#">
     </cfif>
-    
+    <cfif isDefined("it.is_karma")>
+        <cfset "attributes.is_karma#i#"=it.is_karma>
+        <cfquery name="del" datasource="#dsn3#">
+            DELETE FROM PBS_OFFER_ROW_KARMA_PRODUCTS WHERE REL_UNIQUE_RELATION_ID='#evaluate("attributes.row_unique_relation_id#i#")#'
+        </cfquery>
+    <cfelse>
+        <cfset "attributes.is_karma#i#"=0>
+    </cfif>
    
     <cfset "attributes.RELATED_ACTION_TABLE#i#"="PBS_OFFER_ROW">
     <cfset "attributes.PBS_OFFER_ROW_CURRENCY#i#"=it.orderrow_currency>
