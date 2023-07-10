@@ -81,8 +81,14 @@ function AddRow(
   row_uniq_id = "",
   description = "",
   rfls = "",
-  converted_sid = 0
+  converted_sid = 0,
+  is_karma = 0,
+  is_karma_sevk = 0
 ) {
+  if (is_karma_sevk == 1) {
+    getKarmaProducts(product_id, quantity);
+    return false;
+  }
   console.log(arguments);
   var form = $(document);
   var checkedValue = form.find("input[name=_rd_money]:checked").val();
@@ -279,6 +285,12 @@ function AddRow(
   i_5.setAttribute("type", "hidden");
   i_5.setAttribute("value", cost);
 
+  var i_55 = document.createElement("input");
+  i_55.setAttribute("name", "is_karma_" + row_count);
+  i_55.setAttribute("id", "is_karma_" + row_count);
+  i_55.setAttribute("type", "hidden");
+  i_55.setAttribute("value", is_karma);
+
   var i_6 = document.createElement("input");
   i_6.setAttribute("name", "is_production_" + row_count);
   i_6.setAttribute("id", "is_production_" + row_count);
@@ -307,6 +319,7 @@ function AddRow(
   td.appendChild(i_3);
   td.appendChild(i_4);
   td.appendChild(i_5);
+  td.appendChild(i_55);
   td.appendChild(i_6);
   td.appendChild(i7);
   td.appendChild(i8);
@@ -640,7 +653,9 @@ function AddRow_pbso(
   row_uniq_id = "",
   description = "",
   rfls = "",
-  converted_sid = 0
+  converted_sid = 0,
+  is_karma = 0,
+  is_karma_sevk = 0
 ) {
   console.log(arguments);
   var form = $(document);
@@ -839,6 +854,12 @@ function AddRow_pbso(
   i_5.setAttribute("type", "hidden");
   i_5.setAttribute("value", cost);
 
+  var i_55 = document.createElement("input");
+  i_55.setAttribute("name", "is_karma_" + row_count);
+  i_55.setAttribute("id", "is_karma_" + row_count);
+  i_55.setAttribute("type", "hidden");
+  i_55.setAttribute("value", is_karma);
+
   var i_6 = document.createElement("input");
   i_6.setAttribute("name", "is_production_" + row_count);
   i_6.setAttribute("id", "is_production_" + row_count);
@@ -867,6 +888,7 @@ function AddRow_pbso(
   td.appendChild(i_3);
   td.appendChild(i_4);
   td.appendChild(i_5);
+  td.appendChild(i_55);
   td.appendChild(i_6);
   td.appendChild(i7);
   td.appendChild(i8);
@@ -1485,7 +1507,7 @@ function toplamHesapla_2() {
   $("#txt_disc_total").val(commaSplit(discT, 3));
   netT = grosT - discT;
   $("#txt_nokdv_total").val(commaSplit(netT, 3));
- // taxT = (netT * 18) / 100;
+  // taxT = (netT * 18) / 100;
   $("#txt_kdv_total").val(commaSplit(taxT, 3));
   $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3));
   $("#basket_bottom_total").val(commaSplit(netT + taxT, 3));
@@ -1508,7 +1530,7 @@ function GetBasketData() {
     var amount = document.getElementById("amount_" + Old_rw_id).value;
     var price = document.getElementById("price_" + Old_rw_id).value;
     var other_money = document.getElementById("other_money_" + Old_rw_id).value;
-
+    var is_karma = document.getElementById("is_karma_" + Old_rw_id).value;
     var row_nettotal = document.getElementById(
       "row_nettotal_" + Old_rw_id
     ).value;
@@ -1564,6 +1586,7 @@ function GetBasketData() {
       row_uniq_id: row_uniq_id,
       description: description,
       converted_sid: converted_sid,
+      is_karma: is_karma,
     };
     OrderRows.push(Obj);
   }
@@ -1724,7 +1747,7 @@ function KntO() {
 }
 
 function SaveOrder(el) {
-  el.setAttribute("disabled","true");
+  el.setAttribute("disabled", "true");
   var BasketData = GetBasketData();
   if (KntO()) {
     if (BasketData) {
@@ -1754,8 +1777,8 @@ function GruplaCanimBenim() {
     var Om = document.getElementById("other_money_" + Rc).value;
     var prc = document.getElementById("price_" + Rc).value;
     prc = parseFloat(filterNum(prc));
-    var tax= document.getElementById("Tax_" + Rc).value;
-    tax=filterNum(tax);
+    var tax = document.getElementById("Tax_" + Rc).value;
+    tax = filterNum(tax);
     var row_nettotal = parseFloat(prc) * parseFloat(Mik);
     //document.getElementById("row_nettotal_"+Rc).value;
     TotalPrice += row_nettotal;
@@ -1767,7 +1790,7 @@ function GruplaCanimBenim() {
       PRICE: Price,
       OTHER_MONEY: Om,
       ROW_NET_TOTAL: row_nettotal,
-      TAX:tax
+      TAX: tax,
     };
 
     KarmaProducts.push(O);
@@ -2074,6 +2097,10 @@ function rowArrange() {
     var is_manuel = document.getElementById("is_manuel_" + Old_rw_id);
     is_manuel.setAttribute("id", "is_manuel_" + NeWid);
     is_manuel.setAttribute("name", "is_manuel_" + NeWid);
+
+    var is_karma = document.getElementById("is_karma_" + Old_rw_id);
+    is_karma.setAttribute("id", "is_karma_" + NeWid);
+    is_karma.setAttribute("name", "is_karma_" + NeWid);
 
     var stock_id = document.getElementById("stock_id_" + Old_rw_id);
     stock_id.setAttribute("id", "stock_id_" + NeWid);
@@ -2392,6 +2419,8 @@ function moveRow(from_row_id, to_row_id) {
     var description_1 = $("#description_" + from_row_id).val();
     var product_name_other_1 = $("#product_name_other_" + from_row_id).val();
 
+    var is_karma_1 = $("#is_karma_" + from_row_id).val();
+
     var product_id_2 = $("#product_id_" + to_row_id).val();
     var stock_id_2 = $("#stock_id_" + to_row_id).val();
     var is_virtual_2 = $("#is_virtual_" + to_row_id).val();
@@ -2417,6 +2446,8 @@ function moveRow(from_row_id, to_row_id) {
     var description_2 = $("#description_" + to_row_id).val();
     var product_name_other_2 = $("#product_name_other_" + to_row_id).val();
 
+    var is_karma_2 = $("#is_karma_" + to_row_id).val();
+
     $("#product_id_" + to_row_id).val(product_id_1);
     $("#product_id_" + from_row_id).val(product_id_2);
     $("#stock_id_" + to_row_id).val(stock_id_1);
@@ -2429,6 +2460,10 @@ function moveRow(from_row_id, to_row_id) {
     $("#cost_" + from_row_id).val(cost_2);
     $("#is_production_" + to_row_id).val(is_production_1);
     $("#is_production_" + from_row_id).val(is_production_2);
+
+    $("#is_karma_" + to_row_id).val(is_karma_1);
+    $("#is_karma_" + from_row_id).val(is_karma_2);
+
     $("#row_uniq_id_" + to_row_id).val(row_uniq_id_1);
     $("#row_uniq_id_" + from_row_id).val(row_uniq_id_2);
     $("#stock_code_" + to_row_id).val(stock_code_1);
@@ -2662,3 +2697,105 @@ function ConvertRealProduct(pid, rwid) {
     },
   });
 }
+function getKarmaProducts(product_id, quantity) {
+  var pcatId = 17;
+  var str = "";
+  str +=
+    "select S.PRODUCT_NAME,S.PRODUCT_ID,S.PRODUCT_CODE,S.STOCK_ID,S.TAX,S.TAX_PURCHASE,PB.BRAND_NAME,PC.DETAIL,PU.MAIN_UNIT,KP.KARMA_PRODUCT_ID,CASE WHEN (";
+  str +=
+    "  SELECT TOP 1 PROPERTY1 FROM " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".PRODUCT_INFO_PLUS WHERE";
+  str +=
+    " PRODUCT_INFO_PLUS.PRODUCT_ID = S.PRODUCT_ID ORDER BY PROPERTY1 DESC) ='MANUEL' THEN 1 ELSE 0 END AS IS_MANUEL,";
+  str +=
+    "( SELECT TOP 1 PCE.DISCOUNT_RATE FROM " +
+    generalParamsSatis.dataSources.dsn1 +
+    ".PRODUCT P, " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".PRICE_CAT_EXCEPTIONS PCE LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID";
+  str +=
+    " WHERE (PCE.PRODUCT_ID = P.PRODUCT_ID OR PCE.PRODUCT_ID IS NULL ) AND ( PCE.BRAND_ID = P.BRAND_ID OR PCE.BRAND_ID IS NULL) AND ( PCE.PRODUCT_CATID = P.PRODUCT_CATID OR PCE.PRODUCT_CATID IS NULL)";
+  str +=
+    " AND P.PRODUCT_ID = S.PRODUCT_ID AND ISNULL(PC.IS_SALES,0) = 1 AND PCE.ACT_TYPE NOT IN (2,4) AND  PC.PRICE_CATID = " +
+    pcatId +
+    " ORDER BY PCE.PRODUCT_ID DESC, PCE.PRODUCT_CATID DESC,PCE.BRAND_ID DESC) AS DISCOUNT";
+  str +=
+    ",( SELECT TOP 1 IR.PRICE-(IR.DISCOUNTTOTAL/2) AS PRICE FROM " +
+    generalParamsSatis.dataSources.dsn2 +
+    ". INVOICE I LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn2 +
+    ".INVOICE_ROW IR ON IR.INVOICE_ID = I.INVOICE_ID WHERE ISNULL(I.PURCHASE_SALES,0) = 0 AND";
+  str +=
+    " IR.PRODUCT_ID = S.PRODUCT_ID AND I.PROCESS_CAT<>35 ORDER BY I.INVOICE_DATE DESC) AS LAST_COST ,ISNULL(GPA.PRICE,KP.SALES_PRICE) AS PRICE ,ISNULL(GPA.MONEY,KP.MONEY) AS MONEY";
+  str +=
+    " from " +
+    generalParamsSatis.dataSources.dsn1 +
+    ".KARMA_PRODUCTS AS KP LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".STOCKS AS S ON S.PRODUCT_ID=KP.PRODUCT_ID LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn1 +
+    ".PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PU.IS_MAIN=1 LEFT JOIN";
+  str +=
+    " (SELECT P.UNIT,P.PRICE,P.PRICE_KDV,P.PRODUCT_ID,P.MONEY,P.PRICE_CATID,P.CATALOG_ID,P.PRICE_DISCOUNT FROM " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".PRICE P, " +
+    generalParamsSatis.dataSources.dsn3 +
+    ".PRODUCT PR WHERE P.PRODUCT_ID = PR.PRODUCT_ID AND P.PRICE_CATID = " +
+    pcatId;
+  str +=
+    " AND ( P.STARTDATE <= GETDATE() AND ( P.FINISHDATE >=GETDATE() OR P.FINISHDATE IS NULL)) AND ISNULL(P.SPECT_VAR_ID, 0) = 0 ) AS GPA ON GPA.PRODUCT_ID = S.PRODUCT_ID AND GPA.UNIT = PU.PRODUCT_UNIT_ID ";
+  str +=
+    " LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID LEFT JOIN workcube_metosan_1.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID";
+  str += " WHERE KP.KARMA_PRODUCT_ID=" + product_id;
+  var rr = wrk_query(str, "dsn3");
+  for (let i = 0; i < rr.recordcount; i++) {
+    AddRow(
+      rr.PRODUCT_ID[i],
+      rr.STOCK_ID[i],
+      rr.PRODUCT_CODE[i],
+      rr.BRAND_NAME[i],
+      0,
+      quantity,
+      rr.PRICE[i],
+      rr.PRODUCT_NAME[i],
+      rr.TAX[i],
+      rr.DISCOUNT[i],
+      rr.DETAIL[i],
+      "",
+      rr.MONEY[i],
+      rr.PRICE[i],
+      -6,
+      rr.IS_MANUEL[i],
+      rr.LAST_COST[i],
+      rr.MAIN_UNIT[i],
+      "",
+
+      "",
+      0,
+      "",
+      "",
+      0,
+      "",
+      "",
+      "",
+      0,
+      0,
+      0
+    );
+  }
+}
+/*
+  fc = 0,
+  rowNum = "",
+  deliver_date = "",
+  is_production = 0,
+  row_uniq_id = "",
+  description = "",
+  rfls = "",
+  converted_sid = 0,
+  is_karma = 0,
+  is_karma_sevk = 0
+*/
