@@ -15,6 +15,7 @@ SELECT ISNULL(AMOUNT, 0) AMOUNT
 	,PRODUCT_CODE
 	,DESCRIPTION
 	,UNIQUE_RELATION_ID
+    ,KM_P
 FROM (
 	SELECT ORR.QUANTITY
 		,ORR.UNIQUE_RELATION_ID
@@ -30,6 +31,7 @@ FROM (
 		,ORR.DETAIL_INFO_EXTRA
 		,B.BRAND_NAME
 		,ORR.DESCRIPTION
+        ,(SELECT COUNT(*) FROM PBS_OFFER_ROW_KARMA_PRODUCTS WHERE REL_UNIQUE_RELATION_ID=ORR.UNIQUE_RELATION_ID ) AS KM_P
 	FROM #dsn3#.PRTOTM_SHIP_RESULT_ROW AS SRR
 	LEFT JOIN #dsn3#.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID = SRR.ORDER_ROW_ID
 	LEFT JOIN #dsn3#.PRTOTM_SHIP_RESULT AS SR ON SR.SHIP_RESULT_ID = SRR.SHIP_RESULT_ID
@@ -96,9 +98,14 @@ FROM (
             </td>
             <td>#DETAIL_INFO_EXTRA#</td>
             <td>#DESCRIPTION#</td>
-            <td style="width:%10"><button style="width:100%" type="button" <cfif AMOUNT GTE QUANTITY>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#currentrow#" onclick="checkT(#currentrow#)">
-                <cfif AMOUNT GTE QUANTITY>&##10003<cfelse>X</cfif>
-            </button>
+            <td style="width:%10">
+                <cfif KM_P gte 1>
+                
+                <cfelse>
+                    <button style="width:100%" type="button" <cfif AMOUNT GTE QUANTITY>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#currentrow#" onclick="checkT(#currentrow#)">
+                        <cfif AMOUNT GTE QUANTITY>&##10003<cfelse>X</cfif>
+                    </button>
+                </cfif>         
                 <input type="checkbox"  <cfif AMOUNT GTE QUANTITY>disabled checked</cfif> value="#currentrow#" name="roww" id="is_add#currentrow#"style="display:none"></td>
         </tr>
     </cfoutput>
