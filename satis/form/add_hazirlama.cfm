@@ -113,11 +113,18 @@ FROM (
         </tr>
         <cfif KM_P gte 1>
             <cfquery name="getKp" datasource="#dsn3#">
-           select PORK.*,S.PRODUCT_CODE,S.PRODUCT_NAME,PP.SHELF_CODE,PB.BRAND_NAME,S.STOCK_ID from workcube_metosan_1.PBS_OFFER_ROW_KARMA_PRODUCTS AS PORK
+           select PORK.*,S.PRODUCT_CODE,S.PRODUCT_NAME,PP.SHELF_CODE,PB.BRAND_NAME,S.STOCK_ID,SF.AMOUNT_2 from workcube_metosan_1.PBS_OFFER_ROW_KARMA_PRODUCTS AS PORK
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=PORK.PRODUCT_ID 
 LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR. STOCK_ID=S.STOCK_ID
 LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP .PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
-LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' 
+LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID 
+LEFT JOIN (
+		SELECT sum(SFR.AMOUNT) AS AMOUNT
+			,UNIQUE_RELATION_ID
+		FROM workcube_metosan_2023_1.STOCK_FIS_ROW AS SFR
+		GROUP BY UNIQUE_RELATION_ID
+		) AS SF ON SF.UNIQUE_RELATION_ID = PORK.UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
+WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' 
             </cfquery>
             <cfloop query="getKp">
                 <tr>
@@ -138,6 +145,11 @@ LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID WHER
                     </td>
                     <td>#getS.DETAIL_INFO_EXTRA#</td>
                     <td>#getS.DESCRIPTION#</td>
+                    <td>
+                        <button style="width:100%" type="button" <cfif AMOUNT_2 GTE AMOUNT>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#getS.currentrow#_#currentrow#" onclick="checkTKarma(#currentrow#,#getS.currentrow#)">
+                            <cfif AMOUNT_2 GTE AMOUNT>&##10003<cfelse>X</cfif>
+                        </button>
+                    </td>
                 </tr>
             </cfloop>
             <tfoot>
