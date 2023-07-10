@@ -45,7 +45,7 @@ function saveProduct(modal_id) {
             0,
             0,
             obj.PRODUCT_NAME,
-            18,
+            20,
             0,
             obj.ROW_ID,
             -2,
@@ -97,7 +97,7 @@ function UpdateVirtualOfferProduct(modal_id) {
       console.log(retDat);
       console.log("Çok Boktan Bir Yer Çalışıyor");
       var obj = JSON.parse(retDat);
-      UpdRow(obj.PID, "", 1, 0, 0, obj.NAME, 18, 0, obj.ROW_ID, -1);
+      UpdRow(obj.PID, "", 1, 0, 0, obj.NAME, 20, 0, obj.ROW_ID, -1);
       closeBoxDraggable(modal_id);
     },
   });
@@ -121,7 +121,7 @@ function saveVirtualOfferProduct(modal_id) {
           1,
           obj.PRICE,
           obj.NAME,
-          18,
+          20,
           0,
           4,
           "",

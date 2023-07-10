@@ -21,7 +21,7 @@
         <cfset qid=item.QUESTION_ID >
     </cfif>
     <cfif item.IS_VIRTUAL eq 1>
-        <cfset K_URUN=SAVE_URUN(item.PRODUCT_CATID,item.PRODUCT_NAME,prc,prc,18,PROJECT_ID)>          
+        <cfset K_URUN=SAVE_URUN(item.PRODUCT_CATID,item.PRODUCT_NAME,prc,prc,20,PROJECT_ID)>          
         bu arada oluşan ürünün ağacı kontrol edilecek  
         <cfif isDefined("item.AGAC")>
             <cfloop array="#item.AGAC#" item="item2">
@@ -34,7 +34,7 @@
                     <cfset prc2=item2.PRICE>
                 </cfif>
                 <cfif item2.IS_VIRTUAL eq 1>
-                    <cfset K_URUN2=SAVE_URUN(item2.PRODUCT_CATID,item2.PRODUCT_NAME,prc2,prc2,18,PROJECT_ID)>  
+                    <cfset K_URUN2=SAVE_URUN(item2.PRODUCT_CATID,item2.PRODUCT_NAME,prc2,prc2,20,PROJECT_ID)>  
                     burada agacında dolas 
                     <CFSET "A.SPEC_MAIN_ID_LIST_#K_URUN2.STOCK_ID#"="">
                     <cfif isDefined("item2.AGAC")>
@@ -48,7 +48,7 @@
                                 <cfset qid3=item3.QUESTION_ID >
                             </cfif>
                             <cfif item3.IS_VIRTUAL eq 1>
-                                <cfset K_URUN3=SAVE_URUN(item3.PRODUCT_CATID,item3.PRODUCT_NAME,prc3,prc3,18,PROJECT_ID)>  
+                                <cfset K_URUN3=SAVE_URUN(item3.PRODUCT_CATID,item3.PRODUCT_NAME,prc3,prc3,20,PROJECT_ID)>  
                                 <cfset e=AgacaEkle(K_URUN2.STOCK_ID,K_URUN2.PRODUCT_ID,K_URUN3.STOCK_ID,K_URUN3.PRODUCT_ID,item3.AMOUNT,"",qid3)>
                                 <cfset MAIN_SID_3=K_URUN3.STOCK_ID>
                             <cfelse>
@@ -174,8 +174,8 @@
             IS_ZERO_STOCK=IS_ZERO_STOCK;
             IS_QUALITY=IS_QUALITY;
             alis_fiyat_kdvsiz = arguments.SALE_PRICE;
-            satis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*18)/100);
-            alis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*18)/100);
+            satis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*TAX)/100);
+            alis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*TAX)/100);
             sales_money = "TL";
             cesit_adi='';
             purchase_money = "TL";

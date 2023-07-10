@@ -11,7 +11,7 @@
 <CFSET PRODUCT_CAT_ID=4079>
 
 
-<cfset OlusanUrun=SAVE_URUN(PRODUCT_CAT_ID,FormData.PRODUCT_NAME_MAIN,0,FormData.PRICE_TOTAL,18,"")>
+<cfset OlusanUrun=SAVE_URUN(PRODUCT_CAT_ID,FormData.PRODUCT_NAME_MAIN,0,FormData.PRICE_TOTAL,20,"")>
 
 <cfloop array="#FormData.PRODUCT_LIST#" item="it">
     <cfquery name="getUnitId" datasource="#dsn3#">
@@ -113,8 +113,8 @@
             IS_ZERO_STOCK=IS_ZERO_STOCK;
             IS_QUALITY=IS_QUALITY;
             alis_fiyat_kdvsiz = arguments.SALE_PRICE;
-            satis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*18)/100);
-            alis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*18)/100);
+            satis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*TAX)/100);
+            alis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*TAX)/100);
             sales_money = "TL";
             cesit_adi='';
             purchase_money = "TL";

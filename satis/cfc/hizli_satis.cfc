@@ -869,7 +869,7 @@
                 IS_ZERO_STOCK=IS_ZERO_STOCK;
                 IS_QUALITY=IS_QUALITY;
                 alis_fiyat_kdvsiz = get_purchase_price_info.PRICE;
-                satis_fiyat_kdvli = filternum(arguments.maliyet)+((filternum(arguments.maliyet)*18)/100);
+                satis_fiyat_kdvli = filternum(arguments.maliyet)+((filternum(arguments.maliyet)*TAX)/100);
                 alis_fiyat_kdvli = get_purchase_price_info.PRICE_KDV;
                 sales_money = get_sales_price_info.MONEY;
                 cesit_adi='';
@@ -1045,7 +1045,7 @@
                 IS_ZERO_STOCK=IS_ZERO_STOCK;
                 IS_QUALITY=IS_QUALITY;
                 alis_fiyat_kdvsiz = get_purchase_price_info.PRICE;
-                satis_fiyat_kdvli = filternum(arguments.maliyet)+((filternum(arguments.maliyet)*18)/100);
+                satis_fiyat_kdvli = filternum(arguments.maliyet)+((filternum(arguments.maliyet)*TAX)/100);
                 alis_fiyat_kdvli = get_purchase_price_info.PRICE_KDV;
                 sales_money = get_sales_price_info.MONEY;
                 cesit_adi='';

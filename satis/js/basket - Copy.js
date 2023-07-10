@@ -106,7 +106,7 @@ function saveVirtualTube(dsn3, modal_id) {
             success: function (retDat) {
                 console.log(retDat)
                 var obj = JSON.parse(retDat)
-                AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0);
+                AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 20, 0);
                 closeBoxDraggable(modal_id)
             }
         })
@@ -545,7 +545,7 @@ function UpdVirtualTube(dsn3, modal_id) {
         success: function (retDat) {
             console.log(retDat)
             var obj = JSON.parse(retDat)
-            UpdRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+            UpdRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 20, 0, obj.ROW_ID);
             closeBoxDraggable(modal_id)
         }
     })
@@ -649,7 +649,7 @@ function SaveTube(dsn3, modal_id) {
             success: function (retDat) {
                 console.log(retDat)
                 var obj = JSON.parse(retDat)
-                AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0);
+                AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 20, 0);
                 closeBoxDraggable(modal_id)
             }
         })

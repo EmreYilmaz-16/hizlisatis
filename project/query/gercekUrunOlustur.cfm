@@ -14,7 +14,7 @@
      AcilanUrunler=queryNew("VP_ID,STOCK_ID,PRODUCT_ID,SEVIYE","INTEGER,INTEGER,INTEGER,INTEGER");    
 </cfscript>
 <!----- Ana Ürün Kayıt Ediliyor----->    
-<CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18,productInfo.PROJECT_ID)>	
+<CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,20,productInfo.PROJECT_ID)>	
 <CFSET "A.PRODUCT_ID_#attributes.VIRTUAL_PRODUCT_ID#"=K_URUN.PRODUCT_ID>
 <CFSET "A.STOCK_ID_#attributes.VIRTUAL_PRODUCT_ID#"=K_URUN.STOCK_ID>
 <CFSET "A.SPECT_MAIN_LIST_#attributes.VIRTUAL_PRODUCT_ID#"="">
@@ -39,7 +39,7 @@
     <cfquery name="productInfo" datasource="#dsn3#">
         SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#PRODUCT_ID#
     </cfquery>
-    <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,18,productInfo.PROJECT_ID)>	
+    <CFSET K_URUN=SAVE_URUN(productInfo.PRODUCT_CATID,productInfo.PRODUCT_NAME,10,10,20,productInfo.PROJECT_ID)>	
     <CFSET "A.PRODUCT_ID_#PRODUCT_ID#"=K_URUN.PRODUCT_ID>
     <CFSET "A.STOCK_ID_#PRODUCT_ID#"=K_URUN.STOCK_ID>
     <CFSET "A.SPECT_MAIN_LIST_#PRODUCT_ID#"="">
@@ -258,8 +258,8 @@
             IS_ZERO_STOCK=IS_ZERO_STOCK;
             IS_QUALITY=IS_QUALITY;
             alis_fiyat_kdvsiz = arguments.SALE_PRICE;
-            satis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*18)/100);
-            alis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*18)/100);
+            satis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*TAX)/100);
+            alis_fiyat_kdvli = arguments.SALE_PRICE+(((arguments.SALE_PRICE)*TAX)/100);
             sales_money = "TL";
             cesit_adi='';
             purchase_money = "TL";

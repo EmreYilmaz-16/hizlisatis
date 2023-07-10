@@ -1827,3 +1827,4 @@ function remItem(params) {
   var e = params.parentElement.parentElement.parentElement;
   $(e).remove();
 }
+

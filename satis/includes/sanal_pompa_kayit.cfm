@@ -84,7 +84,7 @@ SELECT PRICE, PRICE_KDV, IS_KDV, MONEY FROM PRICE_STANDART WHERE PRICESTANDART_S
                    IS_ZERO_STOCK=IS_ZERO_STOCK;
                    IS_QUALITY=IS_QUALITY;
                    alis_fiyat_kdvsiz = datam.OlusacakUrun.PRICE;
-                   satis_fiyat_kdvli = datam.OlusacakUrun.PRICE+((datam.OlusacakUrun.PRICE*18)/100);
+                   satis_fiyat_kdvli = datam.OlusacakUrun.PRICE+((datam.OlusacakUrun.PRICE*TAX)/100);
                    alis_fiyat_kdvli = get_purchase_price_info.PRICE_KDV;
                    sales_money = get_sales_price_info.MONEY;
                    cesit_adi='';

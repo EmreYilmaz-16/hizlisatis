@@ -344,7 +344,7 @@ function saveVirtualTube(dsn3, modal_id) {
     success: function (retDat) {
       console.log(retDat);
       var obj = JSON.parse(retDat);
-      //  AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 1, '', "TL", obj.PRICE, "-5");
+      
       AddRow(
         obj.PID,
         0,
@@ -354,7 +354,7 @@ function saveVirtualTube(dsn3, modal_id) {
         1,
         obj.PRICE,
         obj.NAME,
-        18,
+        20,
         0,
         1,
         "",
@@ -449,7 +449,7 @@ function UpdVirtualTube(dsn3, modal_id) {
     success: function (retDat) {
       console.log(retDat);
       var obj = JSON.parse(retDat);
-      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 20, 0, obj.ROW_ID);
       closeBoxDraggable(modal_id);
     },
   });
@@ -503,7 +503,7 @@ function SaveTube(dsn3, modal_id, tip = 0) {
             1,
             obj.PRICE,
             obj.PRODUCT_NAME,
-            18,
+            20,
             0,
             obj.ROW_ID,
             obj.OFFER_ROW_CURRENCY,
@@ -511,7 +511,7 @@ function SaveTube(dsn3, modal_id, tip = 0) {
             obj.MAIN_UNIT
           );
         } else {
-          //  AddRow(obj.PID, obj.SID, 0, 1, obj.PRICE, obj.NAME, 18, 0, 1, '', 'TL', obj.PRICE, "-5");
+          
           AddRow(
             obj.PRODUCT_ID,
             obj.STOCK_ID,

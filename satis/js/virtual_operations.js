@@ -119,7 +119,7 @@ function saveVirtualTube(dsn3, modal_id) {
         success: function (retDat) {
             console.log(retDat)
             var obj = JSON.parse(retDat)
-          //  AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 1, '', "TL", obj.PRICE, "-5");
+          
            AddRow(
             obj.PID,
             0,
@@ -129,7 +129,7 @@ function saveVirtualTube(dsn3, modal_id) {
             1,
             obj.PRICE,
             obj.NAME,
-            18,
+            20,
             0,
             1,
             '',
@@ -212,7 +212,7 @@ function UpdVirtualTube(dsn3, modal_id) {
         success: function (retDat) {
             console.log(retDat)
             var obj = JSON.parse(retDat)
-            UpdRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+            UpdRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 20, 0, obj.ROW_ID);
             closeBoxDraggable(modal_id)
         }
     })
@@ -385,7 +385,7 @@ function saveVirtualHydrolic(modal_id) {
         success: function (retDat) {
 
             var obj = JSON.parse(retDat)
-            AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 2, '', 'TL', obj.PRICE);
+            AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 20, 0, 2, '', 'TL', obj.PRICE);
             closeBoxDraggable(modal_id)
         }
     })
@@ -402,7 +402,7 @@ function UpdateVirtualHydrolic(modal_id) {
         success: function (retDat) {
 
             var obj = JSON.parse(retDat)
-            UpdRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+            UpdRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 20, 0, obj.ROW_ID);
             closeBoxDraggable(modal_id)
         }
     })

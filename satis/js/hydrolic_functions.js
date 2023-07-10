@@ -217,7 +217,7 @@ function saveVirtualHydrolic(modal_id) {
     data: formData,
     success: function (retDat) {
       var obj = JSON.parse(retDat);
-      //  AddRow(obj.PID, '', 1, 1, obj.PRICE, obj.NAME, 18, 0, 2, '', 'TL', obj.PRICE);
+      
 
       AddRow(
         obj.PID,
@@ -228,7 +228,7 @@ function saveVirtualHydrolic(modal_id) {
         1,
         obj.PRICE,
         obj.NAME,
-        18,
+        20,
         0,
         2,
         "",
@@ -260,7 +260,7 @@ function UpdateVirtualHydrolic(modal_id) {
     data: formData,
     success: function (retDat) {
       var obj = JSON.parse(retDat);
-      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 20, 0, obj.ROW_ID);
       closeBoxDraggable(modal_id);
     },
   });
@@ -285,7 +285,7 @@ function saveRealHydrolic(modal_id) {
             1,
             obj.PRICE,
             obj.PRODUCT_NAME,
-            18,
+            20,
             0,
             obj.ROW_ID,
             obj.OFFER_ROW_CURRENCY,

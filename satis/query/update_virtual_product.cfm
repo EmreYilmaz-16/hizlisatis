@@ -146,7 +146,7 @@ cfloop(query='getOrderRows' ){
 
 discT+=attributes.genel_indirim;
 netT=grosT-discT;
-taxT=(netT*18)/100;
+
 
 TOTAL_WITH_KDV=netT+taxT;
 TAX_TOTAL=taxT;

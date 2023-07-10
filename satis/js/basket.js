@@ -233,7 +233,7 @@ function saveVirtualTube(dsn3, modal_id) {
         1,
         obj.PRICE,
         obj.NAME,
-        18,
+        20,
         0,
         1,
         "",
@@ -945,7 +945,7 @@ function toplamHesapla_2() {
   $("#txt_disc_total").val(commaSplit(discT, 3));
   netT = grosT - discT;
   $("#txt_nokdv_total").val(commaSplit(netT, 3));
-  taxT = (netT * 18) / 100;
+  //taxT = (netT * 18) / 100;
   $("#txt_kdv_total").val(commaSplit(taxT, 3));
   $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3));
 }
@@ -976,7 +976,7 @@ function UpdVirtualTube(dsn3, modal_id) {
       generalParamsSatis.userData.user_id,
     success: function (retDat) {
       var obj = JSON.parse(retDat);
-      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 20, 0, obj.ROW_ID);
       closeBoxDraggable(modal_id);
     },
   });
@@ -1130,7 +1130,7 @@ function SaveTube(dsn3, modal_id, tip = 0) {
             1,
             obj.PRICE,
             obj.NAME,
-            18,
+            20,
             0,
             obj.ROW_ID
           );
@@ -1142,7 +1142,7 @@ function SaveTube(dsn3, modal_id, tip = 0) {
             1,
             obj.PRICE,
             obj.NAME,
-            18,
+            20,
             0,
             1,
             "",
@@ -1435,7 +1435,7 @@ function saveVirtualHydrolic(modal_id) {
         1,
         obj.PRICE,
         obj.NAME,
-        18,
+        20,
         0,
         2,
         "",
@@ -1456,7 +1456,7 @@ function UpdateVirtualHydrolic(modal_id) {
     data: formData,
     success: function (retDat) {
       var obj = JSON.parse(retDat);
-      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 20, 0, obj.ROW_ID);
       closeBoxDraggable(modal_id);
     },
   });
@@ -1471,7 +1471,7 @@ function saveRealHydrolic(modal_id) {
     data: formData,
     success: function (retDat) {
       var obj = JSON.parse(retDat);
-      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 18, 0, obj.ROW_ID);
+      UpdRow(obj.PID, "", 1, 1, obj.PRICE, obj.NAME, 20, 0, obj.ROW_ID);
       closeBoxDraggable(modal_id);
     },
   });
