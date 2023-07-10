@@ -295,5 +295,22 @@ $(i).click();
 }
     
  }
+ function checkTKarma(r1,r2) {
+    var b=document.getElementById("chkbtn"+r1+"_"+r2)
+    
+    var i=document.getElementById("is_add"+r1+"_"+r2)
+    $(i).click();
+        if($(i).is(":checked")){
+        b.removeAttribute("class")
+        b.setAttribute("class","btn btn-success")
+        b.innerHTML="&#10003"
+       
+    }else{
+          b.removeAttribute("class")
+        b.setAttribute("class","btn btn-danger")
+        b.innerText="X"
+        
+    } 
+ }
 </script>
 </cf_box>
