@@ -132,8 +132,9 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
                     <td>#PRODUCT_CODE#</td>
                     <td>#PRODUCT_NAME#</td>
                     <td>#BRAND_NAME#</td>
-                    <td>
+                    <td><div class="form-group">
                         <input type="text" name="quantity#getS.currentrow#_#currentrow#" value="#tlformat(((getS.QUANTITY-getS.AMOUNT)*AMOUNT),2)#" style="padding-right: 0;text-align: right">
+                    </div>
                         </td>
                     <td>
                         <cfquery name="getSrQR" datasource="#dsn2#">
