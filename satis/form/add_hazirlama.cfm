@@ -134,8 +134,8 @@ LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID WHER
                         </cfquery>
                         #getSrQR.BAKIYE#
                     </td>
-                    <td>#DETAIL_INFO_EXTRA#</td>
-                    <td>#DESCRIPTION#</td>
+                    <td>#getS.DETAIL_INFO_EXTRA#</td>
+                    <td>#getS.DESCRIPTION#</td>
                 </tr>
             </cfloop>
         </cfif>
