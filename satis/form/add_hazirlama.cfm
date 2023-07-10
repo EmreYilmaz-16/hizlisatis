@@ -100,7 +100,10 @@ FROM (
             <td>#DESCRIPTION#</td>
             <td style="width:%10">
                 <cfif KM_P gte 1>
-                
+                <cfquery name="getKp" datasource="#dsn3#">
+                    SELECT * FROM PBS_OFFER_ROW_KARMA_PRODUCTS WHERE REL_UNIQUE_RELATION_ID ='#UNIQUE_RELATION_ID#'
+                </cfquery>
+                <cfloop query="getKp"></cfloop>
                 <cfelse>
                     <button style="width:100%" type="button" <cfif AMOUNT GTE QUANTITY>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#currentrow#" onclick="checkT(#currentrow#)">
                         <cfif AMOUNT GTE QUANTITY>&##10003<cfelse>X</cfif>
@@ -108,6 +111,34 @@ FROM (
                 </cfif>         
                 <input type="checkbox"  <cfif AMOUNT GTE QUANTITY>disabled checked</cfif> value="#currentrow#" name="roww" id="is_add#currentrow#"style="display:none"></td>
         </tr>
+        <cfif KM_P gte 1>
+            <cfquery name="getKp" datasource="#dsn3#">
+           select PORK.*,S.PRODUCT_CODE,S.PRODUCT_NAME,PP.SHELF_CODE,PB.BRAND_NAME,S.STOCK_ID from workcube_metosan_1.PBS_OFFER_ROW_KARMA_PRODUCTS AS PORK
+LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=PORK.PRODUCT_ID 
+LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR. STOCK_ID=S.STOCK_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP .PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' 
+            </cfquery>
+            <cfloop query="getKp">
+                <tr>
+                    <td>#SHELF_CODE#</td>
+                    <td>#PRODUCT_CODE#</td>
+                    <td>#PRODUCT_NAME#</td>
+                    <td>#BRAND_NAME#</td>
+                    <td>#AMOUNT#</td>
+                    <td>
+                        <cfquery name="getSrQR" datasource="#dsn2#">
+                            select sum(STOCK_IN-STOCK_OUT) AS BAKIYE from #dsn2#.STOCKS_ROW where 1=1
+                             and STOCK_ID=#STOCK_ID# 
+                        AND STORE=#attributes.DELIVER_DEPT# AND STORE_LOCATION=#attributes.DELIVER_LOCATION#
+                        </cfquery>
+                        #getSrQR.BAKIYE#
+                    </td>
+                    <td>#DETAIL_INFO_EXTRA#</td>
+                    <td>#DESCRIPTION#</td>
+                </tr>
+            </cfloop>
+        </cfif>
     </cfoutput>
 </tbody>
 </cf_big_list>
