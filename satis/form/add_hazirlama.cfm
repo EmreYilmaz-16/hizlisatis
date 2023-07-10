@@ -150,6 +150,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
                         <button style="width:100%" type="button" <cfif AMOUNT_2 GTE AMOUNT>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#getS.currentrow#_#currentrow#" onclick="checkTKarma(#currentrow#,#getS.currentrow#)">
                             <cfif AMOUNT_2 GTE AMOUNT>&##10003<cfelse>X</cfif>
                         </button>
+                        <input type="checkbox"  <cfif AMOUNT_2 GTE AMOUNT>disabled checked</cfif> value="#getS.currentrow#-#currentrow#" name="roww" id="is_add#getS.currentrow#_#currentrow#"style="display:none">
                     </td>
                 </tr>
             </cfloop>
