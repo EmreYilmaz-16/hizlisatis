@@ -120,7 +120,7 @@
                             <a onclick="AddRowItem(#it2.PRODUCT_ID#,'#it2.PRODUCT_NAME#','#it2.STOCK_CODE#',#it2.STOCK_ID#,#it2.PRICE#,#it2.DISCOUNT_RATE#,'#it2.MONEY#',#it2.LAST_COST#,#it2.PRICE#,#it2.IS_MANUEL#,#attributes.columnsa#)">#it2.PRODUCT_NAME#</a>
                         </cfif>
                     <cfelse>
-                        <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,#it2.PRODUCT_TYPE#,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#','','',0,'','','0','','','',0,'#it2.IS_KARMA#','#it.IS_KARMA_SEVK#')">#it2.PRODUCT_NAME#</a>
+                        <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,#it2.PRODUCT_TYPE#,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#','','',0,'','','0','','','',0,'#it2.IS_KARMA#','#it2.IS_KARMA_SEVK#')">#it2.PRODUCT_NAME#</a>
                         <span style="float:right" class="icon-detail" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid=#it2.PRODUCT_ID#&sid=#it2.STOCK_ID#')"></span>
                     </cfif>
                 </li>
@@ -474,7 +474,7 @@ AddRow(
                 PRODUCT_CODE_2=PRODUCT_CODE_2,
                 MANUFACT_CODE=MANUFACT_CODE,
                 TAX=TAX,
-                IS_KARMA=IS_KARMA
+                IS_KARMA=IS_KARMA,
                 IS_KARMA_SEVK=IS_KARMA_SEVK,
                 BARCOD=BARCOD,
                 IS_PRODUCTION=IS_PRODUCTION,
