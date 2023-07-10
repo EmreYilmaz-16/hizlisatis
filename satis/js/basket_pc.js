@@ -1485,7 +1485,7 @@ function toplamHesapla_2() {
   $("#txt_disc_total").val(commaSplit(discT, 3));
   netT = grosT - discT;
   $("#txt_nokdv_total").val(commaSplit(netT, 3));
-  taxT = (netT * 18) / 100;
+ // taxT = (netT * 18) / 100;
   $("#txt_kdv_total").val(commaSplit(taxT, 3));
   $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3));
   $("#basket_bottom_total").val(commaSplit(netT + taxT, 3));
