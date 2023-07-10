@@ -154,7 +154,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
             </cfloop>
             <tfoot>
                 <tr>
-                    <td colspan="7">
+                    <td colspan="9">
                         <button type="button" onclick="CheckKarmaKoli()">Karma Koli Kontrol</button>
                     </td>
                 </tr>
