@@ -93,7 +93,7 @@
                         <a onclick="AddRowItem(#it.PRODUCT_ID#,'#it.PRODUCT_NAME#','#it.STOCK_CODE#',#it.STOCK_ID#,#it.PRICE#,#it.DISCOUNT_RATE#,'#it.MONEY#',#it.LAST_COST#,#it.PRICE#,#it.IS_MANUEL#,#attributes.columnsa#)">#it.PRODUCT_NAME#</a>
                     </cfif>
                 <cfelse>
-                    <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,#it.PRODUCT_TYPE#,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#','','',0,'','',0,'','','',0,'#it.IS_KARMA#')">#it.PRODUCT_NAME#</a></li>
+                    <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,#it.PRODUCT_TYPE#,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#','','',0,'','',0,'','','',0,'#it.IS_KARMA#','#it.IS_KARMA_SEVK#')">#it.PRODUCT_NAME#</a></li>
                 </cfif>
  
             </td>
@@ -120,7 +120,7 @@
                             <a onclick="AddRowItem(#it2.PRODUCT_ID#,'#it2.PRODUCT_NAME#','#it2.STOCK_CODE#',#it2.STOCK_ID#,#it2.PRICE#,#it2.DISCOUNT_RATE#,'#it2.MONEY#',#it2.LAST_COST#,#it2.PRICE#,#it2.IS_MANUEL#,#attributes.columnsa#)">#it2.PRODUCT_NAME#</a>
                         </cfif>
                     <cfelse>
-                        <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,#it2.PRODUCT_TYPE#,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#','','',0,'','','0','','','',0,'#it2.IS_KARMA#')">#it2.PRODUCT_NAME#</a>
+                        <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,#it2.PRODUCT_TYPE#,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#','','',0,'','','0','','','',0,'#it2.IS_KARMA#','#it.IS_KARMA_SEVK#')">#it2.PRODUCT_NAME#</a>
                         <span style="float:right" class="icon-detail" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_detail_product&pid=#it2.PRODUCT_ID#&sid=#it2.STOCK_ID#')"></span>
                     </cfif>
                 </li>
@@ -245,6 +245,7 @@ AddRow(
             PRODUCT.PRODUCT_NAME,
             PRODUCT.IS_PRODUCTION,
             PRODUCT.IS_KARMA,
+            PRODUCT.IS_KARMA_SEVK,
             PRODUCT.PRODUCT_CODE_2,
             PRODUCT_CAT.PRODUCT_CAT,
             PRODUCT_CAT.PRODUCT_CATID,
@@ -474,6 +475,7 @@ AddRow(
                 MANUFACT_CODE=MANUFACT_CODE,
                 TAX=TAX,
                 IS_KARMA=IS_KARMA
+                IS_KARMA_SEVK=IS_KARMA_SEVK,
                 BARCOD=BARCOD,
                 IS_PRODUCTION=IS_PRODUCTION,
                 STOCK_COUNT=AMOUNT,
@@ -526,6 +528,7 @@ AddRow(
             PRODUCT.PRODUCT_NAME,
             PRODUCT.PRODUCT_CODE_2,
             PRODUCT.IS_PRODUCTION,
+            PRODUCT.IS_KARMA_SEVK,
             PRODUCT.IS_KARMA,
             PRODUCT_CAT.PRODUCT_CAT,
             PRODUCT_CAT.HIERARCHY,
@@ -701,6 +704,7 @@ AddRow(
                 MANUFACT_CODE=getRelatedProduct.MANUFACT_CODE,
                 IS_PRODUCTION=IS_PRODUCTION,
                 IS_KARMA=IS_KARMA,
+                IS_KARMA_SEVK=IS_KARMA_SEVK,
                 TAX=TAX,
                 LAST_COST=lastCost2,
                 IS_MANUEL=is_manuel2,
