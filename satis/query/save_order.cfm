@@ -121,6 +121,7 @@ select count(*) AS RC from PBS_OFFER
     <cfset "attributes.unit_id#i#"=getUnit.PRODUCT_UNIT_ID>
     <cfset "attributes.price#i#"=filternum(it.price)>
     <cfset "attributes.tax#i#"=filternum(it.Tax)>
+    <cfset "attributes.is_karma#i#"=it.is_karma>
     <cfset "attributes.product_name#i#"=it.product_name>
     <cfset "attributes.indirim1#i#"=filternum(it.indirim1)>
     <cfset "attributes.other_money_#i#"=it.other_money>
