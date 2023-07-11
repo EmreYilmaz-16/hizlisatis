@@ -38,7 +38,7 @@ FROM (
 	LEFT JOIN (
 		SELECT sum(SFR.AMOUNT) AS AMOUNT
 			,UNIQUE_RELATION_ID
-		FROM workcube_metosan_2023_1.STOCK_FIS_ROW AS SFR
+		FROM #dsn2#.STOCK_FIS_ROW AS SFR
 		GROUP BY UNIQUE_RELATION_ID
 		) AS SF ON SF.UNIQUE_RELATION_ID = ORR.UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
 	LEFT JOIN #dsn3#.STOCKS AS S ON S.STOCK_ID = ORR.STOCK_ID
@@ -113,15 +113,15 @@ FROM (
         </tr>
         <cfif KM_P gte 1>
             <cfquery name="getKp" datasource="#dsn3#">
-           select PORK.*,S.PRODUCT_CODE,S.PRODUCT_NAME,PP.SHELF_CODE,PB.BRAND_NAME,S.STOCK_ID,SF.AMOUNT as AMOUNT_2 from workcube_metosan_1.PBS_OFFER_ROW_KARMA_PRODUCTS AS PORK
-LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=PORK.PRODUCT_ID 
-LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR. STOCK_ID=S.STOCK_ID
-LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP .PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
-LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID 
+           select PORK.*,S.PRODUCT_CODE,S.PRODUCT_NAME,PP.SHELF_CODE,PB.BRAND_NAME,S.STOCK_ID,SF.AMOUNT as AMOUNT_2 from #dsn3#.PBS_OFFER_ROW_KARMA_PRODUCTS AS PORK
+LEFT JOIN #dsn3#.STOCKS AS S ON S.PRODUCT_ID=PORK.PRODUCT_ID 
+LEFT JOIN #dsn3#.PRODUCT_PLACE_ROWS AS PPR ON PPR. STOCK_ID=S.STOCK_ID
+LEFT JOIN #dsn3#.PRODUCT_PLACE AS PP ON PP .PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
+LEFT JOIN #dsn3#.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID 
 LEFT JOIN (
 		SELECT sum(SFR.AMOUNT) AS AMOUNT
 			,UNIQUE_RELATION_ID
-		FROM workcube_metosan_2023_1.STOCK_FIS_ROW AS SFR
+		FROM #dsn2#.STOCK_FIS_ROW AS SFR
 		GROUP BY UNIQUE_RELATION_ID
 		) AS SF ON SF.UNIQUE_RELATION_ID = PORK.UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
 WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' 
@@ -134,6 +134,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
                     <td>#BRAND_NAME#</td>
                     <td><div class="form-group">
                         <input type="text" name="quantity#getS.currentrow#_#currentrow#" value="#tlformat(((getS.QUANTITY-getS.AMOUNT)*AMOUNT),2)#" style="padding-right: 0;text-align: right">
+                        <input type="text" name="quantity22_#getS.currentrow#_#currentrow#" value="#tlformat(AMOUNT,2)#" style="padding-right: 0;text-align: right">
                     </div>
                         </td>
                     <td>
