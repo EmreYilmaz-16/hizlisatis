@@ -134,7 +134,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
                     <td>#BRAND_NAME#</td>
                     <td><div class="form-group" style="display:flex">
                         <input type="text" name="quantity#getS.currentrow#_#currentrow#" value="#tlformat(((getS.QUANTITY-getS.AMOUNT)*AMOUNT),2)#" style="padding-right: 0;text-align: right">
-                        <input type="text" name="quantity22_#getS.currentrow#_#currentrow#" value="#tlformat(AMOUNT,2)#" style="padding-right: 0;text-align: right;width:25%;margin-left:2px !important" disabled readonly>
+                        <input type="text" name="quantity22_#getS.currentrow#_#currentrow#" value="#tlformat(AMOUNT,2)#" style="padding-right: 0;text-align: right;width:25% !important;margin-left:2px !important" disabled readonly>
                     </div>
                         </td>
                     <td>
