@@ -265,7 +265,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
         <cfinclude template="/v16/stock/query/add_ship_fis_2_PBS.cfm">
         <cfif isdefined("attributes.rows_")>            
             <cfinclude template="/v16/stock/query/add_ship_fis_3.cfm">
-            <cfinclude template="/v16/stock/query/add_ship_fis_4.cfm">                    
+            <cfinclude template="/v16/stock/query/add_ship_fis_4_PBS.cfm">                    
         <cfelse>
             <cfquery name="ADD_STOCK_FIS_ROW" datasource="#dsn2#">
                 INSERT INTO STOCK_FIS_ROW (FIS_NUMBER,FIS_ID) VALUES (<cfqueryparam cfsqltype="cf_sql_varchar" value="#FIS_NO#">,#GET_ID.MAX_ID#)
