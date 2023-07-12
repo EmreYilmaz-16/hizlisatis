@@ -87,7 +87,7 @@ FROM (
                 <td>#PRODUCT_CODE#</td>
             <td>#PRODUCT_NAME#</td>
             <td>#BRAND_NAME#</td>
-            <td style="width:15%"><div class="form-group"><input type="text" name="quantity#currentrow#" value="#tlformat(QUANTITY-AMOUNT,2)#" style="padding-right: 0;text-align: right"></div></td>
+            <td style="width:15%"><div class="form-group"><input type="text" data-kmp="#KM_P#" <cfif KM_P gte 1> onchange="setKarmaMi(this,#STOCK_ID#)"</cfif> name="quantity#currentrow#" value="#tlformat(QUANTITY-AMOUNT,2)#" style="padding-right: 0;text-align: right"></div></td>
             <td>
                 <cfquery name="getSrQ" datasource="#dsn2#">
                     select sum(STOCK_IN-STOCK_OUT) AS BAKIYE from #dsn2#.STOCKS_ROW where 1=1
@@ -312,6 +312,9 @@ $(i).click();
         b.innerText="X"
         
     } 
+ }
+ function setKarmaMi(el,sid){
+    
  }
 </script>
 </cf_box>
