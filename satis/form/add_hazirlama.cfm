@@ -158,7 +158,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
             <tfoot>
                 <tr>
                     <td colspan="9">
-                        <button type="button" onclick="CheckKarmaKoli(#gets.currentRow#)">Karma Koli Kontrol</button>
+                        <button type="button" onclick="CheckKarmaKoli(#gets.currentRow#,#QUANTITY-AMOUNT#)">Karma Koli Kontrol</button>
                     </td>
                 </tr>
             </tfoot>

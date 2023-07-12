@@ -47,9 +47,9 @@ function pKarma(ev) {
   console.log(el);
 }
 
-function hazirlamaKontrol() {
+function CheckKarmaKoli(ixx,iixx) {
   kmp_len = 2;
-  var min = 4;
+  var min = iixx;
   for (let i = 1; i <= kmp_len; i++) {
     var ex = document.getElementsByName("quantity1_" + i)[0];
     var ex2 = document.getElementsByName("quantity22_1_" + i)[0];
