@@ -99,7 +99,7 @@ FROM (
             <td>#DETAIL_INFO_EXTRA#</td>
             <td>#DESCRIPTION#</td>
             <td style="width:%10">
-                <cfif KM_P gte 1>
+                <cfif 0 gte 1>
                 <cfquery name="getKp" datasource="#dsn3#">
                     SELECT * FROM PBS_OFFER_ROW_KARMA_PRODUCTS WHERE REL_UNIQUE_RELATION_ID ='#UNIQUE_RELATION_ID#'
                 </cfquery>
@@ -278,43 +278,6 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
 </script>
 </cfif>
 <script>
- function checkT(rowid) {
-    var b=document.getElementById("chkbtn"+rowid)
-    
-var i=document.getElementById("is_add"+rowid)
-$(i).click();
-    if($(i).is(":checked")){
-    b.removeAttribute("class")
-    b.setAttribute("class","btn btn-success")
-    b.innerHTML="&#10003"
-   
-}else{
-      b.removeAttribute("class")
-    b.setAttribute("class","btn btn-danger")
-    b.innerText="X"
-    
-}
-    
- }
- function checkTKarma(r1,r2) {
-    var b=document.getElementById("chkbtn"+r1+"_"+r2)
-    
-    var i=document.getElementById("is_add"+r1+"_"+r2)
-    $(i).click();
-        if($(i).is(":checked")){
-        b.removeAttribute("class")
-        b.setAttribute("class","btn btn-success")
-        b.innerHTML="&#10003"
-       
-    }else{
-          b.removeAttribute("class")
-        b.setAttribute("class","btn btn-danger")
-        b.innerText="X"
-        
-    } 
- }
- function setKarmaMi(el,sid){
-    
- }
+<cfinclude template="../js/addHazirlama.js">
 </script>
 </cf_box>
