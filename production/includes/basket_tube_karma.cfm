@@ -22,7 +22,7 @@
 
 
 </cfif>
-<cfdump var="#getsTree#">
+
 <cfloop query="getsTree">
 <cfset "Eleman#QUESTION_ID#.STOCK_ID"=STOCK_ID>
 <cfset "Eleman#QUESTION_ID#.PRODUCT_ID"=PRODUCT_ID>
