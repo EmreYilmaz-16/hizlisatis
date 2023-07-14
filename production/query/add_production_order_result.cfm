@@ -1,3 +1,4 @@
+<cfparam name="attributes.PRODUCT_AMOUNT_1_0" default="">
 <cfdump var="#attributes#">
 <cfquery name="getVirtualProductionOrder" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#
@@ -35,8 +36,10 @@ WHERE  UNIQUE_RELATION_ID='#getVirtualProductionOrder.UNIQUE_RELATION_ID#'
 </cfif>
 
 
-
-<cfset attributes.PRODUCT_AMOUNT_1_0="#getVirtualProductionOrder.QUANTITY#">
+<cfif len(attributes.PRODUCT_AMOUNT_1_0)>
+<cfelse>
+    <cfset attributes.PRODUCT_AMOUNT_1_0="#getVirtualProductionOrder.QUANTITY#">
+</cfif>
 <cfinclude template="/AddOns/Partner/production/Includes/close_porders.cfm">
 
 <cfset attributes.process_cat=111>

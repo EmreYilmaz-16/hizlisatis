@@ -14,7 +14,7 @@
 		P_ORDER_ID,RECORD_DATE,RECORD_EMP,RESULT_AMOUNT
 		)
 	VALUES(
-		#attributes.V_P_ORDER_ID#,#NOW()#,#session.ep.userid#,#getVirtualProductionOrder.QUANTITY#
+		#attributes.V_P_ORDER_ID#,#NOW()#,#session.ep.userid#,#attributes.PRODUCT_AMOUNT_1_0#
 		)
 
 </cfquery>
