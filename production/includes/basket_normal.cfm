@@ -123,7 +123,7 @@ function UretimiSonlandirKarma(){
         var eleman=elemanlar[i]
         var vpo=eleman.getAttribute("data-vpoorderid")
         $.ajax({
-            url:"/index.cfm?fuseaction=production.emptypopup_add_prod_order_result&V_P_ORDER_ID="+vpo
+            url:"/index.cfm?fuseaction=production.emptypopup_add_prod_order_result&V_P_ORDER_ID="+vpo+"&PRODUCT_AMOUNT_1_0="+eleman.value
         })
     }
 }
