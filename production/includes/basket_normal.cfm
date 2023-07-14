@@ -74,6 +74,11 @@
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-success" type="button" onclick="UretimiSonlandirKarma()">Üretimi Sonlandır</button>
+                    </td>
+                </tr>
             </table>
         </cfoutput>
 <cfquery name="getVPKARMA" datasource="#dsn3#">
