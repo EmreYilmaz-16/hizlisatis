@@ -52,7 +52,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 				Sipariş Miktar
 			</th>
 			<td style="font-size:14pt">
-				#getPo2.QUANTITY#
+				<input type="text" name="QTY_#getPo2.V_P_ORDER_ID#" id="qtx#getPo2.V_P_ORDER_ID#" value="#getPo2.QUANTITY#" readonly>
 			</td>
 		</tr>
 		<tr>
