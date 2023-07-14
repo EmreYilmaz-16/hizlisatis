@@ -1,4 +1,4 @@
-<cfquery name="getPo" datasource="#dsn3#">
+<cfquery name="getPo2" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE V_P_ORDER_ID=#attributes.KARMA_VP_ORDER_ID#
 </cfquery>
 
@@ -22,7 +22,7 @@
     FROM #dsn3#.STOCKS AS S
     LEFT JOIN #dsn3#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID = S.PRODUCT_CATID
     LEFT JOIN #DSN1#.PRICE_STANDART AS PS ON PS.PRODUCT_ID=S.PRODUCT_ID AND PRICESTANDART_STATUS=1  AND PURCHASESALES=1
-    WHERE S.PRODUCT_ID = #getPo.STOCK_ID# 
+    WHERE S.PRODUCT_ID = #getPo2.STOCK_ID# 
 </cfquery>
 
 
@@ -126,7 +126,7 @@ WHERE PT.V_P_ORDER_ID = #attributes.KARMA_VP_ORDER_ID#
     </cfquery>
 
 <cfif gets.PRODUCT_TYPE eq 1 >
-    <cfinclude template="basket_tube.cfm">
+    <cfinclude template="basket_tube_karma.cfm">
 <cfelseif gets.PRODUCT_TYPE EQ 2>
     <cfinclude template="basket_hydrolik.cfm">
 <cfelseif gets.PRODUCT_TYPE EQ 3>
@@ -154,5 +154,5 @@ WHERE PT.V_P_ORDER_ID = #attributes.KARMA_VP_ORDER_ID#
     FROM #dsn3#.STOCKS AS S
     LEFT JOIN #dsn3#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID = S.PRODUCT_CATID
     LEFT JOIN #DSN1#.PRICE_STANDART AS PS ON PS.PRODUCT_ID=S.PRODUCT_ID AND PRICESTANDART_STATUS=1  AND PURCHASESALES=1
-    WHERE S.PRODUCT_ID = #getPo.STOCK_ID# 
+    WHERE S.PRODUCT_ID = #getPo2.STOCK_ID# 
 </cfquery>
