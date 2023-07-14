@@ -6,7 +6,18 @@
 </cfquery>
 <cfloop query="GETKARMAC">
     <cfquery name="INSKARMAC" datasource="#dsn3#">
-        
-        EXEC ADD_PBSOFFER_ROW_KARMA_PRODUCTS '#evaluate('attributes.row_unique_relation_id#i#')#-#timeFormat(now(),"hhmmnnl")#','#evaluate('attributes.row_unique_relation_id#i#')#',#GETKARMAC.PRODUCT_ID#,#GETKARMAC.PRODUCT_AMOUNT#
+        <cfset tms="#timeFormat(now(),"hhmmnnl")#">
+        <cfset lms="#evaluate('attributes.row_unique_relation_id#i#')#-#tms#">
+        EXEC ADD_PBSOFFER_ROW_KARMA_PRODUCTS '#lms#','#evaluate('attributes.row_unique_relation_id#i#')#',#GETKARMAC.PRODUCT_ID#,#GETKARMAC.PRODUCT_AMOUNT#
     </cfquery>
+    <cfquery name="GETSKARMA" datasource="#dsn3#">
+        SELECT * FROM STOCKS WHERE PRODUCT_ID=#GETKARMAC.PRODUCT_ID#
+    </cfquery>
+    <cfset PRODUCT_ID_KARMA=GETKARMAC.PRODUCT_ID>
+    <cfset STOCK_ID_KARMA=GETSKARMA.STOCK_ID>
+    <cfset AMOUNT_KARMA=GETKARMAC.PRODUCT_AMOUNT*evaluate('attributes.amount#i#')>
+
+<cfinclude template="save_virtual_production_orders_karma.cfm">
+
 </cfloop>
+

@@ -1,5 +1,5 @@
 <cfquery name="ishvprodorders" datasource="#dsn3#">
-	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE UNIQUE_RELATION_ID='#evaluate("attributes.row_unique_relation_id#i#")#'
+	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE UNIQUE_RELATION_ID='#lms#'
 </cfquery>
 
 <cfif not ishvprodorders.recordcount and evaluate("attributes.PBS_OFFER_ROW_CURRENCY#i#") eq -5>
@@ -7,7 +7,7 @@
 		EXEC GET_PAPER_NUMBER 2
 	</cfquery>
 	<cfset paper_p_order_no=get_p_order_number.PAPER_NO>
-	<cfquery name="insertvirtualporder" datasource="#dsn3#" result="RESpos">
+	<cfquery name="insertvirtualporder" datasource="#dsn3#" result="RESpos2">
 		INSERT INTO [#dsn3#].[VIRTUAL_PRODUCTION_ORDERS]
 			(
 				[STOCK_ID],
@@ -16,25 +16,26 @@
 				[OFFER_ROW_ID],
 				[QUANTITY],
 				[UNIQUE_RELATION_ID],
-				[V_P_ORDER_NO]
+				[V_P_ORDER_NO],
+				[REL_V_P_ORDER_ID]
 			)
 		VALUES
 			(
-				#evaluate("attributes.product_id#i#")#,
-				#evaluate('attributes.is_virtual#i#')#,
+				#PRODUCT_ID_KARMA#,
+				0,
 				0,
 				#GET_MAX_OFFER_ROW.OFFER_ROW_ID#,
-				#evaluate('attributes.amount#i#')#,
-				'#evaluate('attributes.row_unique_relation_id#i#')#',
-				'#paper_p_order_no#'
+				#AMOUNT_KARMA#,
+				'#LMS#',
+				'#paper_p_order_no#',
+				#MAIN_VP_ORDERID#
 			)
 	</cfquery>
-	<cfif evaluate('attributes.is_virtual#i#') neq 1>
+	
 		<cfquery name="GETtREE" datasource="#DSN3#">
-			SELECT * FROM PRODUCT_TREE WHERE STOCK_ID=#evaluate('attributes.stock_id#i#')#
+			SELECT * FROM PRODUCT_TREE WHERE STOCK_ID=#STOCK_ID_KARMA#
 		</cfquery>
 		<cfdump var="#GETtREE#">
-		<cfset MAIN_VP_ORDERID=RESpos.IDENTITYCOL>
 		<cfloop query="GETtREE">
 			<cfquery name="insertPosStocks" datasource="#dsn3#">
 				INSERT INTO VIRTUAL_PRODUCTION_ORDERS_STOCKS
@@ -46,7 +47,7 @@
 						,DISCOUNT
 						,QUESTION_ID)
 					VALUES
-						(#RESpos.IDENTITYCOL#
+						(#RESpos2.IDENTITYCOL#
 						,#RELATED_ID#
 						,#AMOUNT#
 						,#PRODUCT_ID#
@@ -56,6 +57,6 @@
 						)
 			</cfquery>
 		</cfloop>
-	</cfif> 
+	
 	
 </cfif>	
