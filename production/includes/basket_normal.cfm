@@ -56,7 +56,7 @@
                     </th>
                     <td style="font-size:14pt">
                         <div class="form-group">
-                        <input type="text" name="qtyMain" id="qtyMain" value="#getPo.QUANTITY#"> 
+                        <input type="text" name="qtyMain" id="qtyMain" onchange="setSubQuty(this)" value="#getPo.QUANTITY#"> 
                     </div>
                     </td>
                 </tr>
@@ -91,6 +91,28 @@
 </tr>
 </table>
 </cf_box>
+<script>
+    function setSubQuty(e) {
+    var ep=e.parentElement.parentElement.parentElement.parentElement.parentElement.rows[0].cells[1].innerText
+    ep=parseFloat(ep)
+    console.log("Üretim Miktari="+ep)
+   if(ep<parseFloat(e.value)){
+       alert("Sonuç Miktarı Sipariş Miktarından Fazla Olamaz")
+       e.value=ep
+   }
+    var elemanlar=document.getElementsByClassName("mktqt")
+    for(let i=0;i<elemanlar.length;i++){
+        var eleman=elemanlar[i]
+        var vpo=eleman.getAttribute("data-vpoorderid")
+        console.log(vpo)
+        var txEleman=document.getElementById("qtx2"+vpo)
+        var tx=txEleman.value
+        console.log(tx)
+        eleman.value=parseFloat(tx)*parseFloat(e.value)
+    }
+    
+}
+</script>
     <cfabort>
 </cfif>
 
