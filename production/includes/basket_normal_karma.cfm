@@ -1,3 +1,6 @@
+<cfquery name="getPo" datasource="#dsn3#">
+	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE V_P_ORDER_ID=#attributes.KARMA_VP_ORDER_ID#
+</cfquery>
 
 <cfquery name="gets" datasource="#dsn3#">
     SELECT S.PRODUCT_ID
@@ -22,17 +25,6 @@
     WHERE S.PRODUCT_ID = #getPo.STOCK_ID# 
 </cfquery>
 
-<cfif gets.IS_KARMA eq 1 and gets.IS_KARMA_SEVK eq 0>
-    <cfdump var="#gets#">
-<cfquery name="getVPKARMA" datasource="#dsn3#">
-    SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE REL_V_P_ORDER_ID = #attributes.VP_ORDER_ID#
-</cfquery>
-<CFLOOP query="getVPKARMA">
-<cfset attributes.KARMA_VP_ORDER_ID=getVPKARMA.V_P_ORDER_ID> 
-    <cfinclude template="basket_normal_karma.cfm">
-</CFLOOP>
-    <cfabort>
-</cfif>
 
 
 <cfquery name="getsTree" datasource="#dsn3#">

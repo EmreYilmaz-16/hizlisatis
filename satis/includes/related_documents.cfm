@@ -160,7 +160,7 @@ WHERE OI.ORDER_ID=#getOrders.ORDER_ID#
 </cfoutput>
 <tr>
     <th colspan="2">
-        İlişkili Üretim Emirleri
+       Alt Üretim Emirleri
     </th>
 </tr>
 <cfoutput query="getProductionOrders_2">
