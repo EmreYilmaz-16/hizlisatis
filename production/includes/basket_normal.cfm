@@ -25,7 +25,7 @@
 <cfif gets.IS_KARMA eq 1 and gets.IS_KARMA_SEVK eq 0>
     <cfdump var="#gets#">
 
-    <cfabort>
+    
 </cfif>
 
 
