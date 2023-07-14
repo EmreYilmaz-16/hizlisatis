@@ -109,7 +109,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
         <cfargument name="company_id">
         <cfargument name="price_catid">
         <cfset dsn3=arguments.ddsn3>
-        <cfquery name="getTree" datasource="#dsn3#"><cfif arguments.isVirtual eq 1>SELECT *,STOCK_ID AS RELATED_ID,VPT_ID AS PRODUCT_TREE_ID FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.pid# AND PRODUCT_ID <>0<cfelse>select *,0 AS IS_VIRTUAL,(SELECT PROPERTY3 FROM PRODUCT_INFO_PLUS WHERE PRODUCT_ID=PT.PRODUCT_ID AND PRO_INFO_ID=2) AS DISPLAY_NAME from PRODUCT_TREE WHERE STOCK_ID=#arguments.sid# </cfif></cfquery>       
+        <cfquery name="getTree" datasource="#dsn3#"><cfif arguments.isVirtual eq 1>SELECT *,STOCK_ID AS RELATED_ID,VPT_ID AS PRODUCT_TREE_ID FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.pid# AND PRODUCT_ID <>0<cfelse>select *,0 AS IS_VIRTUAL,(SELECT PROPERTY3 FROM PRODUCT_INFO_PLUS WHERE PRODUCT_ID=PRODUCT_TREE.PRODUCT_ID AND PRO_INFO_ID=2) AS DISPLAY_NAME from PRODUCT_TREE WHERE STOCK_ID=#arguments.sid# </cfif></cfquery>       
       <cfsavecontent variable="test1">
         <cfdump var="#getTree#">
       </cfsavecontent>
