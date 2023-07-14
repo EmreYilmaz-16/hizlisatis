@@ -33,7 +33,7 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 <cfset "Eleman#QUESTION_ID#.MONEY"=MONEY>
 </cfloop>
 
-<cf_box title="Üretim Emri #getPo2.V_P_ORDER_NO# - #gets.PRODUCT_NAME#" edit_href="/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#getPo2.V_P_ORDER_ID#" collapsed="1">
+<cf_box title="Üretim Emri #getPo2.V_P_ORDER_NO# - #gets.PRODUCT_NAME#" edit_href="/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#getPo2.V_P_ORDER_ID#&isFromKarma=1" collapsed="1">
 	<cfoutput>
 	<table style="width:100%">
 		<tr>
