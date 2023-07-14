@@ -27,10 +27,17 @@
 <cfquery name="getVPKARMA" datasource="#dsn3#">
     SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE REL_V_P_ORDER_ID = #attributes.VP_ORDER_ID#
 </cfquery>
+<table style="width:100%">
+<tr>
 <CFLOOP query="getVPKARMA">
+    <td>
 <cfset attributes.KARMA_VP_ORDER_ID=getVPKARMA.V_P_ORDER_ID> 
     <cfinclude template="basket_normal_karma.cfm">
+</td>
 </CFLOOP>
+
+</tr>
+</table>
     <cfabort>
 </cfif>
 
