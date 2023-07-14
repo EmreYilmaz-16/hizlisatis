@@ -17,7 +17,8 @@
 				[QUANTITY],
 				[UNIQUE_RELATION_ID],
 				[V_P_ORDER_NO],
-				[REL_V_P_ORDER_ID]
+				[REL_V_P_ORDER_ID],
+				[KARMA_AMOUNT]
 			)
 		VALUES
 			(
@@ -28,7 +29,8 @@
 				#AMOUNT_KARMA#,
 				'#LMS#',
 				'#paper_p_order_no#',
-				#MAIN_VP_ORDERID#
+				#MAIN_VP_ORDERID#,
+				#GETKARMAC.PRODUCT_AMOUNT#
 			)
 	</cfquery>
 	
