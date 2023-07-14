@@ -86,7 +86,7 @@
 					<th style="text-align:left;">
 						#QUESTION#
 					</th>					
-					<cfif isDefined("Eleman#QUESTION_ID#.STOCK_ID")>
+					<cfif isDefined("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.STOCK_ID")>
 						<td>
 								<div class="form-group">
 									<div class="input-group">
