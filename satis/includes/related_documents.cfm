@@ -139,6 +139,13 @@ WHERE OI.ORDER_ID=#getOrders.ORDER_ID#
     <cfquery name="getProductionOrders" datasource="#dsn3#">
     SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE UNIQUE_RELATION_ID IN (SELECT UNIQUE_RELATION_ID FROM PBS_OFFER_ROW WHERE OFFER_ID=#attributes.offer_id#)
 </cfquery>
+<cfset islist=valueList(getProductionOrders.V_P_ORDER_ID)>
+<CFIF LEN(islist) gt 0><cfelse>
+    <cfset islist=0>
+</CFIF>
+<cfquery name="getProductionOrders_2" datasource="#dsn3#">
+    select * from workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS WHERE REL_V_P_ORDER_ID IN(#islist#)
+</cfquery>
 
 <cf_ajax_list>
 <cfoutput query="getProductionOrders">
@@ -151,6 +158,16 @@ WHERE OI.ORDER_ID=#getOrders.ORDER_ID#
     </td>
 </tr>
 </cfoutput>
+<cfoutput query="getProductionOrders_2">
+    <tr>
+        <td>
+            <a onclick="windowopen('/index.cfm?fuseaction=production.emptypopup_detail_virtual_production_orders&p_order_id=#V_P_ORDER_ID#')" href="##_#V_P_ORDER_ID#">#V_P_ORDER_NO#- Detay</a>
+        </td>
+        <td>
+            <a onclick="windowopen('/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#V_P_ORDER_ID#')" href="##_#V_P_ORDER_ID#">#V_P_ORDER_NO# Aç</a>
+        </td>
+    </tr>
+    </cfoutput>
 </cf_ajax_list>
 </cf_box>
 </cfif>
