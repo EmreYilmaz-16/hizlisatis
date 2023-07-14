@@ -14,12 +14,18 @@
         ,#dsn#.getEmployeeWithId(S.UPDATE_EMP) UPDATE_EMP
         ,S.UPDATE_DATE
         ,PC.PRODUCT_CAT
-        
+        ,S.IS_KARMA
+        ,S.IS_KARMA_SEVK
     FROM #dsn3#.STOCKS AS S
     LEFT JOIN #dsn3#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID = S.PRODUCT_CATID
     LEFT JOIN #DSN1#.PRICE_STANDART AS PS ON PS.PRODUCT_ID=S.PRODUCT_ID AND PRICESTANDART_STATUS=1  AND PURCHASESALES=1
     WHERE S.PRODUCT_ID = #getPo.STOCK_ID# 
 </cfquery>
+<cfif gets.IS_KARMA eq 1 and gets.IS_KARMA_SEVK eq 1>
+    <cfdump var="#gets#">
+    <cfabort>
+</cfif>
+
 
 <cfquery name="getsTree" datasource="#dsn3#">
    SELECT *
