@@ -23,7 +23,41 @@
 </cfquery>
 
 <cfif gets.IS_KARMA eq 1 and gets.IS_KARMA_SEVK eq 0>
-    <cfdump var="#gets#">
+    <cf_box title="#getpo.V_P_ORDER_NO# - #gets.PRODUCT_NAME#">
+        <cfoutput>
+            <table style="width:100%">
+                <tr>
+                    <th style="text-align: left;" colspan="2">Ürün Gurubu</th>
+                    <td colspan="2" >#gets.PRODUCT_CAT#</td>
+                </tr>
+                <tr>
+                    <th style="font-size:14pt">
+                        Ürün Adı
+                    </th>
+                    <td style="font-size:14pt">			
+                        #gets.PRODUCT_NAME# 
+                        
+                    </td>
+                    <th style="font-size:14pt">
+                        Sipariş Miktar
+                    </th>
+                    <td style="font-size:14pt">
+                        #getPo.QUANTITY#
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="4" style="font-size:14pt">Açıklama</th>
+                </tr>
+                <tr>
+                
+                    <td colspan="4">
+                        <div class="alert alert-success">
+                            #gets.PRODUCT_DESCRIPTION#
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </cfoutput>
 <cfquery name="getVPKARMA" datasource="#dsn3#">
     SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE REL_V_P_ORDER_ID = #attributes.VP_ORDER_ID#
 </cfquery>
@@ -38,6 +72,7 @@
 
 </tr>
 </table>
+</cf_box>
     <cfabort>
 </cfif>
 
