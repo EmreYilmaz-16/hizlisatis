@@ -158,6 +158,11 @@ WHERE OI.ORDER_ID=#getOrders.ORDER_ID#
     </td>
 </tr>
 </cfoutput>
+<tr>
+    <th colspan="2">
+        İlişkili Üretim Emirleri
+    </th>
+</tr>
 <cfoutput query="getProductionOrders_2">
     <tr>
         <td>
