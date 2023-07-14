@@ -183,6 +183,7 @@
     <cfargument name="SALE_PRICE">
     <cfargument name="TAX">
     <cfargument name="project_id">
+    <cfargument name="shownName" default="">
     
     <cfquery name="getMaster" datasource="#dsn3#">
         SELECT 
@@ -271,12 +272,15 @@
         <cfset arguments.dsn=dsn>
     </cfif>
     <cfset database_type="MSSQL">
-    <cfinclude template="/AddOns/Partner/satis/Includes/add_import_product.cfm">
+    <cfinclude template="../../satis/Includes/add_import_product.cfm">
     <cfscript>
         main_stock_id = GET_MAX_STCK.MAX_STCK;
         main_product_id =GET_PID.PRODUCT_ID;
         spec_name="#urun_adi#";                          
     </cfscript> 
+    <cfquery name="ins" datasource="#dsn3#">
+        EXEC ADD_PIP_PBS 'PROPERTY3','#arguments.shownName#','#main_product_id#' 
+    </cfquery>
     <cfset RETURN_VAL.STOCK_ID=GET_MAX_STCK.MAX_STCK>
     <cfset RETURN_VAL.PRODUCT_ID=GET_PID.PRODUCT_ID>
     <CFRETURN RETURN_VAL>
