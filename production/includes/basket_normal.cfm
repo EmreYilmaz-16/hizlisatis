@@ -38,14 +38,30 @@
                         #gets.PRODUCT_NAME# 
                         
                     </td>
-                    <th style="font-size:14pt">
+                    <td colspan="2">
+                    <table style="width:100%">
+                        <tr>
+                        <th style="font-size:14pt">
                         Sipariş Miktar
+                    </th>
+                    <td style="font-size:14pt">
+                        
+                        #getPo.QUANTITY#
+                    
+                    </td>
+                </tr>
+                <tr>
+                    <th style="font-size:14pt">
+                        Üretilen Miktar
                     </th>
                     <td style="font-size:14pt">
                         <div class="form-group">
                         <input type="text" name="qtyMain" id="qtyMain" value="#getPo.QUANTITY#"> 
                     </div>
                     </td>
+                </tr>
+                </table>
+                </td>
                 </tr>
                 <tr>
                     <th colspan="4" style="font-size:14pt">Açıklama</th>
