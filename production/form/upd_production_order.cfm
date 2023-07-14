@@ -61,6 +61,7 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
 
 
             <cfif getVirtualProduct.product_type eq 1>
+                dur 1
                 <cfinclude template="../includes/basket_tube.cfm">
             <cfelseif getVirtualProduct.product_type eq 2>
                 <cfinclude template="../includes/basket_hydrolik.cfm">
@@ -68,6 +69,7 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
                 <cfinclude template="../includes/basket_pump.cfm">
             </cfif>
         <cfelse>
+            dur 2
             <cfinclude template="../includes/basket_normal.cfm">
         </cfif>     
 <input type="hidden" name="total_price" id="total_price">

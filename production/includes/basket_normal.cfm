@@ -21,6 +21,7 @@
     LEFT JOIN #DSN1#.PRICE_STANDART AS PS ON PS.PRODUCT_ID=S.PRODUCT_ID AND PRICESTANDART_STATUS=1  AND PURCHASESALES=1
     WHERE S.PRODUCT_ID = #getPo.STOCK_ID# 
 </cfquery>
+<cfdump var="#gets#">
 <cfif gets.IS_KARMA eq 1 and gets.IS_KARMA_SEVK eq 1>
     <cfdump var="#gets#">
     <cfabort>
