@@ -29,10 +29,11 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
 </cfoutput>
 
 
+    
     <cfquery name="getProductionOrders" datasource="#dsn3#">
         SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.VP_ORDER_ID#
     </cfquery>
-
+<cfif not isDefined("attributes.isFromKarma")>
     <cfquery name="getOffer" datasource="#dsn3#">
         select POR.*,DETAIL from PBS_OFFER_ROW  AS POR 
         LEFT JOIN STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID
@@ -42,7 +43,21 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
     <cfquery name="getOfferMain" datasource="#dsn3#">
         SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
     </cfquery>
-
+    <cfelse>
+         
+    <cfquery name="getProductionOrders" datasource="#dsn3#">
+        SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#getProductionOrders.REL_V_P_ORDER_ID#
+    </cfquery>
+        <cfquery name="getOffer" datasource="#dsn3#">
+            select POR.*,DETAIL from PBS_OFFER_ROW  AS POR 
+            LEFT JOIN STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID
+            LEFT JOIN #dsn1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID 
+            WHERE UNIQUE_RELATION_ID='#getProductionOrders.UNIQUE_RELATION_ID#'
+        </cfquery>
+        <cfquery name="getOfferMain" datasource="#dsn3#">
+            SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
+        </cfquery>
+</cfif>
 <cfform method="post" name="production_form" id="production_form" onsubmit="event.preventDefault()">
     <cfoutput>
         <input type="hidden" name="offer_row_id" value="#getOffer.OFFER_ROW_ID#"> 
