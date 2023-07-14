@@ -53,8 +53,8 @@ LEFT JOIN #dsn3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PRODUCT_UN
 			</th>
 			<td style="font-size:14pt">
 				<div class="form-group" style="display:flex;float:right">
-				<input type="text" name="QTY_#getPo2.V_P_ORDER_ID#"  id="qtx#getPo2.V_P_ORDER_ID#" value="#getPo2.QUANTITY#" readonly>
-				<input type="text" name="QTY2_#getPo2.V_P_ORDER_ID#" style="width:25%" id="qtx2#getPo2.V_P_ORDER_ID#" value="#getPo2.KARMA_AMOUNT#" readonly disabled>
+				<input type="text" class="mktqt" name="QTY_#getPo2.V_P_ORDER_ID#"  id="qtx#getPo2.V_P_ORDER_ID#" value="#getPo2.QUANTITY#" readonly>
+				<input type="text" class="aqtqt" name="QTY2_#getPo2.V_P_ORDER_ID#" style="width:25%" id="qtx2#getPo2.V_P_ORDER_ID#" value="#getPo2.KARMA_AMOUNT#" readonly disabled>
 			</div>
 			</td>
 		</tr>
