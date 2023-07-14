@@ -24,15 +24,15 @@
 </cfif>
 
 <cfloop query="getsTree">
-<cfset "Eleman#QUESTION_ID#.STOCK_ID"=STOCK_ID>
-<cfset "Eleman#QUESTION_ID#.PRODUCT_ID"=PRODUCT_ID>
-<cfset "Eleman#QUESTION_ID#.PRODUCT_NAME"=PRODUCT_NAME>
-<cfset "Eleman#QUESTION_ID#.AMOUNT"=AMOUNT>
-<cfset "Eleman#QUESTION_ID#.MAIN_UNIT"=MAIN_UNIT>
-<cfset "Eleman#QUESTION_ID#.BARCOD"=BARCOD>
-<cfset "Eleman#QUESTION_ID#.PRICE"=PRICE>
-<cfset "Eleman#QUESTION_ID#.DISCOUNT"=DISCOUNT>
-<cfset "Eleman#QUESTION_ID#.MONEY"=MONEY>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.STOCK_ID"=STOCK_ID>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.PRODUCT_ID"=PRODUCT_ID>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.PRODUCT_NAME"=PRODUCT_NAME>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.AMOUNT"=AMOUNT>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.MAIN_UNIT"=MAIN_UNIT>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.BARCOD"=BARCOD>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.PRICE"=PRICE>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.DISCOUNT"=DISCOUNT>
+<cfset "Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.MONEY"=MONEY>
 </cfloop>
 
 <cf_box title="Üretim Emri #getPo2.V_P_ORDER_NO# - #gets.PRODUCT_NAME#" edit_href="/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#getPo2.V_P_ORDER_ID#&isFromKarma=1" collapsed="1">
@@ -90,29 +90,29 @@
 						<td>
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" name="PRODUCT_NAME_#QUESTION_ID#" id="PRODUCT_NAME_#QUESTION_ID#"  value='#evaluate("Eleman#QUESTION_ID#.PRODUCT_NAME")#'>
+										<input type="text" name="PRODUCT_NAME_#QUESTION_ID#" id="PRODUCT_NAME_#QUESTION_ID#"  value='#evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.PRODUCT_NAME")#'>
 										<span class="input-group-addon btnPointer icon-ellipsis"  onclick='openProductPopup(#QUESTION_ID#)'></span>
 									</div>
 								</div>
-							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#"  value="#evaluate("Eleman#QUESTION_ID#.STOCK_ID")#">
-							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRODUCT_ID")#">	
-							<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.PRICE")#">	
-							<input type="hidden" name="DISCOUNT_#QUESTION_ID#" id="DISCOUNT_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.DISCOUNT")#">	
-							<input type="hidden" name="MONEY_#QUESTION_ID#" id="MONEY_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.MONEY")#">	
+							<input type="hidden" name="STOCK_ID_#QUESTION_ID#" id="STOCK_ID_#QUESTION_ID#"  value="#evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.STOCK_ID")#">
+							<input type="hidden" name="PRODUCT_ID_#QUESTION_ID#" id="PRODUCT_ID_#QUESTION_ID#" value="#evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.PRODUCT_ID")#">	
+							<input type="hidden" name="PRICE_#QUESTION_ID#" id="PRICE_#QUESTION_ID#" value="#evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.PRICE")#">	
+							<input type="hidden" name="DISCOUNT_#QUESTION_ID#" id="DISCOUNT_#QUESTION_ID#" value="#evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.DISCOUNT")#">	
+							<input type="hidden" name="MONEY_#QUESTION_ID#" id="MONEY_#QUESTION_ID#" value="#evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.MONEY")#">	
 							<input type="hidden" name="QUESTION_ID_#QUESTION_ID#" id="QUESTION_ID_#QUESTION_ID#" value="#QUESTION_ID#">	
 						</td>
 						<td>
 							<div class="form-group">
-								<input type="text"  name="BARKODE_#QUESTION_ID#" id="BARKODE_#QUESTION_ID#" value="#evaluate("Eleman#QUESTION_ID#.BARCOD")#">
+								<input type="text"  name="BARKODE_#QUESTION_ID#" id="BARKODE_#QUESTION_ID#" value="#evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.BARCOD")#">
 							</div>
 						</td>
 						<td>
 							<div class="form-group">
-								<input type="text" name="AMOUNT_#QUESTION_ID#" onchange="this.value=commaSplit(this.value)" id="AMOUNT_#QUESTION_ID#"  value="#tlformat(evaluate("Eleman#QUESTION_ID#.AMOUNT"))#">
+								<input type="text" name="AMOUNT_#QUESTION_ID#" onchange="this.value=commaSplit(this.value)" id="AMOUNT_#QUESTION_ID#"  value="#tlformat(evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.AMOUNT"))#">
 							</div>
 						</td>
 						<td>
-							<span id="MAIN_UNIT_#QUESTION_ID#">#evaluate("Eleman#QUESTION_ID#.MAIN_UNIT")#</span>
+							<span id="MAIN_UNIT_#QUESTION_ID#">#evaluate("Eleman#getPo2.V_P_ORDER_ID#_#QUESTION_ID#.MAIN_UNIT")#</span>
 						</td>
 					<cfelse>				
 					<td>
