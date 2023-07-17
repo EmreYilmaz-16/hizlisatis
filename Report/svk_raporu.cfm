@@ -97,7 +97,7 @@
                         ,ORR.ORDER_ID
                         ,ORR.DESCRIPTION
                         ,ORR.QUANTITY AS ORDERED_AMOUNT
-                        ,O.ORDER_NUMBER
+                        
                         ,OFFER.*
                         ,PSR.DELIVER_PAPER_NO
                         ,ISNULL(STOK_FIS.READY_AMOUNT, 0) READY_AMOUNT
