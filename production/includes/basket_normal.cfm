@@ -117,7 +117,7 @@
     }
     
 }
-function UretimiSonlandirKarma(){
+function UretimiSonlandirKarma(porderId){
     var elemanlar=document.getElementsByClassName("mktqt")
     for(let i=0;i<elemanlar.length;i++){
         var eleman=elemanlar[i]
@@ -126,6 +126,8 @@ function UretimiSonlandirKarma(){
             url:"/index.cfm?fuseaction=production.emptypopup_add_prod_order_result&V_P_ORDER_ID="+vpo+"&PRODUCT_AMOUNT_1_0="+eleman.value
         })
     }
+var miks=document.getElementById("qtyMain").value
+    windowopen("/index.cfm?fuseaction=production.emptypopup_add_prod_order_result&V_P_ORDER_ID="+porderId+"&PRODUCT_AMOUNT_1_0="+miks+"&justVresult=1")
 }
 </script>
     <cfabort>
