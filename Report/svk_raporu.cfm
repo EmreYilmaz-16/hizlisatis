@@ -178,6 +178,7 @@
                 </cfif>
                 ORDER BY SHIP_RESULT_ID
                 </cfquery>
+                <cfdump var="#getd#">
                 <cfoutput query="getd">
                     <tr>
                         <td>#NICKNAME#</td>
