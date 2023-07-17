@@ -60,7 +60,7 @@
                     
                 </tr>
                 <tr>
-                    <th>Kalan</th>
+                    <th style="font-size:14pt">Kalan Miktar</th>
                     <td>
 <!----	SELECT *,VPO.QUANTITY-ISNULL(RR.RESULT_AMOUNT,0) AS BAKIYE FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS 
 AS VPO 
@@ -142,6 +142,19 @@ function UretimiSonlandirKarma(porderId){
 var miks=document.getElementById("qtyMain").value
     windowopen("/index.cfm?fuseaction=production.emptypopup_add_prod_order_result&V_P_ORDER_ID="+porderId+"&PRODUCT_AMOUNT_1_0="+miks+"&justVresult=1")
 }
+$(document).ready(function () {
+    var qm=document.getElementById("qtyMain").value
+    var elemanlar=document.getElementsByClassName("mktqt")
+    for(let i=0;i<elemanlar.length;i++){
+        var eleman=elemanlar[i]
+        var vpo=eleman.getAttribute("data-vpoorderid")
+        console.log(vpo)
+        var txEleman=document.getElementById("qtx2"+vpo)
+        var tx=txEleman.value
+        console.log(tx)
+        eleman.value=parseFloat(tx)*parseFloat(qm)
+    }
+})
 </script>
     <cfabort>
 </cfif>
