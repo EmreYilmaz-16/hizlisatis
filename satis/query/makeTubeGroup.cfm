@@ -39,7 +39,7 @@
     this.close();
 </script>
 
-<cffunction name="getProduct" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
+<cffunction name="getProduct">
     <cfargument name="keyword">
     <cfargument name="userid">
     <cfargument name="dsn2">
@@ -253,7 +253,7 @@
     <CFSET ReturnVal.RecordCount=0>
     
 </cfif>
-<cfreturn Replace(SerializeJSON(ReturnVal),'//','')>
+<cfreturn Product>
 </cffunction>
 
 
