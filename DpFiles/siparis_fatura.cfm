@@ -6,7 +6,7 @@
 $(document).on('ready',function(){
   <cfoutput>
     <cfloop list="#attributes.ORDER_ROW_ID#" item="it">
-        var ix=basket.items.find(P=>P.WRK_ROW_RELATION_ID="#evaluate("attributes.RELATION_ID_#it#")#")
+        var ix=basket.items.findIndex(P=>P.WRK_ROW_RELATION_ID="#evaluate("attributes.RELATION_ID_#it#")#")
         if(ix !=-1){
             basket.items[ix].AMOUNT=#evaluate("attributes.quantity_#it#")#
         }
