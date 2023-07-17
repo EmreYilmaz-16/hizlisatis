@@ -9,7 +9,12 @@ SM.MONEY
 FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
 </cfquery>
 <cfquery name="getPo" datasource="#dsn3#">
-	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS WHERE V_P_ORDER_ID=#attributes.VP_ORDER_ID#
+	SELECT *,VPO.QUANTITY-ISNULL(RR.RESULT_AMOUNT,0) AS BAKIYE FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS 
+AS VPO 
+LEFT JOIN (
+SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS_RESULT  GROUP BY P_ORDER_ID
+) AS RR ON RR.P_ORDER_ID=VPO.V_P_ORDER_ID
+ WHERE VPO.V_P_ORDER_ID=#attributes.VP_ORDER_ID#
 </cfquery>
 <script>
     var moneyArr=[
@@ -31,7 +36,12 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
 
     
     <cfquery name="getProductionOrders" datasource="#dsn3#">
-        SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.VP_ORDER_ID#
+        	SELECT *,VPO.QUANTITY-ISNULL(RR.RESULT_AMOUNT,0) AS BAKIYE FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS 
+AS VPO 
+LEFT JOIN (
+SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS_RESULT  GROUP BY P_ORDER_ID
+) AS RR ON RR.P_ORDER_ID=VPO.V_P_ORDER_ID
+ WHERE VPO.V_P_ORDER_ID=#attributes.VP_ORDER_ID#
     </cfquery>
 <cfif not isDefined("attributes.isFromKarma")>
     <cfquery name="getOffer" datasource="#dsn3#">
