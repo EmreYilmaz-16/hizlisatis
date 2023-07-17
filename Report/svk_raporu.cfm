@@ -59,6 +59,7 @@
             <th>Müşteri</th>
             <th>Teklif No</th>
             <th>Satış Çalışanı</th>
+            <th>SVK No</th>
             <th>Sipariş No</th>
             <th>Ürün Kodu</th>
             <th>Ürün Adı</th>
@@ -183,6 +184,7 @@
                     <tr>
                         <td>#NICKNAME#</td>
                         <td>#OFFER_NUMBER#</td>
+                        <td>#DELIVER_PAPER_NO#</td>
                         <td>#SALE_EMP#</td>
                         <td>#ORDER_NUMBER#</td>
                         <td>#PRODUCT_CODE#</td>   
