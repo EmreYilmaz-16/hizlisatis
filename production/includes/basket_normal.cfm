@@ -55,9 +55,22 @@
                         Üretilen Miktar
                     </th>
                     <td style="font-size:14pt">
-                        <div class="form-group">
-                        <input type="text" name="qtyMain" id="qtyMain" onchange="setSubQuty(this)" value="#getPo.QUANTITY#"> 
-                    </div>
+                    #getpo.RESULT_AMOUNT#
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <th>Kalan</th>
+                    <td>
+<!----	SELECT *,VPO.QUANTITY-ISNULL(RR.RESULT_AMOUNT,0) AS BAKIYE FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS 
+AS VPO 
+LEFT JOIN (
+SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS_RESULT  GROUP BY P_ORDER_ID
+) AS RR ON RR.P_ORDER_ID=VPO.V_P_ORDER_ID
+ WHERE VPO.V_P_ORDER_ID=#attributes.VP_ORDER_ID#---->
+ <div class="form-group">
+    <input type="text" name="qtyMain" id="qtyMain" onchange="setSubQuty(this)" value="#getPo.BAKIYE#"> 
+</div>
                     </td>
                 </tr>
                 </table>
