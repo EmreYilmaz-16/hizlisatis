@@ -129,6 +129,7 @@
                             ,PO.SHIP_METHOD
                             ,POR.DELIVER_DEPT
                             ,POR.DELIVER_LOCATION
+                            ,PO.OFFER_ID
                             ,workcube_metosan.getEmployeeWithId(PO.SALES_EMP_ID) AS SALE_EMP
                             ,PO.SALES_EMP_ID
                         FROM workcube_metosan_1.PBS_OFFER_ROW AS POR
@@ -183,11 +184,11 @@
                 <cfoutput query="getd">
                     <tr>
                         <td>#NICKNAME#</td>
-                        <td>#OFFER_NUMBER#</td>
+                        <td><a href="javascript:;" onclick="/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#OFFER_ID#"> #OFFER_NUMBER#</a></td>
                         
                         <td>#SALE_EMP#</td>
                         <td>#DELIVER_PAPER_NO#</td>
-                        <td>#ORDER_NUMBER#</td>
+                        <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#')">#ORDER_NUMBER#</a></td>
                         <td>#PRODUCT_CODE#</td>   
                         <td>#PRODUCT_NAME#</td>        
                         <td>#OFFERED_AMOUNT#</td>        
@@ -198,10 +199,13 @@
                         <td>#DLOLK#</td>
                         <td>#SEVK_TIPI#</td>
                         <td>#DESCRIPTION#</td>
-                        <td>#FATURALANABILIR#</td>
+                        <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=#SHIP_RESULT_ID#')">#FATURALANABILIR#</a></td>
                     </tr>
                 </cfoutput>
         </cfif>
 </tbody>
 </cf_big_list>
 
+http://erp.metosan.com.tr/index.cfm?fuseaction=sales.list_order&event=upd&order_id=79498
+http://erp.metosan.com.tr/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=12664
+http://erp.metosan.com.tr/index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=11130
