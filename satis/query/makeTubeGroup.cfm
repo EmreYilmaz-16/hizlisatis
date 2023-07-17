@@ -53,7 +53,7 @@
             DROP TABLE ####TempProductList_#arguments.userid#
         END    
     </cfquery>
-    <cfset arguments.keyword = Replace(arguments.keyword,' ',';','all')><!--- % idi ; yaptik --->
+   
     <cfquery name="get_products" datasource="#arguments.dsn1#">
         SELECT
             STOCKS.STOCK_ID,
