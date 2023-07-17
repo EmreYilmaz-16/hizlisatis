@@ -34,7 +34,7 @@
 <CFSET product_info=getProduct(OlusanUrun.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
 <script>
     window.opener.RemSelected();
-<cfoutput>window.opener.function AddRow(#product_info.PRODUCT_ID#,#product_info.STOCK_ID#,#product_info.PRODUCT_CODE#,'#product_info.BRAND_NAME#',0,1,#product_info.PRICE#,'#product_info.PRODUCT_NAME#',#product_info.TAX#,#product_info.DISCOUNT#,1,'',"TL",#product_info.PRICE#,-1,0,0,"Adet","","",0,"","",0,"","","",0,1,0)</cfoutput>
+<cfoutput>window.opener.function AddRow(#product_info.PRODUCT_ID#,#product_info.STOCK_ID#,#product_info.STOCK_CODE#,'#product_info.BRAND_NAME#',0,1,#product_info.PRICE#,'#product_info.PRODUCT_NAME#',#product_info.TAX#,#product_info.DISCOUNT#,1,'',"TL",#product_info.PRICE#,-1,0,0,"Adet","","",0,"","",0,"","","",0,1,0)</cfoutput>
     
     this.close();
 </script>
