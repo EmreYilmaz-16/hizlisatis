@@ -31,6 +31,22 @@ WHERE  UNIQUE_RELATION_ID='#getVirtualProductionOrder.UNIQUE_RELATION_ID#'
         </script>
         <cfabort>
     <cfelse>
+        <cfif isDefined("attributes.justVresult") and attributes.justVresult eq 1>
+            <cfquery name="AddVirtualResult" datasource="#dsn3#">
+                INSERT INTO VIRTUAL_PRODUCTION_ORDERS_RESULT (
+                    P_ORDER_ID,RECORD_DATE,RECORD_EMP,RESULT_AMOUNT
+                    )
+                VALUES(
+                    #attributes.V_P_ORDER_ID#,#NOW()#,#session.ep.userid#,#attributes.PRODUCT_AMOUNT_1_0#
+                    )
+            
+            </cfquery>
+            <script> window.opener.location.reload()>
+                this.close();
+            </script>
+            <cfabort>
+        </cfif>
+        
     <cfinclude template="realproduction_res.cfm">
     </cfif>
 </cfif>
@@ -41,21 +57,6 @@ WHERE  UNIQUE_RELATION_ID='#getVirtualProductionOrder.UNIQUE_RELATION_ID#'
     <cfset attributes.PRODUCT_AMOUNT_1_0="#getVirtualProductionOrder.QUANTITY#">
 </cfif>
 
-<cfif isDefined("attributes.justVresult") and attributes.justVresult eq 1>
-    <cfquery name="AddVirtualResult" datasource="#dsn3#">
-        INSERT INTO VIRTUAL_PRODUCTION_ORDERS_RESULT (
-            P_ORDER_ID,RECORD_DATE,RECORD_EMP,RESULT_AMOUNT
-            )
-        VALUES(
-            #attributes.V_P_ORDER_ID#,#NOW()#,#session.ep.userid#,#attributes.PRODUCT_AMOUNT_1_0#
-            )
-    
-    </cfquery>
-    <script> window.opener.location.reload()>
-        this.close();
-    </script>
-    <cfabort>
-</cfif>
 
 <cfinclude template="/AddOns/Partner/production/Includes/close_porders.cfm">
 
