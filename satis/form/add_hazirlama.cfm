@@ -223,6 +223,9 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
         <cfset ATTRIBUTES.FIS_DATE_M  ="0">
         <cfset attributes.rows_=0>
         <cfdump var="#attributes#">
+        <cfif session.ep.userid eq 1146>
+            <cfdump var="#attributes#">
+            <cfabort></cfif>
         <cfloop list="#attributes.ROWW#" item="li" index="ix">
             <cfset STOCK_ID=evaluate("attributes.STOCK_ID#li#")>
             <cfset AMOUNT=filternum(evaluate("attributes.QUANTITY#li#"))>
