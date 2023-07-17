@@ -76,7 +76,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <button class="btn btn-success" type="button" onclick="UretimiSonlandirKarma()">Üretimi Sonlandır</button>
+                        <button class="btn btn-success" type="button" onclick="UretimiSonlandirKarma(#attributes.VP_ORDER_ID#)">Üretimi Sonlandır</button>
                     </td>
                 </tr>
             </table>
