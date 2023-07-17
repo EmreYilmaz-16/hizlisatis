@@ -88,13 +88,34 @@ WHERE T.ORDERED_AMOUNT <> T.INVOICED_AMOUNT
 ORDER BY SHIP_RESULT_ID
 </cfquery>
 
-<table>
+<cf_big_list>
+    <thead>
+        <tr>
+            <th>Müşteri</th>
+            <th>Teklif No</th>
+            <th>Satış Çalışanı</th>
+            <th>Sipariş No</th>
+            <th>Ürün Kodu</th>
+            <th>Ürün Adı</th>
+            <th>Teklif Miktari</th>
+            <th>Sipariş Miktari</th>
+            <th>Hazırlanan Miktar</th>
+            <th>Faturalanan Miktar</th>
+            <th>Depo Miktari</th>
+            <th>Depo</th>
+            <th>Sevk Yöntemi</th>
+            <th>Açıklama</th>
+            <th>Faturalanabilir Miktar</th>
+        </tr>
+    </thead>
+    <tbody>
 <cfoutput query="getd">
     <tr>
         <td>#NICKNAME#</td>
         <td>#OFFER_NUMBER#</td>
         <td>#SALE_EMP#</td>
         <td>#ORDER_NUMBER#</td>
+        <td>#PRODUCT_CODE#</td>   
         <td>#PRODUCT_NAME#</td>        
         <td>#OFFERED_AMOUNT#</td>        
         <td>#ORDERED_AMOUNT#</td>
@@ -107,5 +128,6 @@ ORDER BY SHIP_RESULT_ID
         <td>#FATURALANABILIR#</td>
     </tr>
 </cfoutput>
-</table>
+</tbody>
+</cf_big_list>
 
