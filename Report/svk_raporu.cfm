@@ -184,8 +184,9 @@
                     <tr>
                         <td>#NICKNAME#</td>
                         <td>#OFFER_NUMBER#</td>
-                        <td>#DELIVER_PAPER_NO#</td>
+                        
                         <td>#SALE_EMP#</td>
+                        <td>#DELIVER_PAPER_NO#</td>
                         <td>#ORDER_NUMBER#</td>
                         <td>#PRODUCT_CODE#</td>   
                         <td>#PRODUCT_NAME#</td>        
