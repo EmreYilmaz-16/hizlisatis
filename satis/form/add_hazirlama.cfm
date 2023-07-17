@@ -225,7 +225,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
         <cfdump var="#attributes#">
         <cfif session.ep.userid eq 1146>
             <cfdump var="#attributes#">
-            <cfabort></cfif>
+            </cfif>
         <cfloop list="#attributes.ROWW#" item="li" index="ix">
             <cfset STOCK_ID=evaluate("attributes.STOCK_ID#li#")>
             <cfset AMOUNT=filternum(evaluate("attributes.QUANTITY#li#"))>
