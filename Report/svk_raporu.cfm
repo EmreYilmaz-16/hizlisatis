@@ -206,6 +206,3 @@
 </tbody>
 </cf_big_list>
 
-http://erp.metosan.com.tr/index.cfm?fuseaction=sales.list_order&event=upd&order_id=79498
-http://erp.metosan.com.tr/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=12664
-http://erp.metosan.com.tr/index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=11130
