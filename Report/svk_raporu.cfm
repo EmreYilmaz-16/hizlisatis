@@ -184,7 +184,7 @@
                 <cfoutput query="getd">
                     <tr>
                         <td>#NICKNAME#</td>
-                        <td><a href="javascript:;" onclick="/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#OFFER_ID#"> #OFFER_NUMBER#</a></td>
+                        <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=#OFFER_ID#')"> #OFFER_NUMBER#</a></td>
                         
                         <td>#SALE_EMP#</td>
                         <td>#DELIVER_PAPER_NO#</td>
