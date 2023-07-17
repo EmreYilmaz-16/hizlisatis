@@ -1,4 +1,11 @@
-﻿<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&report_id=#attributes.report_id#&event=det" name="order_form">
+﻿<cfparam name="attributes.keyword" default="">
+<cfparam name="attributes.company_id" default="">
+<cfparam name="attributes.consumer_id" default="">
+<cfparam name="attributes.member_type" default="">,
+<cfparam name="attributes.member_name" default="">
+<cfparam name="attributes.order_employee_id" default="">
+<cfparam name="attributes.order_employee" default="">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&report_id=#attributes.report_id#&event=det" name="order_form">
 <table>
     <tr>
         <td>
@@ -12,10 +19,10 @@
                 <label class="col col-12 col-md-12 col-sm-12 col-xs-12">Cari Hesap </label>							
                 <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="input-group">
-                        <input type="hidden" name="consumer_id" id="consumer_id" value="">
-                        <input type="hidden" name="company_id" id="company_id" value="">
-                        <input type="hidden" name="member_type" id="member_type" value="">
-                        <input name="member_name" type="text" id="member_name" placeholder="Cari Hesap" onfocus="AutoComplete_Create('member_name','MEMBER_NAME,MEMBER_PARTNER_NAME,MEMBER_CODE','MEMBER_NAME,MEMBER_PARTNER_NAME,MEMBER_CODE','get_member_autocomplete','\'1,2\'','CONSUMER_ID,COMPANY_ID,MEMBER_TYPE','consumer_id,company_id,member_type','','3','250');" value="" autocomplete="off"><div id="member_name_div_2" name="member_name_div_2" class="completeListbox" autocomplete="on" style="width: 453px; max-height: 150px; overflow: auto; position: absolute; left: 492.5px; top: 209px; z-index: 159; display: none;"></div>
+                        <input type="hidden" name="consumer_id" id="consumer_id" value="<cfoutput>#attributes.consumer_id#</cfoutput>">
+                        <input type="hidden" name="company_id" id="company_id" value="<cfoutput>#attributes.company_id#</cfoutput>">
+                        <input type="hidden" name="member_type" id="member_type" value="<cfoutput>#attributes.member_type#</cfoutput>">
+                        <input name="member_name" type="text" id="member_name" placeholder="Cari Hesap" onfocus="AutoComplete_Create('member_name','MEMBER_NAME,MEMBER_PARTNER_NAME,MEMBER_CODE','MEMBER_NAME,MEMBER_PARTNER_NAME,MEMBER_CODE','get_member_autocomplete','\'1,2\'','CONSUMER_ID,COMPANY_ID,MEMBER_TYPE','consumer_id,company_id,member_type','','3','250');" value="<cfoutput>#attributes.member_name#</cfoutput>" autocomplete="off"><div id="member_name_div_2" name="member_name_div_2" class="completeListbox" autocomplete="on" style="width: 453px; max-height: 150px; overflow: auto; position: absolute; left: 492.5px; top: 209px; z-index: 159; display: none;"></div>
                         
                         <span class="input-group-addon btnPointer icon-ellipsis" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_all_pars&field_consumer=order_form.consumer_id&field_comp_id=order_form.company_id&field_member_name=order_form.member_name&field_type=order_form.member_type&select_list=7,8&keyword='+encodeURIComponent(document.order_form.member_name.value));"></span>
                     </div>
@@ -27,8 +34,8 @@
                 <label class="col col-12 col-md-12 col-sm-12 col-xs-12">Satış Yapan </label>			
                 <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="input-group">
-                        <input type="hidden" name="order_employee_id" id="order_employee_id" value="">
-                        <input name="order_employee" type="text" id="order_employee" placeholder="Satış Yapan " onfocus="AutoComplete_Create('order_employee','MEMBER_NAME','MEMBER_NAME','get_member_autocomplete','3','EMPLOYEE_ID','order_employee_id','','3','125');" value="" autocomplete="off"><div id="order_employee_div_2" name="order_employee_div_2" class="completeListbox" autocomplete="on" style="width: 453px; max-height: 150px; overflow: auto; position: absolute; left: 20px; top: 529px; z-index: 159; display: none;"></div>
+                        <input type="hidden" name="order_employee_id" id="order_employee_id" value="<cfoutput>#attributes.order_employee_id#</cfoutput>">
+                        <input name="order_employee" type="text" id="order_employee" placeholder="Satış Yapan " onfocus="AutoComplete_Create('order_employee','MEMBER_NAME','MEMBER_NAME','get_member_autocomplete','3','EMPLOYEE_ID','order_employee_id','','3','125');" value="<cfoutput>#attributes.order_employee#</cfoutput>" autocomplete="off"><div id="order_employee_div_2" name="order_employee_div_2" class="completeListbox" autocomplete="on" style="width: 453px; max-height: 150px; overflow: auto; position: absolute; left: 20px; top: 529px; z-index: 159; display: none;"></div>
                         <span class="input-group-addon btnPointer icon-ellipsis" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_positions&field_emp_id=order_form.order_employee_id&field_name=order_form.order_employee&is_form_submitted=1&select_list=1');"></span>
                     </div>
                 </div>
