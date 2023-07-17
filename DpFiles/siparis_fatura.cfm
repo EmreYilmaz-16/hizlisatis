@@ -1,7 +1,6 @@
 <cfif isDefined("attributes.is_from_pbs")>
 <cfif session.ep.userid eq 1146>
-    <cfdump var="#attributes#">
-    <cfabort>
+    
 </cfif>
 <script>
 $(document).on('ready',function(){
