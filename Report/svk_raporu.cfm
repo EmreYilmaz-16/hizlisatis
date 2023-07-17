@@ -74,7 +74,7 @@
         </tr>
     </thead>
     <tbody>
-        <cfif isDefined("attriutes.is_submit") and attributes.is_submit eq 1>
+        <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
             <cfquery name="getd" datasource="#DSN3#">
                 SELECT T.*
                     ,READY_AMOUNT - INVOICED_AMOUNT AS FATURALANABILIR
