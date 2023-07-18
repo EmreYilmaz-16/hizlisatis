@@ -17,6 +17,7 @@ $(document).on('ready',function(){
           relId:'#evaluate("attributes.RELATION_ID_#it#")#'
         }
         RelationIdArray.push(o);
+        basket.items[ix].AMOUNT=#evaluate("attributes.quantity_#it#")#
       </cfloop>
 
     <!---<cfloop list="#attributes.ORDER_ROW_ID#" item="it">
