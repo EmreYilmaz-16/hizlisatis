@@ -26,7 +26,7 @@
         ,DESCRIPTION
     FROM (
         SELECT ORR.QUANTITY
-            ,SF.AMOUNT
+            ,ISNULL(SF.AMOUNT,0)
             ,S.PRODUCT_NAME
             ,PP.SHELF_CODE
             ,ORR.DELIVER_DEPT
