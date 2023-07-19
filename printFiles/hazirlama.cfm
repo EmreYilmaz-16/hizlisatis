@@ -111,7 +111,8 @@
                     <th>Ürün K.</th>
                     <th>Ürün</th>
                     <th>Marka</th>
-                    <th>Miktar</th>
+                    <th>Sipariş Miktarı</th>
+                    <th>Hazırlanacak Miktar</th>
                     <th>Açıklama</th>
                     <th>Depo</th>
                     <th>Ölçü</th>
@@ -131,6 +132,7 @@
                     <td>#PRODUCT_NAME#</td>
                     <td>#BRAND_NAME#</td>
                     <td style="width:15%;text-align:center"><div class="form-group">#tlformat(QUANTITY,2)#</div></td>
+                    <td style="width:15%;text-align:center"><div class="form-group">#tlformat(QUANTITY-AMOUNT,2)#</div></td>
                     <td>#DESCRIPTION#</td>
                     <td style="width:15%;text-align:center">
                         <cfquery name="getSrQ" datasource="#dsn2#">
