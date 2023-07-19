@@ -70,7 +70,8 @@
         
         </cfquery>
         <cfif session.ep.userid eq 1146>
-        
+        <cfdump var="#getS#">
+        <cfabort>
         
     </cfif>
         <table id="basket" >
