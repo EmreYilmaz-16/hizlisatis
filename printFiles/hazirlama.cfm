@@ -71,12 +71,12 @@
         </cfquery>
         <cfif session.ep.userid eq 1146>
         
-        <cfdump var="#getS#">
+        
     </cfif>
         <table id="basket" >
             <thead>
                 <tr >
-                    <th colspan="9" >
+                    <th colspan="10" >
                         <h3 style="font-size:14pt !important">Hazırlama Listesi</h3>
                     </th>
                 </tr>
@@ -95,7 +95,7 @@
                     <th>
                         Açıklama
                     </th>
-                    <td colspan="8">
+                    <td colspan="9">
                             <cfquery name="getOfferDes" datasource="#dsn3#">
                                 SELECT OFFER_DESCRIPTION FROM PBS_OFFER WHERE OFFER_ID=#getS.OFFER_ID#
                             </cfquery>
@@ -103,7 +103,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="9" style="height:1mm;background:black"></td>
+                    <td colspan="10" style="height:1mm;background:black"></td>
                 </tr>
                 <tr>
                     <th>Barkod</th>
