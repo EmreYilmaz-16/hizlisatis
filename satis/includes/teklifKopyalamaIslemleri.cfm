@@ -232,7 +232,7 @@
                             '#getOfferRow.PRODUCT_NAME#',
                             #getOfferRow.TAX#,
                             #getOfferRow.DISCOUNT_1#,
-                            #getOfferRow.PRODUCT_TYPE#,
+                            <cfif len(getOfferRow.PRODUCT_TYPE)>#getOfferRow.PRODUCT_TYPE#<cfelse>0</cfif>,
                             '#getOfferRow.SHELF_CODE#',
                             '#getOfferRow.OTHER_MONEY#',
                             #getOfferRow.PRICE_OTHER#,
