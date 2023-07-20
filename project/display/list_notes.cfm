@@ -1,4 +1,5 @@
 ﻿<cfif isDefined("attributes.action_id")>
+    <cfset attributes.project_id=attributes.action_id>
     <cfinclude template="../includes/upperMenu.cfm">
 </cfif>
 <cfparam name="attributes.act" default="list_p">
