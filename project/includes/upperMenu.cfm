@@ -29,11 +29,11 @@
 
 </style>
 <cfquery name="getProjectInfo" datasource="#dsn#">
-    select RELATED_PROJECT_ID,PROJECT_ID from workcube_metosan.PRO_PROJECTS where PROJECT_ID=#attributes.project_id#
+    select RELATED_PROJECT_ID,PROJECT_ID,PROJECT_NUMBER from workcube_metosan.PRO_PROJECTS where PROJECT_ID=#attributes.project_id#
 </cfquery>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding:0">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"></a>
+      <a class="navbar-brand" href="<cfif len(getProjectInfo.RELATED_PROJECT_ID)>/index.cfm?fuseaction=project.emptypopup_detail_sub_project_pbs&project_id=<cfoutput>#attributes.project_id#</cfoutput><cfelse>/index.cfm?fuseaction=project.emptypopup_detail_project_pbs&project_id=<cfoutput>#attributes.project_id#</cfoutput>'</cfif>"><cfoutput>#getProjectInfo.PROJECT_NUMBER#</cfoutput></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><span class="text-primary icn-md fa fa-align-justify"></span></span>
       </button>
