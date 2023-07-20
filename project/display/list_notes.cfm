@@ -1,4 +1,7 @@
-﻿<cfparam name="attributes.act" default="list_p">
+﻿<cfif isDefined("attributes.action_id")>
+    <cfinclude template="../includes/upperMenu.cfm">
+</cfif>
+<cfparam name="attributes.act" default="list_p">
 <cfif attributes.act eq "list_p" >
 <cf_box title="Notlar">
     <button style="float:right" class="btn btn-success" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_form_add_note&action=PROJECT_ID&action_id=<cfoutput>#attributes.action_id#</cfoutput>&is_special=0&action_type=0&action_id_2=&period_id=&is_open_det=1&is_delete=1')" type="button">Yeni Not Ekle</button>
