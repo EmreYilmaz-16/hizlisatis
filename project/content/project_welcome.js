@@ -38,4 +38,5 @@ $(document).ready(function () {
   var d = document.getElementById("wrk_main_layout");
   d.removeAttribute("class");
   d.setAttribute("class", "container-fluid");
+  $("#xmlSettings").hide()
 });
