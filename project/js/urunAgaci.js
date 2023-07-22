@@ -1650,24 +1650,27 @@ function GercekKontrol(id) {
       id,
     "dsn3"
   );
-  console.log(q.IS_CONVERT_REAL[0]);
-  var ex = q.IS_CONVERT_REAL[0];
-  ex = parseInt(ex);
-  console.log(ex);
-  if (ex == 1) {
-    var b = document.getElementById("teklifButton");
-    b.removeAttribute("class");
-    b.setAttribute("class", "btn btn-outline-warning");
-    b.innerText = "Teklife Dönüştü";
-    b.setAttribute("disabled", "disabled");
-  } else {
-    var b = document.getElementById("teklifButton");
-    b.removeAttribute("class");
-    b.setAttribute("class", "btn btn-outline-secondary");
-    b.innerText = "Teklif Ver";
-    b.removeAttribute("disabled");
+  if (q.recordcount > 0) {
+    console.log(q.IS_CONVERT_REAL[0]);
+    var ex = q.IS_CONVERT_REAL[0];
+    ex = parseInt(ex);
+    console.log(ex);
+    if (ex == 1) {
+      var b = document.getElementById("teklifButton");
+      b.removeAttribute("class");
+      b.setAttribute("class", "btn btn-outline-warning");
+      b.innerText = "Teklife Dönüştü";
+      b.setAttribute("disabled", "disabled");
+    } else {
+      var b = document.getElementById("teklifButton");
+      b.removeAttribute("class");
+      b.setAttribute("class", "btn btn-outline-secondary");
+      b.innerText = "Teklif Ver";
+      b.removeAttribute("disabled");
+    }
+    return ex;
   }
-  return ex;
+  return 0;
 }
 
 function updateStage(el, projectId) {
@@ -1827,4 +1830,3 @@ function remItem(params) {
   var e = params.parentElement.parentElement.parentElement;
   $(e).remove();
 }
-
