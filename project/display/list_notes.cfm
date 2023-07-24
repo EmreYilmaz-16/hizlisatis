@@ -7,7 +7,7 @@
 <cf_box title="Notlar">
     <button style="float:right" class="btn btn-success" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_form_add_note&action=PROJECT_ID&action_id=<cfoutput>#attributes.action_id#</cfoutput>&is_special=0&action_type=0&action_id_2=&period_id=&is_open_det=1&is_delete=1')" type="button">Yeni Not Ekle</button>
 <cfquery name="getNotes" datasource="#dsn#">
-    select NOTE_HEAD,NOTE_ID,NOTE_BODY,IS_WARNING,workcube_metosan.getEmployeeWithId(RECORD_EMP) RECORD_EMP,RECORD_DATE from workcube_metosan.NOTES WHERE ACTION_SECTION='PROJECT_ID' AND ACTION_ID=#attributes.action_id#
+    select NOTE_HEAD,NOTE_ID,NOTE_BODY,IS_WARNING,#dsn#.getEmployeeWithId(RECORD_EMP) RECORD_EMP,RECORD_DATE from #dsn#.NOTES WHERE ACTION_SECTION='PROJECT_ID' AND ACTION_ID=#attributes.action_id#
 </cfquery>
 <div style="clear:both"></div>
 <div class="row">
@@ -29,9 +29,9 @@
 <cfif attributes.act eq "list_my">
     <cf_box title="Notlar">       
     <cfquery name="getNotes" datasource="#dsn#">
-        select NOTE_HEAD,NOTE_ID,NOTE_BODY,IS_WARNING,ACTION_SECTION,ACTION_ID,workcube_metosan.getEmployeeWithId(N.RECORD_EMP) RECORD_EMP,N.RECORD_DATE,PP.PROJECT_HEAD,PP.PROJECT_NUMBER 
-        from workcube_metosan.NOTES AS N
-        LEFT JOIN workcube_metosan.PRO_PROJECTS AS PP ON PP.PROJECT_ID=N.ACTION_ID
+        select NOTE_HEAD,NOTE_ID,NOTE_BODY,IS_WARNING,ACTION_SECTION,ACTION_ID,#dsn#.getEmployeeWithId(N.RECORD_EMP) RECORD_EMP,N.RECORD_DATE,PP.PROJECT_HEAD,PP.PROJECT_NUMBER 
+        from #dsn#.NOTES AS N
+        LEFT JOIN #dsn#.PRO_PROJECTS AS PP ON PP.PROJECT_ID=N.ACTION_ID
          WHERE ACTION_SECTION='PROJECT_ID' AND N.RECORD_EMP=#session.ep.userid#
     </cfquery>
     <div style="clear:both"></div>

@@ -3,8 +3,8 @@
 WORK_HEAD,
 WORK_DETAIL,
 PWH.UPDATE_DATE,
-workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) PROJECT_EMP_ID,
-workcube_metosan.getEmployeeWithId(UPDATE_AUTHOR) UPDATE_AUTHOR,
+#dsn#.getEmployeeWithId(PROJECT_EMP_ID) PROJECT_EMP_ID,
+#dsn#.getEmployeeWithId(UPDATE_AUTHOR) UPDATE_AUTHOR,
 WORK_CURRENCY_ID,
 PWH.WORK_CAT_ID,
 WORK_PRIORITY_ID ,
@@ -12,10 +12,10 @@ SP.PRIORITY,
 SP.COLOR,
 PWC.WORK_CAT,
 PTR.STAGE
-from workcube_metosan.PRO_WORKS_HISTORY AS PWH
-LEFT JOIN workcube_metosan.SETUP_PRIORITY AS SP ON SP.PRIORITY_ID=PWH.WORK_PRIORITY_ID
-LEFT JOIN workcube_metosan.PRO_WORK_CAT AS PWC ON PWC.WORK_CAT_ID=PWH.WORK_CAT_ID
-LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
+from #dsn#.PRO_WORKS_HISTORY AS PWH
+LEFT JOIN #dsn#.SETUP_PRIORITY AS SP ON SP.PRIORITY_ID=PWH.WORK_PRIORITY_ID
+LEFT JOIN #dsn#.PRO_WORK_CAT AS PWC ON PWC.WORK_CAT_ID=PWH.WORK_CAT_ID
+LEFT JOIN #dsn#.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
 where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
 </cfquery>
 
@@ -69,7 +69,7 @@ where WORK_ID=#attributes.WORK_ID# order by UPDATE_DATE
                 <cf_box title="ToDo">
                     <div style="height:25vh">
                         <cfquery name="getSteps" datasource="#dsn#">
-                            select WORK_STEP_DETAIL,WORK_STEP_ID,WORK_STEP_COMPLETE_PERCENT from workcube_metosan.PRO_WORKS_STEP where WORK_ID=#attributes.work_id#
+                            select WORK_STEP_DETAIL,WORK_STEP_ID,WORK_STEP_COMPLETE_PERCENT from #dsn#.PRO_WORKS_STEP where WORK_ID=#attributes.work_id#
                         </cfquery>
                         <cf_ajax_list>
                             <cfoutput query="getSteps">

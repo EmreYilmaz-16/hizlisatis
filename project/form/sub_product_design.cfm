@@ -40,11 +40,11 @@
 </script>
 <cfquery name="getMoney" datasource="#dsn#">
     SELECT 
- (SELECT RATE1 FROM workcube_metosan.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(SELECT MAX(MONEY_HISTORY_ID) FROM workcube_metosan.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE1,
- (SELECT RATE2 FROM workcube_metosan.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
- SELECT MAX(MONEY_HISTORY_ID) FROM workcube_metosan.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE2,
+ (SELECT RATE1 FROM #dsn#.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(SELECT MAX(MONEY_HISTORY_ID) FROM #dsn#.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE1,
+ (SELECT RATE2 FROM #dsn#.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
+ SELECT MAX(MONEY_HISTORY_ID) FROM #dsn#.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE2,
  SM.MONEY
- FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
+ FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
  </cfquery>
  
  <script>
@@ -181,7 +181,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
         <button onclick="Kaydet()" style="margin-left:5px"  class="btn btn-outline-primary">Kaydet</button>
         <input type="text" class="form-control" value="" id="pnamemain" name="pnamemain" style="margin-left: 15px;color: var(--success);" readonly>
         <cfquery name="getStages" datasource="#dsn3#">
-            SELECT STAGE,PROCESS_ROW_ID FROM workcube_metosan.PROCESS_TYPE_ROWS WHERE PROCESS_ID=200
+            SELECT STAGE,PROCESS_ROW_ID FROM #dsn#.PROCESS_TYPE_ROWS WHERE PROCESS_ID=200
         </cfquery>
         <select class="form-control" name="pstage" id="pstage" style="width:33%" onchange="updateStage(this,<cfoutput>#attributes.project_id#</cfoutput>)">
             <option value="">Aşama</option>

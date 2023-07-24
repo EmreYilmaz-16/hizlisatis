@@ -29,7 +29,7 @@
 
 </style>
 <cfquery name="getProjectInfo" datasource="#dsn#">
-    select RELATED_PROJECT_ID,PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where PROJECT_ID=#attributes.project_id#
+    select RELATED_PROJECT_ID,PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from #dsn#.PRO_PROJECTS where PROJECT_ID=#attributes.project_id#
 </cfquery>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding:0">
     <div class="container-fluid">

@@ -1,6 +1,6 @@
 ﻿
 <cfquery name="getProcess" datasource="#dsn#">
-    SELECT * FROM workcube_metosan.PROCESS_TYPE_ROWS WHERE PROCESS_ID=19
+    SELECT * FROM #dsn#.PROCESS_TYPE_ROWS WHERE PROCESS_ID=19
 </cfquery>
 <div class="row">    
     <div class="col col-6 col-md-6 col-sm-6 col-xs-12">
@@ -15,16 +15,16 @@
                             ,WORK_STATUS
                             ,RELATED_WORK_ID
                             ,WORK_HEAD
-                            ,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
+                            ,#dsn#.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
                             ,TARGET_START
                             ,TARGET_FINISH
                             ,TERMINATE_DATE
-                            ,workcube_metosan.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
+                            ,#dsn#.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
                             ,PTR.STAGE
                             ,RECORD_AUTHOR as RECORD_AUTHOR_ID
                             ,PROJECT_EMP_ID
-                        FROM workcube_metosan.PRO_WORKS as PWH
-                        LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
+                        FROM #dsn#.PRO_WORKS as PWH
+                        LEFT JOIN #dsn#.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
                         WHERE PROJECT_EMP_ID = #session.ep.userid# AND PWH.WORK_CURRENCY_ID=#PROCESS_ROW_ID#
                         </cfquery>
                        <cf_grid_list>
@@ -73,16 +73,16 @@
                                 ,WORK_STATUS
                                 ,RELATED_WORK_ID
                                 ,WORK_HEAD
-                                ,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
+                                ,#dsn#.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
                                 ,TARGET_START
                                 ,TARGET_FINISH
                                 ,TERMINATE_DATE
-                                ,workcube_metosan.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
+                                ,#dsn#.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
                                 ,PTR.STAGE
                                 ,RECORD_AUTHOR as RECORD_AUTHOR_ID
                                 ,PROJECT_EMP_ID
-                            FROM workcube_metosan.PRO_WORKS as PWH
-                            LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
+                            FROM #dsn#.PRO_WORKS as PWH
+                            LEFT JOIN #dsn#.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
                             WHERE RECORD_AUTHOR = #session.ep.userid# AND PWH.WORK_CURRENCY_ID=#PROCESS_ROW_ID#
                             </cfquery>
                            <cf_grid_list>
@@ -128,16 +128,16 @@ SELECT WORK_ID
 	,WORK_STATUS
 	,RELATED_WORK_ID
 	,WORK_HEAD
-	,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
+	,#dsn#.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
 	,TARGET_START
 	,TARGET_FINISH
 	,TERMINATE_DATE
-	,workcube_metosan.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
+	,#dsn#.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
     ,PTR.STAGE
 	,RECORD_AUTHOR as RECORD_AUTHOR_ID
 	,PROJECT_EMP_ID
-FROM workcube_metosan.PRO_WORKS as PWH
-LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
+FROM #dsn#.PRO_WORKS as PWH
+LEFT JOIN #dsn#.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
 WHERE PROJECT_EMP_ID = #session.ep.userid#
 </cfquery>
 <cfquery name="W2" datasource="#dsn#">
@@ -146,15 +146,15 @@ WHERE PROJECT_EMP_ID = #session.ep.userid#
         ,WORK_STATUS
         ,RELATED_WORK_ID
         ,WORK_HEAD
-        ,workcube_metosan.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
+        ,#dsn#.getEmployeeWithId(PROJECT_EMP_ID) AS PROJECT_EMP
         ,TARGET_START
         ,TARGET_FINISH
         ,TERMINATE_DATE
-        ,workcube_metosan.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
+        ,#dsn#.getEmployeeWithId(RECORD_AUTHOR) AS RECORD_AUTHOR
         ,PTR.STAGE
         ,RECORD_AUTHOR as RECORD_AUTHOR_ID
         ,PROJECT_EMP_ID
-    FROM workcube_metosan.PRO_WORKS as PWH
-    LEFT JOIN workcube_metosan.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
+    FROM #dsn#.PRO_WORKS as PWH
+    LEFT JOIN #dsn#.PROCESS_TYPE_ROWS PTR ON PTR.PROCESS_ROW_ID=PWH.WORK_CURRENCY_ID
     WHERE PROJECT_EMP_ID = #session.ep.userid#
     </cfquery>

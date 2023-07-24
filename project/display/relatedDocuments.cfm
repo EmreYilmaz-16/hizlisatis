@@ -49,7 +49,7 @@
         ELSE 'Alış Faturası'
         END AS TIP
         ,'Fatura' AS MAIN_TIP
-        FROM workcube_metosan_2023_1.INVOICE
+        FROM #dsn2#.INVOICE
         WHERE PROJECT_ID = #attributes.project_id#
 
         UNION
@@ -66,7 +66,7 @@
         ELSE 'Alış İrsaliyesi'
         END AS TIP
         ,'İrsaliye' AS MAIN_TIP
-        FROM workcube_metosan_2023_1.SHIP
+        FROM #dsn2#.SHIP
         WHERE PROJECT_ID = #attributes.project_id#
 
         UNION
@@ -88,7 +88,7 @@
         ELSE 'Banka Çıkan'
         END AS TIP
         ,'Banka' AS MAIN_TIP
-        FROM workcube_metosan_2023_1.BANK_ACTIONS
+        FROM #dsn2#.BANK_ACTIONS
         WHERE PROJECT_ID = #attributes.project_id#
 
         UNION
@@ -123,7 +123,7 @@
         ELSE 'Kasa Çıkan'
         END AS TIP
         ,'Kasa' AS MAIN_TIP
-        FROM workcube_metosan_2023_1.CASH_ACTIONS
+        FROM #dsn2#.CASH_ACTIONS
         WHERE PROJECT_ID = #attributes.project_id#
     </cfquery>
     
