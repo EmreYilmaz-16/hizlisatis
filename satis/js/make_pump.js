@@ -278,9 +278,10 @@ function ChangeDesc(el) {
 
 function ParaHesapla() {
   var TotalPrice = 0;
+  /*
   var str =
     '[{"MONEY":"TL","RATE1":"1","RATE2":"1"},{"MONEY":"USD","RATE1":"1","RATE2":"19.0412"},{"MONEY":"EUR","RATE1":"1","RATE2":"20.2745"}]';
-  var MoneyArr = JSON.parse(str);
+  var MoneyArr = JSON.parse(str);*/
   for (let i = 0; i < BozulacakArr.length; i++) {
     var Q = BozulacakArr[i].QUANTITY;
     var P = BozulacakArr[i].PRICE;

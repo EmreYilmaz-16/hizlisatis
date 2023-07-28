@@ -3,6 +3,27 @@
  margin:0 !important;
 }
 </style>
+<cfquery name="getMoney" datasource="#dsn#">
+    SELECT 
+ (SELECT RATE1 FROM workcube_metosan.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
+ SELECT MAX(MONEY_HISTORY_ID) FROM workcube_metosan.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE1,
+ (SELECT RATE2 FROM workcube_metosan.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
+ SELECT MAX(MONEY_HISTORY_ID) FROM workcube_metosan.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE2,
+ SM.MONEY
+ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
+ </cfquery>
+ </cfif>
+ <script>
+     var moneyArr=[
+         <cfoutput query="getMoney">
+             {
+                 MONEY:"#MONEY#",
+                 RATE1:"#RATE1#",
+                 RATE2:"#RATE2#",
+             },
+         </cfoutput>
+     ]
+ </script>
 <cfparam name="attributes.company_id" default="">
 <cfparam name="attributes.PRICE_CATID" default="">
 <cfoutput>
