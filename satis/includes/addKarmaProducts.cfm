@@ -16,8 +16,10 @@
     <cfset PRODUCT_ID_KARMA=GETKARMAC.PRODUCT_ID>
     <cfset STOCK_ID_KARMA=GETSKARMA.STOCK_ID>
     <cfset AMOUNT_KARMA=GETKARMAC.PRODUCT_AMOUNT*evaluate('attributes.amount#i#')>
-
-<cfinclude template="save_virtual_production_orders_karma.cfm">
-
+<cfif evaluate("attributes.PBS_OFFER_ROW_CURRENCY#i#") eq -5>
+    <cfif GETSKARMA.IS_PRODUCTION EQ 1>
+        <cfinclude template="save_virtual_production_orders_karma.cfm">
+    </cfif>
+</cfif>
 </cfloop>
 
