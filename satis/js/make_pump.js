@@ -281,13 +281,13 @@ function ParaHesapla() {
   /*
   var str =
     '[{"MONEY":"TL","RATE1":"1","RATE2":"1"},{"MONEY":"USD","RATE1":"1","RATE2":"19.0412"},{"MONEY":"EUR","RATE1":"1","RATE2":"20.2745"}]';
-  var MoneyArr = JSON.parse(str);*/
+  var moneyArr = JSON.parse(str);*/
   for (let i = 0; i < BozulacakArr.length; i++) {
     var Q = BozulacakArr[i].QUANTITY;
     var P = BozulacakArr[i].PRICE;
     var M = BozulacakArr[i].MONEY;
     var D = BozulacakArr[i].DISCOUNT;
-    var R2 = MoneyArr.find((p) => p.MONEY == M).RATE2;
+    var R2 = moneyArr.find((p) => p.MONEY == M).RATE2;
 
     var ix = Q * P;
     ix = ix * R2;
@@ -305,7 +305,7 @@ function ParaHesapla() {
     var P = CikanArr[i].PRICE;
     var M = CikanArr[i].MONEY;
     var D = CikanArr[i].DISCOUNT;
-    var R2 = MoneyArr.find((p) => p.MONEY == M).RATE2;
+    var R2 = moneyArr.find((p) => p.MONEY == M).RATE2;
 
     var ix = Q * P;
     ix = ix * R2;
@@ -323,7 +323,7 @@ function ParaHesapla() {
     var P = GirenArr[i].PRICE;
     var M = GirenArr[i].MONEY;
     var D = GirenArr[i].DISCOUNT;
-    var R2 = MoneyArr.find((p) => p.MONEY == M).RATE2;
+    var R2 = moneyArr.find((p) => p.MONEY == M).RATE2;
 
     var ix = Q * P;
     ix = ix * R2;
@@ -371,6 +371,8 @@ function SaveForPump() {
     GirenUrunlerArrLen: GirenArr.length,
     CikanUrunlerArrLen: CikanArr.length,
   };
+  ReturnObject.OlusacakUrun.PRICE=tp;
+
   if (parseInt(ix) == 1) {
     var xx = YonKontrol();
   } else {
