@@ -1798,8 +1798,8 @@ function GruplaCanimBenim() {
     KarmaProducts.push(O);
     // console.log(productType)
     if (parseInt(productType) != 1) {
-      Hata = true;
-      break;
+     /* Hata = true;
+      break;*/
     }
   }
 
