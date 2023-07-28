@@ -318,7 +318,7 @@ function ParaHesapla() {
 
   console.log(TotalPrice);
 
-  for (let i = 0; i < GirenArr.length; i++) {
+  /*for (let i = 0; i < GirenArr.length; i++) {
     var Q = GirenArr[i].QUANTITY;
     var P = GirenArr[i].PRICE;
     var M = GirenArr[i].MONEY;
@@ -332,7 +332,7 @@ function ParaHesapla() {
     ix = parseFloat(filterNum(commaSplit(ix, 2)));
     TotalPrice -= ix;
     console.log(ix);
-  }
+  }*/
 
   console.log(TotalPrice);
   TotalPrice = parseFloat(filterNum(commaSplit(TotalPrice, 2)));
@@ -372,6 +372,8 @@ function SaveForPump() {
     CikanUrunlerArrLen: CikanArr.length,
   };
   ReturnObject.OlusacakUrun.PRICE=tp;
+  var R2 = moneyArr.find((p) => p.MONEY == OlusacakUrun.MONEY).RATE2;
+  ReturnObject.OlusacakUrun.PRICE_OTHER=tp/R2;
 
   if (parseInt(ix) == 1) {
     var xx = YonKontrol();
