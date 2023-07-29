@@ -7,6 +7,7 @@ var selectedCount = 0;
 var rowCount = 0;
 var tempProductData = "";
 var selectedArr = [];
+var selectedMoney="";
 var CompanyData = new Object();
 $(document).ready(function () {
   setDoom();
