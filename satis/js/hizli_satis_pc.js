@@ -318,6 +318,12 @@ function setCompany(id, name, partner_id, partner_name, ttype = 1) {
   $("#VADE").val(compInfo.VADE);
   $("#plasiyer").val(compInfo.PLASIYER);
   $("#plasiyer_id").val(compInfo.PLASIYER_ID);
+  var e = $("#qs_basket").find("input:radio");
+  for (let i = 0; i < e.length; i++) {
+    var a = e[i].parentElement.nextElementSibling.innerText;
+
+    if (a == compInfo.SEL_MONEY) e[i].click();
+  }
   console.log(compInfo);
   if (compInfo.BAKIYE.toString().length > 0)
     $("#BAKIYE").val("BAKIYE: " + commaSplit(compInfo.BAKIYE));
