@@ -51,8 +51,18 @@ select count(*) AS RC from PBS_OFFER
     <cfset attributes.sales_emp_id=session.ep.userid>
     <cfset attributes.sales_emp="#session.ep.NAME# #session.ep.SURNAME#">
 </cfif>
-<cfset attributes.project_head=FormData.OrderHeader.PROJECT_NAME>
-<cfset attributes.project_id=FormData.OrderHeader.PROJECT_ID>
+PROJECT_NAME 
+<cfif isDefined("FormData.OrderHeader.PROJECT_NAME")>
+    <cfset attributes.project_head=FormData.OrderHeader.PROJECT_NAME>
+<cfelse>
+    <cfset attributes.project_head="">
+</cfif>
+<cfif isDefined("FormData.OrderHeader.PROJECT_ID")>
+    <cfset attributes.project_id=FormData.OrderHeader.PROJECT_ID>
+<cfelse>
+    <cfset attributes.project_id="">
+</cfif>
+
 <cfset attributes.process_stage=FormData.OrderHeader.PROCESS_STAGE>
 <cfset attributes.price=FormData.OrderFooter.SUBNETTOTAL>
 <cfset attributes.paymethod_id=FormData.OrderHeader.PAYMETHOD_ID>
