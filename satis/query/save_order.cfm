@@ -15,10 +15,11 @@ select count(*) AS RC from PBS_OFFER
 </cfif>
 <cfloop array="#FormData.OrderMoney#" item="it" index="i">
     <cfset "attributes._hidden_rd_money_#i#"=it.MONEY>
-    <cfset "attributes._txt_rate1_#i#"=it.RATE1>
-    <cfset "attributes._txt_rate2_#i#"=it.RATE2>
+
 
     <cfset "attributes.hidden_rd_money_#i#"=it.MONEY>
+    <cfset "attributes._txt_rate1_#i#"=it.RATE1>
+    <cfset "attributes._txt_rate2_#i#"=it.RATE2>
     <cfset "attributes.txt_rate1_#i#"=it.RATE1>
     <cfset "attributes.txt_rate2_#i#"=it.RATE2>
 </cfloop>
@@ -278,6 +279,26 @@ pos 2 <br>
     pos 3 <br>
    <cfelse>
     pos 4 <br>
+    <cfif FormData.WORKING_PARAMS.CURRENCY_FROM eq 0>
+        <cfquery name="getMoney" datasource="#dsn3#">
+            SELECT 
+         (SELECT RATE1 FROM #dsn#.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
+         SELECT MAX(MONEY_HISTORY_ID) FROM #dsn#.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE1,
+         (SELECT RATE2 FROM #dsn#.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
+         SELECT MAX(MONEY_HISTORY_ID) FROM #dsn#.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE2,
+         SM.MONEY
+         FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
+         </cfquery>
+         <cfset ibnm=1>
+<cfloop query="">
+    <cfset "attributes._txt_rate1_#ibnm#"=RATE1>
+    <cfset "attributes._txt_rate2_#ibnm#"=RATE2>
+    <cfset "attributes.txt_rate1_#ibnm#"=RATE1>
+    <cfset "attributes.txt_rate2_#ibnm#"=RATE2>
+    <cfset ibnm=ibnm+1>
+</cfloop>
+
+    </cfif>
         <cfset attributes.order_date=now()>
         <cfset attributes.order_employee_id=session.ep.userid>
         <cfset attributes.order_employee="#session.ep.NAME# #session.ep.SURNAME#">
