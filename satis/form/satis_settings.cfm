@@ -12,7 +12,8 @@
     MANUEL_CONTROL=#attributes.MANUEL_CONTROL#,
     MANUEL_CONTROL_AREA='#attributes.MANUEL_CONTROL_AREA#',
     MALIYET_CONTROL=#attributes.MALIYET_CONTROL#,
-    IS_VIRMAN_WORK_WITH_SHELF=#attributes.IS_VIRMAN_WORK_WITH_SHELF#
+    IS_VIRMAN_WORK_WITH_SHELF=#attributes.IS_VIRMAN_WORK_WITH_SHELF#,
+    CURRENCY_FROM=#attributes.CURRENCY_FROM#
 
 </cfquery>
 </cfif>
@@ -23,7 +24,7 @@
     IS_UPDATE_OFFER,IS_CHANGE_CARI,IS_ALL_SEVK,ADD_MANUAL_PRODUCT,
     IS_ZERO_QUANTITY,MAX_DISCOINT,
     MANUEL_CONTROL,MANUEL_CONTROL_AREA,MALIYET_CONTROL,
-    IS_VIRMAN_WORK_WITH_SHELF
+    IS_VIRMAN_WORK_WITH_SHELF,CURRENCY_FROM
     FROM #dsn3#.VIRTUAL_OFFER_SETTINGS
 </cfquery>
 <cf_box title="Satış Parametreleri">
@@ -238,6 +239,24 @@
             <td style="vertical-align:middle">
                 <div class="alert alert-warning" style="padding:5px;margin-bottom:0px">
                  <span style="font-size:14pt">&lt;!&gt;</span>Maksimum Yapılabilecek Belge İndirim Oranı (KDV'Matrahı)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:middle">
+               <div>Kur Bir Önceki Belgeden Gelsin</div>
+            </td>
+            <td style="vertical-align:middle">
+                <div class="form-group">
+                <select name="CURRENCY_FROM">
+                    <option <cfif getVSettings.CURRENCY_FROM eq 1>selected</cfif> value="1">Evet</option>
+                    <option <cfif getVSettings.CURRENCY_FROM eq 0>selected</cfif> value="0">Hayır</option>
+                </select>
+            </div>
+            </td>
+            <td style="vertical-align:middle">
+                <div class="alert alert-warning" style="padding:5px;margin-bottom:0px">
+                 <span style="font-size:14pt">&lt;!&gt;</span>  Siparişe Dönüşürken Kur Teklif Kurundan Gelsin
                 </div>
             </td>
         </tr>
