@@ -280,7 +280,7 @@ pos 2 <br>
    <cfelse>
     pos 4 <br>
     <cfif FormData.WORKING_PARAMS.CURRENCY_FROM eq 0>
-        <cfquery name="getMoney" datasource="#dsn3#">
+        <cfquery name="getMoneyext" datasource="#dsn3#">
             SELECT 
          (SELECT RATE1 FROM #dsn#.MONEY_HISTORY WHERE MONEY_HISTORY_ID=(
          SELECT MAX(MONEY_HISTORY_ID) FROM #dsn#.MONEY_HISTORY WHERE MONEY=SM.MONEY) )AS RATE1,
@@ -290,7 +290,7 @@ pos 2 <br>
          FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
          </cfquery>
          <cfset ibnm=1>
-<cfloop query="">
+<cfloop query="getMoneyext">
     <cfset "attributes._txt_rate1_#ibnm#"=RATE1>
     <cfset "attributes._txt_rate2_#ibnm#"=RATE2>
     <cfset "attributes.txt_rate1_#ibnm#"=RATE1>
