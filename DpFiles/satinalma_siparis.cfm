@@ -2,9 +2,8 @@
 $(document).on('ready',function(){
 var fatid=getParameterByName('order_id');
 var elem=document.getElementsByClassName("detailHeadButton")
-getSaleEmp();
 //$(elem[0].children).append("<li class='dropdown' id='transformation'><a style='color:#e303fc' title='Takip'onclick='pencereac(4,"+fatid+")'><i class='icon-bell'></i></a></li>")
-//$(elem[0].children).append("<li class='dropdown' id='transformation'><a style='color:#0489c7' title='Sevkiyat Talebi Oluştur' onclick='pencereac(1,"+fatid+")'><i class='icon-exchange'></i></a></li>")
+$(elem[0].children).append("<li class='dropdown' id='transformation'><a style='color:#0489c7' title='Sevkiyat Talebi Oluştur' onclick='pencereac(1,"+fatid+")'><i class='icon-exchange'></i></a></li>")
 //$(elem[0].children).append("<li class='dropdown' id='transformation'><a style='color:#04c76c' title='Şube Sevkiyat Talebi Oluştur'onclick='pencereac(2,"+fatid+")'><i class='icon-industry'></i></a></li>")
 //$(elem[0].children).append("<li class='dropdown' id='transformation'><a style='color:#fcba03' title='Yazdır'onclick='pencereac(3,"+fatid+")'><i class='icon-print'></i></a></li>")
 // var q="SELECT DISTINCT ORDER_ID FROM PRTOTM_SHIP_RESULT_ROW WHERE ORDER_ID="+fatid
@@ -24,18 +23,7 @@ getSaleEmp();
 
 
 })
-function getSaleEmp(){
-    var elements=$("#tblBasket").find("tr[basketitem]")
-for(let i=0;i<elements.length;i++){   
-    var detail_info_extra=$(elements[i]).find("#detail_info_extra")
-    var relationId=$(elements[i]).find("#wrk_row_relation_id").val()
-    var s="SELECT workcube_metosan.getEmployeeWithId(SALES_EMP_ID) as SATIS_CALISAN FROM PBS_OFFER WHERE OFFER_ID=(SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='"+relationId+"')"
-    var res=wrk_query(s,"dsn3")
-    var satis_calisani=res.SATIS_CALISAN[0]        
-    detail_info_extra.val(satis_calisani)
-    detail_info_extra.attr("style","color:red !important")
-}
-}
+
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
