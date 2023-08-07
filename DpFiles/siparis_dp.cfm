@@ -26,6 +26,9 @@ getSaleEmp();
 })
 function getSaleEmp(){
     var elements=$("#tblBasket").find("tr[basketitem]")
+    var d=new Date()
+
+    console.log("Calistim "+d.toUTCString())
 for(let i=0;i<elements.length;i++){   
     var detail_info_extra=$(elements[i]).find("#detail_info_extra")
     var relationId=$(elements[i]).find("#wrk_row_relation_id").val()
