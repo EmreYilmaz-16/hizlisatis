@@ -24,18 +24,32 @@ getSaleEmp();
 
 
 })
-function getSaleEmp(){
-    var elements=$("#tblBasket").find("tr[basketitem]")
-for(let i=0;i<elements.length;i++){   
-    var detail_info_extra=$(elements[i]).find("#detail_info_extra")
-    var relationId=$(elements[i]).find("#wrk_row_relation_id").val()
-    var s="SELECT workcube_metosan.getEmployeeWithId(SALES_EMP_ID) as SATIS_CALISAN FROM PBS_OFFER WHERE OFFER_ID=(SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='"+relationId+"')"
-    var res=wrk_query(s,"dsn3")
-    var satis_calisani=res.SATIS_CALISAN[0]        
-    detail_info_extra.val(satis_calisani)
-    detail_info_extra.attr("style","color:red !important")
+function getSaleEmp() {
+  var elements = $("#tblBasket").find("tr[basketitem]");
+  for (let i = 0; i < elements.length; i++) {
+    var detail_info_extra = $(elements[i]).find("#detail_info_extra");
+    var relationId = $(elements[i]).find("#wrk_row_relation_id").val();
+    var rsId = $(elements[i]).find("#row_ship_id").val();
+    if (rsId.length > 0) {
+      var s =
+        "SELECT workcube_metosan.getEmployeeWithId(RECORD_EMP) AS SATIS_CALISANI FROM INTERNALDEMAND WHERE INTERNAL_ID=(SELECT I_ID FROM INTERNALDEMAND_ROW WHERE WRK_ROW_ID='" +
+        relationId +
+        "')";
+    } else {
+      var s =
+        "SELECT workcube_metosan.getEmployeeWithId(SALES_EMP_ID) as SATIS_CALISANI FROM PBS_OFFER WHERE OFFER_ID=(SELECT OFFER_ID FROM PBS_OFFER_ROW WHERE UNIQUE_RELATION_ID='" +
+        relationId +
+        "')";
+    }
+    var res = wrk_query(s, "dsn3");
+    var satis_calisani = res.SATIS_CALISANI[0];
+
+    console.log(rsId);
+    detail_info_extra.val(satis_calisani);
+    detail_info_extra.attr("style", "color:red !important");
+  }
 }
-}
+
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');

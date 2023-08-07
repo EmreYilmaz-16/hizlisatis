@@ -7,7 +7,7 @@ var selectedCount = 0;
 var rowCount = 0;
 var tempProductData = "";
 var selectedArr = [];
-var selectedMoney="";
+var selectedMoney = "";
 var CompanyData = new Object();
 $(document).ready(function () {
   setDoom();
@@ -1799,7 +1799,7 @@ function GruplaCanimBenim() {
     KarmaProducts.push(O);
     // console.log(productType)
     if (parseInt(productType) != 1) {
-     /* Hata = true;
+      /* Hata = true;
       break;*/
     }
   }
@@ -1807,8 +1807,8 @@ function GruplaCanimBenim() {
   var Ox = {
     PRODUCT_NAME_MAIN: KarmaName,
     PRODUCT_LIST: KarmaProducts,
-    PRICE_CATID:PRICE_CATID,
-    COMPANY_ID:COMPANY_ID,
+    PRICE_CATID: PRICE_CATID,
+    COMPANY_ID: COMPANY_ID,
     PRICE_TOTAL: TotalPrice,
   };
   if (Hata == true) return false;
