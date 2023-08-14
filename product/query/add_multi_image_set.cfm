@@ -20,7 +20,7 @@
 <cfset session.imFile = #file_name#&"."&#cffile.serverfileext#>
 <cfcatch type="any">
 	<script type="text/javascript">
-		alert("Lütfen imaj dosyası giriniz!");
+		alert("<CFOUTPUT>#cfcatch.message#</CFOUTPUT>");
 		history.back();
 	</script>
 	<cfabort>

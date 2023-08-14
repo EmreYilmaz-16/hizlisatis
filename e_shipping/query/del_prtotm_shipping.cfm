@@ -1,5 +1,5 @@
 ﻿
-<CFSET B_YEAR=year(NOW())-1>
+<CFSET B_YEAR=year(NOW())>
 <cfquery name="isHvSvk" datasource="#dsn3#">
 	SELECT * FROM 
 (select * from #dsn2#.STOCK_FIS 
