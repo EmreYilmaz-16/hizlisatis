@@ -78,6 +78,7 @@ AND ORR.DELIVER_LOCATION IN (#arguments.LOCATION_ID#)
 AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
 AND SRR.PREPARE_PERSONAL IS NULL
 --AND ORR.ORDER_ROW_CURRENCY =-6
+ORDER BY O.RECORD_DATE
         </cfquery>
           <cfif getEmp.recordcount eq 1>
             <cfloop query="getDepWorks" >
@@ -113,6 +114,7 @@ LEFT JOIN #dataSources.dsn#_2022_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID 
                 AND ORR.DELIVER_LOCATION IN (#arguments.LOCATION_ID#)
                 AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
                 AND SRR.PREPARE_PERSONAL IS NULL
+                ORDER BY O.RECORD_DATE
         </cfquery>
          <cfsavecontent  variable="control5">
             <cfdump  var="#CGI#">                
