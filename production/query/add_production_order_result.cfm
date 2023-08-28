@@ -3,6 +3,11 @@
 <cfquery name="getVirtualProductionOrder" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#
 </cfquery>
+<cfif len(attributes.PRODUCT_AMOUNT_1_0)>
+<cfelse>
+    <cfset attributes.PRODUCT_AMOUNT_1_0="#getVirtualProductionOrder.QUANTITY#">
+</cfif>
+
 <cfif getVirtualProductionOrder.IS_FROM_VIRTUAL eq 1>
     
     
