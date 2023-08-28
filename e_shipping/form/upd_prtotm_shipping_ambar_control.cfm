@@ -129,10 +129,10 @@
                         THEN 
                             S.PRODUCT_TREE_AMOUNT 
                         ELSE 
-                            round(ORR.QUANTITY * EPS.PAKET_SAYISI,3)
+                            round(ORR.QUANTITY * 1,3)
                     END 
                         AS PAKET_SAYISI, 
-                    EPS.PAKET_ID, 
+                    ORR.STOCK_ID PAKET_ID, 
                     S.BARCOD, 
                     S.STOCK_CODE, 
                     ORR.PRODUCT_NAME,
@@ -147,8 +147,8 @@
                     PRTOTM_SHIP_RESULT AS ESR INNER JOIN
                     PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID INNER JOIN
                     ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                    PRTOTM_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
-                    STOCKS AS S ON EPS.PAKET_ID = S.STOCK_ID
+                 --   PRTOTM_PAKET_SAYISI AS EPS ON ORR.STOCK_ID = EPS.MODUL_ID INNER JOIN
+                    STOCKS AS S ON orr.STOCK_ID= S.STOCK_ID
                 WHERE      
                     ESR.SHIP_RESULT_ID = #attributes.ship_id#
              	) AS TBL1
