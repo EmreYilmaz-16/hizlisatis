@@ -412,7 +412,14 @@ AddRow(
                 (
                     PCE.PRODUCT_ID = P.PRODUCT_ID OR
                     PCE.PRODUCT_ID IS NULL
-                ) AND
+                ) 
+                AND
+                (
+                    PCE.SUPPLIER_ID = P.COMPANY_ID OR
+                    PCE.SUPPLIER_ID IS NULL
+                ) 
+                
+                AND
                 (
                     PCE.BRAND_ID = P.BRAND_ID OR
                     PCE.BRAND_ID IS NULL
@@ -651,6 +658,12 @@ AddRow(
                     PCE.BRAND_ID = P.BRAND_ID OR
                     PCE.BRAND_ID IS NULL
                 ) AND
+                (
+                    PCE.SUPPLIER_ID = P.COMPANY_ID OR
+                    PCE.SUPPLIER_ID IS NULL
+                ) 
+                
+                AND
                 (
                     PCE.PRODUCT_CATID = P.PRODUCT_CATID OR
                     PCE.PRODUCT_CATID IS NULL
