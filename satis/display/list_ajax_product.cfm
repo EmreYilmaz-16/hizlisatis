@@ -495,8 +495,7 @@ AddRow(
                 PRODUCT_TYPE=PRODUCT_TYPE,
                 MONEY=MONEY,
                 ROWNUM=ROWNUM,
-                SATILABILIR=SATILABILIR,
-                PCE_QUERY=
+                SATILABILIR=SATILABILIR,                
                 QUERY_COUNT=QUERY_COUNT
                
 
