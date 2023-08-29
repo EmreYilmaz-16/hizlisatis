@@ -79,6 +79,7 @@
                     <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,0,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#')">#it.PRODUCT_NAME#</a>
                 </cfif>----->
                 <cfif isDefined("attributes.actType") and len(attributes.actType)>
+                  
                     <cfif attributes.actType eq 1 or attributes.actType eq 2>
                         <a onclick="setRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.PRODUCT_NAME#',#attributes.question_id#,'#it.BARCOD#','#it.MAIN_UNIT#',#it.PRICE#,1,#it.DISCOUNT_RATE#)">#it.PRODUCT_NAME#</a>
                     </cfif>
@@ -404,7 +405,7 @@ AddRow(
             SELECT TOP 1
                 PCE.DISCOUNT_RATE
             FROM
-                PRODUCT P,
+                #dsn1#.PRODUCT P,
                 PRICE_CAT_EXCEPTIONS PCE
                 LEFT JOIN PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
             WHERE
@@ -427,7 +428,7 @@ AddRow(
                 P.PRODUCT_ID = #PRODUCT_ID# AND
                 ISNULL(PC.IS_SALES,0) = 1 AND
                 PCE.ACT_TYPE NOT IN (2,4) AND 
-                PC.PRICE_CATID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.price_catid#">
+                PC.PRICE_CATID = #arguments.price_catid#
             ORDER BY
                 PCE.COMPANY_ID DESC,
                 PCE.PRODUCT_CATID DESC
@@ -495,7 +496,7 @@ AddRow(
                 MONEY=MONEY,
                 ROWNUM=ROWNUM,
                 SATILABILIR=SATILABILIR,
-                
+                PCE_QUERY=
                 QUERY_COUNT=QUERY_COUNT
                
 
@@ -639,7 +640,7 @@ AddRow(
             SELECT TOP 1
                 PCE.DISCOUNT_RATE
             FROM
-                PRODUCT P,
+            #dsn1#.PRODUCT P,
                 PRICE_CAT_EXCEPTIONS PCE
                 LEFT JOIN PRICE_CAT PC ON PC.PRICE_CATID = PCE.PRICE_CATID
             WHERE
