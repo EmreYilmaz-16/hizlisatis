@@ -165,7 +165,7 @@
                             <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,999" message="#getLang('','Kayıt Sayısı Hatalı',57537)#" maxlength="3">
                         </div>
                         <div class="form-group">
-                          <button type="submit"><i class="fa fa-search"></i></button>
+                          <button class="ui-btn ui-btn-success" type="submit"><i class="fa fa-search"></i></button>
                             <cf_workcube_file_action pdf='1' mail='1' doc='1' print='1'>
                         </div>
                     </cfoutput>
