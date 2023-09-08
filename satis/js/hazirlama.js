@@ -10,7 +10,7 @@ $(document).ready(function () {
             console.log(obj)
             employeeArr = obj.EMPLOYEES
             getDepartmentWorks()
-            interval = setInterval(getDepartmentWorks, 10000)
+            interval = setInterval(getDepartmentWorks, 20000)
 
         }
     })
