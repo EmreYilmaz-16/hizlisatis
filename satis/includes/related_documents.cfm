@@ -4,6 +4,7 @@
 LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=POTO.ORDER_ID
  where POTO.OFFER_ID=#attributes.offer_id#
 </cfquery>
+<input type="hidden" name="OrderIdToAll" value="<cfoutput>#valueList(getOrders.ORDER_ID)#</cfoutput>">
 <cfquery name="GEToRDERS2" datasource="#dsn3#">
     SELECT *
 FROM ORDERS
