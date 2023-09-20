@@ -62,7 +62,7 @@ INNER JOIN #dsn#.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_ID where PRO
         </table>
     </div>
     <div style="width:50%">
-    </div>
+    
     <table style="width:100%">
         <tr>
             <th colspan="2" style="color:orange;font-size:14pt;text-align:left">
@@ -107,7 +107,7 @@ INNER JOIN #dsn#.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_ID where PRO
                 </td>
         </tr>
     </table>
-    </div>
+</div>
 </div>
     
     <div class="list-group list-group-horizontal-lg">
