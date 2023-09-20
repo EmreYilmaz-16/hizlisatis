@@ -1137,22 +1137,33 @@ function getCats(el, ev) {
       $("#tblCat").html("");
       tt.innerHtml = "";
       for (let i = 0; i < q.recordcount; i++) {
+        var q2 = wrk_query(
+          "select * from PRODUCT_CAT where HIERARCHY like '" +
+            q.HIERARCHY[i] +
+            "%' and HIERARCHY <>'" +
+            q.HIERARCHY[i] +
+            "'"
+        );
         var cid = q.PRODUCT_CATID[i];
         var cn = q.PRODUCT_CAT[i];
         var hi = q.HIERARCHY[i];
         var tr = document.createElement("tr");
         var td = document.createElement("td");
         var a = document.createElement("a");
-        a.setAttribute("href", "javascript://");
-        a.setAttribute("onclick", "setCat(" + cid + ",'" + cn + "')");
+        if (q2.recordcount == 0) {
+          a.setAttribute("href", "javascript://");
+          a.setAttribute("onclick", "setCat(" + cid + ",'" + cn + "')");
+        }
         a.innerText = hi;
         td.appendChild(a);
         tr.appendChild(td);
 
         var td = document.createElement("td");
         var a = document.createElement("a");
-        a.setAttribute("href", "javascript://");
-        a.setAttribute("onclick", "setCat(" + cid + ",'" + cn + "')");
+        if (q2.recordcount == 0) {
+          a.setAttribute("href", "javascript://");
+          a.setAttribute("onclick", "setCat(" + cid + ",'" + cn + "')");
+        }
         a.innerText = cn;
         td.appendChild(a);
         tr.appendChild(td);
