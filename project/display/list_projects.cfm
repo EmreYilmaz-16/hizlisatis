@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/AddOns/Partner/project/content/project.css">
+<cfinclude template="../includes/upperMenu.cfm">
 
 <cfif isDefined("attributes.list_my_projects")>
     <cfinclude template="list_my_projects.cfm">
