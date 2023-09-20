@@ -1115,11 +1115,11 @@ function getCats(el, ev) {
   // console.log(ev);
   var bul = false;
   if (ev.type == "change") {
-    if (el.value.length > 3) {
+    if (el.value.length > 5) {
       bul = true;
     }
   } else if (ev.type == "keyup") {
-    if (el.value.length > 3 && ev.keyCode == 13) {
+    if (ev.keyCode == 13) {
       bul = true;
     }
   }
