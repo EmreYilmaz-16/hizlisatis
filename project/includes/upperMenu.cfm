@@ -40,7 +40,7 @@
 </cfif>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding:0">
     <div class="container-fluid">
-      <a class="navbar-brand" href="<cfif isDefined("attributes.project_id")><cfif len(getProjectInfo.RELATED_PROJECT_ID)>/index.cfm?fuseaction=project.emptypopup_detail_sub_project_pbs&project_id=<cfoutput>#attributes.project_id#</cfoutput><cfelse>/index.cfm?fuseaction=project.emptypopup_detail_project_pbs&project_id=<cfoutput>#attributes.project_id#</cfoutput></cfif></cfif>"><cfoutput><span class="icn-md catalyst-home"></span><cfif isDefined("attributes.project_id")><cfif len(getProjectInfo.RELATED_PROJECT_ID)>#getProjectInfo2.PROJECT_HEAD# &gt;</cfif>&nbsp;#getProjectInfo.PROJECT_HEAD#</cfoutput><cfelse>PBS Proje</cfif></a>
+      <cfif isDefined("attributes.project_id")><a class="navbar-brand" href="<cfif len(getProjectInfo.RELATED_PROJECT_ID)>/index.cfm?fuseaction=project.emptypopup_detail_sub_project_pbs&project_id=<cfoutput>#attributes.project_id#</cfoutput><cfelse>/index.cfm?fuseaction=project.emptypopup_detail_project_pbs&project_id=<cfoutput>#attributes.project_id#</cfoutput></cfif>"><cfoutput><span class="icn-md catalyst-home"></span><cfif len(getProjectInfo.RELATED_PROJECT_ID)>#getProjectInfo2.PROJECT_HEAD# &gt;</cfif>&nbsp;#getProjectInfo.PROJECT_HEAD#</cfoutput></a><cfelse><a class="navbar-brand"><span class="icn-md catalyst-home"></span>PBS Proje</a></cfif>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><span class="text-primary icn-md fa fa-align-justify"></span></span>
       </button>
