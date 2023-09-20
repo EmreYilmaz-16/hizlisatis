@@ -1142,7 +1142,7 @@ function getCats(el, ev) {
             q.HIERARCHY[i] +
             "%' and HIERARCHY <>'" +
             q.HIERARCHY[i] +
-            "'"
+            "'","dsn1"
         );
         var cid = q.PRODUCT_CATID[i];
         var cn = q.PRODUCT_CAT[i];
