@@ -28,7 +28,13 @@
     UPDATE  PROJECT_NUMBERS_BY_CAT SET PRNUMBER=PRNUMBER+1 WHERE MAIN_PROCESS_CAT_ID=#attributes.main_process_cat#
 </cfquery>
 
+<cfif isDefined(attributes.RELATED_PROJECT_ID) and len(attributes.RELATED_PROJECT_ID)>
+    <script type="text/javascript">
+        window.location.href = '<cfoutput>#request.self#?fuseaction=project.emptypopup_detail_sub_project_pbs&project_id=#get_last_pro.pro_id#</cfoutput>';
+    </script>
+<cfelse>
 
 <script type="text/javascript">
     window.location.href = '<cfoutput>#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#get_last_pro.pro_id#</cfoutput>';
 </script>
+</cfif>
