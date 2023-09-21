@@ -138,7 +138,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
     
 </cfquery>
 
-<cfdump var="#getP3#">
+
 <!----PRODUCT_NAME,PRODUCT_TYPE,PRODUCT_DESCRIPTION---->
 <div class="row">
   <div class="col col-3 col-md-3 col-sm-3 col-xs-12" style="border-right: solid 1px ##E08283;">
