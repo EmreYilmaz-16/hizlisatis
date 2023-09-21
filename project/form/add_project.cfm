@@ -28,10 +28,19 @@ INNER JOIN #dsn#.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_C
    <div style="display:flex;flex-direction: row;flex-wrap: nowrap;justify-content: flex-start;align-items: center;">
     <h3 style="color:orange">Yeni Proje</h3>
     <button style="margin-left:auto" class="btn btn-danger" type="button" onclick="closeBoxDraggable('<cfoutput>#attributes.modal_id#</cfoutput>')"><span class="icn-md icon-times"></span></button>
-</div> 
+</div>
+<cfif isDefined("attributes.upper_project_id") and len(attributes.upper_project_id)>
+    <cfquery name="getProject" datasource="#dsn#">
+            select PRO_CURRENCY_ID,PROJECT_ID,RELATED_PROJECT_ID, PRO_PROJECTS.PROJECT_NUMBER,#dsn#.getEmployeeWithId(PROJECT_EMP_ID) as YONETICI,COMPANY.COMPANY_ID,PROJECT_HEAD,TARGET_START,TARGET_FINISH,SETUP_PRIORITY.PRIORITY,SETUP_PRIORITY.COLOR,COMPANY.NICKNAME from #dsn#.PRO_PROJECTS
+INNER join #dsn#.PROJECT_NUMBERS_BY_CAT ON PRO_PROJECTS.PROCESS_CAT=PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID
+INNER JOIN #dsn#.SETUP_PRIORITY ON SETUP_PRIORITY.PRIORITY_ID=PRO_PROJECTS.PRO_PRIORITY_ID
+INNER JOIN #dsn#.COMPANY ON COMPANY.COMPANY_ID=PRO_PROJECTS.COMPANY_ID where PROJECT_ID=#attributes.upper_project_id#
+    </cfquery>
+    
+</cfif> 
 <cfform name="add_project_form" id="add_project_form" action="#request.self#?fuseaction=project.emptypopup_save_project">
     <input type="hidden" name="consumer_id" id="consumer_id" value="">
-    <input type="hidden" name="company_id" id="company_id" value="">
+    <input type="hidden" name="company_id" id="company_id" value="<cfif isDefined('getProject')><cfoutput>#getProject.COMPANY_ID#</cfoutput></cfif>">
     <div class="form-group" id="form_ul_about_par_name" style="display: none;">
         <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Yetkili </label>
         <div class="col col-8 col-md-8 col-sm-8 col-xs-12">
@@ -44,7 +53,7 @@ INNER JOIN #dsn#.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_C
     <input type="hidden" name="task_company_id" id="task_company_id" value="" class="">
     <input type="hidden" name="project_emp_id" id="project_emp_id" value="" class="">
 <input type="hidden" name="RELATED_PROJECT_ID" value="<cfoutput>#attributes.upper_project_id#</cfoutput>">
-    
+
 
     <table>
         <tr>
@@ -80,7 +89,7 @@ INNER JOIN #dsn#.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_C
                 <div class="form-group" id="item_about_company">                    
                     <label>Şirket </label>                                        
                     <div class="input-group mb-3">
-                        <input type="text" name="about_company" onblur="" id="about_company" placeholder="" value="" onchange="" class="form-control form-control-sm" data-gdpr="">
+                        <input type="text" name="about_company" onblur="" id="about_company" placeholder="" value="<cfif isDefined('getProject')><cfoutput>#getProject.NICKNAME#</cfoutput></cfif>" onchange="" class="form-control form-control-sm" data-gdpr="">
                         <span class="input-group-text" href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_pars&field_comp_id=add_project_form.company_id&is_period_kontrol=0&field_comp_name=add_project_form.about_company&field_partner=add_project_form.partner_id&field_consumer=add_project_form.consumer_id&field_name=add_project_form.about_par_name&par_con=1&select_list=2,3')">
                         <span class="icon-ellipsis"></span>
                         </span>                    
@@ -89,7 +98,7 @@ INNER JOIN #dsn#.PROJECT_NUMBERS_BY_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_C
             </td>
             <td>
                 <div class="form-group" id="item_responsable_name">
-                    <label>Yönetici *</label>
+                    <label>Proje Yöneticisi *</label>
                     <div class="input-group">
                         <input type="text" name="responsable_name" onblur="" required="yes" id="responsable_name" placeholder="" value="" onchange="" class="form-control form-control-sm" data-gdpr="">
                         <span class="input-group-text" href="javascript://" onclick="openBoxDraggable('index.cfm?fuseaction=objects.popup_list_positions&field_partner=add_project_form.task_partner_id&field_emp_id=add_project_form.project_emp_id&field_code=add_project_form.project_pos_code&field_comp_id=add_project_form.task_company_id&field_name=add_project_form.responsable_name&select_list=1,2')">
