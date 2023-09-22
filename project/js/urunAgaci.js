@@ -1845,8 +1845,17 @@ function setSettings(el) {
   });
 }
 function remVirtualProd(el) {
-  denemeButon = el;
+  console.log(el);
   var vp_id = document.getElementById("vp_id").value;
+  console.log(vp_id);
+  document.getElementById("VP_" + vp_id).remove();
+  $.ajax({
+    url:
+      "/AddOns/Partner/project/cfc/product_design.cfc?method=DELVP&vp_id=" +
+      vp_id +
+      "&ddsn3=workcube_metosan_1",
+    success: function () {},
+  });
 }
 function remItem(params) {
   var e = params.parentElement.parentElement.parentElement;

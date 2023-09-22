@@ -319,4 +319,16 @@ VALUES (
         </cfif>
         
     </cffunction>
+    <cffunction name="DELVP" access="remote" httpMethod="POST" >
+        <cfargument name="vp_id">
+        <cfargument name="ddsn3">
+        <cfquery name="del" datasource="#arguments.ddsn3#">
+            DELETE  from VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#arguments.vp_id# 
+        </cfquery>
+        <cfquery name="del" datasource="#arguments.ddsn3#">                
+            DELETE  FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.vp_id# 
+        </cfquery>
+
+    </cffunction>
+
 </cfcomponent>
