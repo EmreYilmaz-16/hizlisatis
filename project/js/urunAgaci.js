@@ -8,7 +8,7 @@ var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
 var idB = 5000;
-var denemeButon="";
+var denemeButon = "";
 function ngetTree(
   product_id,
   is_virtual,
@@ -1676,12 +1676,16 @@ function GercekKontrol(id) {
       b.setAttribute("class", "btn btn-outline-warning");
       b.innerText = "Teklife Dönüştü";
       b.setAttribute("disabled", "disabled");
+      var c = document.getElementById("silButon");
+      c.setAttribute("disabled", "disabled");
     } else {
       var b = document.getElementById("teklifButton");
       b.removeAttribute("class");
       b.setAttribute("class", "btn btn-outline-secondary");
       b.innerText = "Teklif Ver";
       b.removeAttribute("disabled");
+      var c = document.getElementById("silButon");
+      c.removeAttribute("disabled");
     }
     return ex;
   }
@@ -1840,13 +1844,11 @@ function setSettings(el) {
     },
   });
 }
-function remVirtualProd(el){
-  denemeButon=el;
-  var vp_id=document.getElementById("vp_id").value
-
+function remVirtualProd(el) {
+  denemeButon = el;
+  var vp_id = document.getElementById("vp_id").value;
 }
 function remItem(params) {
   var e = params.parentElement.parentElement.parentElement;
   $(e).remove();
 }
-
