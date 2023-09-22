@@ -1845,3 +1845,9 @@ function remItem(params) {
   var e = params.parentElement.parentElement.parentElement;
   $(e).remove();
 }
+var denemeButon;
+function remVirtualProd(el){
+  denemeButon=el;
+  var vp_id=document.getElementById("vp_id").value
+
+}
