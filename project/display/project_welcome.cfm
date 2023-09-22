@@ -33,6 +33,10 @@
            onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&act=list_my'">
             <img src="/images/e-pd/nt.png">
             Notlarım</a>
+            <a class="list-group-item list-group-item-action"
+            onclick="window.location.href='index.cfm?fuseaction=project.emptypopup_list_project_notes&act=list_my'">
+             <img src="/images/e-pd/stt.png">
+             Proje Tanımları</a>
     </div>
 </cf_box>
 
