@@ -236,7 +236,7 @@ INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=
     </script>
 </cfif>
 <cfif attributes.page eq "2UpdQ">
-    <cfquery name="b" datasource="#dsn#">UPDATE  PROJECT_NUMBERS_BY_CAT SET MAIN_PROCESS_CAT_ID=#attributes.MAIN_PROCESS_CAT_ID#,SHORT_CODE=#attributes.SHORT_CODE# WHERE ID=#attributes.IID#</cfquery>
+    <cfquery name="b" datasource="#dsn#">UPDATE  PROJECT_NUMBERS_BY_CAT SET MAIN_PROCESS_CAT_ID=#attributes.MAIN_PROCESS_CAT_ID#,SHORT_CODE='#attributes.SHORT_CODE#' WHERE ID=#attributes.IID#</cfquery>
     <script>
         window.location.href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2List</cfoutput>";
     </script>
