@@ -1847,15 +1847,20 @@ function setSettings(el) {
 function remVirtualProd(el) {
   console.log(el);
   var vp_id = document.getElementById("vp_id").value;
+  var is_virtual = document.getElementById("is_virtual").value;
   console.log(vp_id);
-  document.getElementById("VP_" + vp_id).remove();
-  $.ajax({
-    url:
-      "/AddOns/Partner/project/cfc/product_design.cfc?method=DELVP&vp_id=" +
-      vp_id +
-      "&ddsn3=workcube_metosan_1",
-    success: function () {},
-  });
+  if (parseInt(is_virtual) == 1) {
+    document.getElementById("VP_" + vp_id).remove();
+    $.ajax({
+      url:
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=DELVP&vp_id=" +
+        vp_id +
+        "&ddsn3=workcube_metosan_1",
+      success: function () {},
+    });
+  } else {
+    alert("Gerçek Ürünü Silemezsiniz !");
+  }
 }
 function remItem(params) {
   var e = params.parentElement.parentElement.parentElement;
