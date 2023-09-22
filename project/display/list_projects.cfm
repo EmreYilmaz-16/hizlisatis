@@ -13,13 +13,13 @@
             <td>
                 <div class="form-group">
                     <label>Filtre</label>
-                    <input type="text" name="keyword" value="<cfoutput>#attributes.keyword#</cfoutput>">
+                    <input class="form-control form-control-lg" type="text" name="keyword" value="<cfoutput>#attributes.keyword#</cfoutput>">
                 </div>
             </td>
             <td>
                 <div class="form-group" id="form_ul_process_catid">
                     <label>Kategori </label>
-                    <select name="process_catid" id="process_catid">
+                    <select class="form-control form-control-lg" name="process_catid" id="process_catid">
                         <option value="">Seçiniz </option>
                          
                             <option value="1">Direksiyon Seti</option>
