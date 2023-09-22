@@ -155,7 +155,7 @@ INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=
             
         </thead>
         <tbody>
-            <cfoutput>
+            <cfoutput query="GETL">
                 <tr>
                     <td>#MAIN_PROCESS_CAT#</td>
                     <td>#SHORT_CODE#</td>
