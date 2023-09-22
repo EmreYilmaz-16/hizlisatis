@@ -229,10 +229,10 @@ INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=
         </table>
     </cfform>
 </cfif>
-<cfif attributes.page eq "2AddQ">
-    <cfquery>INSERT INTO PROJECT_NUMBERS_BY_CAT (MAIN_PROCESS_CAT_ID,SHORT_CODE,PRNUMBER) VALUES(#attributes.MAIN_PROCESS_CAT_ID#,'#attributes.SHORT_CODE#',1)</cfquery>
+<cfif attributes.page eq "2AddQ" >
+    <cfquery name="a" datasource="#dsn#">INSERT INTO PROJECT_NUMBERS_BY_CAT (MAIN_PROCESS_CAT_ID,SHORT_CODE,PRNUMBER) VALUES(#attributes.MAIN_PROCESS_CAT_ID#,'#attributes.SHORT_CODE#',1)</cfquery>
 </cfif>
 <cfif attributes.page eq "2UpdQ">
-    <cfquery>UPDATE  PROJECT_NUMBERS_BY_CAT SET MAIN_PROCESS_CAT_ID=#attributes.MAIN_PROCESS_CAT_ID#,SHORT_CODE=#attributes.SHORT_CODE# WHERE ID=#attributes.IID#</cfquery>
+    <cfquery name="b" datasource="#dsn#">UPDATE  PROJECT_NUMBERS_BY_CAT SET MAIN_PROCESS_CAT_ID=#attributes.MAIN_PROCESS_CAT_ID#,SHORT_CODE=#attributes.SHORT_CODE# WHERE ID=#attributes.IID#</cfquery>
 </cfif>
 </cf_box>
