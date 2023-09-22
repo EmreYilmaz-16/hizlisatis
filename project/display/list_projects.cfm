@@ -54,7 +54,7 @@
                         <input type="hidden" name="consumer_id" id="consumer_id">			
                         <input type="hidden" name="company_id" id="company_id">
                         <input type="text" name="company" id="company" value="" onfocus="AutoComplete_Create('company','MEMBER_NAME,MEMBER_PARTNER_NAME','MEMBER_NAME,MEMBER_PARTNER_NAME','get_member_autocomplete','\'1,2\',0,0,0','CONSUMER_ID,COMPANY_ID','consumer_id,company_id','','3','250');" autocomplete="off" style=""><div id="company_div_2" name="company_div_2" class="completeListbox" autocomplete="on" style="width: 516px; max-height: 150px; overflow: auto; position: absolute; left: 15px; top: 319.444px; z-index: 159; display: none;"></div>
-                        <span class="input-group-addon icon-ellipsis btnPointer" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_pars&select_list=2,3&field_comp_name=search.company&field_comp_id=search.company_id&field_consumer=search.consumer_id&field_member_name=search.company','list')"></span>
+                        <span class="input-group-text icon-ellipsis btnPointer" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_pars&select_list=2,3&field_comp_name=search.company&field_comp_id=search.company_id&field_consumer=search.consumer_id&field_member_name=search.company','list')"></span>
                     </div>
                 </div>
             </td>
@@ -64,7 +64,7 @@
                     <div class="input-group">
                         
                         <input type="text" name="pro_employee" id="pro_employee" value="" onfocus="AutoComplete_Create('pro_employee','MEMBER_NAME,MEMBER_PARTNER_NAME2','MEMBER_PARTNER_NAME2,MEMBER_NAME2','get_member_autocomplete','\'1,3\',0,0','COMPANY_ID,PARTNER_ID,EMPLOYEE_ID','pro_company_id,pro_partner_id,pro_employee_id','','3','200','get_company()');" passthrough="readonly" autocomplete="off" style=""><div id="pro_employee_div_2" name="pro_employee_div_2" class="completeListbox" autocomplete="on" style="width: 516px; max-height: 150px; overflow: auto; position: absolute; left: 15px; top: 260px; z-index: 159; display: none;"></div>
-                        <span class="input-group-addon icon-ellipsis btnPointer" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_positions&field_partner=search.pro_partner_id&field_emp_id=search.pro_employee_id&field_code=search.project_pos_code&field_comp_id=search.pro_company_id&field_name=search.pro_employee&select_list=1,2','list');"></span>
+                        <span class="input-group-text icon-ellipsis btnPointer" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_positions&field_partner=search.pro_partner_id&field_emp_id=search.pro_employee_id&field_code=search.project_pos_code&field_comp_id=search.pro_company_id&field_name=search.pro_employee&select_list=1,2','list');"></span>
                         <input type="hidden" name="project_pos_code" id="project_pos_code" value="">
                         <input type="hidden" name="pro_employee_id" id="pro_employee_id" value="">
                         <input type="hidden" name="pro_company_id" id="pro_company_id" value="">
