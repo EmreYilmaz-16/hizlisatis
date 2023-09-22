@@ -1142,7 +1142,8 @@ function getCats(el, ev) {
             q.HIERARCHY[i] +
             "%' and HIERARCHY <>'" +
             q.HIERARCHY[i] +
-            "'","dsn3"
+            "'",
+          "dsn3"
         );
         var cid = q.PRODUCT_CATID[i];
         var cn = q.PRODUCT_CAT[i];
@@ -1573,6 +1574,9 @@ function setQuestion(el) {
   var ev = e.getAttribute("data-idb");
   var question_id = e.getAttribute("data-question_id");
   var displayName = e.getAttribute("data-displayname");
+  if (displayName == null) {
+    displayName = "";
+  }
   //console.log(ev);
   openBoxDraggable(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=alternativeQuestion&idb=" +
