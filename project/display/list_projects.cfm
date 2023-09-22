@@ -6,7 +6,76 @@
     <cfinclude template="list_my_projects.cfm">
     <cfabort>
 </cfif>
-
+<cfparam name="attributes.keyword" default="">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" name="search" id="search">
+    <table>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label>Filtre</label>
+                    <input type="text" name="keyword" value="<cfoutput>#attributes.keyword#</cfoutput>">
+                </div>
+            </td>
+            <td>
+                <div class="form-group" id="form_ul_process_catid">
+                    <label>Kategori </label>
+                    <select name="process_catid" id="process_catid">
+                        <option value="">Seçiniz </option>
+                         
+                            <option value="1">Direksiyon Seti</option>
+                         
+                            <option value="2">Test Makinası</option>
+                         
+                            <option value="3">Hidrolik Güç Ünitesi</option>
+                         
+                            <option value="4">Elektrik Panosu</option>
+                         
+                            <option value="5">Hidrolik Silindir</option>
+                         
+                            <option value="6">Pnömatik Sistem Panosu</option>
+                         
+                            <option value="7">Hidrolik Blok</option>
+                         
+                            <option value="8">Kompleks Proje</option>
+                         
+                            <option value="9">Traktör Satışı</option>
+                         
+                            <option value="10">Workcube ERP</option>
+                         
+                            <option value="1010">Ar-Ge Projeleri</option>
+                         
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="form-group" id="form_ul_consumer_id">
+                    <label>Üye </label>
+                    <div class="input-group">
+                        <input type="hidden" name="consumer_id" id="consumer_id">			
+                        <input type="hidden" name="company_id" id="company_id">
+                        <input type="text" name="company" id="company" value="" onfocus="AutoComplete_Create('company','MEMBER_NAME,MEMBER_PARTNER_NAME','MEMBER_NAME,MEMBER_PARTNER_NAME','get_member_autocomplete','\'1,2\',0,0,0','CONSUMER_ID,COMPANY_ID','consumer_id,company_id','','3','250');" autocomplete="off" style=""><div id="company_div_2" name="company_div_2" class="completeListbox" autocomplete="on" style="width: 516px; max-height: 150px; overflow: auto; position: absolute; left: 15px; top: 319.444px; z-index: 159; display: none;"></div>
+                        <span class="input-group-addon icon-ellipsis btnPointer" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_pars&select_list=2,3&field_comp_name=search.company&field_comp_id=search.company_id&field_consumer=search.consumer_id&field_member_name=search.company','list')"></span>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group" id="form_ul_pro_employee_id">
+                    <label>Görevli </label>
+                    <div class="input-group">
+                        
+                        <input type="text" name="pro_employee" id="pro_employee" value="" onfocus="AutoComplete_Create('pro_employee','MEMBER_NAME,MEMBER_PARTNER_NAME2','MEMBER_PARTNER_NAME2,MEMBER_NAME2','get_member_autocomplete','\'1,3\',0,0','COMPANY_ID,PARTNER_ID,EMPLOYEE_ID','pro_company_id,pro_partner_id,pro_employee_id','','3','200','get_company()');" passthrough="readonly" autocomplete="off" style=""><div id="pro_employee_div_2" name="pro_employee_div_2" class="completeListbox" autocomplete="on" style="width: 516px; max-height: 150px; overflow: auto; position: absolute; left: 15px; top: 260px; z-index: 159; display: none;"></div>
+                        <span class="input-group-addon icon-ellipsis btnPointer" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_positions&field_partner=search.pro_partner_id&field_emp_id=search.pro_employee_id&field_code=search.project_pos_code&field_comp_id=search.pro_company_id&field_name=search.pro_employee&select_list=1,2','list');"></span>
+                        <input type="hidden" name="project_pos_code" id="project_pos_code" value="">
+                        <input type="hidden" name="pro_employee_id" id="pro_employee_id" value="">
+                        <input type="hidden" name="pro_company_id" id="pro_company_id" value="">
+                        <input type="hidden" name="pro_partner_id" id="pro_partner_id" value="">
+                        
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</cfform>
 <cf_box title="Projeler">
 <cfquery name="getProjects" datasource="#dsn#">
 SELECT PROJECT_ID,RELATED_PROJECT_ID, PRO_PROJECTS.PROJECT_NUMBER,#dsn#.getEmployeeWithId(PROJECT_EMP_ID) AS YONETICI,PROJECT_HEAD,TARGET_START,TARGET_FINISH,SETUP_PRIORITY.PRIORITY,SETUP_PRIORITY.COLOR,COMPANY.NICKNAME from #dsn#.PRO_PROJECTS
