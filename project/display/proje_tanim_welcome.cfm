@@ -6,11 +6,11 @@
     <cfoutput>
     <div class="list-group">
         <a class="list-group-item list-group-item-action"
-           onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=1Add'">
+           onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=1List'">
             <img src="/images/e-pd/pr.png">
             Ana İşlem Kategorisi => Kategori Tanımlama</a>
         <a class="list-group-item list-group-item-action"
-           onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=2Add'">
+           onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=2List'">
             <img src="/images/e-pd/mpr.png">
             Ana İşlem Kategorisi Tanımlama</a>
         
