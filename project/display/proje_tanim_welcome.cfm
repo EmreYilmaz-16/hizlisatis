@@ -31,7 +31,7 @@ INNER JOIN #DSN1#.PRODUCT_CAT ON PRODUCT_CAT.PRODUCT_CATID=MAIN_PROCESS_CAT_TO_P
             <tr>
                 <th>Ana İşlem Kategorisi</th>
                 <th>Kategori</th>
-                <th><a href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=1Add&title=Ana İşlem Kategorisi => Kategori Tanımlama Ekle</cfoutput>"><span class="icn-md icon-pluss"></span></a></th>
+                <th><a onclick="window.location.href='<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=1Add&title=Ana İşlem Kategorisi => Kategori Tanımlama Ekle</cfoutput>'" href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=1Add&title=Ana İşlem Kategorisi => Kategori Tanımlama Ekle</cfoutput>"><span class="icn-md icon-pluss"></span></a></th>
             </tr>
         </thead>
         <tbody>
@@ -150,7 +150,7 @@ INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=
                 <th>
                     Numara
                 </th>
-                <th><a onclick="window.location.href='<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2Add&title=Ana İşlem Kategorisi Tanımları</cfoutput>'" href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2Add&title=Ana İşlem Kategorisi Tanımları</cfoutput>"><span class="icn-md icon-pluss"></span></a></th>
+                <th><a onclick="window.location.href='<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2Add&title=Ana İşlem Kategorisi Tanımları Ekle</cfoutput>'" href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2Add&title=Ana İşlem Kategorisi Tanımları Ekle</cfoutput>"><span class="icn-md icon-pluss"></span></a></th>
             </tr>
             
         </thead>
@@ -166,8 +166,73 @@ INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=
         </tbody>
     </cf_big_list>
 </cfif>
-<cfif attributes.page eq "2Add"></cfif>
-<cfif attributes.page eq "2Upd"></cfif>
-<cfif attributes.page eq "2AddQ"></cfif>
-<cfif attributes.page eq "2UpdQ"></cfif>
+<cfif attributes.page eq "2Add">
+
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=2AddQ" name="search_product">
+    <table>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <select name="MAIN_PROCESS_CAT_ID" required>
+                        <cfquery name="getMain" datasource="#dsn#">
+                            SELECT MAIN_PROCESS_CAT_ID,MAIN_PROCESS_CAT FROM SETUP_MAIN_PROCESS_CAT
+                        </cfquery>
+                        <option value="">Ana İşlem Kategorisi</option>
+                        <cfoutput query="getMain">
+                            <option value="#MAIN_PROCESS_CAT_ID#">#MAIN_PROCESS_CAT#</option>
+                        </cfoutput>
+                    </select>
+                
+                </div>
+            </td>
+            <td>
+                <input type="text" value="" name="SHORT_CODE">
+                <input type="hidden" name="PRNUMBER" value="1">
+            </td>
+            <td>
+                <input type="submit">
+            </td>
+        </tr>
+    </table>
+</cfform>
+</cfif>
+<cfif attributes.page eq "2Upd">
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=2UpdQ" name="search_product">
+        <cfquery name="GETL" datasource="#DSN#">
+            select PROJECT_NUMBERS_BY_CAT.ID,PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID,PROJECT_NUMBERS_BY_CAT.PRNUMBER,PROJECT_NUMBERS_BY_CAT.SHORT_CODE,MAIN_PROCESS_CAT from PROJECT_NUMBERS_BY_CAT
+    INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT_ID
+        </cfquery>
+        <table>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <select name="MAIN_PROCESS_CAT_ID" required>
+                            <cfquery name="getMain" datasource="#dsn#">
+                                SELECT MAIN_PROCESS_CAT_ID,MAIN_PROCESS_CAT FROM SETUP_MAIN_PROCESS_CAT
+                            </cfquery>
+                            <option value="">Ana İşlem Kategorisi</option>
+                            <cfoutput query="getMain">
+                                <option <cfif GETL.MAIN_PROCESS_CAT_ID eq MAIN_PROCESS_CAT_ID>selected</cfif> value="#MAIN_PROCESS_CAT_ID#">#MAIN_PROCESS_CAT#</option>
+                            </cfoutput>
+                        </select>
+                    
+                    </div>
+                </td>
+                <td>
+                    <input type="text" value="<cfoutput>#getl.SHORT_CODE#</cfoutput>" name="SHORT_CODE">
+                    <input type="hidden" name="IID" value="<cfoutput>#getl.ID#</cfoutput>">
+                </td>
+                <td>
+                    <input type="submit">
+                </td>
+            </tr>
+        </table>
+    </cfform>
+</cfif>
+<cfif attributes.page eq "2AddQ">
+    <cfquery>INSERT INTO PROJECT_NUMBERS_BY_CAT (MAIN_PROCESS_CAT_ID,SHORT_CODE,PRNUMBER) VALUES(#attributes.MAIN_PROCESS_CAT_ID#,'#attributes.SHORT_CODE#',1)</cfquery>
+</cfif>
+<cfif attributes.page eq "2UpdQ">
+    <cfquery>UPDATE  PROJECT_NUMBERS_BY_CAT SET MAIN_PROCESS_CAT_ID=#attributes.MAIN_PROCESS_CAT_ID#,SHORT_CODE=#attributes.SHORT_CODE# WHERE ID=#attributes.IID#</cfquery>
+</cfif>
 </cf_box>
