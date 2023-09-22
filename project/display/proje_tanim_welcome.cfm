@@ -1,22 +1,24 @@
-﻿<cfparam name="attributes.page" default="list">
+﻿<cfparam name="attributes.title" default="Proje Tanımları">
+<cf_box title="#attributes.title#">
+<cfparam name="attributes.page" default="list">
 <cfif attributes.page eq "list">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<cf_box title="Proje Tanımları">
+
     <cfoutput>
     <div class="list-group">
         <a class="list-group-item list-group-item-action"
-           onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=1List'">
+           onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=1List&title=Ana İşlem Kategorisi => Kategori Tanımlama'">
             <img src="/images/e-pd/pr.png">
             Ana İşlem Kategorisi => Kategori Tanımlama</a>
         <a class="list-group-item list-group-item-action"
-           onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=2List'">
+           onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=2List&title=Ana İşlem Kategorisi Tanımlama'">
             <img src="/images/e-pd/mpr.png">
             Ana İşlem Kategorisi Tanımlama</a>
         
     </div>
 </cfoutput>
-</cf_box>
+
 </cfif>
 <cfif attributes.page eq "1List">
     <cfquery name="GETL" datasource="#DSN3#">
@@ -29,7 +31,7 @@ INNER JOIN #DSN1#.PRODUCT_CAT ON PRODUCT_CAT.PRODUCT_CATID=MAIN_PROCESS_CAT_TO_P
             <tr>
                 <th>Ana İşlem Kategorisi</th>
                 <th>Kategori</th>
-                <th><span class="icn-md icon-pencil-square-o"></span></th>
+                <th><a href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=1Add&title=Ana İşlem Kategorisi => Kategori Tanımlama Ekle</cfoutput>"><span class="icn-md icon-pluss"></span></a></th>
             </tr>
         </thead>
         <tbody>
@@ -37,7 +39,7 @@ INNER JOIN #DSN1#.PRODUCT_CAT ON PRODUCT_CAT.PRODUCT_CATID=MAIN_PROCESS_CAT_TO_P
             <tr>
                 <td>#MAIN_PROCESS_CAT#</td>
                 <td>#PRODUCT_CAT#</td>
-                <td><a href="#request.self#?fuseaction=#attributes.fuseaction#&page=1Upd&IID=#ID#"><span class="icn-md icon-pencil-square-o"></span></a></td>
+                <td><a href="#request.self#?fuseaction=#attributes.fuseaction#&page=1Upd&IID=#ID#&title=Ana İşlem Kategorisi => Kategori Tanımlama Güncelle"><span class="icn-md icon-pencil-square-o"></span></a></td>
             </tr>
         </cfoutput>
         </tbody>
@@ -131,7 +133,41 @@ INNER JOIN #DSN1#.PRODUCT_CAT ON PRODUCT_CAT.PRODUCT_CATID=MAIN_PROCESS_CAT_TO_P
         window.location.href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=1List</cfoutput>";
     </script>
 </cfif>
+<cfif attributes.page eq "2List">
+    <cfquery name="GETL" datasource="#DSN#">
+        select PROJECT_NUMBERS_BY_CAT.ID,PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID,PROJECT_NUMBERS_BY_CAT.PRNUMBER,PROJECT_NUMBERS_BY_CAT.SHORT_CODE,MAIN_PROCESS_CAT from PROJECT_NUMBERS_BY_CAT
+INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=SETUP_MAIN_PROCESS_CAT.MAIN_PROCESS_CAT_ID
+    </cfquery>
+    <cf_big_list>
+        <thead>
+            <tr>
+                <th>
+                    Ana İşlem Kategori
+                </th>
+                <th>
+                    Kısa Kod
+                </th>
+                <th>
+                    Numara
+                </th>
+                <th><a href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2Add&title=Ana İşlem Kategorisi Tanımları</cfoutput>"><span class="icn-md icon-pluss"></span></a></th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            <cfoutput>
+                <tr>
+                    <td>#MAIN_PROCESS_CAT#</td>
+                    <td>#SHORT_CODE#</td>
+                    <td>#PRNUMBER#</td>
+                    <td><a href="#request.self#?fuseaction=#attributes.fuseaction#&page=2Upd&IID=#ID#&title=Ana İşlem Kategorisi => Kategori Tanımlama Güncelle"><span class="icn-md icon-pencil-square-o"></span></a></td>
+                </tr>
+            </cfoutput>
+        </tbody>
+    </cf_big_list>
+</cfif>
 <cfif attributes.page eq "2Add"></cfif>
 <cfif attributes.page eq "2Upd"></cfif>
 <cfif attributes.page eq "2AddQ"></cfif>
 <cfif attributes.page eq "2UpdQ"></cfif>
+</cf_box>
