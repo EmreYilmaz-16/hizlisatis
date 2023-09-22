@@ -150,7 +150,7 @@ INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=
                 <th>
                     Numara
                 </th>
-                <th><a href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2Add&title=Ana İşlem Kategorisi Tanımları</cfoutput>"><span class="icn-md icon-pluss"></span></a></th>
+                <th><a onclick="window.location.href='<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2Add&title=Ana İşlem Kategorisi Tanımları</cfoutput>'" href="<cfoutput>#request.self#?fuseaction=#attributes.fuseaction#&page=2Add&title=Ana İşlem Kategorisi Tanımları</cfoutput>"><span class="icn-md icon-pluss"></span></a></th>
             </tr>
             
         </thead>
@@ -160,7 +160,7 @@ INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=
                     <td>#MAIN_PROCESS_CAT#</td>
                     <td>#SHORT_CODE#</td>
                     <td>#PRNUMBER#</td>
-                    <td><a href="#request.self#?fuseaction=#attributes.fuseaction#&page=2Upd&IID=#ID#&title=Ana İşlem Kategorisi => Kategori Tanımlama Güncelle"><span class="icn-md icon-pencil-square-o"></span></a></td>
+                    <td><a href="#request.self#?fuseaction=#attributes.fuseaction#&page=2Upd&IID=#ID#&title=Ana İşlem Kategorisi Tanımları Güncelle"><span class="icn-md icon-pencil-square-o"></span></a></td>
                 </tr>
             </cfoutput>
         </tbody>
