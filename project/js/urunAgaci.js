@@ -8,7 +8,7 @@ var SonAgac = new Array();
 var idA = 1000;
 var isUpdated = false;
 var idB = 5000;
-
+var denemeButon="";
 function ngetTree(
   product_id,
   is_virtual,
@@ -1840,14 +1840,13 @@ function setSettings(el) {
     },
   });
 }
-
-function remItem(params) {
-  var e = params.parentElement.parentElement.parentElement;
-  $(e).remove();
-}
-var denemeButon;
 function remVirtualProd(el){
   denemeButon=el;
   var vp_id=document.getElementById("vp_id").value
 
 }
+function remItem(params) {
+  var e = params.parentElement.parentElement.parentElement;
+  $(e).remove();
+}
+
