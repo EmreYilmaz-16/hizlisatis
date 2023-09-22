@@ -82,6 +82,10 @@
                     </div>
                 </div>
             </td>
+            <td>
+                <input type="submit">
+                <input type="hidden" name="is_submit">
+            </td>
         </tr>
     </table>
 </cfform>
@@ -150,6 +154,7 @@ AND SMC.MAIN_PROCESS_CAT_ID=#attributes.process_catid#
     </tr>
 </thead>
 <tbody>
+    <cfif isDefined("attributes.is_submit")>
     <cfoutput query="getProjects">
         <tr>
             <td>
@@ -168,6 +173,14 @@ AND SMC.MAIN_PROCESS_CAT_ID=#attributes.process_catid#
             <td><a onclick="window.location.href='#request.self#?fuseaction=project.emptypopup_detail_project_pbs&project_id=#PROJECT_ID#'"><span class="icn-md icon-pencil-square-o"></span></a></td>
         </tr>
     </cfoutput>
+<cfelse>
+    <tr>
+        <td colspan="9">
+            Arama Yapınız
+        </td>
+    </tr>
+</cfif>
+
 </tbody>
 </cf_grid_list>
 </cf_box>
