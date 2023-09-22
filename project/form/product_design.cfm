@@ -150,7 +150,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
   </div>
   <div class="list-group" id="leftMenuProject"> 
       <cfoutput query="getP">      
-          <a class="list-group-item list-group-item-action" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
+          <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
               #PRODUCT_NAME#
               <cfif PRODUCT_STAGE eq 339>
                   <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
@@ -167,7 +167,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       <hr>
       <div class="list-group" id="leftMenuProject"> 
           <cfoutput query="getP2">
-            <a class="list-group-item list-group-item-action" >
+            <a class="list-group-item list-group-item-action">
            
               <button class="btn btn-sm btn-outline-primary" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#,'#PRODUCT_NAME#')">
                 <i class="icn-md fa fa-plus"></i>
