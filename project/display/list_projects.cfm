@@ -8,7 +8,7 @@
 </cfif>
 <cfparam name="attributes.keyword" default="">
 <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" name="search" id="search">
-    <table>
+    <table class="table">
         <tr>
             <td>
                 <div class="form-group">
