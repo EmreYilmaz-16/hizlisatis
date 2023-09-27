@@ -61,7 +61,7 @@
   DataObject.URETIM = UretimArr;
   var JsonString = JSON.stringify(DataObject);
 
-
+console.log(DataObject)
 }
 
 
