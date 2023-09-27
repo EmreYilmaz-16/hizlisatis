@@ -62,4 +62,3 @@
         <button type="button" class="btn btn-success" onclick="saveIhtiyac()">Kaydet</button>
     </cfif>
     
-<script src="../js/ihtiyacPlani.js"></script>
