@@ -16,7 +16,7 @@
           AND ASS.PROPERTY_ID=CP.CONTENT_PROPERTY_ID
           AND ASS.ASSETCAT_ID=ASCC.ASSETCAT_ID
 </cfquery>
-a
+
 <cf_ajax_list>
     <thead>
         <tr>
