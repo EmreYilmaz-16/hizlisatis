@@ -1699,7 +1699,7 @@ function updateStage(el, projectId) {
   if (parseInt(el.value) == 340) {
     var vq = wrk_query(
       "select COUNT(*) as SCOUNT from VIRTUAL_PRODUCTS_PRT where PROJECT_ID =" +
-        project_id +
+      projectId +
         " AND PRODUCT_STAGE=340",
       "dsn3"
     );
