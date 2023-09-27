@@ -16,8 +16,11 @@
                 </cfloop>
             </optgroup>
             <optgroup label="Gerçek Ürünler">
-                <cfquery name="getRp" datasource="#dsn3#">
-                    SELECT * FROM STOCKS WHERE PROJECT_ID=#attributes.PROJECT_ID#
+                <cfquery name="getRp" datasource="#dsn1#">
+                    SELECT * FROM (
+SELECT PRODUCT.PRODUCT_ID,STOCK_ID,PRODUCT_NAME,PRODUCT.PRODUCT_STAGE,(SELECT COUNT(*) FROM #DSN3#.PRODUCT_TREE WHERE RELATED_ID=STOCKS.STOCK_ID) AS RC FROM #DSN1#.PRODUCT 
+LEFT JOIN #DSN1#.STOCKS ON STOCKS.PRODUCT_ID=PRODUCT.PRODUCT_ID
+Where PROJECT_ID=#attributes.PROJECT_ID# ) AS T WHERE RC=0
                 </cfquery>
                 <cfloop query="getRp">
                     <option value="#0#_#PRODUCT_ID#">#PRODUCT_NAME#</option>
