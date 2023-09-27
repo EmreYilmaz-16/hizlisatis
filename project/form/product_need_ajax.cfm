@@ -1,4 +1,4 @@
-﻿<cfdump var="#attributes#">
+﻿
 <cfset attributes.PRODUCT_ID=listGetAt(attributes.pidow,2,"_")>
 <cfset attributes.IS_VIRTUAL=listGetAt(attributes.pidow,1,"_")>
 
@@ -41,7 +41,7 @@
                 </td>
                 <td style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
                 <td style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
-                <td><input type="text" value="#TLFORMAT(BAKIYE-AMOUNT)#" name="IHTIYAC_#currentrow#"></td>
+                <td><input type="text" value="<CFIF BAKIYE-AMOUNT LT 0>#-1*(BAKIYE - AMOUNT)#<CFELSE>0</CFIF> " name="IHTIYAC_#currentrow#"></td>
                 <td>
                     <select name="orderrow_currency_#currentrow#" id="orderrow_currency_#currentrow#">
                         <option <cfif dvv eq -1>selected</cfif> value="-1">Açık</option>
