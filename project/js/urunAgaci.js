@@ -1693,6 +1693,7 @@ function GercekKontrol(id) {
 }
 
 function updateStage(el, projectId) {
+  console.log(arguments);
   var vp_id = document.getElementById("vp_id").value;
 
   if (parseInt(el.value) == 340) {
