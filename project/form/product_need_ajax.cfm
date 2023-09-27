@@ -58,7 +58,8 @@
         </cfoutput>
     </tbody>
     </cf_grid_list>
-
+    <cfif IS_VIRTUAL eq 1>
+        <button type="button" class="btn btn-success" onclick="saveIhtiyac()">Kaydet</button>
+    </cfif>
     
-
-
+<script src="../js/ihtiyacPlani.js"></script>
