@@ -16,7 +16,8 @@
         <th>
             Miktar 
         </th>
-        <th></th>
+        <th>İhtiyaç</th>
+        <th>Aşama</th>
     </tr>
 </thead>
 <tbody>

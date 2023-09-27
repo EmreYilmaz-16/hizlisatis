@@ -1694,6 +1694,19 @@ function GercekKontrol(id) {
 
 function updateStage(el, projectId) {
   var vp_id = document.getElementById("vp_id").value;
+
+  if (parseInt(el.value) == 340) {
+    var vq = wrk_query(
+      "select COUNT(*) as SCOUNT from VIRTUAL_PRODUCTS_PRT where PROJECT_ID =" +
+        project_id +
+        " AND PRODUCT_STAGE=340",
+      "dsn3"
+    );
+    if (vq.SCOUNT[0] > 0) {
+      alert("Onaylanmış Ürünler Var");
+      return false;
+    }
+  }
   $.ajax({
     url:
       "/AddOns/Partner/project/cfc/product_design.cfc?method=updateStage&vp_id=" +
