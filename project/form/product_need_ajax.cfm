@@ -23,7 +23,7 @@
             <th>Aşama</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="rowws">
         <cfoutput query="getProjectNeeds">
             <tr style="<cfif IS_VIRTUAL eq 1>background:##ff00006b<cfelse></cfif>">
                 <cfset dvv=-1>
