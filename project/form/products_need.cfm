@@ -23,7 +23,7 @@ LEFT JOIN #DSN1#.STOCKS ON STOCKS.PRODUCT_ID=PRODUCT.PRODUCT_ID
 Where PROJECT_ID=#attributes.PROJECT_ID# ) AS T WHERE RC=0
                 </cfquery>
                 <cfloop query="getRp">
-                    <option value="#0#_#PRODUCT_ID#">#PRODUCT_NAME#</option>
+                    <option value="#0#_#STOCK_ID#">#PRODUCT_NAME#</option>
                 </cfloop>
             </optgroup>
             </cfoutput>
