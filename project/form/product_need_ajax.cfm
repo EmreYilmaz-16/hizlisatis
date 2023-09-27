@@ -51,8 +51,8 @@
                         <option <cfif dvv eq -10>selected</cfif> value="-10">Kapatıldı</option>
                         <option <cfif dvv eq 1>selected</cfif> value="1">Fiyat Talep</option>
                     </select>
-                    <input type="hidden" name="product_id_#currentrow#" value="#PRODUCT_ID#">
-                    <input type="hidden" name="is_virtual_#currentrow#" value="#IS_VIRTUAL#">
+                    <input type="hidden" name="product_id_#currentrow#" id="product_id_#currentrow#" value="#PRODUCT_ID#">
+                    <input type="hidden" name="is_virtual_#currentrow#" id="is_virtual_#currentrow#" value="#IS_VIRTUAL#">
                 </td>
             </tr>
         </cfoutput>
