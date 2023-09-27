@@ -1,7 +1,7 @@
 ﻿<cfdump var="#attributes#">
 <cfset attributes.PRODUCT_ID=listGetAt(attributes.pidow,2,"_")>
 <cfset attributes.IS_VIRTUAL=listGetAt(attributes.pidow,1,"_")>
-<CFIF attributes.IS_VIRTUAL EQ 1>
+
     <cfquery name="getProjectNeeds" datasource="#dsn3#">
      <CFIF attributes.IS_VIRTUAL EQ 1>   EXEC GET_VIRTUAL_PRODUCT_NEED_PBS #attributes.PRODUCT_ID# <CFELSE>
         EXEC GET_REAL_PRODUCT_NEED_PBS #attributes.PRODUCT_ID#
@@ -58,7 +58,7 @@
         </cfoutput>
     </tbody>
     </cf_grid_list>
-<cfelse>
+
     
-</CFIF>
-<cfabort>
+
+
