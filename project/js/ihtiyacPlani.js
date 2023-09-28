@@ -8,13 +8,21 @@
   for (let i = 1; i <= ix; i++) {
     console.log(i);
     var pid = document.getElementById("product_id_" + i).value;
+    var unit_id = document.getElementById("unit_id_" + i).value;
+    var unit = document.getElementById("unit_" + i).value;
+    var stock_id = document.getElementById("stock_id_" + i).value;
+    var product_name = document.getElementById("product_name_" + i).innerText;
     var orderrow_currency = document.getElementById(
       "orderrow_currency_" + i
     ).value;
     var ihtiyac = document.getElementById("IHTIYAC_" + i).value;
     var item = new Object();
     item.PRODUCT_ID = pid;
+    item.STOCK_ID = stock_id;
+    item.PRODUCT_UNIT_ID = unit_id;
+    item.PRODUCT_UNIT = unit;
     item.PRODUCT_NEED = ihtiyac;
+    item.PRODUCT_NAME = product_name;
     item.DEPO = 0;
     console.log(orderrow_currency);
 
@@ -59,6 +67,7 @@
   DataObject.SEVK = SevkArr;
   DataObject.TEDARIK = TedarikArr;
   DataObject.URETIM = UretimArr;
+  DataObject.PROJECT_ID = PROJECT_ID;
   var JsonString = JSON.stringify(DataObject);
 
   console.log(DataObject);

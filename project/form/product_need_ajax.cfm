@@ -33,9 +33,7 @@
                     </cfquery>
                     <cfset dvv=getc.PORCURRENCY>
                 </cfif>
-                <td>
-                    #PRODUCT_NAME#
-                </td>
+                <td id="product_name_#currentrow#">#PRODUCT_NAME#</td>
                 <td>
                     #PRODUCT_CAT#
                 </td>
@@ -52,7 +50,12 @@
                         <option <cfif dvv eq 1>selected</cfif> value="1">Fiyat Talep</option>
                     </select>
                     <input type="hidden" name="product_id_#currentrow#" id="product_id_#currentrow#" value="#PRODUCT_ID#">
+                    <input type="hidden" name="stock_id_#currentrow#" id="stock_id_#currentrow#" value="#STOCK_ID#">
                     <input type="hidden" name="is_virtual_#currentrow#" id="is_virtual_#currentrow#" value="#IS_VIRTUAL#">
+                   <cfif isDefined("getProjectNeeds.PRODUCT_UNIT_ID")>
+                    <input type="hidden" name="unit_id_#currentrow#" id="unit_id_#currentrow#" value="#PRODUCT_UNIT_ID#">
+                    <input type="hidden" name="unit_#currentrow#" id="unit_#currentrow#" value="#MAIN_UNIT#">
+                </cfif>
                 </td>
             </tr>
         </cfoutput>

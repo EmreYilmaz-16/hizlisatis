@@ -33,6 +33,7 @@ Where PROJECT_ID=#attributes.PROJECT_ID# ) AS T WHERE RC=0
         
     </div>
 <script>
+var PROJECT_ID=<cfoutput>#attributes.PROJECT_ID#</cfoutput>
     function getIcerik(ela){
         AjaxPageLoad(
             "index.cfm?fuseaction=project.emptypopup_list_project_product_needs_ajax&pidow=" +ela,"productNeed",1,"Yükleniyor");
