@@ -5,6 +5,10 @@
 <cfdump var="#FormData#">
 
 <cfif arrayLen(FormData.SEVK)>
+
+
+
+    <!----
     <cfset attributes.is_demand=1>
 <cfset attributes.from_position_code=session.ep.POSITION_CODE>
 <cfset attributes.TO_POSITION_CODE=session.ep.POSITION_CODE>
@@ -44,7 +48,7 @@
     PROCESS_CAT	INTERNALDEMAND_STAGE	DEPARTMENT_ID
         164	            345	                8
 ----->
-<cfinclude template="add_internaldemand.cfm">
+<cfinclude template="add_internaldemand.cfm">----->
 
 </cfif>
 <cfif arrayLen(FormData.TEDARIK)>
