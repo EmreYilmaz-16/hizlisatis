@@ -19,6 +19,7 @@
 <cfset attributes.project_id=FormData.PROJECT_ID>
 <cfset attributes.process_stage=345>
 <CFSET attributes.process_cat=164>
+<cfset attributes.from_position_name=session.ep.POSITION_NAME>
 <cfif len(session.ep.USER_LOCATION) and listlen(session.ep.USER_LOCATION) eq 2>
     <cfset attributes.emp_department_id=listGetAt(session.ep.USER_LOCATION,1,"-")>
     <cfset attributes.emp_department=listGetAt(session.ep.USER_LOCATION,1,"-")>
