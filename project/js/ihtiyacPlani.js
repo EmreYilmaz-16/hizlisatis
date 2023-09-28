@@ -12,7 +12,7 @@
     var unit = document.getElementById("unit_" + i).value;
     var stock_id = document.getElementById("stock_id_" + i).value;
     var product_name = document.getElementById("product_name_" + i).innerText;
-    var def_depo = document.getElementById("depo_" + i).innerText;
+    var def_depo = document.getElementById("depo_" + i).value;
     var orderrow_currency = document.getElementById(
       "orderrow_currency_" + i
     ).value;
