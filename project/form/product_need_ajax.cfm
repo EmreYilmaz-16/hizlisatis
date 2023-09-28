@@ -56,6 +56,10 @@
                     <input type="hidden" name="unit_id_#currentrow#" id="unit_id_#currentrow#" value="#PRODUCT_UNIT_ID#">
                     <input type="hidden" name="unit_#currentrow#" id="unit_#currentrow#" value="#MAIN_UNIT#">
                 </cfif>
+                <cfif isDefined("getProjectNeeds.DEF_DEPO")>
+                    <input type="hidden" name="depo_#currentrow#" id="depo_#currentrow#" value="#DEF_DEPO#">
+                    
+                </cfif>
                 </td>
             </tr>
         </cfoutput>

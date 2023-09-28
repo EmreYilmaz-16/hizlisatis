@@ -12,6 +12,7 @@
     var unit = document.getElementById("unit_" + i).value;
     var stock_id = document.getElementById("stock_id_" + i).value;
     var product_name = document.getElementById("product_name_" + i).innerText;
+    var def_depo = document.getElementById("depo_" + i).innerText;
     var orderrow_currency = document.getElementById(
       "orderrow_currency_" + i
     ).value;
@@ -23,7 +24,7 @@
     item.PRODUCT_UNIT = unit;
     item.PRODUCT_NEED = ihtiyac;
     item.PRODUCT_NAME = product_name;
-    item.DEPO = 0;
+    item.DEPO = def_depo;
     console.log(orderrow_currency);
 
     if (parseFloat(ihtiyac) > 0) {
