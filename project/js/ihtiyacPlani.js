@@ -67,7 +67,7 @@
   mapForm.target = "Map";
   mapForm.method = "POST"; // or "post" if appropriate
   mapForm.action =
-    "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert";
+    "/index.cfm?fuseaction=project.emptypopup_add_project_need_documents";
 
   var mapInput = document.createElement("input");
   mapInput.type = "hidden";
@@ -78,7 +78,7 @@
   document.body.appendChild(mapForm);
 
   map = window.open(
-    "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert",
+    "/index.cfm?fuseaction=project.emptypopup_add_project_need_documents",
     "Map",
     "status=0,title=0,height=600,width=800,scrollbars=1"
   );
