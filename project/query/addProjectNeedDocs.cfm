@@ -36,7 +36,7 @@
     <cfset "attributes.amount#i#"=it.PRODUCT_NEED>
     <cfset "attributes.unit#i#"=it.PRODUCT_UNIT>
     <cfset "attributes.unit_id#i#"=it.PRODUCT_UNIT_ID>
-    <cfset "attributes.product_name_#i#"=it.PRODUCT_NAME>
+    <cfset "attributes.product_name#i#"=it.PRODUCT_NAME>
 </cfloop>
 <!----
     PROCESS_CAT	INTERNALDEMAND_STAGE	DEPARTMENT_ID
