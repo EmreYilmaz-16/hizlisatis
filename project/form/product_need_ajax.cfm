@@ -39,7 +39,16 @@
                 </td>
                 <td style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
                 <td style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
-                <td><input type="text" value="<CFIF BAKIYE-AMOUNT LT 0>#-1*(BAKIYE - AMOUNT)#<CFELSE>0</CFIF> " name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
+                <cfquery name="ihes" datasource="#dsn3#">
+                    SELECT * FROM (
+SELECT IR.STOCK_ID,IR.QUANTITY,I.DEMAND_TYPE AS ISLEM,I.INTERNAL_NUMBER AS PP_NUMBER FROM workcube_metosan_1.INTERNALDEMAND_ROW AS IR
+	LEFT JOIN workcube_metosan_1.INTERNALDEMAND AS I ON I.INTERNAL_ID=IR.I_ID		
+	WHERE 1=1 AND I.PROJECT_ID=#attributes.PROJECT_ID#
+UNION	
+SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosan_1.PRODUCTION_ORDERS WHERE PROJECT_ID=#attributes.PROJECT_ID#
+) AS T  WHERE STOCK_ID =#STOCK_ID#
+                </cfquery>
+                <td>#ihes.QUANTITY#<input type="text" value="<CFIF BAKIYE-AMOUNT LT 0>#-1*(BAKIYE - AMOUNT)#<CFELSE>0</CFIF> " name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
                 <td>
                     <select name="orderrow_currency_#currentrow#" id="orderrow_currency_#currentrow#">
                         <option <cfif dvv eq -1>selected</cfif> value="-1">Açık</option>
