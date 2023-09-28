@@ -61,6 +61,8 @@
           var d = prompt(str);
           item.DEPO = d;
           SevkArr.push(item);
+        }else{
+          SevkArr.push(item);
         }
       }
     }
