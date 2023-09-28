@@ -13,6 +13,8 @@
 <!---select *,TO_POSITION_CODE,SUBJECT,FROM_POSITION_CODE,PROJECT_ID,INTERNALDEMAND_STAGE,INTERNAL_NUMBER,IS_ACTIVE,RECORD_EMP,DEMAND_TYPE,PROCESS_CAT,DEPARTMENT_ID from workcube_metosan_1.INTERNALDEMAND where INTERNAL_ID=9102--->
 <cfset attributes.is_demand=1>
 <cfset attributes.from_position_code=session.ep.POSITION_CODE>
+<cfset attributes.TO_POSITION_CODE=session.ep.POSITION_CODE>
+
 <cfset attributes.subject="Satınalma Talebi">
 <cfset attributes.priority=1>
 <cfset attributes.is_active=1>
@@ -23,6 +25,7 @@
 <cfif len(session.ep.USER_LOCATION) and listlen(session.ep.USER_LOCATION) eq 2>
     <cfset attributes.emp_department_id=listGetAt(session.ep.USER_LOCATION,1,"-")>
     <cfset attributes.emp_department=listGetAt(session.ep.USER_LOCATION,1,"-")>
+     
 </cfif>
 <cfset attributes.rows_=arrayLen(FormData.TEDARIK)>
 <cfset i=1>
