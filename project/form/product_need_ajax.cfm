@@ -65,7 +65,11 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                         <option <cfif dvv eq 1>selected</cfif> value="1">Fiyat Talep</option>
                     </select>
                     <input type="hidden" name="product_id_#currentrow#" id="product_id_#currentrow#" value="#PRODUCT_ID#">
+                    <cfif isDefined("getProjectNeeds.STOCK_ID")>
                     <input type="hidden" name="stock_id_#currentrow#" id="stock_id_#currentrow#" value="#STOCK_ID#">
+                    <cfelse>
+                        <input type="hidden" name="stock_id_#currentrow#" id="stock_id_#currentrow#" value="##">
+                </cfif>
                     <input type="hidden" name="is_virtual_#currentrow#" id="is_virtual_#currentrow#" value="#IS_VIRTUAL#">
                    <cfif isDefined("getProjectNeeds.PRODUCT_UNIT_ID")>
                     <input type="hidden" name="unit_id_#currentrow#" id="unit_id_#currentrow#" value="#PRODUCT_UNIT_ID#">
