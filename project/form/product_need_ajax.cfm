@@ -69,7 +69,7 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                         <option <cfif ihes.islem eq 2>selected</cfif> value="-5">Üretim</option>
                         <option <cfif ihes.islem eq 0>selected</cfif> value="-6">Sevk</option>                                        
                         <option <cfif ihes.islem eq -10>selected</cfif> value="-10">Kapatıldı</option>
-                        <option <cfif ihes.islem eq 1>selected</cfif> value="1">Fiyat Talep</option>
+                        <option <cfif ihes.islem eq 11>selected</cfif> value="1">Fiyat Talep</option>
                     </select>
                     <input type="hidden" name="product_id_#currentrow#" id="product_id_#currentrow#" value="#PRODUCT_ID#">
                     <cfif isDefined("getProjectNeeds.STOCK_ID")>
