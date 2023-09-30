@@ -21,6 +21,9 @@ INNER JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=PCS.PR
                 </th>
             </cfoutput>
         </cfloop>
+        <th>
+            <cfoutput><a href="#request.self#?fuseaction=#attributes.fuseaction#&ev=add">+</a></cfoutput>
+        </th>
     </tr>
 </thead>
 <tbody>

@@ -9,13 +9,17 @@
     <div class="list-group">
         <a class="list-group-item list-group-item-action"
            onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=1List&title=Ana İşlem Kategorisi => Kategori Tanımlama'">
-            <img src="/images/e-pd/pr.png">
+            <img src="/images/e-pd/stt.png">
             Ana İşlem Kategorisi => Kategori Tanımlama</a>
         <a class="list-group-item list-group-item-action"
            onclick="window.location.href='index.cfm?fuseaction=#attributes.fuseaction#&page=2List&title=Ana İşlem Kategorisi Tanımlama'">
-            <img src="/images/e-pd/mpr.png">
+            <img src="/images/e-pd/stt.png">
             Ana İşlem Kategorisi Tanımlama</a>
-        
+            <a class="list-group-item list-group-item-action"
+            onclick="window.location.href='index.cfm?fuseaction=settings.emptypopup_product_cat_param_settings&ev=list'">
+             <img src="/images/e-pd/stt.png">
+             Kategori Ürün Paremetreleri</a>
+         
     </div>
 </cfoutput>
 
@@ -242,3 +246,5 @@ INNER JOIN SETUP_MAIN_PROCESS_CAT ON PROJECT_NUMBERS_BY_CAT.MAIN_PROCESS_CAT_ID=
     </script>
 </cfif>
 </cf_box>
+
+

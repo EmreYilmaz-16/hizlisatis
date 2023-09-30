@@ -101,3 +101,4 @@
     alert("You must allow popups for this map to work.");
   }
 }
+

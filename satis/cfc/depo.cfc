@@ -1,5 +1,8 @@
+
 <cfcomponent>
-<cfset dsn=application.systemparam.dsn>
+<cfset CURRENT_YEAR=year(now())>
+<cfset PAST_YEAR=year(now())-1>
+    <cfset dsn=application.systemparam.dsn>
     <cfscript>
         if(isdefined("session.pda") and isDefined("session.pda.userid"))
         {
@@ -42,6 +45,9 @@
 <CFSET RETURN_DATA.EMPLOYEES=returnArr>
 <cfreturn Replace(SerializeJSON(RETURN_DATA),'//','')>
     </cffunction>
+   
+   
+   
     <cffunction name="getDepartmentWorks" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
         
         <cfset dataSources=deserializeJSON(arguments.dataSources)>
@@ -59,11 +65,11 @@ LEFT JOIN #dataSources.dsn3#.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID=SRR.ORDER_ROW_
 LEFT JOIN #dataSources.dsn3#.ORDERS AS O ON O.ORDER_ID=ORR.ORDER_ID
 LEFT JOIN #dataSources.dsn3#.PRTOTM_SHIP_RESULT AS SR ON SR.SHIP_RESULT_ID=SRR.SHIP_RESULT_ID
 LEFT JOIN (
-SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_2023_1.STOCK_FIS AS SF 
-LEFT JOIN #dataSources.dsn#_2023_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
+SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_#CURRENT_YEAR#_1.STOCK_FIS AS SF 
+LEFT JOIN #dataSources.dsn#_#CURRENT_YEAR#_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
 UNION
-SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_2022_1.STOCK_FIS AS SF 
-LEFT JOIN #dataSources.dsn#_2022_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
+SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_#PAST_YEAR#_1.STOCK_FIS AS SF 
+LEFT JOIN #dataSources.dsn#_#PAST_YEAR#_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
 
 ) AS SF ON SF.REF_NO=SR.DELIVER_PAPER_NO AND SF.STOCK_ID=ORR.STOCK_ID
 LEFT JOIN #dataSources.dsn3#.STOCKS AS S ON S.STOCK_ID=ORR.STOCK_ID
@@ -98,11 +104,11 @@ ORDER BY O.RECORD_DATE
                 LEFT JOIN #dataSources.dsn3#.ORDERS AS O ON O.ORDER_ID=ORR.ORDER_ID
                 LEFT JOIN #dataSources.dsn3#.PRTOTM_SHIP_RESULT AS SR ON SR.SHIP_RESULT_ID=SRR.SHIP_RESULT_ID
                 LEFT JOIN (
-                    SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_2023_1.STOCK_FIS AS SF 
-                    LEFT JOIN #dataSources.dsn#_2023_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
+                    SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_#CURRENT_YEAR#_1.STOCK_FIS AS SF 
+                    LEFT JOIN #dataSources.dsn#_#CURRENT_YEAR#_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
                     UNION
-                    SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_2022_1.STOCK_FIS AS SF 
-LEFT JOIN #dataSources.dsn#_2022_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
+                    SELECT SFR.STOCK_ID,SUM(SFR.AMOUNT) AS AMOUNT,SF.REF_NO FROM #dataSources.dsn#_#PAST_YEAR#_1.STOCK_FIS AS SF 
+LEFT JOIN #dataSources.dsn#_#PAST_YEAR#_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.FIS_ID GROUP BY SFR.STOCK_ID,SF.REF_NO
                 ) AS SF ON SF.REF_NO=SR.DELIVER_PAPER_NO AND SF.STOCK_ID=ORR.STOCK_ID
                 LEFT JOIN #dataSources.dsn3#.STOCKS AS S ON S.STOCK_ID=ORR.STOCK_ID
                 LEFT JOIN #dataSources.dsn3#.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=S.STOCK_ID
