@@ -157,7 +157,9 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
             </td>
             <td>
               <cfset cp="#ExpandPath(".")#/#FILE_PATH#">
-              <cfdump var="#replace(cp,'//','/')#">
+              <cfset cp="#replace(cp,'//','/')#">
+              <cfset cp="#replace(cp,'\','/')#">
+              <cfdump var="#cp#">
               <cfset linecount=0>
               <cfset cp=0>
               <cftry>
