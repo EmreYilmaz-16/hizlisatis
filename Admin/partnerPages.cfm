@@ -156,8 +156,11 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
                 <a href="index.cfm?fuseaction=dev.wo&event=upd&fuseact=#FULL_FUSEACTION#&woid=#WRK_OBJECTS_ID#" target="_blank">Güncelle</a>
             </td>
             <td>
-              #ExpandPath(".")#/#FILE_PATH#<br>
+              <cfset cp="#replace("#ExpandPath(".")#/#FILE_PATH#","/","//")#"><br>
+              <cfset cp="#replace("#cp#","/","\")#"><br>
+              <cfdump var="#cp#">
               <cfset linecount=0>
+              <cfset cp=0>
               <cftry>
               <cfset myfile = FileRead("#ExpandPath(".")#/#FILE_PATH#")>    
               
