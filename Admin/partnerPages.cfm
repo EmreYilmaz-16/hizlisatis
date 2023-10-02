@@ -159,13 +159,12 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
               <cfset cp="#ExpandPath(".")#/#FILE_PATH#">
               <cfset cp="#replace(cp,'//','/',"all")#">
               <cfset cp="#replace(cp,'\','/',"all")#">
-              <cfdump var="#cp#">
+              
               <cfset linecount=0>
               <cfset cp=0>
               <cftry>
-              <cfset myfile = FileRead("#ExpandPath(".")#/#FILE_PATH#")>    
-              
-              <cfset linecount = listlen(myfile,chr(13))>
+              <cfset myfile = FileRead("#ExpandPath(".")#/#FILE_PATH#")>                  
+              <cfset linecount = ListLen(content,chr(10),true)>
               <cfcatch></cfcatch>
               </cftry>
               <cfdump var="#linecount#">
