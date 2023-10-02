@@ -155,6 +155,15 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
             <td>
                 <a href="index.cfm?fuseaction=dev.wo&event=upd&fuseact=#FULL_FUSEACTION#&woid=#WRK_OBJECTS_ID#" target="_blank">Güncelle</a>
             </td>
+            <td>
+              <cfset linecount=0>
+              <cftry>
+              <cfset myfile = FileRead("#ExpandPath(".")#/#FILE_PATH#")>    
+              <cfset linecount = listlen(myfile,chr(13))>
+              <cfcatch></cfcatch>
+              </cftry>
+              <cfdump var="#linecount#">
+            </td>
 
         </tr>
     </cfoutput>
