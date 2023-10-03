@@ -130,6 +130,7 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
             </th>
             <th>AUTHOR</th>
             <th></th>
+            <th>Satır Sayısı</th>
         </tr>
     </thead>
     <tbody>
