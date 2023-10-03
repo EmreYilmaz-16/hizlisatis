@@ -164,7 +164,7 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
               <cfset cp=0>
               <cftry>
               <cfset myfile = FileRead("#ExpandPath(".")#/#FILE_PATH#")>   
-              <cfdump var="#myfile#">               
+               
               <cfset linecount = ListLen(myfile,chr(10),true)>
               <cfcatch></cfcatch>
               </cftry>
