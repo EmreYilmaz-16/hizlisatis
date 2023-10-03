@@ -157,14 +157,19 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
                 <a href="index.cfm?fuseaction=dev.wo&event=upd&fuseact=#FULL_FUSEACTION#&woid=#WRK_OBJECTS_ID#" target="_blank">Güncelle</a>
             </td>
             <td>
+              <cfset cp="#ExpandPath(".")#/#FILE_PATH#">
+              <cfset cp="#replace(cp,'//','/',"all")#">
+              <cfset cp="#replace(cp,'\','/',"all")#">
               
+              <cfset linecount=0>
+              <cfset cp=0>
               <cftry>
-             <cfscript>
-                getLineCount(FILE_PATH);
-             </cfscript>
+              <cfset myfile = FileRead("#ExpandPath(".")#/#FILE_PATH#")>   
+               
+              <cfset linecount = ListLen(myfile,chr(10),true)>
               <cfcatch></cfcatch>
               </cftry>
-              
+              <cfdump var="#linecount#">
             </td>
 
         </tr>
@@ -183,10 +188,3 @@ WHERE WS.WRK_SOLUTION_ID=15 AND WO.FILE_PATH LIKE '/AddOns/Partner%'
   });
 });
 </script>
-
-<cffunction name="getLineCount">
-  <cfargument name="FILE_PATH">
-  <cfset myfile = FileRead("#ExpandPath(".")#/#ARGUMENTS.FILE_PATH#")>                  
-  <cfset linecount = ListLen(myfile,chr(10),true)>
-<cfreturn linecount>
-</cffunction>
