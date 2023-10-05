@@ -1,4 +1,5 @@
 ﻿
+<cfparam name="attributes.IS_SVK" default="0">
 <cf_box title="Ürün Hazırla">
 <cfif attributes.IS_SVK eq 1>
     <cfquery name="GETS" datasource="#DSN3#">
