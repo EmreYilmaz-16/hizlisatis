@@ -50,16 +50,65 @@ ORDER BY DELIVER_PAPER_NO
         <td><button class="btn btn-primary" onclick="pencereacgari(#SHIP_RESULT_ID#,#DELIVER_DEPT#,#DELIVER_LOCATION#,2)">Yazdır</button></td>
     </tr>
 </cfoutput>
+<cfquery name="GETSEVKS_2" datasource="#DSN3#">
+ SELECT IR.QUANTITY,ISNULL(S.AMOUNT,0) AS AMOUNT,I.INTERNAL_NUMBER,I.DEPARTMENT_OUT,I.LOCATION_OUT,I.PROJECT_ID,workcube_metosan.getEmployeeWithId(EP.EMPLOYEE_ID) AS PERSONAL,PREPARE_PERSONAL,I.INTERNAL_ID,D.DEPARTMENT_HED,SL.COMMENT,I.DEPARTMENT_OUT,I.LOCATION_OUT FROM workcube_metosan_1.INTERNALDEMAND AS I
+LEFT JOIN workcube_metosan_1.INTERNALDEMAND_ROW AS IR ON IR.I_ID=I.INTERNAL_ID
+LEFT JOIN (	SELECT SUM(AMOUNT) AMOUNT,WRK_ROW_RELATION_ID FROM (
+			SELECT AMOUNT,WRK_ROW_RELATION_ID FROM workcube_metosan_2023_1.SHIP_ROW AS S
+			UNION
+			SELECT AMOUNT,WRK_ROW_RELATION_ID FROM workcube_metosan_2022_1.SHIP_ROW AS S ) AS T GROUP BY WRK_ROW_RELATION_ID )
+			S ON S.WRK_ROW_RELATION_ID=IR.WRK_ROW_ID
+LEFT JOIN workcube_metosan.EMPLOYEE_POSITIONS AS EP ON EP.POSITION_CODE=I.FROM_POSITION_CODE
+LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=I.DEPARTMENT_OUT
+LEFT JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.LOCATION_ID=I.LOCATION_OUT AND SL.DEPARTMENT_ID=I.DEPARTMENT_OUT
+
+WHERE DEMAND_TYPE=0   AND IR.QUANTITY-ISNULL(S.AMOUNT,0)>0 AND I.PROJECT_ID IS NOT NULL
+
+AND IR.PREPARE_PERSONAL = #session.EP.USERID#
+</cfquery>
+<tr><TH colspan="7">İç Talepler</TH></tr>
+<cfoutput query="GETsEVKS_2">
+    <tr>
+        <td>#currentrow#</td>
+        <td>#INTERNAL_NUMBER#</td>        
+        <td>IC TALEP</td>
+        <td>#PERSONAL#</td>
+        <td>#dateFormat(now(),'dd/mm/yyyy')#</td>        
+        <td>#DEPARTMENT_HEAD# #COMMENT#</td>
+        <td><button class="btn btn-success" onclick="pencereacgari(#INTERNAL_ID#,#DEPARTMENT_OUT#,#LOCATION_OUT#,1,#IS_SVK#)">AC</button></td>
+        <td><button class="btn btn-primary" onclick="pencereacgari(#INTERNAL_ID#,#DEPARTMENT_OUT#,#LOCATION_OUT#,2,#IS_SVK#)">Yazdır</button></td>
+    </tr>
+</cfoutput>
 </cf_grid_list>
 </cf_box>
 </div>
 
 <script>
-    function pencereacgari(shid,dep,loc,t){
-        if(t==1){
-        windowopen('/index.cfm?fuseaction=stock.emptypopup_add_hazirlama&SHIP_ID='+shid+'&DELIVER_DEPT='+dep+'&DELIVER_LOCATION='+loc,'list');}
-        if(t==2){
-           windowopen('/index.cfm?fuseaction=objects.popup_print_files&print_type=32&action_id='+shid+'&action_ids='+dep+'-'+loc+'&action=eshipping.list_partner_shipping') 
-        }
+function pencereacgari(shid, dep, loc, t, IS_SVK = 0) {
+  if (t == 1) {
+    if (ss == 0) {
+      windowopen(
+        "/index.cfm?fuseaction=stock.emptypopup_add_hazirlama&SHIP_ID=" +
+          shid +
+          "&DELIVER_DEPT=" +
+          dep +
+          "&DELIVER_LOCATION=" +
+          loc+"&IS_SVK"+IS_SVK,
+        "list"
+      );
     }
+  }
+  if (t == 2) {
+    windowopen(
+      "/index.cfm?fuseaction=objects.popup_print_files&print_type=32&action_id=" +
+        shid +
+        "&action_ids=" +
+        dep +
+        "-" +
+        loc +
+        "&action=eshipping.list_partner_shipping"
+    );
+  }
+}
+
 </script>
