@@ -27,7 +27,7 @@
         
     </cfif>
     <cfquery name="GETSP" datasource="#DSN3#">
-        select * from workcube_hidtek_1.SPECT_MAIN where STOCK_ID=#STOCK_ID#  and SPECT_MAIN_ID= (SELECT MAX(SPECT_MAIN_ID) FROM workcube_hidtek_1.SPECT_MAIN WHERE STOCK_ID=#STOCK_ID#)
+        select * from SPECT_MAIN where STOCK_ID=#STOCK_ID#  and SPECT_MAIN_ID= (SELECT MAX(SPECT_MAIN_ID) FROM SPECT_MAIN WHERE STOCK_ID=#STOCK_ID#)
     </cfquery>
       <cfset 'attributes.stock_id#ix#' = STOCK_ID>
       <cfset 'attributes.spect_id#ix#' = GETSP.SPECT_MAIN_ID>
