@@ -1,5 +1,182 @@
-﻿<cf_box title="Ürün Hazırla">
+﻿
+<cf_box title="Ürün Hazırla">
+<cfif attributes.IS_SVK eq 1>
+    <cfquery name="GETS">
+SELECT SS.PRODUCT_NAME
+	,SS.PRODUCT_CODE
+	,SS.STOCK_ID
+	,PP.PRODUCT_PLACE_ID
+	,PB.BRAND_NAME
+	,PP.SHELF_CODE
+	,IR.WRK_ROW_ID
+	,IR.I_ROW_ID
+	,IR.QUANTITY
+	,ISNULL(S.AMOUNT, 0) AS AMOUNT
+	,I.INTERNAL_NUMBER
+	,I.DEPARTMENT_OUT
+	,I.LOCATION_OUT
+	,I.PROJECT_ID
+	,workcube_metosan.getEmployeeWithId(EP.EMPLOYEE_ID) AS PERSONAL
+	,PREPARE_PERSONAL
+	,I.INTERNAL_ID
+	,D.DEPARTMENT_HEAD
+	,SL.COMMENT
+FROM workcube_metosan_1.INTERNALDEMAND AS I
+LEFT JOIN workcube_metosan_1.INTERNALDEMAND_ROW AS IR ON IR.I_ID = I.INTERNAL_ID
+LEFT JOIN (
+	SELECT SUM(AMOUNT) AMOUNT
+		,WRK_ROW_RELATION_ID
+	FROM (
+		SELECT AMOUNT
+			,WRK_ROW_RELATION_ID
+		FROM workcube_metosan_2023_1.SHIP_ROW AS S
+		
+		UNION
+		
+		SELECT AMOUNT
+			,WRK_ROW_RELATION_ID
+		FROM workcube_metosan_2022_1.SHIP_ROW AS S
+		) AS T
+	GROUP BY WRK_ROW_RELATION_ID
+	) S ON S.WRK_ROW_RELATION_ID = IR.WRK_ROW_ID
+LEFT JOIN workcube_metosan.EMPLOYEE_POSITIONS AS EP ON EP.POSITION_CODE = I.FROM_POSITION_CODE
+LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID = I.DEPARTMENT_OUT
+LEFT JOIN workcube_metosan.STOCKS_LOCATION AS SL ON SL.LOCATION_ID = I.LOCATION_OUT
+	AND SL.DEPARTMENT_ID = I.DEPARTMENT_OUT
+LEFT JOIN workcube_metosan_1.STOCKS AS SS ON SS.STOCK_ID = IR.STOCK_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID = SS.STOCK_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID = SS.BRAND_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID = PPR.PRODUCT_PLACE_ID
+	AND PP.STORE_ID = D.DEPARTMENT_ID
+	AND PP.LOCATION_ID = SL.LOCATION_ID
+WHERE DEMAND_TYPE = 0
+	AND IR.QUANTITY - ISNULL(S.AMOUNT, 0) > 0
+	AND I.PROJECT_ID IS NOT NULL
+	AND DEPARTMENT_OUT = #attributes.DELIVER_DEPT#
+	AND LOCATION_OUT = #attributes.DELIVER_LOCATION#
+	AND I.INTERNAL_ID = #attributes.SHIP_ID#
+        </cfquery>
+        
+<div style="height:60vh">
+    <cfform action="#request.self#?fuseaction=#attributes.fuseaction#">
+        <cfoutput>
+            <input type="hidden" name="SHIP_ID" value="#attributes.SHIP_ID#">
+            <input type="hidden" name="DELIVER_DEPT" value="#attributes.DELIVER_DEPT#">
+            <input type="hidden" name="DELIVER_LOCATION" value="#attributes.DELIVER_LOCATION#">
+        </cfoutput>
+<cf_big_list id="basket">
+    <thead>
+        <tr>
+            <th>Raf</th>
+            <th>Ürün Kodu</th>
+            <th>Ürün</th>            
+            <th>Marka</th>
+            <th>Miktar</th>
+            <th>Depo</th>
+            <th>Ölçü</th>
+            <th>Açıklama</th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+    <cfoutput query="getS">
+       
+        <tr>
+            <td><input type="hidden" name="STOCK_ID#currentrow#" value="#STOCK_ID#">
+                <input type="hidden" name="SHIP_RESULT_ROW_ID#currentrow#" value="#I_ROW_ID#">
+                <input type="hidden" name="shelfcode#currentrow#" value="#SHELF_CODE#">
+                <input type="hidden" name="PRODUCT_PLACE_ID#currentrow#" value="#PRODUCT_PLACE_ID#">
+                <input type="hidden" name="WRK_ROW_ID#currentrow#" value="#WRK_ROW_ID#">
+                #SHELF_CODE#</td>
+                <td>#PRODUCT_CODE#</td>
+            <td>#PRODUCT_NAME#</td>
+            <td>#BRAND_NAME#</td>
+            <td style="width:15%"><div class="form-group"><input type="text" data-kmp="#KM_P#" <cfif KM_P gte 1> onchange="setKarmaMi(this,#STOCK_ID#)"</cfif> name="quantity#currentrow#" value="#tlformat(QUANTITY-AMOUNT,2)#" style="padding-right: 0;text-align: right"></div></td>
+            <td>
+                <cfquery name="getSrQ" datasource="#dsn2#">
+                    select sum(STOCK_IN-STOCK_OUT) AS BAKIYE from #dsn2#.STOCKS_ROW where 1=1
+                     and STOCK_ID=#STOCK_ID# 
+                AND STORE=#attributes.DELIVER_DEPT# AND STORE_LOCATION=#attributes.DELIVER_LOCATION#
+                </cfquery>
+                #getSrQ.BAKIYE#
+            </td>
+            <td></td>
+            <td></td>
+            <td style="width:%10">
+                <cfif 0 gte 1>
+                <cfquery name="getKp" datasource="#dsn3#">
+                    SELECT * FROM PBS_OFFER_ROW_KARMA_PRODUCTS WHERE REL_UNIQUE_RELATION_ID ='#UNIQUE_RELATION_ID#'
+                </cfquery>
+                <cfloop query="getKp"></cfloop>
+                <cfelse>
+                    <button style="width:100%" type="button" <cfif AMOUNT GTE QUANTITY>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#currentrow#" onclick="checkT(#currentrow#)">
+                        <cfif AMOUNT GTE QUANTITY>&##10003<cfelse>X</cfif>
+                    </button>
+                </cfif>         
+                <input type="checkbox"  <cfif AMOUNT GTE QUANTITY>disabled checked</cfif> value="#currentrow#" name="roww" id="is_add#currentrow#"style="display:none"></td>
+        </tr>
+        <cfif KM_P gte 1>
+            <cfquery name="getKp" datasource="#dsn3#">
+           select PORK.*,S.PRODUCT_CODE,S.PRODUCT_NAME,PP.SHELF_CODE,PB.BRAND_NAME,S.STOCK_ID,SF.AMOUNT as AMOUNT_2 from #dsn3#.PBS_OFFER_ROW_KARMA_PRODUCTS AS PORK
+LEFT JOIN #dsn3#.STOCKS AS S ON S.PRODUCT_ID=PORK.PRODUCT_ID 
+LEFT JOIN #dsn3#.PRODUCT_PLACE_ROWS AS PPR ON PPR. STOCK_ID=S.STOCK_ID
+LEFT JOIN #dsn3#.PRODUCT_PLACE AS PP ON PP .PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
+LEFT JOIN #dsn3#.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID 
+LEFT JOIN (
+		SELECT sum(SFR.AMOUNT) AS AMOUNT
+			,UNIQUE_RELATION_ID
+		FROM #dsn2#.STOCK_FIS_ROW AS SFR
+		GROUP BY UNIQUE_RELATION_ID
+		) AS SF ON SF.UNIQUE_RELATION_ID = PORK.UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
+WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' 
+            </cfquery>
+            <cfloop query="getKp">
+                <tr>
+                    <td>#SHELF_CODE#</td>
+                    <td>#PRODUCT_CODE#</td>
+                    <td>#PRODUCT_NAME#</td>
+                    <td>#BRAND_NAME#</td>
+                    <td><div class="form-group" style="display:flex">
+                        <input type="text" name="quantity#getS.currentrow#_#currentrow#" value="#tlformat(((getS.QUANTITY-getS.AMOUNT)*AMOUNT),2)#" style="padding-right: 0;text-align: disabled right">
+                        <input type="text" name="quantity22_#getS.currentrow#_#currentrow#" value="#tlformat(AMOUNT,2)#" style="padding-right: 0;text-align: right;width:25% !important;margin-left:2px !important" disabled readonly>
+                    </div>
+                        </td>
+                    <td>
+                        <cfquery name="getSrQR" datasource="#dsn2#">
+                            select sum(STOCK_IN-STOCK_OUT) AS BAKIYE from #dsn2#.STOCKS_ROW where 1=1
+                             and STOCK_ID=#STOCK_ID# 
+                        AND STORE=#attributes.DELIVER_DEPT# AND STORE_LOCATION=#attributes.DELIVER_LOCATION#
+                        </cfquery>
+                        #getSrQR.BAKIYE#
+                    </td>
+                    <td>#getS.DETAIL_INFO_EXTRA#</td>
+                    <td>#getS.DESCRIPTION#</td>
+                    <td>
+                        <button style="width:100%" type="button" <cfif AMOUNT_2 GTE AMOUNT>class="btn btn-success" disabled <cfelse> class="btn btn-danger"</cfif> id="chkbtn#getS.currentrow#_#currentrow#" onclick="checkTKarma(#getS.currentrow#,#currentrow#)">
+                            <cfif AMOUNT_2 GTE AMOUNT>&##10003<cfelse>X</cfif>
+                        </button>
+                        <input type="checkbox"  <cfif AMOUNT_2 GTE AMOUNT>disabled checked</cfif> value="#getS.currentrow#-#currentrow#" name="roww" id="is_add#getS.currentrow#_#currentrow#" disabled style="display:none">
+                    </td>
+                </tr>
+            </cfloop>
+            <tfoot>
+                <tr>
+                    <td colspan="9">
+                        <button type="button" onclick="CheckKarmaKoli(#gets.currentRow#,#QUANTITY-AMOUNT#)">Karma Koli Kontrol</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </cfif>
+    </cfoutput>
+</tbody>
+</cf_big_list>
+</div>
+    
+<cfelse>
+  
     <cfform name="sf"></cfform>
+
 <cfquery name="getS" datasource="#dsn3#">
 SELECT ISNULL(AMOUNT, 0) AMOUNT
 	,DELIVER_DEPT
@@ -280,7 +457,10 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
     this.close();
 </script>
 </cfif>
-<script>
-<cfinclude template="../js/addHazirlama.js">
-</script>
+
+</cfif> 
 </cf_box>
+
+<script>
+    <cfinclude template="../js/addHazirlama.js">
+    </script>

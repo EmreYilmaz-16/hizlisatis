@@ -93,7 +93,7 @@ function pencereacgari(shid, dep, loc, t, IS_SVK = 0) {
           "&DELIVER_DEPT=" +
           dep +
           "&DELIVER_LOCATION=" +
-          loc+"&IS_SVK"+IS_SVK,
+          loc+"&IS_SVK="+IS_SVK,
         "list"
       );
     
