@@ -195,6 +195,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
     <CFSET attributes.ref_no=GETS.INTERNAL_NUMBER>
     <cfset attributes.project_id_in=GETS.PROJECT_ID>
     <cfset attributes.webService=1>
+    <cfset attributes.PROJECT_HEAD_IN = 'tttt'>  
     
     <cfset attributes.deliver_date_h=0>
     <cfset attributes.deliver_date_m=0>
@@ -420,6 +421,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
         <cfset attributes.PROJECT_HEAD = ''> 
         <cfset attributes.PROJECT_HEAD_IN = ''>  
         <cfset attributes.PROJECT_ID = ''>  
+        <cfset attributes.PROJECT_HEAD_IN = ''>  
         <cfset attributes.PROJECT_ID_IN = ''> 
         <cfset attributes.member_type='' >
         <cfset attributes.member_name='' >
