@@ -75,8 +75,8 @@ AND IR.PREPARE_PERSONAL = #session.EP.USERID#
         <td>#PERSONAL#</td>
         <td>#dateFormat(now(),'dd/mm/yyyy')#</td>        
         <td>#DEPARTMENT_HEAD# #COMMENT#</td>
-        <td><button class="btn btn-success" onclick="pencereacgari(#INTERNAL_ID#,#DEPARTMENT_OUT#,#LOCATION_OUT#,1,#IS_SVK#)">AC</button></td>
-        <td><button class="btn btn-primary" onclick="pencereacgari(#INTERNAL_ID#,#DEPARTMENT_OUT#,#LOCATION_OUT#,2,#IS_SVK#)">Yazdır</button></td>
+        <td><button class="btn btn-success" onclick="pencereacgari(#INTERNAL_ID#,#DEPARTMENT_OUT#,#LOCATION_OUT#,1,1)">AC</button></td>
+        <td><button class="btn btn-primary" onclick="pencereacgari(#INTERNAL_ID#,#DEPARTMENT_OUT#,#LOCATION_OUT#,2,1)">Yazdır</button></td>
     </tr>
 </cfoutput>
 </cf_grid_list>
