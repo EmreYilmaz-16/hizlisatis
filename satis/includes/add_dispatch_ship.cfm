@@ -11,7 +11,7 @@
 		<cfinclude template="add_dispatch_ship_from_ship.cfm">
 	<cfelse>
 		<cfif not isDefined("new_dsn2")><cfset new_dsn2 = dsn2></cfif>
-		<cfinclude template="get_process_cat.cfm">
+		<cfinclude template="/v16/stock/query/get_process_cat.cfm">
 		<cf_date tarih = 'attributes.deliver_date_frm'>
 		<cf_date tarih = 'attributes.ship_date' >
 		<cfset attributes.deliver_date_frm = createdatetime(year(attributes.deliver_date_frm),month(attributes.deliver_date_frm),day(attributes.deliver_date_frm),attributes.deliver_date_h,attributes.deliver_date_m,0)>	
