@@ -181,7 +181,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
 <input type="button" onclick="windowopen('index.cfm?fuseaction=stock.add_ship_dispatch&internal_demand_id=<cfoutput>#attributes.SHIP_ID#</cfoutput>')">
 <cfif isDefined("attributes.is_submit") >
     <cfquery name="getMx" datasource="#dsn2#">
-        SELECT 'SI'+CONVERT(VARCHAR,MAX(SHIP_ID)) AS MAX_ID FROM SHIP
+        SELECT 'SI-'+CONVERT(VARCHAR,MAX(SHIP_ID)) AS MAX_ID FROM SHIP
     </cfquery>
     <cfset SHIP_NUMBER=getMx.MAX_ID>
     <CFSET FORM.PROCESS_CAT=61>
