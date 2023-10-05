@@ -45,7 +45,7 @@
 </cfloop>
 <cfquery name="GETK" datasource="#DSN#">
     
-select MONEY,RATE1,RATE2 from workcube_hidtek.MONEY_HISTORY where convert(date,VALIDATE_DATE)=convert(Date,getdate()) and COMPANY_ID=#session.EP.COMPANY_ID#
+select MONEY,RATE1,RATE2 from MONEY_HISTORY where convert(date,VALIDATE_DATE)=convert(Date,getdate()) and COMPANY_ID=#session.EP.COMPANY_ID#
 UNION 
 SELECT 'TL' MONEY ,1 AS RATE1,1 AS RATE2
 </cfquery>
