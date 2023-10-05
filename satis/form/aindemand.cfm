@@ -60,3 +60,4 @@ SELECT 'TL' MONEY ,1 AS RATE1,1 AS RATE2
     <cfset "attributes.txt_rate2_#i#"=RATE2>
 </cfloop>
 <cfset attributes.KUR_SAY=i>
+<cfset attributes.BASKET_MONEY="TL">
