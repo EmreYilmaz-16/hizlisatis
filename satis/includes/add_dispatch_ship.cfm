@@ -90,7 +90,7 @@
 						<cfinclude template="/V16/objects/query/add_basket_spec.cfm">
 					</cfif>
 					<cf_date tarih = 'attributes.deliver_date#i#'>
-					<cfinclude template="get_dis_amount.cfm">
+					<cfinclude template="/v16/stock/query/get_dis_amount.cfm">
 					<!---<cfif isdefined("attributes.is_delivered")>
 						<cfif len(attributes.DELIVER_DATE_FRM)>
 							<cfset my_date = attributes.DELIVER_DATE_FRM>
