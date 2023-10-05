@@ -86,7 +86,7 @@ AND IR.PREPARE_PERSONAL = #session.EP.USERID#
 <script>
 function pencereacgari(shid, dep, loc, t, IS_SVK = 0) {
   if (t == 1) {
-    if (ss == 0) {
+    
       windowopen(
         "/index.cfm?fuseaction=stock.emptypopup_add_hazirlama&SHIP_ID=" +
           shid +
@@ -96,7 +96,7 @@ function pencereacgari(shid, dep, loc, t, IS_SVK = 0) {
           loc+"&IS_SVK"+IS_SVK,
         "list"
       );
-    }
+    
   }
   if (t == 2) {
     windowopen(
