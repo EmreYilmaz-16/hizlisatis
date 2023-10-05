@@ -46,8 +46,8 @@ ORDER BY DELIVER_PAPER_NO
         <td>#KAYDEDEN#</td>
         <td>#dateFormat(DELIVERY_DATE,'dd/mm/yyyy')#</td>        
         <td>#DEPARTMENT_LOCATION# #COMMENT#</td>
-        <td><button class="btn btn-success" onclick="pencereacgari(#SHIP_RESULT_ID#,#DELIVER_DEPT#,#DELIVER_LOCATION#,1)">AC</button></td>
-        <td><button class="btn btn-primary" onclick="pencereacgari(#SHIP_RESULT_ID#,#DELIVER_DEPT#,#DELIVER_LOCATION#,2)">Yazdır</button></td>
+        <td><button class="btn btn-success" onclick="pencereacgari(#SHIP_RESULT_ID#,#DELIVER_DEPT#,#DELIVER_LOCATION#,1,0)">AC</button></td>
+        <td><button class="btn btn-primary" onclick="pencereacgari(#SHIP_RESULT_ID#,#DELIVER_DEPT#,#DELIVER_LOCATION#,2,0)">Yazdır</button></td>
     </tr>
 </cfoutput>
 <cfquery name="GETSEVKS_2" datasource="#DSN3#">
