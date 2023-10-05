@@ -55,8 +55,9 @@ function getDepartmentWorks() {
                 var td = document.createElement("td")
                 td.innerText = o.KAYDEDEN
                 tr.appendChild(td)
+                
                 var sel = document.createElement("select")
-                sel.setAttribute("onchange", "setEmpToWork(this.value)")
+                sel.setAttribute("onchange", "setEmpToWork(this.value,"+o.IS_SVK+")")
                 var opt = document.createElement("option");
                 opt.setAttribute("value", "")
                 opt.innerText = "Seçiniz";
@@ -77,14 +78,15 @@ function getDepartmentWorks() {
         }
     })
 }
-function setEmpToWork(workI) {
+function setEmpToWork(workI,SVK) {
     $.ajax({
         url: "/AddOns/Partner/Satis/cfc/depo.cfc?method=setWorkEmployee",
         data: {
             department_id: deparmanData.department_id,
             location_id: deparmanData.location_id,
             dataSources: JSON.stringify(generalParamsSatis.dataSources),
-            empo: workI
+            empo: workI,
+            SVK:SVK
         },
     })
 }

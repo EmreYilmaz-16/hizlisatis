@@ -171,6 +171,12 @@ WHERE DEMAND_TYPE=0 AND IR.PREPARE_PERSONAL IS NULL AND I.DEPARTMENT_OUT=#argume
         <cfset dataSources=deserializeJSON(arguments.dataSources)>
       <cfset arguments.ship_id=listGetAt(arguments.empo,2,"-")>
       <cfset arguments.EMPLOYEE_ID=listGetAt(arguments.empo,1,"-")>
+      <cfif arguments.IS_SVK eq 0>
+        <cfquery name="upd" datasource="#datasources.dsn3#">
+            UPDATE INTERNALDEMAND_ROW SET PREPARE_PERSONAL=#arguments.EMPLOYEE_ID# WHERE I_ID IN(#arguments.SHIP_ID#)
+        </cfquery>
+
+      <cfelse>
       <cfquery name="GETWORKS" datasource="#dataSources.dsn3#">
             SELECT  AMOUNT,DELIVER_DEPT,DELIVER_LOCATION,PRODUCT_NAME,PRODUCT_PLACE_ID,QUANTITY,SHELF_CODE,SHIP_RESULT_ROW_ID,STOCK_ID FROM (
 SELECT ORR.QUANTITY,SF.AMOUNT,S.PRODUCT_NAME,PP.SHELF_CODE,ORR.DELIVER_DEPT,ORR.DELIVER_LOCATION,S.STOCK_ID,SRR.SHIP_RESULT_ROW_ID,PP.PRODUCT_PLACE_ID
@@ -193,5 +199,6 @@ AND ORR.DELIVER_DEPT IN(#arguments.DEPARTMENT_ID#) AND DELIVER_LOCATION IN(#argu
         <cfquery name="upo" datasource="#dataSources.dsn3#">
             UPDATE PRTOTM_SHIP_RESULT_ROW SET PREPARE_PERSONAL=#arguments.EMPLOYEE_ID# WHERE SHIP_RESULT_ROW_ID IN(#rows_#)
         </cfquery>
+        </cfif>
     </cffunction>
 </cfcomponent>
