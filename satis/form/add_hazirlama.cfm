@@ -180,7 +180,23 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
 </cfform>
 <input type="button" onclick="windowopen('index.cfm?fuseaction=stock.add_ship_dispatch&internal_demand_id=<cfoutput>#attributes.SHIP_ID#</cfoutput>')">
 <cfif isDefined("attributes.is_submit") >
-
+    <cfquery name="getMx" datasource="#dsn2#">
+        SELECT 'SI'+CONVERT(VARCHAR,MAX(SHIP_ID)) AS MAX_ID FROM SHIP
+    </cfquery>
+    <cfset SHIP_NUMBER=getMx.MAX_ID>
+    <CFSET FORM.PROCESS_CAT=61>
+    <CFSET attributes.SHIP_DATE=NOW()>
+    <CFSET attributes.deliver_date_frm=NOW()>
+    <CFSET attributes.department_id=attributes.DELIVER_DEPT>
+    <CFSET attributes.location_id=attributes.DELIVER_LOCATION>
+   
+    <CFSET attributes.department_in_id=45>
+    <CFSET attributes.location_in_id=1>
+    <CFSET attributes.ref_no=GETS.INTERNAL_NUMBER>
+    <cfset attributes.project_id_in=GETS.PROJECT_ID>
+    <cfset attributes.webService=1>
+    <cfinclude template="aindemand.cfm">
+    <cfinclude template="../includes/add_dispatch_ship.cfm">
 </cfif>
 <cfelse>
   
