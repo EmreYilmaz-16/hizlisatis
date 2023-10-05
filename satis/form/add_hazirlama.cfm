@@ -172,7 +172,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
 </tbody>
 </cf_big_list>
 </div>
-    
+</cfform>
 <cfelse>
   
     <cfform name="sf"></cfform>
