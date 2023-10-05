@@ -357,7 +357,7 @@
 			
 					<cfif get_process_type.is_stock_action eq 1><!--- Stok hareketi yapılsın --->
 						<cfif evaluate('attributes.is_inventory#i#') eq 1>
-							<cfinclude template="get_unit_add_fis.cfm">
+							<cfinclude template="/V16/stock/query/get_unit_add_fis.cfm">
 							<cfif get_unit.recordcount and len(get_unit.multiplier)>
 								<cfset multi=get_unit.multiplier*evaluate("attributes.amount#i#")>
 							<cfelse>
