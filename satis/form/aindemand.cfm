@@ -43,3 +43,20 @@
       <cfset 'attributes.wrk_row_relation_id#ix#'=WRK_ROW_ID>
       <cfset ix=ix+1>   
 </cfloop>
+<cfquery name="GETK" datasource="#DSN#">
+    
+select MONEY,RATE1,RATE2 from workcube_hidtek.MONEY_HISTORY where convert(date,VALIDATE_DATE)=convert(Date,getdate()) and COMPANY_ID=#session.EP.COMPANY_ID#
+UNION 
+SELECT 'TL' MONEY ,1 AS RATE1,1 AS RATE2
+</cfquery>
+<CFSET i=0>
+<cfloop query="GETK" >
+    <cfset i=i+1>
+    <cfset "attributes._hidden_rd_money_#i#"=MONEY>
+    <cfset "attributes.hidden_rd_money_#i#"=MONEY>
+    <cfset "attributes._txt_rate1_#i#"=RATE1>
+    <cfset "attributes._txt_rate2_#i#"=RATE2>
+    <cfset "attributes.txt_rate1_#i#"=RATE1>
+    <cfset "attributes.txt_rate2_#i#"=RATE2>
+</cfloop>
+<cfset attributes.KUR_SAY=i>
