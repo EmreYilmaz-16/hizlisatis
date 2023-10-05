@@ -6,7 +6,7 @@
     <cfset WRK_ROW_ID=evaluate("attributes.WRK_ROW_ID#li#")>
     <cfset attributes.rows_=0>
     <cfquery name="getSinfo" datasource="#dsn3#">                            
-        select PRODUCT_UNIT.MAIN_UNIT,STOCKS.PRODUCT_UNIT_ID,STOCKS.TAX,STOCKS.PRODUCT_ID,STOCKS.IS_INVENTORY from #dsn3#.STOCKS 
+        select PRODUCT_UNIT.MAIN_UNIT,STOCKS.PRODUCT_UNIT_ID,STOCKS.TAX,STOCKS.PRODUCT_ID,STOCKS.IS_INVENTORY,STOCKS.PRODUCT_NAME from #dsn3#.STOCKS 
         left join #dsn3#.PRODUCT_UNIT on PRODUCT_UNIT.PRODUCT_ID=STOCKS.PRODUCT_ID and IS_MAIN=1                            
         where STOCK_ID=#STOCK_ID#
     </cfquery>
@@ -36,6 +36,7 @@
       <cfset 'attributes.unit_id#ix#' = getSinfo.PRODUCT_UNIT_ID>
       <cfset 'attributes.tax#ix#' = getSinfo.TAX>
       <cfset 'attributes.price#ix#'=0>
+      <cfset 'attributes.product_name#ix#'=getSinfo.PRODUCT_NAME>
       <cfset 'attributes.product_id#ix#' = getSinfo.PRODUCT_ID>
       <cfset 'attributes.is_inventory#ix#' = getSinfo.IS_INVENTORY>
       <cfset 'attributes.WRK_ROW_ID#ix#' = "#round(rand()*65)##dateformat(now(),'YYYYMMDD')##timeformat(now(),'HHmmssL')##session.ep.userid##round(rand()*100)#">      
