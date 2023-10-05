@@ -35,6 +35,7 @@
       <cfset 'attributes.unit#ix#' = getSinfo.MAIN_UNIT>
       <cfset 'attributes.unit_id#ix#' = getSinfo.PRODUCT_UNIT_ID>
       <cfset 'attributes.tax#ix#' = getSinfo.TAX>
+      <cfset 'attributes.price#ix#'=0>
       <cfset 'attributes.product_id#ix#' = getSinfo.PRODUCT_ID>
       <cfset 'attributes.is_inventory#ix#' = getSinfo.IS_INVENTORY>
       <cfset 'attributes.WRK_ROW_ID#ix#' = "#round(rand()*65)##dateformat(now(),'YYYYMMDD')##timeformat(now(),'HHmmssL')##session.ep.userid##round(rand()*100)#">      
