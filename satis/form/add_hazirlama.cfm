@@ -174,7 +174,14 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
 </tbody>
 </cf_big_list>
 </div>
+<input type="submit">
+<input type="hidden" name="is_submit" value="1">
+<input type="hidden" name="IS_SVK" value="1">
 </cfform>
+<input type="button" onclick="windowopen('index.cfm?fuseaction=stock.add_ship_dispatch&internal_demand_id=<cfoutput>#attributes.SHIP_ID#</cfoutput>')">
+<cfif isDefined("attributes.is_submit") >
+
+</cfif>
 <cfelse>
   
     <cfform name="sf"></cfform>
