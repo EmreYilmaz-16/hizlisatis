@@ -1,5 +1,5 @@
 <cf_get_lang_set module_name="stock"><!--- sayfanin en altinda kapanisi var --->
-	<cfinclude template="check_our_period.cfm">
+	<cfinclude template="/v16/stock/query/check_our_period.cfm">
 	<cfif attributes.rows_ eq 0>
 		<script type="text/javascript">
 			alert("<cf_get_lang_main no='815.Ürün Seçmelisiniz !'>");
