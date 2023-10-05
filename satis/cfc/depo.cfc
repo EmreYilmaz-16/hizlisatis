@@ -141,6 +141,30 @@ LEFT JOIN #dataSources.dsn#_#PAST_YEAR#_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.
             arrayAppend(workArr,aWork);
         </cfscript>
         </cfloop>
+<cfquery name="getDemands" datasource="#datasources.dsn3#">
+SELECT IR.QUANTITY,ISNULL(S.AMOUNT,0) AS AMOUNT,I.INTERNAL_NUMBER,I.DEPARTMENT_OUT,I.LOCATION_OUT,I.PROJECT_ID,workcube_metosan.getEmployeeWithId(EP.EMPLOYEE_ID) AS KAYDEDEN,I.INTERNAL_ID FROM workcube_metosan_1.INTERNALDEMAND AS I
+LEFT JOIN workcube_metosan_1.INTERNALDEMAND_ROW AS IR ON IR.I_ID=I.INTERNAL_ID
+LEFT JOIN (	SELECT SUM(AMOUNT) AMOUNT,WRK_ROW_RELATION_ID FROM (
+			SELECT AMOUNT,WRK_ROW_RELATION_ID FROM workcube_metosan_2023_1.SHIP_ROW AS S
+			UNION
+			SELECT AMOUNT,WRK_ROW_RELATION_ID FROM workcube_metosan_2022_1.SHIP_ROW AS S ) AS T GROUP BY WRK_ROW_RELATION_ID )
+			S ON S.WRK_ROW_RELATION_ID=IR.WRK_ROW_ID
+LEFT JOIN workcube_metosan.EMPLOYEE_POSITIONS AS EP ON EP.POSITION_CODE=I.FROM_POSITION_CODE
+WHERE DEMAND_TYPE=0 AND IR.PREPARE_PERSONAL IS NULL AND I.DEPARTMENT_OUT=#arguments.DEPARTMENT_ID# AND I.LOCATION_OUT=#arguments.LOCATION_ID# AND IR.QUANTITY-ISNULL(S.AMOUNT,0)>0 AND I.PROJECT_ID IS NOT NULL
+</cfquery>
+<cfloop query="getDemands">
+    <cfscript> aWork={
+        DELIVER_PAPER_NO=INTERNAL_NUMBER,
+        NICKNAME="İç Talep",
+        SHIP_RESULT_ID=INTERNAL_ID,
+        TTS=0,
+        KAYDEDEN=KAYDEDEN,
+        IS_SVK=0
+    };
+    arrayAppend(workArr,aWork);
+</cfscript>
+</cfloop>
+
         <cfreturn Replace(SerializeJSON(workArr),'//','')>
     </cffunction>
     <cffunction name="setWorkEmployee" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
