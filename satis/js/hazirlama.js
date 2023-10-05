@@ -86,7 +86,7 @@ function setEmpToWork(workI,SVK) {
             location_id: deparmanData.location_id,
             dataSources: JSON.stringify(generalParamsSatis.dataSources),
             empo: workI,
-            SVK:SVK
+            IS_SVK:SVK
         },
     })
 }
