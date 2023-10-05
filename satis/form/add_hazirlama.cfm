@@ -196,8 +196,8 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
     <cfset attributes.project_id_in=GETS.PROJECT_ID>
     <cfset attributes.webService=1>
     
-    <cfset deliver_date_h=0>
-    <cfset deliver_date_m=0>
+    <cfset attributes.deliver_date_h=0>
+    <cfset attributes.deliver_date_m=0>
     <cfinclude template="aindemand.cfm">
     <cfinclude template="../includes/add_dispatch_ship.cfm">
 </cfif>
