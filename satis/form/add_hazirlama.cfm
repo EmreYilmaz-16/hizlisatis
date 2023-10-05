@@ -189,7 +189,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
     <CFSET attributes.deliver_date_frm=NOW()>
     <CFSET attributes.department_id=attributes.DELIVER_DEPT>
     <CFSET attributes.location_id=attributes.DELIVER_LOCATION>
-   
+    <cfset attributes.active_period=session.ep.period_id>
     <CFSET attributes.department_in_id=45>
     <CFSET attributes.location_in_id=1>
     <CFSET attributes.ref_no=GETS.INTERNAL_NUMBER>
