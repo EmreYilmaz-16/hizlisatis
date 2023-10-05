@@ -87,7 +87,7 @@
 				<cfif Len(Evaluate("attributes.stock_id#i#")) and Len(Evaluate("attributes.product_id#i#"))><!--- FBS 20120502 Bu kontrol action file ile olusan irsaliye kaydi icin eklenmistir --->
 					<cfif session.ep.our_company_info.spect_type and isdefined('attributes.is_production#i#') and evaluate('attributes.is_production#i#') eq 1 and not isdefined('attributes.spect_id#i#') or not len(evaluate('attributes.spect_id#i#'))>
 						<cfset dsn_type=new_dsn2>
-						<cfinclude template="../../objects/query/add_basket_spec.cfm">
+						<cfinclude template="/V16/objects/query/add_basket_spec.cfm">
 					</cfif>
 					<cf_date tarih = 'attributes.deliver_date#i#'>
 					<cfinclude template="get_dis_amount.cfm">
