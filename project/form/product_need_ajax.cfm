@@ -66,7 +66,7 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                     <select name="orderrow_currency_#currentrow#" id="orderrow_currency_#currentrow#">
                         <option <cfif ihes.islem eq -1>selected</cfif> value="-1">Açık</option>
                         <option <cfif ihes.islem eq 1>selected</cfif> value="-2">Tedarik</option>
-                        <option <cfif ihes.islem eq 2>selected</cfif> value="-5">Üretim</option>
+                        <option <cfif ihes.islem eq 2>selected</cfif> value="" disabled>Üretim</option>
                         <option <cfif ihes.islem eq 0>selected</cfif> value="-6">Sevk</option>                                        
                         <option <cfif ihes.islem eq -10>selected</cfif> value="-10">Kapatıldı</option>
                         <option <cfif ihes.islem eq 11>selected</cfif> value="1">Fiyat Talep</option>

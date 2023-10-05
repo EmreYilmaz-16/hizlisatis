@@ -51,6 +51,7 @@
                 <cfset "attributes.row_exp_center_id#i#"="">
                 <cfset "attributes.row_exp_item_id#i#"="">
                 <cfset "attributes.target_date"="">
+                <cfset "attributes.wrk_row_id#i#"="PBS#session.ep.userid##dateFormat(now(),"yyyymmdd")##timeFormat(now(),"hhmmnnl")#_#i#">
             </cfloop>
             <cfset attributes.rows_=i>
             <cfinclude template="add_internaldemand.cfm">				
@@ -90,6 +91,7 @@
         <cfset "attributes.row_exp_center_id#i#"="">
         <cfset "attributes.row_exp_item_id#i#"="">
         <cfset "attributes.target_date"=""> 
+        <cfset "attributes.wrk_row_id#i#"="PBS#session.ep.userid##dateFormat(now(),"yyyymmdd")##timeFormat(now(),"hhmmnnl")#_#i#">
         <cfset i=i+1>
     </cfloop>
     <cfinclude template="add_internaldemand.cfm">
@@ -97,6 +99,8 @@
 
 <cfif arrayLen(FormData.URETIM)>
     <cfloop array="#FormData.URETIM#">
-        
+
     </cfloop>
 </cfif>
+
+project\query\addProjectNeedDocs.cfm

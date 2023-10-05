@@ -135,8 +135,8 @@ LEFT JOIN #dataSources.dsn#_#PAST_YEAR#_1.STOCK_FIS_ROW AS SFR ON SFR.FIS_ID=SF.
                 NICKNAME=NICKNAME,
                 SHIP_RESULT_ID=SHIP_RESULT_ID,
                 TTS=TTS,
-                KAYDEDEN=KAYDEDEN
-                
+                KAYDEDEN=KAYDEDEN,
+                IS_SVK=1
             };
             arrayAppend(workArr,aWork);
         </cfscript>
