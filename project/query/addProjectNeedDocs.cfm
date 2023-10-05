@@ -98,9 +98,7 @@
 </cfif>
 
 <cfif arrayLen(FormData.URETIM)>
-    <cfloop array="#FormData.URETIM#">
-
-    </cfloop>
+ 
 </cfif>
 
 project\query\addProjectNeedDocs.cfm
