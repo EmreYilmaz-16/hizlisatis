@@ -145,3 +145,58 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
        </tbody>
     </cf_grid_list>
 </div>
+
+
+<script>
+    function add_row_exit(is_add_info_,row_kontrol_exit,is_phantom_exit,is_sevk_exit,is_property_exit,is_free_amount_exit,stock_code_exit,product_id_exit,stock_id_exit,product_name_exit,stock_code_exit,spec_main_id_exit,spect_name_exit,lot_no_exit,amount_exit,unit_id_exit,unit_exit,spect_id_exit)
+	{
+		if(is_add_info_==undefined) is_add_info_=1;
+		if(row_kontrol_exit==undefined) row_kontrol_exit="";
+		if(is_phantom_exit==undefined) is_phantom_exit="";
+		if(is_sevk_exit==undefined) is_sevk_exit="";
+		if(is_property_exit==undefined) is_property_exit="";
+		if(is_free_amount_exit==undefined) is_free_amount_exit="";
+		if(stock_code_exit==undefined) stock_code_exit="";
+		if(product_id_exit==undefined) product_id_exit="";
+		if(stock_id_exit==undefined) stock_id_exit="";
+		if(product_name_exit==undefined) product_name_exit="";
+		if(stock_code_exit==undefined) stock_code_exit="";
+		if(spec_main_id_exit==undefined) spec_main_id_exit="";
+		if(spect_name_exit==undefined) spect_name_exit="";
+		if(lot_no_exit==undefined) lot_no_exit="";
+		if(amount_exit==undefined) amount_exit=1;
+		if(unit_id_exit==undefined) unit_id_exit="";
+		if(unit_exit==undefined) unit_exit="";
+		if(spect_id_exit==undefined) spect_id_exit="";
+		
+		row_count_exit++;
+		var newRow;
+		var newCell;
+		newRow = document.getElementById("table2").insertRow(document.getElementById("table2").rows.length);
+		newRow.setAttribute("name","frm_row_exit" + row_count_exit);
+		newRow.setAttribute("id","frm_row_exit" + row_count_exit);
+		newRow.setAttribute("NAME","frm_row_exit" + row_count_exit);
+		newRow.setAttribute("ID","frm_row_exit" + row_count_exit);
+		newRow.className = 'color-row';
+		document.add_production_order.record_num_exit.value = row_count_exit;
+		
+			newCell = newRow.insertCell(newRow.cells.length);
+			newCell.innerHTML = '<ul class="ui-icon-list"><li><a style="cursor:pointer" onclick="copy_row_exit('+row_count_exit+');" title="Satır Kopyala "><i class="fa fa-copy" border="0"></i></a></li><li><a onclick="sil_exit(' + row_count_exit + ');"><i class="fa fa-minus" border="0" align="absmiddle" alt="Sil"></i></a></li></ul>';
+		
+		newCell = newRow.insertCell(newRow.cells.length);
+		newCell.innerHTML = '<input type="hidden" name="is_add_info_' + row_count_exit +'" id="is_add_info_' + row_count_exit +'" value="'+is_add_info_+'"><input type="hidden" name="row_kontrol_exit' + row_count_exit +'" id="row_kontrol_exit' + row_count_exit +'" value="1">';
+		newCell = newRow.insertCell(newRow.cells.length);
+		newCell.innerHTML = '<input type="hidden" name="is_phantom_exit' + row_count_exit +'" id="is_phantom_exit' + row_count_exit +'" value="'+ is_phantom_exit+'"><input type="hidden" name="is_sevk_exit' + row_count_exit +'" id="is_sevk_exit' + row_count_exit +'" value="'+ is_sevk_exit+'"><input type="hidden" name="is_property_exit' + row_count_exit +'" id="is_property_exit' + row_count_exit +'" value="'+ is_property_exit+'"><input type="hidden" name="is_free_amount_exit' + row_count_exit +'" id="is_free_amount_exit' + row_count_exit +'" value="'+ is_free_amount_exit+'"><input type="text" name="stock_code_exit' + row_count_exit +'" id="stock_code_exit' + row_count_exit +'" value="'+stock_code_exit+'" readonly style="width:150px;">';
+		newCell = newRow.insertCell(newRow.cells.length);
+		newCell.setAttribute('nowrap','nowrap');
+		newCell.innerHTML = '<input type="hidden" name="product_id_exit' + row_count_exit +'" id="product_id_exit' + row_count_exit +'"  value="'+ product_id_exit+'"><input type="hidden" name="stock_id_exit' + row_count_exit +'" id="stock_id_exit' + row_count_exit +'" value="'+ stock_id_exit+'"><input type="text" name="product_name_exit' + row_count_exit +'" id="product_name_exit' + row_count_exit +'" readonly style="width:280px;" value="'+ product_name_exit+'"><a href="javascript://" onClick="pencere_ac_product('+ row_count_exit +');"> <img src="/images/plus_thin.gif" border="0" align="absbottom"></a>';
+		newCell = newRow.insertCell(newRow.cells.length);
+		newCell.setAttribute('nowrap','nowrap');
+		newCell.innerHTML = '<input type="hidden" name="spec_main_id_exit' + row_count_exit +'" id="spec_main_id_exit' + row_count_exit +'" readonly value="'+ spec_main_id_exit+'"><input type="hidden" name="spect_id_exit' + row_count_exit +'" id="spect_id_exit' + row_count_exit +'" value="'+ spect_id_exit+'"> <input type="text" name="spect_name_exit' + row_count_exit +'" id="spect_name_exit' + row_count_exit +'" value="'+ spect_name_exit+'" readonly style="width:241px;"> <a href="javascript://" onclick="pencere_ac_spect(\'#currentrow#\',2);"><img src="/images/plus_thin.gif" align="absbottom" border="0"></a>';
+		
+		newCell = newRow.insertCell(newRow.cells.length);
+		newCell.innerHTML = '<input type="text" name="amount_exit' + row_count_exit +'" id="amount_exit' + row_count_exit +'" value="'+amount_exit+'" onKeyup="return(FormatCurrency(this,event,8));" class="moneybox" style="width:100px;"><input type="hidden" name="amount_exit_' + row_count_exit +'" id="amount_exit_' + row_count_exit +'" value="'+amount_exit+'" onKeyup="return(FormatCurrency(this,event,8));" class="moneybox">';
+		newCell = newRow.insertCell(newRow.cells.length);
+		newCell.innerHTML = '<input type="hidden" name="unit_id_exit' + row_count_exit +'" id="unit_id_exit' + row_count_exit +'" value="'+ unit_id_exit+'"><input type="text" name="unit_exit' + row_count_exit +'" id="unit_exit' + row_count_exit +'"  value="'+ unit_exit+'" readonly style="width:60px;">';		
+	}
+</script>
