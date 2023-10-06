@@ -1,6 +1,6 @@
 ﻿<cfquery name="getP" datasource="#dsn3#">
     SELECT * FROM (
-SELECT PO.P_ORDER_ID,PO.P_ORDER_NO,WS.STATION_NAME,S.PRODUCT_NAME,PO.SPECT_VAR_NAME,PO.START_DATE,PO.FINISH_DATE,PO.PROD_ORDER_STAGE,PO.LOT_NO,IS_STAGE,POR.ORDER_ROW_ID,ORR.DELIVER_DATE,PO.STATION_ID,O.ORDER_NUMBER,ISNULL(TKSS.AMOUNT,0) AMOUNT,PO.QUANTITY,C.NICKNAME FROM #dsn3#.PRODUCTION_ORDERS  AS PO
+SELECT PO.P_ORDER_ID,PO.P_ORDER_NO,WS.STATION_NAME,S.PRODUCT_NAME,S.STOCK_ID,PO.SPECT_VAR_NAME,PO.START_DATE,PO.FINISH_DATE,PO.PROD_ORDER_STAGE,PO.LOT_NO,IS_STAGE,POR.ORDER_ROW_ID,ORR.DELIVER_DATE,PO.STATION_ID,O.ORDER_NUMBER,ISNULL(TKSS.AMOUNT,0) AMOUNT,PO.QUANTITY,C.NICKNAME FROM #dsn3#.PRODUCTION_ORDERS  AS PO
 LEFT JOIN #dsn3#.WORKSTATIONS AS WS ON WS.STATION_ID=PO.STATION_ID
 LEFT JOIN #dsn3#.PRODUCTION_ORDERS_ROW AS POR ON POR.PRODUCTION_ORDER_ID=PO.P_ORDER_ID
 LEFT JOIN #dsn3#.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID=POR.ORDER_ROW_ID
@@ -56,7 +56,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
             POS.RECORD_DATE DESC
         </cfif>
 </cfquery>
-
+<cfset attributes.stock_id=getP.STOCK_ID>
 <input type="hidden" name="main_stock_id" id="main_stock_id" value="<cfoutput>#attributes.stock_id#</cfoutput>" >
 <input type="hidden" name="product_sarf_recordcount" id="product_sarf_recordcount" value="<cfoutput>#get_product_sarf.recordcount#</cfoutput>">
 <input type="hidden" name="product_fire_recordcount" id="product_fire_recordcount" value="<cfoutput>#get_product_fire.recordcount#</cfoutput>">
