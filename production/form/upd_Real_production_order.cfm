@@ -58,14 +58,18 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
             POS.RECORD_DATE DESC
         </cfif>
 </cfquery>
-<cfset attributes.stock_id=getP.STOCK_ID>
-<input type="hidden" name="main_stock_id" id="main_stock_id" value="<cfoutput>#attributes.stock_id#</cfoutput>" >
+
+<form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=prod.upd_production_order_process" method="post" >
+    <input type="hidden" name="main_stock_id" id="main_stock_id" value="<cfoutput>#attributes.stock_id#</cfoutput>" >
 <input type="hidden" name="product_sarf_recordcount" id="product_sarf_recordcount" value="<cfoutput>#get_product_sarf.recordcount#</cfoutput>">
 
 <cfset deger_value_row = get_product_sarf.recordcount>
 
 <input type="hidden" name="record_num_exit" id="record_num_exit" value="<cfoutput>#deger_value_row#</cfoutput>"/>
 <input type="hidden" name="record_num_outage" id="record_num_outage" value="<cfoutput>#deger_value_row#</cfoutput>"/>
+</form>​
+<cfset attributes.stock_id=getP.STOCK_ID>
+
 <!---/*Sarflar*/--->
 <cfsavecontent variable="title"><cf_get_lang dictionary_id='30009.Sarflar'></cfsavecontent>
 <cf_seperator title="#title#" id="sarf_" is_closed="1">
@@ -90,6 +94,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
             </tr>
         </thead>
         <tbody>
+            
         <cfoutput query="get_product_sarf">
             <tr id="frm_row_exit#currentrow#" <cfif IS_PHANTOM eq 1>bgcolor="66CCFF" title="Phantom Ağaç Ürünü"<cfelseif IS_PHANTOM eq 0>class="color-row"</cfif>>
                 <cfif 1 eq 1>
