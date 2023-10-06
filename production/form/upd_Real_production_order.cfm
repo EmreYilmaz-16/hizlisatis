@@ -14,7 +14,9 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
 </cfquery>
 <cfdump var="#getP#">
 
-
+<script>
+    row_count_exit=0;
+</script>
 
 <!--- Üretim emrinde sarf ve fire oluşturma... --->
 <cfsetting showdebugoutput="no">
@@ -100,6 +102,9 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
                     </td>
                 </cfif>
                 <td>#currentrow#</td>
+                <script>
+                    row_count_exit++;
+                </script>
                 <td>
                     <input type="hidden" name="row_kontrol_exit#currentrow#" id="row_kontrol_exit#currentrow#" value="1">
                     <input type="hidden" name="is_phantom_exit#currentrow#" id="is_phantom_exit#currentrow#"value="#IS_PHANTOM#">
