@@ -71,7 +71,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
     <cf_grid_list id="table2">
         <thead>
             <tr>
-               <cfif isdefined("is_add_product_sarf_fire") and is_add_product_sarf_fire eq 1>
+               <cfif 1 eq 1>
                     <th width="25">
                         <a href="javascript://" onClick="add_row_exit();"><i class="fa fa-plus" align="absmiddle" border="0"></i></a>
                     </th>
@@ -90,7 +90,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
         <tbody>
         <cfoutput query="get_product_sarf">
             <tr id="frm_row_exit#currentrow#" <cfif IS_PHANTOM eq 1>bgcolor="66CCFF" title="Phantom Ağaç Ürünü"<cfelseif IS_PHANTOM eq 0>class="color-row"</cfif>>
-                <cfif isdefined("is_add_product_sarf_fire") and is_add_product_sarf_fire eq 1>
+                <cfif 1 eq 1>
                     <td>
 						<ul class="ui-icon-list">
                             <li><a onclick="copy_row_exit('#currentrow#');"><i class="fa fa-copy"  title="<cf_get_lang dictionary_id='58972.Satır Kopyala'>" border="0"></i></a></li>
