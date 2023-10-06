@@ -59,9 +59,9 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
 <cfset attributes.stock_id=getP.STOCK_ID>
 <input type="hidden" name="main_stock_id" id="main_stock_id" value="<cfoutput>#attributes.stock_id#</cfoutput>" >
 <input type="hidden" name="product_sarf_recordcount" id="product_sarf_recordcount" value="<cfoutput>#get_product_sarf.recordcount#</cfoutput>">
-<input type="hidden" name="product_fire_recordcount" id="product_fire_recordcount" value="<cfoutput>#get_product_fire.recordcount#</cfoutput>">
+
 <cfset deger_value_row = get_product_sarf.recordcount>
-<cfset deger_value_row_fire = get_product_fire.recordcount>
+
 <input type="hidden" name="record_num_exit" id="record_num_exit" value="<cfoutput>#deger_value_row#</cfoutput>"/>
 <input type="hidden" name="record_num_outage" id="record_num_outage" value="<cfoutput>#deger_value_row#</cfoutput>"/>
 <!---/*Sarflar*/--->
