@@ -41,6 +41,7 @@
       <cfset 'attributes.is_inventory#ix#' = getSinfo.IS_INVENTORY>
       <cfset 'attributes.WRK_ROW_ID#ix#' = "#round(rand()*65)##dateformat(now(),'YYYYMMDD')##timeformat(now(),'HHmmssL')##session.ep.userid##round(rand()*100)#">      
       <cfset 'attributes.wrk_row_relation_id#ix#'=WRK_ROW_ID>
+      
       <cfset ix=ix+1>   
 </cfloop>
 <cfquery name="GETK" datasource="#DSN#">
