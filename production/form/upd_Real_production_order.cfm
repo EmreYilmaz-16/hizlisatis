@@ -1,5 +1,7 @@
 ﻿<div class="row">
-    <div class="col-1"></div>
+    <div class="col-1">
+        <button type="button" onclick="windowopen('/index.cfm?fuseaction=objects.popup_print_files&action_id=<cfoutput>#attributes.P_ORDER_ID#</cfoutput>&print_type=281&action=prod.order')" class="ui-wrk-btn ui-wrk-btn-extra">Yazdır</button>
+    </div>
     <div class="col-11">
 <cfquery name="getP" datasource="#dsn3#">
 SELECT *
@@ -46,7 +48,7 @@ FROM (
 	) AS T
  WHERE P_ORDER_ID=#attributes.P_ORDER_ID#
 </cfquery>
-<cfdump var="#getP#">
+
 
 <script>
     row_count_exit=0;
