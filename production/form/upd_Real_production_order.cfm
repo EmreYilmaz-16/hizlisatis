@@ -217,4 +217,26 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
 	{
 		$("#amount_exit" + no).val( filterNum($("#amount_exit" + no).val()) * filterNum($("#amount_exit_" + no).val()));
 	}
+    function pencere_ac_spect(no,type)
+	{
+		if(type==2)
+		{	
+			form_stock = document.getElementById("stock_id_exit"+no);
+			
+				url_str='&field_main_id=add_production_order.spec_main_id_exit'+no+'&field_var_id=add_production_order.spect_id_exit'+no+'&field_id=add_production_order.spect_id_exit'+no+'&field_name=add_production_order.spect_name_exit' + no + '&stock_id=' + form_stock.value+'&create_main_spect_and_add_new_spect_id=1';
+			
+			
+		}
+		else if(type==3)
+		{
+			form_stock = document.getElementById("stock_id_outage"+no);
+			
+				url_str='&field_main_id=add_production_order.spec_main_id_outage'+no+'&field_id=add_production_order.spect_id_outage'+no+'&field_name=add_production_order.spect_name_outage' + no + '&stock_id=' + form_stock.value+'&create_main_spect_and_add_new_spect_id=1&field_var_id=add_production_order.spect_id_outage'+no;
+			
+		}
+		if(form_stock.value == "")
+			alert("Lütfen Ürün Seçiniz ");
+		else
+			 windowopen('index.cfm?fuseaction=objects.popup_list_spect_main&main_to_add_spect=1' + url_str,'list');
+	}
 </script>
