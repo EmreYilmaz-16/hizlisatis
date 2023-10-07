@@ -4,6 +4,7 @@
 <cfset attributes.employee_id_=session.ep.userid>
 <cfset attributes.station_id_=pws_id>
 <cfset attributes.upd_id=attributes.p_order_id>
+<cfset PARTNER_P_ORDER_ID=attributes.p_order_id>
 <cfinclude template="/AddOns/Partner/production/Includes/add_prod_order_result.cfm">
 
 <cfset attributes.pr_order_id =ADD_PRODUCTION_ORDER.MAX_ID>
