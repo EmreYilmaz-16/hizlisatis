@@ -64,6 +64,7 @@ FROM (
         POS.LOT_NO,
 		S.PRODUCT_NAME,
 		S.STOCK_CODE,
+        S.PROJECT_ID,
 		PU.MAIN_UNIT,
 		(SELECT TOP 1 SPECT_MAIN_NAME FROM SPECT_MAIN SM WHERE SM.STOCK_ID = S.STOCK_ID) SPECT_MAIN_NAME,
 		ISNULL(POS.IS_PHANTOM,0) IS_PHANTOM,
@@ -157,8 +158,11 @@ FROM (
                 <cfif 1 eq 1>
                     <td>
 						<ul class="ui-icon-list">
+                           <cfif len(PROJECT_ID)>
+                           <cfelse>
                             <li><a onclick="copy_row_exit('#currentrow#');"><i class="fa fa-copy"  title="<cf_get_lang dictionary_id='58972.Satır Kopyala'>" border="0"></i></a></li>
                             <li><a style="cursor:pointer;" onclick="sil_exit('#currentrow#');"><i class="fa fa-minus" border="0" align="absmiddle" title="<cf_get_lang dictionary_id='57463.Sil'>"></i></a></li>
+                            </cfif>
                         </ul>
                         
                     </td>
@@ -322,5 +326,12 @@ FROM (
 			else
 				alert("Ürün Seçmelisiniz !");
 		}
+	}
+    function sil_exit(sy)
+	{
+		var my_element=document.getElementById("row_kontrol_exit"+sy);
+		my_element.value=0;
+		var my_element=eval("frm_row_exit"+sy);
+		my_element.style.display="none";	
 	}
 </script>
