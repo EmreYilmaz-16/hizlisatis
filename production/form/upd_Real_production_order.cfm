@@ -1,6 +1,6 @@
 ﻿<div class="row">
     <div class="col-1">
-        <button type="button" onclick="windowopen('/index.cfm?fuseaction=objects.popup_print_files&action_id=<cfoutput>#attributes.P_ORDER_ID#</cfoutput>&print_type=281&action=prod.order')" class="ui-wrk-btn ui-wrk-btn-extra">Yazdır</button>
+        <button type="button" onclick="windowopen('/index.cfm?fuseaction=objects.popup_print_files&action_id=<cfoutput>#attributes.P_ORDER_ID#</cfoutput>&print_type=281&action=prod.order')" class="ui-wrk-btn ui-wrk-btn-extra"><i class="icon-print"></i> &nbsp; Yazdır</button>
     </div>
     <div class="col-11">
 <cfquery name="getP" datasource="#dsn3#">
