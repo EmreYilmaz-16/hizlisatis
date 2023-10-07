@@ -85,7 +85,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
                 <th width="15"><cf_get_lang dictionary_id="57487.No"></th>
                 <th width="125"><cf_get_lang dictionary_id='57518.Stok Kodu'></th>
                 <th width="270"><cf_get_lang dictionary_id='57657.Ürün'></th>
-                <th width="260"><cf_get_lang dictionary_id='57647.Spec'></th>
+                <th style="display:none" width="260"><cf_get_lang dictionary_id='57647.Spec'></th>
                 <cfif isdefined("is_show_lot_no") and is_show_lot_no eq 1>
                     <th width="120"><cf_get_lang dictionary_id='36698.Lot No'></th>
                 </cfif>
@@ -129,7 +129,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
                     <a href="javascript://" onClick="pencere_ac_alternative('#currentrow#',document.add_production_order.product_id_exit#currentrow#.value,document.add_production_order.main_stock_id.value);"><img src="/images/plus_thin.gif" align="absmiddle" border="0" title="<cf_get_lang dictionary_id='45311.Alternatif Ürünler'>"></a>
                     <a href="javascript://" onClick="get_stok_spec_detail_ajax('#product_id#');"><img src="/images/plus_thin_p.gif" style="cursor:pointer;" align="absmiddle" border="0" title="Stok Detay"></a>
                 </td>
-                <td nowrap="nowrap">
+                <td style="display:none" nowrap="nowrap">
                     <input type="hidden" name="spect_main_row_exit#currentrow#" id="spect_main_row_exit#currentrow#" value="#SPECT_MAIN_ROW_ID#">
                     <input type="hidden" name="spect_id_exit#currentrow#" id="spect_id_exit#currentrow#" value="#spect_var_id#">
                     <input type="text" name="spec_main_id_exit#currentrow#" id="spec_main_id_exit#currentrow#" value="#spect_main_id#" readonly style="width:40px;">
@@ -202,6 +202,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
 		newCell.innerHTML = '<input type="hidden" name="product_id_exit' + row_count_exit +'" id="product_id_exit' + row_count_exit +'"  value="'+ product_id_exit+'"><input type="hidden" name="stock_id_exit' + row_count_exit +'" id="stock_id_exit' + row_count_exit +'" value="'+ stock_id_exit+'"><input type="text" name="product_name_exit' + row_count_exit +'" id="product_name_exit' + row_count_exit +'" readonly style="width:280px;" value="'+ product_name_exit+'"><a href="javascript://" onClick="pencere_ac_product('+ row_count_exit +');"> <img src="/images/plus_thin.gif" border="0" align="absbottom"></a>';
 		newCell = newRow.insertCell(newRow.cells.length);
 		newCell.setAttribute('nowrap','nowrap');
+        newCell.setAttribute('style','display:none');
 		newCell.innerHTML = '<input type="hidden" name="spec_main_id_exit' + row_count_exit +'" id="spec_main_id_exit' + row_count_exit +'" readonly value="'+ spec_main_id_exit+'"><input type="hidden" name="spect_id_exit' + row_count_exit +'" id="spect_id_exit' + row_count_exit +'" value="'+ spect_id_exit+'"> <input type="text" name="spect_name_exit' + row_count_exit +'" id="spect_name_exit' + row_count_exit +'" value="'+ spect_name_exit+'" readonly style="width:241px;"> <a href="javascript://" onclick="pencere_ac_spect(\'#currentrow#\',2);"><img src="/images/plus_thin.gif" align="absbottom" border="0"></a>';
 		
 		newCell = newRow.insertCell(newRow.cells.length);
