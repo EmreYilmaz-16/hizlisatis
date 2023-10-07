@@ -5,6 +5,7 @@ FROM (
 		,PO.P_ORDER_NO
 		,WS.STATION_NAME
 		,S.PRODUCT_NAME
+        ,S.PRODUCT_CODE
 		,S.STOCK_ID
 		,PO.SPECT_VAR_NAME
 		,PO.START_DATE
@@ -91,18 +92,26 @@ FROM (
 <cfset attributes.stock_id=getP.STOCK_ID>
 <cf_box title="Üretim Emri - #getP.P_ORDER_NO#">
 <cfoutput>
-    <table>
+    <cf_grid_list>
     <tr>
         <th>Müşteri</th>
         <td>#getP.NICKNAME#</td>
         <th>Sipariş</th>
-        <td>#getP.ORDER_NUMBER#</td>
-        <th>Ürün</th>
-        <td>#getP.PRODUCT_NAME#</td>
+        <td>#getP.ORDER_NUMBER#</td>       
         <th>Proje</th>
         <td>#getP.PROJECT_NUMBER# - #getP.PROJECT_HEAD#</td>
     </tr>
-</table>
+    <tr>
+        <th>Ürün Kodu</th>
+        <td>#getP.PRODUCT_CODE#</td>
+        <th>Ürün</th>
+        <td>#getP.PRODUCT_NAME#</td>
+        <th>Üretilen Miktarı</th>
+        <td>#getP.AMOUNT#</td>
+        <th>Üretilecek Miktar</th>
+        <td>#getP.QUANTITY#</td>
+    </tr>
+</cf_grid_list>
 </cfoutput>
 
 <form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=prod.upd_prtotm_real_po" method="post" >
