@@ -1,4 +1,7 @@
-﻿<cfquery name="getP" datasource="#dsn3#">
+﻿<div class="row">
+    <div class="col-2"></div>
+    <div class="col-10">
+<cfquery name="getP" datasource="#dsn3#">
 SELECT *
 FROM (
 	SELECT PO.P_ORDER_ID
@@ -339,3 +342,5 @@ FROM (
 
     }
 </script>
+</div>
+</div>
