@@ -92,7 +92,7 @@ FROM (
 <cfset attributes.stock_id=getP.STOCK_ID>
 <cf_box title="Üretim Emri - #getP.P_ORDER_NO#">
 <cfoutput>
-    <cf_big_list>
+    <cf_ajax_list>
     <tr>
         <th>Müşteri</th>
         <td>#getP.NICKNAME#</td>
@@ -111,7 +111,7 @@ FROM (
         <th>Üretilecek Miktar</th>
         <td>#getP.QUANTITY#</td>
     </tr>
-</cf_big_list>
+</cf_ajax_list>
 </cfoutput>
 
 <form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=prod.upd_prtotm_real_po" method="post" >
