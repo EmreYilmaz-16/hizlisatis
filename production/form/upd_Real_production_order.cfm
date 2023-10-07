@@ -216,7 +216,7 @@ FROM (
        </tbody>
     </cf_grid_list>
 </div>
-<input type="submit">
+<input type="button" class=" ui-wrk-btn ui-wrk-btn-primary" onclick="$('#add_production_order').submit()" value="Sarf Kaydet">
 <input type="button" class=" ui-wrk-btn ui-wrk-btn-warning" onclick="UretimTamamla()" value="Üretimi Sonlandır">
 </form>
 </cf_box>
@@ -335,4 +335,7 @@ FROM (
 		var my_element=eval("frm_row_exit"+sy);
 		my_element.style.display="none";	
 	}
+    function UretimTamamla(poid){
+
+    }
 </script>
