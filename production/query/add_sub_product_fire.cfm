@@ -1,4 +1,5 @@
 <!--- Üretim emrinde sarf ve fire oluşturma hgul--->
+Merhaba
 <cflock name="#CreateUUID()#" timeout="30">
 <cftransaction>
 	<cfif not isdefined("attributes.is_alternative")><!--- üretim emri eklenirken bu kısma girer. --->
