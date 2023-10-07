@@ -9,6 +9,11 @@
 
 <cfset attributes.pr_order_id =ADD_PRODUCTION_ORDER.MAX_ID>
 <cfinclude template="/AddOns/Partner/production/Includes/add_ezgi_prod_order_result_stock.cfm">
+<script>
+    window.opener.location.reload();
+    this.close();
+</script>
+<cfabort>
 
 </cfif>
 <cfparam name="attributes.PRODUCT_AMOUNT_1_0" default="">
