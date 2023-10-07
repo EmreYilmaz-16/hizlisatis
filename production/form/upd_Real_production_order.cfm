@@ -1,8 +1,10 @@
 ﻿<div class="row">
-    <div class="col-1">
+    <div class="col col-1">
+        <cf_box>
         <button type="button" onclick="windowopen('/index.cfm?fuseaction=objects.popup_print_files&action_id=<cfoutput>#attributes.P_ORDER_ID#</cfoutput>&print_type=281&action=prod.order')" class="ui-wrk-btn ui-wrk-btn-extra"><i class="icon-print"></i> &nbsp; Yazdır</button>
+    </cf_box>
     </div>
-    <div class="col-11">
+    <div class="col col-11">
 <cfquery name="getP" datasource="#dsn3#">
 SELECT *
 FROM (
