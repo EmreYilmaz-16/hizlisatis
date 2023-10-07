@@ -116,7 +116,7 @@ FROM (
 
 <form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=prod.upd_prtotm_real_po" method="post" >
 
-
+    <input type="hidden" name="p_order_id " id="p_order_id " value="<cfoutput>#attributes.P_ORDER_ID#</cfoutput>" >
     <input type="hidden" name="main_stock_id" id="main_stock_id" value="<cfoutput>#attributes.stock_id#</cfoutput>" >
 <input type="hidden" name="product_sarf_recordcount" id="product_sarf_recordcount" value="<cfoutput>#get_product_sarf.recordcount#</cfoutput>">
 
