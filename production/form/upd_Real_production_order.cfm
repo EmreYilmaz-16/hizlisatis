@@ -59,7 +59,10 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
         </cfif>
 </cfquery>
 <cfset attributes.stock_id=getP.STOCK_ID>
-<form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=prod.upd_production_order_process" method="post" >
+<cf_box title="Üretim Emri - #getP.P_ORDER_NO#">
+<form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=prod.upd_prtotm_real_po" method="post" >
+
+
     <input type="hidden" name="main_stock_id" id="main_stock_id" value="<cfoutput>#attributes.stock_id#</cfoutput>" >
 <input type="hidden" name="product_sarf_recordcount" id="product_sarf_recordcount" value="<cfoutput>#get_product_sarf.recordcount#</cfoutput>">
 
@@ -155,8 +158,9 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
        </tbody>
     </cf_grid_list>
 </div>
+<input type="submit">
 </form>
-
+</cf_box>
 <script>
     function add_row_exit(is_add_info_,row_kontrol_exit,is_phantom_exit,is_sevk_exit,is_property_exit,is_free_amount_exit,stock_code_exit,product_id_exit,stock_id_exit,product_name_exit,stock_code_exit,spec_main_id_exit,spect_name_exit,lot_no_exit,amount_exit,unit_id_exit,unit_exit,spect_id_exit)
 	{
