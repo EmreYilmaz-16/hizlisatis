@@ -343,7 +343,7 @@ FROM (
 		my_element.style.display="none";	
 	}
     function UretimTamamla(poid){
-
+        windowopen("/index.cfm?fuseaction=production.emptypopup_add_prod_order_result&p_order_id="+poid)
     }
 </script>
 </div>

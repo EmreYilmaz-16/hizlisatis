@@ -1,3 +1,15 @@
+<cfif isDefined("attributes.JUSPORESULT")>
+    <cfset attributes.process_cat=111>
+<cfset attributes.process_stage=26>
+<cfset attributes.employee_id_=session.ep.userid>
+<cfset attributes.station_id_=pws_id>
+<cfset attributes.upd_id=attributes.pr_order_id>
+<cfinclude template="/AddOns/Partner/production/Includes/add_prod_order_result.cfm">
+
+<cfset attributes.pr_order_id =ADD_PRODUCTION_ORDER.MAX_ID>
+<cfinclude template="/AddOns/Partner/production/Includes/add_ezgi_prod_order_result_stock.cfm">
+
+</cfif>
 <cfparam name="attributes.PRODUCT_AMOUNT_1_0" default="">
 <cfdump var="#attributes#">
 <cfquery name="getVirtualProductionOrder" datasource="#dsn3#">
