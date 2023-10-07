@@ -239,4 +239,29 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
 		else
 			 windowopen('index.cfm?fuseaction=objects.popup_list_spect_main&main_to_add_spect=1' + url_str,'list');
 	}
+    function pencere_ac_list_product(no,type)//ürünlere lot_no ekliyor
+	{
+		if(type == 2)
+		{//sarf ise type 2
+			form_stock_code = $("#stock_code_exit"+no).val();
+			if(form_stock_code!= undefined && form_stock_code!='')
+			{
+				url_str='&is_sale_product=1&update_product_row_id=0&is_lot_no_based=1&prod_order_result_=1&sort_type=1&lot_no=add_production_order.lot_no_exit'+no+'&keyword=' + form_stock_code+'&is_form_submitted=1&int_basket_id=1';
+				windowopen('index.cfm?fuseaction=objects.popup_products'+url_str+'','list');
+			}
+			else
+				alert("Ürün Seçmelisiniz !");
+		}
+		else if(type == 3)
+		{//fire ise type 3
+			form_stock_code = $("#stock_code_outage"+no).val();
+			if(form_stock_code!= undefined && form_stock_code!='')
+			{
+				url_str='&is_sale_product=1&update_product_row_id=0&is_lot_no_based=1&prod_order_result_=1&sort_type=1&lot_no=add_production_order.lot_no_outage'+no+'&keyword=' + form_stock_code+'&is_form_submitted=1&int_basket_id=1';
+				windowopen('index.cfm?fuseaction=objects.popup_products'+url_str+'','list');
+			}
+			else
+				alert("Ürün Seçmelisiniz !");
+		}
+	}
 </script>
