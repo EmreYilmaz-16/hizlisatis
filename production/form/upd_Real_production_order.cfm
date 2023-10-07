@@ -1,6 +1,6 @@
 ﻿<div class="row">
-    <div class="col-2"></div>
-    <div class="col-10">
+    <div class="col-1"></div>
+    <div class="col-11">
 <cfquery name="getP" datasource="#dsn3#">
 SELECT *
 FROM (
