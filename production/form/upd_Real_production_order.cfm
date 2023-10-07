@@ -217,6 +217,7 @@ FROM (
     </cf_grid_list>
 </div>
 <input type="submit">
+<input type="button" class=" ui-wrk-btn ui-wrk-btn-warning" onclick="UretimTamamla()" value="Üretimi Sonlandır">
 </form>
 </cf_box>
 <script>
