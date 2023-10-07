@@ -114,7 +114,7 @@ FROM (
 </cf_ajax_list>
 </cfoutput>
 
-<form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=production.upd_prtotm_real_po" method="post" >
+<form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=production.emptypopup_upd_prtotm_real_po" method="post" >
 
     <input type="hidden" name="p_order_id " id="p_order_id " value="<cfoutput>#attributes.P_ORDER_ID#</cfoutput>" >
     <input type="hidden" name="main_stock_id" id="main_stock_id" value="<cfoutput>#attributes.stock_id#</cfoutput>" >
