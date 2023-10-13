@@ -2159,7 +2159,7 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
 					{
 						send_date = document.getElementById('send_date').value;
 						if(send_date.length>0)
-						window.open('<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_upd_ezgi_shipping_date&shipping_id_list='+shipping_id_list+'&send_date='+send_date);
+						window.open('<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_upd_prtotm_shipping_date&shipping_id_list='+shipping_id_list+'&send_date='+send_date);
 						else
 						{
 							alert("Gönderilecek Tarih Boş Olamaz !");
