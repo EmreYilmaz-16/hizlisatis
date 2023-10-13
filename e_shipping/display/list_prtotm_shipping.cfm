@@ -1106,6 +1106,8 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
 		</thead>
 		<tbody>
         	<cfset t_point =#attributes.t_point#>
+            <cfdump var="#GET_SHIPPING#">
+            <cfabort>
         	<cfif isdefined("attributes.form_varmi") and GET_SHIPPING.recordcount>
             	<cfif hata_kontrol.recordcount or cari_kontrol.recordcount> <!---Hatalı İşlemler Varsa Listeleniyor--->
 					<cfoutput query="GET_SHIPPING" startrow="#attributes.startrow#" maxrows="#attributes.maxrows#">
