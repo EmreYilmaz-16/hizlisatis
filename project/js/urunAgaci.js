@@ -1880,3 +1880,7 @@ function remItem(params) {
   var e = params.parentElement.parentElement.parentElement;
   $(e).remove();
 }
+
+function OpenSearchVP(){
+  openBoxDraggable("/index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=1")
+}

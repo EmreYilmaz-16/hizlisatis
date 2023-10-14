@@ -147,6 +147,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
      <div style="height:85vh">
   <div>
       <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
+      <button type="button" onclick="OpenSearchVP()" class="btn btn-outline-warning"><span class="icn-md icon-search"></span></button>
   </div>
   <div class="list-group" id="leftMenuProject"> 
       <cfoutput query="getP">      
