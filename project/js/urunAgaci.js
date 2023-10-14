@@ -1882,5 +1882,5 @@ function remItem(params) {
 }
 
 function OpenSearchVP(){
-  openBoxDraggable("/index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=1")
+  openBoxDraggable("index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=1")
 }
