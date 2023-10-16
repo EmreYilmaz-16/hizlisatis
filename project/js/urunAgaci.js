@@ -1002,10 +1002,18 @@ function addProdMain_(idb, modal_id) {
     "setQuestion(this)",
     "Q"
   );
+  var btn5 = buttonCreator(
+    "",
+    "btn btn-outline-info",
+    "onclick",
+    "LoadTree(this)",
+    "L"
+  );
   div2.appendChild(input);
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
+  div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
