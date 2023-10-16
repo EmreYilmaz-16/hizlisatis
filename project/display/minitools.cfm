@@ -49,7 +49,7 @@ WHERE 1=1 <CFIF LEN(attributes.KeyWord_1)>
         <tbody>
             <cfloop query="getVP">                
                 <tr>
-                    <td><a href="##" onclick='ngetTree(#VIRTUAL_PRODUCT_ID#,1,"#dsn3#",0,#attributes.type#,0,0,#attributes.idb#)'>#PRODUCT_NAME#</a></td>
+                    <td><a href="##" onclick='ngetTree(#VIRTUAL_PRODUCT_ID#,1,"#dsn3#",0,#attributes.type#,0,0,"",#attributes.idb#)'>#PRODUCT_NAME#</a></td>
                     <td>#PROJECT_HEAD#</td>
                     <td>#STAGE#</td>
                 </tr>                
@@ -60,3 +60,14 @@ WHERE 1=1 <CFIF LEN(attributes.KeyWord_1)>
 <cfelse> 
     Sistem Yönetici
 </cfif>
+<!---
+  product_id,
+  is_virtual,
+  dsn3,
+  btn,
+  tip = 1,
+  li = "",
+  pna = "",
+  stg = "",
+  idba = ""
+--->
