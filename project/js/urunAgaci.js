@@ -174,7 +174,7 @@ function ngetTree(
         //  console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
-        document.getElementById("ppidarea").html="";
+        $("#ppidarea").html("")
         document.getElementById("ppidarea").appendChild(et);
         agacGosterEkle();
         sortableYap();
