@@ -2006,8 +2006,8 @@ function SearchWpT() {
     $("#working_div_main").remove();
   });
 }
-function LoadTree() {
-  openBoxDraggable(
-    "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=5"
-  );
+function LoadTree(el) {
+  var ppd =
+    el.parentElement.parentElement.parentElement.getAttribute("data-idb");
+  OpenSearchVP(ppd, 5);
 }
