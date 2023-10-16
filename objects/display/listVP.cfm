@@ -13,6 +13,7 @@
             PRIORITY_ID
     </cfquery>
 <table style="width:100%">
+    <input type="hidden" name="type" id="type" value="<cfoutput>#attributes.type#</cfoutput>">
     <tr>
         <td>
             <input type="text" class="form-control" id="txtKeyword" name="txtKeyword" placeholder="Ara">

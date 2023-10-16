@@ -1127,6 +1127,13 @@ function addProdSub_(el) {
     "setQuestion(this)",
     "Q"
   );
+  var btn5 = buttonCreator(
+    "",
+    "btn btn-outline-primary",
+    "onclick",
+    "LoadTree(this)",
+    "L"
+  );
   div2.appendChild(input);
   div2.appendChild(button);
   div2.appendChild(btn3);
@@ -1921,7 +1928,7 @@ function remItem(params) {
 
 function OpenSearchVP() {
   openBoxDraggable(
-    "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=1"
+    "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=4"
   );
 }
 
@@ -1930,17 +1937,21 @@ function SearchWpT() {
   var KeyWord_2 = document.getElementById("txtKeywordProject").value;
   var projectCatId = document.getElementById("PCAT").value;
   var tool_type = "ListVP";
+  var type = document.getElementById("type").value;;
   var posting = $.get("/index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1", {
     KeyWord_1: KeyWord_1,
     KeyWord_2: KeyWord_2,
     projectCatId: projectCatId,
     tool_type: tool_type,
+    type:type
   });
   posting.done(function (data) {
     $("#resultArea").html(data);
     $("#working_div_main").remove();
   });
 }
-function copyVPP(){
-
+function LoadTree(){
+  openBoxDraggable(
+    "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=5"
+  );
 }
