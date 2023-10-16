@@ -1892,7 +1892,7 @@ function SearchWpT() {
   var KeyWord_2 = document.getElementById("txtKeywordProject").value;
   var projectCatId = document.getElementById("PCAT").value;
   var tool_type = "ListVP";
-  var posting = $.post("/index.cfm?fuseaction=project.emptypopup_mini_tools", {
+  var posting = $.get("/index.cfm?fuseaction=project.emptypopup_mini_tools", {
     KeyWord_1: KeyWord_1,
     KeyWord_2: KeyWord_2,
     projectCatId: projectCatId,
