@@ -213,6 +213,7 @@ function ngetTree(
         //  console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
+        document.getElementByIdb(idba).appendChild(et)
         //$("#ppidarea").html("");
         //document.getElementById("ppidarea").appendChild(et);
         console.log(idba)
@@ -1053,7 +1054,7 @@ function addProdMain_(idb, modal_id) {
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
-  div2.appendChild(btn5);
+  //div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -1186,7 +1187,7 @@ function addProdSub_(el) {
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
-  div2.appendChild(btn5);
+  //div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -2012,3 +2013,7 @@ function LoadTree(el) {
     el.parentElement.parentElement.parentElement.getAttribute("data-idb");
   OpenSearchVP(ppd, 5);
 }
+
+
+
+
