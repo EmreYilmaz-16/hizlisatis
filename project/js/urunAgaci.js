@@ -1699,7 +1699,7 @@ function updateStage(el, projectId) {
   if (parseInt(el.value) == 340) {
     var vq = wrk_query(
       "select COUNT(*) as SCOUNT from VIRTUAL_PRODUCTS_PRT where PROJECT_ID =" +
-      projectId +
+        projectId +
         " AND PRODUCT_STAGE=340",
       "dsn3"
     );
@@ -1881,6 +1881,12 @@ function remItem(params) {
   $(e).remove();
 }
 
-function OpenSearchVP(){
-  openBoxDraggable("index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=1")
+function OpenSearchVP() {
+  openBoxDraggable(
+    "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=1"
+  );
+}
+
+function SearchWpT(el) {
+  console.log($(el));
 }
