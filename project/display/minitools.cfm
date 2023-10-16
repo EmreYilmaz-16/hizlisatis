@@ -49,7 +49,7 @@ WHERE 1=1 <CFIF LEN(attributes.KeyWord_1)>
         <tbody>
             <cfloop query="getVP">                
                 <tr>
-                    <td><a href="##" onclick="copyVPP(#VIRTUAL_PRODUCT_ID#)">#PRODUCT_NAME#</a></td>
+                    <td><a href="##" onclick='ngetTree(#VIRTUAL_PRODUCT_ID#,1,"workcube_metosan_1","",4,"","")'>#PRODUCT_NAME#</a></td>
                     <td>#PROJECT_HEAD#</td>
                     <td>#STAGE#</td>
                 </tr>                
