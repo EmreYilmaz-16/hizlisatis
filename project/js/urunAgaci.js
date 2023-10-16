@@ -213,10 +213,10 @@ function ngetTree(
         //  console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
-        document.getElementByIdb(idba).appendChild(et)
+        document.getElementByIdb(idba).appendChild(et);
         //$("#ppidarea").html("");
         //document.getElementById("ppidarea").appendChild(et);
-        console.log(idba)
+        console.log(idba);
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
@@ -241,6 +241,7 @@ function patnerEkle(oo) {
 }
 
 function strToJson(str) {
+  console.log(str)
   var newStr = "";
   for (let i = 0; i < str.length; i++) {
     var currentChar = str.charAt(i).trim();
@@ -250,6 +251,7 @@ function strToJson(str) {
     }
     newStr += currentChar;
   }
+  console.log(newStr);
   return newStr;
 }
 
@@ -2013,7 +2015,3 @@ function LoadTree(el) {
     el.parentElement.parentElement.parentElement.getAttribute("data-idb");
   OpenSearchVP(ppd, 5);
 }
-
-
-
-
