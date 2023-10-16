@@ -1886,7 +1886,8 @@ function OpenSearchVP() {
     "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=1"
   );
 }
-
+var ekma=null;
 function SearchWpT(el) {
   console.log($(el).nodeName);
+  ekma=$(el);
 }
