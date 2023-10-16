@@ -17,7 +17,8 @@ function ngetTree(
   tip = 1,
   li = "",
   pna = "",
-  stg = ""
+  stg = "",
+  idba = ""
 ) {
   //console.log(arguments);
   if (tip == 1) {
@@ -154,7 +155,7 @@ function ngetTree(
                 ;*/
       },
     });
-  }else if (tip == 4) {
+  } else if (tip == 4) {
     $.ajax({
       url:
         "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
@@ -174,7 +175,7 @@ function ngetTree(
         //  console.log("Buradayım");
         //   partnerEkle(o);
         var et = AgaciYaz_12(o, 0, "", 0);
-        $("#ppidarea").html("")
+        $("#ppidarea").html("");
         document.getElementById("ppidarea").appendChild(et);
         agacGosterEkle();
         sortableYap();
@@ -192,7 +193,45 @@ function ngetTree(
                 ;*/
       },
     });
-  } 
+  } else if (tip == 5) {
+    $.ajax({
+      url:
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
+        product_id +
+        "&isVirtual=" +
+        is_virtual +
+        "&ddsn3=" +
+        dsn3 +
+        "&company_id=" +
+        _compId +
+        "&price_catid=" +
+        _priceCatId,
+      success: function (asd) {
+        var jsonStr = strToJson(asd);
+        o = JSON.parse(jsonStr);
+        // console.log(o);
+        //  console.log("Buradayım");
+        //   partnerEkle(o);
+        var et = AgaciYaz_12(o, 0, "", 0);
+        $("#ppidarea").html("");
+        document.getElementById("ppidarea").appendChild(et);
+        agacGosterEkle();
+        sortableYap();
+        virtuallariYerlestir();
+        MaliyetHesapla();
+        /* console.log(o);
+                ;*/
+        /*AgaciYaz(o, 0, "0", 1);
+                var esd = document.getElementById("TreeArea");
+                esd.innerHTML = "";
+
+                esd.appendChild(ulx);
+
+               ;
+                ;*/
+      },
+    });
+  }
 }
 
 function patnerEkle(oo) {
@@ -1935,9 +1974,12 @@ function remItem(params) {
   $(e).remove();
 }
 
-function OpenSearchVP() {
+function OpenSearchVP(ppd = 0, tip = 4) {
   openBoxDraggable(
-    "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=4"
+    "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&idb=" +
+      ppd +
+      "&type=" +
+      tip
   );
 }
 
@@ -1946,20 +1988,25 @@ function SearchWpT() {
   var KeyWord_2 = document.getElementById("txtKeywordProject").value;
   var projectCatId = document.getElementById("PCAT").value;
   var tool_type = "ListVP";
-  var type = document.getElementById("type").value;;
-  var posting = $.get("/index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1", {
-    KeyWord_1: KeyWord_1,
-    KeyWord_2: KeyWord_2,
-    projectCatId: projectCatId,
-    tool_type: tool_type,
-    type:type
-  });
+  var type = document.getElementById("type").value;
+  var idb = document.getElementById("idb").value;
+  var posting = $.get(
+    "/index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1",
+    {
+      KeyWord_1: KeyWord_1,
+      KeyWord_2: KeyWord_2,
+      projectCatId: projectCatId,
+      tool_type: tool_type,
+      type: type,
+      idb: idb,
+    }
+  );
   posting.done(function (data) {
     $("#resultArea").html(data);
     $("#working_div_main").remove();
   });
 }
-function LoadTree(){
+function LoadTree() {
   openBoxDraggable(
     "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=5"
   );

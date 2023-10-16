@@ -14,6 +14,7 @@
     </cfquery>
 <table style="width:100%">
     <input type="hidden" name="type" id="type" value="<cfoutput>#attributes.type#</cfoutput>">
+    <input type="hidden" name="idb" id="idb" value="<cfoutput>#attributes.idb#</cfoutput>">
     <tr>
         <td>
             <input type="text" class="form-control" id="txtKeyword" name="txtKeyword" placeholder="Ara">
