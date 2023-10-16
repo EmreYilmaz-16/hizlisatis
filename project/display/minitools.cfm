@@ -24,7 +24,7 @@
         </div>
     </span>
 <cfelseif attributes.tool_type eq 'ListVP'>
-    <cfdump var="#attributes#">
+    
     <cfquery name="getVP" datasource="#dsn3#">
         SELECT 
 VP.PRODUCT_NAME,VP.VIRTUAL_PRODUCT_ID,PP.PROJECT_HEAD,PP.PROJECT_NUMBER,SMC.MAIN_PROCESS_CAT,ISNULL(PTR.STAGE,'Aşamasız') as STAGE,C.NICKNAME,

@@ -154,7 +154,45 @@ function ngetTree(
                 ;*/
       },
     });
-  }
+  }else if (tip == 4) {
+    $.ajax({
+      url:
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
+        product_id +
+        "&isVirtual=" +
+        is_virtual +
+        "&ddsn3=" +
+        dsn3 +
+        "&company_id=" +
+        _compId +
+        "&price_catid=" +
+        _priceCatId,
+      success: function (asd) {
+        var jsonStr = strToJson(asd);
+        o = JSON.parse(jsonStr);
+        // console.log(o);
+        //  console.log("Buradayım");
+        //   partnerEkle(o);
+        var et = AgaciYaz_12(o, 0, "", 0);
+        document.getElementById("ppidarea").html="";
+        document.getElementById("ppidarea").appendChild(et);
+        agacGosterEkle();
+        sortableYap();
+        virtuallariYerlestir();
+        MaliyetHesapla();
+        /* console.log(o);
+                ;*/
+        /*AgaciYaz(o, 0, "0", 1);
+                var esd = document.getElementById("TreeArea");
+                esd.innerHTML = "";
+
+                esd.appendChild(ulx);
+
+               ;
+                ;*/
+      },
+    });
+  } 
 }
 
 function patnerEkle(oo) {
@@ -1892,7 +1930,7 @@ function SearchWpT() {
   var KeyWord_2 = document.getElementById("txtKeywordProject").value;
   var projectCatId = document.getElementById("PCAT").value;
   var tool_type = "ListVP";
-  var posting = $.get("/index.cfm?fuseaction=project.emptypopup_mini_tools", {
+  var posting = $.get("/index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1", {
     KeyWord_1: KeyWord_1,
     KeyWord_2: KeyWord_2,
     projectCatId: projectCatId,
@@ -1902,4 +1940,7 @@ function SearchWpT() {
     $("#resultArea").html(data);
     $("#working_div_main").remove();
   });
+}
+function copyVPP(){
+
 }
