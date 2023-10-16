@@ -1900,5 +1900,6 @@ function SearchWpT() {
   });
   posting.done(function (data) {
     $("#resultArea").html(data);
+    $("#working_div_main").remove();
   });
 }
