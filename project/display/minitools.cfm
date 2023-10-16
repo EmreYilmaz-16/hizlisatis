@@ -45,15 +45,17 @@ WHERE 1=1 <CFIF LEN("attributes.KeyWord_1")>
 </CFIF>
     </cfquery>
 <cfoutput>
-<cfloop query="getVP">
-    <table>
-        <tr>
-            <td><a href="##" onclick="copyVPP(#VIRTUAL_PRODUCT_ID#)">#PRODUCT_NAME#</a></td>
-            <td>#PROJECT_HEAD#</td>
-            <td>#STAGE#</td>
-        </tr>
+    <table class="table table-sm table-stripped">
+        <tbody>
+            <cfloop query="getVP">                
+                <tr>
+                    <td><a href="##" onclick="copyVPP(#VIRTUAL_PRODUCT_ID#)">#PRODUCT_NAME#</a></td>
+                    <td>#PROJECT_HEAD#</td>
+                    <td>#STAGE#</td>
+                </tr>                
+            </cfloop>
+        </tbody>
     </table>
-</cfloop>
 </cfoutput>
 <cfelse> 
     Sistem Yönetici
