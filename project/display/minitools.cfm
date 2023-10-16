@@ -37,7 +37,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID =PP.COMPANY_ID
 WHERE 1=1 <CFIF LEN(attributes.KeyWord_1)>
     AND PRODUCT_NAME LIKE '%#attributes.KeyWord_1#%'
 </CFIF>
-<CFIF LEN(attributes.KeyWord_1)>
+<CFIF LEN(attributes.KeyWord_2)>
     AND ( PROJECT_NUMBER LIKE '%#attributes.KeyWord_2#%' OR PROJECT_HEAD LIKE '%#attributes.KeyWord_2#%')
 </CFIF>
 <CFIF LEN(attributes.projectCatId)>
