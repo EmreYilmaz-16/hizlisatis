@@ -1129,7 +1129,7 @@ function addProdSub_(el) {
   );
   var btn5 = buttonCreator(
     "",
-    "btn btn-outline-primary",
+    "btn btn-outline-info",
     "onclick",
     "LoadTree(this)",
     "L"
@@ -1138,6 +1138,7 @@ function addProdSub_(el) {
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
+  div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
