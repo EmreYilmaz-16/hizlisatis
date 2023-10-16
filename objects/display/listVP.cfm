@@ -15,13 +15,13 @@
 <table style="width:100%">
     <tr>
         <td>
-            <input type="text" class="form-control" id="txtKeyword" name="txtKeyword" onkeyup="SearchWpT(this)" placeholder="Ara">
+            <input type="text" class="form-control" id="txtKeyword" name="txtKeyword" placeholder="Ara">
         </td>
         <td>
-            <input type="text" class="form-control" id="txtKeywordProject" name="txtKeywordProject" onkeyup="SearchWpT(this)" placeholder="Proje No">
+            <input type="text" class="form-control" id="txtKeywordProject" name="txtKeywordProject"  placeholder="Proje No">
         </td>
         <td>
-            <select class="form-control" name="PCAT" id="PCAT" onchange="SearchWpT(this)">
+            <select class="form-control" name="PCAT" id="PCAT" >
                 <option value="">Proje Kategorisi</option>
                 <cfoutput>
                     <cfloop query="getCats">
@@ -31,7 +31,7 @@
             </select>
         </td>
         <td>
-            <button class="form-control btn btn-success" type="button">Ara</button>      
+            <button class="form-control btn btn-success" type="button" onclick="SearchWpT()">Ara</button>      
         </td>
     </tr>
 </table>
