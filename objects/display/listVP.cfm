@@ -30,6 +30,9 @@
                 </cfoutput>
             </select>
         </td>
+        <td>
+            <button class="form-control btn btn-success" type="button">Ara</button>      
+        </td>
     </tr>
 </table>
 

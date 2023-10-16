@@ -23,7 +23,8 @@
             <cfoutput>#attributes.Message#</cfoutput>
         </div>
     </span>
-<cfelseif attributes.tool_type eq ''>
+<cfelseif attributes.tool_type eq 'ListVP'>
+    <cfdump var="#attributes#">
 <cfelse> 
     Sistem Yönetici
 </cfif>

@@ -1886,8 +1886,19 @@ function OpenSearchVP() {
     "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&type=1"
   );
 }
-var ekma=null;
-function SearchWpT(el) {
-  console.log($(el).nodeName);
-  ekma=$(el);
+
+function SearchWpT() {
+  var KeyWord_1 = document.getElementById("txtKeyword").value;
+  var KeyWord_2 = document.getElementById("txtKeywordProject").value;
+  var projectCatId = document.getElementById("PCAT").value;
+  var tool_type = "ListVP";
+  var posting = $.post("/index.cfm?fuseaction=project.emptypopup_mini_tools", {
+    KeyWord_1: KeyWord_1,
+    KeyWord_2: KeyWord_2,
+    projectCatId: projectCatId,
+    tool_type: tool_type,
+  });
+  posting.done(function (data) {
+    $("#resultArea").html(data);
+  });
 }
