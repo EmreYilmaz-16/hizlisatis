@@ -26,7 +26,7 @@
 <cfelseif attributes.tool_type eq 'ListVP'>
     
     <cfquery name="getVP" datasource="#dsn3#">
-    SELECT(
+    SELECT * FROM (
         SELECT 
 VP.PRODUCT_NAME,VP.VIRTUAL_PRODUCT_ID,PP.PROJECT_HEAD,PP.PROJECT_NUMBER,SMC.MAIN_PROCESS_CAT,ISNULL(PTR.STAGE,'Aşamasız') as STAGE,C.NICKNAME,
 (select COUNT(*) from workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=VP.VIRTUAL_PRODUCT_ID) AS PTW,
@@ -44,7 +44,7 @@ WHERE 1=1 <CFIF LEN(attributes.KeyWord_1)>
 </CFIF>
 <CFIF LEN(attributes.projectCatId)>
     AND  SMC.MAIN_PROCESS_CAT_ID=#attributes.projectCatId# 
-</CFIF>)
+</CFIF>) AS T
 WHERE PTW>0
     </cfquery>
 <cfoutput>
