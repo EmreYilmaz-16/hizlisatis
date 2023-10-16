@@ -1888,5 +1888,5 @@ function OpenSearchVP() {
 }
 
 function SearchWpT(el) {
-  console.log($(el));
+  console.log($(el).nodeName);
 }

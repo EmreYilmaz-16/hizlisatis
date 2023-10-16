@@ -21,7 +21,7 @@
             <input type="text" class="form-control" id="txtKeywordProject" name="txtKeywordProject" onkeyup="SearchWpT(this)" placeholder="Proje No">
         </td>
         <td>
-            <select name="PCAT" id="PCAT" onchange="SearchWpT(this)">
+            <select class="form-control" name="PCAT" id="PCAT" onchange="SearchWpT(this)">
                 <option value="">Proje Kategorisi</option>
                 <cfoutput>
                     <cfloop query="getCats">
