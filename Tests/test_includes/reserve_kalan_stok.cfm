@@ -111,7 +111,7 @@ FROM (
 		,STOCK_ID		
 		,ORDER_WRK_ROW_ID
 	FROM #dsn3#.ORDER_ROW_RESERVED
-	--WHERE ORDER_ID = 9
+	
 	GROUP BY ORDER_ID
 		,STOCK_ID
 		,ORDER_WRK_ROW_ID
@@ -128,7 +128,7 @@ WHERE 1 = 1
 		and S.STOCK_ID IN (SELECT STOCK_ID FROM #DSN1#.STOCKS WHERE PRODUCT_ID=#attributes.product_id#)
 	</cfif>
     <cfif len(attributes.keyword)>
-        AND TBL.ORDER_NUMBER LIKE '%#attributes.keyword#%'
+        AND ORDER_NUMBER LIKE '%#attributes.keyword#%'
     </cfif>
     <cfif len(attributes.currency_id)>
 		AND ORR.ORDER_ROW_CURRENCY=#attributes.currency_id#
@@ -139,9 +139,7 @@ WHERE 1 = 1
 	   <cfif len(attributes.PARTNER_NAMEO)>
     AND ORDER_EMPLOYEE_ID=#attributes.EMPO_ID#
     </cfif>
-		--+AND ORR.ORDER_ROW_CURRENCY=-10		
-		--AND O.ORDER_ID=215808
-	--	AND TBL.ORDER_ID IS NULL
+		
 		ORDER BY ORDER_DATE
 </cfquery>
 <cfif attributes.is_excell eq 1>
