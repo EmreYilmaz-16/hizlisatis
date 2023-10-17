@@ -24,7 +24,7 @@
                     İndirimsiz Fiyat 
                   </td>
                   <td>
-                      <input class="form-control" type="text" id="fy_0002"  value="<cfoutput>#FData.Price#</cfoutput>">
+                      <input class="form-control" type="text" id="fy_0002" readonly value="<cfoutput>#FData.Price#</cfoutput>">
                   </td>
                 <td>
                   Net Fiyat 
