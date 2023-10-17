@@ -2047,6 +2047,8 @@ function LoadTree(el) {
     elek.parentElement.parentElement.parentElement.getAttribute(
       "data-stock_id"
     );
+  var idb =
+    elek.parentElement.parentElement.parentElement.getAttribute("data-idb");
   if (p.length > 0) p = parseFloat(p);
   else p = 0;
   if (d.length > 0) d = parseFloat(d);
@@ -2064,6 +2066,7 @@ function LoadTree(el) {
     Pid: pid,
     Sid: sid,
     moneyArr: moneyArr,
+    idb: idb,
   };
   console.table(Obj);
   var Str = JSON.stringify(Obj);
@@ -2079,4 +2082,12 @@ function fiyatHesaplaPoppi() {
   var d = document.getElementById("fdy_0001").value;
   var tt = parseFloat(p) + (parseFloat(p) * parseFloat(d)) / 100;
   document.getElementById("fy_0002").value = tt;
+}
+
+function SetPrice(idb) {
+  var om = document.getElementById("Omfy_0001").value;
+  var p = document.getElementById("fy_0003").value;
+  document.getElementByIdb(idb).setAttribute("data-price", p);
+  document.getElementByIdb(idb).setAttribute("data-other_money", om);
+  MaliyetHesapla();
 }
