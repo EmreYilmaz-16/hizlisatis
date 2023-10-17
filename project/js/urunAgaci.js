@@ -2031,4 +2031,21 @@ function LoadTree(el) {
   var ppd =
     el.parentElement.parentElement.parentElement.getAttribute("data-idb");
   elek = el;
+  var p =
+    elek.parentElement.parentElement.parentElement.getAttribute("data-price");
+  var om =
+    elek.parentElement.parentElement.parentElement.getAttribute(
+      "data-other_money"
+    );
+  var d =
+    elek.parentElement.parentElement.parentElement.getAttribute(
+      "data-discount"
+    );
+
+  var Obj = {
+    Price: p,
+    OtherMoney: om,
+    Discount: d,
+  };
+  console.table(Obj);
 }
