@@ -24,7 +24,7 @@
                    Fiyat
                 </td>
                 <td>
-                    <input type="text" readonly value="<cfoutput>#FData.Price#</cfoutput>">
+                    <input type="text"  value="<cfoutput>#FData.Price#</cfoutput>">
                 </td>
             </tr>
             <tr>
@@ -32,7 +32,12 @@
                    Para Birimi
                 </td>
                 <td>
-                    
+                    <select id="OM">
+                        
+                        <cfloop array="#FData.moneyArr#" item="it">
+                        <cfoutput><option <cfif FData.OtherMoney eq MONEY>selected</cfif> value="#MONEY#">#MONEY#</option></cfoutput>
+                        </cfloop>
+                    </select>
                 </td>
             </tr>
         </table>
