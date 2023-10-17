@@ -241,7 +241,7 @@ function patnerEkle(oo) {
 }
 
 function strToJson(str) {
-  console.log(str)
+  console.log(str);
   var newStr = "";
   for (let i = 0; i < str.length; i++) {
     var currentChar = str.charAt(i).trim();
@@ -1050,13 +1050,13 @@ function addProdMain_(idb, modal_id) {
     "btn btn-outline-info",
     "onclick",
     "LoadTree(this)",
-    "L"
+    "Pr"
   );
   div2.appendChild(input);
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
-  //div2.appendChild(btn5);
+  div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -1183,13 +1183,13 @@ function addProdSub_(el) {
     "btn btn-outline-info",
     "onclick",
     "LoadTree(this)",
-    "L"
+    "Pr"
   );
   div2.appendChild(input);
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
-  //div2.appendChild(btn5);
+  div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -2010,8 +2010,9 @@ function SearchWpT() {
     $("#working_div_main").remove();
   });
 }
+var elek = null;
 function LoadTree(el) {
   var ppd =
     el.parentElement.parentElement.parentElement.getAttribute("data-idb");
-  OpenSearchVP(ppd, 5);
+  elek = el;
 }
