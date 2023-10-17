@@ -2048,4 +2048,10 @@ function LoadTree(el) {
     Discount: d,
   };
   console.table(Obj);
+  var Str = JSON.stringify(obj);
+  //tool_type eq 'ShowPrice
+  openBoxDraggable(
+    "/index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1&tool_type=ShowPrice&Data=" +
+      Str
+  );
 }
