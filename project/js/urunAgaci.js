@@ -2028,8 +2028,6 @@ function SearchWpT() {
 }
 var elek = null;
 function LoadTree(el) {
-  var ppd =
-    el.parentElement.parentElement.parentElement.getAttribute("data-idb");
   elek = el;
   var p =
     elek.parentElement.parentElement.parentElement.getAttribute("data-price");
@@ -2041,17 +2039,36 @@ function LoadTree(el) {
     elek.parentElement.parentElement.parentElement.getAttribute(
       "data-discount"
     );
-
+  var pid =
+    elek.parentElement.parentElement.parentElement.getAttribute(
+      "data-product_id"
+    );
+  var sid =
+    elek.parentElement.parentElement.parentElement.getAttribute(
+      "data-stock_id"
+    );
+  if (p.length > 0) p = parseFloat(p);
+  else p = 0;
+  if (d.length > 0) d = parseFloat(d);
+  else d = 0;
+  if (pid.length > 0) pid = parseFloat(pid);
+  else pid = 0;
+  if (sid.length > 0 && isNumber(sid)) sid = parseFloat(sid);
+  else sid = 0;
+  if (om.length > 0) om = om;
+  else om = "TL";
   var Obj = {
     Price: p,
     OtherMoney: om,
     Discount: d,
+    Pid: pid,
+    Sid: sid,
   };
   console.table(Obj);
-  var Str = JSON.stringify(obj);
+  var Str = JSON.stringify(Obj);
   //tool_type eq 'ShowPrice
   openBoxDraggable(
-    "/index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1&tool_type=ShowPrice&Data=" +
+    "index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1&tool_type=ShowPrice&Data=" +
       Str
   );
 }
