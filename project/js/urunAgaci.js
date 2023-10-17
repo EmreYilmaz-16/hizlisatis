@@ -2073,3 +2073,10 @@ function LoadTree(el) {
       Str
   );
 }
+
+function fiyatHesaplaPoppi() {
+  var p = document.getElementById("fy_0003").value;
+  var d = document.getElementById("fdy_0001").value;
+  var tt = parseFloat(p) + (parseFloat(p) * parseFloat(d)) / 100;
+  document.getElementById("fy_0002").value = tt;
+}
