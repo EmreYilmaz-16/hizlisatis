@@ -333,6 +333,13 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
       "remItem(this)",
       "-"
     );
+    var btn5 = buttonCreator(
+      "",
+      "btn btn-outline-info",
+      "onclick",
+      "LoadTree(this)",
+      "Pr"
+    );
     var inp = inputCreator(
       "text",
       "amount",
@@ -363,6 +370,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     diva.appendChild(inp);
     diva.appendChild(btn);
     diva.appendChild(btn3);
+    diva.appendChild(btn5);
     diva.appendChild(btn2);
     var divb = document.createElement("div");
     divb.setAttribute("style", "display:flex");
@@ -1452,6 +1460,13 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
       "remItem(this)",
       "-"
     );
+    var btn5 = buttonCreator(
+      "",
+      "btn btn-outline-info",
+      "onclick",
+      "LoadTree(this)",
+      "Pr"
+    );
     var inp = inputCreator(
       "text",
       "amount",
@@ -1482,6 +1497,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     diva.appendChild(inp);
     diva.appendChild(btn);
     diva.appendChild(btn3);
+    diva.appendChild(btn5);
     diva.appendChild(btn2);
     var divb = document.createElement("div");
     divb.setAttribute("style", "display:flex");
