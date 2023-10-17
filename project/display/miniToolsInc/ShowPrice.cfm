@@ -1,7 +1,7 @@
 ﻿<cf_box scroll="1" collapsable="1" resize="1" popup_box="1">
-        <cfdump var="#attributes#">
+        
         <cfset FData=deserializeJSON(attributes.data)>
-        <cfdump var="#FData#">
+        
         <table>
             <tr>
                 <td>
