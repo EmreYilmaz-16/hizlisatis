@@ -2063,6 +2063,7 @@ function LoadTree(el) {
     Discount: d,
     Pid: pid,
     Sid: sid,
+    moneyArr: moneyArr,
   };
   console.table(Obj);
   var Str = JSON.stringify(Obj);
