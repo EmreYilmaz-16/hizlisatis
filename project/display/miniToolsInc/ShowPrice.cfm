@@ -35,7 +35,7 @@
                     <select id="OM">
                         
                         <cfloop array="#FData.moneyArr#" item="it">
-                        <cfoutput><option <cfif FData.OtherMoney eq MONEY>selected</cfif> value="#MONEY#">#MONEY#</option></cfoutput>
+                        <cfoutput><option <cfif FData.OtherMoney eq it.MONEY>selected</cfif> value="#it.MONEY#">#it.MONEY#</option></cfoutput>
                         </cfloop>
                     </select>
                 </td>
