@@ -1,4 +1,4 @@
-﻿<cf_box scroll="1" collapsable="1" resize="1" popup_box="1">
+﻿<cf_box title="Fiyat Göster" scroll="1" collapsable="1" resize="1" popup_box="1">
         
         <cfset FData=deserializeJSON(attributes.data)>
         
@@ -8,7 +8,7 @@
                     Müşteri Fiyatı
                 </td>
                 <td>
-                    <input type="text" readonly value="<cfoutput>#FData.Price#</cfoutput>">
+                    <input class="form-control" type="text" id="fy_0001" readonly value="<cfoutput>#FData.Price#</cfoutput>">
                 </td>
                 </tr>
                 <tr>
@@ -16,15 +16,21 @@
                     Müşteri İndirim
                 </td>
                 <td>
-                    <input type="text" readonly value="<cfoutput>#FData.Discount#</cfoutput>">
+                    <input class="form-control" type="text" id="fdy_0001" readonly value="<cfoutput>#FData.Discount#</cfoutput>">
                 </td>
             </tr>
             <tr>
                 <td>
-                   Fiyat
+                    İndirimsiz Fiyat 
+                  </td>
+                  <td>
+                      <input class="form-control" type="text" id="fy_0002"  value="<cfoutput>#FData.Price#</cfoutput>">
+                  </td>
+                <td>
+                  Net Fiyat 
                 </td>
                 <td>
-                    <input type="text"  value="<cfoutput>#FData.Price#</cfoutput>">
+                    <input class="form-control" type="text" id="fy_0002"  value="<cfoutput>#FData.Price#</cfoutput>">
                 </td>
             </tr>
             <tr>
@@ -32,7 +38,7 @@
                    Para Birimi
                 </td>
                 <td>
-                    <select id="OM">
+                    <select class="form-control" id="Omfy_0001">
                         
                         <cfloop array="#FData.moneyArr#" item="it">
                         <cfoutput><option <cfif FData.OtherMoney eq it.MONEY>selected</cfif> value="#it.MONEY#">#it.MONEY#</option></cfoutput>
@@ -41,5 +47,5 @@
                 </td>
             </tr>
         </table>
-        <button type="button" class="btn btn-outline-success">Fiyat Kaydet</button>
+        <button type="button" class="btn btn-outline-success" onclick="SetPrice()">Fiyat Kaydet</button>
 </cf_box>
