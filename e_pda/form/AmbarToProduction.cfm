@@ -52,6 +52,9 @@ where REF_NO ='#attributes.p_order_no#'
 </cfif>
 
 <script>
+$(document).ready(function(){
+    document.getElementById("wrk_main_layout").setAttribute("class","container-fluid");
+})
     function showQ(el,ev,v=1) {
         if(ev.keyCode==13){
             var Barcode=el.value;
