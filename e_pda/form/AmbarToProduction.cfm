@@ -9,7 +9,7 @@
     SELECT * FROM PRODUCTION_ORDERS WHERE P_ORDER_NO='#attributes.P_ORDER_NO#'
 </cfquery>
 <CFIF isHv.recordCount>
-    <input type="hidden" name="p_order_id" value="<cfoutput>#isHv.P_ORDER_ID#</cfoutput>">
+    <input type="hidden" name="p_order_id" id="p_order_id" value="<cfoutput>#isHv.P_ORDER_ID#</cfoutput>">
 <cfelse>
     <script>
         alert("İş Emri Bulunamadı");
