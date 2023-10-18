@@ -2,11 +2,22 @@
 <cfif isDefined("attributes.tip") and attributes.tip eq 1453>
     <cfdump var="#attributes#">
     <cfquery name="getList" datasource="#dsn2#">
-        select SF.FIS_NUMBER,S.PRODUCT_CODE,S.PRODUCT_NAME,SFR.AMOUNT from STOCK_FIS  AS SF
+        select SF.FIS_NUMBER,S.PRODUCT_CODE,S.PRODUCT_NAME,SFR.AMOUNT,SFR.UNIT from STOCK_FIS  AS SF
 LEFT JOIN STOCK_FIS_ROW AS SFR ON SF.FIS_ID=SFR.FIS_ID
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=SFR.STOCK_ID
+
 where REF_NO ='#attributes.p_order_no#'
     </cfquery>
+    <cf_big_list>
+        <cfoutput query="getList">
+            <tr>
+                <td>#FIS_NUMBER#</td>
+                <td>#PRODUCT_CODE#</td>
+                <td>#PRODUCT_NAME#</td>
+                <td>#AMOUNT# #UNIT#</td>
+            </tr>
+        </cfoutput>
+    </cf_big_list>
     <cfabort>
 </cfif>
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
