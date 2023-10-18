@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <cf_box>
-    <div style="height:100vh">
+    <div style="height:90vh">
 <cfif isDefined("attributes.tip") and attributes.tip eq 1453>
     
     <cfquery name="getList" datasource="#dsn2#">
@@ -51,7 +51,7 @@ where REF_NO ='#attributes.p_order_no#'
     <input type="hidden" name="p_order_no" id="p_order_no" value="<cfoutput>#isHv.P_ORDER_NO#</cfoutput>">
     <input type="hidden" name="dsn3" id="dsn3" value="<cfoutput>#dsn3#</cfoutput>">
     <input type="hidden" name="dsn2" id="dsn2" value="<cfoutput>#dsn2#</cfoutput>">
-    <button class="btn btn-lg btn-outline-success" style="position: fixed;bottom: 20px;right: 50px;" type="button" onclick="windowopen('/index.cfm?fuseaction=<cfoutput>#attributes.fuseaction#&tip=1453&p_order_no=#isHv.P_ORDER_NO#</cfoutput>')">Liste</button>
+    <button class="btn btn-lg btn-outline-success" style="position: fixed;bottom: 110px;right: 50px;" type="button" onclick="windowopen('/index.cfm?fuseaction=<cfoutput>#attributes.fuseaction#&tip=1453&p_order_no=#isHv.P_ORDER_NO#</cfoutput>')">Liste</button>
 <cfelse>
     <script>
         alert("İş Emri Bulunamadı");
