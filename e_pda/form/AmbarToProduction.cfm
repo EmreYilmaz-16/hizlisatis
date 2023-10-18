@@ -55,7 +55,14 @@
                     console.log(O)
                 }
                 var str=JSON.stringify(O);
-                windowopen("/index.cfm?fuseaction=epda.emptypopup_save_production_orders_sevk&data="+str,"page");
+               // windowopen("/index.cfm?fuseaction=epda.emptypopup_save_production_orders_sevk&data="+str,"page");
+               $.ajax({
+                url:"/AddOns/Partner/e_pda/cfc/UretimAmbar.cfc?method=saveBelge",
+                data:str,
+                success:function(retDat){
+                    console.log(retDat);
+                }
+               })
             }
         }
     }
