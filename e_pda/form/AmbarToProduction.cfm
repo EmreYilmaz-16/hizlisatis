@@ -2,7 +2,7 @@
 <cf_box>
     <div style="height:100vh">
 <cfif isDefined("attributes.tip") and attributes.tip eq 1453>
-    <cfdump var="#attributes#">
+    
     <cfquery name="getList" datasource="#dsn2#">
         select SF.FIS_NUMBER,S.PRODUCT_CODE,S.PRODUCT_NAME,SFR.AMOUNT,SFR.UNIT from STOCK_FIS  AS SF
 LEFT JOIN STOCK_FIS_ROW AS SFR ON SF.FIS_ID=SFR.FIS_ID
