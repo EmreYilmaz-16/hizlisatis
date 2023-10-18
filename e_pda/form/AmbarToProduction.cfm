@@ -39,7 +39,7 @@ where REF_NO ='#attributes.p_order_no#'
     <cfabort>
 </cfif>
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
-<cfdump var="#attributes#">
+
 <div class="form-group">
 <input style="font-size:24pt !important" type="text" name="Barcode" placeholder="Barkod" onkeyup="showQ(this,event)">
 </div>
