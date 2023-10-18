@@ -44,7 +44,7 @@
                         STOCK_ID:ih.STOCK_ID[0],
                         PRODUCT_ID:ih.PRODUCT_ID[0],
                         QUANTITY:QUANTITY,
-                        P_ORDER_ID:p_order_id
+                        P_ORDER_ID:p_order_id,
                         STORE_ID:ih.STORE_ID[0],
                         LOCATION_ID:ih.LOCATION_ID[0]
                     };
