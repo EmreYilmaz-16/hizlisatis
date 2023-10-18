@@ -1,6 +1,12 @@
 ﻿<cf_box>
 <cfif isDefined("attributes.tip") and attributes.tip eq 1453>
     <cfdump var="#attributes#">
+    <cfquery name="getList" datasource="#dsn2#">
+        select SF.FIS_NUMBER,S.PRODUCT_CODE,S.PRODUCT_NAME,SFR.AMOUNT from STOCK_FIS  AS SF
+LEFT JOIN STOCK_FIS_ROW AS SFR ON SF.FIS_ID=SFR.FIS_ID
+LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=SFR.STOCK_ID
+where REF_NO ='#attributes.p_order_no#'
+    </cfquery>
     <cfabort>
 </cfif>
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
@@ -16,7 +22,7 @@
     <input type="hidden" name="p_order_no" id="p_order_no" value="<cfoutput>#isHv.P_ORDER_NO#</cfoutput>">
     <input type="hidden" name="dsn3" id="dsn3" value="<cfoutput>#dsn3#</cfoutput>">
     <input type="hidden" name="dsn2" id="dsn2" value="<cfoutput>#dsn2#</cfoutput>">
-    <button type="button" onclick="windowopen('/index.cfm?fuseaction=<cfoutput>#attributes.fuseaction#&tip=1453&p_order_no=#isHv.P_ORDER_NO#</cfoutput>')">Liste</button>
+    <button class="ui-btn ui-btn-green" type="button" onclick="windowopen('/index.cfm?fuseaction=<cfoutput>#attributes.fuseaction#&tip=1453&p_order_no=#isHv.P_ORDER_NO#</cfoutput>')">Liste</button>
 <cfelse>
     <script>
         alert("İş Emri Bulunamadı");
