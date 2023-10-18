@@ -30,7 +30,8 @@
         <cfset attributes.ROWW=" ,">
         <cfdump var="#listLen(attributes.ROWW)#">
         <cfinclude template="StokFisQuery.cfm">
-        
+        <cfinclude template="GenAttr.cfm">
+        <cfinclude template="/AddOns/Partner/production/query/add_sub_product_fire.cfm">
     
     </cffunction>
 </cfcomponent>
