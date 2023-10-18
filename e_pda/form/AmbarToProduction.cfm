@@ -11,6 +11,8 @@
 <CFIF isHv.recordCount>
     <input type="hidden" name="p_order_id" id="p_order_id" value="<cfoutput>#isHv.P_ORDER_ID#</cfoutput>">
     <input type="hidden" name="p_order_no" id="p_order_no" value="<cfoutput>#isHv.P_ORDER_NO#</cfoutput>">
+    <input type="hidden" name="dsn3" id="dsn3" value="<cfoutput>#dsn3#</cfoutput>">
+    <input type="hidden" name="dsn2" id="dsn2" value="<cfoutput>#dsn2#</cfoutput>">
 <cfelse>
     <script>
         alert("İş Emri Bulunamadı");
@@ -32,6 +34,8 @@
             var Barcode=el.value;
             var p_order_id=document.getElementById("p_order_id").value;
             var p_order_no=document.getElementById("p_order_no").value;
+            var dsn3=document.getElementById("dsn3").value;
+            var dsn2=document.getElementById("dsn2").value;
             var ih=wrk_query("SELECT * FROM GET_SIMPLE_STOCK WHERE BARCODE='"+el.value+"'","dsn3");
             console.log(ih);
             if(ih.recordcount >0 ){
@@ -50,7 +54,9 @@
                         P_ORDER_NO:p_order_no,
                         STORE_ID:ih.STORE_ID[0],
                         LOCATION_ID:ih.LOCATION_ID[0],
-                        SHELF_CODE:ih.SHELF_CODE[0]
+                        SHELF_CODE:ih.SHELF_CODE[0],
+                        DSN3:dsn3,
+                        DSN2:dsn2,
                     };
                     console.log(O)
                 }

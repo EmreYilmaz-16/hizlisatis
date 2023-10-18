@@ -6,7 +6,8 @@
         <cfset FormData=deserializeJSON(e[1])>
         <cfdump var="#FormData#">
 <cfset attributes=FormData>
-        
+        <cfset dsn3=FormData.dsn3>
+        <cfset dsn2=FormData.dsn2>
             <cfset attributes.LOCATION_IN=1>
             <cfset attributes.LOCATION_OUT=FormData.LOCATION_ID>
             <cfset attributes.department_out=FormData.STORE_ID>
