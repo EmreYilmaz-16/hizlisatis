@@ -2,7 +2,9 @@
 
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
 <cfdump var="#attributes#">
-<input type="text" name="Barcode" placeholder="Barkod" onkeyup="showQ(this,event)">
+<div class="form-group">
+<input style="font-size:24pt !important" type="text" name="Barcode" placeholder="Barkod" onkeyup="showQ(this,event)">
+</div>
 <cfquery name="isHv" datasource="#dsn3#">
     SELECT * FROM PRODUCTION_ORDERS WHERE P_ORDER_NO='#attributes.P_ORDER_NO#'
 </cfquery>
@@ -16,9 +18,10 @@
 </CFIF>
 <cfelse>
     <cfform>
-        <input type="text" name="P_ORDER_NO" placeholder="İş Emri No">
-        
+        <div class="form-group">
+        <input style="font-size:24pt !important" type="text" name="P_ORDER_NO" placeholder="İş Emri No">        
         <input type="hidden" name="is_submit" value="1">
+    </div>
     </cfform>
 </cfif>
 
