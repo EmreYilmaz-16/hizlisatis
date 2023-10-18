@@ -1,5 +1,8 @@
 ﻿<cf_box>
-
+<cfif isDefined(attributes.tip) and attributes.tip eq 1453>
+    <cfdump var="#attributes#">
+    <cfabort>
+</cfif>
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
 <cfdump var="#attributes#">
 <div class="form-group">
@@ -13,6 +16,7 @@
     <input type="hidden" name="p_order_no" id="p_order_no" value="<cfoutput>#isHv.P_ORDER_NO#</cfoutput>">
     <input type="hidden" name="dsn3" id="dsn3" value="<cfoutput>#dsn3#</cfoutput>">
     <input type="hidden" name="dsn2" id="dsn2" value="<cfoutput>#dsn2#</cfoutput>">
+    <button type="button" onclick="windowopen('/index.cfm?fuseaction=<cfoutput>#attributes.fuseaction#&tip=1453&p_order_no=#isHv.P_ORDER_NO#</cfoutput>')"
 <cfelse>
     <script>
         alert("İş Emri Bulunamadı");
