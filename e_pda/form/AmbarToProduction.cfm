@@ -24,11 +24,11 @@
 
 <script>
     function showQ(el,ev,v=1) {
-        if(ev.KeyCode==13){
+        if(ev.keyCode==13){
             var Barcode=el.value;
             var ih=wrk_query("SELECT * FROM GET_SIMPLE_STOCK WHERE BARCODE='"+el.value+"'","dsn3");
             console.log(ih);
-            if(ih.recordCount >0 ){
+            if(ih.recordcount >0 ){
 
                 var e=prompt("Miktar",v)
                 var QUANTITY=parseFloat(e)
