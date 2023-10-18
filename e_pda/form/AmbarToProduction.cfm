@@ -10,6 +10,7 @@
 </cfquery>
 <CFIF isHv.recordCount>
     <input type="hidden" name="p_order_id" id="p_order_id" value="<cfoutput>#isHv.P_ORDER_ID#</cfoutput>">
+    <input type="hidden" name="p_order_no" id="p_order_no" value="<cfoutput>#isHv.P_ORDER_NO#</cfoutput>">
 <cfelse>
     <script>
         alert("İş Emri Bulunamadı");
@@ -30,6 +31,7 @@
         if(ev.keyCode==13){
             var Barcode=el.value;
             var p_order_id=document.getElementById("p_order_id").value;
+            var p_order_no=document.getElementById("p_order_no").value;
             var ih=wrk_query("SELECT * FROM GET_SIMPLE_STOCK WHERE BARCODE='"+el.value+"'","dsn3");
             console.log(ih);
             if(ih.recordcount >0 ){
@@ -45,12 +47,15 @@
                         PRODUCT_ID:ih.PRODUCT_ID[0],
                         QUANTITY:QUANTITY,
                         P_ORDER_ID:p_order_id,
+                        P_ORDER_NO:p_order_no,
                         STORE_ID:ih.STORE_ID[0],
-                        LOCATION_ID:ih.LOCATION_ID[0]
+                        LOCATION_ID:ih.LOCATION_ID[0],
+                        SHELF_CODE:ih.SHELF_CODE[0]
                     };
                     console.log(O)
                 }
-                
+                var str=JSON.stringify(O);
+                windowopen("/index.cfm?fuseaction=epda.emptypopup_save_production_orders_sevk&data="+str,"page");
             }
         }
     }
