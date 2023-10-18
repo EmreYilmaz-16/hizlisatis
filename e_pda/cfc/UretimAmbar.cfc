@@ -3,7 +3,7 @@
         <cfdump var="#arguments#">
         <cfset e=structKeyArray(arguments)>
         <cfdump var="#e#">
-        <cfset FormData=deserializeJSON(e[0])>
+        <cfset FormData=deserializeJSON(e[1])>
         <cfdump var="#FormData#">
     </cffunction>
 </cfcomponent>
