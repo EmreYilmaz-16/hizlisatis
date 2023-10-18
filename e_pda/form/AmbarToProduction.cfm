@@ -11,6 +11,21 @@ LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=SFR.STOCK_ID
 where REF_NO ='#attributes.p_order_no#'
     </cfquery>
     <cf_big_list>
+        <thead>
+            <tr>
+                <th>
+                    Fiş No
+                </th>
+                <th>
+                    Ürün Kodu
+                </th>
+                <th>
+                    Ürün
+                </th>
+                <th>Miktar</th>
+            </tr>
+        </thead>
+        <tbody>
         <cfoutput query="getList">
             <tr>
                 <td>#FIS_NUMBER#</td>
@@ -19,6 +34,7 @@ where REF_NO ='#attributes.p_order_no#'
                 <td>#AMOUNT# #UNIT#</td>
             </tr>
         </cfoutput>
+    </tbody>
     </cf_big_list>
     <cfabort>
 </cfif>
