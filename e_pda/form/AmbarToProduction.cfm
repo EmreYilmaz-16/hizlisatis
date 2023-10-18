@@ -1,5 +1,5 @@
 ﻿<cf_box>
-<cfif isDefined(attributes.tip) and attributes.tip eq 1453>
+<cfif isDefined("attributes.tip") and attributes.tip eq 1453>
     <cfdump var="#attributes#">
     <cfabort>
 </cfif>
