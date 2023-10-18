@@ -155,7 +155,7 @@
 			</cfloop>
 		</cfif>
 		<!--- FİRELER --->
-		<cfif len(attributes.record_num_outage) and attributes.record_num_outage neq "">
+		<cfif isDefined("attributes.record_num_outage") and len(attributes.record_num_outage) and attributes.record_num_outage neq "">
 			<cfquery name="del_prod_fire" datasource="#dsn3#">
 				DELETE FROM PRODUCTION_ORDERS_STOCKS WHERE TYPE = 3 AND P_ORDER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#ListGetAt(attributes.p_order_id,1,',')#">
 			</cfquery> 
