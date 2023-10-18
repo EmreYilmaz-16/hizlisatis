@@ -4,7 +4,9 @@
 
 <cfset attributes.record_num_exit=getSarfs.recordCount>
 <cfset rc=getSarfs.recordCount+1>
-<cfloop from="1" to="#attributes.record_num_exit#" index="xx">
+<cfset xx=1>
+<cfloop query="getSarfs">
+
     <cfset "attributes.row_kontrol_exit#xx#"=1>
     <cfset "attributes.spec_main_id_exit#xx#"=SPECT_MAIN_ID>
     <cfset "attributes.spect_main_row_exit#xx#"=SPECT_MAIN_ROW_ID>
@@ -22,6 +24,7 @@
     <cfset "attributes.fire_amount_exit#xx#"=FIRE_AMOUNT>
     <cfset "attributes.fire_rate_exit#xx#"=FIRE_RATE>
     <cfset "attributes.lot_no_exit#xx#"=LOT_NO>    
+    <cfset xx=xx+1>
 </cfloop>
 <cfquery name="getStok" datasource="#dsn3#">
     SELECT S.PRODUCT_ID,S.STOCK_ID,SM.SPECT_MAIN_ID,PU.PRODUCT_UNIT_ID FROM workcube_metosan_1.STOCKS AS S 
