@@ -25,6 +25,7 @@
            <cfset amount_other="">
            <cfset unit_other="">
            <cfset lot_no="">
+           <cfset attributes.ref_no=FormData.P_ORDER_NO>
          <cfdump var="#attributes#">
         <cfset attributes.ROWW=" ,">
         <cfdump var="#listLen(attributes.ROWW)#">
