@@ -1,4 +1,4 @@
-﻿
+﻿<cf_box>
 
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
 <cfdump var="#attributes#">
@@ -29,6 +29,7 @@
     function showQ(el,ev,v=1) {
         if(ev.keyCode==13){
             var Barcode=el.value;
+            var p_order_id=document.getElementById("p_order_id").value;
             var ih=wrk_query("SELECT * FROM GET_SIMPLE_STOCK WHERE BARCODE='"+el.value+"'","dsn3");
             console.log(ih);
             if(ih.recordcount >0 ){
@@ -42,11 +43,16 @@
                     var O={
                         STOCK_ID:ih.STOCK_ID[0],
                         PRODUCT_ID:ih.PRODUCT_ID[0],
-                        QUANTITY:QUANTITY
-                    }
+                        QUANTITY:QUANTITY,
+                        P_ORDER_ID:p_order_id
+                        STORE_ID:ih.STORE_ID[0],
+                        LOCATION_ID:ih.LOCATION_ID[0]
+                    };
+                    console.log(O)
                 }
                 
             }
         }
     }
 </script>
+</cf_box>
