@@ -1,4 +1,5 @@
 ﻿<cf_box>
+    <div style="height:100vh">
 <cfif isDefined("attributes.tip") and attributes.tip eq 1453>
     <cfdump var="#attributes#">
     <cfquery name="getList" datasource="#dsn2#">
@@ -94,4 +95,5 @@ where REF_NO ='#attributes.p_order_no#'
         }
     }
 </script>
+</div>
 </cf_box>
