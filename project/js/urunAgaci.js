@@ -2084,10 +2084,11 @@ function fiyatHesaplaPoppi() {
   document.getElementById("fy_0002").value = tt;
 }
 
-function SetPrice(idb) {
+function SetPrice(idb,modal_id) {
   var om = document.getElementById("Omfy_0001").value;
-  var p = document.getElementById("fy_0003").value;
+  var p = document.getElementById("fy_0002").value;
   document.getElementByIdb(idb).setAttribute("data-price", p);
   document.getElementByIdb(idb).setAttribute("data-other_money", om);
   MaliyetHesapla();
+closeBoxDraggable(modal_id);
 }

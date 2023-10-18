@@ -47,5 +47,5 @@
                 </td>
             </tr>
         </table>
-        <button type="button" class="btn btn-outline-success" onclick="SetPrice(<cfoutput>#FData.idb#</cfoutput>)">Fiyat Kaydet</button>
+        <button type="button" class="btn btn-outline-success" onclick="SetPrice(<cfoutput>#FData.idb#,'#attributes.modal_id#'</cfoutput>)">Fiyat Kaydet</button>
 </cf_box>
