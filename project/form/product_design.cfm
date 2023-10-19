@@ -156,6 +156,8 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       <button type="button" style="margin-left: auto" onclick="OpenSearchVP()" class="btn btn-outline-warning"><span class="icn-md icon-search pull-right"></span></button>
   </div>
   <div class="list-group" id="leftMenuProject"> 
+    <cf_seperator id="getP" header="Ürünler">
+      <div id="getP">
       <cfoutput query="getP">      
           <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
               #PRODUCT_NAME#
@@ -170,6 +172,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
               </cfif>              
           </a>     
       </cfoutput>
+    </div>
       <hr>
       <cfoutput query="getP_">      
         <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
