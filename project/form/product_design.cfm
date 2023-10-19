@@ -171,43 +171,23 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
           </a>     
       </cfoutput>
   </div>
-  <hr>
-  <div class="list-group" id="leftMenuProject"> 
-      <cfoutput query="getP_">
-        <a class="list-group-item list-group-item-action">
-       
-          <button class="btn btn-sm btn-outline-primary" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#,'#PRODUCT_NAME#')">
-            <i class="icn-md fa fa-plus"></i>
-          </button>
-          <button class="btn btn-sm btn-outline-warning" onclick="showTree(#VIRTUAL_PRODUCT_ID#)">
-              <i class="icn-md fa fa-search"></i>
-          </button>
-          <!----<span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">
-            <i class="fa fa-plus"></i>
-            </span>
-          <span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">
-          <i class="icn-md fa fa-search"></i>
-          </span>
-          ---->
-          #PRODUCT_NAME#
-          <cfif PRODUCT_STAGE eq 339>
-              <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
-          <cfelseif PRODUCT_STAGE eq 340>
-              <span style="float:right;font-size:11pt" class="badge bg-success rounded-pill">#STAGE#</span>
-          <cfelseif PRODUCT_STAGE eq 341>
-              <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
-          <cfelse>
-              <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
-          </cfif> 
-          <div>
-          <code style="display: table-cell;color:##e83e8c"><small style="font-size:8pt">#MAIN_PROCESS_CAT#</small></code>            
-        </div>   
-      </a>      
-      
-      </cfoutput>
-    </div>
-
       <hr>
+      <cfoutput query="getP_">      
+        <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
+            #PRODUCT_NAME#
+            <cfif PRODUCT_STAGE eq 339>
+                <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
+            <cfelseif PRODUCT_STAGE eq 340>
+                <span style="float:right;font-size:11pt" class="badge bg-success rounded-pill">#STAGE#</span>
+            <cfelseif PRODUCT_STAGE eq 341>
+                <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
+            <cfelse>
+                <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
+            </cfif>              
+        </a>     
+    </cfoutput>
+</div>
+<hr>
       <div class="list-group" id="leftMenuProject"> 
           <cfoutput query="getP2">
             <a class="list-group-item list-group-item-action">
