@@ -92,7 +92,29 @@
     </cfquery>
     <cfset attributes.stock_id=getP.STOCK_ID>
     <cf_box title="Üretim Emri - #getP.P_ORDER_NO#">
-
+        <cfoutput>
+            <cf_ajax_list>
+            <tr>
+                <th>Müşteri</th>
+                <td>#getP.NICKNAME#</td>
+                <th>Sipariş</th>
+                <td>#getP.ORDER_NUMBER#</td>       
+                <th>Proje</th>
+                <td>#getP.PROJECT_NUMBER# - #getP.PROJECT_HEAD#</td>
+            </tr>
+            <tr>
+                <th>Ürün Kodu</th>
+                <td>#getP.PRODUCT_CODE#</td>
+                <th>Ürün</th>
+                <td>#getP.PRODUCT_NAME#</td>
+                <th>Üretilen Miktarı</th>
+                <td>#getP.AMOUNT#</td>
+                <th>Üretilecek Miktar</th>
+                <td>#getP.QUANTITY#</td>
+            </tr>
+        </cf_ajax_list>
+        </cfoutput>
+        
     
     <form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=production.emptypopup_upd_prtotm_real_po" method="post" >
     
@@ -197,7 +219,7 @@
     </div>
     <cfif getP.AMOUNT eq getP.QUANTITY>
     
-    <span style="color:red">Üretim Tamamlanmıştır</span><cfelse><input type="button" class=" ui-wrk-btn ui-wrk-btn-primary" onclick="$('#add_production_order').submit()" value="Sarf Kaydet">  <input type="button" class=" ui-wrk-btn ui-wrk-btn-warning" onclick="UretimTamamla(<cfoutput>#attributes.p_order_id#,#getP.STATION_ID#</cfoutput>)" value="Üretimi Sonlandır"></cfif>
+    <!---<span style="color:red">Üretim Tamamlanmıştır</span><cfelse><input type="button" class=" ui-wrk-btn ui-wrk-btn-primary" onclick="$('#add_production_order').submit()" value="Sarf Kaydet">  <input type="button" class=" ui-wrk-btn ui-wrk-btn-warning" onclick="UretimTamamla(<cfoutput>#attributes.p_order_id#,#getP.STATION_ID#</cfoutput>)" value="Üretimi Sonlandır"></cfif>---->
     </form>
     </cf_box>
     <script>
