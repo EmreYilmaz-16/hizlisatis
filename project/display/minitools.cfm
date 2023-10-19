@@ -6,6 +6,8 @@
     <cfinclude template="miniToolsInc/ListVP.cfm">
 <cfelseif attributes.tool_type eq 'ShowPrice'>
     <cfinclude template="miniToolsInc/ShowPrice.cfm">
+<cfelseif attributes.tool_type eq 'showSarf'>
+    <cfinclude template="../../GeneralUsage/Production/SarfBasket.cfm">
 <cfelse> 
     Sistem Yönetici
 </cfif>

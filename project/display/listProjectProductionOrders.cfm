@@ -49,7 +49,7 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
         <tbody>
             <cfoutput query="getP_Orders">
                 <tr>
-                    <td>#P_ORDER_NO#</td>
+                    <td><a href="##" onclick="windowopen('/index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1&tool_type=showSarf&p_order_id=#P_ORDER_ID#')">#P_ORDER_NO#</a></td>
                     <td>#ORDER_NUMBER#</td>
                     <td>#LOT_NO#</td>
                     
