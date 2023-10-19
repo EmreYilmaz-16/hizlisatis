@@ -42,10 +42,16 @@
     <td>#SARF_PRODUCT_NAME#</td>
     <td>#SARF_AMOUNT#</td>
     <td>
-        <cfif SARF_AMOUNT gt AMOUNT><span style="color:orange" class="icn-md fa fa-arrow-up"></span></cfif>
-        <cfif not LEN(PRODUCT_CODE) ><span style="color:orange" class="icn-md fa fa-arrow-up"></span><cfelse></cfif>
-            <cfif LEN(PRODUCT_CODE) and len(SARF_PRODUCT_CODE)>  <cfif SARF_AMOUNT eq AMOUNT><span style="color:green" class="icn-md fa fa-check-circle"></span></cfif></cfif>
-        </td>
+        <cfif SARF_STOCK_ID EQ STOCK_ID>
+            <cfif SARF_AMOUNT eq AMOUNT>
+                <span style="color:green" class="icn-md fa fa-check-circle"></span>
+            <cfelseif SARF_AMOUNT gt AMOUNT> 
+                <span style="color:orange" class="icn-md fa fa-arrow-up"></span>
+            </cfif>
+        <CFELSE>
+            <span style="color:orange" class="icn-md fa fa-arrow-up"></span>
+        </cfif>                          
+    </td>
     
     
     <td>#PRODUCT_CODE#</td>
@@ -55,6 +61,18 @@
         <cfif AMOUNT gt SARF_AMOUNT><span style="color:red" class="icn-md fa fa-arrow-down"></span></cfif>
         <cfif not LEN(SARF_PRODUCT_CODE) ><span style="color:red" class="icn-md fa fa-arrow-down"></span><cfelse></cfif>
             <cfif LEN(PRODUCT_CODE) and len(SARF_PRODUCT_CODE)>  <cfif SARF_AMOUNT eq AMOUNT><span style="color:green" class="icn-md fa fa-check-circle"></span></cfif></cfif>
+        
+            <cfif SARF_STOCK_ID EQ STOCK_ID>
+                <cfif SARF_AMOUNT eq AMOUNT>
+                    <span style="color:green" class="icn-md fa fa-check-circle"></span>
+                <cfelseif AMOUNT gt SARF_AMOUNT> 
+                    <span style="color:red" class="icn-md fa fa-arrow-up"></span>
+                </cfif>
+            <CFELSE>
+                <span style="color:red" class="icn-md fa fa-arrow-up"></span>
+            </cfif>
+        
+        
         </td>
     
 </tr>
