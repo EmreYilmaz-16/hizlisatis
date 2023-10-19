@@ -1,8 +1,10 @@
 ﻿<div class="row">
     <div class="col col-1">
         <cf_box>
+			<div style="display: flex;flex-direction: column">
         <button type="button" onclick="windowopen('/index.cfm?fuseaction=objects.popup_print_files&action_id=<cfoutput>#attributes.P_ORDER_ID#</cfoutput>&print_type=281&action=prod.order')" class="ui-wrk-btn ui-wrk-btn-extra"><i class="icon-print"></i> &nbsp; Yazdır</button>
 		<button type="button" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=UE-TR&P_ORDER_ID=<cfoutput>#attributes.P_ORDER_ID#</cfoutput>&print_type=281&action=prod.order')" class="ui-wrk-btn ui-wrk-btn-extra"><i class="icn-md fa fa-exchange"></i> &nbsp; Karşılaştır</button>
+	</div>
     </cf_box>
     </div>
     <div class="col col-11">
