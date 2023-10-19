@@ -55,9 +55,7 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
                     </div>
                     </td>
                     <td>#ORDER_NUMBER#</td>
-                    <td>#LOT_NO#</td>
-                    
-                    
+                    <td>#LOT_NO#</td>                                        
                     <td>#dateformat(DELIVER_DATE,"dd/mm/yyyy")#</td>
                     <td>#STATION_NAME#</td>
                     <td>#PRODUCT_CODE#</td>

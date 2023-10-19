@@ -102,10 +102,16 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
 <cfquery name="getP" datasource="#dsn3#">
   SELECT VP.*,1 AS IS_MAIN,PTR.STAGE FROM VIRTUAL_PRODUCTS_PRT  AS VP
       LEFT JOIN #dsn#.PROCESS_TYPE_ROWS AS PTR ON PTR.PROCESS_ROW_ID=VP.PRODUCT_STAGE
-  WHERE PROJECT_ID=#attributes.PROJECT_ID#
+  WHERE PROJECT_ID=#attributes.PROJECT_ID# AND PRODUCT_VERSION =''
  
 
 </cfquery>
+
+<cfquery name="getP_" datasource="#dsn3#">
+  SELECT VP.*,1 AS IS_MAIN,PTR.STAGE FROM VIRTUAL_PRODUCTS_PRT  AS VP
+      LEFT JOIN #dsn#.PROCESS_TYPE_ROWS AS PTR ON PTR.PROCESS_ROW_ID=VP.PRODUCT_STAGE
+  WHERE PROJECT_ID=#attributes.PROJECT_ID# AND PRODUCT_VERSION <>''
+ </cfquery>
 <cfset PListe=0>
 <cfif listLen(valuelist(relProjects.PROJECT_ID))>
   <cfset PListe=valuelist(relProjects.PROJECT_ID)>
@@ -165,6 +171,42 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
           </a>     
       </cfoutput>
   </div>
+  <hr>
+  <div class="list-group" id="leftMenuProject"> 
+      <cfoutput query="getP_">
+        <a class="list-group-item list-group-item-action">
+       
+          <button class="btn btn-sm btn-outline-primary" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#,'#PRODUCT_NAME#')">
+            <i class="icn-md fa fa-plus"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-warning" onclick="showTree(#VIRTUAL_PRODUCT_ID#)">
+              <i class="icn-md fa fa-search"></i>
+          </button>
+          <!----<span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">
+            <i class="fa fa-plus"></i>
+            </span>
+          <span style="float:left;font-size:11pt;margin-right:10px" class="badge bg-primary rounded-pill" onclick="addToCurrentTree(#VIRTUAL_PRODUCT_ID#)">
+          <i class="icn-md fa fa-search"></i>
+          </span>
+          ---->
+          #PRODUCT_NAME#
+          <cfif PRODUCT_STAGE eq 339>
+              <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
+          <cfelseif PRODUCT_STAGE eq 340>
+              <span style="float:right;font-size:11pt" class="badge bg-success rounded-pill">#STAGE#</span>
+          <cfelseif PRODUCT_STAGE eq 341>
+              <span style="float:right;font-size:11pt" class="badge bg-warning rounded-pill">#STAGE#</span>
+          <cfelse>
+              <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
+          </cfif> 
+          <div>
+          <code style="display: table-cell;color:##e83e8c"><small style="font-size:8pt">#MAIN_PROCESS_CAT#</small></code>            
+        </div>   
+      </a>      
+      
+      </cfoutput>
+    </div>
+
       <hr>
       <div class="list-group" id="leftMenuProject"> 
           <cfoutput query="getP2">
