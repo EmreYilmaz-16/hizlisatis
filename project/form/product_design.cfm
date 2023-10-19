@@ -192,8 +192,10 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
     </cfoutput>
   </div>
   </div>
-      <hr>
+      
       <div class="list-group" id="leftMenuProject"> 
+        <cf_seperator id="getP2" header="Alt Proje Ürünleri">
+          <div id="getP2">
           <cfoutput query="getP2">
             <a class="list-group-item list-group-item-action">
            
@@ -226,6 +228,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
           </a>      
           
           </cfoutput>
+        </div>
         </div>
         <HR>
         <div class="list-group" id="leftMenuProject"> 
