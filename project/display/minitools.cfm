@@ -10,6 +10,8 @@
     <cf_box title="Üretim Ağacı" scroll="1" collapsable="1" resize="1" popup_box="1">
     <cfinclude template="../../GeneralUsage/Production/SarfBasket.cfm">
     </cf_box>
+<cfelseif attributes.tool_type eq 'UE-TR'>
+    <cfinclude template="miniToolsInc/AgacKarsilastir.cfm">
 <cfelse> 
     Sistem Yönetici
 </cfif>
