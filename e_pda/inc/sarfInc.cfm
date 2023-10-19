@@ -63,7 +63,7 @@
             POS.LINE_NUMBER,
             POS.LOT_NO,
             S.PRODUCT_NAME,
-            GSS.BARCODE
+            GSS.BARCODE,
             S.STOCK_CODE,
             S.PROJECT_ID,
             PU.MAIN_UNIT,
@@ -78,7 +78,7 @@
         FROM 
             PRODUCTION_ORDERS_STOCKS POS,
             STOCKS S,
-            PRODUCT_UNIT PU
+            PRODUCT_UNIT PU,
             GET_SIMPLE_STOCK as GSS
         WHERE
             POS.STOCK_ID = S.STOCK_ID AND 
