@@ -49,8 +49,10 @@ WHERE PO.PROJECT_ID =#attributes.PROJECT_ID#
         <tbody>
             <cfoutput query="getP_Orders">
                 <tr>
-                    <td><a href="##" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1&tool_type=showSarf&p_order_id=#P_ORDER_ID#')">#P_ORDER_NO#</a>
+                    <td><div style="display: flex;flex-direction: column-reverse;align-items: center;">
+                        <a href="##" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1&tool_type=showSarf&p_order_id=#P_ORDER_ID#')">#P_ORDER_NO#</a>
                         <a href="##" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1&tool_type=UE-TR&p_order_id=#P_ORDER_ID#')"><i class="icn-md fa fa-exchange"></i></a>
+                    </div>
                     </td>
                     <td>#ORDER_NUMBER#</td>
                     <td>#LOT_NO#</td>
