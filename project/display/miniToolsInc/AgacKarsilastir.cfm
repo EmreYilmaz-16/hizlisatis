@@ -48,7 +48,7 @@
             <cfelseif SARF_AMOUNT gt AMOUNT> 
                 <span style="color:orange" class="icn-md fa fa-arrow-up"></span>
             </cfif>
-        <CFELSE>
+        <CFELSEIF LEN(SARF_STOCK_ID)>
             <span style="color:orange" class="icn-md fa fa-arrow-up"></span>
         </cfif>                          
     </td>
@@ -64,10 +64,10 @@
                 <cfif SARF_AMOUNT eq AMOUNT>
                     <span style="color:green" class="icn-md fa fa-check-circle"></span>
                 <cfelseif AMOUNT gt SARF_AMOUNT> 
-                    <span style="color:red" class="icn-md fa fa-arrow-up"></span>
+                    <span style="color:red" class="icn-md fa fa-arrow-down"></span>
                 </cfif>
             <CFELSE>
-                <span style="color:red" class="icn-md fa fa-arrow-up"></span>
+                <span style="color:red" class="icn-md fa fa-arrow-down"></span>
             </cfif>
         
         
