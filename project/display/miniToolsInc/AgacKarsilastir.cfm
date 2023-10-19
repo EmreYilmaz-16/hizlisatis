@@ -58,9 +58,7 @@
     <td>#PRODUCT_NAME#</td>
     <td>#AMOUNT#</td>
     <td>
-        <cfif AMOUNT gt SARF_AMOUNT><span style="color:red" class="icn-md fa fa-arrow-down"></span></cfif>
-        <cfif not LEN(SARF_PRODUCT_CODE) ><span style="color:red" class="icn-md fa fa-arrow-down"></span><cfelse></cfif>
-            <cfif LEN(PRODUCT_CODE) and len(SARF_PRODUCT_CODE)>  <cfif SARF_AMOUNT eq AMOUNT><span style="color:green" class="icn-md fa fa-check-circle"></span></cfif></cfif>
+        
         
             <cfif SARF_STOCK_ID EQ STOCK_ID>
                 <cfif SARF_AMOUNT eq AMOUNT>
