@@ -41,13 +41,17 @@
     <td>#SARF_PRODUCT_CODE#</td>
     <td>#SARF_PRODUCT_NAME#</td>
     <td>#SARF_AMOUNT#</td>
-    <td><cfif not LEN(PRODUCT_CODE) ><span style="color:orange" class="icn-md fa fa-arrow-up"></span><cfelse></cfif></td>
+    <td>
+        <cfif SARF_AMOUNT gt AMOUNT><span style="color:orange" class="icn-md fa fa-arrow-up"></span></cfif>
+        <cfif not LEN(PRODUCT_CODE) ><cfelse></cfif></td>
     
     
     <td>#PRODUCT_CODE#</td>
     <td>#PRODUCT_NAME#</td>
     <td>#AMOUNT#</td>
-    <td><cfif not LEN(SARF_PRODUCT_CODE) ><span style="color:red" class="icn-md fa fa-arrow-down"></span><cfelse></cfif></td>
+    <td>
+        <cfif AMOUNT gt SARF_AMOUNT><span style="color:red" class="icn-md fa fa-arrow-down"></span></cfif>
+        <cfif not LEN(SARF_PRODUCT_CODE) ><span style="color:red" class="icn-md fa fa-arrow-down"></span><cfelse></cfif></td>
     
 </tr>
 </cfoutput>
