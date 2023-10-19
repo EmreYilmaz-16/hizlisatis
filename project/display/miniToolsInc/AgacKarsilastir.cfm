@@ -31,7 +31,7 @@
             Miktar
         </th>
     </tr>
-</table>
+
 <cfoutput query="gets">
 <tr>
     <td>#SARF_PRODUCT_CODE#</td>
@@ -47,7 +47,7 @@
     
 </tr>
 </cfoutput>
-
+</table>
 <!-------------
     S2.PRODUCT_CODE AS SARF_PRODUCT_CODE,S2.PRODUCT_NAME AS SARF_PRODUCT_NAME,T.A1 AS SARF_AMOUNT,S.PRODUCT_CODE,S.PRODUCT_NAME,T.AMOUNT
     ------------->
