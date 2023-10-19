@@ -2,41 +2,7 @@
 <cf_box>
     <div style="height:90vh">
 <cfif isDefined("attributes.tip") and attributes.tip eq 1453>
-    
-    <cfquery name="getList" datasource="#dsn2#">
-        select SF.FIS_NUMBER,S.PRODUCT_CODE,S.PRODUCT_NAME,SFR.AMOUNT,SFR.UNIT from STOCK_FIS  AS SF
-LEFT JOIN STOCK_FIS_ROW AS SFR ON SF.FIS_ID=SFR.FIS_ID
-LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=SFR.STOCK_ID
-
-where REF_NO ='#attributes.p_order_no#'
-    </cfquery>
-    <cf_big_list>
-        <thead>
-            <tr>
-                <th>
-                    Fiş No
-                </th>
-                <th>
-                    Ürün Kodu
-                </th>
-                <th>
-                    Ürün
-                </th>
-                <th>Miktar</th>
-            </tr>
-        </thead>
-        <tbody>
-        <cfoutput query="getList">
-            <tr>
-                <td>#FIS_NUMBER#</td>
-                <td>#PRODUCT_CODE#</td>
-                <td>#PRODUCT_NAME#</td>
-                <td>#AMOUNT# #UNIT#</td>
-            </tr>
-        </cfoutput>
-    </tbody>
-    </cf_big_list>
-    <cfabort>
+    <cfinclude template="../inc/sarfInc.cfm">
 </cfif>
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
 
@@ -54,7 +20,7 @@ where REF_NO ='#attributes.p_order_no#'
     <input type="hidden" name="dsn2" id="dsn2" value="<cfoutput>#dsn2#</cfoutput>">
     <div style="display: flex;flex-direction: column;position: absolute;width: 100%;bottom: 0;text-align: center;align-content: center;justify-content: space-evenly;">
 
-    <button class="btn btn-lg btn-outline-success" type="button" onclick="windowopen('/index.cfm?fuseaction=<cfoutput>#attributes.fuseaction#&tip=1453&p_order_no=#isHv.P_ORDER_NO#</cfoutput>')">Liste</button>
+    <button class="btn btn-lg btn-outline-success" type="button" onclick="windowopen('/index.cfm?fuseaction=<cfoutput>#attributes.fuseaction#&tip=1453&p_order_no=#isHv.P_ORDER_NO#&p_order_id=#isHv.P_ORDER_ID#</cfoutput>')">Liste</button>
     </div>
 <cfelse>
     <script>
