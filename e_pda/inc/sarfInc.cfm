@@ -136,12 +136,12 @@
             <thead>
                 <tr>
                    <cfif 1 eq 1>
-                        <th width="25">
-                            <a href="javascript://" onClick="add_row_exit();"><i class="fa fa-plus" align="absmiddle" border="0"></i></a>
+                        <th style="display:none" width="25">
+                            
                         </th>
                     </cfif>
                     <th width="15"><cf_get_lang dictionary_id="57487.No"></th>
-                    <th width="125"><cf_get_lang dictionary_id='57518.Stok Kodu'></th>
+                    <th style="display:none" width="125"><cf_get_lang dictionary_id='57518.Stok Kodu'></th>
                     <th width="270"><cf_get_lang dictionary_id='57657.Ürün'></th>
                     <th style="display:none" width="260"><cf_get_lang dictionary_id='57647.Spec'></th>
                     <cfif isdefined("is_show_lot_no") and is_show_lot_no eq 1>
@@ -156,7 +156,7 @@
             <cfoutput query="get_product_sarf">
                 <tr id="frm_row_exit#currentrow#" <cfif IS_PHANTOM eq 1>bgcolor="66CCFF" title="Phantom Ağaç Ürünü"<cfelseif IS_PHANTOM eq 0>class="color-row"</cfif>>
                     <cfif 1 eq 1>
-                        <td>
+                        <td style="display:none">
                             <ul class="ui-icon-list">
                                <cfif len(PROJECT_ID)>
                                <cfelse>
@@ -171,7 +171,7 @@
                     <script>
                         row_count_exit++;
                     </script>
-                    <td>
+                    <td style="display:none">
                         <input type="hidden" name="row_kontrol_exit#currentrow#" id="row_kontrol_exit#currentrow#" value="1">
                         <input type="hidden" name="is_phantom_exit#currentrow#" id="is_phantom_exit#currentrow#"value="#IS_PHANTOM#">
                         <input type="hidden" name="is_sevk_exit#currentrow#" id="is_sevk_exit#currentrow#"value="#IS_SEVK#">
