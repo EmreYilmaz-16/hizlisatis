@@ -156,8 +156,8 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       <button type="button" style="margin-left: auto" onclick="OpenSearchVP()" class="btn btn-outline-warning"><span class="icn-md icon-search pull-right"></span></button>
   </div>
   <div class="list-group" id="leftMenuProject"> 
-    <cf_seperator id="getP" header="Ürünler">
-      <div id="getP" style="display="none"">
+    <cf_seperator id="getP" header="Ürünler"  style="display:none;">
+      <div id="getP" style="display:none">
       <cfoutput query="getP">      
           <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
               #PRODUCT_NAME#
@@ -174,8 +174,8 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       </cfoutput>
     </div>
       
-      <cf_seperator id="getP_" header="Yarı Mamüller">
-        <div id="getP_" style="display="none"">
+      <cf_seperator id="getP_" header="Yarı Mamüller"  style="display:none;">
+        <div id="getP_" style="display:none">
       <cfoutput query="getP_">      
         <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
             #PRODUCT_NAME#
@@ -194,8 +194,8 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
   </div>
       
       <div class="list-group" id="leftMenuProject"> 
-        <cf_seperator id="getP2" header="Alt Proje Ürünleri">
-          <div id="getP2">
+        <cf_seperator id="getP2" header="Alt Proje Ürünleri"  style="display:none;">
+          <div id="getP2"  style="display:none;">
           <cfoutput query="getP2">
             <a class="list-group-item list-group-item-action">
            
@@ -232,6 +232,8 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
         </div>
         <HR>
         <div class="list-group" id="leftMenuProject"> 
+          <cf_seperator id="getP3" header="Oluşmuş Ürünler"  style="display:none;">
+            <div id="getP3"  style="display:none;">
           <cfoutput query="getP3">      
               <a class="list-group-item list-group-item-action" onclick="ngetTree(#PRODUCT_ID#,0,'#dsn3#',this,1,'','#PRODUCT_NAME#','#STAGE#')">
                   #PRODUCT_NAME#
@@ -246,6 +248,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
                   </cfif>              
               </a>     
           </cfoutput>
+        </div>
       </div>
         
       </div>
