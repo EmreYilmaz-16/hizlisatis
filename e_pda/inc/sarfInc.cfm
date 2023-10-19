@@ -63,6 +63,7 @@
             POS.LINE_NUMBER,
             POS.LOT_NO,
             S.PRODUCT_NAME,
+            GSS.BARCODE
             S.STOCK_CODE,
             S.PROJECT_ID,
             PU.MAIN_UNIT,
@@ -78,8 +79,10 @@
             PRODUCTION_ORDERS_STOCKS POS,
             STOCKS S,
             PRODUCT_UNIT PU
+            GET_SIMPLE_STOCK as GSS
         WHERE
             POS.STOCK_ID = S.STOCK_ID AND 
+            GSS.STOCK_ID = S.STOCK_ID AND 
             POS.PRODUCT_UNIT_ID = PU.PRODUCT_UNIT_ID AND
             P_ORDER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#attributes.P_ORDER_ID#"> AND
             TYPE = 2
@@ -114,7 +117,9 @@
             </tr>
         </cf_ajax_list>
         </cfoutput>
-        
+        <div class="form-group">
+            <input style="font-size:24pt !important" type="text" name="Barcode" placeholder="Barkod" onkeyup="showQ(this,event)">
+        </div>  
     
     <form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=production.emptypopup_upd_prtotm_real_po" method="post" >
     
@@ -155,7 +160,7 @@
             <tbody>
                 
             <cfoutput query="get_product_sarf">
-                <tr id="frm_row_exit#currentrow#" <cfif IS_PHANTOM eq 1>bgcolor="66CCFF" title="Phantom Ağaç Ürünü"<cfelseif IS_PHANTOM eq 0>class="color-row"</cfif>>
+                <tr id="frm_row_exit#currentrow#" data-barcode="#BARCODE#" <cfif IS_PHANTOM eq 1>bgcolor="66CCFF" title="Phantom Ağaç Ürünü"<cfelseif IS_PHANTOM eq 0>class="color-row"</cfif>>
                     <cfif 1 eq 1>
                         <td style="display:none">
                             <ul class="ui-icon-list">
