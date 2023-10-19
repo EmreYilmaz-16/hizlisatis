@@ -217,7 +217,7 @@
            </tbody>
         </cf_grid_list>
     </div>
-    <cfif getP.AMOUNT eq getP.QUANTITY>
+    
     
     <!---<span style="color:red">Üretim Tamamlanmıştır</span><cfelse><input type="button" class=" ui-wrk-btn ui-wrk-btn-primary" onclick="$('#add_production_order').submit()" value="Sarf Kaydet">  <input type="button" class=" ui-wrk-btn ui-wrk-btn-warning" onclick="UretimTamamla(<cfoutput>#attributes.p_order_id#,#getP.STATION_ID#</cfoutput>)" value="Üretimi Sonlandır"></cfif>---->
     </form>
