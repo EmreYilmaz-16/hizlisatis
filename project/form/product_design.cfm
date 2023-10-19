@@ -157,7 +157,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
   </div>
   <div class="list-group" id="leftMenuProject"> 
     <cf_seperator id="getP" header="Ürünler">
-      <div id="getP">
+      <div id="getP" style="display="none"">
       <cfoutput query="getP">      
           <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
               #PRODUCT_NAME#
@@ -173,7 +173,9 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
           </a>     
       </cfoutput>
     </div>
-      <hr>
+      
+      <cf_seperator id="getP_" header="Yarı Mamüller">
+        <div id="getP_" style="display="none"">
       <cfoutput query="getP_">      
         <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
             #PRODUCT_NAME#
@@ -188,6 +190,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
             </cfif>              
         </a>     
     </cfoutput>
+  </div>
   </div>
       <hr>
       <div class="list-group" id="leftMenuProject"> 
