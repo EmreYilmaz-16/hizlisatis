@@ -21,7 +21,7 @@
         <th>
             Miktar
         </th>
-
+<th></th>
         <th>
             Ürün Kodu
         </th>
@@ -31,6 +31,7 @@
         <th>
             Miktar
         </th>
+        <th></th>
     </tr>
 </thead>
 <tbody>
