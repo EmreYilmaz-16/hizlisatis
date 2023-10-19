@@ -118,7 +118,7 @@
         </cf_ajax_list>
         </cfoutput>
         <div class="form-group">
-            <input style="font-size:24pt !important" type="text" name="Barcode" placeholder="Barkod" onkeyup="showQ(this,event)">
+            <input style="font-size:24pt !important" type="text" name="Barcode" placeholder="Barkod" onkeyup="TestQ(this,event)">
         </div>  
     
     <form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=production.emptypopup_upd_prtotm_real_po" method="post" >
@@ -344,5 +344,23 @@
         }
         function UretimTamamla(poid,stationid){
             windowopen("/index.cfm?fuseaction=production.emptypopup_add_prod_order_result&JUSPORESULT=1&p_order_id="+poid+"&pws_id="+stationid)
+        }
+        document.getElementByBarcode=function (Barcode){
+            var arr=document.all
+            for(let i=0;i<arr.length;i++){
+                var El =arr[i].getAttribute("data-barcode")
+                if(El != null){
+                    if(El===Barcode){
+                        return arr[i]
+                    }
+                }
+            } 
+        }
+        function TestQ(el,ev){
+            if(ev.keyCode==13){
+                var b=el.value;
+                var elem=document.getElementByBarcode(b);
+                console.log(elem)
+            }
         }
     </script>
