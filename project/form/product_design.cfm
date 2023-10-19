@@ -170,7 +170,6 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
               </cfif>              
           </a>     
       </cfoutput>
-  </div>
       <hr>
       <cfoutput query="getP_">      
         <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
@@ -186,8 +185,8 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
             </cfif>              
         </a>     
     </cfoutput>
-</div>
-<hr>
+  </div>
+      <hr>
       <div class="list-group" id="leftMenuProject"> 
           <cfoutput query="getP2">
             <a class="list-group-item list-group-item-action">
