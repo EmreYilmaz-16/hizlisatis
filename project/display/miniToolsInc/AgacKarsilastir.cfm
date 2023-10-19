@@ -1,4 +1,5 @@
-﻿<cfquery name="gets" datasource="#dsn3#">
+﻿<cf_box>
+<cfquery name="gets" datasource="#dsn3#">
     EXEC workcube_metosan_1.URETIM_AGAC_KARSILASTIR #attributes.p_order_id#
 </cfquery>
 <cf_grid_list>
@@ -55,3 +56,4 @@
 <!-------------
     S2.PRODUCT_CODE AS SARF_PRODUCT_CODE,S2.PRODUCT_NAME AS SARF_PRODUCT_NAME,T.A1 AS SARF_AMOUNT,S.PRODUCT_CODE,S.PRODUCT_NAME,T.AMOUNT
     ------------->
+</cf_box>
