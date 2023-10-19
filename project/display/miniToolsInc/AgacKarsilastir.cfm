@@ -43,7 +43,7 @@
     <td>#SARF_AMOUNT#</td>
     <td>
         <cfif SARF_AMOUNT gt AMOUNT><span style="color:orange" class="icn-md fa fa-arrow-up"></span></cfif>
-        <cfif not LEN(PRODUCT_CODE) ><cfelse></cfif></td>
+        <cfif not LEN(PRODUCT_CODE) ><span style="color:orange" class="icn-md fa fa-arrow-up"></span><cfelse></cfif></td>
     
     
     <td>#PRODUCT_CODE#</td>
