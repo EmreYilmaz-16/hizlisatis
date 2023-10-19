@@ -1,4 +1,4 @@
-﻿<cf_box>
+﻿<cf_box title="Üretim Ağacı Karşılaştır" scroll="1" collapsable="1" resize="1" popup_box="1">
 <cfquery name="gets" datasource="#dsn3#">
     EXEC workcube_metosan_1.URETIM_AGAC_KARSILASTIR #attributes.p_order_id#
 </cfquery>
