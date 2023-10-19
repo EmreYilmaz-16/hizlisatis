@@ -230,7 +230,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
           </cfoutput>
         </div>
         </div>
-        <HR>
+        
         <div class="list-group" id="leftMenuProject"> 
           <cf_seperator id="getP3" header="Oluşmuş Ürünler"  style="display:none;">
             <div id="getP3"  style="display:none;">
