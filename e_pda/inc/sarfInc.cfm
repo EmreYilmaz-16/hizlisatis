@@ -130,7 +130,7 @@
     
     <!---/*Sarflar*/--->
     <cfsavecontent variable="title"><cf_get_lang dictionary_id='30009.Sarflar'></cfsavecontent>
-    <cf_seperator title="#title#" id="sarf_" is_closed="1">
+    <cf_seperator title="#title#" id="sarf_" is_closed="0">
     <div id="sarf_" style="display:none;">
         <cf_grid_list id="table2">
             <thead>
