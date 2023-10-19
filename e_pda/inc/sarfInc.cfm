@@ -160,7 +160,7 @@
             <tbody>
                 
             <cfoutput query="get_product_sarf">
-                <tr id="frm_row_exit#currentrow#" data-barcode="#BARCODE#" <cfif IS_PHANTOM eq 1>bgcolor="66CCFF" title="Phantom Ağaç Ürünü"<cfelseif IS_PHANTOM eq 0>class="color-row"</cfif>>
+                <tr id="frm_row_exit#currentrow#" data-rownum="#currentrow#" data-barcode="#BARCODE#" <cfif IS_PHANTOM eq 1>bgcolor="66CCFF" title="Phantom Ağaç Ürünü"<cfelseif IS_PHANTOM eq 0>class="color-row"</cfif>>
                     <cfif 1 eq 1>
                         <td style="display:none">
                             <ul class="ui-icon-list">
@@ -356,11 +356,27 @@
                 }
             } 
         }
-        function TestQ(el,ev){
+        function TestQ(el,ev,v){
             if(ev.keyCode==13){
                 var b=el.value;
                 var elem=document.getElementByBarcode(b);
                 console.log(elem)
+                var rowNum=elem.getAttribute("data-rownum");
+                var RemAmount=prompt("Çıkış Miktarı",v);
+                var QUANTITY=parseFloat(RemAmount)
+                if(isNaN(QUANTITY) ==true){
+                    alert("Miktar Numerik Olmalı");
+                    TestQ(el,ev,v);
+                }else{
+                    var AmountExit=$("#amount_exit"+rowNum).val();
+                    if(parseFloat(filterNum(AmountExit))==QUANTITY){
+                        sil_exit(rowNum);
+                    }else{
+                        var px=parseFloat(filterNum(AmountExit))-QUANTITY
+                        $("#amount_exit"+rowNum).val(px);
+                    }
+                    $("#add_production_order").submit()
+                }
             }
         }
     </script>
