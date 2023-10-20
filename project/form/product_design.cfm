@@ -232,7 +232,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
         </div>
         
         <div class="list-group" id="leftMenuProject"> 
-          <cf_seperator id="getP3" header="Oluşmuş Ürünler"  style="display:none;">
+          <cf_seperator id="getP3" header="Oluşmuş Ürünler" closed="1" is_closed="1"  style="display:none;">
             <div id="getP3"  style="display:none;">
           <cfoutput query="getP3">      
               <a class="list-group-item list-group-item-action" onclick="ngetTree(#PRODUCT_ID#,0,'#dsn3#',this,1,'','#PRODUCT_NAME#','#STAGE#')">
