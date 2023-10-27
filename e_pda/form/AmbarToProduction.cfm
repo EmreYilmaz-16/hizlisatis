@@ -42,6 +42,9 @@
 $(document).ready(function(){
     document.getElementById("wrk_main_layout").setAttribute("class","container-fluid");
 })
+$("#add_production_order").on("submit",function (ev){
+    ev.preventDefault()
+});
     function showQ(el,ev,v=1) {
         if(ev.keyCode==13){
             var Barcode=el.value;
