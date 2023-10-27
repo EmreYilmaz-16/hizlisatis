@@ -45,7 +45,7 @@
             </cfif>
     </cfquery>
         <input type="hidden" name="product_sarf_recordcount" id="product_sarf_recordcount" value="<cfoutput>#get_product_sarf.recordcount#</cfoutput>">
-        <input type="hidden" name="record_num_exit " id="record_num_exit " value="<cfoutput>#get_product_sarf.recordcount#</cfoutput>">
+        <input type="hidden" name="record_num_exit" id="record_num_exit" value="<cfoutput>#get_product_sarf.recordcount#</cfoutput>">
         <cfset deger_value_row = get_product_sarf.recordcount>
 
         <cfsavecontent variable="title"><cf_get_lang dictionary_id='30009.Sarflar'></cfsavecontent>
