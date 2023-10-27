@@ -113,6 +113,8 @@
                     var AmountExit=$("#amount_exit"+rowNum).val();
                     if(parseFloat(filterNum(AmountExit))==QUANTITY){
                         sil_exit(rowNum);
+                        var vv=parseInt($("#record_num_exit").val())
+                        $("#record_num_exit").val(vv);
                     }else{
                         var px=parseFloat(filterNum(AmountExit))-QUANTITY
                         $("#amount_exit"+rowNum).val(px);
