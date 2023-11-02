@@ -61,8 +61,8 @@ function ngetTree(
         "&stock_id=" +
         sida,
       success: function (asd) {
-        var jsonStr = strToJson(asd);
-        o = JSON.parse(jsonStr);
+       // var jsonStr = strToJson(asd);
+        o = JSON.parse(asd);
         // console.log(o);
         AgaciYaz(o, 0, "0", 1);
         var esd = document.getElementById("TreeArea");
@@ -90,8 +90,8 @@ function ngetTree(
         "&price_catid=" +
         _priceCatId,
       success: function (asd) {
-        var jsonStr = strToJson(asd);
-        o = JSON.parse(jsonStr);
+       // var jsonStr = strToJson(asd);
+        o = JSON.parse(asd);
         // console.log(o);
         //  console.log("Buradayım");
         //   partnerEkle(o);
@@ -127,8 +127,8 @@ function ngetTree(
         "&price_catid=" +
         _priceCatId,
       success: function (asd) {
-        var jsonStr = strToJson(asd);
-        o = JSON.parse(jsonStr);
+       // var jsonStr = strToJson(asd);
+        o = JSON.parse(asd);
         /*  console.log(o);
                 console.log("Buradayım");*/
         //   partnerEkle(o);
@@ -169,8 +169,8 @@ function ngetTree(
         "&price_catid=" +
         _priceCatId,
       success: function (asd) {
-        var jsonStr = strToJson(asd);
-        o = JSON.parse(jsonStr);
+     //   var jsonStr = strToJson(asd);
+        o = JSON.parse(asd);
         // console.log(o);
         //  console.log("Buradayım");
         //   partnerEkle(o);
@@ -207,8 +207,8 @@ function ngetTree(
         "&price_catid=" +
         _priceCatId,
       success: function (asd) {
-        var jsonStr = strToJson(asd);
-        o = JSON.parse(jsonStr);
+       // var jsonStr = strToJson(asd);
+        o = JSON.parse(asd);
         // console.log(o);
         //  console.log("Buradayım");
         //   partnerEkle(o);
