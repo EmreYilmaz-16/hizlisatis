@@ -123,4 +123,12 @@
                 }
             }
         }
+        function sil_exit(sy)
+	{
+		var my_element=document.getElementById("row_kontrol_exit"+sy);
+		my_element.value=0;
+		var my_element=eval("frm_row_exit"+sy);
+		my_element.style.display="none";	
+	}
+	fun
     </script>
