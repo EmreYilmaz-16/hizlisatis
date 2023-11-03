@@ -15,8 +15,8 @@ $(document).ready(function(){
     if(d<d2){    
         $("#workcube_button").html("")
         $("#workcube_button").html("<span style='color:red'>Butonlar Gizlenmiştir</span>")
-        $("#tabMenu").html("")
-        $("#tabMenu").html("<span style='color:red'>Butonlar Gizlenmiştir</span>")
+        $("#tabMenu").remove()
+        
     }
 })
 </script>
