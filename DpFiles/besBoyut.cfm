@@ -13,8 +13,10 @@ $(document).ready(function(){
     var qr=wrk_query(q,"dsn")
     var d2=new Date(qr.PERIOD_DATE[0]);
     if(d<d2){    
-        $("#workcube_button").remove()
-        $("#tabMenu").remove()
+        $("#workcube_button").html("")
+        $("#workcube_button").html("<span style='color:red'>Butonlar Gizlenmiştir</span>")
+        $("#tabMenu").html()
+        $("#tabMenu").html("<span style='color:red'>Butonlar Gizlenmiştir</span>")
     }
 })
 </script>
