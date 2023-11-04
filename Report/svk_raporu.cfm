@@ -61,6 +61,7 @@
             <th>Satış Çalışanı</th>
             <th>SVK No</th>
             <th>Sipariş No</th>
+            <th>Aşama</th>
             <th>Ürün Kodu</th>
             <th>Ürün Adı</th>
             <th>Teklif Miktari</th>
@@ -97,8 +98,7 @@
                         ,O.COMPANY_ID
                         ,ORR.ORDER_ID
                         ,ORR.DESCRIPTION
-                        ,ORR.QUANTITY AS ORDERED_AMOUNT
-                        
+                        ,ORR.QUANTITY AS ORDERED_AMOUNT                        
                         ,OFFER.*
                         ,PSR.DELIVER_PAPER_NO
                         ,ISNULL(STOK_FIS.READY_AMOUNT, 0) READY_AMOUNT
@@ -176,6 +176,7 @@
                     AND (
                         T.ORDER_NUMBER LIKE '%#attributes.keyword#%'
                         OR T.OFFER_NUMBER LIKE '%#attributes.keyword#%'
+                        OR T.DELIVER_PAPER_NO  LIKE '%#attributes.keyword#%'
                     )
                 </cfif>
                 ORDER BY SHIP_RESULT_ID
@@ -189,6 +190,9 @@
                         <td>#SALE_EMP#</td>
                         <td>#DELIVER_PAPER_NO#</td>
                         <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#')">#ORDER_NUMBER#</a></td>
+                        <td>
+                            #ORDER_ROW_CURRENCY#
+                        </td>
                         <td>#PRODUCT_CODE#</td>   
                         <td>#PRODUCT_NAME#</td>        
                         <td>#OFFERED_AMOUNT#</td>        
