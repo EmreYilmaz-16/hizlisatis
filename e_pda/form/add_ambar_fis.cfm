@@ -522,7 +522,7 @@ table, td, th, div {
 			{
 			document.getElementById('onay').disabled = true;
 			actionidolustur();
-			window.location.href='<cfoutput>#request.self#</cfoutput>?fuseaction=epda.prtotm_Qadd_ambar_fis&dep_in='+form_basket.txt_department_in.value+'&dep_out='+form_basket.txt_department_out.value+'&action_id='+document.getElementById('action_id').value+'&fis_tipi='+form_basket.fis_tipi.value+'&process_cat='+form_basket.process_cat_id.value;
+			window.location.href='<cfoutput>#request.self#</cfoutput>?fuseaction=epda.prtotm_Qadd_ambar_fis&psk=1&dep_in='+form_basket.txt_department_in.value+'&dep_out='+form_basket.txt_department_out.value+'&action_id='+document.getElementById('action_id').value+'&fis_tipi='+form_basket.fis_tipi.value+'&process_cat='+form_basket.process_cat_id.value;
 			}
 	}
 </script>

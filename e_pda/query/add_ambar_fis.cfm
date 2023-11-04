@@ -379,11 +379,21 @@
 		cost_action(action_type:3,action_id:GET_ID.MAX_ID,query_type:1);
 	</cfscript>
 	<script type="text/javascript">
-		window.location.href="<cfoutput>#request.self#?fuseaction=epda.emptypopup_prtotm_welcome</cfoutput>";
+    <cfif isDefined("attributes.psk") and attributes.psk eq 1>
+    
+		window.location.href="<cfoutput>#request.self#?fuseaction=objects.emptypopup_pbs_print&printType=STOK_FIS&ACTION_ID=#GET_ID.MAX_ID#</cfoutput>"
+    <cfelse>
+        window.location.href="<cfoutput>#request.self#?fuseaction=epda.emptypopup_prtotm_welcome</cfoutput>";
+    </cfif>
 	</script>
 <cfelse>
     <script type="text/javascript">
-		window.location.href="<cfoutput>#request.self#?fuseaction=epda.emptypopup_prtotm_welcome</cfoutput>";
+		<cfif isDefined("attributes.psk") and attributes.psk eq 1>
+    
+			window.location.href="<cfoutput>#request.self#?fuseaction=objects.emptypopup_pbs_print&printType=STOK_FIS&ACTION_ID=#GET_ID.MAX_ID#</cfoutput>"	
+<cfelse>
+    window.location.href="<cfoutput>#request.self#?fuseaction=epda.emptypopup_prtotm_welcome</cfoutput>";
+</cfif>
 	</script>
 </cfif>
 </cfif>
