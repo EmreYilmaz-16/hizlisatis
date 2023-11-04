@@ -85,9 +85,9 @@
                     ,C.NICKNAME
                     ,S.PRODUCT_CODE
                     ,S.PRODUCT_NAME
-                    ,SM.SHIP_METHOD
+                    ,SM.SHIP_METHOD AS PSK
                     ,SAMOU.DEPO_AMOUNT
-                    ,SM.*
+                    
                     ,(
                         SELECT D.DEPARTMENT_HEAD + ' ' + SL.COMMENT
                         FROM workcube_metosan.STOCKS_LOCATION AS SL
