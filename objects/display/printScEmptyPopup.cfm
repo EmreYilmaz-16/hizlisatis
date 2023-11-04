@@ -13,7 +13,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
 
 
     </cfquery>
-     <table>
+     <table class="table" >
         <tr>
             <td style="height:40px;"><b><cf_get_lang dictionary_id='33929.Ürün Detay'></b></td>
         </tr>
