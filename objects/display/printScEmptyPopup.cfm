@@ -1,4 +1,4 @@
-﻿<cfdump var="#attributes#">
+﻿
 <cfif attributes.printType eq "STOK_FIS">
     <cfquery name="getRows" datasource="#dsn2#">
         
@@ -46,10 +46,13 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
             
         </cfoutput>
 </cfif>
-
+<script>
+    document
+</script>
 <script>
     $(document).ready(function (params) {
         $("#wrk_bug_add_div").remove();
+        $("body").attr("style","background:white");
 
     })
 </script>
