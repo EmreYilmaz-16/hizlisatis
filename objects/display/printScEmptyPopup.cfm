@@ -12,7 +12,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
 
 
     </cfquery>
-    <cfdump var="#attributes#">
+    <cfdump var="#getRows#">
 </cfif>
 
 <script>
