@@ -46,15 +46,15 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
             </cfoutput>
             
         </cfoutput>
+        <cfdump var="#getHTTPRequestData()#">
 </cfif>
-<script>
-    document
-</script>
+
 <script>
     $(document).ready(function (params) {
         $("#wrk_bug_add_div").remove();
         $("body").attr("style","background:white");
         $("#wrk_main_layout").attr("class","container-fluid")
+        window.print();
 
     })
 </script>
