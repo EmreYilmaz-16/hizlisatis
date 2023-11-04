@@ -524,7 +524,7 @@ pos 2 <br>
     <cfif IS_FROM_PROJECT neq 1>
     this.close();
     <cfelse>
-    window.opener.location.reload();
+    
 </cfif>
 </script>
 <!----------
