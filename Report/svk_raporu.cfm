@@ -227,7 +227,7 @@
                         <td>#INVOICED_AMOUNT#</td>
                         <td>#DEPO_AMOUNT#</td>
                         <td>#DLOLK#</td>
-                        <td>#SHIP_METHOD#</td>
+                        <td>#PSK#</td>
                         <td>#SEVK_TIPI#</td>
                         <td>#DESCRIPTION#</td>
                         <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=#SHIP_RESULT_ID#')">#FATURALANABILIR#</a></td>
