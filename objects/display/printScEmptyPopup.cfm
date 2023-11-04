@@ -13,12 +13,12 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
 
 
     </cfquery>
-     <table class="table" >
+     <table class="table table-borderless" >
         <tr>
             <td style="height:40px;"><b><cf_get_lang dictionary_id='33929.Ürün Detay'></b></td>
         </tr>
     </table>
-    <table class="table" style="width:190mm">
+    <table class="table table-borderless" style="width:190mm">
         <tr><td style="width:100px"></td>
             <td>Raf Kodu</td>
             <td   style="width:50px"><b><cf_get_lang dictionary_id='57518.Inventory Code'></b></td>
