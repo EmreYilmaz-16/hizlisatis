@@ -15,7 +15,7 @@ select count(*) AS RC from PBS_OFFER
 </cfif>
 <cfif  1 EQ 0 AND isDefined("FormData.OrderHeader.IS_FROM_PROJECT")>
 <CFSET IS_FROM_PROJECT =FormData.OrderHeader.IS_FROM_PROJECT>
-</CFELSE>
+<CFELSE>
 <CFSET IS_FROM_PROJECT =0>
 </CFIF>
 <cfloop array="#FormData.OrderMoney#" item="it" index="i">
