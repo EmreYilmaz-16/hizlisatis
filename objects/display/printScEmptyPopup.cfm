@@ -32,13 +32,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
             <cfoutput>
               
                <tr>
-                <cfscript>
-                    if(len(Get_Ship_Row.discount))indirim = Get_Ship_Row.discount; else indirim = 0;
-                    adim_1 = Get_Ship_Row.amount * Get_Ship_Row.price;
-                    adim_2 = (adim_1/100)*(100-indirim);
-                    adim_3 = adim_2*(Get_Ship_Row.tax/100);
-                    adim_4 = adim_2+adim_3;
-                </cfscript>
+               
                 <td style="text-align:center"><cf_workcube_barcode type="code128"  value="#Get_Ship_Row.BARCOD#" show="1" width="80" height="35"><br>
                     #BARCOD#
                 </td>
