@@ -3,7 +3,7 @@
     <cfif isDefined("attributes.is_from_project") and attributes.is_from_project eq 1>
         <input type="hidden" name="is_from_project" id="is_from_project" value="#attributes.is_from_project#">
     <cfelse>
-        <input type="hidden" name="is_from_project" id="is_from_project" value="#attributes.is_from_project#">
+        <input type="hidden" name="is_from_project" id="is_from_project" value="#0#">
     </cfif>
 </cfoutput>
 <table style="width:100%">
