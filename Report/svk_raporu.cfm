@@ -61,6 +61,7 @@
             <th>Satış Çalışanı</th>
             <th>SVK No</th>
             <th>Sipariş No</th>
+            <th>Sipariş Tarihi</th>
             <th>Aşama</th>
             <th>Ürün Kodu</th>
             <th>Ürün Adı</th>
@@ -95,6 +96,7 @@
                 FROM (
                     SELECT ORR.STOCK_ID
                         ,O.ORDER_NUMBER
+                        ,O.ORDER_DATE
                         ,O.COMPANY_ID
                         ,ORR.ORDER_ID
                         ,ORR.DESCRIPTION
@@ -190,9 +192,31 @@
                         <td>#SALE_EMP#</td>
                         <td>#DELIVER_PAPER_NO#</td>
                         <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#')">#ORDER_NUMBER#</a></td>
+                        <td>#dateFormat(ORDER_DATE,"dd/mm/yyyy")#</td>
                         <td>
+                            <cfif ORDER_ROW_CURRENCY eq -1>
+                            <cfelseif ORDER_ROW_CURRENCY eq -2>
+                                Açık
+                            <cfelseif ORDER_ROW_CURRENCY eq -3>
+                                Kapatıldı
+                            <cfelseif ORDER_ROW_CURRENCY eq -4>
+                                Kısmi Üretim 
+                            <cfelseif ORDER_ROW_CURRENCY eq -5>
+                                Üretim
+                            <cfelseif ORDER_ROW_CURRENCY eq -6>
+                                Sevk
+                            <cfelseif ORDER_ROW_CURRENCY eq -7>
+                                Eksik Teslimat
+                            <cfelseif ORDER_ROW_CURRENCY eq -8>
+                                Fazla Teslimat
+                            <cfelseif ORDER_ROW_CURRENCY eq -9>
+                                İptal
+                            <cfelseif ORDER_ROW_CURRENCY eq -10>
+                                Kapatıldı(Manuel)
+                            </cfif>
                             #ORDER_ROW_CURRENCY#
                         </td>
+                        
                         <td>#PRODUCT_CODE#</td>   
                         <td>#PRODUCT_NAME#</td>        
                         <td>#OFFERED_AMOUNT#</td>        
