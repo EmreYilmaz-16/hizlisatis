@@ -27,7 +27,7 @@
 	</cfquery>
 	<cfset attributes.product_code=get_product_cat.hierarchy&"."&attributes.urun_no>
 </cfif>
-
+<CFSET DONECEK_URUN_KODUM= attributes.product_code>
 <cfif IsDefined('uye_kodu') and len(uye_kodu)>
 	<!--- company_id --->
 	<cfquery name="GET_COMPANY" datasource="#DSN1#">
