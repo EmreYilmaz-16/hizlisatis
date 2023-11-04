@@ -2679,6 +2679,18 @@ function setFiyatA(row, price, money, modal_id) {
 }
 
 function ConvertRealProduct(pid, rwid) {
+  if(document.getElementById("is_virtual_" + rwid).value  =="0") {
+    openBoxDraggable(
+      "index.cfm?fuseaction=project.emptypopup_mini_tools&Message=Gerçek Ürüne Dönüşmüştür&tool_type=showMessage&AlertType=danger",
+      "1453162606"
+    );
+    var e=setTimeout(function(){
+      closeBoxDraggable("1453162606");
+    },5000)
+  
+  
+    
+  }
   $.ajax({
     url:
       "index.cfm?fuseaction=objects.emptypopup_createRealProductPbs&ajax=1&ajax_box_page=1&isAjax=1&VIRTUAL_PRODUCT_ID=" +
