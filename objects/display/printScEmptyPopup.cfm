@@ -54,6 +54,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
     $(document).ready(function (params) {
         $("#wrk_bug_add_div").remove();
         $("body").attr("style","background:white");
+        $("#wrk_main_layout").attr("class","container-fluid")
 
     })
 </script>
