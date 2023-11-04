@@ -53,7 +53,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
         </cfoutput>
         
 </cfif>
-<div class="noPrint">
+<div class="noPrint" style="position: absolute;bottom: 0;width: 100%;">
     <div style="display:flex;align-content: space-between;justify-content: space-between;">
 <a href="<cfoutput>#request.self#?fuseaction=epda.emptypopup_prtotm_ambar_sevk</cfoutput>"class="tableyazi btncls" style="text-align: center;border: solid 1px gray;padding: 1px;border-radius: 10px;"><img style="width:20px" src="../../images/e-pd/up30.png"> <h6 style="font-size:10pt">Ambardan Sevkiyata</h6></a>
 <a href="<cfoutput>#request.self#?fuseaction=epda.prtotm_mal_ambar</cfoutput>" class="tableyazi btncls" style="text-align: center;border: solid 1px gray;padding: 1px;border-radius: 10px;"><img style="width:20px" src="../../images/e-pd/down30.png"><h6 style="font-size:10pt">Mal Kabulden Ambara</h6></a>
