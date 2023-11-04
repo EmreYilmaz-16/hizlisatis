@@ -13,7 +13,7 @@ select count(*) AS RC from PBS_OFFER
 <cfif session.ep.userid eq 1146>
 
 </cfif>
-<cfif  1 EQ 0 AND isDefined("FormData.OrderHeader.IS_FROM_PROJECT")>
+<cfif  isDefined("FormData.OrderHeader.IS_FROM_PROJECT")>
 <CFSET IS_FROM_PROJECT =FormData.OrderHeader.IS_FROM_PROJECT>
 <CFELSE>
 <CFSET IS_FROM_PROJECT =0>
