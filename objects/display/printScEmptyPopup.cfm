@@ -25,7 +25,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
             <td   style="width:50px"><b><cf_get_lang dictionary_id='57635.Miktar'></b></td>
             <td   style="width:50px"><b><cf_get_lang dictionary_id='57636.Adet'></b></td>
         </tr>
-        <cfoutput query="Get_Ship_Row" group="SSLT">
+        <cfoutput query="getRows" group="SSLT">
             
         <tr><th colspan="5">#DEPARTMENT_HEAD#- #COMMENT#</th></tr>
             
