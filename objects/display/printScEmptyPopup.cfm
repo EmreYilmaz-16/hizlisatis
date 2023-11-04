@@ -2,7 +2,7 @@
 <cfif attributes.printType eq "STOK_FIS">
     <cfquery name="getRows" datasource="#dsn2#">
         
-	SELECT SR.*,SL.COMMENT,D.DEPARTMENT_HEAD,PP.SHELF_CODE,SL.LOCATION_ID,SL.DEPARTMENT_ID,S.BARCOD,CONVERT(varchar,SL.DEPARTMENT_ID)+'-'+CONVERT(VARCHAR,SL.LOCATION_ID) AS SSLT,S.STOCK_CODE FROM #DSN2#.STOCK_FIS_ROW AS SR 
+	SELECT SR.*,SL.COMMENT,D.DEPARTMENT_HEAD,S.PRODUCT_NAME,PP.SHELF_CODE,SL.LOCATION_ID,SL.DEPARTMENT_ID,S.BARCOD,CONVERT(varchar,SL.DEPARTMENT_ID)+'-'+CONVERT(VARCHAR,SL.LOCATION_ID) AS SSLT,S.STOCK_CODE FROM #DSN2#.STOCK_FIS_ROW AS SR 
 LEFT JOIN workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR ON PPR.STOCK_ID=SR.STOCK_ID
 LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
 LEFT JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID
@@ -38,7 +38,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
                 </td>
                 <td>#SHELF_CODE#</td>
                 <td>#getRows.Stock_Code#</td>
-                <td>#left(getRows.Name_Product,53)#</td>
+                <td>#left(getRows.PRODUCT_NAME,53)#</td>
                 <td  style="text-align:right;">#getRows.Amount#</td>
                 <td>#getRows.Unit#</td>
             </tr>
