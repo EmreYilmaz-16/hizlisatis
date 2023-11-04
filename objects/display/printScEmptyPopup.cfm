@@ -51,7 +51,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
             </cfoutput>
             
         </cfoutput>
-        <cfdump var="#getHTTPRequestData()#">
+        
 </cfif>
 <div class="noPrint">
     <div style="display:flex;align-content: space-between;justify-content: space-between;">
