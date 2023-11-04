@@ -13,6 +13,11 @@ select count(*) AS RC from PBS_OFFER
 <cfif session.ep.userid eq 1146>
 
 </cfif>
+<cfif  1 EQ 0 AND isDefined("FormData.OrderHeader.IS_FROM_PROJECT")>
+<CFSET IS_FROM_PROJECT =FormData.OrderHeader.IS_FROM_PROJECT>
+</CFELSE>
+<CFSET IS_FROM_PROJECT =0>
+</CFIF>
 <cfloop array="#FormData.OrderMoney#" item="it" index="i">
     <cfset "attributes._hidden_rd_money_#i#"=it.MONEY>
 
@@ -514,7 +519,7 @@ pos 2 <br>
     window.opener.location.href="/index.cfm?fuseaction=sales.emptypopup_form_add_upd_fast_sale_partner&event=upd&offer_id=<cfoutput>#offfr_id#</cfoutput>"
     </cfif>
     
-    <cfif session.ep.userid neq 1146>
+    <cfif IS_FROM_PROJECT neq 1>
     this.close();
 </cfif>
 </script>

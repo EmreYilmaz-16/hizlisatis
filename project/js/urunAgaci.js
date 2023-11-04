@@ -1919,7 +1919,7 @@ function convertToOffer() {
   mapForm.target = "Map";
   mapForm.method = "POST"; // or "post" if appropriate
   mapForm.action =
-    "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert";
+    "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert&is_from_project=1";
 
   var mapInput = document.createElement("input");
   mapInput.type = "hidden";

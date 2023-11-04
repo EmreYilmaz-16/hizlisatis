@@ -1,5 +1,11 @@
 
-<cfoutput><input type="hidden" name="order_id" id="order_id" value="#attributes.offer_id#"></cfoutput>
+<cfoutput><input type="hidden" name="order_id" id="order_id" value="#attributes.offer_id#">
+    <cfif isDefined("attributes.is_from_project") and attributes.is_from_project eq 1>
+        <input type="hidden" name="is_from_project" id="is_from_project" value="#attributes.is_from_project#">
+    <cfelse>
+        <input type="hidden" name="is_from_project" id="is_from_project" value="#attributes.is_from_project#">
+    </cfif>
+</cfoutput>
 <table style="width:100%">
     <tr>
         <td style="width:45%">

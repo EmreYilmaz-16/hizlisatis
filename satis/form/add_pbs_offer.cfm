@@ -24,6 +24,7 @@
 <cfif isDefined("attributes.act") and attributes.act eq "copy">
 <cfinclude template="../includes/teklifKopyalamaIslemleri.cfm">
 <cfelseif isDefined("attributes.act") and attributes.act eq "convert">
+    
     <cfinclude template="../includes/teklifDonustur.cfm">
 </cfif>
 <script src="/AddOns/Partner/satis/js/basket_pc.js"></script>

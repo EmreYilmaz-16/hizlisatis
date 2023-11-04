@@ -1593,6 +1593,7 @@ function GetBasketData() {
   }
 
   var COMPANY_ID = document.getElementById("company_id").value;
+  var IS_FROM_PROJECT = document.getElementById("is_from_project").value;
   var MEMBER_NAME = document.getElementById("company_name").value;
   var PAYMETHOD = document.getElementById("PAYMETHOD").value;
   var PAYMETHOD_ID = document.getElementById("PAYMETHOD_ID").value;
@@ -1693,6 +1694,7 @@ function GetBasketData() {
     OFFER_DESCRIPTION: OFFER_DESCRIPTION,
     PROJECT_NAME: PROJECT_NAME,
     PROJECT_ID: PROJECT_ID,
+    IS_FROM_PROJECT,IS_FROM_PROJECT
   };
 
   var OrderFooter = {
