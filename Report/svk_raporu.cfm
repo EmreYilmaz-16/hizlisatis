@@ -214,7 +214,7 @@
                             <cfelseif ORDER_ROW_CURRENCY eq -10>
                                 Kapatıldı(Manuel)
                             </cfif>
-                            #ORDER_ROW_CURRENCY#
+                            
                         </td>
                         
                         <td>#PRODUCT_CODE#</td>   
