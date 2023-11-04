@@ -87,6 +87,7 @@
                     ,S.PRODUCT_NAME
                     ,SM.SHIP_METHOD
                     ,SAMOU.DEPO_AMOUNT
+                    ,SM.*
                     ,(
                         SELECT D.DEPARTMENT_HEAD + ' ' + SL.COMMENT
                         FROM workcube_metosan.STOCKS_LOCATION AS SL
@@ -184,7 +185,7 @@
                 </cfif>
                 ORDER BY SHIP_RESULT_ID
                 </cfquery>
-                
+                <cfdump var="#getd#">
                 <cfoutput query="getd">
                     <tr>
                         <td>#NICKNAME#</td>
