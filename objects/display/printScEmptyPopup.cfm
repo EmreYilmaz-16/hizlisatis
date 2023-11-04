@@ -33,14 +33,14 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
               
                <tr>
                
-                <td style="text-align:center"><cf_workcube_barcode type="code128"  value="#Get_Ship_Row.BARCOD#" show="1" width="80" height="35"><br>
+                <td style="text-align:center"><cf_workcube_barcode type="code128"  value="#getRows.BARCOD#" show="1" width="80" height="35"><br>
                     #BARCOD#
                 </td>
                 <td>#SHELF_CODE#</td>
-                <td>#Get_Ship_Row.Stock_Code#</td>
-                <td>#left(Get_Ship_Row.Name_Product,53)#</td>
-                <td  style="text-align:right;">#Get_Ship_Row.Amount#</td>
-                <td>#Get_Ship_Row.Unit#</td>
+                <td>#getRows.Stock_Code#</td>
+                <td>#left(getRows.Name_Product,53)#</td>
+                <td  style="text-align:right;">#getRows.Amount#</td>
+                <td>#getRows.Unit#</td>
             </tr>
             </cfoutput>
             
