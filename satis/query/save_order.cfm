@@ -19,7 +19,7 @@ select count(*) AS RC from PBS_OFFER
 <CFSET IS_FROM_PROJECT =0>
 </CFIF>
 <cfdump var="#IS_FROM_PROJECT#">
-<cfabort>
+
 <cfloop array="#FormData.OrderMoney#" item="it" index="i">
     <cfset "attributes._hidden_rd_money_#i#"=it.MONEY>
 
@@ -523,6 +523,8 @@ pos 2 <br>
     
     <cfif IS_FROM_PROJECT neq 1>
     this.close();
+    <cfelse>
+    window.opener.location.reload();
 </cfif>
 </script>
 <!----------
