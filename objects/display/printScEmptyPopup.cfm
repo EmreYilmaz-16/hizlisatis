@@ -1,4 +1,5 @@
-﻿
+﻿<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 <cfif attributes.printType eq "STOK_FIS">
     <cfquery name="getRows" datasource="#dsn2#">
         
@@ -17,7 +18,7 @@ WHERE FIS_ID=#attributes.ACTION_ID# ORDER BY SL.DEPARTMENT_ID,SL.LOCATION_ID
             <td style="height:40px;"><b><cf_get_lang dictionary_id='33929.Ürün Detay'></b></td>
         </tr>
     </table>
-    <table class="print_border" style="width:190mm">
+    <table class="table" style="width:190mm">
         <tr><td style="width:100px"></td>
             <td>Raf Kodu</td>
             <td   style="width:50px"><b><cf_get_lang dictionary_id='57518.Inventory Code'></b></td>
