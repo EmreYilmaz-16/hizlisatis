@@ -1521,6 +1521,7 @@ function sellinputAllVal(el) {
 function GetBasketData() {
   var rows = document.getElementsByClassName("sepetRow");
   var OrderRows = new Array();
+  var HATALARIM=0;
   for (let Old_rw_id = 1; Old_rw_id <= rows.length; Old_rw_id++) {
     var product_name = document.getElementById(
       "product_name_" + Old_rw_id
@@ -1562,8 +1563,11 @@ function GetBasketData() {
     if (!generalParamsSatis.workingParams.IS_ZERO_QUANTITY) {
       var p = filterNum(price);
       if (p <= 0) {
+        
+        HATALARIM++;
+      }
+      if(HATALARIM>0){
         alert("0 Fiyatlı Kayıt Yapamazsıznız");
-        return false;
       }
     }
     var Obj = {
