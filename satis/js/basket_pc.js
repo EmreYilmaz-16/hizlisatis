@@ -1694,7 +1694,8 @@ function GetBasketData() {
     OFFER_DESCRIPTION: OFFER_DESCRIPTION,
     PROJECT_NAME: PROJECT_NAME,
     PROJECT_ID: PROJECT_ID,
-    IS_FROM_PROJECT,IS_FROM_PROJECT
+    IS_FROM_PROJECT,
+    IS_FROM_PROJECT,
   };
 
   var OrderFooter = {
@@ -1759,6 +1760,8 @@ function SaveOrder(el) {
         BasketData
       );
     }
+  } else {
+    el.removeAttribute("disabled");
   }
 }
 function GruplaCanimBenim() {
@@ -2679,17 +2682,14 @@ function setFiyatA(row, price, money, modal_id) {
 }
 
 function ConvertRealProduct(pid, rwid) {
-  if(document.getElementById("is_virtual_" + rwid).value  =="0") {
+  if (document.getElementById("is_virtual_" + rwid).value == "0") {
     openBoxDraggable(
       "index.cfm?fuseaction=project.emptypopup_mini_tools&Message=Gerçek Ürüne Dönüşmüştür&tool_type=showMessage&AlertType=danger",
       "1453162606"
     );
-    var e=setTimeout(function(){
+    var e = setTimeout(function () {
       closeBoxDraggable("1453162606");
-    },5000)
-  
-  
-    
+    }, 5000);
   }
   $.ajax({
     url:
