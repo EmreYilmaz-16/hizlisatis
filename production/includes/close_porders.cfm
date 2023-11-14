@@ -15,6 +15,7 @@ SELECT * FROM WORKSTATIONS_PRODUCTS WHERE STOCK_ID=#main_stock_id#
 </cfquery>
 
 <cfset pws_id=GETSWS.WS_ID>
+<cfset attributes.pws_id=GETSWS.WS_ID>
 
 
 <CFSET NEW_FINISH_DATE_=dateAdd("n", 30, REAL_START_DATE)>
