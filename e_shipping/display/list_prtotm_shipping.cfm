@@ -1012,7 +1012,7 @@
                         <select name="sales_departments" id="sales_departments" style="width:130px;height:20px">
                             <option value=""><cf_get_lang_main no='2234.Lokasyon'></option>
                             <cfoutput query="get_department_name">
-                                <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments is '#department_id#-#location_id#'>selected</cfif>>#department_head#-#comment#</option>
+                                <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments eq '#department_id#-#location_id#'>selected</cfif>>#department_head#-#comment#</option>
                             </cfoutput>
                         </select>
                     </cf_object_td>
