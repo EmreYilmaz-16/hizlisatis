@@ -1013,7 +1013,7 @@
                             <option value=""><cf_get_lang_main no='2234.Lokasyon'></option>
                             <cfoutput query="get_department_name">
                                 <cfset sla="#department_id#-#location_id#">
-                                <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments eq sla>selected</cfif>>#department_head#-#comment#</option>
+                               <cftry> <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments eq sla>selected</cfif>>#department_head#-#comment#</option><cfcatch></cfcatch></cftry>
                             </cfoutput>
                         </select>
                     </cf_object_td>
