@@ -2,6 +2,7 @@
 <cftry>
 <cfsavecontent  variable="control5">
 	<cfdump var="#arguments.FORM_DATA.header.order_id#">
+	test
    </cfsavecontent>
    <cffile action="write" file = "c:\PBS\EMRE_YILMAZ_16.html" output="#control5#"></cffile>
 <cfquery name="GET_MONEY_CREDITS" datasource="workcube_metosan_1">
