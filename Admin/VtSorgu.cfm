@@ -8,8 +8,8 @@
 
 <cfparam  name="attributes.sql_sorgu" default="">
     <cfquery name="getT" datasource="#dsn#">
-    select ST.name,ss.name as schema_namea from workcube_metosan.sys.tables AS ST 
-LEFT JOIN workcube_metosan.SYS.schemas AS SS ON SS.schema_id=ST.schema_id
+    select ST.name,ss.name as schema_namea from #dsn#.sys.tables AS ST 
+LEFT JOIN #dsn#.SYS.schemas AS SS ON SS.schema_id=ST.schema_id
 order by st.schema_id
 
     </cfquery>
