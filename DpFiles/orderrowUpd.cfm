@@ -1,4 +1,5 @@
 ﻿
+<cftry>
 <cfsavecontent  variable="control5">
 	<cfdump var="#arguments.FORM_DATA.header.order_id#">
    </cfsavecontent>
@@ -11,5 +12,5 @@
 	WHERE        
     	ORDER_ID =#arguments.FORM_DATA.header.order_id#
 </cfquery>
-
-
+<cfcatch></cfcatch>
+</cftry>
