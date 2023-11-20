@@ -110,8 +110,14 @@
     </cfquery>
     <cfquery name="Get_Offer_Plus" datasource="#dsn3#">
         SELECT
-            PROPERTY1 AS ILGILI,
-            PROPERTY2 AS NOTLAR
+            PROPERTY1 AS EPOSTA,
+            PROPERTY2 AS ILGILI,
+            PROPERTY3 AS NOTLAR,
+            PROPERTY4 AS TESLIM,
+            PROPERTY5 AS ODEME,
+            PROPERTY6 AS OPSIYON,
+            PROPERTY7 AS ACIKLAMA
+            
         FROM
             PBS_OFFER_INFO_PLUS
         WHERE
@@ -326,7 +332,7 @@
                                     <table style="width:100%;" align="center" border="1">
                                         <tr>
                                             <td colspan="2" style="text-align:center"><cfif isDefined("attributes.method")><img src="<cfif isdefined("attributes.method")>http://erp.metosan.com.tr/documents/settings/3B355075-DEF5-E025-AE27746DDF7BCBF8.png<cfelse>http://erp.metosan.com.tr/documents/thumbnails/middle/A1A06B48-C977-8625-AA41F2A8941A0F13.PNG</cfif>" border="0" style="max-width: 250px;height: 88px;width: 270px;"></cfif></td>
-                                            <td colspan="4" style="text-align:center;vertical-align:middle;max-width: 300px;width: 300px;"><h2 style="margin-top: 15px;">SATIŞ TEKLİF FORMU</h2></td>
+                                            <td colspan="4" style="text-align:center;vertical-align:middle;max-width: 300px;width: 300px;"><h2 style="margin-top: 15px;">PROJE TEKLİF FORMU</h2></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -350,7 +356,7 @@
         
                                             <td><b>E-Posta</b></td>
                                             <td><b>:</b></td>
-                                            <td><cfif isDefined("Member_Mail")><cfoutput>#Member_Mail#</cfoutput></cfif></td>
+                                            <td><cfoutput>#Get_Offer_Plus.EPOSTA#</cfoutput></td>
                                             
                                             <td><b>Ref. No</b></td>
                                             <td>:</td>
