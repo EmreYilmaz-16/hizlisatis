@@ -79,7 +79,7 @@
                 PP.PROJECT_ID,
                 O.*
             FROM 
-                workcube_metosan_1.PBS_OFFER O , 
+                #DSN3#.PBS_OFFER O , 
                 workcube_metosan.EMPLOYEES E,
 				workcube_metosan.PRO_PROJECTS AS PP 
             WHERE 
@@ -109,6 +109,160 @@
         ORDER BY
             ORR.OFFER_ROW_ID
     </cfquery>
+        <cfquery name="Get_Offer_Rows2" datasource="#dsn3#">
+         SELECT T.AMOUNT
+	,T.PRICE_PBS
+	,T.OTHER_MONEY_PBS
+	,T.DISCOUNT_PBS
+	,S.STOCK_ID
+	,S.PRODUCT_CODE
+	,S.PRODUCT_NAME
+    ,S.PRODUCT_ID    
+	,PB.BRAND_NAME
+	,PU.MAIN_UNIT
+FROM (
+	SELECT TOP 10 *
+	FROM #DSN3#.PRODUCT_TREE
+	WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID# ---- 1.SEVİYE
+	
+	UNION ALL
+	
+	SELECT *
+	FROM #DSN3#.PRODUCT_TREE
+	WHERE STOCK_ID IN (
+			SELECT RELATED_ID
+			FROM #DSN3#.PRODUCT_TREE
+			WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID#
+			) ----2.SEVİYE
+	
+	UNION ALL
+	
+	SELECT *
+	FROM #DSN3#.PRODUCT_TREE
+	WHERE STOCK_ID IN (
+			SELECT RELATED_ID
+			FROM #DSN3#.PRODUCT_TREE
+			WHERE STOCK_ID IN (
+					SELECT RELATED_ID
+					FROM #DSN3#.PRODUCT_TREE
+					WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID#
+					)
+			) ----3.SEVİYE
+	
+	UNION ALL
+	
+	SELECT *
+	FROM #DSN3#.PRODUCT_TREE
+	WHERE STOCK_ID IN (
+			SELECT RELATED_ID
+			FROM #DSN3#.PRODUCT_TREE
+			WHERE STOCK_ID IN (
+					SELECT RELATED_ID
+					FROM #DSN3#.PRODUCT_TREE
+					WHERE STOCK_ID IN (
+							SELECT RELATED_ID
+							FROM #DSN3#.PRODUCT_TREE
+							WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID#
+							)
+					)
+			) ----4.SEVİYE
+	
+	UNION ALL
+	
+	SELECT *
+	FROM #DSN3#.PRODUCT_TREE
+	WHERE STOCK_ID IN (
+			SELECT RELATED_ID
+			FROM #DSN3#.PRODUCT_TREE
+			WHERE STOCK_ID IN (
+					SELECT RELATED_ID
+					FROM #DSN3#.PRODUCT_TREE
+					WHERE STOCK_ID IN (
+							SELECT RELATED_ID
+							FROM #DSN3#.PRODUCT_TREE
+							WHERE STOCK_ID IN (
+									SELECT RELATED_ID
+									FROM #DSN3#.PRODUCT_TREE
+									WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID#
+									)
+							)
+					)
+			) ----5.SEVİYE
+	) AS T
+INNER JOIN #DSN3#.STOCKS AS S ON S.STOCK_ID = T.RELATED_ID
+LEFT JOIN #DSN3#.PRODUCT_BRANDS AS PB ON PB.BRAND_ID = S.BRAND_ID
+LEFT JOIN #DSN3#.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID
+	AND PU.IS_MAIN = 1
+WHERE RELATED_ID NOT IN (
+		SELECT STOCK_ID
+		FROM #DSN3#.PRODUCT_TREE
+		WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID# ---- 1.SEVİYE
+		
+		UNION ALL
+		
+		SELECT STOCK_ID
+		FROM #DSN3#.PRODUCT_TREE
+		WHERE STOCK_ID IN (
+				SELECT RELATED_ID
+				FROM #DSN3#.PRODUCT_TREE
+				WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID#
+				) ----2.SEVİYE
+		
+		UNION ALL
+		
+		SELECT STOCK_ID
+		FROM #DSN3#.PRODUCT_TREE
+		WHERE STOCK_ID IN (
+				SELECT RELATED_ID
+				FROM #DSN3#.PRODUCT_TREE
+				WHERE STOCK_ID IN (
+						SELECT RELATED_ID
+						FROM #DSN3#.PRODUCT_TREE
+						WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID#
+						)
+				) ----3.SEVİYE
+		
+		UNION ALL
+		
+		SELECT STOCK_ID
+		FROM #DSN3#.PRODUCT_TREE
+		WHERE STOCK_ID IN (
+				SELECT RELATED_ID
+				FROM #DSN3#.PRODUCT_TREE
+				WHERE STOCK_ID IN (
+						SELECT RELATED_ID
+						FROM #DSN3#.PRODUCT_TREE
+						WHERE STOCK_ID IN (
+								SELECT RELATED_ID
+								FROM #DSN3#.PRODUCT_TREE
+								WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID#
+								)
+						)
+				) ----4.SEVİYE
+		
+		UNION ALL
+		
+		SELECT STOCK_ID
+		FROM #DSN3#.PRODUCT_TREE
+		WHERE STOCK_ID IN (
+				SELECT RELATED_ID
+				FROM #DSN3#.PRODUCT_TREE
+				WHERE STOCK_ID IN (
+						SELECT RELATED_ID
+						FROM #DSN3#.PRODUCT_TREE
+						WHERE STOCK_ID IN (
+								SELECT RELATED_ID
+								FROM #DSN3#.PRODUCT_TREE
+								WHERE STOCK_ID IN (
+										SELECT RELATED_ID
+										FROM #DSN3#.PRODUCT_TREE
+										WHERE STOCK_ID = #Get_Offer_Rows.STOCK_ID#
+										)
+								)
+						)
+				) ----5.SEVİYE
+		)
+        </cfquery>
     <cfquery name="Get_Offer_Plus" datasource="#dsn3#">
         SELECT
             PROPERTY1 AS EPOSTA,
@@ -424,80 +578,18 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                 <td style="background-color: #79ff79;"><b>Teslim Tarihi</b></td>
                             </tr>
                             
-                            <cfoutput query="Get_Offer_Rows" startrow="#Row_Start#" maxrows="#Row_End#">
+                            <cfoutput query="Get_Offer_Rows2" startrow="#Row_Start#" maxrows="#Row_End#">
                                 <cfif not IsDefined('ilk_urun_id')><cfset ilk_urun_id=Get_Offer_Rows.PRODUCT_ID></cfif>
                                
-                                <cfscript>
-                                    if (not len(QUANTITY)) QUANTITY = 1;
-                                    if (not len(PRICE)) 
-                                    price = 0;
-                                    tax_percent = TAX;
-                                    if (not len(discount_1)) indirim1 = 0; else indirim1 = discount_1;
-                                    if (not len(discount_2)) indirim2 = 0; else indirim2 = discount_2;
-                                    if (not len(discount_3)) indirim3 = 0; else indirim3 = discount_3;
-                                    if (not len(discount_4)) indirim4 = 0; else indirim4 = discount_4;
-                                    if (not len(discount_5)) indirim5 = 0; else indirim5 = discount_5;
-                                    indirim6 = 0;
-                                    indirim7 = 0;
-                                    indirim8 = 0;
-                                    indirim9 = 0;
-                                    indirim10 = 0;
-                                    indirim_carpan = (100-indirim1) * (100-indirim2) * (100-indirim3) * (100-indirim4) * (100-indirim5);
-                                    
-                                    other_money_value = price_other;	
-                                    other_money_price = OTHER_MONEY_VALUE;
-                                    //net_maliyet = COST_PRICE;
-                                    // marj = MARJ;
-                                    if(len(price_other))
-                                    other_money_rowtotal = price_other;
-                                    else
-                                    other_money_rowtotal = price;
-                                    row_total = QUANTITY * price;
-                                    row_nettotal = wrk_round((row_total/10000000000) * indirim_carpan);
-                                    // row_taxtotal = wrk_round(row_nettotal * (tax_percent/100));
-                                    row_taxtotal = 0;
-                                    row_lasttotal = row_nettotal + row_taxtotal;
-                                    sepet_total = sepet_total + row_total; //subtotal_
-                                    sepet_toplam_indirim = sepet_toplam_indirim + wrk_round(row_total) - wrk_round(row_nettotal); //discount_
-                                    sepet_total_tax = sepet_total_tax + row_taxtotal; //totaltax_
-                                    sepet_net_total = sepet_net_total + row_lasttotal; //nettotal_
-                                    total=(row_nettotal/QUANTITY)+row_taxtotal;
-                                    
-                                    row_nettotal_doviz = (row_nettotal/QUANTITY) / evaluate("Offer_Money_#Other_Money#");
-                                    total_doviz = ((row_nettotal)+row_taxtotal) / evaluate("Offer_Money_#Other_Money#");
-
-                                    sepet_net_total_2 = sepet_net_total_2 + ((row_nettotal)+row_taxtotal);
-                                    
-
-                                    if(isDefined("total_#other_money#"))
-                                    {
-                                        "total_#other_money#"  = evaluate("total_#other_money#") + total_doviz;
-                                    }
-                                    else
-                                    {
-                                        "total_#other_money#" = total_doviz;
-                                    }
-                                </cfscript>
+                               
                                 <tr style="line-height:10px; important!"><!---style="line-height:10px; important!" --->
                                     <td>#CurrentRow#</td>
-                                    <td>
-                                       
-                                            <cfif len(AAAPNMANE)>
-                                                #left(AAAPNMANE, 60)#
-                                            <cfelse>
-                                                #left(PRODUCT_NAME, 60)#
-                                            </cfif>
-                                        
+                                    <td>                                                                                
+                                         #left(PRODUCT_NAME, 60)#                                                                                   
                                     </td>
                                     <td>#left(Brand_Name,60)#</td>
                                     <td style="text-align:right;">#Quantity#</td>
-                                    <td>#Unit#</td>
-                                    <td style="text-align:right;">#tlFormat(Price_Other - (Price_Other*discount_1 / 100))#</td>
-                                    <td><cfif Other_Money eq "USD">$<cfelseif Other_Money eq "EUR">€<cfelse>#Other_Money#</cfif></td>
-                                    <!---<td style="text-align:center">% #discount_1#</td>--->
-                                    <td style="text-align:right;">#tlFormat((Price_Other - (Price_Other*discount_1 / 100)) * Quantity)#<!--- #tlFormat(total_doviz)#---></td>
-                                    <td><cfif Other_Money eq "USD">$<cfelseif Other_Money eq "EUR">€<cfelse>#Other_Money#</cfif></td>
-                                    <td style="text-align:right;"><cfif Len(DELIVER_DATE)>#dateFormat(DELIVER_DATE, 'dd.mm.yyyy')#<cfelse>#dateFormat(Get_Offer.DELIVERDATE, "dd.mm.yyyy")#</cfif></td>
+                                    <td>#Unit#</td>                                
                                 </tr>
                                 <cfif Len(DETAIL_INFO_EXTRA)>
                                     <tr>
@@ -516,12 +608,12 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                         <tr>
                                             <td colspan="5"></td>
                                             <td colspan="2">
-                                                <b>Toplam <cfif Money_Type eq "USD">$<cfelseif Money_Type eq "EUR">€<cfelse>#Money_Type#</cfif> Tutar</b>
+                                                <b>Toplam  Tutar</b>
                                             </td>
                                             <td>
-                                                <b>#tlFormat(evaluate("total_#Money_Type#"))#</b>
+                                                <b></b>
                                             </td>
-                                            <td><cfif Money_Type eq "USD">$<cfelseif Money_Type eq "EUR">€<cfelse>#Money_Type#</cfif></td>
+                                            <td></td>
                                             <td></td>
                                         </tr>
                                     </cfif>
@@ -533,7 +625,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                     </td>
                                     <td>
                                         <cfoutput>
-                                            <b>#tlFormat(sepet_net_total_2)#</b> 
+                                            <b></b> 
                                         </cfoutput>
                                     </td>
                                     <td>
