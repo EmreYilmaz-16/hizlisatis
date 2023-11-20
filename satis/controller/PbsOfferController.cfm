@@ -39,7 +39,7 @@
 			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['print']['text'] = 'Yazdır';
 			tabMenuStruct['#fuseactController#']['tabMenus']['det']['icons']['print']['onClick'] = "window.open('#request.self#?fuseaction=objects.popup_print_files&action=#attributes.fuseaction#&action_id=#url.offer_id#&print_type=1451&action_type=','WOC');";
 		
-			tabMenuStruct['#attributes.fuseaction#']['tabMenus']['det']['icons']['fa fa-info-circle']['text'] = '#getlang('main',398)#';
+			tabMenuStruct['#attributes.fuseaction#']['tabMenus']['det']['icons']['fa fa-info-circle']['text'] = 'Ek Bilgi';
 			tabMenuStruct['#attributes.fuseaction#']['tabMenus']['det']['icons']['fa fa-info-circle']['onClick'] = "windowopen('#request.self#?fuseaction=objects.popup_list_comp_add_info&info_id=#url.offer_id#&type_id=1453','list');";
 		}
 		tabMenuData = SerializeJSON(tabMenuStruct['#attributes.fuseaction#']['tabMenus']);
