@@ -588,7 +588,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                          #left(PRODUCT_NAME, 60)#                                                                                   
                                     </td>
                                     <td>#left(Brand_Name,60)#</td>
-                                    <td style="text-align:right;">#Quantity#</td>
+                                    <td style="text-align:right;">#AMOUNT#</td>
                                     <td>#Unit#</td>                                
                                 </tr>
                                 <cfif Len(DETAIL_INFO_EXTRA)>
