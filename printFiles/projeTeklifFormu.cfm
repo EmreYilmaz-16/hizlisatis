@@ -571,11 +571,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                 <td style="background-color: #79ff79;"><b>SN</b></td>
                                 <td style="background-color: #79ff79; width:45%;"><b>Malzeme Adı</b></td>
                                 <td style="background-color: #79ff79;"><b>Marka</b></td>
-                                <td style="background-color: #79ff79;" colspan="2"><b>Miktar</b></td>
-                                <td style="background-color: #79ff79;" colspan="2"><b>Net Birim Fiyat</b></td>
-                                <!---<td style="background-color: #79ff79;"><b>İskonto</b></td>--->
-                                <td style="background-color: #79ff79;" colspan="2"><b>Net Toplam Tutar</b></td>
-                                <td style="background-color: #79ff79;"><b>Teslim Tarihi</b></td>
+                                <td style="background-color: #79ff79;" colspan="2"><b>Miktar</b></td>                               
                             </tr>
                             
                             <cfoutput query="Get_Offer_Rows2" startrow="#Row_Start#" maxrows="#Row_End#">
