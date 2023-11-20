@@ -610,8 +610,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                     </cfif>
                                 </cfoutput>
                                 <tr>
-                                    <td colspan="5"></td>
-                                    <td colspan="2">
+                                <td colspan="2">
                                         <b>Bugünkü Kura Göre Genel Toplam TL Tutar</b>
                                     </td>
                                     <td>
