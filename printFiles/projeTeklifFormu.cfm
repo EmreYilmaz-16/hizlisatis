@@ -76,6 +76,7 @@
                 E.EMPLOYEE_EMAIL,	
 				PP.PROJECT_HEAD,
 				PP.PROJECT_NUMBER,
+                PP.PROJECT_ID,
                 O.*
             FROM 
                 workcube_metosan_1.PBS_OFFER O , 
@@ -195,6 +196,11 @@
                 CONSUMER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#Get_Offer.Consumer_Id#">
         </cfquery>
     </cfif>
+    <cfquery name="getProject" datasource="#dsn#">
+        SELECT PROJECT_NUMBER,PROJECT_HEAD,SMC.MAIN_PROCESS_CAT,PP.PROJECT_EMP_ID FROM workcube_metosan.PRO_PROJECTS AS PP
+INNER JOIN workcube_metosan.SETUP_MAIN_PROCESS_CAT AS SMC ON SMC.MAIN_PROCESS_CAT_ID=PP.PROCESS_CAT
+WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
+    </cfquery>
     <cfif isdefined("Get_Member_Info") and Get_Member_Info.RecordCount>
         <cfset Member_Code = Get_Member_Info.Member_Code>
         <cfset Member_Name = Get_Member_Info.Member_Name>
@@ -266,7 +272,7 @@
                 EMPLOYEES E
                 LEFT JOIN EMPLOYEE_POSITIONS EP ON EP.EMPLOYEE_ID = E.EMPLOYEE_ID
             WHERE
-                E.EMPLOYEE_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#Get_Offer.Sales_Emp_Id#">
+                E.EMPLOYEE_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProject.PROJECT_EMP_ID#">
         </cfquery>
     </cfif>
 
@@ -370,7 +376,7 @@
                                         <tr>
                                             <td><b>Konu</b></td>
                                             <td><b>:</b></td>
-                                            <td colspan="7"><cfoutput>#Get_Offer.Offer_Head#</cfoutput></td>
+                                            <td colspan="7"><cfoutput>#getProject.MAIN_PROCESS_CAT# - #getProject.PROJECT_HEAD# - #getProject.PROJECT_NUMBER#</cfoutput></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -380,7 +386,7 @@
                                     <tr>
                                         <td colspan="3">
                                             <p style="margin-left:20px">
-                                                Firmamızdan talep etmiş olduğunuz ürünler ile ilgili teklifimiz aşağıda dikkatinize sunulmuştur. Teklifimizin olumlu karşılanacağını ümit eder, çalışmalarınızda başarılar dileriz.<br>
+                                                Firmamızdan talep etmiş olduğunuz <cfoutput>#getProject.MAIN_PROCESS_CAT#</cfoutput> ile ilgili teklifimiz aşağıda dikkatinize sunulmuştur. Teklifimizin olumlu karşılanacağını ümit eder, çalışmalarınızda başarılar dileriz.<br>
                                                 Saygılarımızla,
                                             </p>
                                         </td>
