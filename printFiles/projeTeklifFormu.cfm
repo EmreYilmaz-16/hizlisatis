@@ -589,14 +589,9 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                     </td>
                                     <td>#left(Brand_Name,60)#</td>
                                     <td style="text-align:right;">#AMOUNT#</td>
-                                    <td>#Unit#</td>                                
+                                    <td>#MAIN_UNIT#</td>                                
                                 </tr>
-                                <cfif Len(DETAIL_INFO_EXTRA)>
-                                    <tr>
-                                        <td colspan="2">#DETAIL_INFO_EXTRA#</td>
-                                        <td colspan="8"></td>
-                                    </tr>
-                                </cfif>
+                              
                             </cfoutput>
                             
             <cfif Page_Count neq j>
