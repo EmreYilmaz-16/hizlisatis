@@ -638,6 +638,8 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                         </td>
                     </tr>
                     <tr>
+                       
+                        
                         <td>
                             <table border="1" style="width: 98.8%;" align="center">
                                 <tr>
@@ -648,26 +650,26 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                 <tr>
                                     <td><b>Teslim Yeri</b></td>
                                     <td>:</td>
-                                    <td colspan="3"><cfoutput>#Get_Offer.SHIP_ADDRESS#</cfoutput></td>
+                                    <td colspan="3"><cfoutput>#Get_Offer_Plus.TESLIM#</cfoutput></td>
                                 </tr>
                                 <tr>
                                     <td><b>Ödeme Şekli</b></td>
                                     <td>:</td>
                                     <td colspan="3">
                                         <cfif isDefined("Get_Paymethod")>
-                                            <cfoutput>#Get_Paymethod.PAYMETHOD#</cfoutput>
+                                            <cfoutput>#Get_Offer_Plus.ODEME#</cfoutput>
                                         </cfif>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><b>Opsiyon</b></td>
                                     <td>:</td>
-                                    <td colspan="3"><cfoutput>#dateFormat(Get_Offer.FINISHDATE, 'dd/mm/yyyy')#</cfoutput></td>
+                                    <td colspan="3"><cfoutput>#Get_Offer_Plus.OPSIYON#</cfoutput></td>
                                 </tr>
                                 <tr>
                                     <td><b>Açıklama</b></td>
                                     <td>:</td>
-                                    <td colspan="3"><cfoutput>#Get_Offer.Offer_Detail#</cfoutput></td>
+                                    <td colspan="3"><cfoutput>#Get_Offer_Plus.ACIKLAMA#</cfoutput></td>
                                 </tr>
                             </table>
                         </td>
