@@ -615,7 +615,11 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                     </td>
                                     <td>
                                         <cfoutput>
-                                            <b></b> 
+                                            <b>
+                                                <cfoutput>
+                                                    #Get_Offer.NETTOTAL-Get_Offer.TAX# 
+                                                </cfoutput>
+                                            </b> 
                                         </cfoutput>
                                     </td>
                                     <td>
