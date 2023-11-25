@@ -3,6 +3,9 @@
 <cfparam name="attributes.SIPARIS_MIKTARI" default="1">
 <cfparam name="attributes.columnsa" default="">
 <cfparam name="attributes.arrayid" default="">
+<cfif attributes.actType eq 4>
+    <form name="product_form">
+</cfif>
 <table>
 <tr>
 	
@@ -69,6 +72,9 @@
 </tr>
 
 </table>
+<cfif attributes.actType eq 4>
+</form>
+</cfif>
 <div id="product_list"></div>
 
 <button class="btn btn-danger" onclick="closeBoxDraggable(getModalId())">Kapat</button>
