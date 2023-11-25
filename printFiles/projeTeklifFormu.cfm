@@ -269,6 +269,8 @@ WHERE RELATED_ID NOT IN (
 				) ----5.SEVİYE
 		)
         </cfquery>
+  
+    </cfif>
     <cfquery name="Get_Offer_Plus" datasource="#dsn3#">
         SELECT
             PROPERTY1 AS EPOSTA,
@@ -284,7 +286,6 @@ WHERE RELATED_ID NOT IN (
         WHERE
             PBS_OFFER_INFO_PLUS.OFFER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#attributes.offer_id#">
     </cfquery>
-    </cfif>
     <cfif len(Get_Offer.Deliver_Place)>
         <cfquery name="Get_Store" datasource="#dsn#">
             SELECT DEPARTMENT_HEAD,BRANCH_ID FROM DEPARTMENT WHERE DEPARTMENT_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#Get_Offer.Deliver_Place#">
