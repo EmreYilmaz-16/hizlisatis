@@ -89,6 +89,7 @@
            
         </cfquery>
     </cfif>
+
     <cfquery name="Get_Offer_Rows" datasource="#dsn3#">
         SELECT
             ORR.*,
@@ -109,6 +110,11 @@
         ORDER BY
             ORR.OFFER_ROW_ID
     </cfquery>
+    <cfif Get_Offer_Rows.IS_VIRTUAL EQ 1>
+        <cfquery name="Get_Offer_Rows2" datasource="#dsn3#">
+        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS 2443,0
+        </cfquery>
+    <cfelse>
         <cfquery name="Get_Offer_Rows2" datasource="#dsn3#">
          SELECT T.AMOUNT
 	,T.PRICE_PBS
@@ -278,6 +284,7 @@ WHERE RELATED_ID NOT IN (
         WHERE
             PBS_OFFER_INFO_PLUS.OFFER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#attributes.offer_id#">
     </cfquery>
+    </cfif>
     <cfif len(Get_Offer.Deliver_Place)>
         <cfquery name="Get_Store" datasource="#dsn#">
             SELECT DEPARTMENT_HEAD,BRANCH_ID FROM DEPARTMENT WHERE DEPARTMENT_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#Get_Offer.Deliver_Place#">
