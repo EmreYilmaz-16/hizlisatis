@@ -5,6 +5,7 @@
 <cfparam name="attributes.member_name" default="">
 <cfparam name="attributes.order_employee_id" default="">
 <cfparam name="attributes.order_employee" default="">
+<cfparam name="attributes.excell" default="0">
 <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&report_id=#attributes.report_id#&event=det" name="order_form">
 <table>
     <tr>
@@ -40,6 +41,9 @@
                     </div>
                 </div>
             </div>
+        </td>
+        <td>
+            <input type="checkbox" name="excell" value="1">
         </td>
     <td>
         <input type="submit">
@@ -79,6 +83,16 @@
     </thead>
     <tbody>
         <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
+            <cfif isDefined("attributes.excell") and attributes.excell eq 1>
+                <cfscript>
+                    theSheet=spreadsheetNew("the sheet");
+                    satir =1;
+                    sutun=1;
+                    spreadsheetAddRow(theSheet,"Müşteri,Teklif No,Satış Çalışanı,SVK No,Sipraiş No,Sipariş Tarihi,Aşama,Ürün Kodu,Ürün Adı,Teklif Miktarı,Sipariş Miktarı,Hazırlanan Miktar,Faturalanan Miktar,Depo Miktarı,Depo,Sevk Yöntemi,Açıklama,Faturalanabilir Miktar",satir);
+                    satir=satir+1;
+                </cfscript>
+                
+            </cfif>
             <cfquery name="getd" datasource="#DSN3#">
                 SELECT T.*
                     ,READY_AMOUNT - INVOICED_AMOUNT AS FATURALANABILIR
@@ -196,25 +210,35 @@
                         <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=sales.list_order&event=upd&order_id=#ORDER_ID#')">#ORDER_NUMBER#</a></td>
                         <td>#dateFormat(ORDER_DATE,"dd/mm/yyyy")#</td>
                         <td>
+                            <cfset OCC="">
                             <cfif ORDER_ROW_CURRENCY eq -1>
                             <cfelseif ORDER_ROW_CURRENCY eq -2>
                                 Açık
+                                <cfset OCC="Açık">
                             <cfelseif ORDER_ROW_CURRENCY eq -3>
                                 Kapatıldı
+                                <cfset OCC="Kapatıldı">
                             <cfelseif ORDER_ROW_CURRENCY eq -4>
                                 Kısmi Üretim 
+                                <cfset OCC="Kısmi Üretim">
                             <cfelseif ORDER_ROW_CURRENCY eq -5>
                                 Üretim
+                                <cfset OCC="Üretim">
                             <cfelseif ORDER_ROW_CURRENCY eq -6>
                                 Sevk
+                                <cfset OCC="Sevk">
                             <cfelseif ORDER_ROW_CURRENCY eq -7>
                                 Eksik Teslimat
+                                <cfset OCC="Eksik Teslimat">
                             <cfelseif ORDER_ROW_CURRENCY eq -8>
                                 Fazla Teslimat
+                                <cfset OCC="Fazla Teslimat">
                             <cfelseif ORDER_ROW_CURRENCY eq -9>
                                 İptal
+                                <cfset OCC="İptal">
                             <cfelseif ORDER_ROW_CURRENCY eq -10>
                                 Kapatıldı(Manuel)
+                                <cfset OCC="Kapatıldı(Manuel)">
                             </cfif>
                             
                         </td>
@@ -231,8 +255,28 @@
                         <td>#SEVK_TIPI#</td>
                         <td>#DESCRIPTION#</td>
                         <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=#SHIP_RESULT_ID#')">#FATURALANABILIR#</a></td>
+                        <cfif isDefined("attributes.excell") and attributes.excell eq 1>
+                            <cfscript>
+                                spreadsheetAddRow(theSheet,"#NICKNAME#,#OFFER_NUMBER#,#SALE_EMP#,#DELIVER_PAPER_NO#,#dateformat(ORDER_DATE,'dd.mm.yyyy')#,#OCC#,#PRODUCT_CODE#,#PRODUCT_NAME#,#OFFERED_AMOUNT#,#ORDERED_AMOUNT#,#READY_AMOUNT#,#INVOICED_AMOUNT#,#DEPO_AMOUNT#,#DLOLK#,#PSK#,#SEVK_TIPI#,#DESCRIPTION#,#FATURALANABILIR#",satir)
+                                satir=satir+1;
+                            </cfscript>
+                        </cfif>
                     </tr>
                 </cfoutput>
+                <cfif isDefined("attributes.excell") and attributes.excell eq 1>
+                    <cfset file_name = "Fatura_Listesi#dateformat(now(),'ddmmyyyy')#.xls">
+                       <cfset drc_name_ = "#dateformat(now(),'yyyymmdd')#">
+                       <cfif not directoryexists("#upload_folder#reserve_files#dir_seperator##drc_name_#")>
+                       <cfdirectory action="create" directory="#upload_folder#reserve_files#dir_seperator##drc_name_#">
+                       </cfif>
+                   <cfspreadsheet action="write" filename="#upload_folder#reserve_files#dir_seperator##drc_name_#/#file_name#" name="theSheet"
+                       sheetname="Fatura_Listesi" overwrite=true>
+                   
+                      <script type="text/javascript">
+                       <cfoutput>
+                       get_wrk_message_div("Excel","Excel","documents/reserve_files/#drc_name_#/#file_name#");
+                       </cfoutput>
+                   
         </cfif>
 </tbody>
 </cf_big_list>
