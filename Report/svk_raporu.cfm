@@ -267,7 +267,7 @@
                     </tr>
                 </cfoutput>
                 <cfif isDefined("attributes.excell") and attributes.excell eq 1>
-                    <cfset file_name = "SVK_Listesi#dateformat(now(),'ddmmyyyy')#.xls">
+                    <cfset file_name = "SVK_Listesi#dateformat(now(),'ddmmyyyy')##timeFormat(now(),'hhmmss')#.xls">
                        <cfset drc_name_ = "#dateformat(now(),'yyyymmdd')#">
                        <cfif not directoryexists("#upload_folder#reserve_files#dir_seperator##drc_name_#")>
                        <cfdirectory action="create" directory="#upload_folder#reserve_files#dir_seperator##drc_name_#">
