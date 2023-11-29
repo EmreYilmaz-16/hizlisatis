@@ -91,7 +91,7 @@
                     theSheet=spreadsheetNew("the sheet");
                     satir =1;
                     sutun=1;
-                    spreadsheetAddRow(theSheet,"Müşteri,Teklif No,Satış Çalışanı,SVK No,Sipraiş No,Sipariş Tarihi,Aşama,Ürün Kodu,Ürün Adı,Teklif Miktarı,Sipariş Miktarı,Hazırlanan Miktar,Faturalanan Miktar,Depo Miktarı,Depo,Sevk Yöntemi,Açıklama,Faturalanabilir Miktar",satir);
+                    spreadsheetAddRow(theSheet,"Müşteri,Teklif No,Satış Çalışanı,SVK No,Sipraiş No,Sipariş Tarihi,Aşama,Ürün Kodu,Ürün Adı,Teklif Miktarı,Sipariş Miktarı,Hazırlanan Miktar,Faturalanan Miktar,Depo Miktarı,Depo,Sevk Yöntemi,Sevk Tipi,Açıklama,Faturalanabilir Miktar",satir);
                     satir=satir+1;
                 </cfscript>
                 
@@ -269,6 +269,8 @@
                              spreadsheetSetCellValue(theSheet,"#SALE_EMP#",satir,sutun)
                              sutun=sutun+1;
                              spreadsheetSetCellValue(theSheet,"#DELIVER_PAPER_NO#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#ORDER_NUMBER#",satir,sutun)
                              sutun=sutun+1;
                              spreadsheetSetCellValue(theSheet,"#dateformat(ORDER_DATE,'dd.mm.yyyy')#",satir,sutun)
                              sutun=sutun+1;
