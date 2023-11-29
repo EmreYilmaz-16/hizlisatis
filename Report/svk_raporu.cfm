@@ -264,13 +264,13 @@
                     </tr>
                 </cfoutput>
                 <cfif isDefined("attributes.excell") and attributes.excell eq 1>
-                    <cfset file_name = "Fatura_Listesi#dateformat(now(),'ddmmyyyy')#.xls">
+                    <cfset file_name = "SVK_Listesi#dateformat(now(),'ddmmyyyy')#.xls">
                        <cfset drc_name_ = "#dateformat(now(),'yyyymmdd')#">
                        <cfif not directoryexists("#upload_folder#reserve_files#dir_seperator##drc_name_#")>
                        <cfdirectory action="create" directory="#upload_folder#reserve_files#dir_seperator##drc_name_#">
                        </cfif>
                    <cfspreadsheet action="write" filename="#upload_folder#reserve_files#dir_seperator##drc_name_#/#file_name#" name="theSheet"
-                       sheetname="Fatura_Listesi" overwrite=true>
+                       sheetname="SVK_Listesi" overwrite=true>
                    
                       <script type="text/javascript">
                        <cfoutput>
