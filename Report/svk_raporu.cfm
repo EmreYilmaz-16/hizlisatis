@@ -260,8 +260,47 @@
                         <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=#SHIP_RESULT_ID#')">#FATURALANABILIR#</a></td>
                         <cfif isDefined("attributes.excell") and attributes.excell eq 1>
                             <cfscript>
-                                spreadsheetAddRow(theSheet,"#NICKNAME#,#OFFER_NUMBER#,#SALE_EMP#,#DELIVER_PAPER_NO#,#dateformat(ORDER_DATE,'dd.mm.yyyy')#,#OCC#,#PRODUCT_CODE#,#PRODUCT_NAME#,#OFFERED_AMOUNT#,#ORDERED_AMOUNT#,#READY_AMOUNT#,#INVOICED_AMOUNT#,#DEPO_AMOUNT#,#DLOLK#,#PSK#,#SEVK_TIPI#,#DESCRIPTION#,#FATURALANABILIR#",satir)
-                                satir=satir+1;
+                                sutun=1;
+                                //   spreadsheetAddRow(theSheet,"#ORDERED_AMOUNT#,#READY_AMOUNT#,#INVOICED_AMOUNT#,#DEPO_AMOUNT#,#DLOLK#,#PSK#,#SEVK_TIPI#,#DESCRIPTION#,#FATURALANABILIR#",satir)
+                             spreadsheetSetCellValue(theSheet,"#NICKNAME#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#OFFER_NUMBER#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#SALE_EMP#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#DELIVER_PAPER_NO#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#dateformat(ORDER_DATE,'dd.mm.yyyy')#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#OCC#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#PRODUCT_CODE#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#PRODUCT_NAME#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#OFFERED_AMOUNT#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#ORDERED_AMOUNT#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#READY_AMOUNT#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#INVOICED_AMOUNT#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#DEPO_AMOUNT#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#DLOLK#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#PSK#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#SEVK_TIPI#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#DESCRIPTION#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#FATURALANABILIR#",satir,sutun)
+                             
+
+
+                             satir=satir+1;
                             </cfscript>
                         </cfif>
                     </tr>
