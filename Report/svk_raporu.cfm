@@ -277,7 +277,7 @@
                        get_wrk_message_div("Excel","Excel","documents/reserve_files/#drc_name_#/#file_name#");
                        </cfoutput>
                        </script>
-                   
+                   </cfif>
         </cfif>
 </tbody>
 </cf_big_list>
