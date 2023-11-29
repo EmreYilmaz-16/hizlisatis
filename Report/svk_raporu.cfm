@@ -43,7 +43,10 @@
             </div>
         </td>
         <td>
-            <input type="checkbox" name="excell" value="1">
+            <label>
+            <input type="checkbox" name="excell" value="1"> 
+            Excell
+        </label>
         </td>
     <td>
         <input type="submit">
