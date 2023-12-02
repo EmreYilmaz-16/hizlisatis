@@ -255,7 +255,7 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             ,GSLP.PRODUCT_ID
             <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>              
                 ,GSLP.DEPARTMENT_ID
-                ,GSLP.STORE_LOCATION
+                <cfif isDefined("attributes.location") and len(attributes.location)>  ,GSLP.STORE_LOCATION</cfif>
             </cfif>
             
             ,SUM(GSLP.TOTAL_STOCK) AS TOTAL_STOCK
@@ -341,7 +341,11 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             ,PIP.PROPERTY9
             ,GSLP.PRODUCT_ID
             ,GSLP.STOCK_ID
-            <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>     ,GSLP.DEPARTMENT_ID</cfif>
+            <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>     ,GSLP.DEPARTMENT_ID
+            <cfif isDefined("attributes.location") and len(attributes.location)>
+                ,GSLP.STORE_LOCATION
+            </cfif>
+        </cfif>
          <!-----    <cfif isDefined("attributes.is_minumum")>
             HAVING
                 SUM(REAL_STOCK-(RESERVED_PROD_STOCK+RESERVE_SALE_ORDER_STOCK+NOSALE_STOCK)) <=ISNULL((
