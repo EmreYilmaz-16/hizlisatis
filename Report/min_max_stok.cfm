@@ -383,6 +383,7 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
                 <th>Raf</th>
                 <th>Depo(i)</th>
                 <th>Depo</th>
+                <th>Lokasyon</th>
                 <th>Mevcut</th>
                 <th>V.Sipariş</th>
                 <th>Ü.Gelecek </th>
