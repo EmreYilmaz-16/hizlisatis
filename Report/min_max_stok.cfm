@@ -111,9 +111,11 @@
     
     </td>
     <td>
+        <div class="form-group">
         <select name="Location" multiple id="Location">
 
         </select>
+    </div>
     </td>
     
     </tr>
@@ -253,17 +255,23 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             ,GSLP.PRODUCT_ID
             <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>              
                 ,GSLP.DEPARTMENT_ID
+                ,GSLP.STORE_LOCATION
             </cfif>
+            
             ,SUM(GSLP.TOTAL_STOCK) AS TOTAL_STOCK
         FROM #dsn2#.GET_STOCK_LOCATION_Partner AS GSLP
             LEFT JOIN #dsn1#.PRODUCT AS P ON GSLP.PRODUCT_ID = P.PRODUCT_ID
             LEFT JOIN #dsn3#.PRODUCT_INFO_PLUS AS PIP ON GSLP.PRODUCT_ID = PIP.PRODUCT_ID 
         WHERE 1=1
-        <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>   
+        <cfif isDefined("attributes.isAll") and attributes.isAll eq 1>
+
+        <cfelse>   
           <cfif isDefined("attributes.branch") and len(attributes.branch)>
-            <cfif isDefined("attributes.department") and len(attributes.department)>  AND DEPARTMENT_ID = #attributes.department#
+                <cfif isDefined("attributes.department") and len(attributes.department)>  AND DEPARTMENT_ID = #attributes.department#
+                    <cfif isDefined("attributes.Location") and len(attributes.Location)>  AND STORE_LOCATION IN( #attributes.Location#)
                 <cfelse>
                     AND DEPARTMENT_ID IN(SELECT DEPARTMENT_ID FROM #dsn#.DEPARTMENT WHERE BRANCH_ID =#attributes.BRANCH#)
+
         </cfif>
             
           </cfif>
