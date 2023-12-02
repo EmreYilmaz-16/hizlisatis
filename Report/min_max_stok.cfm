@@ -87,7 +87,7 @@
                             <option value='#BRANCH_ID#'>#BRANCH_NAME#</option>
                         </cfloop>
                     </select>                
-    <select name="department" id="department" class="cls1" >
+    <select name="department" id="department" class="cls1" onchange="getLocations(this)">
     <option value=''>Seçiniz</option>
     <!----<cfloop query="GETBranchs">
         <cfquery name="getDepartments" datasource="#dsn#">
@@ -109,6 +109,11 @@
         
     
     
+    </td>
+    <td>
+        <select name="Location" multiple id="Location">
+
+        </select>
     </td>
     
     </tr>
@@ -634,6 +639,20 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
                 }
                 
             }  
+        }
+        function getLocations(el){
+            var LocationResult=wrk_query("SELECT * FROM STOCKS_LOCATION WHERE DEPARTMENT_ID="+el.value,"dsn")
+            $("#Location").html("")
+               /* var os=document.createElement("option")
+                    os.setAttribute("value","")
+                    os.innerText="Tüm Departmanlar";
+                document.getElementById("department").appendChild(os)*/
+                for (let i=0;i< LocationResult.recordcount;i++){
+                    var o=document.createElement("option");
+                    o.setAttribute("value",LocationResult.LOCATION_ID[i])
+                    o.innerText=LocationResult.COMMENT[i]
+                document.getElementById("Location").appendChild(o)
+                }
         }
     </script>       
     </cf_box>
