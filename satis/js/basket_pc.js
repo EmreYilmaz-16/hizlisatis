@@ -97,7 +97,7 @@ function AddRow(
   var BASKET_MONEY = document.getElementById(
     "_hidden_rd_money_" + checkedValue
   ).value;
-  if(fromgetKarmaProducts==1){
+  if(fromgetKarmaProducts==0){
   if (product_unit == "M" && fc == 0) {
     var calculate_params =
       "&pid_=" +
