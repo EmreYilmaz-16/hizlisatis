@@ -2810,7 +2810,8 @@ function getKarmaProducts(product_id, quantity) {
       "",
       0,
       0,
-      0
+      0,
+      1
     );
   }
 }
