@@ -225,6 +225,10 @@
     select TOP 1 * from DEPARTMENT where DEPARTMENT_ID=#DEPARTMENT_ID#
     </cfquery>
     <td>#getDname.DEPARTMENT_HEAD#</td>
+    <cfif attributes.isAll eq 1>
+    <td></td>
+    <cfelse>
+    
     <cfif isDefined("attributes.Location") and len(attributes.Location)>
         <cfquery name="getLname" datasource="#dsn#">
             select TOP 1 * from STOCKS_LOCATION where DEPARTMENT_ID=#DEPARTMENT_ID# AND LOCATION_ID=#STORE_LOCATION#
@@ -233,6 +237,7 @@
         <cfelse>
             <td></td>
         </cfif>
+    </cfif>
 </cfif>
 
     <td> <cfif getStokcks_1.TOTAL_STOCK lt GETMax_Min.MAXIMUM_STOCK><span style="font-weight:bold;color:red">#AmountFormat(getStokcks_1.TOTAL_STOCK)#</span><cfelseif getStokcks_1.TOTAL_STOCK gt GETMax_Min.MAXIMUM_STOCK> <span style="font-weight:bold;color:blue">#AmountFormat(getStokcks_1.TOTAL_STOCK)#</span></cfif> </td>
