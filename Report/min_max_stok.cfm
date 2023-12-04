@@ -253,7 +253,9 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
             ,PIP.PROPERTY9
             ,GSLP.STOCK_ID
             ,GSLP.PRODUCT_ID
-            <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><cfelse>              
+            <cfif isDefined("attributes.isAll") and attributes.isAll eq 1>
+
+            <cfelse>              
                 ,GSLP.DEPARTMENT_ID
                 <cfif isDefined("attributes.location") and len(attributes.location)>  ,GSLP.STORE_LOCATION</cfif>
             </cfif>
@@ -271,6 +273,7 @@ WHERE PPR.STOCK_ID=GSLP.STOCK_ID) AS PROPERTY8
                     <cfif isDefined("attributes.Location") and len(attributes.Location)>  AND STORE_LOCATION IN( #attributes.Location#)</cfif>
                 <cfelse>
                     AND DEPARTMENT_ID IN(SELECT DEPARTMENT_ID FROM #dsn#.DEPARTMENT WHERE BRANCH_ID =#attributes.BRANCH#)
+                    <cfif isDefined("attributes.Location") and len(attributes.Location)>  AND STORE_LOCATION IN( #attributes.Location#)</cfif>
 
         </cfif>
             
