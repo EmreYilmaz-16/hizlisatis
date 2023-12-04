@@ -2728,7 +2728,7 @@ function getKarmaProducts(product_id, quantity) {
   var pcatId = 17;
   var str = "";
   str +=
-    "select S.PRODUCT_NAME,S.PRODUCT_ID,S.PRODUCT_CODE,S.STOCK_ID,S.TAX,S.TAX_PURCHASE,PB.BRAND_NAME,PC.DETAIL,PU.MAIN_UNIT,KP.KARMA_PRODUCT_ID,CASE WHEN (";
+    "select S.PRODUCT_NAME,S.PRODUCT_ID,S.PRODUCT_CODE,S.STOCK_ID,S.TAX,S.TAX_PURCHASE,KP.PRODUCT_AMOUNT,PB.BRAND_NAME,PC.DETAIL,PU.MAIN_UNIT,KP.KARMA_PRODUCT_ID,CASE WHEN (";
   str +=
     "  SELECT TOP 1 PROPERTY1 FROM " +
     generalParamsSatis.dataSources.dsn3 +
@@ -2786,7 +2786,7 @@ function getKarmaProducts(product_id, quantity) {
       rr.PRODUCT_CODE[i],
       rr.BRAND_NAME[i],
       0,
-      quantity,
+      rr.PRODUCT_AMOUNT[i],
       rr.PRICE[i],
       rr.PRODUCT_NAME[i],
       rr.TAX[i],
