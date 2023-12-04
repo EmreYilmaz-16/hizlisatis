@@ -152,7 +152,7 @@
         <input type="date" name="finish_date">
     </div>
     </td>
-<td><input type="checkbox" name="isAll" onclick="if($(this).is(':checked'))$('.cls1').hide();else $('.cls1').show();" value="1"> Tüm Depolar Gelsin</td>
+<td><input type="checkbox" name="isAll" <!---onclick="if($(this).is(':checked'))$('.cls1').hide();else $('.cls1').show();"----> value="1"> Tüm Depolar Gelsin</td>
     <td><input type="submit"></td>
 
     </tr>
