@@ -230,6 +230,8 @@
             select TOP 1 * from STOCKS_LOCATION where DEPARTMENT_ID=#DEPARTMENT_ID# AND LOCATION_ID=#STORE_LOCATION#
             </cfquery>
         <td>#getLname.COMMENT#</td>
+        <cfelse>
+            <td></td>
         </cfif>
 </cfif>
 
