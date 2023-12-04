@@ -84,7 +84,8 @@ function AddRow(
   rfls = "",
   converted_sid = 0,
   is_karma = 0,
-  is_karma_sevk = 0
+  is_karma_sevk = 0,
+  fromgetKarmaProducts=0
 ) {
   if (is_karma_sevk == 1) {
     getKarmaProducts(product_id, quantity);
@@ -96,6 +97,7 @@ function AddRow(
   var BASKET_MONEY = document.getElementById(
     "_hidden_rd_money_" + checkedValue
   ).value;
+  if(fromgetKarmaProducts==1){
   if (product_unit == "M" && fc == 0) {
     var calculate_params =
       "&pid_=" +
@@ -135,7 +137,7 @@ function AddRow(
         calculate_params
     );
     return true;
-  }
+  }}
   var q = "SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR";
   q +=
     " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID";
