@@ -2778,6 +2778,7 @@ function getKarmaProducts(product_id, quantity) {
     " LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID LEFT JOIN workcube_metosan_1.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID";
   str += " WHERE KP.KARMA_PRODUCT_ID=" + product_id;
   var rr = wrk_query(str, "dsn3");
+  console.log(rr);
   for (let i = 0; i < rr.recordcount; i++) {
     AddRow(
       rr.PRODUCT_ID[i],
