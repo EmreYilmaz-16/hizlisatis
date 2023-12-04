@@ -270,7 +270,7 @@ FROM (
 		,STOCK_ID
 	) AS T
 WHERE DEPO IN (
-		'44-1'
+		'44-2'
 		,'44-3'
 		,'44-4'
 		,'44-5'
@@ -575,7 +575,7 @@ FROM (
 		,STOCK_ID
 	) AS T
 WHERE DEPO IN (
-		'44-1'
+		'44-2'
 		,'44-3'
 		,'44-4'
 		,'44-5'
