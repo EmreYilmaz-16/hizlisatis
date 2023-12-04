@@ -220,25 +220,23 @@
     <td>#getStokcks_1.PRODUCT_NAME#</td>
     <td>#getStokcks_1.PROPERTY8#</td>
     <td>#getStokcks_1.PROPERTY9#</td>
-    <cfif isDefined("attributes.isAll") and attributes.isAll eq 1><td></td><cfelse>   
-    <cfquery name="getDname" datasource="#dsn#">
-    select TOP 1 * from DEPARTMENT where DEPARTMENT_ID=#DEPARTMENT_ID#
-    </cfquery>
-    <td>#getDname.DEPARTMENT_HEAD#</td>
-    <cfif attributes.isAll eq 1>
-    <td></td>
+    <cfif isDefined("attributes.isAll") and attributes.isAll eq 1>
+        <td></td>
+        <td></td>
     <cfelse>
-    
-    <cfif isDefined("attributes.Location") and len(attributes.Location)>
-        <cfquery name="getLname" datasource="#dsn#">
-            select TOP 1 * from STOCKS_LOCATION where DEPARTMENT_ID=#DEPARTMENT_ID# AND LOCATION_ID=#STORE_LOCATION#
+        <cfquery name="getDname" datasource="#dsn#">
+            select TOP 1 * from DEPARTMENT where DEPARTMENT_ID=#DEPARTMENT_ID#
             </cfquery>
-        <td>#getLname.COMMENT#</td>
-        <cfelse>
-            <td></td>
-        </cfif>
+            <td>#getDname.DEPARTMENT_HEAD#</td>
+            <cfif isDefined("attributes.Location") and len(attributes.Location)>
+                <cfquery name="getLname" datasource="#dsn#">
+                    select TOP 1 * from STOCKS_LOCATION where DEPARTMENT_ID=#DEPARTMENT_ID# AND LOCATION_ID=#STORE_LOCATION#
+                </cfquery>
+                <td>#getLname.COMMENT#</td>
+            <cfelse>
+                <td></td>
+            </cfif>
     </cfif>
-</cfif>
 
     <td> <cfif getStokcks_1.TOTAL_STOCK lt GETMax_Min.MAXIMUM_STOCK><span style="font-weight:bold;color:red">#AmountFormat(getStokcks_1.TOTAL_STOCK)#</span><cfelseif getStokcks_1.TOTAL_STOCK gt GETMax_Min.MAXIMUM_STOCK> <span style="font-weight:bold;color:blue">#AmountFormat(getStokcks_1.TOTAL_STOCK)#</span></cfif> </td>
     <td><a href="javascript://" onclick="windowopen('index.cfm?fuseaction=objects.popup_reserved_orders&taken=0&pid=#PRODUCT_ID#','medium');">#AmountFormat(getReserved_1.STOCK_ARTIR)#</a></td>
