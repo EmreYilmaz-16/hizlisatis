@@ -39,7 +39,7 @@ var btn=document.createElement("button")
     btn.setAttribute("type","button")
     btn.innerText="Güncellemeye İzin Ver"
     btn.setAttribute("onclick","readonlyyy()")
-    btn.setAttribute("class","ui-wrk-btn ui-wrk-btn-warning")
+    btn.setAttribute("class","ui-wrk-btn ui-wrk-btn-extra")
     document.getElementById("workcube_button").appendChild(btn)
 
 
