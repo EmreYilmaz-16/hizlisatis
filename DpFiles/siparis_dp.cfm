@@ -69,8 +69,7 @@ function pencereac(tip,idd){
 }
 function RaflariYaz(){
 console.log(window.basket)
-var Department=document.getElementById("department_id").value;
-var Location=document.getElementById("location_id").value;
+
 for(let i=0;i<window.basket.items.length;i++){
     var Item=window.basket.items[i];
     var STOCK_ID=Item.STOCK_ID
