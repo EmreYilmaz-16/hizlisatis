@@ -151,13 +151,28 @@ table, td, th, div {
            <tr  height="25px">
             <td>
 				<div class="form-group">
-            
+              <select name="txt_department_out" id="txt_department_out" style="width:120px; height:20px" onchange="document.getElementById('department_out').value = this.value">
+               <cftry>
+				<cfoutput query="get_all_location" group="department_id">
+                  <option disabled="disabled" value="#department_id#"<cfif attributes.department_out_id eq department_id>selected</cfif>>#department_head#</option>
+                  <cfoutput>
+                    <option <cfif not status>style="color:FF0000"</cfif> value="#department_id#-#location_id#" <cfif attributes.department_out_id eq '#department_id#-#location_id#'>selected</cfif>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#comment#
+                    <cfif not status>
+                      -
+                      <cf_get_lang_main no='82.Pasif'>
+                    </cfif>
+                    </option>
+                  </cfoutput> </cfoutput>
+				<cfcatch></cfcatch>
+				</cftry>
+              </select>
 			</div>
           	</td>
             <td>
 				<div class="form-group">
               <select name="txt_department_in" style="width:120px; height:20px" onchange="document.getElementById('department_in').value = this.value">
-                <cfoutput query="get_all_location" group="department_id">
+               <cftry>
+				<cfoutput query="get_all_location" group="department_id">
                   <option disabled="disabled"  value="#department_id#"<cfif attributes.department_in_id eq department_id>selected</cfif>>#department_head#</option>
                   <cfoutput>
                     <option <cfif not status>style="color:FF0000"</cfif> value="#department_id#-#location_id#" <cfif attributes.department_in_id eq '#department_id#-#location_id#'>selected</cfif>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#comment#
@@ -167,6 +182,8 @@ table, td, th, div {
                     </cfif>
                     </option>
                   </cfoutput> </cfoutput>
+				<cfcatch></cfcatch>
+				</cftry>
               </select>
 			</div>
               </td>
