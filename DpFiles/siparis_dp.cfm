@@ -26,7 +26,7 @@ $(elem[0].children).append("<li class='dropdown' id='transformation'><a style='c
 //         }
 //     })
 // }
-<CFIF 1=1>
+<CFIF 1 eq 1>
     var btn=document.createElement("button")
     btn.innerText="Rafları Yaz & Güncelle";
     btn.setAttribute("type","button")
