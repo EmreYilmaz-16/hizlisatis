@@ -36,6 +36,7 @@
         ,OFFER_ROW_DESCRIPTION
         ,OFFER_ID
         ,DESCRIPTION
+        ,STAGE
     FROM (
         SELECT ORR.QUANTITY
             ,ISNULL(SF.AMOUNT,0) as AMOUNT
