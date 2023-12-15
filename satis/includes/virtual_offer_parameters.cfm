@@ -76,3 +76,8 @@ DELETE FROM #dsn3#.PBS_OFFER_TO_ORDER WHERE OFFER_ID IN (
 </cfquery>
 
 </cfif>
+
+
+<script>
+    var JSSessionEp=<cfoutput>#Replace(SerializeJSON(session.ep),'//','')#</cfoutput>
+</script>
