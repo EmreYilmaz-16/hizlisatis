@@ -85,11 +85,14 @@
      
         
     </cfif>
+    <cfquery name="getDD" datasource="#dsn#">
+        SELECT COMMENT FROM STOCKS_LOCATION AS SL ON SL.DEPARTMENT_ID=#listgetat(attributes.action_ids, 1, "-")# AND SL.LOCATION_ID=#listGetAt(attributes.action_ids, 2, "-") #
+    </cfquery>
         <table id="basket" >
             <thead>
                 <tr >
                     <th colspan="10" >
-                        <h3 style="font-size:14pt !important">Hazırlama Listesi</h3>
+                        <h3 style="font-size:14pt !important"><CFOUTPUT>#getDD.COMMENT#</CFOUTPUT> Depo  Hazırlama Listesi</h3>
                     </th>
                 </tr>
                 <tr>
