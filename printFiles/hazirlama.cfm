@@ -89,7 +89,7 @@
                     <th>Satış Çalışanı</th>
                     <td><cfoutput>#getS.ORDER_EMPLOYEE_ID#</cfoutput></td>
                     <th>Sevk Tarihi</th>
-                    <td><cfoutput>#dateFormat(gets.DELIVERY_DATE)#</cfoutput></td>                
+                    <td colspan="2"><cfoutput>#dateFormat(gets.DELIVERY_DATE,"dd/mm/yyyy")#</cfoutput></td>                
                 </tr>
                 <tr>
                     <th>
