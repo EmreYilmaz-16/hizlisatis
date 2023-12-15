@@ -58,12 +58,14 @@
             ,PPOR.OFFER_ROW_DESCRIPTION
             ,PPOR.OFFER_ID
             ,ORR.DESCRIPTION
+            ,PTR.STAGE
         FROM #dsn3#.PRTOTM_SHIP_RESULT_ROW AS SRR
         LEFT JOIN #dsn3#.ORDER_ROW AS ORR ON ORR.ORDER_ROW_ID = SRR.ORDER_ROW_ID
         LEFT JOIN #dsn3#.ORDERS AS O ON O.ORDER_ID=ORR.ORDER_ID
         LEFT JOIN #dsn3#.PRTOTM_SHIP_RESULT AS SR ON SR.SHIP_RESULT_ID = SRR.SHIP_RESULT_ID
         LEFT JOIN #DSN#.COMPANY AS C ON C.COMPANY_ID=O.COMPANY_ID
         LEFT JOIN #DSN3#.PBS_OFFER_ROW AS PPOR ON PPOR.UNIQUE_RELATION_ID=ORR.UNIQUE_RELATION_ID
+        LEFT JOIN #DSN#.PROCESS_TYPE_ROWS as PTR on PTR.PROCESS_ROW_ID =O.ORDER_STAGE
         LEFT JOIN (
 		SELECT sum(SFR.AMOUNT) AS AMOUNT
 			,UNIQUE_RELATION_ID
@@ -98,7 +100,8 @@
                 <tr>
                     <th class="UpperTd" colspan="2">SVK No</th>                    
                     <th class="UpperTd" colspan="3">Cari Hesap</th>                   
-                    <th class="UpperTd" colspan="3">Satış Çalışanı</th>                    
+                    <th class="UpperTd" colspan="2">Satış Çalışanı</th>   
+                    <th class="UpperTd">Aşama</th>                 
                     <th class="UpperTd" colspan="2">Sevk Tarihi</th>
                     
                 </tr>
@@ -109,9 +112,10 @@
                     <td class="bottomTd"  colspan="3">
                         <cfoutput>#getS.NICKNAME#</cfoutput>
                     </td>
-                    <td class="bottomTd"  colspan="3">
+                    <td class="bottomTd"  colspan="2">
                         <cfoutput>#getS.ORDER_EMPLOYEE_ID#</cfoutput>
                     </td>
+                    <td class="bottomTd"><cfoutput>#getS.STAGE#</cfoutput></td>
                     <td class="bottomTd"  colspan="2">
                         <cfoutput>#dateFormat(gets.DELIVERY_DATE,"dd/mm/yyyy")#</cfoutput>
                     </td>
@@ -120,7 +124,7 @@
                     <th>
                         Açıklama
                     </th>
-                    <td colspan="9">
+                    <td colspan="10">
                             <cfquery name="getOfferDes" datasource="#dsn3#">
                                 SELECT OFFER_DESCRIPTION FROM PBS_OFFER WHERE OFFER_ID=#getS.OFFER_ID#
                             </cfquery>
