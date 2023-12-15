@@ -1,7 +1,7 @@
 ﻿<script>
 $(document).ready(function(){
     var btn=document.createElement("button")
-    btn.innerText="Rafları Yaz";
+    btn.innerText="Rafları Yaz & Güncelle";
     btn.setAttribute("type","button")
     btn.setAttribute("onclick","RaflariYaz()")
     btn.setAttribute("class","ui-wrk-btn ui-wrk-btn-warning")
