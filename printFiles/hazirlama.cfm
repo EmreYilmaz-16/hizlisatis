@@ -81,15 +81,25 @@
                     </th>
                 </tr>
                 <tr>
-                    <th>SVK No</th>
-                    <td><cfoutput>#gets.DELIVER_PAPER_NO#</cfoutput></td>
-                    <th>Cari Hesap</th>
-                    <td colspan="2"><cfoutput>#getS.NICKNAME#</cfoutput>
-                        </td>
-                    <th>Satış Çalışanı</th>
-                    <td><cfoutput>#getS.ORDER_EMPLOYEE_ID#</cfoutput></td>
-                    <th>Sevk Tarihi</th>
-                    <td colspan="2"><cfoutput>#dateFormat(gets.DELIVERY_DATE,"dd/mm/yyyy")#</cfoutput></td>                
+                    <th colspan="2">SVK No</th>                    
+                    <th colspan="3">Cari Hesap</th>                   
+                    <th colspan="3">Satış Çalışanı</th>                    
+                    <th colspan="2">Sevk Tarihi</th>
+                    
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <cfoutput>#gets.DELIVER_PAPER_NO#</cfoutput>
+                    </th>
+                    <th colspan="3">
+                        <cfoutput>#getS.NICKNAME#</cfoutput>
+                    </th>
+                    <th colspan="3">
+                        <cfoutput>#getS.ORDER_EMPLOYEE_ID#</cfoutput>
+                    </th>
+                    <th colspan="2">
+                        <cfoutput>#dateFormat(gets.DELIVERY_DATE,"dd/mm/yyyy")#</cfoutput>
+                    </th>
                 </tr>
                 <tr>
                     <th>
