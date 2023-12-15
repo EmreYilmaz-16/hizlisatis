@@ -1,11 +1,18 @@
-﻿<script>
+﻿<cfquery name="GETEMPPO" datasource="#DSN#">
+    SELECT D.BRANCH_ID,EMPLOYEE_ID FROM workcube_metosan.EMPLOYEE_POSITIONS AS EP 
+INNER JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=EP.DEPARTMENT_ID
+WHERE D.BRANCH_ID=4 AND EMPLOYEE_ID=#session.EP.USERID#
+</cfquery>
+<script>
 $(document).ready(function(){
+    <CFIF GETEMPPO.recordCount>
     var btn=document.createElement("button")
     btn.innerText="Rafları Yaz & Güncelle";
     btn.setAttribute("type","button")
     btn.setAttribute("onclick","RaflariYaz()")
     btn.setAttribute("class","ui-wrk-btn ui-wrk-btn-warning")
     document.getElementById("workcube_button").appendChild(btn)
+</CFIF>
 })
 
 function RaflariYaz(){
