@@ -84,7 +84,7 @@
                     <th>SVK No</th>
                     <td><cfoutput>#gets.DELIVER_PAPER_NO#</cfoutput></td>
                     <th>Cari Hesap</th>
-                    <td><cfoutput>#getS.NICKNAME#</cfoutput>
+                    <td colspan="2"><cfoutput>#getS.NICKNAME#</cfoutput>
                         </td>
                     <th>Satış Çalışanı</th>
                     <td><cfoutput>#getS.ORDER_EMPLOYEE_ID#</cfoutput></td>
