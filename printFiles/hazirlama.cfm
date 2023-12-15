@@ -1,4 +1,16 @@
-﻿
+﻿<style>
+    .UpperTd{
+        border-top: solid 1px black;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    }
+    .bottomTd{
+        border-bottom: solid 1px black;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    text-align:center;
+    }
+</style>
 <cftry >
 
 
@@ -81,25 +93,25 @@
                     </th>
                 </tr>
                 <tr>
-                    <th colspan="2">SVK No</th>                    
-                    <th colspan="3">Cari Hesap</th>                   
-                    <th colspan="3">Satış Çalışanı</th>                    
-                    <th colspan="2">Sevk Tarihi</th>
+                    <th class="UpperTd" colspan="2">SVK No</th>                    
+                    <th class="UpperTd" colspan="3">Cari Hesap</th>                   
+                    <th class="UpperTd" colspan="3">Satış Çalışanı</th>                    
+                    <th class="UpperTd" colspan="2">Sevk Tarihi</th>
                     
                 </tr>
                 <tr>
-                    <th colspan="2">
+                    <td class="bottomTd" style="text-align:center" colspan="2">
                         <cfoutput>#gets.DELIVER_PAPER_NO#</cfoutput>
-                    </th>
-                    <th colspan="3">
+                    </td>
+                    <td class="bottomTd"  colspan="3">
                         <cfoutput>#getS.NICKNAME#</cfoutput>
-                    </th>
-                    <th colspan="3">
+                    </td>
+                    <td class="bottomTd"  colspan="3">
                         <cfoutput>#getS.ORDER_EMPLOYEE_ID#</cfoutput>
-                    </th>
-                    <th colspan="2">
+                    </td>
+                    <td class="bottomTd"  colspan="2">
                         <cfoutput>#dateFormat(gets.DELIVERY_DATE,"dd/mm/yyyy")#</cfoutput>
-                    </th>
+                    </td>
                 </tr>
                 <tr>
                     <th>
