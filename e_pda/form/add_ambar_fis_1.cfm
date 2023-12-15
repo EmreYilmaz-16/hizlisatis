@@ -149,7 +149,7 @@ table,td,th,div{
                 				<cfoutput query="get_all_location" group="department_id">
                   					<option disabled="disabled" value="#department_id#"<cfif attributes.department_out_id eq department_id>selected</cfif>>#department_head#</option>
                   						<cfoutput>
-                    						<option <cfif not status>style="color:FF0000"</cfif> value="#department_id#-#location_id#" <cfif attributes.department_out_id eq '#department_id#-#location_id#'>selected</cfif>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#comment#<cfif not status>-<cf_get_lang_main no='82.Pasif'></cfif>
+                    						<option> <!--- <cfif not status>style="color:FF0000"</cfif> value="#department_id#-#location_id#" <cfif attributes.department_out_id eq '#department_id#-#location_id#'>selected</cfif>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#comment#<cfif not status>-<cf_get_lang_main no='82.Pasif'></cfif>---->
                     						</option>
                   						</cfoutput> 
 								</cfoutput>
