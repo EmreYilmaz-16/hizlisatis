@@ -35,7 +35,25 @@ $(elem[0].children).append("<li class='dropdown' id='transformation'><a style='c
     document.getElementById("workcube_button").appendChild(btn)
 </CFIF>
 
+var btn=document.createElement("button")
+    btn.setAttribute("type","button")
+    btn.innerText="Güncellemeye İzin Ver"
+    btn.setAttribute("onclick","readonlyyy()")
+    btn.setAttribute("class","ui-wrk-btn ui-wrk-btn-warning")
+    document.getElementById("workcube_button").appendChild(btn)
+
+
 })
+
+function readonlyyy(){
+    var PriceElems=document.getElementsByName("Price")
+var AmountElems=document.getElementsByName("Amount")
+for(let i=0;i<PriceElems.length;i++){
+    PriceElems[i].removeAttribute("readonly")
+    AmountElems[i].removeAttribute("readonly")
+}
+}
+
 function getSaleEmp(){
     var elements=$("#tblBasket").find("tr[basketitem]")
 for(let i=0;i<elements.length;i++){   
