@@ -38,11 +38,11 @@ for(let i=0;i<window.basket.items.length;i++){
     }
 }
 try {
-    sessionControl() && validateControl() && kontrol_firma()} 
+    sessionControl() && validateControl() && kontrol_firma()
 } catch (error) {
     sessionControl() && validateControl() && kontrol() 
 }
 
-
+}
 
 </script>
