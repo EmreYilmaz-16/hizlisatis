@@ -37,5 +37,12 @@ for(let i=0;i<window.basket.items.length;i++){
         }
     }
 }
-sessionControl() && validateControl() && kontrol_firma()}
+try {
+    sessionControl() && validateControl() && kontrol_firma()} 
+} catch (error) {
+    sessionControl() && validateControl() && kontrol() 
+}
+
+
+
 </script>
