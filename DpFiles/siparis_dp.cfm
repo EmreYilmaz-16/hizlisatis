@@ -26,7 +26,7 @@ $(elem[0].children).append("<li class='dropdown' id='transformation'><a style='c
 //         }
 //     })
 // }
-<CFIF 1 eq 1>
+<CFIF GETEMPPO.recordCount>
     var btn=document.createElement("button")
     btn.innerText="Rafları Yaz & Güncelle";
     btn.setAttribute("type","button")
