@@ -107,7 +107,8 @@ table, td, th, div {
             <td align="center">Depo</td>
             <td>
               <select name="txt_department" id="txt_department" style="width:140px" onchange="document.getElementById('txt_department_in').value = this.value">
-                <cfoutput query="get_all_location" group="department_id">
+               <cftry>
+				<cfoutput query="get_all_location" group="department_id">
                   <option disabled="disabled"  value="#department_id#"<cfif attributes.department_in_id eq department_id>selected</cfif>>#department_head#</option>
                   <cfoutput>
                     <option <cfif not status>style="color:FF0000"</cfif> value="#department_id#-#location_id#" <cfif attributes.department_in_id eq '#department_id#-#location_id#'>selected</cfif>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#comment#
@@ -116,7 +117,8 @@ table, td, th, div {
                       <cf_get_lang_main no='82.Pasif'>
                     </cfif>
                     </option>
-                  </cfoutput> </cfoutput>
+                  </cfoutput> </cfoutput> <cfcatch></cfcatch>
+				</cftry>
               </select>
               </td>
           </tr>

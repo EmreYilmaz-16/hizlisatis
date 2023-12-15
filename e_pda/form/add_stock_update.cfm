@@ -159,7 +159,8 @@
                         <input type="hidden" name="department_in_id" name="department_in_id" value="<cfoutput>#attributes.department_in_id#</cfoutput>">
                     <cfelse>
                           <select id="department_in_id" name="department_in_id"  onchange="document.getElementById('department_in').value = this.value">
-                            <cfoutput query="get_all_location" group="department_id">
+                            <cftry>
+							<cfoutput query="get_all_location" group="department_id">
                               <option disabled="disabled"  value="#department_id#"<cfif attributes.department_in_id eq department_id>selected</cfif>>#department_head#</option>
                               <cfoutput>
                                 <option 
@@ -171,6 +172,8 @@
                                 </cfif>
                                 </option>
                               </cfoutput> </cfoutput>
+							  <cfcatch></cfcatch>
+							</cftry>
                           </select>
                     </cfif>
 					
