@@ -142,7 +142,13 @@ function AddRow(
   var q = "SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR";
   q +=
     " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID";
-  q += " WHERE STOCK_ID=" + stock_id;
+  q += " LEFT JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID";
+  q +=
+    " WHERE STOCK_ID=" +
+    stock_id +
+    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM "+generalParamsSatis.dataSources.dsn+".EMPLOYEE_POSITIONS AS EP INNER JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=" +
+    JSSessionEp.POSITION_CODE +
+    ")";
   var res = wrk_query(q, "dsn3");
   var RafKodu = "";
   if (shelf_code.length == 0) {
