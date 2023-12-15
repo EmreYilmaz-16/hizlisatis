@@ -5,7 +5,7 @@ WHERE D.BRANCH_ID=4 AND EMPLOYEE_ID=#session.EP.USERID#
 </cfquery>
 <script>
 $(document).ready(function(){
-    <CFIF 1 eq 1>
+    <CFIF GETEMPPO.recordCount>
     var btn=document.createElement("button")
     btn.innerText="Rafları Yaz & Güncelle";
     btn.setAttribute("type","button")
