@@ -85,7 +85,7 @@ function AddRow(
   converted_sid = 0,
   is_karma = 0,
   is_karma_sevk = 0,
-  fromgetKarmaProducts=0
+  fromgetKarmaProducts = 0
 ) {
   if (is_karma_sevk == 1) {
     getKarmaProducts(product_id, quantity);
@@ -97,47 +97,48 @@ function AddRow(
   var BASKET_MONEY = document.getElementById(
     "_hidden_rd_money_" + checkedValue
   ).value;
-  if(fromgetKarmaProducts==0){
-  if (product_unit == "M" && fc == 0) {
-    var calculate_params =
-      "&pid_=" +
-      product_id +
-      "&sid_=" +
-      stock_id +
-      "&tax=" +
-      tax +
-      "&cost=" +
-      cost +
-      "&manuel=" +
-      is_manuel +
-      "&product_name=" +
-      product_name +
-      "&stock_code=" +
-      stock_code +
-      "&brand=" +
-      brand_name +
-      "&indirim1=" +
-      discount_rate +
-      "&amount=" +
-      quantity +
-      "&unit=" +
-      product_unit +
-      "&price=" +
-      price +
-      "&other_money=" +
-      other_money +
-      "&price_other=" +
-      price_other;
-    calculate_params += "&is_virtual=" + is_virtual;
-    calculate_params += "&product_type=" + poduct_type;
-    calculate_params += "&shelf_code=" + shelf_code;
-    calculate_params += "&rowNum=" + row_count;
-    openBoxDraggable(
-      "index.cfm?fuseaction=objects.emptypopup_extra_calculate_pbs" +
-        calculate_params
-    );
-    return true;
-  }}
+  if (fromgetKarmaProducts == 0) {
+    if (product_unit == "M" && fc == 0) {
+      var calculate_params =
+        "&pid_=" +
+        product_id +
+        "&sid_=" +
+        stock_id +
+        "&tax=" +
+        tax +
+        "&cost=" +
+        cost +
+        "&manuel=" +
+        is_manuel +
+        "&product_name=" +
+        product_name +
+        "&stock_code=" +
+        stock_code +
+        "&brand=" +
+        brand_name +
+        "&indirim1=" +
+        discount_rate +
+        "&amount=" +
+        quantity +
+        "&unit=" +
+        product_unit +
+        "&price=" +
+        price +
+        "&other_money=" +
+        other_money +
+        "&price_other=" +
+        price_other;
+      calculate_params += "&is_virtual=" + is_virtual;
+      calculate_params += "&product_type=" + poduct_type;
+      calculate_params += "&shelf_code=" + shelf_code;
+      calculate_params += "&rowNum=" + row_count;
+      openBoxDraggable(
+        "index.cfm?fuseaction=objects.emptypopup_extra_calculate_pbs" +
+          calculate_params
+      );
+      return true;
+    }
+  }
   var q = "SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR";
   q +=
     " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID";
@@ -709,8 +710,13 @@ function AddRow_pbso(
   var q = "SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR";
   q +=
     " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID";
-  //q+=" LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID"
-  q += " WHERE STOCK_ID=" + stock_id;
+  q += " LEFT JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID";
+  q +=
+    " WHERE STOCK_ID=" +
+    stock_id +
+    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM "+generalParamsSatis.dataSources.dsn+".EMPLOYEE_POSITIONS AS EP INNER JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=" +
+    JSSessionEp.POSITION_CODE +
+    ")";
 
   var RafKodu = "";
   if (shelf_code.length == 0 && stock_id != 0) {
@@ -1524,7 +1530,7 @@ function sellinputAllVal(el) {
 function GetBasketData() {
   var rows = document.getElementsByClassName("sepetRow");
   var OrderRows = new Array();
-  var HATALARIM=0;
+  var HATALARIM = 0;
   for (let Old_rw_id = 1; Old_rw_id <= rows.length; Old_rw_id++) {
     var product_name = document.getElementById(
       "product_name_" + Old_rw_id
@@ -1566,10 +1572,9 @@ function GetBasketData() {
     if (!generalParamsSatis.workingParams.IS_ZERO_QUANTITY) {
       var p = filterNum(price);
       if (p <= 0) {
-        
         HATALARIM++;
       }
-      if(HATALARIM>0){
+      if (HATALARIM > 0) {
         alert("0 Fiyatlı Kayıt Yapamazsıznız");
       }
     }
