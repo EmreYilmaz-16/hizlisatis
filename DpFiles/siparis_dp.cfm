@@ -88,7 +88,7 @@ for(let i=0;i<window.basket.items.length;i++){
         }
     }
 }
-//sessionControl() && validateControl() && kontrol() 
+sessionControl() && validateControl() && kontrol() 
 
 }
 ///objects.popup_rekactions_prt
