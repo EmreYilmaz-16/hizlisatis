@@ -86,7 +86,7 @@
         
     </cfif>
     <cfquery name="getDD" datasource="#dsn#">
-        SELECT COMMENT FROM STOCKS_LOCATION AS SL ON SL.DEPARTMENT_ID=#listgetat(attributes.action_ids, 1, "-")# AND SL.LOCATION_ID=#listGetAt(attributes.action_ids, 2, "-") #
+        SELECT COMMENT FROM STOCKS_LOCATION AS SL WHERE SL.DEPARTMENT_ID=#listgetat(attributes.action_ids, 1, "-")# AND SL.LOCATION_ID=#listGetAt(attributes.action_ids, 2, "-") #
     </cfquery>
         <table id="basket" >
             <thead>
