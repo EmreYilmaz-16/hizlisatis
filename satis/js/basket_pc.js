@@ -146,9 +146,7 @@ function AddRow(
   q +=
     " WHERE STOCK_ID=" +
     stock_id +
-    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM "+generalParamsSatis.dataSources.dsn+".EMPLOYEE_POSITIONS AS EP INNER JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=" +
-    JSSessionEp.POSITION_CODE +
-    ")";
+    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM "+generalParamsSatis.dataSources.dsn+".EMPLOYEE_POSITIONS AS EP INNER JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=EP.POSITION_CODE)";
   var res = wrk_query(q, "dsn3");
   var RafKodu = "";
   if (shelf_code.length == 0) {
@@ -720,9 +718,7 @@ function AddRow_pbso(
   q +=
     " WHERE STOCK_ID=" +
     stock_id +
-    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM "+generalParamsSatis.dataSources.dsn+".EMPLOYEE_POSITIONS AS EP INNER JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=" +
-    JSSessionEp.POSITION_CODE +
-    ")";
+    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM "+generalParamsSatis.dataSources.dsn+".EMPLOYEE_POSITIONS AS EP INNER JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=EP.POSITION_CODE)";
 
   var RafKodu = "";
   if (shelf_code.length == 0 && stock_id != 0) {
