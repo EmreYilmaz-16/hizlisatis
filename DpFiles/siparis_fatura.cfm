@@ -25,7 +25,9 @@ $(document).on('ready',function(){
         if(ix !=-1){
             basket.items[ix].AMOUNT=#evaluate("attributes.quantity_#it#")#
         }
+        basket.footer.emir_id=10
     </cfloop>---->
+    <cfif isDefined("attributes.emir_id")>basket.footer.emir_id=#attributes.emir_id#;</cfif>
   </cfoutput>
 })
 
