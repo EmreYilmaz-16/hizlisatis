@@ -86,7 +86,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid# AND ORR.ORDER_ROW_CURRENCY NOT IN (#
 </cfoutput>
 </tbody>
 </cf_grid_list>
-<button class="btn btn-success" type="button" onclick="sbm(1)">Fatura Kes</button>
+<button class="btn btn-success" type="button" onclick="sbm(1,<cfoutput>#session.ep.userid#</cfoutput>)">Fatura Kes</button>
 <button class="btn btn-warning" type="button" onclick="sbm(2)">İrsaliye Kes</button>
 </cfform>
 </cf_box>

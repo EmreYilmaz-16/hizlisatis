@@ -10,7 +10,7 @@ function sbm(tip,employee_id) {
 
   var frm = document.getElementById("frm1");
   if (tip == 1) {
-    $.get("/AddOns/Partner/satis/cfc/kontrol.cfc?method=emirver&svk_id="+belgeId+"&employee_id="+employee_id);
+    $.post("/AddOns/Partner/satis/cfc/kontrol.cfc?method=emirver&svk_id="+belgeId+"&employee_id="+employee_id);
     var rs=wrk_query("SELECT MAX(EMIR_ID) AS EMIR_ID FROM FATURA_EMIR_PBS","DSN3")
     frm.action = "index.cfm?fuseaction=invoice.form_add_bill&is_from_pbs=1&emir_id="+rs.EMIR_ID[0];
   } else if (tip == 2) {
