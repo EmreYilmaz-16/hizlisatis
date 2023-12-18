@@ -52,7 +52,7 @@
     </td>
     <td>
         <CFSET KALAN=SF_MIK-ONY_MIK>
-        <button type="button" class="ui-wrk-btn ui-wrk-btn-danger" onclick="OnaylaCanim(#FIS_ID#,'#UNIQUE_RELATION_ID#',#KALAN#,#session.EP.userid#,#PERIOD_ID#,'#DSN3#',this)">Onayla</button>
+        <button type="button" class="ui-wrk-btn ui-wrk-btn-red" onclick="OnaylaCanim(#FIS_ID#,'#UNIQUE_RELATION_ID#',#KALAN#,#session.EP.userid#,#PERIOD_ID#,'#DSN3#',this)">Onayla</button>
     </td>
 </tr>
 </cfoutput>
