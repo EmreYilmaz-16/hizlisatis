@@ -5,7 +5,7 @@
 <cfif getOnayData.recordCount>
 <button id="btnEmir" onclick="SaveKesimEmir(<CFOUTPUT>'#attributes.DELIVER_PAPER_NO#'</CFOUTPUT>)" disabled="yes" class="ui-wrk-btn ui-wrk-btn-busy">Fatura Kesim Talebi Oluştur</button>
 <cfelse>
-    <button id="btnEmir" onclick="SaveKesimEmir(<CFOUTPUT>'#attributes.DELIVER_PAPER_NO#'</CFOUTPUT>)"  class="ui-wrk-btn ui-wrk-btn-busy">Fatura Kesim Talebi Oluştur</button>
+    <button id="btnEmir" onclick="SaveKesimEmir(<CFOUTPUT>'#attributes.DELIVER_PAPER_NO#'</CFOUTPUT>)"  class="ui-wrk-btn ui-wrk-btn-success">Fatura Kesim Talebi Oluştur</button>
 </cfif>
 <cf_big_list>
     <thead>
