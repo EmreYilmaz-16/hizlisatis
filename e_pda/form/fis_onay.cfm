@@ -52,7 +52,7 @@
     </td>
     <td>
         <CFSET KALAN=SF_MIK-ONY_MIK>
-        <button type="button" class="btn btn-danger" onclick="OnaylaCanim(#FIS_ID#,'#UNIQUE_RELATION_ID#',#KALAN#,#session.EP.userid#,#PERIOD_ID#,'#DSN3#')">Onayla</button>
+        <button type="button" class="btn btn-danger" onclick="OnaylaCanim(#FIS_ID#,'#UNIQUE_RELATION_ID#',#KALAN#,#session.EP.userid#,#PERIOD_ID#,'#DSN3#',this)">Onayla</button>
     </td>
 </tr>
 </cfoutput>
@@ -73,6 +73,7 @@
             }
         }).done(function(reta){
             console.log(reta)
+            el.setAttribute("class","btn btn-success");
         })
     }
 </script>
