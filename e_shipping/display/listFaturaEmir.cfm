@@ -87,7 +87,7 @@ where IS_FATURA=0
                 <td>
                     <cfset JsonData=deserializeJSON(BAKBIL)>
                     <cfloop array="#JsonData#" item="it">
-                        #tlformat(it.BAKIYE3)# #it.OTHER_MONEY#
+                        #tlformat(it.BAKIYE3)# #it.OTHER_MONEY# <br>
                     </cfloop>
                 </td>
                 <td>
