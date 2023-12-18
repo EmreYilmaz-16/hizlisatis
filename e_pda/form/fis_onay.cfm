@@ -1,7 +1,12 @@
-﻿<cfquery name="getOnayData" datasource="#dsn3#">
+﻿<cf_box title="Sevkiyat Kontrol">
+<cfquery name="getOnayData" datasource="#dsn3#">
     EXEC GET_ONAY '#attributes.DELIVER_PAPER_NO#'
 </cfquery>
-<button id="btnEmir" disabled="yes" class="ui-wrk-btn ui-wrk-btn-busy">Fatura Kesim Talebi Oluştur</button>
+<cfif getOnayData.recordCount>
+<button id="btnEmir" onclick="SaveKesimEmir(<CFOUTPUT>'#attributes.DELIVER_PAPER_NO#'</CFOUTPUT>)" disabled="yes" class="ui-wrk-btn ui-wrk-btn-busy">Fatura Kesim Talebi Oluştur</button>
+<cfelse>
+    <button id="btnEmir" onclick="SaveKesimEmir(<CFOUTPUT>'#attributes.DELIVER_PAPER_NO#'</CFOUTPUT>)"  class="ui-wrk-btn ui-wrk-btn-busy">Fatura Kesim Talebi Oluştur</button>
+</cfif>
 <cf_big_list>
     <thead>
     <tr>
@@ -85,6 +90,12 @@
             }
         })
     }
+    function SaveKesimEmir(DELIVER_PAPER_NO,EMPLOYEE_ID) {
+       var Res= wrk_query("SELECT DELIVER_PAPER_NO,SHIP_RESULT_ID FROM PRTOTM_SHIP_RESULT WHERE DELIVER_PAPER_NO='"+DELIVER_PAPER_NO+"'","DSN3")
+       var belgeId=Res.SHIP_RESULT_ID[0];
+        $.post("/AddOns/Partner/satis/cfc/kontrol.cfc?method=emirver&svk_id="+belgeId+"&employee_id="+EMPLOYEE_ID);
+
+    }
 </script>
 
 
@@ -99,3 +110,4 @@
         <cfargument name="AMOUNT">
         <cfargument name="DSN3">
 ---------->
+</cf_box>
