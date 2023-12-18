@@ -110,3 +110,11 @@ where IS_FATURA=0
         </cfoutput>
     </tbody>
 </cf_big_list>
+
+<script>
+    $(document).ready(function () {
+        setTimeout(function(){
+    window.location.reload()
+},30000)
+    })
+</script>
