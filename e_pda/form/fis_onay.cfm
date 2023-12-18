@@ -94,7 +94,7 @@
        var Res= wrk_query("SELECT DELIVER_PAPER_NO,SHIP_RESULT_ID FROM PRTOTM_SHIP_RESULT WHERE DELIVER_PAPER_NO='"+DELIVER_PAPER_NO+"'","DSN3")
        var belgeId=Res.SHIP_RESULT_ID[0];
         $.post("/AddOns/Partner/satis/cfc/kontrol.cfc?method=emirver&svk_id="+belgeId+"&employee_id="+EMPLOYEE_ID);
-
+        window.close();
     }
 </script>
 
