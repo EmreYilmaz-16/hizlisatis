@@ -60,7 +60,7 @@
 </cf_big_list>
 
 <script>
-    function OnaylaCanim(FIS_ID,UNIQUE_RELATION_ID,AMOUNT,EMPLOYEE_ID,PERIOD_ID,DSN3) {
+    function OnaylaCanim(FIS_ID,UNIQUE_RELATION_ID,AMOUNT,EMPLOYEE_ID,PERIOD_ID,DSN3,el) {
         $.ajax({
             url:"/AddOns/Partner/cfc/pdaServis.cfc?method=OnaylaCanim",
             data:{
