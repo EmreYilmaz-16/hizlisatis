@@ -17,7 +17,8 @@
                     ONY_MIK=ONY_MIK,
                     UNIQUE_RELATION_ID=UNIQUE_RELATION_ID,
                     DETAIL_INFO_EXTRA=DETAIL_INFO_EXTRA,
-                    SHIP_METHOD	PRODUCT_CODE=SHIP_METHOD,                        
+                    SHIP_METHOD=SHIP_METHOD,
+                    PRODUCT_CODE=PRODUCT_CODE,                        
                     PRODUCT_NAME=PRODUCT_NAME,
                     MAIN_UNIT=MAIN_UNIT,
                     BRAND_NAME=BRAND_NAME
