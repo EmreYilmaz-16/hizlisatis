@@ -1,5 +1,5 @@
 ﻿<cfquery name="getOnayData" datasource="#dsn3#">
-    EXEC GET_ONAY '#arguments.DELIVER_PAPER_NO#'
+    EXEC GET_ONAY '#attributes.DELIVER_PAPER_NO#'
 </cfquery>
 
 <cf_big_list>
