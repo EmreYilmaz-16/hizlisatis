@@ -1,7 +1,7 @@
 ﻿<cfquery name="getOnayData" datasource="#dsn3#">
     EXEC GET_ONAY '#attributes.DELIVER_PAPER_NO#'
 </cfquery>
-
+<button id="btnEmir" disabled="yes" class="ui-wrk-btn ui-wrk-btn-busy">Fatura Kesim Talebi Oluştur</button>
 <cf_big_list>
     <thead>
     <tr>
@@ -52,7 +52,7 @@
     </td>
     <td>
         <CFSET KALAN=SF_MIK-ONY_MIK>
-        <button type="button" class="btn btn-danger" onclick="OnaylaCanim(#FIS_ID#,'#UNIQUE_RELATION_ID#',#KALAN#,#session.EP.userid#,#PERIOD_ID#,'#DSN3#',this)">Onayla</button>
+        <button type="button" class="ui-wrk-btn ui-wrk-btn-danger" onclick="OnaylaCanim(#FIS_ID#,'#UNIQUE_RELATION_ID#',#KALAN#,#session.EP.userid#,#PERIOD_ID#,'#DSN3#',this)">Onayla</button>
     </td>
 </tr>
 </cfoutput>
@@ -60,6 +60,9 @@
 </cf_big_list>
 
 <script>
+<cfoutput>
+    var REC_COUNT=#getOnayData.recordCount#;
+</cfoutput>
     function OnaylaCanim(FIS_ID,UNIQUE_RELATION_ID,AMOUNT,EMPLOYEE_ID,PERIOD_ID,DSN3,el) {
         $.ajax({
             url:"/AddOns/Partner/cfc/pdaServis.cfc?method=OnaylaCanim",
@@ -73,7 +76,13 @@
             }
         }).done(function(reta){
             console.log(reta)
-            el.setAttribute("class","btn btn-success");
+            el.setAttribute("class","ui-wrk-btn ui-wrk-btn-success");
+            el.innerText="Onaylandı";
+            REC_COUNT--;
+            if(REC_COUNT==0){
+                document.getElementById("btnEmir").removeAttribute("disabled");
+                document.getElementById("btnEmir").setAttribute("class","ui-wrk-btn ui-wrk-btn-success");
+            }
         })
     }
 </script>
