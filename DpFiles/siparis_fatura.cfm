@@ -5,11 +5,11 @@
 <script>
 var OrderRowIdList="";
 var RelationIdArray=new Array();
-
+var attData=<cfoutput>#replace(serializeJSON(attributes),'//','')#</cfoutput>
 $(document).on('ready',function(){
   
   <cfoutput>
-    var attData=#replace(serializeJSON(attributes),'//','')#
+    
      OrderRowIdList="#attributes.ORDER_ROW_ID#";
       <cfloop list="#attributes.ORDER_ROW_ID#" item="it">
         var ix=basket.items.findIndex(p=>p.ROW_UNIQUE_RELATION_ID=="#evaluate("attributes.RELATION_ID_#it#")#");
