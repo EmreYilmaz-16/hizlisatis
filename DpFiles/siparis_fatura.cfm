@@ -6,6 +6,7 @@
 var OrderRowIdList="";
 var RelationIdArray=new Array();
 var attData=<cfoutput>#replace(serializeJSON(attributes),'//','')#</cfoutput>
+var PB="<cfoutput>#attributes.PB#</cfoutput>"
 $(document).on('ready',function(){
   
   <cfoutput>
@@ -35,7 +36,7 @@ $(document).on('ready',function(){
   </cfoutput>
   var ee=document.getElementById("money_rate_table")
 var Satirlar=ee.children[0].children;
-var PB="#attributes.PB#"
+
 for(let i=0;i<Satirlar.length;i++){
     var Satir=Satirlar[i];    
     var pbEl=$(Satir).find("input[value='"+PB+"']");
