@@ -38,7 +38,8 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid# AND ORR.ORDER_ROW_CURRENCY NOT IN (#
     <cfdump var="#GetSiparisData#">
 </cfif>
 <cf_box title="Faturalanabilir">
-<cfform method="post" id="frm1" action="">    
+<cfform method="post" id="frm1" action="">   
+     
     <cf_grid_list>
     <thead>
         <tr>
@@ -56,6 +57,12 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid# AND ORR.ORDER_ROW_CURRENCY NOT IN (#
     <cfoutput>
         <input type="hidden" value="#GetSiparisData.ORDER_ID#" name="order_id" id="row_order_id">
 <cfloop query="GetSiparisData">
+    <cfif currentrow eq 1>
+        <cfquery name="getOrd" datasource="#dsn3#">
+            SELECT OTHER_MONEY FROM ORDERS WHERE ORDER_ID=#ORDER_ID#
+        </cfquery>
+        <input type="hidden" name="PB" value="#getOrd.OTHER_MONEY#">
+    </cfif>
     <tr class="rows">
         <td>
             #currentrow#

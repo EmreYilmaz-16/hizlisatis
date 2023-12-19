@@ -19,8 +19,22 @@ $(document).on('ready',function(){
         RelationIdArray.push(o);
         basket.items[ix].AMOUNT=#evaluate("attributes.quantity_#it#")#;
       </cfloop>
+<!---
+      var ee=document.getElementById("money_rate_table")
+var Satirlar=ee.children[0].children;
+var PB="#attributes.PB#"
+for(let i=0;i<Satirlar.length;i++){
+    var Satir=Satirlar[i];
+    console.log(Satir)
+    var pbEl=$(Satir).find("input[value='"+PB+"']");
+    if(pbEl.length !=0){
+        $(Satir).find("input[type='radio']").click()
+    }
+    
+}
+      
 
-    <!---<cfloop list="#attributes.ORDER_ROW_ID#" item="it">
+    <cfloop list="#attributes.ORDER_ROW_ID#" item="it">
         var ix=basket.items.findIndex(P=>P.WRK_ROW_RELATION_ID="#evaluate("attributes.RELATION_ID_#it#")#")
         if(ix !=-1){
             basket.items[ix].AMOUNT=#evaluate("attributes.quantity_#it#")#
