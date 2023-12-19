@@ -21,13 +21,7 @@ $(document).on('ready',function(){
         basket.items[ix].AMOUNT=#evaluate("attributes.quantity_#it#")#;
       </cfloop>
 
-      var ee=document.getElementById("money_rate_table")
-var Satirlar=ee.children[0].children;
-var PB="#attributes.PB#"
-for(let i=0;i<Satirlar.length;i++){
-    var Satir=Satirlar[i];    
-    var pbEl=$(Satir).find("input[value='"+PB+"']");
-    if(pbEl.length !=0){$(Satir).find("input[type='radio']").click();}}
+
       
 <!---
     <cfloop list="#attributes.ORDER_ROW_ID#" item="it">
@@ -39,6 +33,13 @@ for(let i=0;i<Satirlar.length;i++){
     </cfloop>---->
     <cfif isDefined("attributes.emir_id")>basket.footer.emir_id=#attributes.emir_id#;</cfif>
   </cfoutput>
+  var ee=document.getElementById("money_rate_table")
+var Satirlar=ee.children[0].children;
+var PB="#attributes.PB#"
+for(let i=0;i<Satirlar.length;i++){
+    var Satir=Satirlar[i];    
+    var pbEl=$(Satir).find("input[value='"+PB+"']");
+    if(pbEl.length !=0){$(Satir).find("input[type='radio']").click();}}
 })
 
 function getParameterByName(name, url) {
