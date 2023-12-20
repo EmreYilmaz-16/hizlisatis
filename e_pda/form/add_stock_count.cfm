@@ -201,7 +201,7 @@ table, td, th, div {
      	{
 			var new_sql = "SELECT SB.STOCK_ID,SB.BARCODE,PU.MAIN_UNIT,PU.MULTIPLIER, S.PRODUCT_NAME FROM STOCKS_BARCODES AS SB INNER JOIN              PRODUCT_UNIT AS PU ON SB.UNIT_ID = PU.PRODUCT_UNIT_ID INNER JOIN STOCKS AS S ON SB.STOCK_ID = S.STOCK_ID WHERE SB.BARCODE= '"+barcode+"'";
 		 	var get_product = wrk_query(new_sql,'dsn3');
-		 	if (get_product.STOCK_ID == undefined)
+		 	if (get_product.STOCK_ID[0] == undefined)
 		 	{
 				ekle = 1;
 				cikar = 1;
@@ -210,9 +210,9 @@ table, td, th, div {
 		 	}
 		 	else
 		 	{	
-				stockid = get_product.STOCK_ID;
-				stockcode = get_product.PRODUCT_NAME;
-				barcode = get_product.BARCODE;
+				stockid = get_product.STOCK_ID[0];
+				stockcode = get_product.PRODUCT_NAME[0];
+				barcode = get_product.BARCODE[0];
 				document.getElementById('add_other_shelf').focus();
 				set_shelfs(stockid);
 				buton_kontrol();
