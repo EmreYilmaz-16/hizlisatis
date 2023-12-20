@@ -317,7 +317,7 @@ table, td, th, div {
 		var get_shelf = wrk_query(shelf_sql,'dsn3');
 		if(get_shelf.recordcount)
 		{
-			var giris_depo_s = get_shelf.STORE_ID.toString()+'-'+get_shelf.LOCATION_ID.toString();
+			var giris_depo_s = get_shelf.STORE_ID[0].toString()+'-'+get_shelf.LOCATION_ID[0].toString();
 			if(giris_depo != giris_depo_s)
 			{
 					alert('Seçtiğiniz Raf Giriş Lokasyonunda Yoktur.!');	
@@ -331,7 +331,7 @@ table, td, th, div {
 				{
 					var new_sql = "SELECT SB.STOCK_ID, SB.BARCODE, S.PRODUCT_NAME, PP.SHELF_CODE FROM STOCKS_BARCODES AS SB INNER JOIN STOCKS AS S ON SB.STOCK_ID = S.STOCK_ID INNER JOIN PRODUCT_PLACE_ROWS AS PPR ON S.PRODUCT_ID = PPR.PRODUCT_ID INNER JOIN PRODUCT_PLACE AS PP ON PPR.PRODUCT_PLACE_ID = PP.PRODUCT_PLACE_ID WHERE SB.BARCODE = '"+document.getElementById('add_other_barcod').value+"' AND PP.SHELF_CODE ='"+document.getElementById('add_other_shelf').value+"'";
 		 			var get_product = wrk_query(new_sql,'dsn3');
-					if (get_product.STOCK_ID == undefined)
+					if (get_product.STOCK_ID[0] == undefined)
 					{
 						alert('Ürün Bu Rafa Tanıtılmamış');
 						document.getElementById('add_other_shelf').value = '';
@@ -339,10 +339,10 @@ table, td, th, div {
 					}
 					else
 					{	
-						stockid = get_product.STOCK_ID;
-						stockcode = get_product.PRODUCT_NAME;
-						barcode = get_product.BARCODE;
-						shelf_code = get_product.SHELF_CODE; 
+						stockid = get_product.STOCK_ID[0];
+						stockcode = get_product.PRODUCT_NAME[0];
+						barcode = get_product.BARCODE[0];
+						shelf_code = get_product.SHELF_CODE[0]; 
 						buton_kontrol();
 						add_row(barcode);
 						document.getElementById('add_other_barcod').value = '';
@@ -386,7 +386,7 @@ table, td, th, div {
 			}
 			var depo_stock_sql = "SELECT ISNULL(PRODUCT_STOCK,0) AS PRODUCT_STOCK FROM PRTOTM_GET_STOCK_LOCATION_TOTAL WHERE  DEPO = '"+add_stock_count.txt_department_out.value+"' AND STOCK_ID ="+xyz;
 			var depo_stock = wrk_query(depo_stock_sql,'dsn2');
-			document.getElementById('add_other_amount').value = depo_stock.PRODUCT_STOCK;
+			document.getElementById('add_other_amount').value = depo_stock.PRODUCT_STOCK[0];
 		}
 		else
 			document.getElementById('shelf_select').options[0] = new Option('Raf Tanımsız','');

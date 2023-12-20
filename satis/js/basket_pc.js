@@ -142,11 +142,18 @@ function AddRow(
   var q = "SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR";
   q +=
     " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID";
-  q += " LEFT JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID";
+  q +=
+    " LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn +
+    ".DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID";
   q +=
     " WHERE STOCK_ID=" +
     stock_id +
-    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM "+generalParamsSatis.dataSources.dsn+".EMPLOYEE_POSITIONS AS EP INNER JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=EP.POSITION_CODE)";
+    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM " +
+    generalParamsSatis.dataSources.dsn +
+    ".EMPLOYEE_POSITIONS AS EP INNER JOIN " +
+    generalParamsSatis.dataSources.dsn +
+    ".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=EP.POSITION_CODE)";
   var res = wrk_query(q, "dsn3");
   var RafKodu = "";
   if (shelf_code.length == 0) {
@@ -714,11 +721,18 @@ function AddRow_pbso(
   var q = "SELECT PP.SHELF_CODE  FROM PRODUCT_PLACE_ROWS AS PPR";
   q +=
     " LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID";
-  q += " LEFT JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID";
+  q +=
+    " LEFT JOIN " +
+    generalParamsSatis.dataSources.dsn +
+    ".DEPARTMENT AS D ON D.DEPARTMENT_ID=PP.STORE_ID";
   q +=
     " WHERE STOCK_ID=" +
     stock_id +
-    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM "+generalParamsSatis.dataSources.dsn+".EMPLOYEE_POSITIONS AS EP INNER JOIN "+generalParamsSatis.dataSources.dsn+".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=EP.POSITION_CODE)";
+    " AND D.BRANCH_ID IN (SELECT D.BRANCH_ID FROM " +
+    generalParamsSatis.dataSources.dsn +
+    ".EMPLOYEE_POSITIONS AS EP INNER JOIN " +
+    generalParamsSatis.dataSources.dsn +
+    ".DEPARTMENT AS D ON D.DEPARTMENT_ID =EP.DEPARTMENT_ID WHERE EP.POSITION_CODE=EP.POSITION_CODE)";
 
   var RafKodu = "";
   if (shelf_code.length == 0 && stock_id != 0) {
@@ -1209,6 +1223,21 @@ function AddRow_pbso(
   manuelControl();
   RowControlForVirtual();
   FiyatTalepKontrol(rowCount);
+}
+function InputCreator(name, id, type, event_arr = [], value, style) {
+  var i_4 = document.createElement("input");
+  i_4.setAttribute("name", name);
+  i_4.setAttribute("id", id);
+  i_4.setAttribute("type", type);
+  i_4.setAttribute("style", style);
+  i_4.setAttribute("value", value);
+  if (event_arr.length > 0) {
+    for (let i = 0; i < event_arr.length; i++) {
+      item = event_arr[i];
+      i_6.setAttribute(ite.event_type, item.event_);
+    }
+  }
+  return i_4;
 }
 function AsamaYapici(rc, selv) {
   var sel_1 = document.createElement("select");
