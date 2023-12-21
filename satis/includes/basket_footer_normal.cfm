@@ -130,7 +130,7 @@
     <input type="hidden" id="_hidden_rd_money_#CurrentRow#" name="_hidden_rd_money_#CurrentRow#" value="#MONEY_TYPE#">
     <input type="hidden" id="_txt_rate1_#CurrentRow#" name="_txt_rate1_#CurrentRow#" value="#TLFormat(RATE1)#">
     <td nowrap="nowrap"><input type="radio" class="rdMoney" id="_rd_money" name="_rd_money" value="#CurrentRow#" <cfif GETOFFERmONEY.IS_SELECTED EQ 1>checked="yes"</cfif>></td>
-    <td nowrap="nowrap">#MONEY_TYPE#</td>
+    <td nowrap="nowrap">#MONEY_TYPE# -  #GETOFFERmONEY.IS_SELECTED#</td>
     <td nowrap="nowrap">#RATE1#/</td>
     <td nowrap="nowrap">
     <div class="form-group">
