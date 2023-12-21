@@ -114,7 +114,7 @@
     </td>
 
     <td>
-        <cfdump var="#GETOFFERmONEY#">
+        
     <table  cellspacing="0" border="0" class="CurrencyTable" id="qs_basket">
     <thead>
     <tr>
@@ -125,6 +125,7 @@
 
     <cfif isDefined("GETOFFERmONEY")>
     <cfoutput query="GETOFFERmONEY">
+        e
     <tr>   
     <input type="hidden" id="_hidden_rd_money_#CurrentRow#" name="_hidden_rd_money_#CurrentRow#" value="#MONEY_TYPE#">
     <input type="hidden" id="_txt_rate1_#CurrentRow#" name="_txt_rate1_#CurrentRow#" value="#TLFormat(RATE1)#">
