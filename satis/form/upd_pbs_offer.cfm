@@ -116,6 +116,7 @@ ORDER BY POR.OFFER_ROW_ID
     <cfquery name="GETOFFERmONEY" datasource="#dsn3#">
         select * from PBS_OFFER_MONEY where ACTION_ID=#attributes.offer_id#
     </cfquery>
+    <cfdump var="#GETOFFERmONEY#">
 </cfif>
 <cfset pageHead ="SANAL TEKLİFLER - #getOffer.OFFER_NUMBER#">
 
