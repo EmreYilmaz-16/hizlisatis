@@ -29,8 +29,8 @@ for(let i=0;i<window.basket.items.length;i++){
     var queryResult=wrk_query(str,"dsn3")
     console.log(queryResult)
     if(queryResult.recordcount>0){
-        window.basket.items[i].SHELF_NUMBER_TXT=queryResult.SHELF_CODE[0];
-        window.basket.items[i].SHELF_NUMBER=queryResult.PRODUCT_PLACE_ID[0];
+        window.basket.items[i].TO_SHELF_NUMBER_TXT=queryResult.SHELF_CODE[0];
+        window.basket.items[i].TO_SHELF_NUMBER=queryResult.PRODUCT_PLACE_ID[0];
         var clk=document.getElementsByName("detail_info_extra");
         for (let index = 0; index < clk.length; index++) {
             clk[i].click()
