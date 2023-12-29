@@ -169,6 +169,7 @@
 	   <cfquery name="get_all_sales" datasource="#dsn2#">
 			SELECT YIL
 				,AY
+				,CONVERT(VARCHAR,AY)+'-'+CONVERT(VARCHAR,YIL) AS AYYIL
 				,SUM(SATIS) AS SATIS
 				,STOCK_ID
 			FROM (
@@ -396,7 +397,7 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                 <cfif get_product_list.recordcount>
                     <cfoutput query="get_product_list">
                     	<cfquery name="get_stock_sales" dbtype="query">
-                        	SELECT * FROM get_all_sales WHERE STOCK_ID = #STOCK_ID#  AND AY<> #this_year_max_month# AND YIL<>#this_year# ORDER BY YIL DESC,AY DESC
+                        	SELECT * FROM get_all_sales WHERE STOCK_ID = #STOCK_ID#  AND AYYIL<> '#this_year_max_month#-#this_year#' ORDER BY YIL DESC,AY DESC
                         </cfquery>
                         <cfset toplam_satis = 0>
                         <cfloop query="get_stock_sales" startrow="1" endrow="12">
