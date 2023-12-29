@@ -396,7 +396,7 @@ YEAR(S.SHIP_DATE),MONTH(S.SHIP_DATE),SR.STOCK_ID*/
                 <cfif get_product_list.recordcount>
                     <cfoutput query="get_product_list">
                     	<cfquery name="get_stock_sales" dbtype="query">
-                        	SELECT * FROM get_all_sales WHERE STOCK_ID = #STOCK_ID#  AND AY<> #this_year_max_month# ORDER BY SATIS DESC
+                        	SELECT * FROM get_all_sales WHERE STOCK_ID = #STOCK_ID#  AND AY<> #this_year_max_month# ORDER BY YIL,AY DESC
                         </cfquery>
                         <cfset toplam_satis = 0>
                         <cfloop query="get_stock_sales" startrow="1" endrow="12">
