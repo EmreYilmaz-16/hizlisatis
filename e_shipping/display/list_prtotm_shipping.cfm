@@ -1272,7 +1272,7 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
 								WHERE        
                                 	ORR.ORDER_ROW_ID IN (#order_row_id_list#)
                             </cfquery>
-                            <cfset get_invoice_durum_recordcount get_invoice_durum.recordcount>
+                            <cfset get_invoice_durum_recordcount= get_invoice_durum.recordcount>
                        	<cfelse>
                         	<cfset get_invoice_durum_recordcount =0>
                      	</cfif>
