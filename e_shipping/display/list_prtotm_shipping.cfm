@@ -1272,8 +1272,9 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
 								WHERE        
                                 	ORR.ORDER_ROW_ID IN (#order_row_id_list#)
                             </cfquery>
+                            <cfset get_invoice_durum_recordcount get_invoice_durum.recordcount>
                        	<cfelse>
-                        	<cfset get_invoice_durum.recordcount =0>
+                        	<cfset get_invoice_durum_recordcount =0>
                      	</cfif>
                             <tr>
                                 <td>#currentrow#</td>
@@ -1891,7 +1892,7 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
                                     </cfif>----->
                                 </td>
                                 <td style="text-align:center">
-                                    <cfif get_invoice_durum.recordcount and len(get_invoice_durum.kalan)>
+                                    <cfif get_invoice_durum_recordcount and len(get_invoice_durum.kalan)>
                                         <cfif get_invoice_durum.kalan lt 0>
                                     		<img src="../../../images/green_glob.gif" border="0" title="<cfoutput>#getLang('main',3544)# #getLang('report',404)#</cfoutput> " />
                                        	<cfelse>
@@ -1899,7 +1900,7 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
                                         </cfif>
                                     </cfif>
                                     <!----
-                                	<cfif get_invoice_durum.recordcount and len(get_invoice_durum.kalan)>
+                                	<cfif get_invoice_durum_recordcount and len(get_invoice_durum.kalan)>
                                     	<cfif get_invoice_durum.kalan lt 0>
                                     		<img src="../../../images/green_glob.gif" border="0" title="<cfoutput>#getLang('main',3544)# #getLang('report',404)#</cfoutput> " />
                                        	<cfelse>
