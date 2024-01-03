@@ -1313,7 +1313,8 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
                                 </td>
                                 <cfif ListFind(session.ep.user_level,25)>
                                     <td style="text-align:right">
-                                    	<cfif IS_TYPE eq 1>
+                                    <CFTRY>
+                                        <cfif IS_TYPE eq 1>
                                         	<cfset bak.rc =0>
                                         	<cfif len(company_id)>
                                             	<cfquery name="get_bakiye" datasource="#dsn2#">
@@ -1345,6 +1346,8 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
                                                 </cfloop>
                                             </cfif>
                                         </cfif>
+                                        <cfcatch></cfcatch>
+                                    </CFTRY>
                                     </td>
                                 </cfif>
                                 <td>#get_emp_info(DELIVER_EMP,0,0)#</td>
