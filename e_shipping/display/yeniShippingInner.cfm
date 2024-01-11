@@ -293,6 +293,66 @@ order_employee_id---->
 </cf_box>
 <cfset this_year=year(now())>
 <cfset past_year=year(now())-1>
+
+<cf_big_list>
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                No
+            </th>
+            <th>
+                Tarih
+            </th>
+            <th>
+                Şirket
+            </th>
+            <th>
+                Üye Bakiyesi
+            </th>
+            <th>
+                Kaydeden
+            </th>
+            <th>
+                Sevk Yöntemi
+            </th>
+            <th>
+                INF
+            </th>
+            <th>
+                SVK
+            </th>
+            <th>
+                HZR
+            </th>
+            <th>
+                KNT
+            </th>
+            <th>
+                İRS
+            </th>
+            <th>
+                FTR
+            </th>
+            <th>
+                Kontrol Eden
+            </th>
+            <th>
+                Şehir
+            </th>
+            <th>
+                Açıklama
+            </th>
+            <th></th>
+            <th></th>
+
+            
+        </tr>
+    </thead>
+</cf_big_list>
+
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
     <cfif len(attributes.start_date)>
         <cf_date tarih="attributes.start_date">
