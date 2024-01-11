@@ -877,8 +877,9 @@ SHIP_RESULT_ID
     </tr>
 </cfoutput>
 </tbody>
-</cf_big_list>
+
 </cfif>
+</cf_big_list>
 </cf_box>
 <script>
     function input_control(params) {
