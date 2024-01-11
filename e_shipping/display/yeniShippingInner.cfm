@@ -31,9 +31,9 @@
                     <div class="form-group">
                         <select name="zone_id" id="zone_id" style="width:100px;height:20px">
                             <option value=""><cf_get_lang_main no='247.Satis Bölgesi'></option>
-                            <cfoutput query="sz">
+                            <cfloop query="sz">
                                 <option value="#SZ_HIERARCHY#" <cfif attributes.zone_id eq SZ_HIERARCHY>selected</cfif>>#sz_name#</option>
-                            </cfoutput>
+                            </cfloop>
                         </select> 
                     </div>
                 </td>
