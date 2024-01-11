@@ -942,6 +942,29 @@ SHIP_RESULT_ID
             </a> 
          </cfif>
     </td>
+    <td style="text-align:center"> <!---İrsaliye Indicator--->
+        <cfif IS_TYPE EQ 1>
+            <CFIF DURUM EQ 1>
+                <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
+            <cfelseif DURUM EQ 2>
+                <img src="../../../images/red_glob.gif" border="0" title="<cfoutput>#getLang('prod',183)# #getLang('main',3137)#</cfoutput>" />
+            <cfelseif DURUM EQ 3>
+                <img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3542.Kısmi Kapandı'>" />
+            </CFIF>
+        </cfif>
+
+    </td>
+    <TD></TD>
+    <cfquery name="get_control_emp" datasource="#dsn3#">
+        SELECT DISTINCT RECORD_EMP FROM PRTOTM_SHIPPING_PACKAGE_LIST WHERE SHIPPING_ID = #SHIP_RESULT_ID# AND TYPE = #IS_TYPE#
+    </cfquery>
+    <td>#get_emp_info(get_control_emp.RECORD_EMP,0,0)#</td>
+    <!---<td style="text-align:right"><cfif isnumeric(GET_PUAN.puan)><cfif GET_PUAN.puan eq 0><font color="red">#Tlformat(row_point,2)#</font><cfelse>#Tlformat(row_point,2)#</cfif><cfelse><font color="red">-</font></cfif></td>--->
+    <td style="text-align:center">#SEHIR#<br />#ILCE#</td>
+    <td title="#NOTE#">#left(NOTE,70)#<cfif len(NOTE) gt 70>...</cfif></td>
+    
+    <td style="text-align:center;<cfif DURUM neq 1>background-color:red</cfif>"><a href="javascript://" onclick="windowopen('#request.self#?fuseaction=objects.popup_print_files&print_type=32&action_id=#is_type#-#SHIP_RESULT_ID#','page');"><img src="/images/print2.gif" alt="<cf_get_lang_main no='62.Yazdır'>" border="0" title="<cf_get_lang_main no='62.Yazdır'>">
+    </td>
     </tr>
 </cfoutput>
 </tbody>
