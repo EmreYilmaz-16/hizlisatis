@@ -786,43 +786,94 @@ SHIP_RESULT_ID
 <tbody>
 <cfoutput query="getData">
     <tr>
-        <td>
-            #currentrow#
-        </td>
-        <td style="text-align:center">
-            <cfif IS_TYPE eq 1>
-                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#','page');" class="tableyazi" title="Sevk Fişine Git">
-                #DELIVER_PAPER_NO#
+        td style="text-align:center">
+        <cfif IS_TYPE eq 1>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#','list');" class="tableyazi" title="<cf_get_lang_main no='3528.Sevk Fişine Git'>">
+            #DELIVER_PAPER_NO#
+            </a>
+        <cfelse>
+            <strong>
+                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.add_dispatch_internaldemand&event=upd&ship_id=#DELIVER_PAPER_NO#','longpage');" class="tableyazi" title="<cf_get_lang_main no='3531.Sevk Talebine Git'>">
+                    #DELIVER_PAPER_NO#
                 </a>
+            </strong>
+            <br>
+            <cfset fuse_type = 'sales'>
+            <cfif IS_INSTALMENT eq 1>
+                    <cfset page_type = 'list_order_instalment&event=upd'>
             <cfelse>
-                <strong>
-                    <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.upd_dispatch_internaldemand&ship_id=#DELIVER_PAPER_NO#','wide');" class="tableyazi" title="Sevk Talebine Git">
-                        #DELIVER_PAPER_NO#
-                    </a>
-                </strong>
-                <br>
-                <cfset fuse_type = 'sales'>
-                <cfif get_order_id.is_instalment eq 1>
-                    <cfset page_type = 'upd_fast_sale'>
-                <cfelse>
-                    <cfset page_type = 'detail_order'>
+                <cfset page_type = 'list_order&event=upd'>
+            </cfif>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=#fuse_type#.#page_type#&order_id=#order_id_list#','longpage');" class="tableyazi" title="<cf_get_lang_main no='3532.Satış Siparişine Git'>">
+            #SHIP_FIS_NO#
+            </a>
+        </cfif>        
+    </td>
+    <td style="text-align:center">#DateFormat(OUT_DATE,'dd/mm/yyyy')#</td>
+    <td>
+        <cfif IS_TYPE eq 1>
+            #UNVAN#
+        <cfelse>
+            <strong>        
+            #DEPARTMENT_HEAD#<br>
+            </strong>
+            (#UNVAN#)
+        </cfif>
+    </td>
+    <cfif ListFind(session.ep.user_level,25)>
+        <td style="text-align:right">
+        <CFTRY>
+            <cfif IS_TYPE eq 1>
+                <cfset bak.rc =0>
+                <cfif len(company_id)>
+                    <cfquery name="get_bakiye" datasource="#dsn2#">
+                        SELECT        
+                            BAKIYE3, 
+                            OTHER_MONEY
+                        FROM      
+                            COMPANY_REMAINDER_MONEY
+                        WHERE        
+                            COMPANY_ID = #company_id#
+                    </cfquery>
+                <cfelseif len(consumer_id)>
+                    <cfquery name="get_bakiye" datasource="#dsn2#">
+                        SELECT        
+                            BAKIYE3, 
+                            OTHER_MONEY
+                        FROM      
+                            CONSUMER_REMAINDER_MONEY
+                        WHERE        
+                            CONSUMER_ID = #consumer_id#
+                    </cfquery>
                 </cfif>
-                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=#fuse_type#.#page_type#&order_id=#get_order_id.order_id#','wide');" class="tableyazi" title="Satış Siparişine Git">
-                #SHIP_FIS_NO#
-                </a>
-            </cfif> 
-        <td>
-            <td style="text-align:center">#DateFormat(OUT_DATE,'dd/mm/yyyy')#</td>
-            <td>
-                <cfif IS_TYPE eq 1>
-                    #UNVAN#
-                <cfelse>
-                    <strong>        
-                    #DEPARTMENT_HEAD#<br>
-                    </strong>
-                    (#UNVAN#)
+                <cfset bak.rc=get_bakiye.recordCount>
+                <cfif bak.rc>
+                    <cfloop query="get_bakiye">
+                    <font style="color:<cfif bakiye3 lte 0>blue<cfelse>red</cfif>">
+                        #TlFormat(BAKIYE3,2)# #OTHER_MONEY# 
+                       </font><cfif bak.rc gt get_bakiye.currentrow><br/></cfif>
+                    </cfloop>
                 </cfif>
-            </td>
+            </cfif>
+            <cfcatch></cfcatch>
+        </CFTRY>
+        </td>
+    </cfif>
+    <td>#get_emp_info(DELIVER_EMP,0,0)#</td>
+    <td>#SHIP_METHOD#
+        <br>
+    <cfquery name="getPm" datasource="#dsn#">
+            SELECT SP.PAYMETHOD FROM workcube_metosan.COMPANY_CREDIT AS CC 
+            INNER JOIN workcube_metosan.SETUP_PAYMETHOD AS SP ON CC.PAYMETHOD_ID=SP.PAYMETHOD_ID
+            WHERE CC.COMPANY_ID=#company_id#
+    </cfquery>
+    <b>Ö.Y:(#getPm.PAYMETHOD#)</b>
+    </td>
+    <td style="text-align:center">
+        <a href="javascript://" onclick="windowopen('index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=#SHIP_RESULT_ID#','page')">
+        <img src="../../../images/idea.gif" border="0" title="Durum" />
+    </a>
+    </td>
     </tr>
 </cfoutput>
 </tbody>
