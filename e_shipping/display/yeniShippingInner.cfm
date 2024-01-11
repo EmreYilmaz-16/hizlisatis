@@ -9,7 +9,8 @@
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
 </cfquery>
 <cf_box title="E-Shipping">
-    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
+   <cf_box_search>
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" id="form1"> 
         <cfoutput>
         <table>
             <tr>
@@ -60,7 +61,7 @@
                     </div>
                 </td>
             <td>
-                <div class="form-group">
+                <div class="form-group" style="display:flex">
                     <div class="input-group">
                         <cfsavecontent variable="message"><cf_get_lang dictionary_id='57477.hatalı veri'>:<cf_get_lang dictionary_id='57742.Tarih'>!</cfsavecontent>
                         <cfinput type="text" name="start_date"  value="#dateformat(attributes.start_date,dateformat_style)#" validate="#validate_style#" maxlength="10" message="#alert#">
@@ -73,8 +74,17 @@
                     </div>
                 </div>
             </td>
+            <td>
+                <div class="form-group">
+                    <cf_wrk_search_button search_function='input_control()'>
+                </div>
+            </td>
             </tr>
         </table>
+    </cf_box_search>
+    <cf_box_search_detail>
+
+    </cf_box_search_detail>
     </cfoutput>
 
     </cfform>
@@ -411,3 +421,8 @@ SHIP_RESULT_ID
 
 
 </cfif>
+<script>
+    function input_control(params) {
+        $("#form1").submit();
+    }
+</script>
