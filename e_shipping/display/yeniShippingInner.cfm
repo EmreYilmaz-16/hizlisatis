@@ -598,7 +598,43 @@ SELECT
         LEFT OUTER JOIN
         #dsn#.CONSUMER WITH (NOLOCK)
         ON (CONSUMER.CONSUMER_ID=ESR.CONSUMER_ID)
-    WHERE ESR.IS_TYPE = 1 AND ESR.OUT_DATE >= {ts '2023-11-01 00:00:00'} AND ESR.OUT_DATE <= {ts '2023-12-13 00:00:00'}
+    WHERE ESR.IS_TYPE = 1 
+    <cfif isdefined('attributes.product_id') and len(attributes.product_id)>
+                                AND ESR.SHIP_RESULT_ID IN
+                                                    (
+                                                    SELECT DISTINCT 
+                                                        ESRR.SHIP_RESULT_ID
+                                                    FROM          
+                                                        PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
+                                                        ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID
+                                                    WHERE      
+                                                        ORR.PRODUCT_ID = #attributes.product_id#
+                                                    )
+                            </cfif>
+                            <cfif isdefined('attributes.prod_cat') and len(attributes.prod_cat)>
+                                AND ESR.SHIP_RESULT_ID IN
+                                                        (
+                                                        SELECT DISTINCT 
+                                                            ESRR.SHIP_RESULT_ID
+                                                        FROM          
+                                                            PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
+                                                            ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
+                                                            STOCKS AS S ON ORR.STOCK_ID = S.STOCK_ID
+                                                        WHERE      
+                                                            S.STOCK_CODE LIKE N'#attributes.prod_cat#%'
+                                                        )                          
+                            </cfif>
+                            <cfif isdefined('attributes.SALES_DEPARTMENTS') and Listlen(attributes.SALES_DEPARTMENTS,'-') eq 2>
+                                AND ESR.DEPARTMENT_ID = #listgetat(attributes.SALES_DEPARTMENTS,1,'-')# 
+                                AND ESR.LOCATION_ID = #listgetat(attributes.SALES_DEPARTMENTS,2,'-')#
+                            </cfif>
+                            <cfif isdefined('attributes.start_date') and len(attributes.start_date)>
+                                AND ESR.OUT_DATE >= #attributes.start_date#
+                            </cfif>
+                            <cfif isdefined('attributes.finish_date') and len(attributes.finish_date)>
+                                AND ESR.OUT_DATE <= #attributes.finish_date#
+                            </cfif>
+    
 ) AS TBL
 WHERE
 AMOUNT > 0
