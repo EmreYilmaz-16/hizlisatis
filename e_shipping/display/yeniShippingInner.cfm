@@ -783,9 +783,49 @@ SHIP_RESULT_ID
 </cfquery>
 
 <cfdump var="#getData#">
-
-
-
+<tbody>
+<cfoutput query="getData">
+    <tr>
+        <td>
+            #currentrow#
+        </td>
+        <td style="text-align:center">
+            <cfif IS_TYPE eq 1>
+                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&iid=#SHIP_RESULT_ID#','page');" class="tableyazi" title="Sevk Fişine Git">
+                #DELIVER_PAPER_NO#
+                </a>
+            <cfelse>
+                <strong>
+                    <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=stock.upd_dispatch_internaldemand&ship_id=#DELIVER_PAPER_NO#','wide');" class="tableyazi" title="Sevk Talebine Git">
+                        #DELIVER_PAPER_NO#
+                    </a>
+                </strong>
+                <br>
+                <cfset fuse_type = 'sales'>
+                <cfif get_order_id.is_instalment eq 1>
+                    <cfset page_type = 'upd_fast_sale'>
+                <cfelse>
+                    <cfset page_type = 'detail_order'>
+                </cfif>
+                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=#fuse_type#.#page_type#&order_id=#get_order_id.order_id#','wide');" class="tableyazi" title="Satış Siparişine Git">
+                #SHIP_FIS_NO#
+                </a>
+            </cfif> 
+        <td>
+            <td style="text-align:center">#DateFormat(OUT_DATE,'dd/mm/yyyy')#</td>
+            <td>
+                <cfif IS_TYPE eq 1>
+                    #UNVAN#
+                <cfelse>
+                    <strong>        
+                    #DEPARTMENT_HEAD#<br>
+                    </strong>
+                    (#UNVAN#)
+                </cfif>
+            </td>
+    </tr>
+</cfoutput>
+</tbody>
 </cfif>
 </cf_box>
 <script>
