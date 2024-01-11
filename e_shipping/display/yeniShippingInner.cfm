@@ -103,6 +103,21 @@ order_employee_id---->
                 </div>
             </div>
         </td>
+        <td>
+            <div class="form-group" id="item-member_name">
+                <label class="col col-12"><cf_get_lang dictionary_id='57457.Müşteri'></label>						
+                <div class="col col-12">
+                    <div class="input-group">
+                        <input type="hidden" name="consumer_id" id="consumer_id" value="<cfif len(attributes.consumer_id)><cfoutput>#attributes.consumer_id#</cfoutput></cfif>">
+                        <input type="hidden" name="company_id" id="company_id" value="<cfif len(attributes.company_id)><cfoutput>#attributes.company_id#</cfoutput></cfif>">
+                        <input type="hidden" name="member_type" id="member_type" value="<cfif len(attributes.member_type)><cfoutput>#attributes.member_type#</cfoutput></cfif>">
+                        <input name="member_name" type="text" id="member_name" onFocus="AutoComplete_Create('member_name','MEMBER_NAME,MEMBER_PARTNER_NAME','MEMBER_NAME,MEMBER_PARTNER_NAME','get_member_autocomplete','\'1,2\',\'<cfif session.ep.isBranchAuthorization>1<cfelse>0</cfif>\',\'0\',\'0\',\'2\',\'1\'','CONSUMER_ID,COMPANY_ID,MEMBER_TYPE','consumer_id,company_id,member_type','','3','250');" value="<cfif len(attributes.member_name)><cfoutput>#attributes.member_name#</cfoutput></cfif>" autocomplete="off">
+                        <cfset str_linke_ait="&field_consumer=Form1.consumer_id&field_comp_id=Form1.company_id&field_member_name=Form1.member_name&field_type=Form1.member_type">
+                        <span class="input-group-addon btnPointer icon-ellipsis" onClick="openBoxDraggable('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_all_pars&is_period_kontrol=0<cfoutput>#str_linke_ait#</cfoutput>&select_list=2,3&keyword='+encodeURIComponent(document.Form1.member_name.value));"></span>
+                    </div>
+                </div>
+            </div>
+        </td>
     </tr>
 </table>
 
