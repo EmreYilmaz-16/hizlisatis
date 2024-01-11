@@ -10,9 +10,9 @@
 </cfquery>
 <cf_box title="E-Shipping">
     <cfoutput>
-   <cf_box_search>
+   
     <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" id="form1"> 
-        
+        <cf_box_search>     
         <table>
             <tr>
                 <td>
