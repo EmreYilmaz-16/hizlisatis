@@ -351,7 +351,7 @@ order_employee_id---->
             
         </tr>
     </thead>
-</cf_big_list>
+
 
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
     <cfif len(attributes.start_date)>
@@ -877,6 +877,7 @@ SHIP_RESULT_ID
     </tr>
 </cfoutput>
 </tbody>
+</cf_big_list>
 </cfif>
 </cf_box>
 <script>
