@@ -76,6 +76,16 @@
  	ORDER BY
     	PRODUCT_CAT
 </cfquery>
+<cfif not get_locations.recordcount>
+	<script type="text/javascript">
+     	alert("<cf_get_lang_main no='3516.Bu Şirket İçin Tanımlanmış Depo ve Lokasyon Bulunamamıştır!'>");
+     	history.go(-1);
+  	</script>
+ 	<cfabort>
+<cfelse>
+	<cfset condition_departments_list = ValueList(get_locations.DEPARTMENT_ID)>
+    <cfset condition_departments_list = ListDeleteDuplicates(condition_departments_list,',')>
+</cfif>
 <cf_box title="E-Shipping">
     <cfoutput>
    
