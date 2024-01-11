@@ -105,7 +105,7 @@
     	PRODUCT_CAT
 </cfquery>
 
-<cf_box title="E-Shipping">
+<cf_box >
     <cfoutput>
    
     <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" id="form1" name="Form1"> 
@@ -293,7 +293,7 @@ order_employee_id---->
 </cf_box>
 <cfset this_year=year(now())>
 <cfset past_year=year(now())-1>
-
+<cf_box title="Sevkiyat İşlemleri">
 <cf_big_list>
     <thead>
         <tr>
@@ -787,6 +787,7 @@ SHIP_RESULT_ID
 
 
 </cfif>
+</cf_box>
 <script>
     function input_control(params) {
         $("#form1").submit();
