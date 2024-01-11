@@ -11,6 +11,8 @@
 <cfparam name="attributes.consumer_id" default="">
 <cfparam name="attributes.member_type" default="">
 <cfparam name="attributes.MEMBER_NAME" default="">
+<cfparam name="attributes.product_name" default="">
+<cfparam name="attributes.product_id" default="">
 <cfquery name="SZ" datasource="#DSN#">
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
 </cfquery>
@@ -117,6 +119,18 @@ order_employee_id---->
                         <input name="member_name" type="text" id="member_name" onFocus="AutoComplete_Create('member_name','MEMBER_NAME,MEMBER_PARTNER_NAME','MEMBER_NAME,MEMBER_PARTNER_NAME','get_member_autocomplete','\'1,2\',\'<cfif session.ep.isBranchAuthorization>1<cfelse>0</cfif>\',\'0\',\'0\',\'2\',\'1\'','CONSUMER_ID,COMPANY_ID,MEMBER_TYPE','consumer_id,company_id,member_type','','3','250');" value="<cfif len(attributes.member_name)><cfoutput>#attributes.member_name#</cfoutput></cfif>" autocomplete="off">
                         <cfset str_linke_ait="&field_consumer=Form1.consumer_id&field_comp_id=Form1.company_id&field_member_name=Form1.member_name&field_type=Form1.member_type">
                         <span class="input-group-addon btnPointer icon-ellipsis" onClick="openBoxDraggable('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_all_pars&is_period_kontrol=0<cfoutput>#str_linke_ait#</cfoutput>&select_list=2,3&keyword='+encodeURIComponent(document.Form1.member_name.value));"></span>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="item-product_name">
+                <label class="col col-12"><cf_get_lang dictionary_id='57657.Ürün'></label>
+                <div class="col col-12">
+                    <div class="input-group">
+                        <input type="hidden" name="product_id" id="product_id" <cfif len(attributes.product_name)>value="<cfoutput>#attributes.product_id#</cfoutput>"</cfif>>
+                        <input name="product_name" type="text" id="product_name" onFocus="AutoComplete_Create('product_name','PRODUCT_NAME','PRODUCT_NAME','get_product','0','PRODUCT_ID','product_id','','3','200');" value="<cfif len(attributes.product_id) and len(attributes.product_name)><cfoutput>#attributes.product_name#</cfoutput></cfif>" autocomplete="off">
+                        <span class="input-group-addon btnPointer icon-ellipsis" onClick="openBoxDraggable('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_product_names&product_id=Form1.product_id&field_name=Form1.product_name&keyword='+encodeURIComponent(document.Form1.product_name.value));"></span>
                     </div>
                 </div>
             </div>
