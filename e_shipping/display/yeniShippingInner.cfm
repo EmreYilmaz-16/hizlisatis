@@ -7,7 +7,9 @@
 <cfparam name="attributes.finish_date" default="">
 <cfparam name="attributes.order_employee" default="#get_emp_info(session.ep.userid,0,0)# ">
 <cfparam name="attributes.order_employee_id" default="#session.ep.userid#">
-
+<cfparam name="attributes.company_id" default="">
+<cfparam name="attributes.consumer_id" default="">
+<cfparam name="attributes.member_type" default="">
 <cfquery name="SZ" datasource="#DSN#">
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
 </cfquery>
