@@ -3,6 +3,8 @@
 <cfparam name="attributes.report_type_id" default="3">
 <cfparam name="attributes.sort_type" default="1">
 <cfparam name="attributes.listing_type" default="">
+<cfparam name="attributes.start_date" default="">
+<cfparam name="attributes.finish_date" default="">
 <cfquery name="SZ" datasource="#DSN#">
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
 </cfquery>
