@@ -10,6 +10,7 @@
 <cfparam name="attributes.company_id" default="">
 <cfparam name="attributes.consumer_id" default="">
 <cfparam name="attributes.member_type" default="">
+<cfparam name="attributes.MEMBER_NAME" default="">
 <cfquery name="SZ" datasource="#DSN#">
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
 </cfquery>
