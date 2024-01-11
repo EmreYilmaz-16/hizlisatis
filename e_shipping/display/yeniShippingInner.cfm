@@ -891,7 +891,7 @@ SHIP_RESULT_ID
         </a>
     </td>
     <td style="text-align:center"> <!---Hazırlama Indicator--->
-        <cfset NN=listGetAt(AMBAR_KONTROL,2,"-")>
+        <cfset NN=listGetAt(AMBAR_KONTROL,1,"-")>
         <cfif NN EQ 1>
             <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
                 <img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>">
