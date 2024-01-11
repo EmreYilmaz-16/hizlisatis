@@ -229,11 +229,11 @@ order_employee_id---->
                 <label class="col col-12">Ürün Kategorileri</label>                
                 <select name="prod_cat" id="prod_cat" style="width:140px;height:20px">
                     <option value="">Seç</option>
-                    <cfoutput query="GET_PRODUCT_CATS">
+                    <cfloop query="GET_PRODUCT_CATS">
                         <cfif listlen(hierarchy,".") gte 4>
                         <option value="#hierarchy#"<cfif (attributes.prod_cat eq hierarchy) and len(attributes.prod_cat) eq len(hierarchy)> selected</cfif>>#product_cat#</option>
                         </cfif>
-                    </cfoutput>
+                    </cfloop>
                 </select> 
             </div>
         </td>
@@ -242,9 +242,9 @@ order_employee_id---->
                 <label class="col col-12">Şube</label>                
                 <select name="branch_id" id="branch_id" style="width:70px;height:20px">
                     <option value="">Seç</option>
-                     <cfoutput query="get_branch">
+                     <cfloop query="get_branch">
                            <option value="#branch_id#" <cfif isdefined("attributes.branch_id") and branch_id eq attributes.branch_id>selected</cfif>>#branch_name#</option>
-                    </cfoutput>
+                    </cfloop>
                    </select>   
             </div>
         </td>
@@ -253,10 +253,10 @@ order_employee_id---->
                 <label class="col col-12">Lokasyon</label>                
                 <select name="sales_departments" id="sales_departments" style="width:130px;height:20px">
                     <option value="">Seç</option>
-                    <cfoutput query="get_department_name">
+                    <cfloop query="get_department_name">
                         <cfset sla="#department_id#-#location_id#">
                        <cftry> <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments eq sla>selected</cfif>>#department_head#-#comment#</option><cfcatch></cfcatch></cftry>
-                    </cfoutput>
+                    </cfloop>
                 </select>
             </div>
         </td>
@@ -265,9 +265,9 @@ order_employee_id---->
                 <label class="col col-12">Şehir</label>                
                 <select name="city_name" id="city_name" style="width:100px;height:20px">
                     <option value="">Seç</option>
-                    <cfoutput query="get_city">
+                    <cfloop query="get_city">
                         <option value="#city_name#" <cfif isdefined("attributes.city_name") and attributes.city_name is '#city_name#'>selected</cfif>>#city_name#</option>
-                    </cfoutput>
+                    </cfloop>
                 </select>  
             </div>
         </td>
@@ -276,9 +276,9 @@ order_employee_id---->
                 <label class="col col-12">Sevk Yöntemi</label>           
                 <select name="SHIP_METHOD_ID" id="SHIP_METHOD_ID" style="width:100px;height:20px">
                     <option value="">Seç</option>
-                    <cfoutput query="GET_SHIP_METHOD">
+                    <cfloop query="GET_SHIP_METHOD">
                         <option value="#SHIP_METHOD_ID#" <cfif isdefined("attributes.SHIP_METHOD_ID") and attributes.SHIP_METHOD_ID eq SHIP_METHOD_ID>selected</cfif>>#SHIP_METHOD#</option>
-                    </cfoutput>
+                    </cfloop>
                 </select> 
             </div>
         </td>
