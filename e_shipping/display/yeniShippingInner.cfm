@@ -59,28 +59,20 @@
                         </select>   
                     </div>
                 </td>
-                <td>
-                    <div class="form-group">
-                        <cfif session.ep.our_company_info.unconditional_list>
-                            <cfinput type="text" name="start_date" value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
-                        <cfelse>
-                            <cfsavecontent variable="message">Baslangi Tarihi Kontrol Ediniz</cfsavecontent>
-                            <cfinput type="text" name="start_date"  value="#dateformat(attributes.start_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
-                        </cfif>
-                        <cf_wrk_date_image date_field="start_date">  
+            <td>
+                <div class="form-group">
+                    <div class="input-group">
+                        <cfsavecontent variable="message"><cf_get_lang dictionary_id='57477.hatalı veri'>:<cf_get_lang dictionary_id='57742.Tarih'>!</cfsavecontent>
+                        <cfinput type="text" name="start_date"  value="#dateformat(attributes.start_date,dateformat_style)#" validate="#validate_style#" maxlength="10" message="#alert#">
+                        <span class="input-group-addon"><cf_wrk_date_image date_field="start_date"></span>
                     </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <cfif session.ep.our_company_info.unconditional_list>
-                            <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" style="width:65px;">
-                        <cfelse>
-                            <cfsavecontent variable="message">Bitis Tarihi Kontrol Ediniz</cfsavecontent>
-                            <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,'dd/mm/yyyy')#" validate="eurodate" maxlength="10" message="#message#" style="width:65px;">
-                        </cfif>
-                        <cf_wrk_date_image date_field="finish_date">  
+                    <div class="input-group">
+                        <cfsavecontent variable="message"><cf_get_lang dictionary_id='57477.hatalı veri'>:<cf_get_lang dictionary_id='57742.Tarih'>!</cfsavecontent>
+                        <cfinput type="text" name="finish_date" value="#dateformat(attributes.finish_date,dateformat_style)#" validate="#validate_style#" maxlength="10" message="#alert#">
+                        <span class="input-group-addon"><cf_wrk_date_image date_field="finish_date"></span>
                     </div>
-                </td>
+                </div>
+            </td>
             </tr>
         </table>
     </cfoutput>
