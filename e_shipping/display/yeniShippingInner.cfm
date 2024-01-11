@@ -294,8 +294,14 @@ order_employee_id---->
 <cfset this_year=year(now())>
 <cfset past_year=year(now())-1>
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
+    <cfif len(attributes.start_date)>
+        <cf_date tarih="attributes.start_date">
+    </cfif>
+    <cfif len(attributes.finish_date)>
+        <cf_date tarih="attributes.finish_date">
+    </cfif>
 <cfquery name="getData" datasource="#dsn3#">
---SELECT * INTO [#dsn3#].XPRTOTM_PAKET_SAYISI FROM [#dsn3#].XPRTOTM_PAKET_SAYISI
+
 
 SELECT
     *
