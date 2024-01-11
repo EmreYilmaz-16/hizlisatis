@@ -287,7 +287,7 @@ order_employee_id---->
 
     </cf_box_search_detail>
     
-
+<input type="hidden" name="is_submit" value="1">
     </cfform>
 </cfoutput>
 </cf_box>
@@ -604,7 +604,71 @@ SELECT
 ) AS TBL
 WHERE
 AMOUNT > 0
-<cfif attributes.report_type_id eq 1>
+<cfif isdefined('attributes.city_name') and len(attributes.city_name)>
+                    AND SEHIR ='#attributes.city_name#' 
+                </cfif>
+                <cfif isdefined('attributes.SHIP_METHOD_ID') and len(attributes.SHIP_METHOD_ID)>
+                    AND SHIP_METHOD_TYPE ='#attributes.SHIP_METHOD_ID#' 
+                </cfif>
+                <cfif isdefined('attributes.member_name') and len(attributes.member_name)>
+					<cfif isdefined('attributes.company_id') and len(attributes.company_id)>
+                        AND COMPANY_ID =#attributes.company_id#
+                    </cfif>
+                    <cfif isdefined('attributes.consumer_id') and len(attributes.consumer_id)>
+                        AND CONSUMER_ID =#attributes.consumer_id# 
+                    </cfif>
+                </cfif>
+                <cfif len(attributes.keyword)>
+                    AND 
+                    	(
+                        REFERENCE_NO LIKE '%#attributes.keyword#%' OR
+                        DELIVER_PAPER_NO LIKE '%#attributes.keyword#%'
+                        )
+                </cfif>
+                <cfif len(attributes.order_employee_id) and len(attributes.order_employee)>
+                	AND DELIVER_EMP = #attributes.order_employee_id#
+                </cfif>
+              	<cfif len(attributes.zone_id)>  
+                	AND (
+                    	COMPANY_ID IN 	
+                    				(
+                                        SELECT     
+                                        	COMPANY_ID
+										FROM         
+                                        	#dsn_alias#.COMPANY
+										WHERE     
+                                        	SALES_COUNTY IN
+                          									(
+                                                            	SELECT     
+                                                                	SZ_ID
+                            									FROM          
+                                                                	#dsn_alias#.SALES_ZONES
+                            									WHERE      
+                                                                	SZ_HIERARCHY LIKE '#attributes.zone_id#%'
+                                                           	) 
+                                   	)
+                       	OR
+                   		CONSUMER_ID IN 	
+                    				(
+                                        SELECT     
+                                        	CONSUMER_ID
+										FROM         
+                                        	#dsn_alias#.CONSUMER
+										WHERE     
+                                        	SALES_COUNTY IN
+                          									(
+                                                            	SELECT     
+                                                                	SZ_ID
+                            									FROM          
+                                                                	#dsn_alias#.SALES_ZONES
+                            									WHERE      
+                                                                	SZ_HIERARCHY LIKE '#attributes.zone_id#%'
+                                                           	) 
+                                   	)
+                                    
+                  		)  
+              	</cfif>
+    			<cfif attributes.report_type_id eq 1>
                 	AND DURUM = 1
                 <cfelseif attributes.report_type_id eq 2>
                 	AND DURUM = 2
@@ -612,7 +676,7 @@ AMOUNT > 0
                 	AND SEVK_DURUM = 4
                	 <cfelseif attributes.report_type_id eq 4>
                 	AND SEVK_DURUM = 6
-</cfif>
+                </cfif>
 
 ORDER BY
 SHIP_RESULT_ID
