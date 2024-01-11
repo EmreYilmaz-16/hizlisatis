@@ -5,13 +5,16 @@
 <cfparam name="attributes.listing_type" default="">
 <cfparam name="attributes.start_date" default="">
 <cfparam name="attributes.finish_date" default="">
+<cfparam name="attributes.order_employee" default="#get_emp_info(session.ep.userid,0,0)# ">
+<cfparam name="attributes.order_employee_id" default="#session.ep.userid#">
+
 <cfquery name="SZ" datasource="#DSN#">
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
 </cfquery>
 <cf_box title="E-Shipping">
     <cfoutput>
    
-    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" id="form1"> 
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" id="form1" name="Form1"> 
         <cf_box_search>     
         <table>
             <tr>
@@ -75,7 +78,7 @@
                     </div>
                 </div>
             </td>
-            <td>
+            <td style="display:flex">
                 <div class="form-group">
                     <cf_wrk_search_button search_function='input_control()'>
                 </div>
@@ -84,6 +87,24 @@
         </table>
     </cf_box_search>
     <cf_box_search_detail>
+<table>
+    <tr>
+        <td>
+            <div class="form-group" id="item-order_employee">
+                <!---order_employee
+order_employee_id---->
+                <label>Gönderen</label>
+                <div >
+                    <div class="input-group">
+                        <input type="hidden" name="order_employee_id" id="order_employee_id" value="<cfif isDefined("attributes.order_employee") and len(attributes.order_employee) and isdefined("attributes.order_employee_id") and  len(attributes.order_employee_id)><cfoutput>#attributes.order_employee_id#</cfoutput></cfif>">
+                        <input name="order_employee" type="text" id="order_employee" onFocus="AutoComplete_Create('order_employee','MEMBER_NAME','MEMBER_NAME','get_member_autocomplete','3','EMPLOYEE_ID','order_employee_id','','3','120');" value="<cfif isDefined("attributes.order_employee") and len(attributes.order_employee) and len(attributes.order_employee_id)><cfoutput>#attributes.order_employee#</cfoutput></cfif>" autocomplete="off">
+                        <span class="input-group-addon btnPointer icon-ellipsis" onClick="openBoxDraggable('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_list_positions&field_emp_id=Form1.order_employee_id&field_name=Form1.order_employee&select_list=1');"></span>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
 
     </cf_box_search_detail>
     
