@@ -13,8 +13,68 @@
 <cfparam name="attributes.MEMBER_NAME" default="">
 <cfparam name="attributes.product_name" default="">
 <cfparam name="attributes.product_id" default="">
+
+
+
+<cfparam name="attributes.short_code_id" default="">
+<cfparam name="attributes.short_code_name" default="">
+<cfparam name="attributes.prod_cat" default="">
+
+
+<cfparam name="attributes.branch_id" default="">
+<cfparam name="attributes.city_name" default="">
+
+
+<cfparam name="attributes.t_point" default="0">
+<cfparam name="attributes.SHIP_METHOD_ID" default="">
+
+<cfparam name="attributes.totalrecords" default="0">
+
+
 <cfquery name="SZ" datasource="#DSN#">
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
+</cfquery>
+<cfquery name="get_department_name" datasource="#DSN#">
+	SELECT 
+		SL.LOCATION_ID,
+		SL.COMMENT,
+		D.DEPARTMENT_ID,
+		D.DEPARTMENT_HEAD,
+		D.BRANCH_ID
+	FROM
+		STOCKS_LOCATION SL,
+		DEPARTMENT D
+	WHERE 
+		SL.DEPARTMENT_ID = D.DEPARTMENT_ID
+		AND D.BRANCH_ID IN (SELECT BRANCH_ID FROM BRANCH WHERE COMPANY_ID = #session.ep.company_id#)
+        AND D.DEPARTMENT_ID IN (#condition_departments_list#)
+	ORDER BY
+		D.DEPARTMENT_HEAD,
+		SL.COMMENT
+</cfquery>
+<cfquery name="get_branch" datasource="#dsn#">
+	SELECT BRANCH_ID,BRANCH_NAME FROM BRANCH WHERE COMPANY_ID = #session.ep.company_id# ORDER BY BRANCH_NAME
+</cfquery>
+<cfquery name="get_kur" datasource="#dsn#">
+	SELECT (RATE2/RATE1) RATE,MONEY,RECORD_DATE FROM MONEY_HISTORY ORDER BY MONEY_HISTORY_ID DESC
+</cfquery>
+<cfquery name="get_city" datasource="#dsn#">
+	SELECT CITY_NAME FROM SETUP_CITY ORDER BY CITY_NAME
+</cfquery>
+<cfquery name="GET_SHIP_METHOD" datasource="#DSN#">
+	SELECT SHIP_METHOD_ID, SHIP_METHOD FROM SHIP_METHOD ORDER BY SHIP_METHOD
+</cfquery>
+<cfquery name="GET_PRODUCT_CATS" datasource="#dsn1#">
+	SELECT     
+    	PC.HIERARCHY, 
+        PC.PRODUCT_CAT
+	FROM         
+    	PRODUCT_CAT AS PC INNER JOIN
+        PRODUCT_CAT_OUR_COMPANY AS PCOC ON PC.PRODUCT_CATID = PCOC.PRODUCT_CATID
+	WHERE     
+    	PCOC.OUR_COMPANY_ID = #session.ep.company_id# 
+ 	ORDER BY
+    	PRODUCT_CAT
 </cfquery>
 <cf_box title="E-Shipping">
     <cfoutput>
@@ -133,6 +193,64 @@ order_employee_id---->
                         <span class="input-group-addon btnPointer icon-ellipsis" onClick="openBoxDraggable('<cfoutput>#request.self#</cfoutput>?fuseaction=objects.popup_product_names&product_id=Form1.product_id&field_name=Form1.product_name&keyword='+encodeURIComponent(document.Form1.product_name.value));"></span>
                     </div>
                 </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label class="col col-12">Ürün Kategorileri</label>                
+                <select name="prod_cat" id="prod_cat" style="width:140px;height:20px">
+                    <option value="">Seç</option>
+                    <cfoutput query="GET_PRODUCT_CATS">
+                        <cfif listlen(hierarchy,".") gte 4>
+                        <option value="#hierarchy#"<cfif (attributes.prod_cat eq hierarchy) and len(attributes.prod_cat) eq len(hierarchy)> selected</cfif>>#product_cat#</option>
+                        </cfif>
+                    </cfoutput>
+                </select> 
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label class="col col-12">Şube</label>                
+                <select name="branch_id" id="branch_id" style="width:70px;height:20px">
+                    <option value="">Seç</option>
+                     <cfoutput query="get_branch">
+                           <option value="#branch_id#" <cfif isdefined("attributes.branch_id") and branch_id eq attributes.branch_id>selected</cfif>>#branch_name#</option>
+                    </cfoutput>
+                   </select>   
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label class="col col-12">Lokasyon</label>                
+                <select name="sales_departments" id="sales_departments" style="width:130px;height:20px">
+                    <option value="">Seç</option>
+                    <cfoutput query="get_department_name">
+                        <cfset sla="#department_id#-#location_id#">
+                       <cftry> <option value="#department_id#-#location_id#" <cfif isdefined("attributes.sales_departments") and attributes.sales_departments eq sla>selected</cfif>>#department_head#-#comment#</option><cfcatch></cfcatch></cftry>
+                    </cfoutput>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label class="col col-12">Şehir</label>                
+                <select name="city_name" id="city_name" style="width:100px;height:20px">
+                    <option value="">Seç</option>
+                    <cfoutput query="get_city">
+                        <option value="#city_name#" <cfif isdefined("attributes.city_name") and attributes.city_name is '#city_name#'>selected</cfif>>#city_name#</option>
+                    </cfoutput>
+                </select>  
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label class="col col-12">Sevk Yöntemi</label>           
+                <select name="SHIP_METHOD_ID" id="SHIP_METHOD_ID" style="width:100px;height:20px">
+                    <option value="">Seç</option>
+                    <cfoutput query="GET_SHIP_METHOD">
+                        <option value="#SHIP_METHOD_ID#" <cfif isdefined("attributes.SHIP_METHOD_ID") and attributes.SHIP_METHOD_ID eq SHIP_METHOD_ID>selected</cfif>>#SHIP_METHOD#</option>
+                    </cfoutput>
+                </select> 
             </div>
         </td>
     </tr>
