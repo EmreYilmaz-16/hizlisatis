@@ -682,7 +682,7 @@ ORDER BY
 SHIP_RESULT_ID
 </cfquery>
 
-
+<cfdump var="#getData#">
 
 
 
