@@ -29,7 +29,35 @@
 <cfparam name="attributes.SHIP_METHOD_ID" default="">
 
 <cfparam name="attributes.totalrecords" default="0">
-
+<cfquery name="get_locations" datasource="#dsn#">
+	SELECT 
+    	DEPARTMENT_ID
+  	FROM 
+    	EMPLOYEE_POSITION_BRANCHES 
+  	WHERE  
+    	POSITION_CODE = #session.ep.POSITION_CODE# AND 
+        LOCATION_CODE IS NOT NULL AND
+        BRANCH_ID IN
+        			(
+        				SELECT        
+                        	BRANCH_ID
+						FROM            
+                        	BRANCH
+						WHERE        
+                        	BRANCH_STATUS = 1 AND 
+                            COMPANY_ID = #session.ep.COMPANY_ID#
+        			)
+</cfquery>
+<cfif not get_locations.recordcount>
+	<script type="text/javascript">
+     	alert("<cf_get_lang_main no='3516.Bu Şirket İçin Tanımlanmış Depo ve Lokasyon Bulunamamıştır!'>");
+     	history.go(-1);
+  	</script>
+ 	<cfabort>
+<cfelse>
+	<cfset condition_departments_list = ValueList(get_locations.DEPARTMENT_ID)>
+    <cfset condition_departments_list = ListDeleteDuplicates(condition_departments_list,',')>
+</cfif>
 
 <cfquery name="SZ" datasource="#DSN#">
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
@@ -76,35 +104,7 @@
  	ORDER BY
     	PRODUCT_CAT
 </cfquery>
-<cfquery name="get_locations" datasource="#dsn#">
-	SELECT 
-    	DEPARTMENT_ID
-  	FROM 
-    	EMPLOYEE_POSITION_BRANCHES 
-  	WHERE  
-    	POSITION_CODE = #session.ep.POSITION_CODE# AND 
-        LOCATION_CODE IS NOT NULL AND
-        BRANCH_ID IN
-        			(
-        				SELECT        
-                        	BRANCH_ID
-						FROM            
-                        	BRANCH
-						WHERE        
-                        	BRANCH_STATUS = 1 AND 
-                            COMPANY_ID = #session.ep.COMPANY_ID#
-        			)
-</cfquery>
-<cfif not get_locations.recordcount>
-	<script type="text/javascript">
-     	alert("<cf_get_lang_main no='3516.Bu Şirket İçin Tanımlanmış Depo ve Lokasyon Bulunamamıştır!'>");
-     	history.go(-1);
-  	</script>
- 	<cfabort>
-<cfelse>
-	<cfset condition_departments_list = ValueList(get_locations.DEPARTMENT_ID)>
-    <cfset condition_departments_list = ListDeleteDuplicates(condition_departments_list,',')>
-</cfif>
+
 <cf_box title="E-Shipping">
     <cfoutput>
    
