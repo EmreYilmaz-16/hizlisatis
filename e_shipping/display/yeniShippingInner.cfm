@@ -566,11 +566,11 @@ SELECT
 
         (SELECT
 
-            (CASE WHEN ISNULL(SUM(PAKETSAYISI), 0)=0 AND ISNULL(SUM(CONTROL_AMOUNT), 0)=0 THEN 'BARKOD YOK'
-     WHEN ROUND((ISNULL(SUM(PAKETSAYISI), 0)-ISNULL(SUM(CONTROL_AMOUNT), 0)),0) = 0 THEN 'KONTROL EDILDI'
-	 WHEN ISNULL(SUM(CONTROL_AMOUNT), 0) = 0  THEN 'KONTROL EDILMEDI'
-	 WHEN ROUND(ISNULL(SUM(PAKETSAYISI), 0),0) > ROUND(ISNULL(SUM(CONTROL_AMOUNT), 0),0) THEN 'KONTROL EKSIK'
-	 WHEN ROUND(ISNULL(SUM(PAKETSAYISI), 0),0) < ROUND(ISNULL(SUM(CONTROL_AMOUNT), 0),0) THEN 'TESLIMAT MIKTARI DUSURULMUS' ELSE '' END) AS PAKET_KONTROL
+            (CASE WHEN ISNULL(SUM(PAKETSAYISI), 0)=0 AND ISNULL(SUM(CONTROL_AMOUNT), 0)=0 THEN '1-BARKOD YOK'
+     WHEN ROUND((ISNULL(SUM(PAKETSAYISI), 0)-ISNULL(SUM(CONTROL_AMOUNT), 0)),0) = 0 THEN '2-KONTROL EDILDI'
+	 WHEN ISNULL(SUM(CONTROL_AMOUNT), 0) = 0  THEN '3-KONTROL EDILMEDI'
+	 WHEN ROUND(ISNULL(SUM(PAKETSAYISI), 0),0) > ROUND(ISNULL(SUM(CONTROL_AMOUNT), 0),0) THEN '4-KONTROL EKSIK'
+	 WHEN ROUND(ISNULL(SUM(PAKETSAYISI), 0),0) < ROUND(ISNULL(SUM(CONTROL_AMOUNT), 0),0) THEN '5-TESLIMAT MIKTARI DUSURULMUS' ELSE '' END) AS PAKET_KONTROL
 
         
         FROM
@@ -917,6 +917,31 @@ SHIP_RESULT_ID
             <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3140.Fazla Sevkiyat'>">  
             </a>
         </cfif>
+    </td>
+    <td style="text-align:center"> <!---El Terminali 1 Kontrol Indicator--->
+        <cfset MM=listGetAt(PAKET_KONTROL,1,"-")>
+        <cfif MM EQ 1>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                <img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>." />
+            </a>
+        <cfelseif MM EQ 2>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                <img src="/images/red_glob.gif" border="0" title="<cf_get_lang_main no='3133.Kontrol Edildi'>.">
+            </a>
+         <cfelseif MM EQ 3>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                <img src="/images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3134.Kontrol Edilmedi'>.">
+            </a>
+         <cfelseif MM EQ 4>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">	
+                <img src="/images/green_glob.gif" border="0" title="<cf_get_lang_main no='3135.Kontrol Eksik'>."> 
+            </a>  
+         <cfelse>
+             <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_term_control&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">	
+                <img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3539.Teslimat Miktarı Düşürülmüş.'>"> 
+            </a> 
+         </cfif>
+    </td>
     </tr>
 </cfoutput>
 </tbody>
