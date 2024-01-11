@@ -86,9 +86,10 @@
     <cf_box_search_detail>
 
     </cf_box_search_detail>
-    </cfoutput>
+    
 
     </cfform>
+</cfoutput>
 </cf_box>
 <cfset this_year=year(now())>
 <cfset past_year=year(now())-1>
