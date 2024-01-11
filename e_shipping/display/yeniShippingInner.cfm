@@ -877,15 +877,15 @@ SHIP_RESULT_ID
     </td>
     <td style="text-align:center"> <!---Sevk Indicator--->
         <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_list_e_shipping_info&iid=#SHIP_RESULT_ID#&is_type=#is_type#','page');" class="tableyazi" title="<cf_get_lang_main no='3533.Sevk Emri Ver'>">
-            <cfif  gSEVK_DURUM_K eq 2><!---- Buydu :#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#---->
+            <cfif  SEVK_DURUM_K eq 2><!---- Buydu :#request.self#?fuseaction=sales.popup_upd_ezgi_shipping_sevk&iid=#SHIP_RESULT_ID#&is_type=#is_type#---->
                 <img src="../../../images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='1305.Açık'>" />
-            <cfelseif  gSEVK_DURUM_K eq 1>
+            <cfelseif  SEVK_DURUM_K eq 1>
                 <img src="../../../images/red_glob.gif" border="0" title="<cf_get_lang_main no='669.Hepsi'> <cf_get_lang_main no='3272.Kapalı'>" />
-            <cfelseif  gSEVK_DURUM_K eq 6>
+            <cfelseif  SEVK_DURUM_K eq 6>
                 <img src="../../../images/green_glob.gif" border="0"title="<cf_get_lang_main no='3534.Kısmi Sevk'>" />
-            <cfelseif  gSEVK_DURUM_K eq 4>
+            <cfelseif  SEVK_DURUM_K eq 4>
                 <img src="../../../images/blue_glob.gif" border="0"title="<cf_get_lang_main no='3535.Tüm Ürünler Hazır'>" />
-            <cfelseif  gSEVK_DURUM_K eq 5>
+            <cfelseif  SEVK_DURUM_K eq 5>
                 <img src="../../../images/black_glob.gif" border="0"title="<cf_get_lang_main no='3536.Düzeltilmesi Gereken Sevk Talebi'>" />
             </cfif>
         </a>
