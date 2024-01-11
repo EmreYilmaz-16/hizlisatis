@@ -9,9 +9,10 @@
 	SELECT * FROM SALES_ZONES WHERE IS_ACTIVE=1 ORDER BY SZ_NAME
 </cfquery>
 <cf_box title="E-Shipping">
+    <cfoutput>
    <cf_box_search>
     <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#" id="form1"> 
-        <cfoutput>
+        
         <table>
             <tr>
                 <td>
