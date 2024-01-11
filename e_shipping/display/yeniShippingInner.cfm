@@ -478,12 +478,12 @@ SELECT
 
         (SELECT
 
-            (CASE WHEN ISNULL(SUM(PAKETSAYISI), 0)=0 AND ISNULL(SUM(CONTROL_AMOUNT), 0)=0 THEN 'BARKOD YOK'
-     WHEN ROUND((ISNULL(SUM(PAKETSAYISI), 0)-ISNULL(SUM(CONTROL_AMOUNT), 0)),0) = 0 THEN 'SEVK EDILDI'
-	 WHEN ISNULL(SUM(CONTROL_AMOUNT), 0) = 0 AND ISNULL(ESR.IS_SEVK_EMIR,0) = 1 THEN 'SEVK EMRI VERILDI'
-	 WHEN ISNULL(SUM(CONTROL_AMOUNT), 0) = 0 AND ISNULL(ESR.IS_SEVK_EMIR,0) <> 1 THEN 'SEVK EDILMEDI'
-	 WHEN ROUND(ISNULL(SUM(PAKETSAYISI), 0),0) > ROUND(ISNULL(SUM(CONTROL_AMOUNT), 0),0) THEN 'EKSIK SEVKIYAT'
-	 WHEN ROUND(ISNULL(SUM(PAKETSAYISI), 0),0) < ROUND(ISNULL(SUM(CONTROL_AMOUNT), 0),0) THEN 'FAZLA SEVKIYAT' ELSE '' END) AS AMBAR_DURUM
+            (CASE WHEN ISNULL(SUM(PAKETSAYISI), 0)=0 AND ISNULL(SUM(CONTROL_AMOUNT), 0)=0 THEN '1-BARKOD YOK'
+     WHEN ROUND((ISNULL(SUM(PAKETSAYISI), 0)-ISNULL(SUM(CONTROL_AMOUNT), 0)),0) = 0 THEN '2-SEVK EDILDI'
+	 WHEN ISNULL(SUM(CONTROL_AMOUNT), 0) = 0 AND ISNULL(ESR.IS_SEVK_EMIR,0) = 1 THEN '3-SEVK EMRI VERILDI'
+	 WHEN ISNULL(SUM(CONTROL_AMOUNT), 0) = 0 AND ISNULL(ESR.IS_SEVK_EMIR,0) <> 1 THEN '4-SEVK EDILMEDI'
+	 WHEN ROUND(ISNULL(SUM(PAKETSAYISI), 0),0) > ROUND(ISNULL(SUM(CONTROL_AMOUNT), 0),0) THEN '5-EKSIK SEVKIYAT'
+	 WHEN ROUND(ISNULL(SUM(PAKETSAYISI), 0),0) < ROUND(ISNULL(SUM(CONTROL_AMOUNT), 0),0) THEN '6-FAZLA SEVKIYAT' ELSE '' END) AS AMBAR_DURUM
 
 
         FROM
@@ -890,6 +890,33 @@ SHIP_RESULT_ID
             </cfif>
         </a>
     </td>
+    <td style="text-align:center"> <!---Hazırlama Indicator--->
+        <cfset NN=listGetAt(AMBAR_KONTROL,2,"-")>
+        <cfif NN EQ 1>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                <img src="/images/plus_ques.gif" border="0" title="<cf_get_lang_main no='2178.Barkod Yok'>">
+            </a>
+         <cfelseif NN EQ 2>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                <img src="/images/red_glob.gif" border="0" title="<cf_get_lang_main no='3137.Sevk Edildi'>.">
+            </a>
+         <cfelseif NN EQ 3>
+            <cfif IS_SEVK_EMIR eq 1>
+                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                    <img src="/images/blue_glob.gif" border="0" title="<cf_get_lang_main no='3538.Sevk Emri Verildi.'>">
+                </a>
+            <cfelse>
+                <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/yellow_glob.gif" border="0" title="<cf_get_lang_main no='3138.Sevk Edilmedi'>.">
+                </a>
+            </cfif>
+         <cfelseif NN EQ 5>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>">
+                <img src="/images/green_glob.gif" border="0" title="<cf_get_lang_main no='3139.Eksik Sevkiyat'>.">
+            </a>
+         <cfelseif NN EQ 6>
+            <a href="javascript://" onclick="windowopen('#request.self#?fuseaction=eshipping.emptypopup_upd_prtotm_shipping_ambar_control&ref_no=#DELIVER_PAPER_NO#&ship_id=#SHIP_RESULT_ID#&is_type=#is_type#','wide');" class="tableyazi" title="<cf_get_lang_main no='3537.Detay Göster'>"><img src="/images/black_glob.gif" border="0" title="<cf_get_lang_main no='3140.Fazla Sevkiyat'>">  
+            </a>
+        </cfif>
     </tr>
 </cfoutput>
 </tbody>
