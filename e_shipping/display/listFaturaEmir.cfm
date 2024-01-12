@@ -85,10 +85,12 @@ where IS_FATURA=0
                     #NICKNAME#
                 </td>
                 <td>
-                    <cfset JsonData=deserializeJSON(BAKBIL)>
+                  <cftry>  <cfset JsonData=deserializeJSON(BAKBIL)>
                     <cfloop array="#JsonData#" item="it">
                         #tlformat(it.BAKIYE3)# #it.OTHER_MONEY# <br>
                     </cfloop>
+                    <cfcatch></cfcatch>
+                </cftry>
                 </td>
                 <td>
                     #CITY_NAME#
