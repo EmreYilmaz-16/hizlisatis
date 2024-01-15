@@ -2114,3 +2114,56 @@ function openPriceListPartner(PRODUCT_ID, STOCK_ID, MAIN_UNIT, company_id) {
     company_id;
   openBoxDraggable(uri);
 }
+
+function openPriceList(
+  type,
+  pid_,
+  sid_,
+  tax,
+  cost,
+  manuel,
+  product_name,
+  stock_code,
+  brand,
+  indirim1,
+  deliver_dept,
+  basket_row_departman,
+  deliver_date,
+  amount,
+  unit,
+  price,
+  other_money,
+  price_other,
+  product_name_other,
+  detail_info_extra,
+  row_nettotal
+) {
+  var price_params = "&product_id=" + pid_ + "&stock_id=" + sid_;
+  if ($("#company_id_").val()) {
+    price_params += "&company_id=" + $("#company_id_").val();
+  }
+  if (type == 0) {
+    price_params += "&tax=" + tax;
+    price_params += "&cost=" + cost;
+    price_params += "&manuel=" + manuel;
+    price_params += "&product_name=" + product_name;
+    price_params += "&stock_code=" + stock_code;
+    price_params += "&brand=" + brand;
+    price_params += "&indirim1=" + indirim1;
+    price_params += "&basket_row_departman=" + basket_row_departman;
+    price_params += "&deliver_date=" + deliver_date;
+    price_params += "&amount=" + amount;
+    price_params += "&unit=" + unit;
+    price_params += "&price=" + price;
+    price_params += "&other_money=" + other_money;
+    price_params += "&price_other=" + price_other;
+    price_params += "&product_name_other=" + product_name_other;
+    price_params += "&detail_info_extra=" + detail_info_extra;
+    price_params += "&row_nettotal=" + row_nettotal;
+  } else {
+    price_params += "&satir=" + type;
+  }
+  openBoxDraggable(
+    "index.cfm?fuseaction=objects.popup_extra_product_prices" + price_params
+  );
+}
