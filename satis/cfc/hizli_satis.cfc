@@ -612,7 +612,7 @@
            </cfsavecontent>
            <cffile action="write" file = "c:\PBS\hizlisatiscfc_saveVirtualTube2.html" output="#control5#"></cffile>
 
-           <CFSET RETURN_VAL.PID = Res.IDENTITYCOL>
+           <CFSET RETURN_VAL.PID = Res.GENERATED_KEY>
            <CFSET RETURN_VAL.IS_VIRTUAL = 1>
            <CFSET RETURN_VAL.PRICE = Filternum(arguments.maliyet)>
            <CFSET RETURN_VAL.QTY = 1>
