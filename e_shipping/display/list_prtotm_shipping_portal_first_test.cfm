@@ -213,7 +213,7 @@ WHERE TTQ.AA_ORDER>0
 						WHERE es.SHIP_RESULT_ID = esrr.SHIP_RESULT_ID
 							AND orr.ORDER_ROW_ID = esrr.ORDER_ROW_ID
 							AND esrr.ORDER_ID=#getOrderList.ORDER_ID#
-							AND ORR.PRODUCT_ID=#GetLocationStocks.PRODUCT_ID[i]#
+							AND ORR.STOCK_ID=#GetLocationStocks.STOCK_ID[i]#
 							AND ( ORR.ORDER_ROW_CURRENCY <>-3 OR ORR.ORDER_ROW_CURRENCY <>-10)
 						</cfquery>
 						<cfdump var="#GetSVKNO#">
