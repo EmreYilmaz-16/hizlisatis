@@ -216,7 +216,7 @@ WHERE TTQ.AA_ORDER>0
 							AND ORR.PRODUCT_ID=#GetLocationStocks.PRODUCT_ID[i]#
 							AND ( ORR.ORDER_ROW_CURRENCY <>-3 OR ORR.ORDER_ROW_CURRENCY <>-10)
 						</cfquery>
-						
+						<cfdump var="#GetSVKNO#">
 						<cfset svk_list=valueList(GetSVKNO.DELIVER_PAPER_NO)>
 						
 						<cfquery name="control_info" datasource="#dsn2#">
