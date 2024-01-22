@@ -91,6 +91,10 @@ function AddRow(
     getKarmaProducts(product_id, quantity);
     return false;
   }
+  if(is_karma==1 && is_karma_sevk==0){
+    var KarmaSonuc=wrk_query("SELECT  SUM(ISNULL("+generalParamsSatis.dataSources.dsn3+".GET_CURRENT_PRODUCT_PRICE("+CompanyData.COMPANY_ID+","+CompanyData.PRICE_CAT+",STOCK_ID),0)) as f  FROM workcube_metosan_product.KARMA_PRODUCTS WHERE KARMA_PRODUCT_ID=61564","dsn1")
+    console.log(KarmaSonuc);
+  }
   console.log(arguments);
   var form = $(document);
   var checkedValue = form.find("input[name=_rd_money]:checked").val();

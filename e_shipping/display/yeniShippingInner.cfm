@@ -957,7 +957,9 @@ SHIP_RESULT_ID
     <TD></TD>
     <TD>
         <cfset birlesme_izni = 0>
-        <cfif IS_TYPE eq 1></cfif>
+        <cfif IS_TYPE eq 1>
+            
+        </cfif>
     </TD>
     <cfquery name="get_control_emp" datasource="#dsn3#">
         SELECT DISTINCT RECORD_EMP FROM PRTOTM_SHIPPING_PACKAGE_LIST WHERE SHIPPING_ID = #SHIP_RESULT_ID# AND TYPE = #IS_TYPE#
