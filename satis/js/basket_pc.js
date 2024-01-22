@@ -93,10 +93,12 @@ function AddRow(
   }
   if(is_karma==1 && is_karma_sevk==0){
    // var KarmaSonuc=wrk_query("SELECT  SUM(ISNULL("+generalParamsSatis.dataSources.dsn3+".GET_CURRENT_PRODUCT_PRICE("+CompanyData.COMPANY_ID+","+CompanyData.PRICE_CAT+",STOCK_ID),0)) as f  FROM workcube_metosan_product.KARMA_PRODUCTS WHERE KARMA_PRODUCT_ID=61564","dsn1")
-   var KarmaSonucStr=" SELECT SUM (FIY) as FIYATIM FROM ( SELECT *,CASE WHEN HVT=0 THEN workcube_metosan_1.NT_GET_CURRENT_PRODUCT_PRICE("+CompanyData.COMPANY_ID+","+CompanyData.PRICE_CAT+",STOCK_ID) ELSE workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE("+CompanyData.COMPANY_ID+","+CompanyData.PRICE_CAT+",STOCK_ID) END AS FIY FROM ("
-      KarmaSonucStr+=" SELECT STOCK_ID,(SELECT COUNT(*) FROM workcube_metosan_1.PRODUCT_TREE WHERE STOCK_ID=KARMA_PRODUCTS.STOCK_ID) AS HVT  FROM workcube_metosan_product.KARMA_PRODUCTS WHERE KARMA_PRODUCT_ID="+product_id+"   ) AS T ) AS TK"
+   var KarmaSonucStr=" SELECT SUM (FIY) as FIYATIM FROM ( SELECT *,CASE WHEN HVT=0 THEN workcube_metosan_1.NT_GET_CURRENT_PRODUCT_PRICE("+CompanyData.COMPANY_ID+","+CompanyData.PRICE_CAT+",STOCK_ID)*PRODUCT_AMOUNT ELSE workcube_metosan_1.GET_CURRENT_PRODUCT_PRICE("+CompanyData.COMPANY_ID+","+CompanyData.PRICE_CAT+",STOCK_ID)*PRODUCT_AMOUNT END AS FIY FROM ("
+      KarmaSonucStr+=" SELECT STOCK_ID,PRODUCT_AMOUNT,(SELECT COUNT(*) FROM workcube_metosan_1.PRODUCT_TREE WHERE STOCK_ID=KARMA_PRODUCTS.STOCK_ID) AS HVT  FROM workcube_metosan_product.KARMA_PRODUCTS WHERE KARMA_PRODUCT_ID="+product_id+"   ) AS T ) AS TK"
     var KarmaSonuc=wrk_query(KarmaSonucStr,"DSN3");
       console.log(KarmaSonuc);
+      price=KarmaSonuc.FIYATIM[0]
+      price_other=KarmaSonuc.FIYATIM[0]
   }
   console.log(arguments);
   var form = $(document);
