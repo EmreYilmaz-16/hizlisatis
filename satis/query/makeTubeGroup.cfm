@@ -170,7 +170,13 @@
                 (
                     PCE.PRODUCT_CATID = P.PRODUCT_CATID OR
                     PCE.PRODUCT_CATID IS NULL
-                ) AND
+                ) 
+                AND
+                (
+                    PCE.SUPPLIER_ID = P.COMPANY_ID OR
+                    PCE.SUPPLIER_ID IS NULL
+                )
+                AND
                 (
                     PCE.COMPANY_ID = #arguments.comp_id# OR
                     PCE.COMPANY_ID IS NULL
