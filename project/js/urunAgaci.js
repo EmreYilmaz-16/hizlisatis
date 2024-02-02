@@ -2077,11 +2077,25 @@ function LoadTree(el) {
   );
 }
 
-function fiyatHesaplaPoppi() {
+function fiyatHesaplaPoppi(ts) {
+ if(ts==0){
   var p = document.getElementById("fy_0003").value;
   var d = document.getElementById("fdy_0001").value;
   var tt = parseFloat(p) + (parseFloat(p) * parseFloat(d)) / 100;
   document.getElementById("fy_0002").value = tt;
+}else{
+ /*   var p = document.getElementById("fy_0003").value;
+  var d = document.getElementById("fdy_0001").value;
+  var tt = parseFloat(p) + (parseFloat(p) * parseFloat(d)) / 100;
+ */
+var p=document.getElementById("fy_0001").value;
+var d = document.getElementById("fdy_0001").value;
+var tt = parseFloat(p) - (parseFloat(p) * parseFloat(d)) / 100;
+document.getElementById("fy_0003").value = tt;
+  // document.getElementById("fy_0002").value = tt;
+ 
+  
+  }
 }
 
 function SetPrice(idb,modal_id) {

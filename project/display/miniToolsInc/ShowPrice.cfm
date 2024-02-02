@@ -16,7 +16,7 @@
                     Müşteri İndirim
                 </td>
                 <td>
-                    <input class="form-control" type="text" id="fdy_0001" onchange="fiyatHesaplaPoppi()" value="<cfoutput>#FData.Discount#</cfoutput>">
+                    <input class="form-control" type="text" id="fdy_0001" onchange="fiyatHesaplaPoppi(1)" value="<cfoutput>#FData.Discount#</cfoutput>">
                 </td>
             </tr>
             <tr>
@@ -30,7 +30,7 @@
                   Net Fiyat 
                 </td>
                 <td>
-                    <input class="form-control" type="text" id="fy_0003" onkeyup="fiyatHesaplaPoppi()"  value="<cfoutput>#FData.Price#</cfoutput>">
+                    <input class="form-control" type="text" id="fy_0003" onkeyup="fiyatHesaplaPoppi(0)"  value="<cfoutput>#FData.Price#</cfoutput>">
                 </td>
             </tr>
             <tr>
