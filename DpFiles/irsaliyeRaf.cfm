@@ -33,7 +33,7 @@ for(let i=0;i<window.basket.items.length;i++){
         window.basket.items[i].TO_SHELF_NUMBER=queryResult.PRODUCT_PLACE_ID[0];
         var clk=document.getElementsByName("detail_info_extra");
         for (let index = 0; index < clk.length; index++) {
-            clk[i].click()
+            clk[index].click()
         }
     }
 }
@@ -43,7 +43,7 @@ try {
     try {
         sessionControl() && validateControl() && kontrol()     
     } catch (error) {
-        sessionControl() && validateControl() && upd_form_function()
+       // sessionControl() && validateControl() && upd_form_function()
     }
     
 }
