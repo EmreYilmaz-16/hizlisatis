@@ -9,8 +9,8 @@ var tempProductData = "";
 var selectedArr = [];
 var selectedMoney = "";
 var CompanyData = new Object();
-var Yuvarlama=3;
-var ToplamYuvarlama=4;
+var Yuvarlama=4;
+var ToplamYuvarlama=8;
 $(document).ready(function () {
   setDoom();
   if (getParameterByName("event") == "upd") {
