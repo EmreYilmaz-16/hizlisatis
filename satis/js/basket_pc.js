@@ -98,7 +98,7 @@ function AddRow(
   if (is_karma == 1 && is_karma_sevk == 0) {
     // var KarmaSonuc=wrk_query("SELECT  SUM(ISNULL("+generalParamsSatis.dataSources.dsn3+".GET_CURRENT_PRODUCT_PRICE("+CompanyData.COMPANY_ID+","+CompanyData.PRICE_CAT+",STOCK_ID),0)) as f  FROM workcube_metosan_product.KARMA_PRODUCTS WHERE KARMA_PRODUCT_ID=61564","dsn1")
     var KarmaSonucStr =
-      " SELECT SUM (FIY) as FIYATIM FROM ( SELECT *,CASE WHEN 1="+KNTST+" THEN SALES_PRICE WHEN HVT=0 THEN workcube_metosan_1.NT_GET_CURRENT_PRODUCT_PRICE(" +
+      " SELECT SUM (FIY) as FIYATIM FROM ( SELECT *,CASE WHEN 1="+KNTST+" THEN SALES_PRICE* PRODUCT_AMOUNT WHEN HVT=0 THEN workcube_metosan_1.NT_GET_CURRENT_PRODUCT_PRICE(" +
       CompanyData.COMPANY_ID +
       "," +
       CompanyData.PRICE_CAT +
