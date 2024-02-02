@@ -325,7 +325,7 @@
             is_production=IS_PRODUCTION;
             is_sales=IS_SALES;
             is_purchase=IS_PURCHASE;
-            is_internet=IS_INTERNET;
+            is_internet=0;
             is_extranet=IS_EXTRANET;
             is_karma=IS_KARMA;
             is_karma_sevk=IS_KARMA_SEVK
