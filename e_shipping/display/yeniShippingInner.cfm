@@ -13,7 +13,9 @@
 <cfparam name="attributes.MEMBER_NAME" default="">
 <cfparam name="attributes.product_name" default="">
 <cfparam name="attributes.product_id" default="">
-
+<cfparam name="attributes.page" default="1">
+<cfparam name="attributes.maxrows" default='#session.ep.maxrows#'> 
+<cfset attributes.startrow = ((attributes.page-1)*attributes.maxrows) + 1 >
 
 
 <cfparam name="attributes.short_code_id" default="">
@@ -174,6 +176,8 @@
             </td>
             <td style="display:flex">
                 <div class="form-group">
+                    <cfsavecontent variable="message"><cf_get_lang_main no='125.Sayi_Hatasi_Mesaj'></cfsavecontent>
+                        <cfinput type="text" name="maxrows" value="#attributes.maxrows#" required="yes" onKeyUp="isNumber(this)" validate="integer" range="1,250" message="#message#" maxlength="3" style="width:25px;">
                     <cf_wrk_search_button search_function='input_control()'>
                 </div>
             </td>
@@ -784,7 +788,7 @@ SHIP_RESULT_ID
 
 
 <tbody>
-<cfoutput query="getData">
+<cfoutput query="getData" startrow="#attributes.startrow#" maxrows="#attributes.maxrows#">
     <tr>
         <td>#currentrow#</td>
         <td style="text-align:center">
@@ -977,6 +981,79 @@ SHIP_RESULT_ID
 
 </cfif>
 </cf_big_list>
+<cfset url_str = 'eshipping.list_partner_shipping'>
+<cfif isdefined("attributes.member_type") and len(attributes.member_type)>
+	<cfset url_str = url_str & "&member_type=#attributes.member_type#&member_name=#attributes.member_name#">
+</cfif>
+<cfif isdefined("attributes.company_id") and len(attributes.company_id)>
+	<cfset url_str = url_str & "&company_id=#attributes.company_id#&member_name=#attributes.member_name#">
+</cfif>
+<cfif isdefined("attributes.product_id") and len(attributes.product_id) and isdefined("attributes.product_name") and len(attributes.product_name)>
+	<cfset url_str = url_str & "&product_id=#attributes.product_id#&product_name=#attributes.product_name#">
+</cfif>
+<cfif isdefined("attributes.short_code_id") and len(attributes.short_code_id) and isdefined("attributes.short_code_name") and len(attributes.short_code_name)>
+	<cfset url_str = url_str & "&short_code_id=#attributes.short_code_id#&short_code_name=#attributes.short_code_name#">
+</cfif>
+<cfif isdefined("attributes.employee_id") and len(attributes.employee_id) and isdefined("attributes.employee") and len(attributes.employee)>
+	<cfset url_str = url_str & "&employee_id=#attributes.employee_id#&employee=#attributes.employee#">
+</cfif>
+
+<cfif isdefined("attributes.prod_cat") and len(attributes.prod_cat)>
+	<cfset url_str = url_str & "&prod_cat=#attributes.prod_cat#">
+</cfif>
+<cfif isdefined("attributes.project_id") and len(attributes.project_id) and isdefined("attributes.project_head") and len(attributes.project_head)>
+	<cfset url_str = url_str & "&project_id=#attributes.project_id#&project_head=#URLEncodedFormat(attributes.project_head)#">
+</cfif>
+<cfif isdefined("attributes.consumer_id") and len(attributes.consumer_id)>
+	<cfset url_str = url_str & "&consumer_id=#attributes.consumer_id#">
+</cfif>
+<!---<cfif isdefined("attributes.order_employee_id") and len(attributes.order_employee_id)> 
+	<cfset url_str = url_str & "&order_employee_id=#attributes.order_employee_id#&order_employee=#attributes.order_employee#">
+</cfif>--->
+<cfif isdefined("attributes.sales_member_id") and len(attributes.sales_member_id)>
+	<cfset url_str = url_str & "&sales_member_id=#attributes.sales_member_id#&sales_member_name=#attributes.sales_member_name#">
+</cfif>
+<cfif isdefined("attributes.sales_departments") and len(attributes.sales_departments)>
+	<cfset url_str = "#url_str#&sales_departments=#attributes.sales_departments#">
+</cfif>
+<cfif isdefined("attributes.listing_type") and len(attributes.listing_type)>
+
+	<cfset url_str = "#url_str#&listing_type=#attributes.listing_type#">
+</cfif>
+
+<cfif isdefined("attributes.branch_id") and len(attributes.branch_id)>
+	<cfset url_str = "#url_str#&branch_id=#attributes.branch_id#">
+</cfif>
+<cfif isdefined("attributes.zone_id") and len(attributes.zone_id)>
+	<cfset url_str = "#url_str#&zone_id=#attributes.zone_id#">
+</cfif>
+<cfif isdefined("attributes.city_name") and len(attributes.city_name)>
+
+	<cfset url_str = "#url_str#&city_name=#attributes.city_name#">
+</cfif>
+<cfif isdefined("attributes.ship_method_id") and len(attributes.ship_method_id)>
+	<cfset url_str = "#url_str#&ship_method_id=#attributes.ship_method_id#">
+</cfif>
+
+<cfif isdate(attributes.start_date)>
+	<cfset url_str = url_str & "&start_date=#dateformat(attributes.start_date,'dd/mm/yyyy')#">
+</cfif>
+<cfif isdate(attributes.finish_date)>
+	<cfset url_str = url_str & "&finish_date=#dateformat(attributes.finish_date,'dd/mm/yyyy')#">
+</cfif>
+<cfif isdefined('attributes.report_type_id')>
+	<cfset url_str = url_str & "&report_type_id=#attributes.report_type_id#">
+</cfif>
+<cfif len(t_point)>
+	<cfset url_str = url_str & "&t_point=#t_point#">
+</cfif>
+<cfset url_str = url_str & "&order_employee_id=#attributes.order_employee_id#&order_employee=#attributes.order_employee#">
+<cfset url_str = url_str & "&sort_type=#attributes.sort_type#">
+<cf_paging page="#attributes.page#" 
+	maxrows="#attributes.maxrows#" 
+    totalrecords="#attributes.totalrecords#" 
+    startrow="#attributes.startrow#" 
+    adres="#attributes.fuseaction#&#url_str#&form_varmi=1">
 </cf_box>
 <script>
     function input_control(params) {
