@@ -4,6 +4,7 @@ INNER JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=EP.DEPARTMENT_ID
 WHERE 1=1 AND EMPLOYEE_ID=#session.EP.USERID#
 </cfquery>
 <script>
+
 $(document).ready(function(){
     <CFIF GETEMPPO.recordCount>
     var btn=document.createElement("button")
@@ -19,6 +20,7 @@ function RaflariYaz(){
 console.log(window.basket)
 var Department=document.getElementById("department_id").value;
 var Location=document.getElementById("location_id").value;
+var dps=document.getElementById("old_process_type");
 for(let i=0;i<window.basket.items.length;i++){
     var Item=window.basket.items[i];
     var STOCK_ID=Item.STOCK_ID
@@ -29,8 +31,13 @@ for(let i=0;i<window.basket.items.length;i++){
     var queryResult=wrk_query(str,"dsn3")
     console.log(queryResult)
     if(queryResult.recordcount>0){
+     if(dps=="76"){
+        window.basket.items[i].SHELF_NUMBER_TXT=queryResult.SHELF_CODE[0];
+        window.basket.items[i].SHELF_NUMBER=queryResult.PRODUCT_PLACE_ID[0];
+     }else{
         window.basket.items[i].TO_SHELF_NUMBER_TXT=queryResult.SHELF_CODE[0];
         window.basket.items[i].TO_SHELF_NUMBER=queryResult.PRODUCT_PLACE_ID[0];
+    }
         var clk=document.getElementsByName("detail_info_extra");
         for (let index = 0; index < clk.length; index++) {
             clk[index].click()
@@ -43,7 +50,7 @@ try {
     try {
         sessionControl() && validateControl() && kontrol()     
     } catch (error) {
-       // sessionControl() && validateControl() && upd_form_function()
+        sessionControl() && validateControl() && upd_form_function()
     }
     
 }
