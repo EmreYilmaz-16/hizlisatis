@@ -1540,7 +1540,7 @@ function toplamHesapla_2() {
   var grosT = 0;
   var kdv_matrah = 0;
   for (let i = 1; i <= rows.length; i++) {
-    var prc = filterNum(document.getElementById("price_" + i).value,Yuvarlama);
+    var prc = filterNum(document.getElementById("price_" + i).value,ToplamYuvarlama);
     console.log(prc);
     var qty = filterNum(document.getElementById("amount_" + i).value);
     var dsc = filterNum(document.getElementById("indirim1_" + i).value);
@@ -1694,16 +1694,16 @@ function GetBasketData() {
   var PRICE_CATID = document.getElementById("PRICE_CATID").value;
   var PROJECT_NAME = document.getElementById("project_name").value;
   var PROJECT_ID = document.getElementById("project_id").value;
-  SUBTOTAL = filterNum(SUBTOTAL, 4);
-  SUBTAXTOTAL = filterNum(SUBTAXTOTAL, 4);
-  SUBNETTOTAL = filterNum(SUBNETTOTAL, 4);
+  SUBTOTAL = filterNum(SUBTOTAL, ToplamYuvarlama);
+  SUBTAXTOTAL = filterNum(SUBTAXTOTAL, ToplamYuvarlama);
+  SUBNETTOTAL = filterNum(SUBNETTOTAL, ToplamYuvarlama);
 
-  GROSS_TOTAL = filterNum(GROSS_TOTAL, 4);
-  AFTER_DISCOUNT = filterNum(AFTER_DISCOUNT, 4);
-  DISCOUNT_TOTAL = filterNum(DISCOUNT_TOTAL, 4);
-  TOTAL_WITHOUT_KDV = filterNum(TOTAL_WITHOUT_KDV, 4);
-  TAX_TOTAL = filterNum(TAX_TOTAL, 4);
-  TOTAL_WITH_KDV = filterNum(TOTAL_WITH_KDV, 4);
+  GROSS_TOTAL = filterNum(GROSS_TOTAL, ToplamYuvarlama);
+  AFTER_DISCOUNT = filterNum(AFTER_DISCOUNT, ToplamYuvarlama);
+  DISCOUNT_TOTAL = filterNum(DISCOUNT_TOTAL, ToplamYuvarlama);
+  TOTAL_WITHOUT_KDV = filterNum(TOTAL_WITHOUT_KDV, ToplamYuvarlama);
+  TAX_TOTAL = filterNum(TAX_TOTAL, ToplamYuvarlama);
+  TOTAL_WITH_KDV = filterNum(TOTAL_WITH_KDV, ToplamYuvarlama);
 
   var form = $(document);
   var checkedValue = form.find("input[name=_rd_money]:checked").val();
@@ -1848,10 +1848,10 @@ function GruplaCanimBenim() {
     Mik = parseFloat(filterNum(Mik));
     var MainUnit = document.getElementById("main_unit_" + Rc).value;
     var Price = document.getElementById("price_other_" + Rc).value;
-    Price = parseFloat(filterNum(Price));
+    Price = parseFloat(filterNum(Price,Yuvarlama));
     var Om = document.getElementById("other_money_" + Rc).value;
     var prc = document.getElementById("price_" + Rc).value;
-    prc = parseFloat(filterNum(prc));
+    prc = parseFloat(filterNum(prc,Yuvarlama));
     var tax = document.getElementById("Tax_" + Rc).value;
     tax = filterNum(tax);
     var row_nettotal = parseFloat(prc) * parseFloat(Mik);
