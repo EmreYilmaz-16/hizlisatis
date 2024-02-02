@@ -23,7 +23,7 @@
                 <td style="display:none">
                    Standart İndirimli Fiyat 
                   </td>
-                  <td>
+                  <td style="display:none">
                       <input class="form-control" type="text" id="fy_0002" readonly value="<cfoutput>#FData.Price#</cfoutput>">
                   </td>
                 <td>
