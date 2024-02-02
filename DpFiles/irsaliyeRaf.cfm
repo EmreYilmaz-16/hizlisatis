@@ -20,7 +20,7 @@ function RaflariYaz(){
 console.log(window.basket)
 var Department=document.getElementById("department_id").value;
 var Location=document.getElementById("location_id").value;
-var dps=document.getElementById("old_process_type");
+var dps=document.getElementById("old_process_type").value;
 for(let i=0;i<window.basket.items.length;i++){
     var Item=window.basket.items[i];
     var STOCK_ID=Item.STOCK_ID
@@ -31,6 +31,7 @@ for(let i=0;i<window.basket.items.length;i++){
     var queryResult=wrk_query(str,"dsn3")
     console.log(queryResult)
     if(queryResult.recordcount>0){
+        console.log(dps)
      if(dps=="76"){
         window.basket.items[i].SHELF_NUMBER_TXT=queryResult.SHELF_CODE[0];
         window.basket.items[i].SHELF_NUMBER=queryResult.PRODUCT_PLACE_ID[0];
