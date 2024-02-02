@@ -30,7 +30,7 @@
                   Net Fiyat 
                 </td>
                 <td>
-                    <input class="form-control" type="text" id="fy_0003" onkeyup="fiyatHesaplaPoppi(0)"  value="<cfoutput>#FData.Price#</cfoutput>">
+                    <input class="form-control" type="text" readonly id="fy_0003" onkeyup="fiyatHesaplaPoppi(0)"  value="<cfoutput>#FData.Price#</cfoutput>">
                 </td>
             </tr>
             <tr>
