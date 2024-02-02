@@ -1541,6 +1541,7 @@ function toplamHesapla_2() {
   var kdv_matrah = 0;
   for (let i = 1; i <= rows.length; i++) {
     var prc = filterNum(document.getElementById("price_" + i).value);
+    console.log(prc);
     var qty = filterNum(document.getElementById("amount_" + i).value);
     var dsc = filterNum(document.getElementById("indirim1_" + i).value);
     var tax = filterNum(document.getElementById("Tax_" + i).value);
