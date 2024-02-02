@@ -1540,7 +1540,7 @@ function toplamHesapla_2() {
   var grosT = 0;
   var kdv_matrah = 0;
   for (let i = 1; i <= rows.length; i++) {
-    var prc = filterNum(document.getElementById("price_" + i).value);
+    var prc = filterNum(document.getElementById("price_" + i).value,Yuvarlama);
     console.log(prc);
     var qty = filterNum(document.getElementById("amount_" + i).value);
     var dsc = filterNum(document.getElementById("indirim1_" + i).value);
