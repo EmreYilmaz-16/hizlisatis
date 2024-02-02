@@ -9,7 +9,8 @@ var tempProductData = "";
 var selectedArr = [];
 var selectedMoney = "";
 var CompanyData = new Object();
-var Yuvarlama=6;
+var Yuvarlama=8;
+var FiyatYuvarlama=4;
 var ToplamYuvarlama=8;
 $(document).ready(function () {
   setDoom();
@@ -513,7 +514,7 @@ function AddRow(
   i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
   i_10.setAttribute("class", "prtMoneyBox");
   i_10.setAttribute("style", "width:30px");
-  i_10.setAttribute("value", commaSplit(price_other,Yuvarlama));
+  i_10.setAttribute("value", commaSplit(price_other,FiyatYuvarlama));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -532,7 +533,7 @@ function AddRow(
   i_6.setAttribute("onClick", "sellinputAllVal(this)");
   i_6.setAttribute("class", "prtMoneyBox");
   i_6.setAttribute("style", "width:30px");
-  i_6.setAttribute("value", commaSplit(prc, Yuvarlama));
+  i_6.setAttribute("value", commaSplit(prc, FiyatYuvarlama));
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   div.appendChild(i_6);
@@ -1097,7 +1098,7 @@ function AddRow_pbso(
   i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
   i_10.setAttribute("class", "prtMoneyBox");
   i_10.setAttribute("style", "width:30px");
-  i_10.setAttribute("value", commaSplit(price_other,Yuvarlama));
+  i_10.setAttribute("value", commaSplit(price_other,FiyatYuvarlama));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1116,7 +1117,7 @@ function AddRow_pbso(
   i_6.setAttribute("onClick", "sellinputAllVal(this)");
   i_6.setAttribute("class", "prtMoneyBox");
   i_6.setAttribute("style", "width:30px");
-  i_6.setAttribute("value", commaSplit(prc, Yuvarlama));
+  i_6.setAttribute("value", commaSplit(prc, FiyatYuvarlama));
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   div.appendChild(i_6);
@@ -1473,8 +1474,8 @@ function hesapla(input, sira) {
     }
   }
 
-  $("#price_other_" + sira).val(commaSplit(price_other_, Yuvarlama));
-  $("#price_" + sira).val(commaSplit(price_, Yuvarlama));
+  $("#price_other_" + sira).val(commaSplit(price_other_, FiyatYuvarlama));
+  $("#price_" + sira).val(commaSplit(price_, FiyatYuvarlama));
   $("#row_nettotal_" + sira).val(commaSplit(newNettotal, Yuvarlama));
   $("#amount_" + sira).val(commaSplit(amount_, 2));
   toplamHesapla();
