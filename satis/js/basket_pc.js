@@ -9,6 +9,8 @@ var tempProductData = "";
 var selectedArr = [];
 var selectedMoney = "";
 var CompanyData = new Object();
+var Yuvarlama=6;
+var ToplamYuvarlama=4;
 $(document).ready(function () {
   setDoom();
   if (getParameterByName("event") == "upd") {
@@ -511,7 +513,7 @@ function AddRow(
   i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
   i_10.setAttribute("class", "prtMoneyBox");
   i_10.setAttribute("style", "width:30px");
-  i_10.setAttribute("value", commaSplit(price_other,4));
+  i_10.setAttribute("value", commaSplit(price_other,Yuvarlama));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -530,7 +532,7 @@ function AddRow(
   i_6.setAttribute("onClick", "sellinputAllVal(this)");
   i_6.setAttribute("class", "prtMoneyBox");
   i_6.setAttribute("style", "width:30px");
-  i_6.setAttribute("value", commaSplit(prc, 4));
+  i_6.setAttribute("value", commaSplit(prc, Yuvarlama));
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   div.appendChild(i_6);
@@ -565,7 +567,7 @@ function AddRow(
   i_7.setAttribute("type", "text");
   i_7.setAttribute("class", "prtMoneyBox");
 
-  i_7.setAttribute("value", commaSplit(0, 4));
+  i_7.setAttribute("value", commaSplit(0, Yuvarlama));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1095,7 +1097,7 @@ function AddRow_pbso(
   i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
   i_10.setAttribute("class", "prtMoneyBox");
   i_10.setAttribute("style", "width:30px");
-  i_10.setAttribute("value", commaSplit(price_other,4));
+  i_10.setAttribute("value", commaSplit(price_other,Yuvarlama));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1114,7 +1116,7 @@ function AddRow_pbso(
   i_6.setAttribute("onClick", "sellinputAllVal(this)");
   i_6.setAttribute("class", "prtMoneyBox");
   i_6.setAttribute("style", "width:30px");
-  i_6.setAttribute("value", commaSplit(prc, 4));
+  i_6.setAttribute("value", commaSplit(prc, Yuvarlama));
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   div.appendChild(i_6);
@@ -1149,7 +1151,7 @@ function AddRow_pbso(
   i_7.setAttribute("type", "text");
   i_7.setAttribute("class", "prtMoneyBox");
 
-  i_7.setAttribute("value", commaSplit(0, 4));
+  i_7.setAttribute("value", commaSplit(0, Yuvarlama));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1471,9 +1473,9 @@ function hesapla(input, sira) {
     }
   }
 
-  $("#price_other_" + sira).val(commaSplit(price_other_, 4));
-  $("#price_" + sira).val(commaSplit(price_, 4));
-  $("#row_nettotal_" + sira).val(commaSplit(newNettotal, 4));
+  $("#price_other_" + sira).val(commaSplit(price_other_, Yuvarlama));
+  $("#price_" + sira).val(commaSplit(price_, Yuvarlama));
+  $("#row_nettotal_" + sira).val(commaSplit(newNettotal, Yuvarlama));
   $("#amount_" + sira).val(commaSplit(amount_, 2));
   toplamHesapla();
   toplamHesapla_2();
@@ -1518,9 +1520,9 @@ function toplamHesapla() {
       tax_price_total_ += parseFloat(nettotal_) * (1 + parseInt(tax_) / 100);
     }
   }
-  $("#subTotal").val(commaSplit(nettotal_total_, 4));
-  $("#subTaxTotal").val(commaSplit(tax_total_, 4));
-  $("#subWTax").val(commaSplit(tax_price_total_, 4));
+  $("#subTotal").val(commaSplit(nettotal_total_, ToplamYuvarlama));
+  $("#subTaxTotal").val(commaSplit(tax_total_, ToplamYuvarlama));
+  $("#subWTax").val(commaSplit(tax_price_total_, ToplamYuvarlama));
 }
 /**
  * !Toplam <br>
@@ -1563,16 +1565,16 @@ function toplamHesapla_2() {
     $("#txt_disc").val(commaSplit(0, 3));
     d = 0;
   }
-  $("#txt_total").val(commaSplit(grosT, 4));
+  $("#txt_total").val(commaSplit(grosT, ToplamYuvarlama));
   discT += d;
 
-  $("#txt_disc_total").val(commaSplit(discT, 4));
+  $("#txt_disc_total").val(commaSplit(discT, ToplamYuvarlama));
   netT = grosT - discT;
-  $("#txt_nokdv_total").val(commaSplit(netT, 4));
+  $("#txt_nokdv_total").val(commaSplit(netT, ToplamYuvarlama));
   // taxT = (netT * 18) / 100;
-  $("#txt_kdv_total").val(commaSplit(taxT, 4));
-  $("#txt_withkdv_total").val(commaSplit(netT + taxT, 4));
-  $("#basket_bottom_total").val(commaSplit(netT + taxT, 4));
+  $("#txt_kdv_total").val(commaSplit(taxT, ToplamYuvarlama));
+  $("#txt_withkdv_total").val(commaSplit(netT + taxT, ToplamYuvarlama));
+  $("#basket_bottom_total").val(commaSplit(netT + taxT, ToplamYuvarlama));
 }
 
 function sellinputAllVal(el) {
