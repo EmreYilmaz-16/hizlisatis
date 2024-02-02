@@ -16,7 +16,7 @@
                     Müşteri İndirim
                 </td>
                 <td>
-                    <input class="form-control" type="text" id="fdy_0001" onchange="SatirFiyatHesapla(this)" value="<cfoutput>#FData.Discount#</cfoutput>">
+                    <input class="form-control" type="text" id="fdy_0001" onchange="fiyatHesaplaPoppi()" value="<cfoutput>#FData.Discount#</cfoutput>">
                 </td>
             </tr>
             <tr>
