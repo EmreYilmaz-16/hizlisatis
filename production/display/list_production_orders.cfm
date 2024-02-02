@@ -1,5 +1,5 @@
 <cfquery name="del" datasource="#dsn3#">
-	DELETE FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS WHERE OFFER_ROW_ID NOT IN (SELECT OFFER_ROW_ID FROM workcube_metosan_1.PBS_OFFER_ROW
+	DELETE FROM workcube_metosan_1.VIRTUAL_PRODUCTION_ORDERS WHERE OFFER_ROW_ID NOT IN (SELECT OFFER_ROW_ID FROM workcube_metosan_1.PBS_OFFER_ROW)
 </cfquery>
 <cf_box title="Üretim Emirleri">
 	<cfquery name="getEmpStation" datasource="#dsn3#">
