@@ -20,7 +20,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td style="display:none">
                    Standart İndirimli Fiyat 
                   </td>
                   <td>
