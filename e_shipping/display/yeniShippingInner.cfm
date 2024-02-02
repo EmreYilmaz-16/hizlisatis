@@ -1044,9 +1044,7 @@ SHIP_RESULT_ID
 <cfif isdefined('attributes.report_type_id')>
 	<cfset url_str = url_str & "&report_type_id=#attributes.report_type_id#">
 </cfif>
-<cfif len(t_point)>
-	<cfset url_str = url_str & "&t_point=#t_point#">
-</cfif>
+
 <cfset url_str = url_str & "&order_employee_id=#attributes.order_employee_id#&order_employee=#attributes.order_employee#">
 <cfset url_str = url_str & "&sort_type=#attributes.sort_type#">
 <cf_paging page="#attributes.page#" 
