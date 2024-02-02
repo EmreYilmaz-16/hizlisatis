@@ -137,7 +137,7 @@ PROJECT_NAME
 </cfif>
     <cfset "attributes.unit#i#"=getUnit.MAIN_UNIT>
     <cfset "attributes.unit_id#i#"=getUnit.PRODUCT_UNIT_ID>
-    <cfset "attributes.price#i#"=filternum(it.price)>
+    <cfset "attributes.price#i#"=filternum(it.price,4)>
     <cfset "attributes.tax#i#"=filternum(it.Tax)>
     <cfif isDefined("it.is_karma")>
         <cfset "attributes.is_karma#i#"=it.is_karma>
@@ -151,8 +151,8 @@ PROJECT_NAME
     <cfset "attributes.product_name#i#"=it.product_name>
     <cfset "attributes.indirim1#i#"=filternum(it.indirim1)>
     <cfset "attributes.other_money_#i#"=it.other_money>
-    <cfset "attributes.other_money_value_#i#"=(filternum(it.price_other)*filternum(it.amount))-((filternum(it.price_other)*filternum(it.amount))*filternum(it.indirim1))/100>
-    <cfset "attributes.price_other#i#"=filternum(it.price_other)>
+    <cfset "attributes.other_money_value_#i#"=(filternum(it.price_other,4)*filternum(it.amount))-((filternum(it.price_other,4)*filternum(it.amount))*filternum(it.indirim1))/100>
+    <cfset "attributes.price_other#i#"=filternum(it.price_other,4)>
     <cfif isDefined("it.description")>
     <cfset "attributes.description#i#"=it.description>
     <cfelse>    
