@@ -2100,7 +2100,7 @@ document.getElementById("fy_0003").value = tt;
 
 function SetPrice(idb,modal_id) {
   var om = document.getElementById("Omfy_0001").value;
-  var p = document.getElementById("fy_0003").value;
+  var p = document.getElementById("fy_0001").value;
   var d = document.getElementById("fdy_0001").value;
   document.getElementByIdb(idb).setAttribute("data-price", p);
   document.getElementByIdb(idb).setAttribute("data-other_money", om);
