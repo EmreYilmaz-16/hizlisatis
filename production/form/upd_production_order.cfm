@@ -141,7 +141,9 @@ LEFT JOIN #DSN3#.PRODUCTION_ORDER_RESULTS AS POR ON VPOR.REAL_RESULT_ID=POR.PR_O
 </cfoutput>
 		</cf_grid_list>
 	</cf_box>
-    <cfif not GETrES.recordCount>
+
+    <cfdump var="#GETrES#">
+    <cfif not GETrES.recordCount eq 0>
     <button type="button" class="btn btn-warning" onclick="saveVirtual(<cfoutput>#getVirtualProduct.product_type#,#getProductionOrders.IS_FROM_VIRTUAL#</cfoutput>)">Kaydet</button>
     <button type="button" class="btn btn-success" onclick="CloseProductionOrders(<cfoutput>#attributes.VP_ORDER_ID#</cfoutput>)">Üretimi Sonlandır</button>
     <button type="button" class="btn btn-danger" onclick="DeleteProductionOrders(<cfoutput>#attributes.VP_ORDER_ID#</cfoutput>)">Sil</button>
