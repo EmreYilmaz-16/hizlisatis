@@ -10,7 +10,7 @@ var selectedArr = [];
 var selectedMoney = "";
 var CompanyData = new Object();
 var Yuvarlama=8;
-var FiyatYuvarlama=4;
+var FiyatYuvarlama=8;
 var ToplamYuvarlama=8;
 $(document).ready(function () {
   setDoom();
