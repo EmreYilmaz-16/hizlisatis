@@ -511,7 +511,7 @@ function AddRow(
   i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
   i_10.setAttribute("class", "prtMoneyBox");
   i_10.setAttribute("style", "width:30px");
-  i_10.setAttribute("value", commaSplit(price_other));
+  i_10.setAttribute("value", commaSplit(price_other,4));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -530,7 +530,7 @@ function AddRow(
   i_6.setAttribute("onClick", "sellinputAllVal(this)");
   i_6.setAttribute("class", "prtMoneyBox");
   i_6.setAttribute("style", "width:30px");
-  i_6.setAttribute("value", commaSplit(prc, 2));
+  i_6.setAttribute("value", commaSplit(prc, 4));
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   div.appendChild(i_6);
@@ -565,7 +565,7 @@ function AddRow(
   i_7.setAttribute("type", "text");
   i_7.setAttribute("class", "prtMoneyBox");
 
-  i_7.setAttribute("value", commaSplit(0, 2));
+  i_7.setAttribute("value", commaSplit(0, 4));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1095,7 +1095,7 @@ function AddRow_pbso(
   i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
   i_10.setAttribute("class", "prtMoneyBox");
   i_10.setAttribute("style", "width:30px");
-  i_10.setAttribute("value", commaSplit(price_other));
+  i_10.setAttribute("value", commaSplit(price_other,4));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1114,7 +1114,7 @@ function AddRow_pbso(
   i_6.setAttribute("onClick", "sellinputAllVal(this)");
   i_6.setAttribute("class", "prtMoneyBox");
   i_6.setAttribute("style", "width:30px");
-  i_6.setAttribute("value", commaSplit(prc, 2));
+  i_6.setAttribute("value", commaSplit(prc, 4));
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
   div.appendChild(i_6);
@@ -1149,7 +1149,7 @@ function AddRow_pbso(
   i_7.setAttribute("type", "text");
   i_7.setAttribute("class", "prtMoneyBox");
 
-  i_7.setAttribute("value", commaSplit(0, 2));
+  i_7.setAttribute("value", commaSplit(0, 4));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1471,9 +1471,9 @@ function hesapla(input, sira) {
     }
   }
 
-  $("#price_other_" + sira).val(commaSplit(price_other_, 2));
-  $("#price_" + sira).val(commaSplit(price_, 2));
-  $("#row_nettotal_" + sira).val(commaSplit(newNettotal, 2));
+  $("#price_other_" + sira).val(commaSplit(price_other_, 4));
+  $("#price_" + sira).val(commaSplit(price_, 4));
+  $("#row_nettotal_" + sira).val(commaSplit(newNettotal, 4));
   $("#amount_" + sira).val(commaSplit(amount_, 2));
   toplamHesapla();
   toplamHesapla_2();
@@ -1518,9 +1518,9 @@ function toplamHesapla() {
       tax_price_total_ += parseFloat(nettotal_) * (1 + parseInt(tax_) / 100);
     }
   }
-  $("#subTotal").val(commaSplit(nettotal_total_, 2));
-  $("#subTaxTotal").val(commaSplit(tax_total_, 2));
-  $("#subWTax").val(commaSplit(tax_price_total_, 2));
+  $("#subTotal").val(commaSplit(nettotal_total_, 4));
+  $("#subTaxTotal").val(commaSplit(tax_total_, 4));
+  $("#subWTax").val(commaSplit(tax_price_total_, 4));
 }
 /**
  * !Toplam <br>
@@ -1563,16 +1563,16 @@ function toplamHesapla_2() {
     $("#txt_disc").val(commaSplit(0, 3));
     d = 0;
   }
-  $("#txt_total").val(commaSplit(grosT, 3));
+  $("#txt_total").val(commaSplit(grosT, 4));
   discT += d;
 
-  $("#txt_disc_total").val(commaSplit(discT, 3));
+  $("#txt_disc_total").val(commaSplit(discT, 4));
   netT = grosT - discT;
-  $("#txt_nokdv_total").val(commaSplit(netT, 3));
+  $("#txt_nokdv_total").val(commaSplit(netT, 4));
   // taxT = (netT * 18) / 100;
-  $("#txt_kdv_total").val(commaSplit(taxT, 3));
-  $("#txt_withkdv_total").val(commaSplit(netT + taxT, 3));
-  $("#basket_bottom_total").val(commaSplit(netT + taxT, 3));
+  $("#txt_kdv_total").val(commaSplit(taxT, 4));
+  $("#txt_withkdv_total").val(commaSplit(netT + taxT, 4));
+  $("#basket_bottom_total").val(commaSplit(netT + taxT, 4));
 }
 
 function sellinputAllVal(el) {
