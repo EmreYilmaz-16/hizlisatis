@@ -34,8 +34,10 @@
 <CFSET product_info=getProduct(OlusanUrun.PRODUCT_ID,session.ep.userid,dsn2,dsn1,dsn3,attributes.price_catid,attributes.comp_id)>
 <script>
     window.opener.RemSelected();
-<cfoutput>window.opener.AddRow(#product_info.PRODUCT_ID#,#product_info.STOCK_ID#,'#product_info.STOCK_CODE#','#product_info.BRAND_NAME#',0,1,#product_info.PRICE#,'#product_info.PRODUCT_NAME#',#product_info.TAX#,#product_info.DISCOUNT_RATE#,1,'',"TL",#product_info.PRICE#,-1,0,0,"Adet","","",0,"","",0,"","","",0,1,0)</cfoutput>
-    
+<cfoutput>window.opener.AddRow(#product_info.PRODUCT_ID#,#product_info.STOCK_ID#,'#product_info.STOCK_CODE#','#product_info.BRAND_NAME#',0,1,#product_info.PRICE#,'#product_info.PRODUCT_NAME#',#product_info.TAX#,#product_info.DISCOUNT_RATE#,1,'',"TL",#product_info.PRICE#,-1,0,0,"Adet","","",0,"","",0,"","","",0,1,0,1)</cfoutput>
+  /*                            product_id,               stock_id,                stock_code,                 brand_name,               is_virtual,quantity,price,product_name,tax,discount_rate,poduct_type = 0,shelf_code = "",other_money = "TL",price_other,currency = "-6",is_manuel = 0,cost = 0,  product_unit = "Adet",product_name_other = "",detail_info_extra = "",fc = 0,rowNum = "",deliver_date = "", is_production = 0,row_uniq_id = "", description = "", rfls = "", converted_sid = 0, is_karma = 0, is_karma_sevk = 0,
+  fromgetKarmaProducts = 0
+  */  
     this.close();
 </script>
 
