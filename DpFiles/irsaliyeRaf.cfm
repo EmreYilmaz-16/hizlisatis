@@ -40,9 +40,15 @@ for(let i=0;i<window.basket.items.length;i++){
 try {
     sessionControl() && validateControl() && kontrol_firma()
 } catch (error) {
-    sessionControl() && validateControl() && kontrol() 
+    try {
+        sessionControl() && validateControl() && kontrol()     
+    } catch (error) {
+        sessionControl() && validateControl() && upd_form_function()
+    }
+    
 }
 
 }
 
 </script>
+
