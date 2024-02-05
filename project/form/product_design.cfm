@@ -1,4 +1,10 @@
-﻿<cfinclude template="../includes/upperMenu.cfm">
+﻿
+  <div class="alert alert-danger">
+    <h3>Güncelleniyor Kullanmayınız !</h3>
+    <b>Partner Bilgi Sistemleri</b>
+  </div>
+
+<cfinclude template="../includes/upperMenu.cfm">
 <cfquery name="getSettings" datasource="#dsn3#">
   SELECT * FROM PROJECT_PRODUCT_DESIGN_PARAMS_PBS
 </cfquery>

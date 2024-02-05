@@ -6,7 +6,7 @@
     LEFT JOIN #DSN3#.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS as PCPS ON PCPS.PRODUCT_CATID=PC.PRODUCT_CATID
     WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 </cfquery>
-
+<cfset PROJE_IDSI=FormData.PROJECT_ID>
 
 <cfscript> UrunParse(FormData);</cfscript>
 
@@ -27,7 +27,31 @@
             <cfdump var="#Ait#">
             <cfif Ait.is_virtual eq 1> <!--- //BILGI Ürün Sanalmı ---->
                 <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
-
+                    <!---- //BILGI Ürün Eklenmişse  ---->
+                    <cfscript>
+                        UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
+                        //ClearVirtualTree(AktifUrun.PRODUCT_ID);            
+                    </cfscript> 
+                <cfelse>
+                    <cfquery name="getParams" datasource="#dsn3#">
+                        SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#Ait.PRODUCT_CATID#
+                    </cfquery>
+                    <cfscript>
+                        CreatedProduct= CreateVirtualProduct(
+                            Ait.PRODUCT_NAME,
+                            Ait.PRODUCT_CATID,
+                            0,
+                            0,
+                            99,
+                            1,
+                            '',
+                            getParams.PRODUCT_UNIT,
+                            PROJE_IDSI,
+                            '0',
+                            FormData.PRODUCT_STAGE,
+                            -6
+                        );
+                    </cfscript>
                 </cfif>
             <cfelse>
 
@@ -74,6 +98,59 @@
     </cfquery>
 </cffunction>
 
+<cffunction name="CreateVirtualProduct_New">
+    <cfargument name="PRODUCT_NAME">
+<cfargument name="PRODUCT_CATID">
+<cfargument name="PRICE">
+<cfargument name="MARJ">
+<cfargument name="PRODUCT_TYPE">
+<cfargument name="IS_PRODUCTION">
+<cfargument name="PRODUCT_DESCRIPTION">
+<cfargument name="PRODUCT_UNIT">
+<cfargument name="PROJECT_ID">
+<cfargument name="PRODUCT_VERSION">
+<cfargument name="PRODUCT_STAGE">
+<cfargument name="PORCURRENCY">
+<cfquery name="ins" datasource="#dsn3#" result="res">
+    INSERT INTO VIRTUAL_PRODUCTS_PRT (
+        PRODUCT_NAME,
+        PRODUCT_CATID,
+        PRICE,
+        MARJ,
+        PRODUCT_TYPE,
+        IS_CONVERT_REAL,
+        IS_PRODUCTION,
+        RECORD_EMP,
+        RECORD_DATE,
+        PRODUCT_DESCRIPTION,
+        PRODUCT_UNIT,
+        PROJECT_ID,
+        PRODUCT_VERSION,
+        PRODUCT_STAGE,
+        PORCURRENCY
+    )
+    VALUES (
+        '#arguments.PRODUCT_NAME#',
+        #arguments.PRODUCT_CATID#,
+        #arguments.PRICE#,
+        #arguments.MARJ#,
+        #arguments.PRODUCT_TYPE#,
+        0,
+        #arguments.IS_PRODUCTION#,
+        #session.ep.userid#,
+        GETDATE(),
+        '#arguments.PRODUCT_DESCRIPTION#',
+        '#arguments.PRODUCT_UNIT#',
+        #arguments.PROJECT_ID#,
+        '#arguments.PRODUCT_VERSION#',
+        <cfif len(arguments.PRODUCT_STAGE)>#arguments.PRODUCT_STAGE#<cfelse>339</cfif>,
+        #arguments.PORCURRENCY#
+    )
+    </cfquery>
+    <cfreturn res>
+    </cffunction>
+
+</cffunction>
 
 <cffunction name="ClearVirtualTree">
     <cfargument name="VP_ID">
