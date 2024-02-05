@@ -7,6 +7,10 @@
     WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 </cfquery>
 
+
+<cfscript> UrunParse(FormData);</cfscript>
+
+
 <cffunction name="UrunParse">
     <cfargument name="Urun">
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
