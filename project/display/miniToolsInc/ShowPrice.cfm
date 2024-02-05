@@ -8,7 +8,7 @@
                     Fiyat
                 </td>
                 <td>
-                    <input class="form-control" type="text" id="fy_0001" readonly value="<cfoutput>#FData.Price+((FData.Price*FData.Discount)/100)#</cfoutput>">
+                    <input class="form-control" type="text" id="fy_0001" readonly value="<cfoutput>#FData.StandartPrice#</cfoutput>">
                 </td>
                 </tr>
                 <tr>
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td style="display:none">
-                   Standart İndirimli Fiyat 
+                   İndirimli Fiyat 
                   </td>
                   <td style="display:none">
                       <input class="form-control" type="text" id="fy_0002" readonly value="<cfoutput>#FData.Price#</cfoutput>">
