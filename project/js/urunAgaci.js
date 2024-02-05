@@ -2055,7 +2055,7 @@ function LoadTree(el) {
     elek.parentElement.parentElement.parentElement.getAttribute("data-idb");
   if (p.length > 0) p = parseFloat(p);
   else p = 0;
-  if (sp.length > 0) p = parseFloat(sp);
+  if (sp.length > 0) sp = parseFloat(sp);
   else sp = 0;
   if (d.length > 0) d = parseFloat(d);
   else d = 0;
