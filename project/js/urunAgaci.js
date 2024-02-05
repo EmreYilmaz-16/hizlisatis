@@ -648,6 +648,7 @@ function AddRowItem(
     li.setAttribute("data-stock_id", STOCK_ID);
     li.setAttribute("data-is_virtual", 0);
     li.setAttribute("data-price", PRICE);
+    li.setAttribute("data-standart_price", PRICE);
     li.setAttribute("data-other_money", MONEY);
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
