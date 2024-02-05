@@ -53,7 +53,7 @@
                             -6
                         );
                     </cfscript>
-                    <CFSET Ait.PRODUCT_ID=CreatedProduct>
+                    <CFSET Ait.PRODUCT_ID=CreatedProduct.IDENTITYCOL>
                 
                 </cfif>
                 <CFIF arrayLen(ait.AGAC)>
