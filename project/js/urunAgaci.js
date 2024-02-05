@@ -1349,7 +1349,15 @@ function agacGosterEkle() {
     }
   }
 }
-
+ /*
+    <cfargument name="VP_ID">
+    <cfargument name="PRICE" default="">
+    <cfargument name="Discount" default="">
+    <cfargument name="OtherMoney" default="">
+    <cfargument name="DisplayName" default="">
+    <cfargument name="ProductStage"default="" >
+ 
+ */
 function sortableYap() {
   var e = $("#ppidarea *ul").sortable({
     connectWith: ".list-group",
@@ -1645,6 +1653,15 @@ function UrunKaydet() {
   var is_virtual = $("#is_virtual").val();
   var project_id = $("#project_id").val();
   var stg = $("#pstage").val();
+  var prc = $("#maliyet").val();
+/*
+   <cfargument name="VP_ID">
+    <cfargument name="PRICE" default="">
+    <cfargument name="Discount" default="">
+    <cfargument name="OtherMoney" default="">
+    <cfargument name="DisplayName" default="">
+    <cfargument name="ProductStage"default="" >
+*/
   var BasketData = {
     PRODUCT_NAME: product_name,
     PRODUCT_ID: product_id,
@@ -1652,6 +1669,11 @@ function UrunKaydet() {
     PROJECT_ID: project_id,
     PRODUCT_STAGE: stg,
     PRODUCT_TREE: agacim,
+    PRICE:prc,
+    OTHER_MONEY:"TL",
+    DISCOUNT:0,
+    DISPLAY_NAME:""
+
   };
 
   if (BasketData) {
