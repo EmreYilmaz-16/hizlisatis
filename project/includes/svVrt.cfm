@@ -57,7 +57,7 @@
                 
                 </cfif>
                 <CFIF arrayLen(ait.AGAC)>
-                    UrunParse(Ait);
+                 <cfscript>   UrunParse(Ait);</cfscript>
                 </CFIF>
             <cfelse>
 
