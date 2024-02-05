@@ -239,7 +239,7 @@
 
 <script>
    window.opener.ngetTree(<cfoutput>#FormData.PRODUCT_ID#</cfoutput>,1,'<cfoutput>#dsn3#</cfoutput>',"",1,'','<cfoutput>#FormData.PRODUCT_NAME#</cfoutput>','<cfoutput>#FormData.PRODUCT_STAGE#</cfoutput>')
-   this.close();
+  // this.close();
     
 </script>
 
@@ -349,6 +349,7 @@ WHERE VIRTUAL_PRODUCT_ID=#arguments.VIRTUAL_PRODUCT_ID#
 <cfargument name="DISPLAY_NAME" default="">
 <cfquery name="ins" datasource="#dsn3#" result="res">
 
+<cfdump var="#arguments#">
 
 INSERT INTO VIRTUAL_PRODUCT_TREE_PRT (    
 VP_ID,
