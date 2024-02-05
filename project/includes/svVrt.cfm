@@ -15,6 +15,7 @@
     <cfargument name="Urun">
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
     <CFSET AktifUrun=arguments.Urun>
+    <cfdump var="#AktifUrun#">
     <CFIF AktifUrun.PRODUCT_ID neq 0 and len(AktifUrun.PRODUCT_ID) gt 0> <!---- Bu Ürün Sanal Olarak Eklenmiş Mi ----->
         <cfscript>
             UpdateVirtualProduct_NEW(VP_ID=AktifUrun.PRODUCT_ID,PRICE=AktifUrun.PRICE,Discount=AktifUrun.DISCOUNT,OtherMoney='#AktifUrun.MONEY#',DisplayName='#AktifUrun.DISPLAY_NAME#',ProductStage=AktifUrun.PRODUCT_STAGE)
@@ -24,7 +25,7 @@
         <cfif arrayLen(AktifUrun.PRODUCT_TREE)><CFSET AGACIM=AktifUrun.PRODUCT_TREE></cfif> <!---- PRODUCT_TREE DOLUMU --->
         <cfif arrayLen(AktifUrun.AGAC)><CFSET AGACIM=AktifUrun.AGAC></cfif> <!---- AGAC DOLUMU --->
         <cfloop array="#AGACIM#" item="Ait"> <!--- //BILGI Ağaç Döngüsü ---->
-            <cfdump var="#Ait#">
+            
             <cfif Ait.is_virtual eq 1> <!--- //BILGI Ürün Sanalmı ---->
                 <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
                     <!---- //BILGI Ürün Eklenmişse  ---->
@@ -511,7 +512,7 @@ WHERE VIRTUAL_PRODUCT_ID=#arguments.VIRTUAL_PRODUCT_ID#
 <cfargument name="DISPLAY_NAME" default="">
 <cfquery name="ins" datasource="#dsn3#" result="res">
 
-<cfdump var="#arguments#">
+
 
 INSERT INTO VIRTUAL_PRODUCT_TREE_PRT (    
 VP_ID,
