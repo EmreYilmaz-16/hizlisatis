@@ -1,9 +1,10 @@
-﻿
-  <div class="alert alert-danger">
-    <h3>Güncelleniyor Kullanmayınız !</h3>
-    <b>Partner Bilgi Sistemleri</b>
-  </div>
-
+﻿<cfif session.ep.userid neq 1146>
+<div class="alert alert-danger" style="position: absolute;width: 50%;height: 20vh;z-index: 99999;left: 29%;right: 50%;top: 40%;">
+    <h3 style="font-size: 3.75rem;">Güncelleniyor Kullanmayınız !</h3>
+    <b style="position: absolute;bottom: 0;right: 10px;font-size: 2rem;">Partner Bilgi Sistemleri</b>
+    <cfabort>
+</div>
+</cfif>
 <cfinclude template="../includes/upperMenu.cfm">
 <cfquery name="getSettings" datasource="#dsn3#">
   SELECT * FROM PROJECT_PRODUCT_DESIGN_PARAMS_PBS
