@@ -7,7 +7,59 @@
     WHERE PP.PROJECT_ID=#FormData.PROJECT_ID#
 </cfquery>
 
+<cffunction name="UrunParse">
+    <cfargument name="Urun">
+    <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
+    <CFIF arguments.Urun.PRODUCT_ID neq 0 and len(arguments.Urun.PRODUCT_ID) gt 0> <!---- Bu Ürün Sanal Olarak Eklenmiş Mi ----->
+        
 
+
+    <cfelse> <!-------Ürün Eklenmemişse------>
+
+    </CFIF>
+
+
+
+
+
+
+</cffunction>
+
+<cffunction name="UpdateVirtualProduct">
+    <cfargument name="VP_ID">
+    <cfargument name="PRICE" default="">
+    <cfargument name="Discount" default="">
+    <cfargument name="OtherMoney" default="">
+    <cfargument name="DisplayName" default="">
+    <cfargument name="ProductStage"default="" >
+
+    <cfquery name="UpdateProduct" datasource="#dsn3#">
+        UPDATE VIRTUAL_PRODUCTS_PRT SET 
+                <CFIF LEN(arguments.PRICE)>
+                    PRICE=#arguments.PRICE#,
+                </CFIF>
+                <CFIF LEN(arguments.Discount)>
+                    DISCOUNT=#arguments.Discount#,
+                </CFIF>
+                <CFIF LEN(arguments.OtherMoney)>
+                    OTHER_MONEY='#arguments.OtherMoney#',
+                </CFIF>
+                <CFIF LEN(arguments.DisplayName)>
+                    DISPLAY_NAME='#arguments.DisplayName#',
+                </CFIF>
+                <CFIF LEN(arguments.ProductStage)>
+                    PRODUCT_STAGE=#arguments.ProductStage#
+                </CFIF>
+        WHERE VIRTUAL_PRODUCT_ID=#arguments.VP_ID#
+    </cfquery>
+</cffunction>
+
+
+
+
+
+
+<cfabort> <!----- Burası Bir Önceki Hali --------->
 <cfif FormData.PRODUCT_ID neq 0 and len(FormData.PRODUCT_ID)> <!---//BILGI ÜRÜN IDSI VARSA YANİ BU ÜÜRÜN DAHA ÖNCE SANAL OLARAK OLUŞTUYSA ----->
     <cfquery name="del" datasource="#dsn3#">
         DELETE FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#FormData.PRODUCT_ID#

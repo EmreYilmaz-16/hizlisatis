@@ -6,6 +6,7 @@ WHERE 1=1 AND EMPLOYEE_ID=#session.EP.USERID#
 <script>
 
 $(document).ready(function(){
+ try{
     <CFIF GETEMPPO.recordCount>
     var btn=document.createElement("button")
     btn.innerText="Rafları Yaz & Güncelle";
@@ -13,7 +14,10 @@ $(document).ready(function(){
     btn.setAttribute("onclick","RaflariYaz()")
     btn.setAttribute("class","ui-wrk-btn ui-wrk-btn-warning")
     document.getElementById("workcube_button").appendChild(btn)
-</CFIF>
+</CFIF>}catch{
+    
+}
+
 })
 
 function RaflariYaz(){
