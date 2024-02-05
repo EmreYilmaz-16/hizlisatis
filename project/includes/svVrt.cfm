@@ -23,8 +23,15 @@
         <CFSET AGACIM=arrayNew(1)>
         <cfif arrayLen(AktifUrun.PRODUCT_TREE)><CFSET AGACIM=AktifUrun.PRODUCT_TREE></cfif> <!---- PRODUCT_TREE DOLUMU --->
         <cfif arrayLen(AktifUrun.AGAC)><CFSET AGACIM=AktifUrun.AGAC></cfif> <!---- AGAC DOLUMU --->
-        <cfloop array="#AGACIM#" item="Ait">
+        <cfloop array="#AGACIM#" item="Ait"> <!--- //BILGI Ağaç Döngüsü ---->
             <cfdump var="#Ait#">
+            <cfif Ait.is_virtual eq 1> <!--- //BILGI Ürün Sanalmı ---->
+                <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
+
+                </cfif>
+            <cfelse>
+
+            </cfif>
         </cfloop>
 
     <cfelse> <!-------Ürün Eklenmemişse------>

@@ -999,6 +999,17 @@ function addProdMain(idbb = 0) {
   );
 }
 
+/*
+    var pid = agacim[i].getAttribute("data-product_id");
+    var sid = agacim[i].getAttribute("data-stock_id");
+    var p_cat_id = agacim[i].getAttribute("data-product_catid");
+    var is_virtual = agacim[i].getAttribute("data-is_virtual");
+    var question_id = agacim[i].getAttribute("data-question_id");
+    var price = agacim[i].getAttribute("data-price");
+    var money = agacim[i].getAttribute("data-other_money");
+    var discount = agacim[i].getAttribute("data-discount");
+    var displayName = agacim[i].getAttribute("data-displayName");
+*/
 function addProdMain_(idb, modal_id) {
   var pname = document.getElementById("productNameVp").value;
   var p_cat_id = document.getElementById("productCatIdVp").value;
@@ -1006,6 +1017,11 @@ function addProdMain_(idb, modal_id) {
   li.setAttribute("data-product_id", 0);
   li.setAttribute("data-stock_id", 0);
   li.setAttribute("data-is_virtual", 1);
+  li.setAttribute("data-price", 0);
+  li.setAttribute("data-discount", 0);
+  li.setAttribute("data-other_money", "TL");
+  li.setAttribute("data-displayName", "");
+  li.setAttribute("data-sta", 0);
   li.setAttribute("class", "list-group-item");
   li.setAttribute("data-idb", idB);
   idB++;
