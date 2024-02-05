@@ -2033,6 +2033,8 @@ function LoadTree(el) {
   elek = el;
   var p =
     elek.parentElement.parentElement.parentElement.getAttribute("data-price");
+    var sp =
+    elek.parentElement.parentElement.parentElement.getAttribute("data-standart_price");
   var om =
     elek.parentElement.parentElement.parentElement.getAttribute(
       "data-other_money"
@@ -2053,6 +2055,8 @@ function LoadTree(el) {
     elek.parentElement.parentElement.parentElement.getAttribute("data-idb");
   if (p.length > 0) p = parseFloat(p);
   else p = 0;
+  if (sp.length > 0) p = parseFloat(sp);
+  else sp = 0;
   if (d.length > 0) d = parseFloat(d);
   else d = 0;
   if (pid.length > 0) pid = parseFloat(pid);
@@ -2063,6 +2067,7 @@ function LoadTree(el) {
   else om = "TL";
   var Obj = {
     Price: p,
+    StandartPrice: sp,
     OtherMoney: om,
     Discount: d,
     Pid: pid,
