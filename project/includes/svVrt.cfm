@@ -83,6 +83,11 @@
                     <cfscript>   UrunParse(Ait);</cfscript>
                 </CFIF>
             <cfelse>
+                <cfif isDefined("ai.QUESTION_ID")><cfset aiq=Ait.QUESTION_ID><cfelse><cfset aiq="NULL"></cfif>
+                    <cfif isDefined("ai.PRICE")><cfset aip=Ait.PRICE><cfelse><cfset aip="0"></cfif>
+                    <cfif isDefined("ai.DISCOUNT")><cfset aid=Ait.DISCOUNT><cfelse><cfset aid="0"></cfif>
+                    <cfif isDefined("ai.MONEY")><cfset aim=Ait.MONEY><cfelse><cfset aim="TL"></cfif>
+                    <cfif isDefined("ai.DISPLAY_NAME") and Ait.DISPLAY_NAME neq "undefined"><cfset dName=Ait.DISPLAY_NAME><cfelse><cfset dName=""></cfif>
                 <cfscript>
                     if(isDefined("Ait.price")){
                         prcex=Ait.price;
