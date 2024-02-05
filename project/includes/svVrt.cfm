@@ -8,11 +8,12 @@
 </cfquery>
 <cfset PROJE_IDSI=FormData.PROJECT_ID>
 
-<cfscript> UrunParse(FormData);</cfscript>
+<cfscript> UrunParse(FormData,0);</cfscript>
 
 
 <cffunction name="UrunParse">
-    <cfargument name="Urun">
+    <cfargument name="Urun">   
+    <cfargument name="DSC" default="1">
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
     <CFSET AktifUrun=arguments.Urun>
     <cfdump var="#AktifUrun#">
@@ -24,15 +25,36 @@
         <CFSET AGACIM=arrayNew(1)>
         <cfif arrayLen(AktifUrun.PRODUCT_TREE)><CFSET AGACIM=AktifUrun.PRODUCT_TREE></cfif> <!---- PRODUCT_TREE DOLUMU --->
         <cfif arrayLen(AktifUrun.AGAC)><CFSET AGACIM=AktifUrun.AGAC></cfif> <!---- AGAC DOLUMU --->
-        <cfloop array="#AGACIM#" item="Ait"> <!--- //BILGI Ağaç Döngüsü ---->
-            
+        <cfloop array="#AGACIM#" item="Ait"> <!--- //BILGI Ağaç Döngüsü ---->            
             <cfif Ait.is_virtual eq 1> <!--- //BILGI Ürün Sanalmı ---->
                 <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
                     <!---- //BILGI Ürün Eklenmişse  ---->
                     <cfscript>
                         UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
-                        //ClearVirtualTree(AktifUrun.PRODUCT_ID);            
-                        CreatedProduct=Ait.PRODUCT_ID;
+                        ClearVirtualTree(AktifUrun.PRODUCT_ID);            
+                        //CreatedProduct=Ait.PRODUCT_ID;
+                        if(isDefined("Ait.price")){
+                            prcex=Ait.price;
+                        }else{
+                            prcex=0;
+                        }
+                        if(isDefined("Ait.discount")){
+                            dsc=Ait.discount;
+                        }else{
+                            dsc=0;
+                        }
+                        if(isDefined("Ait.MONEY")){
+                            mny=Ait.MONEY;
+                        }else{
+                            mny="TL";
+                        }
+                        if(isDefined("Ait.DISPLAY_NAME") && Ait.DISPLAY_NAME != "undefined" ){
+                            dname=Ait.DISPLAY_NAME
+                        }else{
+                            dName="";
+                        }
+                        InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
+
                     </cfscript>                     
                 <cfelse>
                     <cfquery name="getParams" datasource="#dsn3#">
@@ -105,7 +127,49 @@
         WHERE VIRTUAL_PRODUCT_ID=#arguments.VP_ID#
     </cfquery>
 </cffunction>
+<cffunction name="InsertTreeNew">
+<cfargument name="VP_ID">
+<cfargument name="PRODUCT_ID">
+<cfargument name="STOCK_ID">
+<cfargument name="AMOUNT">
+<cfargument name="QUESTION_ID">
+<cfargument name="PRICE">
+<cfargument name="DISCOUNT">
+<cfargument name="MONEY">
+<cfargument name="IS_VIRTUAL">
+<cfargument name="DISPLAY_NAME" default="">
+<cfquery name="ins" datasource="#dsn3#" result="res">
 
+
+
+INSERT INTO VIRTUAL_PRODUCT_TREE_PRT (    
+VP_ID,
+PRODUCT_ID,
+STOCK_ID,
+AMOUNT,
+QUESTION_ID,
+PRICE,
+DISCOUNT,
+MONEY,
+IS_VIRTUAL,
+DISPLAY_NAME
+)
+VALUES(
+    #arguments.VP_ID#,
+#arguments.PRODUCT_ID#,
+<cfif arguments.stock_id neq "undefined">#arguments.STOCK_ID#<cfelse>0</cfif>,
+#arguments.AMOUNT#,
+<cfif len(arguments.QUESTION_ID)>#arguments.QUESTION_ID#<cfelse>NULL</cfif>,
+<cfif len(arguments.price)>#arguments.PRICE#<cfelse>0</cfif>,
+<cfif len(arguments.discount)>#arguments.DISCOUNT#<cfelse>0</cfif>,
+<cfif len(arguments.money)>'#arguments.MONEY#'<cfelse>'TL'</cfif>,
+#arguments.IS_VIRTUAL#,
+<cfif len(arguments.DISPLAY_NAME)>'#arguments.DISPLAY_NAME#'<CFELSE>NULL</cfif>
+)
+
+</cfquery>
+<cfreturn res>
+</cffunction>
 <cffunction name="CreateVirtualProduct_New">
     <cfargument name="PRODUCT_NAME">
 <cfargument name="PRODUCT_CATID">
@@ -184,6 +248,7 @@
             <cfif isDefined("ai.DISPLAY_NAME") and ai.DISPLAY_NAME neq "undefined"><cfset dName=ai.DISPLAY_NAME><cfelse><cfset dName=""></cfif>
             <cfif ai.PRODUCT_ID neq 0>
                 <cfscript>
+                    
                     InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,aiq,aip,aid,aim,ai.IS_VIRTUAL,dName);
                 </cfscript>
             <cfelse>

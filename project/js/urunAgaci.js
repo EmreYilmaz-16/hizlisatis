@@ -1692,7 +1692,8 @@ function UrunKaydet() {
     MONEY:"TL",
     DISCOUNT:0,
     DISPLAY_NAME:"",
-    AGAC:[]
+    AGAC:[],
+    SEVIYE:0,
 
   };
 
