@@ -1670,7 +1670,7 @@ function UrunKaydet() {
     PRODUCT_STAGE: stg,
     PRODUCT_TREE: agacim,
     PRICE:prc,
-    OTHER_MONEY:"TL",
+    MONEY:"TL",
     DISCOUNT:0,
     DISPLAY_NAME:""
 

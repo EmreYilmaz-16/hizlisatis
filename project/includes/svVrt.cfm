@@ -11,7 +11,9 @@
     <cfargument name="Urun">
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
     <CFIF arguments.Urun.PRODUCT_ID neq 0 and len(arguments.Urun.PRODUCT_ID) gt 0> <!---- Bu Ürün Sanal Olarak Eklenmiş Mi ----->
-        
+        <cfscript>
+            UpdateVirtualProduct(VP_ID=arguments.Urun.PRODUCT_ID,PRICE=arguments.Urun.PRICE,Discount=arguments.Urun.DISCOUNT,OtherMoney='#arguments.Urun.MONEY#',DisplayName='#arguments.Urun.DISPLAY_NAME#',ProductStage=arguments.Urun.PRODUCT_STAGE)
+        </cfscript>
 
 
     <cfelse> <!-------Ürün Eklenmemişse------>
