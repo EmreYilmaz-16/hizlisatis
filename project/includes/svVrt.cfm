@@ -8,246 +8,233 @@
 </cfquery>
 
 
-<cfif FormData.PRODUCT_ID neq 0 and len(FormData.PRODUCT_ID)>
-<cfquery name="del" datasource="#dsn3#">
-    DELETE FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#FormData.PRODUCT_ID#
-</cfquery>
-<cfif arrayLen(FormData.PRODUCT_TREE)>
-    <cfloop array="#FormData.PRODUCT_TREE#" index="ai">
-        <cfif isDefined("ai.QUESTION_ID")><cfset aiq=ai.QUESTION_ID><cfelse><cfset aiq="NULL"></cfif>
+<cfif FormData.PRODUCT_ID neq 0 and len(FormData.PRODUCT_ID)> <!---//BILGI ÜRÜN IDSI VARSA YANİ BU ÜÜRÜN DAHA ÖNCE SANAL OLARAK OLUŞTUYSA ----->
+    <cfquery name="del" datasource="#dsn3#">
+        DELETE FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#FormData.PRODUCT_ID#
+    </cfquery>
+    <cfif arrayLen(FormData.PRODUCT_TREE)>
+        <cfloop array="#FormData.PRODUCT_TREE#" index="ai">
+            <cfif isDefined("ai.QUESTION_ID")><cfset aiq=ai.QUESTION_ID><cfelse><cfset aiq="NULL"></cfif>
             <cfif isDefined("ai.PRICE")><cfset aip=ai.PRICE><cfelse><cfset aip="0"></cfif>
-                <cfif isDefined("ai.DISCOUNT")><cfset aid=ai.DISCOUNT><cfelse><cfset aid="0"></cfif>
-                    <cfif isDefined("ai.MONEY")><cfset aim=ai.MONEY><cfelse><cfset aim="TL"></cfif>
-                    <cfif isDefined("ai.DISPLAY_NAME") and ai.DISPLAY_NAME neq "undefined"><cfset dName=ai.DISPLAY_NAME><cfelse><cfset dName=""></cfif>
-        <cfif ai.PRODUCT_ID neq 0>
-            <cfscript>
-                InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,aiq,aip,aid,aim,ai.IS_VIRTUAL,dName);
-            </cfscript>
-        <cfelse>
-
-            <cfquery name="getParams" datasource="#dsn3#">
-                SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#ai.PRODUCT_CATID#
-            </cfquery>
-            <cfscript>
-                CreatedProduct= CreateVirtualProduct(
-                    ai.PRODUCT_NAME,
-                    ai.PRODUCT_CATID,
-                    0,
-                    0,
-                    99,
-                    1,
-                    '',
-                    getParams.PRODUCT_UNIT,
-                    FormData.PROJECT_ID,
-                    '0',
-                    FormData.PRODUCT_STAGE,
-                    -6
-                );
-                CreatedProductId=CreatedProduct.IDENTITYCOL        
-                if(isDefined("ai.price")){
-                    prcex=ai.price;
-                }else{
-                    prcex=0;
-                }
-                if(isDefined("ai.discount")){
-                    dsc=ai.discount;
-                }else{
-                    dsc=0;
-                }
-                if(isDefined("ai.MONEY")){
-                    mny=ai.MONEY;
-                }else{
-                    mny="TL";
-                }
-                if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
-                    dname=ai.DISPLAY_NAME
-                }else{
-                    dName="";
-                }
-                InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,aiq,prcex,dsc,mny,ai.IS_VIRTUAL,dName);
-            </cfscript>
-            <cfif arraylen(ai.AGAC)>
-                <cfloop array="#ai.AGAC#" index="idx">
-                    
-                    <cfscript>
-                        if(isDefined("idx.price")){
-                            prcex1=idx.price;
-                        }else{
-                            prcex1=0;
-                        }
-                        if(isDefined("idx.discount")){
-                            dsc1=idx.discount;
-                        }else{
-                            dsc1=0;
-                        }
-                        if(isDefined("idx.MONEY")){
-                            mny1=idx.MONEY;
-                        }else{
-                            mny1="TL";
-                        }
-                        if(isDefined("idx.QUESTION_ID")){
-                            queid=idx.QUESTION_ID;
-                        }else{
-                            queid="0";
-                        }   if(isDefined("idx.DISPLAY_NAME") && idx.DISPLAY_NAME != "undefined"){
-                            dname=idx.DISPLAY_NAME
-                        }else{
-                            dName="";
-                        }
-                        InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,queid,prcex1,dsc1,mny1,idx.IS_VIRTUAL,dName);
-                    </cfscript>
-                </cfloop>
+            <cfif isDefined("ai.DISCOUNT")><cfset aid=ai.DISCOUNT><cfelse><cfset aid="0"></cfif>
+            <cfif isDefined("ai.MONEY")><cfset aim=ai.MONEY><cfelse><cfset aim="TL"></cfif>
+            <cfif isDefined("ai.DISPLAY_NAME") and ai.DISPLAY_NAME neq "undefined"><cfset dName=ai.DISPLAY_NAME><cfelse><cfset dName=""></cfif>
+            <cfif ai.PRODUCT_ID neq 0>
+                <cfscript>
+                    InsertedItem=InsertTree(FormData.PRODUCT_ID,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,aiq,aip,aid,aim,ai.IS_VIRTUAL,dName);
+                </cfscript>
+            <cfelse>
+                <cfquery name="getParams" datasource="#dsn3#">
+                    SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#ai.PRODUCT_CATID#
+                </cfquery>
+                <cfscript>
+                    CreatedProduct= CreateVirtualProduct(
+                        ai.PRODUCT_NAME,
+                        ai.PRODUCT_CATID,
+                        0,
+                        0,
+                        99,
+                        1,
+                        '',
+                        getParams.PRODUCT_UNIT,
+                        FormData.PROJECT_ID,
+                        '0',
+                        FormData.PRODUCT_STAGE,
+                        -6
+                    );
+                    CreatedProductId=CreatedProduct.IDENTITYCOL        
+                    if(isDefined("ai.price")){
+                        prcex=ai.price;
+                    }else{
+                        prcex=0;
+                    }
+                    if(isDefined("ai.discount")){
+                        dsc=ai.discount;
+                    }else{
+                        dsc=0;
+                    }
+                    if(isDefined("ai.MONEY")){
+                        mny=ai.MONEY;
+                    }else{
+                        mny="TL";
+                    }
+                    if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
+                        dname=ai.DISPLAY_NAME
+                    }else{
+                        dName="";
+                    }
+                    InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,aiq,prcex,dsc,mny,ai.IS_VIRTUAL,dName); //YAPILACAK INSERT TREE FONKSİYONUNU KONTROL ET
+                </cfscript>
+                <cfif arraylen(ai.AGAC)>
+                    <cfloop array="#ai.AGAC#" index="idx">                    
+                        <cfscript>
+                            if(isDefined("idx.price")){
+                                prcex1=idx.price;
+                            }else{
+                                prcex1=0;
+                            }
+                            if(isDefined("idx.discount")){
+                                dsc1=idx.discount;
+                            }else{
+                                dsc1=0;
+                            }
+                            if(isDefined("idx.MONEY")){
+                                mny1=idx.MONEY;
+                            }else{
+                                mny1="TL";
+                            }
+                            if(isDefined("idx.QUESTION_ID")){
+                                queid=idx.QUESTION_ID;
+                            }else{
+                                queid="0";
+                            }   
+                            if(isDefined("idx.DISPLAY_NAME") && idx.DISPLAY_NAME != "undefined"){
+                                dname=idx.DISPLAY_NAME
+                            }else{
+                                dName="";
+                            }
+                            InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,queid,prcex1,dsc1,mny1,idx.IS_VIRTUAL,dName);
+                        </cfscript>
+                    </cfloop>
+                </cfif>
             </cfif>
-        </cfif>
-    </cfloop>
-</cfif>    
+        </cfloop>
+    </cfif>    
+<cfelse> <!-----//BILGI FormData.PRODUCT_ID neq 0 and len(FormData.PRODUCT_ID)   ÜRÜN IDSI YOKSA YANI SANAL OLARAK OLUŞMADIYSA---->
+    <cfscript>
+        CreatedProduct= CreateVirtualProduct(
+            FormData.PRODUCT_NAME,
+            getFr.PRODUCT_CATID,
+            0,
+            0,
+            99,
+            1,
+            '',
+            getFr.PRODUCT_UNIT,
+            FormData.PROJECT_ID,
+            '0',
+            FormData.PRODUCT_STAGE,
+            -6
+        );
+        CreatedProductId=CreatedProduct.IDENTITYCOL
+    </cfscript>
+    <cfif arrayLen(FormData.PRODUCT_TREE)>
+        <cfloop array="#FormData.PRODUCT_TREE#" index="ai">
+            <cfif ai.PRODUCT_ID neq 0>
+                <cfscript>
+                    if(isDefined("ai.price")){
+                        prcex=ai.price;
+                    }else{
+                        prcex=0;
+                    }
+                    if(isDefined("ai.discount")){
+                        dsc=ai.discount;
+                    }else{
+                        dsc=0;
+                    }
+                    if(isDefined("ai.MONEY")){
+                        mny=ai.MONEY;
+                    }else{
+                        mny="TL";
+                    }
+                    if(isDefined("ai.QUESTION_ID")){
+                        queid=ai.QUESTION_ID;
+                    }else{
+                        queid="NULL";
+                    }
+                    if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
+                        dname=ai.DISPLAY_NAME
+                    }else{
+                        dName="";
+                    }
+                        InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL,dName);
+                </cfscript>
+            <cfelse>
+                <cfoutput>
+                    #ai.PRODUCT_CATID#
+                </cfoutput>
+                <cfquery name="getParams" datasource="#dsn3#">
+                    SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#ai.PRODUCT_CATID#
+                </cfquery>
+                <cfscript>
+                    CreatedProduct= CreateVirtualProduct(
+                        ai.PRODUCT_NAME,
+                        ai.PRODUCT_CATID,
+                        0,
+                        0,
+                        99,
+                        1,
+                        '',
+                        getParams.PRODUCT_UNIT,
+                        FormData.PROJECT_ID,
+                        '0',
+                        FormData.PRODUCT_STAGE,
+                        -6
+                    );
+                    CreatedProductId=CreatedProduct.IDENTITYCOL        
+                    if(isDefined("ai.price")){
+                        prcex=ai.price;
+                    }else{
+                        prcex=0;
+                    }
+                    if(isDefined("ai.discount")){
+                        dsc=ai.discount;
+                    }else{
+                        dsc=0;
+                    }
+                    if(isDefined("ai.MONEY")){
+                        mny=ai.MONEY;
+                    }else{
+                        mny="TL";
+                    }
+                    if(isDefined("ai.QUESTION_ID")){
+                        queid=ai.QUESTION_ID;
+                    }else{
+                        queid="NULL";
+                    }
+                    if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
+                        dname=ai.DISPLAY_NAME
+                    }else{
+                        dName="";
+                    }
+                    InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL,dName);
+                </cfscript>
+                <cfif arraylen(ai.AGAC)>
+                    <cfloop array="#ai.AGAC#" index="idx">        
+                        <cfscript>
+                            if(isDefined("idx.price")){
+                                prcex1=idx.price;
+                            }else{
+                                prcex1=0;
+                            }
+                            if(isDefined("idx.discount")){
+                                dsc1=idx.discount;
+                            }else{
+                                dsc1=0;
+                            }
+                            if(isDefined("idx.MONEY")){
+                                mny1=idx.MONEY;
+                            }else{
+                                mny1="TL";
+                            }
+                            if(isDefined("idx.QUESTION_ID")){
+                                queid=idx.QUESTION_ID;
+                            }else{
+                                queid="NULL";
+                            }
+                            if(isDefined("idx.DISPLAY_NAME") && idx.DISPLAY_NAME != "undefined" ){
+                                dname=idx.DISPLAY_NAME
+                            }else{
+                                dName="";
+                            }
+                            InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,idx.QUESTION_ID,prcex1,dsc1,mny1,idx.IS_VIRTUAL,dname);
+                        </cfscript>
+                    </cfloop>
+                </cfif>
+            </cfif>
 
-
-<cfelse>
-
-<cfscript>
-CreatedProduct= CreateVirtualProduct(
-    FormData.PRODUCT_NAME,
-    getFr.PRODUCT_CATID,
-    0,
-    0,
-    99,
-    1,
-    '',
-    getFr.PRODUCT_UNIT,
-    FormData.PROJECT_ID,
-    '0',
-    FormData.PRODUCT_STAGE,
-    -6
-);
-CreatedProductId=CreatedProduct.IDENTITYCOL
-</cfscript>
-
-
-
-<cfif arrayLen(FormData.PRODUCT_TREE)>
-
-agacim var
-<cfloop array="#FormData.PRODUCT_TREE#" index="ai">
-
-
-<cfif ai.PRODUCT_ID neq 0>
-<cfscript>
-    if(isDefined("ai.price")){
-        prcex=ai.price;
-    }else{
-        prcex=0;
-    }
-    if(isDefined("ai.discount")){
-        dsc=ai.discount;
-    }else{
-        dsc=0;
-    }
-    if(isDefined("ai.MONEY")){
-        mny=ai.MONEY;
-    }else{
-        mny="TL";
-    }
-    if(isDefined("ai.QUESTION_ID")){
-        queid=ai.QUESTION_ID;
-}else{
-    queid="NULL";
-}
-if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
-    dname=ai.DISPLAY_NAME
-}else{
-    dName="";
-}
-    InsertedItem=InsertTree(CreatedProductId,ai.PRODUCT_ID,ai.STOCK_ID,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL,dName);
-</cfscript>
-<cfelse>
-<cfoutput>
-    #ai.PRODUCT_CATID#
-</cfoutput>
-
-<cfquery name="getParams" datasource="#dsn3#">
-    SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#ai.PRODUCT_CATID#
-</cfquery>
-<cfscript>
-    CreatedProduct= CreateVirtualProduct(
-        ai.PRODUCT_NAME,
-        ai.PRODUCT_CATID,
-        0,
-        0,
-        99,
-        1,
-        '',
-        getParams.PRODUCT_UNIT,
-        FormData.PROJECT_ID,
-        '0',
-        FormData.PRODUCT_STAGE,
-        -6
-    );
-    CreatedProductId=CreatedProduct.IDENTITYCOL        
-    if(isDefined("ai.price")){
-        prcex=ai.price;
-    }else{
-        prcex=0;
-    }
-    if(isDefined("ai.discount")){
-        dsc=ai.discount;
-    }else{
-        dsc=0;
-    }
-    if(isDefined("ai.MONEY")){
-        mny=ai.MONEY;
-    }else{
-        mny="TL";
-    }
-    if(isDefined("ai.QUESTION_ID")){
-            queid=ai.QUESTION_ID;
-    }else{
-        queid="NULL";
-    }
-    if(isDefined("ai.DISPLAY_NAME") && ai.DISPLAY_NAME != "undefined" ){
-        dname=ai.DISPLAY_NAME
-    }else{
-        dName="";
-    }
-    InsertedItem=InsertTree(FormData.PRODUCT_ID,CreatedProductId,0,ai.AMOUNT,queid,prcex,dsc,mny,ai.IS_VIRTUAL,dName);
-</cfscript>
-<cfif arraylen(ai.AGAC)>
-    <cfloop array="#ai.AGAC#" index="idx">
-        
-        <cfscript>
-            if(isDefined("idx.price")){
-                prcex1=idx.price;
-            }else{
-                prcex1=0;
-            }
-            if(isDefined("idx.discount")){
-                dsc1=idx.discount;
-            }else{
-                dsc1=0;
-            }
-            if(isDefined("idx.MONEY")){
-                mny1=idx.MONEY;
-            }else{
-                mny1="TL";
-            }
-            if(isDefined("idx.QUESTION_ID")){
-                queid=idx.QUESTION_ID;
-        }else{
-            queid="NULL";
-        }
-        if(isDefined("idx.DISPLAY_NAME") && idx.DISPLAY_NAME != "undefined" ){
-            dname=idx.DISPLAY_NAME
-        }else{
-            dName="";
-        }
-            InsertedItem=InsertTree(CreatedProductId,idx.PRODUCT_ID,idx.STOCK_ID,idx.AMOUNT,idx.QUESTION_ID,prcex1,dsc1,mny1,idx.IS_VIRTUAL,dname);
-        </cfscript>
-    </cfloop>
-</cfif>
-</cfif>
-
-</cfloop>
-</cfif>
+        </cfloop>
+    </cfif>
 </cfif>
 
 <script>
