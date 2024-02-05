@@ -1,4 +1,4 @@
-﻿<cfif session.ep.userid neq 1146>
+﻿<cfif session.ep.userid eq 1146>
 <div class="alert alert-danger" style="position: absolute;width: 50%;height: 20vh;z-index: 99999;left: 29%;right: 50%;top: 40%;">
     <h3 style="font-size: 3.75rem;">Güncelleniyor Kullanmayınız !</h3>
     <b style="position: absolute;bottom: 0;right: 10px;font-size: 2rem;">Partner Bilgi Sistemleri</b>
