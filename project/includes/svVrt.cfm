@@ -14,11 +14,18 @@
 <cffunction name="UrunParse">
     <cfargument name="Urun">
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
-    <CFIF arguments.Urun.PRODUCT_ID neq 0 and len(arguments.Urun.PRODUCT_ID) gt 0> <!---- Bu Ürün Sanal Olarak Eklenmiş Mi ----->
+    <CFSET AktifUrun=arguments.Urun>
+    <CFIF AktifUrun.PRODUCT_ID neq 0 and len(AktifUrun.PRODUCT_ID) gt 0> <!---- Bu Ürün Sanal Olarak Eklenmiş Mi ----->
         <cfscript>
-            UpdateVirtualProduct_NEW(VP_ID=arguments.Urun.PRODUCT_ID,PRICE=arguments.Urun.PRICE,Discount=arguments.Urun.DISCOUNT,OtherMoney='#arguments.Urun.MONEY#',DisplayName='#arguments.Urun.DISPLAY_NAME#',ProductStage=arguments.Urun.PRODUCT_STAGE)
+            UpdateVirtualProduct_NEW(VP_ID=AktifUrun.PRODUCT_ID,PRICE=AktifUrun.PRICE,Discount=AktifUrun.DISCOUNT,OtherMoney='#AktifUrun.MONEY#',DisplayName='#AktifUrun.DISPLAY_NAME#',ProductStage=AktifUrun.PRODUCT_STAGE)
+            ClearVirtualTree(AktifUrun.PRODUCT_ID);            
         </cfscript>
-
+        <CFSET AGACIM=arrayNew()>
+        <cfif arrayLen(AktifUrun.PRODUCT_TREE)><CFSET AGACIM=AktifUrun.PRODUCT_TREE></cfif> <!---- PRODUCT_TREE DOLUMU --->
+        <cfif arrayLen(AktifUrun.AGAC)><CFSET AGACIM=AktifUrun.AGAC></cfif> <!---- AGAC DOLUMU --->
+        <cfloop array="#AGACIM#" item="Ait">
+            <cfdump var="#Ait#">
+        </cfloop>
 
     <cfelse> <!-------Ürün Eklenmemişse------>
 
@@ -61,6 +68,12 @@
 </cffunction>
 
 
+<cffunction name="ClearVirtualTree">
+    <cfargument name="VP_ID">
+    <cfquery name="delTree" datasource="#dsn3#">
+        DELETE FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.VP_ID#
+    </cfquery>
+</cffunction>
 
 
 
