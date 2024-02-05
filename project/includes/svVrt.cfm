@@ -12,7 +12,7 @@
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
     <CFIF arguments.Urun.PRODUCT_ID neq 0 and len(arguments.Urun.PRODUCT_ID) gt 0> <!---- Bu Ürün Sanal Olarak Eklenmiş Mi ----->
         <cfscript>
-            UpdateVirtualProduct(VP_ID=arguments.Urun.PRODUCT_ID,PRICE=arguments.Urun.PRICE,Discount=arguments.Urun.DISCOUNT,OtherMoney='#arguments.Urun.MONEY#',DisplayName='#arguments.Urun.DISPLAY_NAME#',ProductStage=arguments.Urun.PRODUCT_STAGE)
+            UpdateVirtualProduct_NEW(VP_ID=arguments.Urun.PRODUCT_ID,PRICE=arguments.Urun.PRICE,Discount=arguments.Urun.DISCOUNT,OtherMoney='#arguments.Urun.MONEY#',DisplayName='#arguments.Urun.DISPLAY_NAME#',ProductStage=arguments.Urun.PRODUCT_STAGE)
         </cfscript>
 
 
@@ -27,7 +27,7 @@
 
 </cffunction>
 
-<cffunction name="UpdateVirtualProduct">
+<cffunction name="UpdateVirtualProduct_NEW">
     <cfargument name="VP_ID">
     <cfargument name="PRICE" default="">
     <cfargument name="Discount" default="">
