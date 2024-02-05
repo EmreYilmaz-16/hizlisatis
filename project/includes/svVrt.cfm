@@ -156,7 +156,7 @@
     <cfreturn res>
     </cffunction>
 
-</cffunction>
+
 
 <cffunction name="ClearVirtualTree">
     <cfargument name="VP_ID">
