@@ -1009,6 +1009,7 @@ function addProdMain(idbb = 0) {
     var money = agacim[i].getAttribute("data-other_money");
     var discount = agacim[i].getAttribute("data-discount");
     var displayName = agacim[i].getAttribute("data-displayName");
+    var question_id = agacim[i].getAttribute("data-question_id");
 */
 function addProdMain_(idb, modal_id) {
   var pname = document.getElementById("productNameVp").value;
@@ -1021,6 +1022,7 @@ function addProdMain_(idb, modal_id) {
   li.setAttribute("data-discount", 0);
   li.setAttribute("data-other_money", "TL");
   li.setAttribute("data-displayName", "");
+  li.setAttribute("data-question_id", "");
   li.setAttribute("data-sta", 0);
   li.setAttribute("class", "list-group-item");
   li.setAttribute("data-idb", idB);
