@@ -20,7 +20,7 @@
             UpdateVirtualProduct_NEW(VP_ID=AktifUrun.PRODUCT_ID,PRICE=AktifUrun.PRICE,Discount=AktifUrun.DISCOUNT,OtherMoney='#AktifUrun.MONEY#',DisplayName='#AktifUrun.DISPLAY_NAME#',ProductStage=AktifUrun.PRODUCT_STAGE)
             ClearVirtualTree(AktifUrun.PRODUCT_ID);            
         </cfscript>
-        <CFSET AGACIM=arrayNew()>
+        <CFSET AGACIM=arrayNew(1)>
         <cfif arrayLen(AktifUrun.PRODUCT_TREE)><CFSET AGACIM=AktifUrun.PRODUCT_TREE></cfif> <!---- PRODUCT_TREE DOLUMU --->
         <cfif arrayLen(AktifUrun.AGAC)><CFSET AGACIM=AktifUrun.AGAC></cfif> <!---- AGAC DOLUMU --->
         <cfloop array="#AGACIM#" item="Ait">
