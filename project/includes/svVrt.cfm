@@ -55,7 +55,7 @@
                         }
                         InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
                     </cfscript>                     
-                <cfelse>
+                <cfelse> 
                     <cfquery name="getParams" datasource="#dsn3#">
                         SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#Ait.PRODUCT_CATID#
                     </cfquery>
@@ -80,10 +80,32 @@
                 </cfif>
                 <CFIF arrayLen(ait.AGAC)>
                    <cfset Ait.PRODUCT_STAGE =FormData.PRODUCT_STAGE>
-                 <cfscript>   UrunParse(Ait);</cfscript>
+                    <cfscript>   UrunParse(Ait);</cfscript>
                 </CFIF>
             <cfelse>
-
+                <cfscript>
+                    if(isDefined("Ait.price")){
+                        prcex=Ait.price;
+                    }else{
+                        prcex=0;
+                    }
+                    if(isDefined("Ait.discount")){
+                        dsc=Ait.discount;
+                    }else{
+                        dsc=0;
+                    }
+                    if(isDefined("Ait.MONEY")){
+                        mny=Ait.MONEY;
+                    }else{
+                        mny="TL";
+                    }
+                    if(isDefined("Ait.DISPLAY_NAME") && Ait.DISPLAY_NAME != "undefined" ){
+                        dname=Ait.DISPLAY_NAME
+                    }else{
+                        dName="";
+                    }
+                InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
+                </cfscript>
             </cfif>
         </cfloop>
 
