@@ -57,6 +57,7 @@
                 
                 </cfif>
                 <CFIF arrayLen(ait.AGAC)>
+                   <cfset Ait.PRODUCT_STAGE =FormData.PRODUCT_STAGE>
                  <cfscript>   UrunParse(Ait);</cfscript>
                 </CFIF>
             <cfelse>
