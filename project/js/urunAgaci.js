@@ -309,6 +309,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
     li.setAttribute("data-price", arr[i].PRICE);
+    li.setAttribute("data-standart_price", arr[i].STANDART_PRICE);
     li.setAttribute("data-other_money", arr[i].MONEY);
     li.setAttribute("data-discount", arr[i].DISCOUNT);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
