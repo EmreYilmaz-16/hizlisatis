@@ -31,7 +31,8 @@
                     <cfscript>
                         UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
                         //ClearVirtualTree(AktifUrun.PRODUCT_ID);            
-                    </cfscript> 
+                        CreatedProduct=Ait.PRODUCT_ID;
+                    </cfscript>                     
                 <cfelse>
                     <cfquery name="getParams" datasource="#dsn3#">
                         SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#Ait.PRODUCT_CATID#
@@ -52,7 +53,12 @@
                             -6
                         );
                     </cfscript>
+                    <CFSET Ait.PRODUCT_ID=CreatedProduct>
+                
                 </cfif>
+                <CFIF arrayLen(ait.AGAC)>
+                    UrunParse(Ait);
+                </CFIF>
             <cfelse>
 
             </cfif>
