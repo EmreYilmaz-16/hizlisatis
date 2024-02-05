@@ -1654,6 +1654,7 @@ function UrunKaydet() {
   var project_id = $("#project_id").val();
   var stg = $("#pstage").val();
   var prc = $("#maliyet").val();
+  prc=filterNum(prc);
 /*
    <cfargument name="VP_ID">
     <cfargument name="PRICE" default="">
