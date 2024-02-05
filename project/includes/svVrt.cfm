@@ -38,7 +38,7 @@
                         SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#Ait.PRODUCT_CATID#
                     </cfquery>
                     <cfscript>
-                        CreatedProduct= CreateVirtualProduct(
+                        CreatedProduct= CreateVirtualProduct_New(
                             Ait.PRODUCT_NAME,
                             Ait.PRODUCT_CATID,
                             0,
