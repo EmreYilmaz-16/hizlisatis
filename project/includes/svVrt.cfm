@@ -14,9 +14,10 @@ Giriş 1
 <cffunction name="UrunParse"> 
     <cfargument name="Urun">   
     <cfargument name="DSC" default="1">
-    <span style="color:green">POS: 00000</span><br/>
+    <CFSET AktifUrun=arguments.Urun>   
+    <span style="color:green">POS: 00000</span> <code>Aktif Ürün Product Id = <cfoutput>#AktifUrun.PRODUCT_ID#</cfoutput></code><br/>
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
-    <CFSET AktifUrun=arguments.Urun>    
+    
     <CFIF AktifUrun.PRODUCT_ID neq 0 and len(AktifUrun.PRODUCT_ID) gt 0> <!----//BILGI Bu Ürün Sanal Olarak Eklenmiş Mi ----->        
         <cfscript>
             UpdateVirtualProduct_NEW(VP_ID=AktifUrun.PRODUCT_ID,PRICE=AktifUrun.PRICE,Discount=AktifUrun.DISCOUNT,OtherMoney='#AktifUrun.MONEY#',DisplayName='#AktifUrun.DISPLAY_NAME#',ProductStage=AktifUrun.PRODUCT_STAGE)
