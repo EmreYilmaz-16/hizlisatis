@@ -54,7 +54,12 @@ Giriş 1
                             dName="";
                         }
                         InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
-                    </cfscript>                     
+                        
+                    </cfscript>      
+                    <CFIF arrayLen(ait.AGAC)>
+                        <cfset Ait.PRODUCT_STAGE =FormData.PRODUCT_STAGE>
+                         <cfscript>   UrunParse(Ait);</cfscript>
+                     </CFIF>               
                 <cfelse> 
                     <cfquery name="getParams" datasource="#dsn3#">
                         SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#Ait.PRODUCT_CATID#
