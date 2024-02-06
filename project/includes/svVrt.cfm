@@ -170,7 +170,7 @@ Giriş 1
     <cfargument name="Discount" default="">
     <cfargument name="OtherMoney" default="">
     <cfargument name="DisplayName" default="">
-    <cfargument name="ProductStage"default="" >
+    <cfargument name="ProductStage"default="NULL" >
 
     <cfquery name="UpdateProduct" datasource="#dsn3#">
         UPDATE VIRTUAL_PRODUCTS_PRT SET 
