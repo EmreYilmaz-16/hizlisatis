@@ -38,7 +38,7 @@ Giriş 1
                         ClearVirtualTree(#Ait.PRODUCT_ID#);            
                     </cfoutput>
                    <cfscript>
-                        UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
+                        UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="#FormData.PRODUCT_STAGE#");
                         ClearVirtualTree(Ait.PRODUCT_ID);            
                         
                         if(isDefined("Ait.price")){
