@@ -33,8 +33,8 @@ Giriş 1
                 <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
                     <!---- //BILGI Ürün Eklenmişse  ---->
                    <cfscript>
-                        //UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
-                        //ClearVirtualTree(Ait.PRODUCT_ID);            
+                        UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
+                        ClearVirtualTree(Ait.PRODUCT_ID);            
                         
                         if(isDefined("Ait.price")){
                             prcex=Ait.price;
@@ -56,7 +56,7 @@ Giriş 1
                         }else{
                             dName="";
                         }
-                        //InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
+                        InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
                         
                     </cfscript>      
                     <cfoutput>
@@ -76,7 +76,7 @@ Giriş 1
                     </cfquery>
                     <cfscript>
                         CreatedProduct.IDENTITYCOL="1453";
-                       /* CreatedProduct= CreateVirtualProduct_New(
+                        CreatedProduct= CreateVirtualProduct_New(
                             Ait.PRODUCT_NAME,
                             Ait.PRODUCT_CATID,
                             0,
@@ -89,7 +89,7 @@ Giriş 1
                             '0',
                             FormData.PRODUCT_STAGE,
                             -6
-                        );*/
+                        );
                     </cfscript>
                     <cfoutput>
                         <span style="color:red">POS: 00002</span><br/>
@@ -109,7 +109,7 @@ Giriş 1
                         )<br/>
                     </cfoutput>
                     <CFSET Ait.PRODUCT_ID=CreatedProduct.IDENTITYCOL>
-                   <!---<cfscript> InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>---->
+                   <cfscript> InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>
                    <cfoutput>
                     <span style="color:red">POS: 00003</span><br/>
                     InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,#Ait.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#); <br/>
@@ -146,7 +146,7 @@ Giriş 1
                     }else{
                         dName="";
                     }
-               // InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
+                InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
                 </cfscript>
                 <cfoutput>
                     <span style="color:red">POS: 00004</span><br/>
