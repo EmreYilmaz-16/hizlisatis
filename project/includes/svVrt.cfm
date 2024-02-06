@@ -19,16 +19,11 @@ Giriş 1
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
     
     <CFIF AktifUrun.PRODUCT_ID neq 0 and len(AktifUrun.PRODUCT_ID) gt 0> <!----//BILGI Bu Ürün Sanal Olarak Eklenmiş Mi ----->        
-      <!---  <cfscript>
+        <cfscript>
             UpdateVirtualProduct_NEW(VP_ID=AktifUrun.PRODUCT_ID,PRICE=AktifUrun.PRICE,Discount=AktifUrun.DISCOUNT,OtherMoney='#AktifUrun.MONEY#',DisplayName='#AktifUrun.DISPLAY_NAME#',ProductStage=AktifUrun.PRODUCT_STAGE)
             ClearVirtualTree(AktifUrun.PRODUCT_ID);            
-        </cfscript>---->
-        <cfoutput>
-            <span style="color:red">POS: 00001-A</span><br/>
-            UpdateVirtualProduct_NEW(VP_ID=#Ait.PRODUCT_ID#,PRICE=#Ait.PRICE#,Discount=#Ait.DISCOUNT#,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");<br/>
-            ClearVirtualTree(#AktifUrun.PRODUCT_ID#);<br/>
-           
-        </cfoutput>
+        </cfscript>
+        
         <CFSET AGACIM=arrayNew(1)>
         <cfif arrayLen(AktifUrun.PRODUCT_TREE)><CFSET AGACIM=AktifUrun.PRODUCT_TREE></cfif> <!---- PRODUCT_TREE DOLUMU --->
         <cfif arrayLen(AktifUrun.AGAC)><CFSET AGACIM=AktifUrun.AGAC></cfif> <!---- AGAC DOLUMU --->
@@ -39,7 +34,7 @@ Giriş 1
                     <!---- //BILGI Ürün Eklenmişse  ---->
                    <cfscript>
                         //UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
-                        //ClearVirtualTree(AktifUrun.PRODUCT_ID);            
+                        //ClearVirtualTree(Ait.PRODUCT_ID);            
                         
                         if(isDefined("Ait.price")){
                             prcex=Ait.price;
@@ -67,7 +62,7 @@ Giriş 1
                     <cfoutput>
                         <span style="color:red">POS: 00001</span><br/>
                         UpdateVirtualProduct_NEW(VP_ID=#Ait.PRODUCT_ID#,PRICE=#Ait.PRICE#,Discount=#Ait.DISCOUNT#,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");<br/>
-                        ClearVirtualTree(#AktifUrun.PRODUCT_ID#);<br/>
+                        ClearVirtualTree(#Ait.PRODUCT_ID#);<br/>
                         InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,#Ait.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#);<br/>
                     </cfoutput>
 
