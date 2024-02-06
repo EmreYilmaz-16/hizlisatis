@@ -32,6 +32,11 @@ Giriş 1
                 
                 <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
                     <!---- //BILGI Ürün Eklenmişse  ---->
+                    <cfoutput>
+                        <span style="color:red">POS: 00001-A</span><br/>
+                        UpdateVirtualProduct_NEW(VP_ID=#Ait.PRODUCT_ID#,PRICE=#Ait.PRICE#,Discount=#Ait.DISCOUNT#,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
+                        ClearVirtualTree(#Ait.PRODUCT_ID#);            
+                    </cfoutput>
                    <cfscript>
                         UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
                         ClearVirtualTree(Ait.PRODUCT_ID);            
