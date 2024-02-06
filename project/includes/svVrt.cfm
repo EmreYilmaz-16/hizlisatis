@@ -29,10 +29,10 @@ Giriş 1
                 
                 <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
                     <!---- //BILGI Ürün Eklenmişse  ---->
-                    <cfscript>
-                        UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
-                        ClearVirtualTree(AktifUrun.PRODUCT_ID);            
-                        //CreatedProduct=Ait.PRODUCT_ID;
+                   <cfscript>
+                        //UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
+                        //ClearVirtualTree(AktifUrun.PRODUCT_ID);            
+                        
                         if(isDefined("Ait.price")){
                             prcex=Ait.price;
                         }else{
@@ -53,9 +53,16 @@ Giriş 1
                         }else{
                             dName="";
                         }
-                        InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
+                        //InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
                         
                     </cfscript>      
+                    <cfoutput>
+                        <span style="color:red">POS: 00001</span><br/>
+                        UpdateVirtualProduct_NEW(VP_ID=#Ait.PRODUCT_ID#,PRICE=#Ait.PRICE#,Discount=#Ait.DISCOUNT#,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");<br/>
+                        ClearVirtualTree(#AktifUrun.PRODUCT_ID#);<br/>
+                        InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,A#it.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#);<br/>
+                    </cfoutput>
+
                     <CFIF arrayLen(ait.AGAC)>
                         <cfset Ait.PRODUCT_STAGE =FormData.PRODUCT_STAGE>
                          <cfscript>   UrunParse(Ait);</cfscript>
@@ -65,7 +72,8 @@ Giriş 1
                         SELECT * FROM PRODUCT_CAT_PRODUCT_PARAM_SETTINGS where PRODUCT_CATID=#Ait.PRODUCT_CATID#
                     </cfquery>
                     <cfscript>
-                        CreatedProduct= CreateVirtualProduct_New(
+                        CreatedProduct.IDENTITYCOL="1453";
+                       /* CreatedProduct= CreateVirtualProduct_New(
                             Ait.PRODUCT_NAME,
                             Ait.PRODUCT_CATID,
                             0,
@@ -78,10 +86,31 @@ Giriş 1
                             '0',
                             FormData.PRODUCT_STAGE,
                             -6
-                        );
+                        );*/
                     </cfscript>
+                    <cfoutput>
+                        <span style="color:red">POS: 00002</span><br/>
+                        CreatedProduct= CreateVirtualProduct_New(
+                            #Ait.PRODUCT_NAME#,
+                            #Ait.PRODUCT_CATID#,
+                            0,
+                            0,
+                            99,
+                            1,
+                            '',
+                            #getParams.PRODUCT_UNIT#,
+                            #PROJE_IDSI#,
+                            '0',
+                            #FormData.PRODUCT_STAGE#,
+                            -6
+                        )<br/>
+                    </cfoutput>
                     <CFSET Ait.PRODUCT_ID=CreatedProduct.IDENTITYCOL>
-                   <cfscript> InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>
+                   <!---<cfscript> InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>---->
+                   <cfoutput>
+                    <span style="color:red">POS: 00003</span><br/>
+                    InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,#Ait.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#); <br/>
+                   </cfoutput>
                 </cfif>
                 <CFIF arrayLen(ait.AGAC)>
                    <cfset Ait.PRODUCT_STAGE =FormData.PRODUCT_STAGE>
@@ -114,11 +143,16 @@ Giriş 1
                     }else{
                         dName="";
                     }
-                InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
+               // InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
                 </cfscript>
+                <cfoutput>
+                    <span style="color:red">POS: 00004</span><br/>
+                    InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,#Ait.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#);<br/>
+                </cfoutput>
             </cfif>
         </cfloop>
     <cfelse> <!-------Ürün Eklenmemişse------>
+        <span style="color:red">POS: 00005</span><br/>
     </CFIF>
 </cffunction>
 
