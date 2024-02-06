@@ -82,7 +82,7 @@ Giriş 1
                         );
                     </cfscript>
                     <CFSET Ait.PRODUCT_ID=CreatedProduct.IDENTITYCOL>
-                  <cfscript>  InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>
+                   <cfscript> InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>
                 </cfif>
                 <CFIF arrayLen(ait.AGAC)>
                    <cfset Ait.PRODUCT_STAGE =FormData.PRODUCT_STAGE>
