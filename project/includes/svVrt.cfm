@@ -8,16 +8,20 @@
 </cfquery>
 <cfset PROJE_IDSI=FormData.PROJECT_ID>
 
-<cfscript> UrunParse(FormData,0);</cfscript>
+<cfscript> UrunParse(FormData,0,);</cfscript>
 
-
+Giriş 1
 <cffunction name="UrunParse">
+    Fonksiyon Başlangıç <br><cfdump var="#arguments.Urun.PRODUCT_ID#"><br>
     <cfargument name="Urun">   
     <cfargument name="DSC" default="1">
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
     <CFSET AktifUrun=arguments.Urun>
     <cfdump var="#AktifUrun#">
-    <CFIF AktifUrun.PRODUCT_ID neq 0 and len(AktifUrun.PRODUCT_ID) gt 0> <!---- Bu Ürün Sanal Olarak Eklenmiş Mi ----->
+    <CFIF AktifUrun.PRODUCT_ID neq 0 and len(AktifUrun.PRODUCT_ID) gt 0> <!----//BILGI Bu Ürün Sanal Olarak Eklenmiş Mi ----->
+        <th>
+            Ürün EKleme <cfdump var="#AktifUrun.PRODUCT_ID#"><br>
+        </th>
         <cfscript>
             UpdateVirtualProduct_NEW(VP_ID=AktifUrun.PRODUCT_ID,PRICE=AktifUrun.PRICE,Discount=AktifUrun.DISCOUNT,OtherMoney='#AktifUrun.MONEY#',DisplayName='#AktifUrun.DISPLAY_NAME#',ProductStage=AktifUrun.PRODUCT_STAGE)
             ClearVirtualTree(AktifUrun.PRODUCT_ID);            
@@ -27,8 +31,10 @@
         <cfif arrayLen(AktifUrun.AGAC)><CFSET AGACIM=AktifUrun.AGAC></cfif> <!---- AGAC DOLUMU --->
         <cfloop array="#AGACIM#" item="Ait"> <!--- //BILGI Ağaç Döngüsü ---->            
             <cfif Ait.is_virtual eq 1> <!--- //BILGI Ürün Sanalmı ---->
+                Ürün Sanalmı <cfdump var="#Ait.PRODUCT_ID#"> - <cfdump var="#Ait.is_virtual#"><br>
                 <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
                     <!---- //BILGI Ürün Eklenmişse  ---->
+                    Ürün Oluşmuşmu <cfdump var="#Ait.PRODUCT_ID#"><br>
                     <cfscript>
                         UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
                         ClearVirtualTree(AktifUrun.PRODUCT_ID);            
@@ -76,7 +82,7 @@
                         );
                     </cfscript>
                     <CFSET Ait.PRODUCT_ID=CreatedProduct.IDENTITYCOL>
-                    InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
+                  <cfscript>  InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>
                 </cfif>
                 <CFIF arrayLen(ait.AGAC)>
                    <cfset Ait.PRODUCT_STAGE =FormData.PRODUCT_STAGE>
@@ -113,8 +119,8 @@
                 </cfscript>
             </cfif>
         </cfloop>
-
     <cfelse> <!-------Ürün Eklenmemişse------>
+
 
     </CFIF>
 
