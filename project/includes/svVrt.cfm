@@ -8,7 +8,7 @@
 </cfquery>
 <cfset PROJE_IDSI=FormData.PROJECT_ID>
 
-<cfscript> UrunParse(FormData,0,);</cfscript>
+<cfscript> UrunParse(FormData,0);</cfscript>
 
 Giriş 1
 <cffunction name="UrunParse">
