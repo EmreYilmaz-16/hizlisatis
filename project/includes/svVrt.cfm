@@ -60,7 +60,7 @@ Giriş 1
                         <span style="color:red">POS: 00001</span><br/>
                         UpdateVirtualProduct_NEW(VP_ID=#Ait.PRODUCT_ID#,PRICE=#Ait.PRICE#,Discount=#Ait.DISCOUNT#,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");<br/>
                         ClearVirtualTree(#AktifUrun.PRODUCT_ID#);<br/>
-                        InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,A#it.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#);<br/>
+                        InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,#Ait.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#);<br/>
                     </cfoutput>
 
                     <CFIF arrayLen(ait.AGAC)>
