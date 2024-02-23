@@ -53,6 +53,7 @@ SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTU
     <cfquery name="getOfferMain" datasource="#dsn3#">
         SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
     </cfquery>
+    <cfdump var="#getOfferMain#">
     <cfelse>
          
     <cfquery name="getProductionOrders" datasource="#dsn3#">
