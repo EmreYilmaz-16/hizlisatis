@@ -50,12 +50,11 @@ SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTU
         LEFT JOIN #dsn1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID 
         WHERE UNIQUE_RELATION_ID='#listFirst(getProductionOrders.UNIQUE_RELATION_ID,"-")#'
     </cfquery>
-    <cfdump var="#getProductionOrders#">
-    <cfdump var="#getOffer#">
+    
     <cfquery name="getOfferMain" datasource="#dsn3#">
         SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
     </cfquery>
-    <cfdump var="#getOfferMain#">
+    
     <cfelse>
          
     <cfquery name="getProductionOrders" datasource="#dsn3#">
@@ -67,11 +66,11 @@ SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTU
             LEFT JOIN #dsn1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID 
             WHERE UNIQUE_RELATION_ID='#getProductionOrders.UNIQUE_RELATION_ID#'
         </cfquery>
-        <cfdump var="#getOffer#">
+        
         <cfquery name="getOfferMain" datasource="#dsn3#">
             SELECT * FROM  PBS_OFFER WHERE OFFER_ID='#getOffer.OFFER_ID#'
         </cfquery>
-        <cfdump var="#getOfferMain#">
+        
 </cfif>
 <cfform method="post" name="production_form" id="production_form" onsubmit="event.preventDefault()">
     <cfoutput>
