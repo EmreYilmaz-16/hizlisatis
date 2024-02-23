@@ -48,7 +48,7 @@ SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTU
         select POR.*,DETAIL from PBS_OFFER_ROW  AS POR 
         LEFT JOIN STOCKS AS S ON S.STOCK_ID=POR.STOCK_ID
         LEFT JOIN #dsn1#.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID 
-        WHERE UNIQUE_RELATION_ID='#getProductionOrders.UNIQUE_RELATION_ID#'
+        WHERE UNIQUE_RELATION_ID='#listFirst(getProductionOrders.UNIQUE_RELATION_ID,"-")#'
     </cfquery>
     <cfdump var="#getProductionOrders#">
     <cfdump var="#getOffer#">
