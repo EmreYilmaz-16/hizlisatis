@@ -291,7 +291,7 @@
             ,S.IS_PRODUCTION 
             ,S.IS_SALES
             ,S.IS_KARMA
-            ,S.IS_KARMA_SEVK
+            ,0 as IS_KARMA_SEVK
             ,S.IS_ZERO_STOCK
             ,PB.BRAND_ID
             ,S.IS_LIMITED_STOCK
