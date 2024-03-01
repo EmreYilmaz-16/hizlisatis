@@ -81,7 +81,14 @@
         SP_Discount=filterNum(SP_Discount);
         RATE2=filterNum(RATE2);
         
-
+        var O={
+            SP_SelectedMoney:SP_SelectedMoney,
+            SP_Fiyat:SP_Fiyat,
+            SP_Miktar:SP_Miktar,
+            SP_Discount:SP_Discount,
+            RATE2:RATE2,
+        }
+        console.table(O);
         
     }
 </script>
