@@ -330,6 +330,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
       line:329,
       PRODUCT_ID:arr[i].PRODUCT_ID,
       STOCK_ID:arr[i].STOCK_ID,
+      AMOUNT:arr[i].AMOUNT,
       PRICE:arr[i].PRICE,
       MONEY:arr[i].MONEY,
       DISCOUNT:arr[i].DISCOUNT,
