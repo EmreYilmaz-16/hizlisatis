@@ -53,7 +53,10 @@
                     <cfoutput>#it.MONEY#</cfoutput>
                 </td>
                 <td>
-                    <cfoutput>#it.RATE1#</cfoutput><input type="text" name="RATE2_<cfoutput>#it.Money#</cfoutput>" class="form-control" value="<cfoutput>#it.RATE2#</cfoutput>">
+                    <div style="display:flex;align-content: center;align-items: center;">
+                        <h4 style="margin: 0;"><cfoutput>#it.RATE1#</cfoutput>/</h4>
+                        <input type="text" name="RATE2_<cfoutput>#it.Money#</cfoutput>" class="form-control" value="<cfoutput>#it.RATE2#</cfoutput>">
+                    </div>                    
                 </td>
             </tr>
         </cfloop>
