@@ -2178,11 +2178,11 @@ function SetPrice(idb,modal_id) {
   MaliyetHesapla();
 closeBoxDraggable(modal_id);
 }
-function SetPrice2(idb,modal_id) {
+function SetPrice2(idb,modal_id,SP_FIYAT_HESAP_SONUC) {
+
+console.log(SP_FIYAT_HESAP_SONUC)
 
 
-
-  
 closeBoxDraggable(modal_id);
 }
 
