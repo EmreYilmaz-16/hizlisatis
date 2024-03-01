@@ -326,7 +326,21 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     var RATE2MNY = moneyArr[MNYX].RATE2MNY;
     var dpx = arr[i].PRICE - (arr[i].PRICE * arr[i].DISCOUNT) / 100;
     var nttl = dpx * arr[i].AMOUNT * RATE2MNY;
-
+    var OX={
+      line:329,
+      PRODUCT_ID:arr[i].PRODUCT_ID,
+      STOCK_ID:arr[i].STOCK_ID,
+      PRICE:arr[i].PRICE,
+      MONEY:arr[i].MONEY,
+      DISCOUNT:arr[i].DISCOUNT,
+      IS_VIRTUAL:arr[i].IS_VIRTUAL,
+      PRODUCT_TREE_ID:arr[i].PRODUCT_TREE_ID,
+      QUESTION_ID:arr[i].QUESTION_ID,
+      DISPLAYNAME:arr[i].DISPLAYNAME,
+      RATE2MNY:arr[i].RATE2MNY,
+      NETTOTAL:arr[i].nttl,
+    }
+    console.table(OX);
     li.setAttribute("data-netTotal", nttl);
 
     li.setAttribute("data-idb", idB);
