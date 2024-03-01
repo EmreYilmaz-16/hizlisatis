@@ -43,7 +43,7 @@
                    Tutar
                 </td>
                 <td>
-                    <div class="form-group">
+                    <div >
                     <div class="input-group">
                         <input type="text" class="form-control" name="SP_NetTutar" id="SP_NetTutar" readonly>
                     <span class="input-group-text">TL</span>
