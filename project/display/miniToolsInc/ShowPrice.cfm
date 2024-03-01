@@ -11,7 +11,7 @@
                     Fiyat
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="SP_Fiyat" id="SP_Fiyat" value="<cfoutput>#tlformat(FData.Price)#</cfoutput>">
+                    <input type="text" class="form-control" name="SP_Fiyat" id="SP_Fiyat" onchange="spHesaplayalim(this)" value="<cfoutput>#tlformat(FData.Price)#</cfoutput>">
                 </td>
             </tr>
             <tr>
@@ -19,7 +19,7 @@
                     Miktar
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="SP_Miktar" id="SP_Miktar" value="<cfoutput>#tlformat(FData.miktar)#</cfoutput>"> 
+                    <input type="text" class="form-control" name="SP_Miktar" id="SP_Miktar" onchange="spHesaplayalim(this)" value="<cfoutput>#tlformat(FData.miktar)#</cfoutput>"> 
                 </td>            
             </tr>
             <tr>
@@ -27,7 +27,7 @@
                     İndirim
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="SP_Discount" id="SP_Discount" value="<cfoutput>#tlformat(FData.Discount)#</cfoutput>">
+                    <input type="text" class="form-control" name="SP_Discount" onchange="spHesaplayalim(this)" id="SP_Discount" value="<cfoutput>#tlformat(FData.Discount)#</cfoutput>">
                 </td>            
             </tr>
             <tr>
@@ -45,6 +45,7 @@
             <tr>
                 <th colspan="2">
                     Para Birimi
+                    <input type="hidden" value="<cfoutput>#FData.OtherMoney#</cfoutput>" id="SP_SelectedMoney">
                 </th>
             </tr>
         <cfloop array="#FData.moneyArr#" item="it">
@@ -64,6 +65,21 @@
     </td>
 </tr>
 </table>
+<script>
+    function spHesaplayalim(el) {
+        if(el.value.length==0){
+            el.value=0;
+        }
+        var el.value=commaSplit(filterNum(el.value))
+        var SP_Fiyat=document.getElementById("SP_Fiyat").value;
+        var SP_Miktar=document.getElementById("SP_Miktar").value;
+        var SP_Discount=document.getElementById("SP_Discount").value;
+        SP_Fiyat=filterNum(SP_Fiyat);
+        SP_Miktar=filterNum(SP_Miktar);
+        SP_Discount=filterNum(SP_Discount);
+        
+    }
+</script>
         <!------
         <table>
             <tr>
