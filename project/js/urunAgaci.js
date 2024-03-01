@@ -2179,16 +2179,10 @@ function SetPrice(idb,modal_id) {
 closeBoxDraggable(modal_id);
 }
 function SetPrice2(idb,modal_id) {
-  var Fiyat=document.getElementById("fy_0001").value
-  var ParaBirimi = document.getElementById("Omfy_0001").value; //para birimi
-  //var p = document.getElementById("fy_0003").value;
-  var Discount = document.getElementById("fdy_0001").value;
 
-  document.getElementByIdb(idb).setAttribute("data-price", p);
-  document.getElementByIdb(idb).setAttribute("data-discount", d);
-  document.getElementByIdb(idb).setAttribute("data-other_money", om);
-  document.getElementByIdb(idb).setAttribute("data-netTotal", p);
-  MaliyetHesapla();
+
+
+  
 closeBoxDraggable(modal_id);
 }
 

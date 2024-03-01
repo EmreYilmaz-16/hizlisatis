@@ -85,6 +85,7 @@
 </tr>
 </table>
 <script>
+var SP_FIYAT_HESAP_SONUC=new Object();
    $(document).ready(function(){
     var SP_Fiyat=document.getElementById("SP_Fiyat");
     var SP_Miktar=document.getElementById("SP_Miktar");
@@ -111,7 +112,7 @@
         var Sp_Indirimli_Fiyat=SP_Fiyat-((SP_Fiyat*SP_Discount)/100)
         var Sp_Tutar=Sp_Indirimli_Fiyat*SP_Miktar*RATE2
         
-        var O={
+         SP_FIYAT_HESAP_SONUC={
             SP_SelectedMoney:SP_SelectedMoney,
             SP_Fiyat:SP_Fiyat,
             SP_Miktar:SP_Miktar,
@@ -176,5 +177,5 @@
                 </td>
             </tr>
         </table>----->
-        <button type="button" class="btn btn-outline-success" onclick="SetPrice(<cfoutput>#FData.idb#,'#attributes.modal_id#'</cfoutput>)">Fiyat Kaydet</button>
+        <button type="button" class="btn btn-outline-success" onclick="SetPrice2(<cfoutput>#FData.idb#,'#attributes.modal_id#'</cfoutput>)",SP_FIYAT_HESAP_SONUC>Fiyat Kaydet</button>
 </cf_box>
