@@ -85,7 +85,15 @@
 </tr>
 </table>
 <script>
-    function spHesaplayalim(el) {
+   $(document).ready(function(){
+    var SP_Fiyat=document.getElementById("SP_Fiyat");
+    var SP_Miktar=document.getElementById("SP_Miktar");
+    var SP_Discount=document.getElementById("SP_Discount");
+    spHesaplayalim(SP_Fiyat)
+    spHesaplayalim(SP_Miktar)
+    spHesaplayalim(SP_Discount)
+   })
+   function spHesaplayalim(el) {
         if(el.value.length==0){
             el.value=0;
         }
@@ -120,6 +128,7 @@
 
 
     }
+   
 </script>
         <!------
         <table>
