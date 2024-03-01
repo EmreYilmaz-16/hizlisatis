@@ -1854,7 +1854,7 @@ function MaliyetHesapla2() {
   var TTutar=0;
   Products.each(function (ix, Product) {
     var tutar = Product.getAttribute("data-netTotal");
-    TTutar = TTutar + tutar;
+    TTutar = TTutar + parseFloat(tutar);
     console.table({
       satir:1859,
       tutar:tutar,
