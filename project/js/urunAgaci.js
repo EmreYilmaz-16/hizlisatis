@@ -62,7 +62,7 @@ function ngetTree(
         "&stock_id=" +
         sida,
       success: function (asd) {
-       // var jsonStr = strToJson(asd);
+        // var jsonStr = strToJson(asd);
         o = JSON.parse(asd);
         // console.log(o);
         AgaciYaz(o, 0, "0", 1);
@@ -73,7 +73,8 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
-        MaliyetHesapla();
+       // MaliyetHesapla();
+       MaliyetHesapla2()
         GercekKontrol(product_id);
       },
     });
@@ -91,7 +92,7 @@ function ngetTree(
         "&price_catid=" +
         _priceCatId,
       success: function (asd) {
-       // var jsonStr = strToJson(asd);
+        // var jsonStr = strToJson(asd);
         o = JSON.parse(asd);
         // console.log(o);
         //  console.log("Buradayım");
@@ -101,7 +102,8 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
-        MaliyetHesapla();
+      //  MaliyetHesapla();
+      MaliyetHesapla2()
         /* console.log(o);
                 ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -128,7 +130,7 @@ function ngetTree(
         "&price_catid=" +
         _priceCatId,
       success: function (asd) {
-       // var jsonStr = strToJson(asd);
+        // var jsonStr = strToJson(asd);
         o = JSON.parse(asd);
         /*  console.log(o);
                 console.log("Buradayım");*/
@@ -143,7 +145,8 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
-        MaliyetHesapla();
+        //MaliyetHesapla();
+        MaliyetHesapla2()
         /* console.log(o);
                 ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -170,7 +173,7 @@ function ngetTree(
         "&price_catid=" +
         _priceCatId,
       success: function (asd) {
-     //   var jsonStr = strToJson(asd);
+        //   var jsonStr = strToJson(asd);
         o = JSON.parse(asd);
         // console.log(o);
         //  console.log("Buradayım");
@@ -181,7 +184,8 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
-        MaliyetHesapla();
+        //MaliyetHesapla();
+        MaliyetHesapla2()
         /* console.log(o);
                 ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -208,7 +212,7 @@ function ngetTree(
         "&price_catid=" +
         _priceCatId,
       success: function (asd) {
-       // var jsonStr = strToJson(asd);
+        // var jsonStr = strToJson(asd);
         o = JSON.parse(asd);
         // console.log(o);
         //  console.log("Buradayım");
@@ -221,7 +225,8 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
-        MaliyetHesapla();
+       // MaliyetHesapla();
+       MaliyetHesapla2()
         /* console.log(o);
                 ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -310,14 +315,20 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
     li.setAttribute("data-price", arr[i].PRICE);
-    li.setAttribute("data-standart_price", arr[i].STANDART_PRICE);
     li.setAttribute("data-other_money", arr[i].MONEY);
     li.setAttribute("data-discount", arr[i].DISCOUNT);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
     li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
-    li.setAttribute("data-netTotal", 0);
+    //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
+    var MNYX = moneyArr.findIndex((p) => p.MONEY == arr[i].MONEY);
+    var RATE2MNY = moneyArr[MNYX].RATE2MNY;
+    var dpx = arr[i].PRICE - (arr[i].PRICE * arr[i].DISCOUNT) / 100;
+    var nttl = dpx * arr[i].AMOUNT * RATE2MNY;
+
+    li.setAttribute("data-netTotal", nttl);
+
     li.setAttribute("data-idb", idB);
     idB++;
 
@@ -656,7 +667,14 @@ function AddRowItem(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
-    li.setAttribute("data-netTotal", 0);
+
+    //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
+    var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
+    var RATE2MNY = moneyArr[MNYX].RATE2MNY;
+    var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
+    var nttl = dpx * RATE2MNY * AMOUNT;
+
+    li.setAttribute("data-netTotal", nttl);
     idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
@@ -720,7 +738,13 @@ function AddRowItem(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
-    li.setAttribute("data-netTotal", 0);
+
+    //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
+    var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
+    var RATE2MNY = moneyArr[MNYX].RATE2MNY;
+    var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
+    var nttl = dpx * RATE2MNY * AMOUNT;
+    li.setAttribute("data-netTotal", nttl);
     idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
@@ -778,7 +802,7 @@ function AddRowItem(
   if (q.recordcount > 0) {
     ngetTree(STOCK_ID, 0, "workcube_metosan_1", "", 2, li);
   }
-  MaliyetHesapla();
+  MaliyetHesapla2();
 }
 
 function AddRowItemVirtual(
@@ -806,7 +830,14 @@ function AddRowItemVirtual(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
-    li.setAttribute("data-netTotal", 0);
+
+    //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
+    var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
+    var RATE2MNY = moneyArr[MNYX].RATE2MNY;
+    var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
+    var nttl = dpx * RATE2MNY * AMOUNT;
+
+    li.setAttribute("data-netTotal", nttl);
     idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
@@ -870,7 +901,12 @@ function AddRowItemVirtual(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
-    li.setAttribute("data-netTotal", 0);
+    //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
+    var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
+    var RATE2MNY = moneyArr[MNYX].RATE2MNY;
+    var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
+    var nttl = dpx * RATE2MNY * AMOUNT;
+    li.setAttribute("data-netTotal", nttl);
     idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
@@ -928,7 +964,7 @@ function AddRowItemVirtual(
   if (q.recordcount > 0) {
     ngetTree(STOCK_ID, 1, "workcube_metosan_1", "", 2, li);
   }
-  MaliyetHesapla();
+  MaliyetHesapla2()
 }
 
 function AgacGetir(agacim, sx = 0) {
@@ -947,11 +983,11 @@ function AgacGetir(agacim, sx = 0) {
     var money = agacim[i].getAttribute("data-other_money");
     var discount = agacim[i].getAttribute("data-discount");
     var displayName = agacim[i].getAttribute("data-displayName");
-    
+
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
-    amount=filterNum(amount);
+    amount = filterNum(amount);
     var pname = $(obj).find("span[name='product_name_']")[0].innerText;
     var agacItem = new Object();
     agacItem.PRODUCT_ID = pid;
@@ -961,6 +997,7 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.STOCK_ID = sid;
     agacItem.QUESTION_ID = question_id;
     agacItem.PRICE = price;
+    agacItem.NET_TOTAL = tutar;
     agacItem.MONEY = money;
     agacItem.DISCOUNT = discount;
     agacItem.DISPLAY_NAME = displayName;
@@ -1115,7 +1152,7 @@ function addProdMain_(idb, modal_id) {
   }
   agacGosterEkle();
   sortableYap();
-  MaliyetHesapla();
+  MaliyetHesapla2()
   closeBoxDraggable(modal_id);
 }
 
@@ -1244,7 +1281,7 @@ function addProdSub_(el) {
   }
   agacGosterEkle();
   sortableYap();
-  MaliyetHesapla();
+  MaliyetHesapla2();
 }
 
 function getCats(el, ev) {
@@ -1378,7 +1415,7 @@ function agacGosterEkle() {
     }
   }
 }
- /*
+/*
     <cfargument name="VP_ID">
     <cfargument name="PRICE" default="">
     <cfargument name="Discount" default="">
@@ -1683,8 +1720,8 @@ function UrunKaydet() {
   var project_id = $("#project_id").val();
   var stg = $("#pstage").val();
   var prc = $("#maliyet").val();
-  prc=filterNum(prc);
-/*
+  prc = filterNum(prc);
+  /*
    <cfargument name="VP_ID">
     <cfargument name="PRICE" default="">
     <cfargument name="Discount" default="">
@@ -1699,13 +1736,12 @@ function UrunKaydet() {
     PROJECT_ID: project_id,
     PRODUCT_STAGE: stg,
     PRODUCT_TREE: agacim,
-    PRICE:prc,
-    MONEY:"TL",
-    DISCOUNT:0,
-    DISPLAY_NAME:"",
-    AGAC:[],
-    SEVIYE:0,
-
+    PRICE: prc,
+    MONEY: "TL",
+    DISCOUNT: 0,
+    DISPLAY_NAME: "",
+    AGAC: [],
+    SEVIYE: 0,
   };
 
   if (BasketData) {
@@ -1798,7 +1834,16 @@ document.getElementByIdb = function (idb) {
   var el = $("*").find("* [data-idb='" + str + "']")[0];
   return el;
 };
-
+function MaliyetHesapla2() {
+  var Products = $("#ppidarea *li");
+  var TTutar;
+  Products.each(function (ix, Product) {
+    var tutar = Product.getAttribute("data-netTotal");
+    TTutar = TTutar + tutar;
+  });
+   TTutar = commaSplit(TTutar);
+  $("#maliyet").val(TTutar);
+}
 function MaliyetHesapla() {
   var TotalPrice = 0;
   var Products = $("#ppidarea *li");
@@ -1806,8 +1851,10 @@ function MaliyetHesapla() {
     // console.log(Product)
     //console.log($(Product).find("input[name='amount']"))
     var miktar = $(Product).find("input[name='amount']").val();
-    $(Product).find("input[name='amount']").val(commaSplit(filterNum(miktar)))
-    miktar=filterNum(miktar)
+    $(Product)
+      .find("input[name='amount']")
+      .val(commaSplit(filterNum(miktar)));
+    miktar = filterNum(miktar);
     //li.setAttribute("data-netTotal", 0);
     var price = Product.getAttribute("data-price");
     var tutar = Product.getAttribute("data-netTotal");
@@ -1825,7 +1872,7 @@ function MaliyetHesapla() {
     Rate2 = parseFloat(Rate2);
     var indirimli = price - (price * discount) / 100;
     var Tprice = indirimli * Rate2 * miktar;
-    Product.setAttribute("data-netTotal",Tprice); //DIKKAT BU METODA BAK
+    Product.setAttribute("data-netTotal", Tprice); //DIKKAT BU METODA BAK
     //console.log(Tprice);
     TotalPrice += Tprice;
   });
@@ -2092,8 +2139,9 @@ function LoadTree(el) {
   elek = el;
   var p =
     elek.parentElement.parentElement.parentElement.getAttribute("data-price");
-    var sp =
-    elek.parentElement.parentElement.parentElement.getAttribute("data-standart_price");
+  var sp = elek.parentElement.parentElement.parentElement.getAttribute(
+    "data-standart_price"
+  );
   var om =
     elek.parentElement.parentElement.parentElement.getAttribute(
       "data-other_money"
@@ -2112,7 +2160,9 @@ function LoadTree(el) {
     );
   var idb =
     elek.parentElement.parentElement.parentElement.getAttribute("data-idb");
-  var miktar=filterNum(elek.parentElement.getElementsByTagName("input")[0].value);
+  var miktar = filterNum(
+    elek.parentElement.getElementsByTagName("input")[0].value
+  );
   if (p.length > 0) p = parseFloat(p);
   else p = 0;
   if (sp.length > 0) sp = parseFloat(sp);
@@ -2134,7 +2184,7 @@ function LoadTree(el) {
     Sid: sid,
     moneyArr: moneyArr,
     idb: idb,
-    miktar:miktar
+    miktar: miktar,
   };
   console.table(Obj);
   var Str = JSON.stringify(Obj);
@@ -2146,28 +2196,27 @@ function LoadTree(el) {
 }
 
 function fiyatHesaplaPoppi(ts) {
- if(ts==0){
-  var p = document.getElementById("fy_0003").value;
-  var d = document.getElementById("fdy_0001").value;
-  var tt = parseFloat(p) + (parseFloat(p) * parseFloat(d)) / 100;
-  document.getElementById("fy_0002").value = tt;
-}else{
- /*   var p = document.getElementById("fy_0003").value;
+  if (ts == 0) {
+    var p = document.getElementById("fy_0003").value;
+    var d = document.getElementById("fdy_0001").value;
+    var tt = parseFloat(p) + (parseFloat(p) * parseFloat(d)) / 100;
+    document.getElementById("fy_0002").value = tt;
+  } else {
+    /*   var p = document.getElementById("fy_0003").value;
   var d = document.getElementById("fdy_0001").value;
   var tt = parseFloat(p) + (parseFloat(p) * parseFloat(d)) / 100;
  */
-var p=document.getElementById("fy_0001").value;
-var d = document.getElementById("fdy_0001").value;
-var tt = parseFloat(p) - (parseFloat(p) * parseFloat(d)) / 100;
-document.getElementById("fy_0003").value = tt;
-  // document.getElementById("fy_0002").value = tt;
- 
-  
+    var p = document.getElementById("fy_0001").value;
+    var d = document.getElementById("fdy_0001").value;
+    var tt = parseFloat(p) - (parseFloat(p) * parseFloat(d)) / 100;
+    document.getElementById("fy_0003").value = tt;
+    // document.getElementById("fy_0002").value = tt;
   }
 }
 
-function SetPrice(idb,modal_id) {
-  var Oms=document.getElementById("fy_0001").value
+function SetPrice(idb, modal_id) {
+  //TEMIZLE BU TEMIZLENECEK
+  var Oms = document.getElementById("fy_0001").value;
   var om = document.getElementById("Omfy_0001").value; //para birimi
   var p = document.getElementById("fy_0003").value;
   var d = document.getElementById("fdy_0001").value;
@@ -2176,15 +2225,28 @@ function SetPrice(idb,modal_id) {
   document.getElementByIdb(idb).setAttribute("data-discount", d);
   document.getElementByIdb(idb).setAttribute("data-other_money", om);
   document.getElementByIdb(idb).setAttribute("data-netTotal", p);
-  MaliyetHesapla();
-closeBoxDraggable(modal_id);
+ // MaliyetHesapla();
+ 
+  closeBoxDraggable(modal_id);
 }
-function SetPrice2(idb,modal_id,SP_FIYAT_HESAP_SONUC) {
+function SetPrice2(idb, modal_id) {
+  //BILGI BURASI YENİ FİYAT POPUPUNA GÖRE DÜZENLENDİ
+  document
+    .getElementByIdb(idb)
+    .setAttribute("data-price", SP_FIYAT_HESAP_SONUC.SP_Fiyat);
+  document
+    .getElementByIdb(idb)
+    .setAttribute("data-discount", SP_FIYAT_HESAP_SONUC.SP_Discount);
+  document
+    .getElementByIdb(idb)
+    .setAttribute("data-other_money", SP_FIYAT_HESAP_SONUC.SP_SelectedMoney);
+  document
+    .getElementByIdb(idb)
+    .setAttribute("data-netTotal", SP_FIYAT_HESAP_SONUC.Sp_Tutar);
 
-console.log(SP_FIYAT_HESAP_SONUC)
+  console.log(SP_FIYAT_HESAP_SONUC);
 
-
-closeBoxDraggable(modal_id);
+  closeBoxDraggable(modal_id);
 }
 
 function openPriceListPartner(PRODUCT_ID, STOCK_ID, MAIN_UNIT, company_id) {
