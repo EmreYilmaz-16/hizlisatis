@@ -81,15 +81,23 @@
         SP_Discount=filterNum(SP_Discount);
         RATE2=filterNum(RATE2);
         
+        var Sp_Indirimli_Fiyat=SP_Fiyat-((SP_Fiyat*SP_Discount)/100)
+        var Sp_Tutar=Sp_Indirimli_Fiyat*SP_Miktar*RATE2
+        
         var O={
             SP_SelectedMoney:SP_SelectedMoney,
             SP_Fiyat:SP_Fiyat,
             SP_Miktar:SP_Miktar,
             SP_Discount:SP_Discount,
+            Sp_Indirimli_Fiyat:Sp_Indirimli_Fiyat,
+            Sp_Tutar:Sp_Tutar,
             RATE2:RATE2,
         }
         console.table(O);
         
+
+
+
     }
 </script>
         <!------
