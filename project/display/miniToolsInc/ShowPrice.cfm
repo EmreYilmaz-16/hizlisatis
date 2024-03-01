@@ -121,7 +121,7 @@ var SP_FIYAT_HESAP_SONUC=new Object();
             Sp_Tutar:Sp_Tutar,
             RATE2:RATE2,
         }
-        console.table(O);
+        console.table(SP_FIYAT_HESAP_SONUC);
         
         document.getElementById("SP_NetPrice").value=commaSplit(Sp_Indirimli_Fiyat);
         document.getElementById("SP_NetTutar").value=commaSplit(Sp_Tutar);
