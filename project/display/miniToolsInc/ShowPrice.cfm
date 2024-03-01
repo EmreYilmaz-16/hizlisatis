@@ -70,7 +70,7 @@
         if(el.value.length==0){
             el.value=0;
         }
-        var el.value=commaSplit(filterNum(el.value))
+         el.value=commaSplit(filterNum(el.value))
         var SP_Fiyat=document.getElementById("SP_Fiyat").value;
         var SP_Miktar=document.getElementById("SP_Miktar").value;
         var SP_Discount=document.getElementById("SP_Discount").value;
