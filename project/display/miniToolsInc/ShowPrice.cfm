@@ -42,6 +42,11 @@
     </td>
     <td>
         <table>
+            <tr>
+                <th colspan="2">
+                    Para Birimi
+                </th>
+            </tr>
         <cfloop array="#FData.moneyArr#" item="it">
             <tr <cfif FData.OtherMoney eq it.MONEY>style="background:#0080005e"</cfif>>
                 <td>
