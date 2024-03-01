@@ -11,7 +11,7 @@
                     Fiyat
                 </td>
                 <td>
-                    <input type="text" name="SP_Fiyat" id="SP_Fiyat" value="<cfoutput>#tlformat(FData.Price)#</cfoutput>">
+                    <input type="text" class="form-control" name="SP_Fiyat" id="SP_Fiyat" value="<cfoutput>#tlformat(FData.Price)#</cfoutput>">
                 </td>
             </tr>
             <tr>
@@ -19,7 +19,7 @@
                     Miktar
                 </td>
                 <td>
-                    <input type="text" name="SP_Miktar" id="SP_Miktar" value="<cfoutput>#tlformat(FData.miktar)#</cfoutput>"> 
+                    <input type="text" class="form-control" name="SP_Miktar" id="SP_Miktar" value="<cfoutput>#tlformat(FData.miktar)#</cfoutput>"> 
                 </td>            
             </tr>
             <tr>
@@ -27,7 +27,7 @@
                     İndirim
                 </td>
                 <td>
-                    <input type="text" name="SP_Discount" id="SP_Discount" value="<cfoutput>#tlformat(FData.Discount)#</cfoutput>">
+                    <input type="text" class="form-control" name="SP_Discount" id="SP_Discount" value="<cfoutput>#tlformat(FData.Discount)#</cfoutput>">
                 </td>            
             </tr>
             <tr>
@@ -35,7 +35,7 @@
                     Net Fiyat
                 </td>
                 <td>
-                    <input type="text" name="SP_NetPrice" id="SP_NetPrice" readonly>
+                    <input type="text" class="form-control" name="SP_NetPrice" id="SP_NetPrice" readonly>
                 </td>            
             </tr>
         </table>
@@ -53,7 +53,7 @@
                     <cfoutput>#it.MONEY#</cfoutput>
                 </td>
                 <td>
-                    <cfoutput>#it.RATE1#</cfoutput><input type="text" name="RATE2_<cfoutput>#it.Money#</cfoutput>" value="<cfoutput>#it.RATE2#</cfoutput>">
+                    <cfoutput>#it.RATE1#</cfoutput><input type="text" name="RATE2_<cfoutput>#it.Money#</cfoutput>" class="form-control" value="<cfoutput>#it.RATE2#</cfoutput>">
                 </td>
             </tr>
         </cfloop>
