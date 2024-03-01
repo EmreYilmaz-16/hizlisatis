@@ -1,11 +1,11 @@
 ﻿<cf_box title="Fiyat Göster" scroll="1" collapsable="1" resize="1" popup_box="1">
         
         <cfset FData=deserializeJSON(attributes.data)>
-        <table>
+        <table class="table table-sm table-borderless">
             <tr>
                 <td>
         
-        <table>
+        <table class="table table-sm table-borderless">
             <tr>
                 <td>
                     Fiyat
@@ -60,7 +60,7 @@
         </table>
     </td>
     <td>
-        <table>
+        <table class="table table-sm table-borderless">
             <tr>
                 <th colspan="2">
                     Para Birimi
