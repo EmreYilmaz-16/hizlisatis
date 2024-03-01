@@ -776,11 +776,13 @@ console.table(OX);
     li.setAttribute("data-idb", idB);
 
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
+    var amx=filterNum(AMOUNT);
+    amx=parseFloat(amx);
     var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
     var RATE2MNY = moneyArr[MNYX].RATE2;
     var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
-    var nttl = dpx * RATE2MNY * AMOUNT;
-
+    var nttl = dpx * RATE2MNY * amx;
+    
     var OX={
       line:784,
       PRODUCT_ID:PRODUCT_ID,
@@ -821,7 +823,7 @@ console.table(OX);
       "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
-      1
+      AMOUNT
     );
     input.setAttribute("readonly", "true");
     var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
