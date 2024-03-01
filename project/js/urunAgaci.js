@@ -2284,7 +2284,7 @@ function SetPrice2(idb, modal_id) {
     .setAttribute("data-netTotal", SP_FIYAT_HESAP_SONUC.Sp_Tutar);
 
   console.log(SP_FIYAT_HESAP_SONUC);
-
+  MaliyetHesapla2()
   closeBoxDraggable(modal_id);
 }
 
