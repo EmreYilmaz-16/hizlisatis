@@ -111,7 +111,8 @@
         
         var Sp_Indirimli_Fiyat=SP_Fiyat-((SP_Fiyat*SP_Discount)/100)
         var Sp_Tutar=Sp_Indirimli_Fiyat*SP_Miktar*RATE2
-        
+        Sp_Tutar=commaSplit(Sp_Tutar);
+        Sp_Indirimli_Fiyat=commaSplit(Sp_Indirimli_Fiyat);
          SP_FIYAT_HESAP_SONUC={
             SP_SelectedMoney:SP_SelectedMoney,
             SP_Fiyat:SP_Fiyat,
