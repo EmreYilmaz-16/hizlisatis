@@ -339,6 +339,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
       DISPLAYNAME:arr[i].DISPLAYNAME,
       RATE2MNY:arr[i].RATE2MNY,
       NETTOTAL:arr[i].nttl,
+      MNYX:MNYX
     }
     console.table(OX);
     li.setAttribute("data-netTotal", nttl);
