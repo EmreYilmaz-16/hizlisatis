@@ -11,7 +11,10 @@
                     Fiyat
                 </td>
                 <td>
+                    <div class="input-group">
                     <input type="text" class="form-control" name="SP_Fiyat" id="SP_Fiyat" onchange="spHesaplayalim(this)" value="<cfoutput>#tlformat(FData.Price)#</cfoutput>">
+                    <span class="input-group-text"><cfoutput>#FData.OtherMoney#</cfoutput></span>   
+                </div>
                 </td>
             </tr>
             <tr>
@@ -35,7 +38,10 @@
                     Net Fiyat
                 </td>
                 <td>
+                    <div class="input-group">
                     <input type="text" class="form-control" name="SP_NetPrice" id="SP_NetPrice" readonly>
+                    <span class="input-group-text"><cfoutput>#FData.OtherMoney#</cfoutput></span>   
+                </div>
                 </td>            
             </tr>
             <tr>
