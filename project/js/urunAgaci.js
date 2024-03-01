@@ -696,7 +696,7 @@ function AddRowItem(
       PRODUCT_ID:PRODUCT_ID,
       STOCK_ID:STOCK_ID,
       AMOUNT:AMOUNT,
-      PRICE:prcs,
+      PRICE:PRICE,
       MONEY:MONEY,
       DISCOUNT:DISCOUNT_RATE,
       IS_VIRTUAL:0,
