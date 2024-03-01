@@ -56,7 +56,7 @@
                 <td>
                     <div style="display:flex;align-content: center;align-items: center;">
                         <h4 style="margin: 0;"><cfoutput>#it.RATE1#</cfoutput>/</h4>
-                        <input type="text" name="RATE2_<cfoutput>#it.Money#</cfoutput>" class="form-control" value="<cfoutput>#it.RATE2#</cfoutput>">
+                        <input type="text" name="RATE2_<cfoutput>#it.Money#</cfoutput>" class="form-control" value="<cfoutput>#tlformat(it.RATE2)#</cfoutput>">
                     </div>                    
                 </td>
             </tr>
@@ -71,12 +71,17 @@
             el.value=0;
         }
          el.value=commaSplit(filterNum(el.value))
-        var SP_Fiyat=document.getElementById("SP_Fiyat").value;
+         var SP_SelectedMoney=document.getElementById("SP_SelectedMoney").value;
+        var SP_Fiyat=document.getElementById("SP_Fiyat").value;        
         var SP_Miktar=document.getElementById("SP_Miktar").value;
         var SP_Discount=document.getElementById("SP_Discount").value;
+        var RATE2=document.getElementById("RATE2_"+SP_SelectedMoney).value
         SP_Fiyat=filterNum(SP_Fiyat);
         SP_Miktar=filterNum(SP_Miktar);
         SP_Discount=filterNum(SP_Discount);
+        RATE2=filterNum(RATE2);
+        
+
         
     }
 </script>
