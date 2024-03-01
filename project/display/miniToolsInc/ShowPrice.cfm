@@ -85,7 +85,7 @@
 </tr>
 </table>
 <script>
-var SP_FIYAT_HESAP_SONUC=new Object();
+
    $(document).ready(function(){
     var SP_Fiyat=document.getElementById("SP_Fiyat");
     var SP_Miktar=document.getElementById("SP_Miktar");
