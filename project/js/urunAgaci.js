@@ -323,7 +323,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var MNYX = moneyArr.findIndex((p) => p.MONEY == arr[i].MONEY);
-    var RATE2MNY = moneyArr[MNYX].RATE2MNY;
+    var RATE2MNY = moneyArr[MNYX].RATE2;
     var dpx = arr[i].PRICE - (arr[i].PRICE * arr[i].DISCOUNT) / 100;
     var nttl = dpx * arr[i].AMOUNT * RATE2MNY;
     var OX={
