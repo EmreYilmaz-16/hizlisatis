@@ -322,16 +322,18 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
     li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
+    var prcs=parseFloat(arr[i].PRICE)
     var MNYX = moneyArr.findIndex((p) => p.MONEY == arr[i].MONEY);
     var RATE2MNY = moneyArr[MNYX].RATE2;
-    var dpx = arr[i].PRICE - (arr[i].PRICE * arr[i].DISCOUNT) / 100;
+    RATE2MNY=parseFloat(RATE2MNY);
+    var dpx = prcs - (prcs * arr[i].DISCOUNT) / 100;
     var nttl = dpx * arr[i].AMOUNT * RATE2MNY;
     var OX={
       line:329,
       PRODUCT_ID:arr[i].PRODUCT_ID,
       STOCK_ID:arr[i].STOCK_ID,
       AMOUNT:arr[i].AMOUNT,
-      PRICE:arr[i].PRICE,
+      PRICE:prcs,
       MONEY:arr[i].MONEY,
       DISCOUNT:arr[i].DISCOUNT,
       IS_VIRTUAL:arr[i].IS_VIRTUAL,
