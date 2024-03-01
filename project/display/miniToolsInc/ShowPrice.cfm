@@ -1,5 +1,5 @@
 ﻿<cf_box title="Fiyat Göster" scroll="1" collapsable="1" resize="1" popup_box="1">
-        
+        <cfdump var="#attributes#">
         <cfset FData=deserializeJSON(attributes.data)>
         
         <table>
@@ -8,7 +8,7 @@
                     Fiyat
                 </td>
                 <td>
-                    <input class="form-control" type="text" id="fy_0001" readonly value="<cfoutput>#FData.StandartPrice#</cfoutput>">
+                    <input class="form-control" type="text" id="fy_0001"  value="<cfoutput>#FData.StandartPrice#</cfoutput>">
                 </td>
                 </tr>
                 <tr>

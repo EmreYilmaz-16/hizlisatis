@@ -316,6 +316,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
     li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
+    li.setAttribute("data-netTotal", 0);
     li.setAttribute("data-idb", idB);
     idB++;
 
@@ -654,6 +655,7 @@ function AddRowItem(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
+    li.setAttribute("data-netTotal", 0);
     idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
@@ -717,6 +719,7 @@ function AddRowItem(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
+    li.setAttribute("data-netTotal", 0);
     idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
@@ -802,6 +805,7 @@ function AddRowItemVirtual(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
+    li.setAttribute("data-netTotal", 0);
     idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
@@ -865,6 +869,7 @@ function AddRowItemVirtual(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
+    li.setAttribute("data-netTotal", 0);
     idB++;
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
@@ -937,9 +942,11 @@ function AgacGetir(agacim, sx = 0) {
     var is_virtual = agacim[i].getAttribute("data-is_virtual");
     var question_id = agacim[i].getAttribute("data-question_id");
     var price = agacim[i].getAttribute("data-price");
+    var tutar = agacim[i].getAttribute("data-netTotal"); //DIKKAT BURAYA BAKILACAK
     var money = agacim[i].getAttribute("data-other_money");
     var discount = agacim[i].getAttribute("data-discount");
     var displayName = agacim[i].getAttribute("data-displayName");
+    
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
@@ -1021,6 +1028,7 @@ function addProdMain_(idb, modal_id) {
   li.setAttribute("data-stock_id", 0);
   li.setAttribute("data-is_virtual", 1);
   li.setAttribute("data-price", 0);
+  li.setAttribute("data-netTotal", 0);
   li.setAttribute("data-discount", 0);
   li.setAttribute("data-other_money", "TL");
   li.setAttribute("data-displayName", "");
@@ -1799,7 +1807,9 @@ function MaliyetHesapla() {
     var miktar = $(Product).find("input[name='amount']").val();
     $(Product).find("input[name='amount']").val(commaSplit(filterNum(miktar)))
     miktar=filterNum(miktar)
+    //li.setAttribute("data-netTotal", 0);
     var price = Product.getAttribute("data-price");
+    var tutar = Product.getAttribute("data-netTotal");
     var money = Product.getAttribute("data-other_money");
     var discount = Product.getAttribute("data-discount");
     //console.log(price,money,discount)
@@ -1814,6 +1824,7 @@ function MaliyetHesapla() {
     Rate2 = parseFloat(Rate2);
     var indirimli = price - (price * discount) / 100;
     var Tprice = indirimli * Rate2 * miktar;
+    Product.setAttribute("data-netTotal",Tprice); //DIKKAT BU METODA BAK
     //console.log(Tprice);
     TotalPrice += Tprice;
   });
@@ -2100,6 +2111,7 @@ function LoadTree(el) {
     );
   var idb =
     elek.parentElement.parentElement.parentElement.getAttribute("data-idb");
+  var miktar=filternum(elek.parentElement.getElementsByTagName("input")[0].value);
   if (p.length > 0) p = parseFloat(p);
   else p = 0;
   if (sp.length > 0) sp = parseFloat(sp);
@@ -2121,6 +2133,7 @@ function LoadTree(el) {
     Sid: sid,
     moneyArr: moneyArr,
     idb: idb,
+    miktar:miktar
   };
   console.table(Obj);
   var Str = JSON.stringify(Obj);
@@ -2153,6 +2166,7 @@ document.getElementById("fy_0003").value = tt;
 }
 
 function SetPrice(idb,modal_id) {
+  var Oms=document.getElementById("fy_0001").value
   var om = document.getElementById("Omfy_0001").value; //para birimi
   var p = document.getElementById("fy_0003").value;
   var d = document.getElementById("fdy_0001").value;
@@ -2160,6 +2174,20 @@ function SetPrice(idb,modal_id) {
   document.getElementByIdb(idb).setAttribute("data-price", p);
   document.getElementByIdb(idb).setAttribute("data-discount", d);
   document.getElementByIdb(idb).setAttribute("data-other_money", om);
+  document.getElementByIdb(idb).setAttribute("data-netTotal", p);
+  MaliyetHesapla();
+closeBoxDraggable(modal_id);
+}
+function SetPrice2(idb,modal_id) {
+  var Fiyat=document.getElementById("fy_0001").value
+  var ParaBirimi = document.getElementById("Omfy_0001").value; //para birimi
+  //var p = document.getElementById("fy_0003").value;
+  var Discount = document.getElementById("fdy_0001").value;
+
+  document.getElementByIdb(idb).setAttribute("data-price", p);
+  document.getElementByIdb(idb).setAttribute("data-discount", d);
+  document.getElementByIdb(idb).setAttribute("data-other_money", om);
+  document.getElementByIdb(idb).setAttribute("data-netTotal", p);
   MaliyetHesapla();
 closeBoxDraggable(modal_id);
 }
