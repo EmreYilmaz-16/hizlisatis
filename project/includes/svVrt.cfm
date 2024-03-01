@@ -532,7 +532,7 @@ VALUES(
 
 <script>
    window.opener.ngetTree(<cfoutput>#FormData.PRODUCT_ID#</cfoutput>,1,'<cfoutput>#dsn3#</cfoutput>',"",1,'','<cfoutput>#FormData.PRODUCT_NAME#</cfoutput>','<cfoutput>#FormData.PRODUCT_STAGE#</cfoutput>')
-  // this.close();
+   this.close();
     
 </script>
 
