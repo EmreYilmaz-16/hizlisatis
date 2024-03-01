@@ -1851,7 +1851,7 @@ document.getElementByIdb = function (idb) {
 };
 function MaliyetHesapla2() {
   var Products = $("#ppidarea *li");
-  var TTutar;
+  var TTutar=0;
   Products.each(function (ix, Product) {
     var tutar = Product.getAttribute("data-netTotal");
     TTutar = TTutar + tutar;
