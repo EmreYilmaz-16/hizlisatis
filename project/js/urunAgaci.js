@@ -1796,7 +1796,7 @@ function MaliyetHesapla() {
     // console.log(Product)
     //console.log($(Product).find("input[name='amount']"))
     var miktar = $(Product).find("input[name='amount']").val();
-    $(Product).find("input[name='amount']").val(commaSplit(filterNum("1")))
+    $(Product).find("input[name='amount']").val(commaSplit(filterNum(miktar)))
     miktar=filterNum(miktar)
     var price = Product.getAttribute("data-price");
     var money = Product.getAttribute("data-other_money");
