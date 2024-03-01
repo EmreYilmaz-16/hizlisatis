@@ -90,8 +90,9 @@
                         <a onclick="AddArrItem(#attributes.arrayid#,#it.PRODUCT_ID#,'#it.PRODUCT_NAME#','#it.STOCK_CODE#',#it.STOCK_ID#,1,'',0,#it.PRICE#,#it.DISCOUNT_RATE#,'#it.MONEY#',#it.LAST_COST#,#it.PRICE#,#it.IS_MANUEL#)">#it.PRODUCT_NAME#</a>
                         <!----  ArrNum, PRODUCT_ID,PRODUCT_NAME,PRODUCT_CODE,STOCK_ID,QUANTITY = 1,DESCRIPTION = "",IS_VIRTUAL = 0,PRICE = 0, DISCOUNT = 0------>
                     </cfif>
-                    <cfif attributes.actType eq 5>
-                        <a onclick="AddRowItem(#it.PRODUCT_ID#,'#it.PRODUCT_NAME#','#it.STOCK_CODE#',#it.STOCK_ID#,#it.PRICE#,#it.DISCOUNT_RATE#,'#it.MONEY#',#it.LAST_COST#,#it.PRICE#,#it.IS_MANUEL#,#attributes.columnsa#)">#it.PRODUCT_NAME#</a>
+                    <cfif attributes.actType eq 5>                        
+                        <a onclick="SatircimEklermisin(#it.PRODUCT_ID#,'#it.PRODUCT_NAME#','#it.STOCK_CODE#',#it.STOCK_ID#,#it.PRICE#,#it.DISCOUNT_RATE#,'#it.MONEY#',#it.LAST_COST#,#it.PRICE#,#it.IS_MANUEL#,#attributes.columnsa#)">#it.PRODUCT_NAME#</a>
+                        
                     </cfif>
                 <cfelse>
                     <a onclick="AddRow(#it.PRODUCT_ID#,#it.STOCK_ID#,'#it.STOCK_CODE#','#it.BRAND_NAME#',0,#attributes.miktar#,#it.PRICE#,'#it.PRODUCT_NAME#',#it.TAX#,#it.DISCOUNT_RATE#,#it.PRODUCT_TYPE#,'','#it.MONEY#',#it.PRICE#,-6,#it.IS_MANUEL#,#it.LAST_COST#,'#it.MAIN_UNIT#','','',0,'','',0,'','','',0,'#it.IS_KARMA#','#it.IS_KARMA_SEVK#')">#it.PRODUCT_NAME#</a></li>
@@ -118,7 +119,8 @@
                             <a onclick="addTreeItem_('#it2.STOCK_CODE#','#it2.PRODUCT_NAME#',#attributes.SIPARIS_MIKTARI#,#it2.STOCK_ID#,#it2.PRODUCT_ID#,'#it2.MAIN_UNIT#',00,0,#attributes.columnsa#)">#it2.PRODUCT_NAME#</a>
                         </cfif>
                         <cfif attributes.actType eq 5>
-                            <a onclick="AddRowItem(#it2.PRODUCT_ID#,'#it2.PRODUCT_NAME#','#it2.STOCK_CODE#',#it2.STOCK_ID#,#it2.PRICE#,#it2.DISCOUNT_RATE#,'#it2.MONEY#',#it2.LAST_COST#,#it2.PRICE#,#it2.IS_MANUEL#,#attributes.columnsa#)">#it2.PRODUCT_NAME#</a>
+                            <a onclick="SatircimEklermisin(#it2.PRODUCT_ID#,'#it2.PRODUCT_NAME#','#it2.STOCK_CODE#',#it2.STOCK_ID#,#it2.PRICE#,#it2.DISCOUNT_RATE#,'#it2.MONEY#',#it2.LAST_COST#,#it2.PRICE#,#it2.IS_MANUEL#,#attributes.columnsa#)">#it2.PRODUCT_NAME#</a>
+                            
                         </cfif>
                     <cfelse>
                         <a onclick="AddRow(#it2.PRODUCT_ID#,#it2.STOCK_ID#,'#it2.STOCK_CODE#','#it2.BRAND_NAME#',0,#attributes.miktar#,#it2.PRICE#,'#it2.PRODUCT_NAME#',#it2.TAX#,#it2.DISCOUNT_RATE#,#it2.PRODUCT_TYPE#,'','#it2.MONEY#',#it2.PRICE#,-6,#it2.IS_MANUEL#,#it2.LAST_COST#,'#it2.MAIN_UNIT#','','',0,'','','0','','','',0,'#it2.IS_KARMA#','#it2.IS_KARMA_SEVK#')">#it2.PRODUCT_NAME#</a>
@@ -163,7 +165,12 @@
 </cfif>
 </cfoutput>
 </cf_big_list>
-
+<script>
+    function SatircimEklermisin(PRODUCT_ID,PRODUCT_NAME,STOCK_CODE,STOCK_ID,PRICE,DISCOUNT_RATE,MONEY,LAST_COST,PRICE,IS_MANUEL,columnsa) {
+        var miktar=document.getElementById("miktar").value
+        AddRowItem(PRODUCT_ID,PRODUCT_NAME,STOCK_CODE,STOCK_ID,PRICE,DISCOUNT_RATE,MONEY,LAST_COST,PRICE,IS_MANUEL,columnsa) 
+    }
+</script>
 <!---
 AddRow(
     product_id,

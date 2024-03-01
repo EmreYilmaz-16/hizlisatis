@@ -638,7 +638,8 @@ function AddRowItem(
   LAST_COST,
   PRICE,
   IS_MANUEL,
-  COLUMNSA
+  COLUMNSA,
+  AMOUNT
 ) {
   // console.log(arguments);
   if (COLUMNSA == 0) {
@@ -674,7 +675,7 @@ function AddRowItem(
       "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
-      1
+      AMOUNT
     );
     input.setAttribute("readonly", "true");
     var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
