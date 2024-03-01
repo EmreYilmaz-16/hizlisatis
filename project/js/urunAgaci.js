@@ -688,10 +688,26 @@ function AddRowItem(
 
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
-    var RATE2MNY = moneyArr[MNYX].RATE2MNY;
+    var RATE2MNY = moneyArr[MNYX].RATE2;
     var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
     var nttl = dpx * RATE2MNY * AMOUNT;
-
+    var OX={
+      line:695,
+      PRODUCT_ID:PRODUCT_ID,
+      STOCK_ID:STOCK_ID,
+      AMOUNT:AMOUNT,
+      PRICE:prcs,
+      MONEY:MONEY,
+      DISCOUNT:DISCOUNT_RATE,
+      IS_VIRTUAL:0,
+      PRODUCT_TREE_ID:0,
+      QUESTION_ID:0,
+      DISPLAYNAME:'',
+      RATE2MNY:RATE2MNY,
+      NETTOTAL:nttl,
+      MNYX:MNYX
+    }
+console.table(OX);
     li.setAttribute("data-netTotal", nttl);
     idB++;
     var div = document.createElement("div");
