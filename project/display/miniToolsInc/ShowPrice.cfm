@@ -94,6 +94,7 @@
     spHesaplayalim(SP_Miktar)
     spHesaplayalim(SP_Discount)
    })
+
    function spHesaplayalim(el) {
         if(el.value.length==0){
             el.value=0;
@@ -104,15 +105,16 @@
         var SP_Miktar=document.getElementById("SP_Miktar").value;
         var SP_Discount=document.getElementById("SP_Discount").value;
         var RATE2=document.getElementById("RATE2_"+SP_SelectedMoney).value
-        SP_Fiyat=filterNum(SP_Fiyat);
-        SP_Miktar=filterNum(SP_Miktar);
-        SP_Discount=filterNum(SP_Discount);
-        RATE2=filterNum(RATE2);
+        
+        SP_Fiyat=parseFloat(filterNum(SP_Fiyat));
+        SP_Miktar=parseFloat(filterNum(SP_Miktar));
+        SP_Discount=parseFloat(filterNum(SP_Discount));
+        RATE2=parseFloat(filterNum(RATE2));
         
         var Sp_Indirimli_Fiyat=SP_Fiyat-((SP_Fiyat*SP_Discount)/100)
         var Sp_Tutar=Sp_Indirimli_Fiyat*SP_Miktar*RATE2
         Sp_Tutar=commaSplit(Sp_Tutar);
-        Sp_Indirimli_Fiyat=commaSplit(Sp_Indirimli_Fiyat);
+        
          SP_FIYAT_HESAP_SONUC={
             SP_SelectedMoney:SP_SelectedMoney,
             SP_Fiyat:SP_Fiyat,
@@ -123,7 +125,7 @@
             RATE2:RATE2,
         }
         console.table(SP_FIYAT_HESAP_SONUC);
-        
+       // Sp_Indirimli_Fiyat=commaSplit(Sp_Indirimli_Fiyat);
         document.getElementById("SP_NetPrice").value=commaSplit(Sp_Indirimli_Fiyat);
         document.getElementById("SP_NetTutar").value=commaSplit(Sp_Tutar);
 
