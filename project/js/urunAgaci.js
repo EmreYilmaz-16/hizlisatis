@@ -2111,7 +2111,7 @@ function LoadTree(el) {
     );
   var idb =
     elek.parentElement.parentElement.parentElement.getAttribute("data-idb");
-  var miktar=filternum(elek.parentElement.getElementsByTagName("input")[0].value);
+  var miktar=filterNum(elek.parentElement.getElementsByTagName("input")[0].value);
   if (p.length > 0) p = parseFloat(p);
   else p = 0;
   if (sp.length > 0) sp = parseFloat(sp);
