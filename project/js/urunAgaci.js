@@ -1,4 +1,5 @@
 var o = new Object();
+var SP_FIYAT_HESAP_SONUC;
 var ulx = document.createElement("div");
 ulx.setAttribute("id", "ppidarea");
 var sonEleman = "";
