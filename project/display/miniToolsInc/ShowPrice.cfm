@@ -38,6 +38,19 @@
                     <input type="text" class="form-control" name="SP_NetPrice" id="SP_NetPrice" readonly>
                 </td>            
             </tr>
+            <tr>
+                <td>
+                   Tutar
+                </td>
+                <td>
+                    <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="SP_NetTutar" id="SP_NetTutar" readonly>
+                    <span class="input-group-text">TL</span>
+                    </div>
+                </div>
+                </td>            
+            </tr>
         </table>
     </td>
     <td>
@@ -95,6 +108,8 @@
         }
         console.table(O);
         
+        document.getElementById("SP_NetPrice").value=SP_NetPrice;
+        document.getElementById("SP_NetTutar").value=Sp_Tutar;
 
 
 
