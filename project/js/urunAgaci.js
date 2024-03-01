@@ -2180,9 +2180,7 @@ function LoadTree(el) {
   elek = el;
   var p =
     elek.parentElement.parentElement.parentElement.getAttribute("data-price");
-  var sp = elek.parentElement.parentElement.parentElement.getAttribute(
-    "data-standart_price"
-  );
+  var sp ="0"
   var om =
     elek.parentElement.parentElement.parentElement.getAttribute(
       "data-other_money"
