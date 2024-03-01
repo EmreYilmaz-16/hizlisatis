@@ -168,7 +168,8 @@
 <script>
     function SatircimEklermisin(PRODUCT_ID,PRODUCT_NAME,STOCK_CODE,STOCK_ID,PRICE,DISCOUNT_RATE,MONEY,LAST_COST,PRICE,IS_MANUEL,columnsa) {
         var miktar=document.getElementById("miktar").value
-        AddRowItem(PRODUCT_ID,PRODUCT_NAME,STOCK_CODE,STOCK_ID,PRICE,DISCOUNT_RATE,MONEY,LAST_COST,PRICE,IS_MANUEL,columnsa) 
+        console.log(miktar)
+        AddRowItem(PRODUCT_ID,PRODUCT_NAME,STOCK_CODE,STOCK_ID,PRICE,DISCOUNT_RATE,MONEY,LAST_COST,PRICE,IS_MANUEL,columnsa,miktar) 
     }
 </script>
 <!---
