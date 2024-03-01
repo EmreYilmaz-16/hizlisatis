@@ -943,6 +943,7 @@ function AgacGetir(agacim, sx = 0) {
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
+    amount=filterNum(amount);
     var pname = $(obj).find("span[name='product_name_']")[0].innerText;
     var agacItem = new Object();
     agacItem.PRODUCT_ID = pid;
