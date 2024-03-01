@@ -337,8 +337,8 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
       PRODUCT_TREE_ID:arr[i].PRODUCT_TREE_ID,
       QUESTION_ID:arr[i].QUESTION_ID,
       DISPLAYNAME:arr[i].DISPLAYNAME,
-      RATE2MNY:arr[i].RATE2MNY,
-      NETTOTAL:arr[i].nttl,
+      RATE2MNY:RATE2,
+      NETTOTAL:nttl,
       MNYX:MNYX
     }
     console.table(OX);
