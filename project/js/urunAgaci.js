@@ -685,17 +685,19 @@ function AddRowItem(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
-
+    var amx=filterNum(AMOUNT);
+    amx=parseFloat(amx);
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
     var RATE2MNY = moneyArr[MNYX].RATE2;
+    RATE2MNY=parseFloat(RATE2MNY);
     var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
-    var nttl = dpx * RATE2MNY * AMOUNT;
+    var nttl = dpx * RATE2MNY * amx;
     var OX={
       line:695,
       PRODUCT_ID:PRODUCT_ID,
       STOCK_ID:STOCK_ID,
-      AMOUNT:AMOUNT,
+      AMOUNT:amx,
       PRICE:PRICE,
       MONEY:MONEY,
       DISCOUNT:DISCOUNT_RATE,
