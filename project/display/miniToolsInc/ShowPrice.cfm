@@ -114,7 +114,7 @@
         var Sp_Indirimli_Fiyat=SP_Fiyat-((SP_Fiyat*SP_Discount)/100)
         var Sp_Tutar=Sp_Indirimli_Fiyat*SP_Miktar*RATE2
         Sp_Tutar=commaSplit(Sp_Tutar);
-        
+        Sp_Indirimli_Fiyat=commaSplit(Sp_Indirimli_Fiyat);
          SP_FIYAT_HESAP_SONUC={
             SP_SelectedMoney:SP_SelectedMoney,
             SP_Fiyat:SP_Fiyat,
@@ -125,9 +125,9 @@
             RATE2:RATE2,
         }
         console.table(SP_FIYAT_HESAP_SONUC);
-       // Sp_Indirimli_Fiyat=commaSplit(Sp_Indirimli_Fiyat);
-        document.getElementById("SP_NetPrice").value=commaSplit(Sp_Indirimli_Fiyat);
-        document.getElementById("SP_NetTutar").value=commaSplit(Sp_Tutar);
+        
+        document.getElementById("SP_NetPrice").value=Sp_Indirimli_Fiyat;
+        document.getElementById("SP_NetTutar").value=Sp_Tutar;
 
 
 
