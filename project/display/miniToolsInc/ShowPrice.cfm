@@ -108,8 +108,8 @@
         }
         console.table(O);
         
-        document.getElementById("SP_NetPrice").value=SP_NetPrice;
-        document.getElementById("SP_NetTutar").value=Sp_Tutar;
+        document.getElementById("SP_NetPrice").value=commaSplit(Sp_Indirimli_Fiyat);
+        document.getElementById("SP_NetTutar").value=commaSplit(Sp_Tutar);
 
 
 
