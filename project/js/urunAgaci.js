@@ -717,7 +717,7 @@ console.table(OX);
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    span.innerText = PRODUCT_NAME;
+    span.innerText = PRODUCT_NAME+'-'+PRICE;
 
     div.appendChild(span);
     var div2 = document.createElement("div");
