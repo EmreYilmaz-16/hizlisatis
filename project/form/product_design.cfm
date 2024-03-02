@@ -269,10 +269,9 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       <button class="btn btn-outline-warning" style="margin-left:5px" onclick="addProdMain()">VP</button>
       <button class="btn btn-outline-danger" id="silButon" style="margin-left:5px" onclick="remVirtualProd(this)">Sil</button>
       <input type="text" class="form-control" value="" id="pnamemain" name="pnamemain" style="margin-left: 15px;color: var(--success);" readonly>
-      <div class="input-group">
-        <span class="input-group-text">Maliyet</span>
-      <input type="text" class="form-control" readonly id="maliyet" name="maliyet" style="text-align:right" value="<cfoutput>#tlformat(0)#</cfoutput>">
-    </div>
+      
+      
+    
       <cfquery name="getStages" datasource="#dsn3#">
           SELECT STAGE,PROCESS_ROW_ID FROM #dsn#.PROCESS_TYPE_ROWS WHERE PROCESS_ID=200
       </cfquery>
@@ -289,10 +288,11 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       <input type="hidden" name="project_id" id="project_id" value="<cfoutput>#attributes.project_id#</cfoutput>">
   </div>
   <div style="position: absolute;bottom: 0;right: 0;"></div>
-  <div id="TreeArea" style="height:80vh">
+  <div id="TreeArea" style="height:78vh">
 
 </div>
 </cf_box>
+<input type="text" class="form-control" readonly id="maliyet" name="maliyet" style="text-align:right" value="<cfoutput>#tlformat(0)#</cfoutput>">
 </div>
 
 
