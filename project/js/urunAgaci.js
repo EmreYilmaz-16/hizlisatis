@@ -310,7 +310,8 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     } else {
       dName = "";
     }
-    spn.innerHTML = arr[i].PRODUCT_NAME +"-"+arr[i].PRICE+" "+arr[i].MONEY + " " + qname + " " + dName;
+    var sssx=makeFiyatSpan(arr[i].PRICE+" "+arr[i].MONEY,"fiyatimis_"+idB)
+    spn.innerHTML = arr[i].PRODUCT_NAME +"-"+sssx+ " " + qname + " " + dName;
     console.log(arr[i]); ///burası kalacak
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
@@ -502,6 +503,13 @@ $(document).ready(function () {
   _priceCatId = compInfo.PRICE_LISTS.find((p) => p.IS_DEFAULT == 1).PRICE_CATID;
   _compId = cp_id;
 });
+function makeFiyatSpan(itext,iid){
+  var spn=document.createElement("span");
+  spn.innerText=itext;
+  spn.id=iid;
+return spn;
+
+}
 
 function LoadSettings() {
   $("#settingsArea").html("");
