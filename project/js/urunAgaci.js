@@ -504,9 +504,10 @@ $(document).ready(function () {
   _compId = cp_id;
 });
 function makeFiyatSpan(itext,iid){
-  var spn=document.createElement("span");
-  spn.innerText=itext;
-  spn.id=iid;
+ var spn="<span id='"+iid+"'>"+itext+"</span>"
+  // var spn=document.createElement("span");
+  // spn.innerText=itext;
+  // spn.id=iid;
 return spn;
 
 }
