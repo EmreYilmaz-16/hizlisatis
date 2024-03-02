@@ -310,7 +310,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     } else {
       dName = "";
     }
-    spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname + " " + dName;
+    spn.innerHTML = arr[i].PRODUCT_NAME +"-"+arr[i].PRICE+" "+arr[i].MONEY + " " + qname + " " + dName;
     console.log(arr[i]); ///burası kalacak
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
@@ -717,7 +717,7 @@ console.table(OX);
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    span.innerText = PRODUCT_NAME+'-'+PRICE;
+    span.innerText = PRODUCT_NAME+'-'+commaSplit(PRICE) + " "+MONEY;
 
     div.appendChild(span);
     var div2 = document.createElement("div");
@@ -808,7 +808,7 @@ console.table(OX);
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    span.innerText = PRODUCT_NAME;
+    span.innerText = PRODUCT_NAME+"-"+commaSplit(PRICE)+' '+MONEY;
 
     div.appendChild(span);
     var div2 = document.createElement("div");
