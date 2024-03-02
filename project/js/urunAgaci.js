@@ -2313,7 +2313,7 @@ function SetPrice2(idb, modal_id) {
     .getElementByIdb(idb)
     .setAttribute("data-netTotal", SP_FIYAT_HESAP_SONUC.Sp_Tutar);
 
-  document.getElementById("fiyatimis_"+idb).innerText=SP_FIYAT_HESAP_SONUC.SP_Fiyat
+  document.getElementById("fiyatimis_"+idb).innerText=SP_FIYAT_HESAP_SONUC.SP_Fiyat+" "+SP_FIYAT_HESAP_SONUC.SP_SelectedMoney
   console.log(SP_FIYAT_HESAP_SONUC);
   MaliyetHesapla2()
   closeBoxDraggable(modal_id);
