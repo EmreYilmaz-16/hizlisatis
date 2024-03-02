@@ -310,7 +310,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     } else {
       dName = "";
     }
-    var sssx=makeFiyatSpan(arr[i].PRICE+" "+arr[i].MONEY,"fiyatimis_"+idB)
+    var sssx=makeFiyatSpan(arr[i].PRICE,arr[i].MONEY,"fiyatimis_"+idB)
     spn.innerHTML = arr[i].PRODUCT_NAME +"-"+sssx+ " " + qname + " " + dName;
     console.log(arr[i]); ///burası kalacak
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
@@ -503,8 +503,8 @@ $(document).ready(function () {
   _priceCatId = compInfo.PRICE_LISTS.find((p) => p.IS_DEFAULT == 1).PRICE_CATID;
   _compId = cp_id;
 });
-function makeFiyatSpan(itext,iid){
- var spn="<span id='"+iid+"'>"+itext+"</span>"
+function makeFiyatSpan(itext,itext2,iid){
+ var spn="<span id='"+iid+"'>"+commaSplit(itext)+" "+itext2+"</span>"
   // var spn=document.createElement("span");
   // spn.innerText=itext;
   // spn.id=iid;
@@ -720,14 +720,15 @@ function AddRowItem(
     }
 console.table(OX);
     li.setAttribute("data-netTotal", nttl);
-    idB++;
+    
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    span.innerText = PRODUCT_NAME+'-'+commaSplit(PRICE) + " "+MONEY;
-
+    var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
+    span.innerHtml = PRODUCT_NAME+'-'+soxx
+    idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
     div2.setAttribute(
@@ -811,14 +812,15 @@ console.table(OX);
 console.table(OX);
 
     li.setAttribute("data-netTotal", nttl);
-    idB++;
+    
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    span.innerText = PRODUCT_NAME+"-"+commaSplit(PRICE)+' '+MONEY;
-
+    var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
+    span.innerHtml = PRODUCT_NAME+'-'+soxx
+    idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
     div2.setAttribute(
@@ -904,14 +906,15 @@ function AddRowItemVirtual(
     var nttl = dpx * RATE2MNY * AMOUNT;
 
     li.setAttribute("data-netTotal", nttl);
-    idB++;
+    
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    span.innerText = PRODUCT_NAME;
-
+    var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
+    span.innerHtml = PRODUCT_NAME+'-'+soxx
+    idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
     div2.setAttribute(
@@ -973,14 +976,15 @@ function AddRowItemVirtual(
     var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
     var nttl = dpx * RATE2MNY * AMOUNT;
     li.setAttribute("data-netTotal", nttl);
-    idB++;
+    
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    span.innerText = PRODUCT_NAME;
-
+    var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
+    span.innerHtml = PRODUCT_NAME+'-'+soxx
+    idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
     div2.setAttribute(
@@ -1140,11 +1144,13 @@ function addProdMain_(idb, modal_id) {
   li.setAttribute("data-sta", 0);
   li.setAttribute("class", "list-group-item");
   li.setAttribute("data-idb", idB);
-  idB++;
+
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
   span.setAttribute("style", "display:inline-grid");
-  span.innerText = pname;
+  var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
+  span.innerHtml = pname+'-'+soxx
+  idB++;
   //prompt("Ürün Adı");
   li.setAttribute("data-product_catid", p_cat_id);
   var div = document.createElement("div");
