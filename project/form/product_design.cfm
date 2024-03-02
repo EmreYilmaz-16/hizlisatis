@@ -262,7 +262,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       </div>
   </cf_box>
   </div>
-  <div class="col col-7 col-md-7 col-sm-7 col-xs-12" >
+  <div class="col col-9 col-md-9 col-sm-9 col-xs-12" >
 <cf_box title="Ürün Ağacı">
   <div style="display:flex;margin-bottom:5px">
       <button class="btn btn-outline-success" onclick="OpenBasketProducts(0,5)">RP</button>
@@ -291,18 +291,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
 </div>
 </cf_box>
 </div>
-<div class="col col-2 col-md-2 col-sm-2 col-xs-12" >
-  <cf_box title="....">
-      <div  style="height:75vh" id="settingsArea">
-          
-      </div>
-  </cf_box>
-  
-      <cf_box title="Maliyet">
-          
-      </cf_box>
-      
-</div>
+
 
 </div>
 

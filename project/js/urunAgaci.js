@@ -492,7 +492,7 @@ $(document).ready(function () {
   var d = document.getElementById("wrk_main_layout");
   d.removeAttribute("class");
   d.setAttribute("class", "container-fluid");
-  LoadSettings();
+  //LoadSettings();
   var PROJECT_ID = getParameterByName("project_id");
   var cp_id = wrk_query(
     "select COMPANY_ID FROM PRO_PROJECTS WHERE PROJECT_ID=" + PROJECT_ID,
@@ -2137,7 +2137,7 @@ function setSettings(el) {
       "&ddsn3=workcube_metosan_1",
     success: function (returnDat) {
       console.log(returnDat);
-      LoadSettings();
+     // LoadSettings();
     },
   });
 }
