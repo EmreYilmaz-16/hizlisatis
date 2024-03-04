@@ -735,8 +735,9 @@ function AddRowItem(
     span.innerText =  PRODUCT_NAME ;
     //span.innerHTML += soxx;
     idB++;
+    
     div.appendChild(span);
-    span.appendChild(soxx);
+    div.appendChild(soxx);
     var div2 = document.createElement("div");
     div2.setAttribute(
       "style",
