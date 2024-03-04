@@ -73,8 +73,8 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
-       // MaliyetHesapla();
-       MaliyetHesapla2()
+        // MaliyetHesapla();
+        MaliyetHesapla2();
         GercekKontrol(product_id);
       },
     });
@@ -102,8 +102,8 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
-      //  MaliyetHesapla();
-      MaliyetHesapla2()
+        //  MaliyetHesapla();
+        MaliyetHesapla2();
         /* console.log(o);
                 ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -146,7 +146,7 @@ function ngetTree(
         sortableYap();
         virtuallariYerlestir();
         //MaliyetHesapla();
-        MaliyetHesapla2()
+        MaliyetHesapla2();
         /* console.log(o);
                 ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -185,7 +185,7 @@ function ngetTree(
         sortableYap();
         virtuallariYerlestir();
         //MaliyetHesapla();
-        MaliyetHesapla2()
+        MaliyetHesapla2();
         /* console.log(o);
                 ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -225,8 +225,8 @@ function ngetTree(
         agacGosterEkle();
         sortableYap();
         virtuallariYerlestir();
-       // MaliyetHesapla();
-       MaliyetHesapla2()
+        // MaliyetHesapla();
+        MaliyetHesapla2();
         /* console.log(o);
                 ;*/
         /*AgaciYaz(o, 0, "0", 1);
@@ -310,8 +310,9 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     } else {
       dName = "";
     }
-    var sssx=makeFiyatSpan(arr[i].PRICE,arr[i].MONEY,"fiyatimis_"+idB)
-    spn.innerHTML = arr[i].PRODUCT_NAME +"-"+sssx+ " " + qname + " " + dName;
+    var sssx = makeFiyatSpan(arr[i].PRICE, arr[i].MONEY, "fiyatimis_" + idB);
+    spn.innerHTML =
+      arr[i].PRODUCT_NAME + "-" + sssx + " " + qname + " " + dName;
     console.log(arr[i]); ///burası kalacak
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
@@ -323,28 +324,28 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
     li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
-    var prcs=parseFloat(arr[i].PRICE)
+    var prcs = parseFloat(arr[i].PRICE);
     var MNYX = moneyArr.findIndex((p) => p.MONEY == arr[i].MONEY);
     var RATE2MNY = moneyArr[MNYX].RATE2;
-    RATE2MNY=parseFloat(RATE2MNY);
+    RATE2MNY = parseFloat(RATE2MNY);
     var dpx = prcs - (prcs * arr[i].DISCOUNT) / 100;
     var nttl = dpx * arr[i].AMOUNT * RATE2MNY;
-    var OX={
-      line:329,
-      PRODUCT_ID:arr[i].PRODUCT_ID,
-      STOCK_ID:arr[i].STOCK_ID,
-      AMOUNT:arr[i].AMOUNT,
-      PRICE:prcs,
-      MONEY:arr[i].MONEY,
-      DISCOUNT:arr[i].DISCOUNT,
-      IS_VIRTUAL:arr[i].IS_VIRTUAL,
-      PRODUCT_TREE_ID:arr[i].PRODUCT_TREE_ID,
-      QUESTION_ID:arr[i].QUESTION_ID,
-      DISPLAYNAME:arr[i].DISPLAYNAME,
-      RATE2MNY:RATE2MNY,
-      NETTOTAL:nttl,
-      MNYX:MNYX
-    }
+    var OX = {
+      line: 329,
+      PRODUCT_ID: arr[i].PRODUCT_ID,
+      STOCK_ID: arr[i].STOCK_ID,
+      AMOUNT: arr[i].AMOUNT,
+      PRICE: prcs,
+      MONEY: arr[i].MONEY,
+      DISCOUNT: arr[i].DISCOUNT,
+      IS_VIRTUAL: arr[i].IS_VIRTUAL,
+      PRODUCT_TREE_ID: arr[i].PRODUCT_TREE_ID,
+      QUESTION_ID: arr[i].QUESTION_ID,
+      DISPLAYNAME: arr[i].DISPLAYNAME,
+      RATE2MNY: RATE2MNY,
+      NETTOTAL: nttl,
+      MNYX: MNYX,
+    };
     console.table(OX);
     li.setAttribute("data-netTotal", nttl);
 
@@ -503,13 +504,17 @@ $(document).ready(function () {
   _priceCatId = compInfo.PRICE_LISTS.find((p) => p.IS_DEFAULT == 1).PRICE_CATID;
   _compId = cp_id;
 });
-function makeFiyatSpan(itext,itext2,iid){
- var spn="<span id='"+iid+"'>"+commaSplit(itext)+" "+itext2+"</span>"
-  // var spn=document.createElement("span");
-  // spn.innerText=itext;
-  // spn.id=iid;
-return spn;
-
+function makeFiyatSpan(itext, itext2, iid, tip = 0) {
+  var spn = "";
+  if (tip == 0) {
+    var spn =
+      "<span id='" + iid + "'>" + commaSplit(itext) + " " + itext2 + "</span>";
+  } else {
+    var spn = document.createElement("span");
+    spn.innerText = itext+" "+itext2;
+    spn.id = iid;
+  }
+  return spn;
 }
 
 function LoadSettings() {
@@ -694,44 +699,44 @@ function AddRowItem(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
-    var amx=filterNum(AMOUNT);
-    amx=parseFloat(amx);
+    var amx = filterNum(AMOUNT);
+    amx = parseFloat(amx);
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
     var RATE2MNY = moneyArr[MNYX].RATE2;
-    RATE2MNY=parseFloat(RATE2MNY);
+    RATE2MNY = parseFloat(RATE2MNY);
     var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
     var nttl = dpx * RATE2MNY * amx;
-    var OX={
-      line:695,
-      PRODUCT_ID:PRODUCT_ID,
-      STOCK_ID:STOCK_ID,
-      AMOUNT:amx,
-      PRICE:PRICE,
-      MONEY:MONEY,
-      DISCOUNT:DISCOUNT_RATE,
-      IS_VIRTUAL:0,
-      PRODUCT_TREE_ID:0,
-      QUESTION_ID:0,
-      DISPLAYNAME:'',
-      RATE2MNY:RATE2MNY,
-      NETTOTAL:nttl,
-      MNYX:MNYX
-    }
-console.table(OX);
+    var OX = {
+      line: 695,
+      PRODUCT_ID: PRODUCT_ID,
+      STOCK_ID: STOCK_ID,
+      AMOUNT: amx,
+      PRICE: PRICE,
+      MONEY: MONEY,
+      DISCOUNT: DISCOUNT_RATE,
+      IS_VIRTUAL: 0,
+      PRODUCT_TREE_ID: 0,
+      QUESTION_ID: 0,
+      DISPLAYNAME: "",
+      RATE2MNY: RATE2MNY,
+      NETTOTAL: nttl,
+      MNYX: MNYX,
+    };
+    console.table(OX);
     li.setAttribute("data-netTotal", nttl);
-    
+
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
-    span.innerHtml = PRODUCT_NAME
-    span.innerHTML+=soxx;
+    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB,1);
+    span.innerText =  PRODUCT_NAME ;
+    //span.innerHTML += soxx;
     idB++;
     div.appendChild(span);
-    //div.appendChild(soxx);
+    span.appendChild(soxx);
     var div2 = document.createElement("div");
     div2.setAttribute(
       "style",
@@ -788,40 +793,40 @@ console.table(OX);
     li.setAttribute("data-idb", idB);
 
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
-    var amx=filterNum(AMOUNT);
-    amx=parseFloat(amx);
+    var amx = filterNum(AMOUNT);
+    amx = parseFloat(amx);
     var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
     var RATE2MNY = moneyArr[MNYX].RATE2;
     var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
     var nttl = dpx * RATE2MNY * amx;
-    
-    var OX={
-      line:784,
-      PRODUCT_ID:PRODUCT_ID,
-      STOCK_ID:STOCK_ID,
-      AMOUNT:amx,
-      PRICE:PRICE,
-      MONEY:MONEY,
-      DISCOUNT:DISCOUNT_RATE,
-      IS_VIRTUAL:0,
-      PRODUCT_TREE_ID:0,
-      QUESTION_ID:0,
-      DISPLAYNAME:'',
-      RATE2MNY:RATE2MNY,
-      NETTOTAL:nttl,
-      MNYX:MNYX
-    }
-console.table(OX);
+
+    var OX = {
+      line: 784,
+      PRODUCT_ID: PRODUCT_ID,
+      STOCK_ID: STOCK_ID,
+      AMOUNT: amx,
+      PRICE: PRICE,
+      MONEY: MONEY,
+      DISCOUNT: DISCOUNT_RATE,
+      IS_VIRTUAL: 0,
+      PRODUCT_TREE_ID: 0,
+      QUESTION_ID: 0,
+      DISPLAYNAME: "",
+      RATE2MNY: RATE2MNY,
+      NETTOTAL: nttl,
+      MNYX: MNYX,
+    };
+    console.table(OX);
 
     li.setAttribute("data-netTotal", nttl);
-    
+
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
-    span.innerHtml = PRODUCT_NAME+'-'+soxx
+    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB);
+    span.innerHtml = PRODUCT_NAME + "-" + soxx;
     idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
@@ -908,14 +913,14 @@ function AddRowItemVirtual(
     var nttl = dpx * RATE2MNY * AMOUNT;
 
     li.setAttribute("data-netTotal", nttl);
-    
+
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
-    span.innerHtml = PRODUCT_NAME+'-'+soxx
+    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB);
+    span.innerHtml = PRODUCT_NAME + "-" + soxx;
     idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
@@ -978,14 +983,14 @@ function AddRowItemVirtual(
     var dpx = PRICE - (PRICE * DISCOUNT_RATE) / 100;
     var nttl = dpx * RATE2MNY * AMOUNT;
     li.setAttribute("data-netTotal", nttl);
-    
+
     var div = document.createElement("div");
     div.setAttribute("style", "display:flex");
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
-    span.innerHtml = PRODUCT_NAME+'-'+soxx
+    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB);
+    span.innerHtml = PRODUCT_NAME + "-" + soxx;
     idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
@@ -1036,7 +1041,7 @@ function AddRowItemVirtual(
   if (q.recordcount > 0) {
     ngetTree(STOCK_ID, 1, "workcube_metosan_1", "", 2, li);
   }
-  MaliyetHesapla2()
+  MaliyetHesapla2();
 }
 
 function AgacGetir(agacim, sx = 0) {
@@ -1150,8 +1155,8 @@ function addProdMain_(idb, modal_id) {
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
   span.setAttribute("style", "display:inline-grid");
-  var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
-  span.innerHtml = pname+'-'+soxx
+  var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB);
+  span.innerHtml = pname + "-" + soxx;
   idB++;
   //prompt("Ürün Adı");
   li.setAttribute("data-product_catid", p_cat_id);
@@ -1226,7 +1231,7 @@ function addProdMain_(idb, modal_id) {
   }
   agacGosterEkle();
   sortableYap();
-  MaliyetHesapla2()
+  MaliyetHesapla2();
   closeBoxDraggable(modal_id);
 }
 
@@ -1910,17 +1915,17 @@ document.getElementByIdb = function (idb) {
 };
 function MaliyetHesapla2() {
   var Products = $("#ppidarea *li");
-  var TTutar=0;
+  var TTutar = 0;
   Products.each(function (ix, Product) {
     var tutar = Product.getAttribute("data-netTotal");
     TTutar = TTutar + parseFloat(tutar);
     console.table({
-      satir:1859,
-      tutar:tutar,
-      TTutar:TTutar
+      satir: 1859,
+      tutar: tutar,
+      TTutar: TTutar,
     });
   });
-   TTutar = commaSplit(TTutar);
+  TTutar = commaSplit(TTutar);
   $("#maliyet").val(TTutar);
 }
 function MaliyetHesapla() {
@@ -2154,7 +2159,7 @@ function setSettings(el) {
       "&ddsn3=workcube_metosan_1",
     success: function (returnDat) {
       console.log(returnDat);
-     // LoadSettings();
+      // LoadSettings();
     },
   });
 }
@@ -2218,7 +2223,7 @@ function LoadTree(el) {
   elek = el;
   var p =
     elek.parentElement.parentElement.parentElement.getAttribute("data-price");
-  var sp ="0"
+  var sp = "0";
   var om =
     elek.parentElement.parentElement.parentElement.getAttribute(
       "data-other_money"
@@ -2302,8 +2307,8 @@ function SetPrice(idb, modal_id) {
   document.getElementByIdb(idb).setAttribute("data-discount", d);
   document.getElementByIdb(idb).setAttribute("data-other_money", om);
   document.getElementByIdb(idb).setAttribute("data-netTotal", p);
- // MaliyetHesapla();
- 
+  // MaliyetHesapla();
+
   closeBoxDraggable(modal_id);
 }
 function SetPrice2(idb, modal_id) {
@@ -2321,9 +2326,12 @@ function SetPrice2(idb, modal_id) {
     .getElementByIdb(idb)
     .setAttribute("data-netTotal", SP_FIYAT_HESAP_SONUC.Sp_Tutar);
 
-  document.getElementById("fiyatimis_"+idb).innerText=commaSplit(SP_FIYAT_HESAP_SONUC.SP_Fiyat)+" "+SP_FIYAT_HESAP_SONUC.SP_SelectedMoney
+  document.getElementById("fiyatimis_" + idb).innerText =
+    commaSplit(SP_FIYAT_HESAP_SONUC.SP_Fiyat) +
+    " " +
+    SP_FIYAT_HESAP_SONUC.SP_SelectedMoney;
   console.log(SP_FIYAT_HESAP_SONUC);
-  MaliyetHesapla2()
+  MaliyetHesapla2();
   closeBoxDraggable(modal_id);
 }
 
