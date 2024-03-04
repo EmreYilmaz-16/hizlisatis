@@ -727,9 +727,10 @@ console.table(OX);
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
     var  soxx=makeFiyatSpan(PRICE,MONEY,"fiyatimis_"+idB)
-    span.innerHtml = PRODUCT_NAME+'-'+soxx
+    span.innerHtml = PRODUCT_NAME
     idB++;
     div.appendChild(span);
+    div.appendChild(soxx);
     var div2 = document.createElement("div");
     div2.setAttribute(
       "style",
