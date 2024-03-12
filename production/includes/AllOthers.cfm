@@ -7,7 +7,23 @@ INNER JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID A
 <cfdump var="#getPo#">
 <cfdump var="#gets#">
 <cf_big_list>
-<cfoutput query="getsTree">
+<thead>
+    <tr>
+        <th>
+            Ürün Kodu
+        </th>
+        <th>
+            Ürün
+        </th>
+        <th>
+            Miktar
+        </th>
+        <th>
+            Birim
+        </th>
+    </tr>
+</thead>
+    <cfoutput query="getsTree">
     <tr>
         <td>
             #PRODUCT_CODE#
