@@ -6,6 +6,7 @@ INNER JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID A
 </cfquery>
 <cfdump var="#getPo#">
 <cfdump var="#gets#">
+<cf_box title="Üretim Emri #getPo.V_P_ORDER_NO#">
 <cf_big_list>
 <thead>
     <tr>
@@ -40,3 +41,4 @@ INNER JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID A
     </tr>
 </cfoutput>
 </cf_big_list>
+</cf_box>
