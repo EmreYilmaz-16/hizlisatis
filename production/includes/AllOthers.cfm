@@ -40,6 +40,7 @@ INNER JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID A
                 </td>
             </tr>
         </table>
+    </CFOUTPUT>
 <cf_big_list>
 <thead>
     <tr>
