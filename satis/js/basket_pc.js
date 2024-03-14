@@ -1250,7 +1250,7 @@ function AddRow_pbso(
   span.setAttribute("onclick", "showData(this)");
   span.setAttribute("data-row", row_count);
   div.appendChild(span);
-  
+
   td.appendChild(div);
   tr.appendChild(td);
 
@@ -1314,7 +1314,29 @@ function AsamaYapici(rc, selv) {
   sel_1.value = selv;
   return sel_1;
 }
-
+function showData(el) {
+  rwwwxy = el;
+  var row_id = el.getAttribute("data-row");
+  var p_name = document.getElementById("product_name_" + row_id).value;
+  var tax = document.getElementById("Tax_" + row_id).value;
+  var price_other = document.getElementById("price_other_" + row_id).value;
+  var other_money = document.getElementById("other_money_" + row_id).value;
+  var disc = document.getElementById("indirim1_" + row_id).value;
+  openBoxDraggable(
+    "index.cfm?fuseaction=objects.emptypopup_showdata_prt&rowid=" +
+      row_id +
+      "&p_name=" +
+      p_name +
+      "&tax=" +
+      tax +
+      "&disc=" +
+      disc +
+      "&price_other=" +
+      price_other +
+      "&other_money=" +
+      other_money
+  );
+}
 function manuelControl() {
   var rw = document.getElementsByClassName("sepetRow");
   for (let i = 1; i <= rw.length; i++) {
