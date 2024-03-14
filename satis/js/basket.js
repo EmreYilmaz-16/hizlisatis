@@ -766,6 +766,7 @@ function showData(el) {
   var price_other = document.getElementById("price_other_" + row_id).value;
   var other_money = document.getElementById("other_money_" + row_id).value;
   var disc = document.getElementById("indirim1_" + row_id).value;
+  
   openBoxDraggable(
     "index.cfm?fuseaction=objects.emptypopup_showdata_prt&rowid=" +
       row_id +

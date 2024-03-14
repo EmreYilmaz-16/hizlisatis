@@ -654,14 +654,7 @@ function AddRow(
   input_11.setAttribute("name", "description_" + row_count);
   input_11.setAttribute("id", "description_" + row_count);
   input_11.setAttribute("value", description);
-
   div.appendChild(input_11);
-  var span = document.createElement("span");
-  span.setAttribute("class", "icon-search");
-  span.setAttribute("onclick", "showData(this)");
-  span.setAttribute("data-row", row_count);
-  div.appendChild(span);
-
   td.appendChild(div);
   tr.appendChild(td);
 
@@ -1245,12 +1238,6 @@ function AddRow_pbso(
   input_11.setAttribute("id", "description_" + row_count);
   input_11.setAttribute("value", description);
   div.appendChild(input_11);
-  var span = document.createElement("span");
-  span.setAttribute("class", "icon-search");
-  span.setAttribute("onclick", "showData(this)");
-  span.setAttribute("data-row", row_count);
-  div.appendChild(span);
-
   td.appendChild(div);
   tr.appendChild(td);
 
@@ -1314,53 +1301,7 @@ function AsamaYapici(rc, selv) {
   sel_1.value = selv;
   return sel_1;
 }
-function showData(el) {
-  rwwwxy = el;
-  var row_id = el.getAttribute("data-row");
-  var p_name = document.getElementById("product_name_" + row_id).value;
-  var tax = document.getElementById("Tax_" + row_id).value;
-  var price_other = document.getElementById("price_other_" + row_id).value;
-  var other_money = document.getElementById("other_money_" + row_id).value;
-  var disc = document.getElementById("indirim1_" + row_id).value;
-  openBoxDraggable(
-    "index.cfm?fuseaction=objects.emptypopup_showdata_prt&rowid=" +
-      row_id +
-      "&p_name=" +
-      p_name +
-      "&tax=" +
-      tax +
-      "&disc=" +
-      disc +
-      "&price_other=" +
-      price_other +
-      "&other_money=" +
-      other_money
-  );
-}
-function saveRowExtra(row_id, modal_id) {
-  // row_extra_tax_tax
 
-  var rtax = document.getElementById("row_extra_tax_tax").value;
-  var rdisc = document.getElementById("row_extra_disc").value;
-  var rprice_other = document.getElementById("row_extra_price_other").value;
-  var rother_money = document.getElementById("row_extra_other_money").value;
-  //var p_name = document.getElementById("product_name_" + row_id).value
-  var tax = (document.getElementById("Tax_" + row_id).value = commaSplit(
-    filterNum(rtax)
-  ));
-  //commaSplit(rtax)
-  var price_other_ = (document.getElementById("price_other_" + row_id).value =
-    commaSplit(filterNum(rprice_other)));
-  //commaSplit(rprice_other)
-  var other_money_ = (document.getElementById("other_money_" + row_id).value =
-    rother_money);
-  var disc = (document.getElementById("indirim1_" + row_id).value = commaSplit(
-    filterNum(rdisc)
-  ));
-  //commaSplit(rdisc)
-  hesapla("price_other", row_id);
-  closeBoxDraggable(modal_id);
-}
 function manuelControl() {
   var rw = document.getElementsByClassName("sepetRow");
   for (let i = 1; i <= rw.length; i++) {
@@ -2046,6 +1987,13 @@ function BasketSelControl() {
     evnt: "ConvertRealProduct(this)",
     att: "disabled",
   };
+  var SetPurchasePrice = {
+    icon: "icn-md icon-check",
+    txt: "Aliş Fiyatı Ekle",
+    evntType: "onclick",
+    evnt: "AddPurchasePrice(this)",
+    att: "disabled",
+  };
   var buttonGroups = [];
   var sepetRows = document.getElementsByClassName("sepetRow");
   for (let i = 0; i < sepetRows.length; i++) {
@@ -2125,7 +2073,8 @@ function BasketSelControl() {
     groupButton,
     treeButton,
     TurnButton,
-    ConvertRealButton
+    ConvertRealButton,
+    SetPurchasePrice
   );
   //$(RemCell).show();
   return buttonGroups;

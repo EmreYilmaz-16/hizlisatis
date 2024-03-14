@@ -21,7 +21,7 @@
     FROM workcube_metosan.SETUP_MONEY AS SM
     WHERE SM.PERIOD_ID = #session.ep.period_id#
 </cfquery>
-
+<cfparam name="attributes.purchase_price" default="0">
 <cf_box title="#attributes.p_name#" scroll="1" collapsable="1" resize="1" popup_box="1">
    <cfoutput>
     <cfform id="rowExra_#attributes.rowid#">
@@ -46,6 +46,11 @@
     <div class="form-group">
         <label>İndirim</label>
         <input type="text" name="row_extra_disc" id="row_extra_disc" value="#attributes.disc#">
+       
+    </div>
+    <div class="form-group">
+        <label>Alış Fiyatı</label>
+        <input type="text" name="row_extra_purchase_price" id="row_extra_purchase_price" value="#attributes.purchase_price#">
        
     </div>
 </cfform>
