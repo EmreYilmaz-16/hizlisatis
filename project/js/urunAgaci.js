@@ -1981,17 +1981,17 @@ function GercekKontrol(id) {
       b.removeAttribute("class");
       b.setAttribute("class", "btn btn-outline-warning");
       b.innerText = "Teklife Dönüştü";
-      b.setAttribute("disabled", "disabled");
+     // b.setAttribute("disabled", "disabled");
       var c = document.getElementById("silButon");
-      c.setAttribute("disabled", "disabled");
+      //c.setAttribute("disabled", "disabled");
     } else {
       var b = document.getElementById("teklifButton");
       b.removeAttribute("class");
       b.setAttribute("class", "btn btn-outline-secondary");
       b.innerText = "Teklif Ver";
-      b.removeAttribute("disabled");
+     // b.removeAttribute("disabled");
       var c = document.getElementById("silButon");
-      c.removeAttribute("disabled");
+      //c.removeAttribute("disabled");
     }
     return ex;
   }
