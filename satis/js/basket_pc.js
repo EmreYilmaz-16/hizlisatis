@@ -1337,6 +1337,30 @@ function showData(el) {
       other_money
   );
 }
+function saveRowExtra(row_id, modal_id) {
+  // row_extra_tax_tax
+
+  var rtax = document.getElementById("row_extra_tax_tax").value;
+  var rdisc = document.getElementById("row_extra_disc").value;
+  var rprice_other = document.getElementById("row_extra_price_other").value;
+  var rother_money = document.getElementById("row_extra_other_money").value;
+  //var p_name = document.getElementById("product_name_" + row_id).value
+  var tax = (document.getElementById("Tax_" + row_id).value = commaSplit(
+    filterNum(rtax)
+  ));
+  //commaSplit(rtax)
+  var price_other_ = (document.getElementById("price_other_" + row_id).value =
+    commaSplit(filterNum(rprice_other)));
+  //commaSplit(rprice_other)
+  var other_money_ = (document.getElementById("other_money_" + row_id).value =
+    rother_money);
+  var disc = (document.getElementById("indirim1_" + row_id).value = commaSplit(
+    filterNum(rdisc)
+  ));
+  //commaSplit(rdisc)
+  hesapla("price_other", row_id);
+  closeBoxDraggable(modal_id);
+}
 function manuelControl() {
   var rw = document.getElementsByClassName("sepetRow");
   for (let i = 1; i <= rw.length; i++) {
