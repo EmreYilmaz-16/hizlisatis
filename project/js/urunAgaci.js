@@ -1157,7 +1157,7 @@ function addProdMain_(idb, modal_id) {
   span.setAttribute("name", "product_name_");
   span.setAttribute("style", "display:inline-grid");
   var soxx = makeFiyatSpan(0, "TL", "fiyatimis_" + idB,1);
-  span.innerHtml = pname 
+  span.innerText = pname 
 span.appendChild(soxx);
   idB++;
   //prompt("Ürün Adı");
