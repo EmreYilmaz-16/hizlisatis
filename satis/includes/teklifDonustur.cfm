@@ -69,6 +69,9 @@ WHERE VP.VIRTUAL_PRODUCT_ID = #FormData.vp_id#
                             ''
 
         )
+        <cfif not isDefined("FormData.is_show_tree")>
+            <cfset FormData.is_show_tree="OFF">
+        </cfif>
         <cfif FormData.is_show_tree eq "OFF">
 <cfelse>
 <cfloop array="#FormData.ProductList#" item="it">
