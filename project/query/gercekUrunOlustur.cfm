@@ -187,7 +187,7 @@
     <cfargument name="shownName" default="">
     
     <cfquery name="getMaster" datasource="#dsn3#">
-        SELECT 
+        SELECT  top 1
             S.PRODUCT_CATID
             ,NULL PROD_COMPETITIVE
             ,NULL MANUFACT_CODE
