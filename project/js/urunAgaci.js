@@ -1979,8 +1979,8 @@ function GercekKontrol(id) {
     if (ex == 1) {
       var b = document.getElementById("teklifButton");
       b.removeAttribute("class");
-      b.setAttribute("class", "btn btn-outline-warning");
-      b.innerText = "Teklife Dönüştü";
+      b.setAttribute("class", "btn btn-outline-secondary");
+      b.innerText = "Teklif Ver";
      // b.setAttribute("disabled", "disabled");
       var c = document.getElementById("silButon");
       //c.setAttribute("disabled", "disabled");
