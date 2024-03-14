@@ -381,7 +381,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
       "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
-      arr[i].AMOUNT
+      commaSplit(arr[i].AMOUNT)
     );
     diva.setAttribute(
       "style",
@@ -750,7 +750,7 @@ function AddRowItem(
       "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
-      AMOUNT
+      commaSplit(AMOUNT)
     );
     input.setAttribute("readonly", "true");
     var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
@@ -842,7 +842,7 @@ function AddRowItem(
       "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
-      AMOUNT
+      commaSplit(AMOUNT)
     );
     input.setAttribute("readonly", "true");
     var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
@@ -936,7 +936,7 @@ function AddRowItemVirtual(
       "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
-      1
+      commaSplit(1)
     );
     input.setAttribute("readonly", "true");
     var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
@@ -1006,7 +1006,7 @@ function AddRowItemVirtual(
       "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
-      1
+      commaSplit(1)
     );
     input.setAttribute("readonly", "true");
     var button = buttonCreator("", "btn btn-outline-success", "", "", "+");
@@ -1065,7 +1065,7 @@ function AgacGetir(agacim, sx = 0) {
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
-    amount = filterNum(amount);
+    amount = filterNum(commaSplit(amount));
     var pname = $(obj).find("span[name='product_name_']")[0].innerText;
     var agacItem = new Object();
     agacItem.PRODUCT_ID = pid;
@@ -1175,7 +1175,7 @@ function addProdMain_(idb, modal_id) {
   input.setAttribute("class", "form-control form-control-sm");
   input.setAttribute("style", "width:33%");
   input.setAttribute("name", "amount");
-  input.setAttribute("value", 1);
+  input.setAttribute("value", commaSplit(1));
   input.setAttribute("readonly", "true");
   var button = document.createElement("button");
   button.setAttribute("type", "button");
@@ -1309,7 +1309,7 @@ function addProdSub_(el) {
   input.setAttribute("class", "form-control form-control-sm");
   input.setAttribute("style", "width:33%");
   input.setAttribute("name", "amount");
-  input.setAttribute("value", 1);
+  input.setAttribute("value", commaSplit(1));
   input.setAttribute("readonly", "true");
   var button = document.createElement("button");
   button.setAttribute("type", "button");
@@ -1630,7 +1630,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
       "MaliyetHesapla();",
       "form-control form-control-sm",
       "width:33%",
-      arr[i].AMOUNT
+      commaSplit(arr[i].AMOUNT)
     );
     diva.setAttribute(
       "style",
