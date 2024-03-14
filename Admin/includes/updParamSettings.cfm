@@ -130,7 +130,10 @@ WHERE PCS.ID=#attributes.ID#
             <label class="col col-4 col-md-4 col-sm-4 col-xs-12">Hediye Çeki </label>
             <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="checkbox" name="IS_GIFT_CARD" id="IS_GIFT_CARD" value="1" <cfif getData.IS_GIFT_CARD eq 1>checked="checked"</cfif> ></div>
         </div>
-    
+        <div class="form-group" id="item-is_gift_card">
+            <label class="col col-4 col-md-4 col-sm-4 col-xs-12">DEFAULT_STATION_ID</label>
+            <div class="col col-8 col-md-8 col-sm-8 col-xs-12"><input type="text" name="DEFAULT_STATION_ID" id="DEFAULT_STATION_ID" value="<cfif getData.DEFAULT_STATION_ID><cfoutput>#getData.DEFAULT_STATION_ID#</cfoutput></cfif>"  ></div>
+        </div>
         <button type="submit" class="btn btn-success">Kaydet</button>
         <button type="button" class="btn btn-danger"  onclick="sil(<cfoutput>#attributes.id#</cfoutput>)">Sil</button>
     </div>
