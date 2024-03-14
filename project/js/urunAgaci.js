@@ -686,7 +686,7 @@ function AddRowItem(
   COLUMNSA,
   AMOUNT
 ) {
-  // console.log(arguments);
+   console.log(arguments);
   if (COLUMNSA == 0) {
     var e = document.getElementById("ppidarea").children[0];
     var li = document.createElement("li");
