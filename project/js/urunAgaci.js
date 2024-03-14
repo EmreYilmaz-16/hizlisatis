@@ -1938,12 +1938,12 @@ function MaliyetHesapla() {
   var TotalPrice = 0;
   var Products = $("#ppidarea *li");
   Products.each(function (ix, Product) {
-    // console.log(Product)
+     console.log(Product)
     //console.log($(Product).find("input[name='amount']"))
     var miktar = $(Product).find("input[name='amount']").val();
     $(Product)
-      .find("input[name='amount']")
-      .val(commaSplit(filterNum(miktar)));
+      .find("input[name='amount']")[0]
+      .value=commaSplit(filterNum(miktar));
     miktar = filterNum(miktar);
     //li.setAttribute("data-netTotal", 0);
     var price = Product.getAttribute("data-price");
