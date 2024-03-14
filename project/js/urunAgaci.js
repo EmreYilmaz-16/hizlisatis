@@ -2331,7 +2331,7 @@ function SetPrice2(idb, modal_id) {
     commaSplit(SP_FIYAT_HESAP_SONUC.SP_Fiyat) +
     " " +
     SP_FIYAT_HESAP_SONUC.SP_SelectedMoney;
-    $(document.getElementByIdb(idb)).find("input[name='amount']").val(SP_FIYAT_HESAP_SONUC.SP_Miktar);
+    $(document.getElementByIdb(idb)).find("input[name='amount']").val(commaSplit(SP_FIYAT_HESAP_SONUC.SP_Miktar));
   console.log(SP_FIYAT_HESAP_SONUC);
   MaliyetHesapla2();
   closeBoxDraggable(modal_id);
