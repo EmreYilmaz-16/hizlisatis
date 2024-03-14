@@ -137,6 +137,9 @@ Giriş 1
                         
                     </cfscript>
                     <cfif isDefined("Ait.QUESTION_ID")><cfset aiq=Ait.QUESTION_ID><cfelse><cfset aiq="NULL"></cfif>
+                        <cfif isDefined("ait.PRICE")><cfset aip=Ait.PRICE><cfelse><cfset aip="0"></cfif>
+                            <cfif isDefined("ait.DISCOUNT")><cfset aid=Ait.DISCOUNT><cfelse><cfset aid="0"></cfif>
+                            <cfif isDefined("ait.MONEY")><cfset aim=Ait.MONEY><cfelse><cfset aim="TL"></cfif>
                     <CFSET Ait.PRODUCT_ID=CreatedProduct.IDENTITYCOL>
                    <cfscript> InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>
                    <cfoutput>
