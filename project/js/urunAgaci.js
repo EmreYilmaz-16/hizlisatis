@@ -829,7 +829,7 @@ function AddRowItem(
     var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB,1);
     span.innerText = PRODUCT_NAME 
     span.appendChild(soxx);
-    
+
     idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
@@ -1068,7 +1068,9 @@ function AgacGetir(agacim, sx = 0) {
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
     amount = filterNum(commaSplit(amount));
-    var pname = $(obj).find("span[name='product_name_']")[0].innerText;
+    var exh=$(obj).find("span[name='product_name_']")[0].cloneNode(true)
+    try {exh.children[0].remove()}catch{};
+    var pname = exh.innerText;
     var agacItem = new Object();
     agacItem.PRODUCT_ID = pid;
     agacItem.PRODUCT_NAME = pname;
