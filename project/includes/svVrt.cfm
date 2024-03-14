@@ -113,6 +113,30 @@ Giriş 1
                             -6
                         )<br/>
                     </cfoutput>
+                    <cfscript>
+                           if(isDefined("Ait.price")){
+                            prcex=Ait.price;
+                        }else{
+                            prcex=0;
+                        }
+                        if(isDefined("Ait.discount")){
+                            dsc=Ait.discount;
+                        }else{
+                            dsc=0;
+                        }
+                        if(isDefined("Ait.MONEY")){
+                            mny=Ait.MONEY;
+                        }else{
+                            mny="TL";
+                        }
+                        if(isDefined("Ait.DISPLAY_NAME") && Ait.DISPLAY_NAME != "undefined" ){
+                            dname=Ait.DISPLAY_NAME
+                        }else{
+                            dName="";
+                        }
+                        
+                    </cfscript>
+                    <cfif isDefined("Ait.QUESTION_ID")><cfset aiq=Ait.QUESTION_ID><cfelse><cfset aiq="NULL"></cfif>
                     <CFSET Ait.PRODUCT_ID=CreatedProduct.IDENTITYCOL>
                    <cfscript> InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);</cfscript>
                    <cfoutput>
