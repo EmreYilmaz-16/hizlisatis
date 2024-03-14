@@ -221,7 +221,7 @@
         WHERE S.PRODUCT_CATID=#arguments.PRODUCT_CATID#
 
     </cfquery>
-
+<cfdump var="#getMaster#">
     <cfset barcode=getBarcode()>
     <cfset UrunAdi=arguments.PRODUCT_NAME>
     <CFOUTPUT query="getMaster">
