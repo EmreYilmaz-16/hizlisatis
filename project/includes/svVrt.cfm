@@ -37,6 +37,10 @@ Giriş 1
                         UpdateVirtualProduct_NEW(VP_ID=#Ait.PRODUCT_ID#,PRICE=#Ait.PRICE#,Discount=#Ait.DISCOUNT#,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
                         ClearVirtualTree(#Ait.PRODUCT_ID#);            
                     </cfoutput>
+                    <cfif isDefined("Ait.QUESTION_ID")><cfset aiq=Ait.QUESTION_ID><cfelse><cfset aiq="NULL"></cfif>
+                        <cfif isDefined("ait.PRICE")><cfset aip=Ait.PRICE><cfelse><cfset aip="0"></cfif>
+                            <cfif isDefined("ait.DISCOUNT")><cfset aid=Ait.DISCOUNT><cfelse><cfset aid="0"></cfif>
+                            <cfif isDefined("ait.MONEY")><cfset aim=Ait.MONEY><cfelse><cfset aim="TL"></cfif>
                    <cfscript>
                         UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="#FormData.PRODUCT_STAGE#");
                         ClearVirtualTree(Ait.PRODUCT_ID);            
@@ -61,6 +65,7 @@ Giriş 1
                         }else{
                             dName="";
                         }
+                        
                         InsertedItem=InsertTree(AktifUrun.PRODUCT_ID,Ait.PRODUCT_ID,Ait.STOCK_ID,Ait.AMOUNT,aiq,aip,aid,aim,Ait.IS_VIRTUAL,dName);
                         
                     </cfscript>      
