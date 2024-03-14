@@ -1156,7 +1156,7 @@ function addProdMain_(idb, modal_id) {
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
   span.setAttribute("style", "display:inline-grid");
-  var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB);
+  var soxx = makeFiyatSpan(0, "TL", "fiyatimis_" + idB);
   span.innerHtml = pname + "-" + soxx;
   idB++;
   //prompt("Ürün Adı");
