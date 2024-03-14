@@ -661,7 +661,7 @@ function AddRow(
   span.setAttribute("onclick", "showData(this)");
   span.setAttribute("data-row", row_count);
   div.appendChild(span);
-  
+
   td.appendChild(div);
   tr.appendChild(td);
 
@@ -1245,6 +1245,12 @@ function AddRow_pbso(
   input_11.setAttribute("id", "description_" + row_count);
   input_11.setAttribute("value", description);
   div.appendChild(input_11);
+  var span = document.createElement("span");
+  span.setAttribute("class", "icon-search");
+  span.setAttribute("onclick", "showData(this)");
+  span.setAttribute("data-row", row_count);
+  div.appendChild(span);
+  
   td.appendChild(div);
   tr.appendChild(td);
 
