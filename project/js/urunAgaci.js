@@ -1940,7 +1940,7 @@ function MaliyetHesapla() {
   Products.each(function (ix, Product) {
      console.log(Product)
     //console.log($(Product).find("input[name='amount']"))
-    var miktar = $(Product).find("input[name='amount']")[0].value;
+    var miktar = $(Product).find("input[name='amount']").value;
     $(Product)
       .find("input[name='amount']")[0]
       .value=commaSplit(filterNum(miktar));
