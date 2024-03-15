@@ -19,6 +19,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
 <cfquery name="GETMONEY" datasource="#DSN#">
     select DISTINCT MONEY from workcube_metosan.SETUP_MONEY 
 </cfquery>
+<cfdump var="#attributes#">
 <cfform name="Notorder_form">
 <cfoutput>
     <input type="hidden" name="PP_ID" id="PP_ID" value="#ishv.PP_ID#">
