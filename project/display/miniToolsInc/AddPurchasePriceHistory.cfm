@@ -22,7 +22,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE PP
 <cfoutput query="ishv">
     <cf_seperator title="#dateFormat(UPDATE_DATE,'dd/mm/yyyy')# #timeFormat(UPDATE_DATE,"hh:mm")#" id="item_#currentrow#" style="display:none;">
         <div class="ui-info-text" id="item_#currentrow#">
-    <table>
+    <cf_big_list>
         <tr>
             <td>
                 Tedarikçi 
@@ -45,7 +45,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE PP
             <td>#tlformat(ishv.PRICE_OTHER)#</td>
             <td>#ishv.OTHER_MONEY#</td>
         </tr>
-    </table>
+    </cf_big_list>
     <div>     
         <cfif len(ishv.UPDATE_EMP_)>
           Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# &nbsp; &nbsp; #dateFormat(UPDATE_DATE,"dd/mm/yyyy")#</code>
