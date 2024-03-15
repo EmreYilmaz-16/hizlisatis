@@ -84,6 +84,8 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
             </td>
         </tr>
     </table>
+    <button type="button" onclick="SaveThisPrice()">Kaydet</button>
+    <hr>
     <div>
         <cfif len(ishv.RECORD_EMP_)>
           Kaydeden :<code style="color:green">#ishv.RECORD_EMP_# &nbsp; &nbsp;#dateFormat(ishv.RECORD_DATE,"dd/mm/yyyy")#</code>
@@ -93,7 +95,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
         
         </cfif>
     </div>
-    <button type="button" onclick="SaveThisPrice()">Kaydet</button>
+   
 </cfoutput>
 </cfform>
 <script>
