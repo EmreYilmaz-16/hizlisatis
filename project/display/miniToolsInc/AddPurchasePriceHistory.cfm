@@ -15,8 +15,10 @@
     ,workcube_metosan.getEmployeeWithId(PP.UPDATE_EMP) AS UPDATE_EMP_
 	,PP.UPDATE_EMP
 	,C.NICKNAME
+    
 FROM PBS_OFFER_ROW_PURCHASE_PRICES_HISTORY AS PP
 LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE PP_ID='#attributes.PP_ID#'
+
 </cfquery>
 
 <cfoutput query="ishv">
