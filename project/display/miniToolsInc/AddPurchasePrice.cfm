@@ -92,15 +92,27 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
     
     <hr>
     <div>
-        <cfif len(ishv.RECORD_EMP_)>
-          Kaydeden :<code style="color:green">#ishv.RECORD_EMP_# &nbsp; &nbsp;#dateFormat(ishv.RECORD_DATE,"dd/mm/yyyy")#</code>
-        </cfif>
-        <br>
-        <cfif len(ishv.UPDATE_EMP_)>
-        Güncelleyen :<a href="##" title="Tarihçe" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=AddPurchasePriceHistory&PP_ID=#ishv.PP_ID#');"><span class="icn-md icon-search"></span>&nbsp;<code style="color:orange">#ishv.UPDATE_EMP_# &nbsp;&nbsp;#dateFormat(ishv.UPDATE_DATE,"dd/mm/yyyy")# </code></a>
-        
-        
-        </cfif>
+        <table>
+            <tr>
+                <td>
+                    Kaydeden
+                </td>                
+                <td><cfif len(ishv.RECORD_EMP_)>
+                    :<code style="color:green">#ishv.RECORD_EMP_# &nbsp; &nbsp;#dateFormat(ishv.RECORD_DATE,"dd/mm/yyyy")#</code>
+                </cfif>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Güncelleyen
+                </td>
+                <td>
+                    <cfif len(ishv.UPDATE_EMP_)>
+                        :<a href="##" title="Tarihçe" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=AddPurchasePriceHistory&PP_ID=#ishv.PP_ID#');"><span class="icn-md icon-search"></span>&nbsp;<code style="color:orange">#ishv.UPDATE_EMP_# &nbsp;&nbsp;#dateFormat(ishv.UPDATE_DATE,"dd/mm/yyyy")# </code></a>                                              
+                    </cfif>
+                </td>
+            </tr>
+        </table>
     </div>
    
 </cfoutput>
