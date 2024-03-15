@@ -9,9 +9,9 @@ var tempProductData = "";
 var selectedArr = [];
 var selectedMoney = "";
 var CompanyData = new Object();
-var Yuvarlama=8;
-var FiyatYuvarlama=8;
-var ToplamYuvarlama=8;
+var Yuvarlama = 8;
+var FiyatYuvarlama = 8;
+var ToplamYuvarlama = 8;
 $(document).ready(function () {
   setDoom();
   if (getParameterByName("event") == "upd") {
@@ -89,7 +89,7 @@ function AddRow(
   is_karma = 0,
   is_karma_sevk = 0,
   fromgetKarmaProducts = 0,
-  KNTST=0
+  KNTST = 0
 ) {
   if (is_karma_sevk == 1) {
     getKarmaProducts(product_id, quantity);
@@ -98,7 +98,9 @@ function AddRow(
   if (is_karma == 1 && is_karma_sevk == 0) {
     // var KarmaSonuc=wrk_query("SELECT  SUM(ISNULL("+generalParamsSatis.dataSources.dsn3+".GET_CURRENT_PRODUCT_PRICE("+CompanyData.COMPANY_ID+","+CompanyData.PRICE_CAT+",STOCK_ID),0)) as f  FROM workcube_metosan_product.KARMA_PRODUCTS WHERE KARMA_PRODUCT_ID=61564","dsn1")
     var KarmaSonucStr =
-      " SELECT SUM (FIY) as FIYATIM FROM ( SELECT *,CASE WHEN 1="+KNTST+" THEN SALES_PRICE* PRODUCT_AMOUNT WHEN HVT=0 THEN workcube_metosan_1.NT_GET_CURRENT_PRODUCT_PRICE(" +
+      " SELECT SUM (FIY) as FIYATIM FROM ( SELECT *,CASE WHEN 1=" +
+      KNTST +
+      " THEN SALES_PRICE* PRODUCT_AMOUNT WHEN HVT=0 THEN workcube_metosan_1.NT_GET_CURRENT_PRODUCT_PRICE(" +
       CompanyData.COMPANY_ID +
       "," +
       CompanyData.PRICE_CAT +
@@ -515,7 +517,7 @@ function AddRow(
   i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
   i_10.setAttribute("class", "prtMoneyBox");
   i_10.setAttribute("style", "width:30px");
-  i_10.setAttribute("value", commaSplit(price_other,FiyatYuvarlama));
+  i_10.setAttribute("value", commaSplit(price_other, FiyatYuvarlama));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1099,7 +1101,7 @@ function AddRow_pbso(
   i_10.setAttribute("onchange", "hesapla('price_other'," + row_count + ")");
   i_10.setAttribute("class", "prtMoneyBox");
   i_10.setAttribute("style", "width:30px");
-  i_10.setAttribute("value", commaSplit(price_other,FiyatYuvarlama));
+  i_10.setAttribute("value", commaSplit(price_other, FiyatYuvarlama));
 
   var div = document.createElement("div");
   div.setAttribute("class", "form-group");
@@ -1542,7 +1544,10 @@ function toplamHesapla_2() {
   var grosT = 0;
   var kdv_matrah = 0;
   for (let i = 1; i <= rows.length; i++) {
-    var prc = filterNum(document.getElementById("price_" + i).value,ToplamYuvarlama);
+    var prc = filterNum(
+      document.getElementById("price_" + i).value,
+      ToplamYuvarlama
+    );
     console.log(prc);
     var qty = filterNum(document.getElementById("amount_" + i).value);
     var dsc = filterNum(document.getElementById("indirim1_" + i).value);
@@ -1850,10 +1855,10 @@ function GruplaCanimBenim() {
     Mik = parseFloat(filterNum(Mik));
     var MainUnit = document.getElementById("main_unit_" + Rc).value;
     var Price = document.getElementById("price_other_" + Rc).value;
-    Price = parseFloat(filterNum(Price,Yuvarlama));
+    Price = parseFloat(filterNum(Price, Yuvarlama));
     var Om = document.getElementById("other_money_" + Rc).value;
     var prc = document.getElementById("price_" + Rc).value;
-    prc = parseFloat(filterNum(prc,Yuvarlama));
+    prc = parseFloat(filterNum(prc, Yuvarlama));
     var tax = document.getElementById("Tax_" + Rc).value;
     tax = filterNum(tax);
     var row_nettotal = parseFloat(prc) * parseFloat(Mik);
@@ -2014,13 +2019,13 @@ function BasketSelControl() {
     var pid = $(e)
       .find("#product_id_" + RwId)
       .val();
-      var SetPurchasePrice = {
-        icon: "icn-md icon-check",
-        txt: "Aliş Fiyatı Ekle",
-        evntType: "onclick",
-        evnt: "AddPurchasePrice(" + pid + "," + RwId + ")",
-        att: "disabled",
-      };
+    var SetPurchasePrice = {
+      icon: "icn-md icon-check",
+      txt: "Aliş Fiyatı Ekle",
+      evntType: "onclick",
+      evnt: "AddPurchasePrice(" + pid + "," + RwId + ")",
+      att: "disabled",
+    };
     if (parseInt(isVirt) == 1) {
       if (parseInt(Ptype) == 1) {
         var UpdateButton = {
@@ -2764,9 +2769,12 @@ function setFiyatA(row, price, money, modal_id) {
   hesapla("price", row);
   closeBoxDraggable(modal_id);
 }
-function AddPurchasePrice(el)
-{
-
+function AddPurchasePrice(pid, rw_di) {
+  var UniqueId = document.getElementById("row_uniq_id_" + rw_di);
+  openBoxDraggable(
+    "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=AddPurchasePrice&uniq_id="+UniqueId,
+    "1453162606"
+  );
 }
 function ConvertRealProduct(pid, rwid) {
   if (document.getElementById("is_virtual_" + rwid).value == "0") {
