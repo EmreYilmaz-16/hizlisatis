@@ -28,7 +28,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
     <input type="hidden" name="PP_ID" id="PP_ID" value="#ishv.PP_ID#">
     <input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#attributes.uniq_id#">
     <input type="hidden" name="EMP_ID" id="EMP_ID" value="#session.ep.userid#">
-    <table>
+    <cf_grid_list>
         <tr>
             <td>
                 <div class="form-group" id="item-company_id">
@@ -83,15 +83,16 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
                 
             </td>
         </tr>
-    </table>
-    <button type="button" onclick="SaveThisPrice()">Kaydet</button>
+    </cf_grid_list>
+    <button class="ui-wrk-btn ui-wrk-btn-success" type="button" onclick="SaveThisPrice()">Kaydet</button>
     <hr>
     <div>
         <cfif len(ishv.RECORD_EMP_)>
           Kaydeden :<code style="color:green">#ishv.RECORD_EMP_# &nbsp; &nbsp;#dateFormat(ishv.RECORD_DATE,"dd/mm/yyyy")#</code>
         </cfif>
         <cfif len(ishv.UPDATE_EMP_)>
-        Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# &nbsp;&nbsp;#dateFormat(ishv.UPDATE_DATE,"dd/mm/yyyy")# <button type="button" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=AddPurchasePriceHistory&PP_ID=#ishv.PP_ID#')" class="ui-ripple-btn">Tarihçe</button> </code>
+        Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# &nbsp;&nbsp;#dateFormat(ishv.UPDATE_DATE,"dd/mm/yyyy")# </code>
+
         
         </cfif>
     </div>
