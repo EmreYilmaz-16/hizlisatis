@@ -30,7 +30,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
     <input type="hidden" name="EMP_ID" id="EMP_ID" value="#session.ep.userid#">
     <cf_ajax_list>
         <tr>
-            <td>
+            <td colspan="2">
                 <div class="form-group" id="item-company_id">
                     <label>Tedarikçi </label>							
                     <div>
@@ -47,12 +47,12 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
             </td>
         </tr>
         <tr>
-            <td>
+            <td colspan="2">
                 Alış Fiyat Tarihi
             </td>            
         </tr>
         <tr>
-            <td>
+            <td colspan="2">
                 <div class="form-group">
                     <input type="date" name="PP_DATE" id="PP_DATE" value="#dateformat(ishv.PP_DATE,"yyyy-mm-dd")#">
                 </div>
@@ -83,8 +83,13 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
                 
             </td>
         </tr>
+        <tr>
+            <td>
+                <button class="ui-wrk-btn ui-wrk-btn-success" type="button" onclick="SaveThisPrice()">Kaydet</button>
+            </td>
+        </tr>
     </cf_ajax_list>
-    <button class="ui-wrk-btn ui-wrk-btn-success" type="button" onclick="SaveThisPrice()">Kaydet</button>
+    
     <hr>
     <div>
         <cfif len(ishv.RECORD_EMP_)>
