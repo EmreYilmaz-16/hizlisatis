@@ -252,7 +252,7 @@
             </cfquery>
             <cfelse>
               <cfquery name="ins" datasource="#dsn#">
-                INSERT INTO workcube_metosan_1.PBS_OFFER_ROW_PURCHASE_PRICES_HISTORY ( UNIQUE_RELATION_ID,  COMPANY_ID, PRICE, OTHER_MONEY, PRICE_OTHER, PP_DATE, RECORD_DATE, RECORD_EMP) VALUES (
+                INSERT INTO workcube_metosan_1.PBS_OFFER_ROW_PURCHASE_PRICES ( UNIQUE_RELATION_ID,  COMPANY_ID, PRICE, OTHER_MONEY, PRICE_OTHER, PP_DATE, RECORD_DATE, RECORD_EMP) VALUES (
                     '#FData.UNIQUE_RELATION_ID#',
                     <cfif len(FData.COMP_ID)>#FData.COMP_ID#<cfelse>NULL</cfif>,
                     0,
