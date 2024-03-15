@@ -90,8 +90,8 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
         </tr>
     </table>
     
-    <hr>
-    <div>
+    
+    <div style="border-top:solid 1px black;padding-top:10px">
         <table>
             <tr>
                 <td>
