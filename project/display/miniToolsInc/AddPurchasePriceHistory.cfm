@@ -48,7 +48,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE PP
     </table>
     <div>     
         <cfif len(ishv.UPDATE_EMP_)>
-          Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# <br>#dateFormat(UPDATE_DATE,"dd/mm/yyyy")#</code>
+          Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# &nbsp; &nbsp; #dateFormat(UPDATE_DATE,"dd/mm/yyyy")#</code>
         </cfif>
     </div>
 </div>
