@@ -1,6 +1,9 @@
 ﻿<cfquery name="ishv" datasource="#dsn3#">
     SELECT PP_ID,UNIQUE_RELATION_ID,COMPANY_ID,COMPANY_ID,PRICE,OTHER_MONEY,PRICE_OTHER,PP_DATE,RECORD_DATE,RECORD_EMP,UPDATE_DATE,UPDATE_EMP FROM PBS_OFFER_ROW_PURCHASE_PRICES WHERE UNIQUE_RELATION_ID='#attributes.uniq_id#'
 </cfquery>
+<cfquery name="GETMONEY" datasource="#DSN#">
+    select DISTINCT MONEY from workcube_metosan.SETUP_MONEY 
+</cfquery>
 <cfform name="Notorder_form">
 <cfoutput>
     <input type="hidden" name="PP_ID" id="PP_ID" value="#ishv.PP_ID#">
@@ -51,7 +54,9 @@
             <td>
                 <div class="form-group">
                     <select name="OTHER_MONEY_001" id="OTHER_MONEY_001">
-
+                        <CFLOOP query="GETMONEY">
+                            <option value="#MONEY#">#MONEY#</option>
+                        </CFLOOP>
                     </select>
                 </div>
                 
@@ -61,14 +66,3 @@
 </cfoutput>
 </cfform>
 
-<script>
-    $(document).ready(function (params) {
-        for (let index = 0; index < moneyArr.length; index++) {
-            const element = array[index];
-            var opt=document.createElement("option")
-            opt.value=element.MONEY;
-            opt.innerText=element.MONEY
-            document.getElementById("OTHER_MONEY_001").appendChild(opt)
-        }
-    })
-</script>
