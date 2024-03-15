@@ -238,6 +238,7 @@
     <cffunction name="AddPurchasePrice" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
         
         <cfdump var="#arguments#">
+        <CFSET DSN="workcube_metosan">
         <cfset FData=deserializeJSON(arguments.FormData)>
         <cfif len(FData.PP_ID)>
             <cfquery name="insh" datasource="#dsn#"> 
