@@ -2770,7 +2770,7 @@ function setFiyatA(row, price, money, modal_id) {
   closeBoxDraggable(modal_id);
 }
 function AddPurchasePrice(pid, rw_di) {
-  var UniqueId = document.getElementById("row_uniq_id_" + rw_di);
+  var UniqueId = document.getElementById("row_uniq_id_" + rw_di).value;
   openBoxDraggable(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=AddPurchasePrice&uniq_id="+UniqueId,
     "1453162606"
