@@ -115,7 +115,7 @@ satis\cfc\hizli_satis.cfc
       "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=AddPurchasePrice",
       data:{
         FormData:JSON.stringify(Objem)
-      }
+      },
     success: function (retDat) {
       //  console.log(retDat);
      // getProjectProducts(projectId);
