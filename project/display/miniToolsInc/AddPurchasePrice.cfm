@@ -65,7 +65,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
         <tr>
             <td>
                 <div class="form-group">
-                    <input type="text" name="PRICE_001" onchange="this.value=comaSplit(this.value)" id="PRICE_001" value="#ishv.PRICE#">
+                    <input type="text" name="PRICE_001" onchange="this.value=commaSplit(this.value)" id="PRICE_001" value="#ishv.PRICE#">
                 </div>
             </td>
             <td>
