@@ -34,7 +34,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
                     <div>
                         <div class="input-group">
                             <input type="hidden" name="consumer_id_0001" id="consumer_id_0001" value="">
-                            <input type="hidden" name="company_id_0001" id="company_id_0001" value="">
+                            <input type="hidden" name="company_id_0001" id="company_id_0001" value="#ishv.COMPANY_ID#">
                             <input type="hidden" name="member_type_0001" id="member_type_0001" value="">
                             <input name="member_name_0001" type="text" id="member_name_0001" placeholder="Cari Hesap" onfocus="AutoComplete_Create('member_name_0001','MEMBER_NAME,MEMBER_PARTNER_NAME,MEMBER_CODE','MEMBER_NAME,MEMBER_PARTNER_NAME,MEMBER_CODE','get_member_autocomplete','\'1,2\'','CONSUMER_ID,COMPANY_ID,MEMBER_TYPE','consumer_id_0001,company_id_0001,member_type_0001','','3','250');" value="#ishv.NICKNAME#" autocomplete="off" style=""><div id="member_name_div_2" name="member_name_div_2" class="completeListbox" autocomplete="on" style="width: 506px; max-height: 150px; overflow: auto; position: absolute; left: 545.833px; top: 210.556px; z-index: 159; display: none;"></div>
                             
