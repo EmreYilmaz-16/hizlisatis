@@ -20,7 +20,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE PP
 </cfquery>
 
 <cfoutput query="ishv">
-    <cf_seperator title="#dateFormat(UPDATE_DATE,'dd/mm/yyyy')# #timeFormat(UPDATE_DATE,"hh:nn")#" id="item_#currentrow#" style="display:none;">
+    <cf_seperator title="#dateFormat(UPDATE_DATE,'dd/mm/yyyy')# #timeFormat(UPDATE_DATE,"hh:mm")#" id="item_#currentrow#" style="display:none;">
         <div class="ui-info-text" id="item_#currentrow#">
     <table>
         <tr>
