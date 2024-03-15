@@ -13,7 +13,7 @@
 <cfelseif attributes.tool_type eq 'UE-TR'>
     <cfinclude template="miniToolsInc/AgacKarsilastir.cfm">
 <cfelseif attributes.tool_type eq 'AddPurchasePrice'>
-    <cf_box title="Alış Fiyatı" scroll="0" collapsable="0" resize="0" popup_box="1">
+    <cf_box title="Alış Fiyatı" scroll="0" collapsable="0" resize="0" popup_box="0">
     <cfinclude template="miniToolsInc/AddPurchasePrice.cfm">
     </cf_box>
 <cfelseif attributes.tool_type eq 'AddPurchasePriceHistory'>
