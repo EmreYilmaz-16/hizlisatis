@@ -28,7 +28,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
     <input type="hidden" name="PP_ID" id="PP_ID" value="#ishv.PP_ID#">
     <input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#attributes.uniq_id#">
     <input type="hidden" name="EMP_ID" id="EMP_ID" value="#session.ep.userid#">
-    <table>
+    <cf_report_list>
         <tr>
             <td colspan="2">
                 <div class="form-group" id="item-company_id">
@@ -88,7 +88,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
                 <button class="ui-wrk-btn ui-wrk-btn-success" type="button" onclick="SaveThisPrice()">Kaydet</button>
             </td>
         </tr>
-    </table>
+    </cf_report_list>
     
     
     <div style="border-top:solid 1px black;padding-top:10px;margin-top:10px">
