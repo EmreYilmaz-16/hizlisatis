@@ -90,6 +90,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
         </cfif>
         <cfif len(ishv.UPDATE_EMP_)>
         Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# <br>#dateFormat(UPDATE_DATE,"dd/mm/yyyy")#</code>
+        <button type="button" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=AddPurchasePriceHistory&PP_ID=#PP_ID#')" class="ui-ripple-btn">Tarihçe</button>
         </cfif>
     </div>
     <button type="button" onclick="SaveThisPrice()">Kaydet</button>
