@@ -32,7 +32,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
         <tr>
             <td>
                 <div class="form-group" id="item-company_id">
-                    <label>Cari Hesap </label>							
+                    <label>Tedarikçi </label>							
                     <div>
                         <div class="input-group">
                             <input type="hidden" name="consumer_id_0001" id="consumer_id_0001" value="">
@@ -86,16 +86,15 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
     </table>
     <div>
         <cfif len(ishv.RECORD_EMP_)>
-          Kaydeden :<code style="color:green">#ishv.RECORD_EMP_#</code>
+          Kaydeden :<code style="color:green">#ishv.RECORD_EMP_# <br>#dateFormat(RECORD_DATE,"dd/mm/yyyy")#</code>
         </cfif>
-        <cfif len(ishv.RECORD_EMP_)>
-          Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_#</code>
+        <cfif len(ishv.UPDATE_EMP_)>
+        Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# <br>#dateFormat(UPDATE_DATE,"dd/mm/yyyy")#</code>
         </cfif>
     </div>
     <button type="button" onclick="SaveThisPrice()">Kaydet</button>
 </cfoutput>
 </cfform>
-satis\cfc\hizli_satis.cfc
 <script>
     function SaveThisPrice() {
         var PP_ID=document.getElementById("PP_ID").value;
