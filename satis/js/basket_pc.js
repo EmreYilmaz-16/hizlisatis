@@ -2014,6 +2014,13 @@ function BasketSelControl() {
     var pid = $(e)
       .find("#product_id_" + RwId)
       .val();
+      var SetPurchasePrice = {
+        icon: "icn-md icon-check",
+        txt: "Aliş Fiyatı Ekle",
+        evntType: "onclick",
+        evnt: "AddPurchasePrice(" + pid + "," + RwId + ")",
+        att: "disabled",
+      };
     if (parseInt(isVirt) == 1) {
       if (parseInt(Ptype) == 1) {
         var UpdateButton = {
@@ -2757,7 +2764,10 @@ function setFiyatA(row, price, money, modal_id) {
   hesapla("price", row);
   closeBoxDraggable(modal_id);
 }
+function AddPurchasePrice(el)
+{
 
+}
 function ConvertRealProduct(pid, rwid) {
   if (document.getElementById("is_virtual_" + rwid).value == "0") {
     openBoxDraggable(
