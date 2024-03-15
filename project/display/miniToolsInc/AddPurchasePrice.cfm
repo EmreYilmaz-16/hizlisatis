@@ -114,7 +114,7 @@ satis\cfc\hizli_satis.cfc
     url:
       "/AddOns/Partner/satis/cfc/hizli_satis.cfc?method=AddPurchasePrice",
       data:{
-        FormData=JSON.stringify(Objem)
+        FormData:JSON.stringify(Objem)
       }
     success: function (retDat) {
       //  console.log(retDat);
