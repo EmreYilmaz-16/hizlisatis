@@ -16,6 +16,7 @@
 FROM PBS_OFFER_ROW_PURCHASE_PRICES AS PP
 LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UNIQUE_RELATION_ID='#attributes.uniq_id#'
 </cfquery>
+<cfdump var="#ishv#">
 <cfquery name="GETMONEY" datasource="#DSN#">
     select DISTINCT MONEY from workcube_metosan.SETUP_MONEY 
 </cfquery>
@@ -23,7 +24,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
 <cfform name="Notorder_form">
 <cfoutput>
     <input type="hidden" name="PP_ID" id="PP_ID" value="#ishv.PP_ID#">
-    <input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#ishv.UNIQUE_RELATION_ID#">
+    <input type="hidden" name="UNIQUE_RELATION_ID" id="UNIQUE_RELATION_ID" value="#attributes.UNIQUE_RELATION_ID#">
     <input type="hidden" name="EMP_ID" id="EMP_ID" value="#session.ep.userid#">
     <table>
         <tr>
