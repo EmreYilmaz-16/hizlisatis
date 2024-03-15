@@ -235,7 +235,10 @@
     </cfif>
     <cfreturn Replace(SerializeJSON(ReturnVal),'//','')>
     </cffunction>
-
+    <cffunction name="AddPurchasePrice" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
+        
+        <cfdump var="#arguments#">
+    </cffunction>
  <cffunction name="getProductListpbs" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
         <cfargument name="keyword">
     <cfargument name="userid">
