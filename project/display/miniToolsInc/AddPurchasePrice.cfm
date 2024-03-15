@@ -1,5 +1,5 @@
-﻿Yapım Aşamasında
-<cfabort>
+﻿<cfif session.ep.userid neq 1146 >Yapım Aşamasında
+<cfabort></cfif>
 <cfquery name="ishv" datasource="#dsn3#">
     SELECT PP_ID
 	,UNIQUE_RELATION_ID
