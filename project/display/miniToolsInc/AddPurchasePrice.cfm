@@ -89,7 +89,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
           Kaydeden :<code style="color:green">#ishv.RECORD_EMP_# <br>#dateFormat(ishv.RECORD_DATE,"dd/mm/yyyy")#</code>
         </cfif>
         <cfif len(ishv.UPDATE_EMP_)>
-        Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# <button type="button" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=AddPurchasePriceHistory&PP_ID=#PP_ID#')" class="ui-ripple-btn">Tarihçe</button> <br>#dateFormat(ishv.UPDATE_DATE,"dd/mm/yyyy")#</code>
+        Güncelleyen :<code style="color:orange">#ishv.UPDATE_EMP_# <button type="button" onclick="openBoxDraggable('index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=AddPurchasePriceHistory&PP_ID=#ishv.PP_ID#')" class="ui-ripple-btn">Tarihçe</button> <br>#dateFormat(ishv.UPDATE_DATE,"dd/mm/yyyy")#</code>
         
         </cfif>
     </div>
