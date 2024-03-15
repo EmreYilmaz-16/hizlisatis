@@ -100,6 +100,7 @@ satis\cfc\hizli_satis.cfc
         var COMP_ID=document.getElementById("company_id_0001").value;
         var PP_DATE=document.getElementById("PP_DATE").value;
         var PRICE=document.getElementById("PRICE_001").value;
+        PRICE=filterNum(PRICE)
         var OTHER_MONEY=document.getElementById("OTHER_MONEY_001").value;
        var Objem={
         PP_ID:PP_ID,

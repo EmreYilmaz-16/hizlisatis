@@ -238,6 +238,31 @@
     <cffunction name="AddPurchasePrice" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
         
         <cfdump var="#arguments#">
+        <cfset FData=deserializeJSON(arguments.FormData)>
+        <cfif len(FData.PP_ID)>
+            <cfquery name="insh" datasource="#dsn#"> 
+                    INSERT INTO workcube_metosan_1.PBS_OFFER_ROW_PURCHASE_PRICES_HISTORY (PP_ID, UNIQUE_RELATION_ID,  COMPANY_ID, PRICE, OTHER_MONEY, PRICE_OTHER, PP_DATE, RECORD_DATE, RECORD_EMP, UPDATE_DATE, UPDATE_EMP)
+                    SELECT PP_ID, UNIQUE_RELATION_ID,  COMPANY_ID, PRICE, OTHER_MONEY, PRICE_OTHER, PP_DATE, RECORD_DATE, RECORD_EMP, UPDATE_DATE, UPDATE_EMP FROM workcube_metosan_1.PBS_OFFER_ROW_PURCHASE_PRICES WHERE PP_ID=#FData.PP_ID# 
+            </cfquery>
+            <cfquery name="Upd" datasource="#dsn#">
+                UPDATE workcube_metosan_1.PBS_OFFER_ROW_PURCHASE_PRICES SET 
+                  COMPANY_ID=#FData.COMP_ID#, OTHER_MONEY='#FData.OTHER_MONEY#', PRICE_OTHER=#FData.PRICE#, PP_DATE='#FData.PP_DATE#',   UPDATE_DATE=GETDATE(), UPDATE_EMP=#FData.EMP_ID#
+                  WHERE PP_ID=#FData.PP_ID#
+            </cfquery>
+            <cfelse>
+              <cfquery name="ins" datasource="#dsn#">
+                INSERT INTO workcube_metosan_1.PBS_OFFER_ROW_PURCHASE_PRICES_HISTORY ( UNIQUE_RELATION_ID,  COMPANY_ID, PRICE, OTHER_MONEY, PRICE_OTHER, PP_DATE, RECORD_DATE, RECORD_EMP) VALUES (
+                    '#FData.UNIQUE_RELATION_ID#',
+                    <cfif len(FData.COMP_ID)>#FData.COMP_ID#<cfelse>NULL</cfif>,
+                    0,
+                    '#FData.OTHER_MONEY#',
+                    <cfif len(FData.PRICE)>#FData.PRICE#<cfelse>0</cfif>,
+                    <cfif len(FData.PP_DATE)>'#FData.PP_DATE#'<cfelse>GETDATE()</cfif>,
+                    GETDATE(),
+                    #FData.EMP_ID#
+                )
+              </cfquery>  
+        </cfif>
     </cffunction>
  <cffunction name="getProductListpbs" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
         <cfargument name="keyword">
