@@ -1586,7 +1586,14 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     if (isoq <= 0) {
       isoq = arr[i].RNDM_ID;
     }
-   
+    var spn = document.createElement("span");
+    spn.setAttribute("name", "product_name_");
+    spn.setAttribute("style", "display:inline-grid");
+    var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
+      (p) => p.QUESTION_ID == arr[i].QUESTION_ID
+    );
+    var dName = arr[i].DISPLAYNAME;
+    var str = arr[i].PRODUCT_NAME;
     if (qname != undefined) {
       qname =
         "<span name='question_name_' style='color:var(--danger)'>(" +
