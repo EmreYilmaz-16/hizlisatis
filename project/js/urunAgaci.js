@@ -1587,20 +1587,25 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
       isoq = arr[i].RNDM_ID;
     }
    
-    var spn = document.createElement("span");
-    spn.setAttribute("name", "product_name_");
-    spn.setAttribute("style", "display:inline-grid");
-    var qname = VIRTUAL_PRODUCT_TREE_QUESTIONS.find(
-      (p) => p.QUESTION_ID == arr[i].QUESTION_ID
-    );
-    var str = arr[i].PRODUCT_NAME;
     if (qname != undefined) {
       qname =
-        "<span style='color:var(--danger)'>(" + qname.QUESTION + ")</span>";
+        "<span name='question_name_' style='color:var(--danger)'>(" +
+        qname.QUESTION +
+        ")</span>";
     } else {
       qname = "";
     }
-    spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname;
+    if (dName != undefined && dName.length > 0) {
+      dName =
+        "<span name='display_name_' style='color:var(--success)'>(" +
+        dName +
+        ")</span>";
+    } else {
+      dName = "";
+    }
+    var sssx = makeFiyatSpan(arr[i].PRICE, arr[i].MONEY, "fiyatimis_" + idB);
+    spn.innerHTML =
+      arr[i].PRODUCT_NAME + "-" + sssx + " " + qname + " " + dName;
 /*
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
