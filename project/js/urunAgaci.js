@@ -1985,7 +1985,7 @@ function GercekKontrol(id) {
     if (ex >= 1) {
       var b = document.getElementById("teklifButton");
       b.removeAttribute("class");
-      b.setAttribute("class", "btn btn-outline-secondary");
+      b.setAttribute("class", "btn btn-outline-warning");
       b.innerText = "Teklif Verildi";
        b.setAttribute("disabled", "disabled");
       var c = document.getElementById("silButon");
