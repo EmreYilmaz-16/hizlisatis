@@ -1586,6 +1586,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     if (isoq <= 0) {
       isoq = arr[i].RNDM_ID;
     }
+   
     var spn = document.createElement("span");
     spn.setAttribute("name", "product_name_");
     spn.setAttribute("style", "display:inline-grid");
@@ -1600,13 +1601,27 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
       qname = "";
     }
     spn.innerHTML = arr[i].PRODUCT_NAME + " " + qname;
-
+/*
+    li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
+    li.setAttribute("data-stock_id", arr[i].STOCK_ID);
+    li.setAttribute("data-price", arr[i].PRICE);
+    li.setAttribute("data-other_money", arr[i].MONEY);
+    li.setAttribute("data-discount", arr[i].DISCOUNT);
+    li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
+    li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
+    li.setAttribute("data-question_id", arr[i].QUESTION_ID);
+    li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
+*/
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
     li.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     ul.setAttribute("data-IS_VIRTUAL", arr[i].IS_VIRTUAL);
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
+    li.setAttribute("data-price", arr[i].PRICE);
+    li.setAttribute("data-discount", arr[i].DISCOUNT);
+    li.setAttribute("data-other_money", arr[i].MONEY);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
+    li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
     li.setAttribute("data-idb", idB);
     idB++;
     var diva = document.createElement("div");
