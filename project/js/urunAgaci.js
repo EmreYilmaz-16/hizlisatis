@@ -1973,32 +1973,29 @@ function MaliyetHesapla() {
 }
 
 function GercekKontrol(id) {
-  var q = wrk_query(
-    "SELECT IS_CONVERT_REAL FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=" +
-      id,
-    "dsn3"
-  );
+  var PROJECT_ID = getParameterByName("project_id");
+  var q = wrk_query("SELECT * FROM PBS_OFFER WHERE PROJECT_ID="+PROJECT_ID,"DSN3")
   if (q.recordcount > 0) {
     console.log(q.IS_CONVERT_REAL[0]);
-    var ex = q.IS_CONVERT_REAL[0];
+    var ex = q.recordcount
     ex = parseInt(ex);
     console.log(ex);
-    if (ex == 1) {
+    if (ex >= 1) {
       var b = document.getElementById("teklifButton");
       b.removeAttribute("class");
       b.setAttribute("class", "btn btn-outline-secondary");
-      b.innerText = "Teklif Ver";
-      // b.setAttribute("disabled", "disabled");
+      b.innerText = "Teklif Verildi";
+       b.setAttribute("disabled", "disabled");
       var c = document.getElementById("silButon");
-      //c.setAttribute("disabled", "disabled");
+      c.setAttribute("disabled", "disabled");
     } else {
       var b = document.getElementById("teklifButton");
       b.removeAttribute("class");
       b.setAttribute("class", "btn btn-outline-secondary");
       b.innerText = "Teklif Ver";
-      // b.removeAttribute("disabled");
+       b.removeAttribute("disabled");
       var c = document.getElementById("silButon");
-      //c.removeAttribute("disabled");
+      c.removeAttribute("disabled");
     }
     return ex;
   }
