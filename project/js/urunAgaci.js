@@ -511,7 +511,7 @@ function makeFiyatSpan(itext, itext2, iid, tip = 0) {
       "<span id='" + iid + "'>" + commaSplit(itext) + " " + itext2 + "</span>";
   } else {
     var spn = document.createElement("span");
-    spn.innerText = itext+" "+itext2;
+    spn.innerText = itext + " " + itext2;
     spn.id = iid;
   }
   return spn;
@@ -686,7 +686,7 @@ function AddRowItem(
   COLUMNSA,
   AMOUNT
 ) {
-   console.log(arguments);
+  console.log(arguments);
   if (COLUMNSA == 0) {
     var e = document.getElementById("ppidarea").children[0];
     var li = document.createElement("li");
@@ -731,11 +731,11 @@ function AddRowItem(
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB,1);
-    span.innerText =  PRODUCT_NAME ;
+    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB, 1);
+    span.innerText = PRODUCT_NAME;
     //span.innerHTML += soxx;
     idB++;
-    
+
     div.appendChild(span);
     div.appendChild(soxx);
     var div2 = document.createElement("div");
@@ -826,8 +826,8 @@ function AddRowItem(
     var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
-    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB,1);
-    span.innerText = PRODUCT_NAME 
+    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB, 1);
+    span.innerText = PRODUCT_NAME;
     span.appendChild(soxx);
 
     idB++;
@@ -1068,8 +1068,10 @@ function AgacGetir(agacim, sx = 0) {
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
     amount = filterNum(commaSplit(amount));
-    var exh=$(obj).find("span[name='product_name_']")[0].cloneNode(true)
-    try {exh.children[0].remove()}catch{};
+    var exh = $(obj).find("span[name='product_name_']")[0].cloneNode(true);
+    try {
+      exh.children[0].remove();
+    } catch {}
     var pname = exh.innerText;
     var agacItem = new Object();
     agacItem.PRODUCT_ID = pid;
@@ -1160,9 +1162,9 @@ function addProdMain_(idb, modal_id) {
   var span = document.createElement("span");
   span.setAttribute("name", "product_name_");
   span.setAttribute("style", "display:inline-grid");
-  var soxx = makeFiyatSpan(0, "TL", "fiyatimis_" + idB,1);
-  span.innerText = pname 
-span.appendChild(soxx);
+  var soxx = makeFiyatSpan(0, "TL", "fiyatimis_" + idB, 1);
+  span.innerText = pname;
+  span.appendChild(soxx);
   idB++;
   //prompt("Ürün Adı");
   li.setAttribute("data-product_catid", p_cat_id);
@@ -1938,12 +1940,12 @@ function MaliyetHesapla() {
   var TotalPrice = 0;
   var Products = $("#ppidarea *li");
   Products.each(function (ix, Product) {
-     console.log(Product)
+    console.log(Product);
     //console.log($(Product).find("input[name='amount']"))
     var miktar = $(Product).find("input[name='amount']").val();
-    $(Product)
-      .find("input[name='amount']")[0]
-      .value=commaSplit(filterNum(miktar));
+    $(Product).find("input[name='amount']")[0].value = commaSplit(
+      filterNum(commaSplit(miktar))
+    );
     miktar = filterNum(miktar);
     //li.setAttribute("data-netTotal", 0);
     var price = Product.getAttribute("data-price");
@@ -1986,7 +1988,7 @@ function GercekKontrol(id) {
       b.removeAttribute("class");
       b.setAttribute("class", "btn btn-outline-secondary");
       b.innerText = "Teklif Ver";
-     // b.setAttribute("disabled", "disabled");
+      // b.setAttribute("disabled", "disabled");
       var c = document.getElementById("silButon");
       //c.setAttribute("disabled", "disabled");
     } else {
@@ -1994,7 +1996,7 @@ function GercekKontrol(id) {
       b.removeAttribute("class");
       b.setAttribute("class", "btn btn-outline-secondary");
       b.innerText = "Teklif Ver";
-     // b.removeAttribute("disabled");
+      // b.removeAttribute("disabled");
       var c = document.getElementById("silButon");
       //c.removeAttribute("disabled");
     }
@@ -2248,8 +2250,8 @@ function LoadTree(el) {
     );
   var idb =
     elek.parentElement.parentElement.parentElement.getAttribute("data-idb");
-  var miktar = filterNum(commaSplit(
-    elek.parentElement.getElementsByTagName("input")[0].value)
+  var miktar = filterNum(
+    commaSplit(elek.parentElement.getElementsByTagName("input")[0].value)
   );
   if (p.length > 0) p = parseFloat(p);
   else p = 0;
@@ -2336,7 +2338,9 @@ function SetPrice2(idb, modal_id) {
     commaSplit(SP_FIYAT_HESAP_SONUC.SP_Fiyat) +
     " " +
     SP_FIYAT_HESAP_SONUC.SP_SelectedMoney;
-    $(document.getElementByIdb(idb)).find("input[name='amount']").val(commaSplit(SP_FIYAT_HESAP_SONUC.SP_Miktar));
+  $(document.getElementByIdb(idb))
+    .find("input[name='amount']")
+    .val(commaSplit(SP_FIYAT_HESAP_SONUC.SP_Miktar));
   console.log(SP_FIYAT_HESAP_SONUC);
   MaliyetHesapla2();
   closeBoxDraggable(modal_id);
