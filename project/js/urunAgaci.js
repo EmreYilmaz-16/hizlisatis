@@ -1976,7 +1976,7 @@ function GercekKontrol(id) {
   var PROJECT_ID = getParameterByName("project_id");
   var q = wrk_query("SELECT * FROM PBS_OFFER WHERE PROJECT_ID="+PROJECT_ID,"DSN3")
   if (q.recordcount > 0) {
-    console.log(q.IS_CONVERT_REAL[0]);
+  //  console.log(q.IS_CONVERT_REAL[0]);
     var ex = q.recordcount
     ex = parseInt(ex);
     console.log(ex);
