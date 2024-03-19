@@ -326,7 +326,8 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var prcs = parseFloat(arr[i].PRICE);
     var MNYX = moneyArr.findIndex((p) => p.MONEY == arr[i].MONEY);
-    var RATE2MNY = moneyArr[MNYX].RATE2;
+    var RATE2MNY =1
+    try{ moneyArr[MNYX].RATE2;}catch{}
     RATE2MNY = parseFloat(RATE2MNY);
     var dpx = prcs - (prcs * arr[i].DISCOUNT) / 100;
     var nttl = dpx * arr[i].AMOUNT * RATE2MNY;
