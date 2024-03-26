@@ -247,7 +247,7 @@
             </cfquery>
             <cfquery name="Upd" datasource="#dsn#">
                 UPDATE workcube_metosan_1.PBS_OFFER_ROW_PURCHASE_PRICES SET 
-                  COMPANY_ID=#FData.COMP_ID#, OTHER_MONEY='#FData.OTHER_MONEY#', PRICE_OTHER=#FData.PRICE#, PP_DATE='#FData.PP_DATE#',   UPDATE_DATE=GETDATE(), UPDATE_EMP=#FData.EMP_ID#
+                  COMPANY_ID=<cfif len(FData.COMP_ID)>#FData.COMP_ID#<cfelse>NULL</cfif>, OTHER_MONEY='#FData.OTHER_MONEY#', PRICE_OTHER=#FData.PRICE#, PP_DATE='#FData.PP_DATE#',   UPDATE_DATE=GETDATE(), UPDATE_EMP=#FData.EMP_ID#
                   WHERE PP_ID=#FData.PP_ID#
             </cfquery>
             <cfelse>
