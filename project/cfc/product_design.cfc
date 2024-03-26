@@ -220,7 +220,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             <cfsavecontent variable="test1"><cfdump var="#getDiscount#"></cfsavecontent>
             <cffile action="write" file = "c:\PBS\getPriceFunk_02_#arguments.PRICE_CATID#_#arguments.PRODUCT_ID#.html" output="#test1#"></cffile>
             <cfset ReturnData.STANDART_PRICE=getPrice.PRICE>
-            <cfset ReturnData.PRICE=0>
+            <cfset ReturnData.PRICE=getPrice.PRICE>
             <cfset ReturnData.MONEY=getPrice.MONEY>
             <cfset ReturnData.DISCOUNT=getDiscount.DISCOUNT_RATE>
             <cfreturn ReturnData>
