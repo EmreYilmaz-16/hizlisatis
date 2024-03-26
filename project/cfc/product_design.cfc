@@ -152,7 +152,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             <cfdump var="#arguments#">
             
           </cfsavecontent>
-          <cffile action="write" file = "c:\PBS\UrunGetir_#arguments.PRICE_CATID#_#arguments.PRODUCT_ID#.html" output="#test1#"></cffile>
+          <cffile action="write" file = "c:\PBS\getPriceFunk_#arguments.PRICE_CATID#_#arguments.PRODUCT_ID#.html" output="#test1#"></cffile>
 <cfif arguments.IS_VIRTUAL neq 1 and len(arguments.PRODUCT_ID)>
 
             <cfquery name="getPrice" datasource="#arguments.ddsn3#">
