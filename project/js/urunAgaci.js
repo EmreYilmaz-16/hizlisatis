@@ -1,3 +1,8 @@
+/*
+26.03.2024 Silme Butonunun Aktif Olması Sağlandı
+btn2.setAttribute("disabled", "true")
+
+*/
 var o = new Object();
 var SP_FIYAT_HESAP_SONUC;
 var ulx = document.createElement("div");
@@ -398,7 +403,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
-      btn2.setAttribute("disabled", "true");
+     // btn2.setAttribute("disabled", "true");
       btn3.setAttribute("disabled", "true");
     }
 
@@ -1681,7 +1686,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
-      btn2.setAttribute("disabled", "true");
+     // btn2.setAttribute("disabled", "true");
       btn3.setAttribute("disabled", "true");
     }
 
@@ -1797,7 +1802,7 @@ function AgaciYaz_13(arr, isoq, address = "0", vrt = "1", li) {
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
-      btn2.setAttribute("disabled", "true");
+      //btn2.setAttribute("disabled", "true");
       btn3.setAttribute("disabled", "true");
     }
 
