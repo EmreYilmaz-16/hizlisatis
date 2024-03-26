@@ -183,6 +183,8 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
                     AND ISNULL(P.SPECT_VAR_ID, 0) = 0 
 					AND P.PRODUCT_ID=#arguments.product_id#
             </cfquery>
+            <cfsavecontent variable="test1"><cfdump var="#getPrice#"></cfsavecontent>
+              <cffile action="write" file = "c:\PBS\getPriceFunk_01_#arguments.PRICE_CATID#_#arguments.PRODUCT_ID#.html" output="#test1#"></cffile>
             <cfquery name="getDiscount" datasource="#arguments.ddsn3#">
                 SELECT TOP 1
                     PCE.DISCOUNT_RATE
@@ -215,6 +217,8 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
                     PCE.COMPANY_ID DESC,
                     PCE.PRODUCT_CATID DESC
             </cfquery>
+            <cfsavecontent variable="test1"><cfdump var="#getDiscount#"></cfsavecontent>
+            <cffile action="write" file = "c:\PBS\getPriceFunk_02_#arguments.PRICE_CATID#_#arguments.PRODUCT_ID#.html" output="#test1#"></cffile>
             <cfset ReturnData.STANDART_PRICE=getPrice.PRICE>
             <cfset ReturnData.PRICE=0>
             <cfset ReturnData.MONEY=getPrice.MONEY>
