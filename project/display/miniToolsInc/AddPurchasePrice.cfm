@@ -85,7 +85,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
         </tr>
         <tr>
             <td colspan="2">
-                <button class="ui-wrk-btn ui-wrk-btn-success" type="button" onclick="SaveThisPrice()">Kaydet</button>
+                <button class="ui-wrk-btn ui-wrk-btn-success" type="button" onclick="SaveThisPrice('#attributes.modal_id#')">Kaydet</button>
             </td>
         </tr>
     </cf_grid_list>
@@ -118,7 +118,7 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
 </cfoutput>
 </cfform>
 <script>
-    function SaveThisPrice() {
+    function SaveThisPrice(modal_id) {
         var PP_ID=document.getElementById("PP_ID").value;
         var UNIQUE_RELATION_ID=document.getElementById("UNIQUE_RELATION_ID").value;
         var EMP_ID=document.getElementById("EMP_ID").value;
@@ -143,7 +143,8 @@ LEFT JOIN workcube_metosan.COMPANY AS C ON C.COMPANY_ID = PP.COMPANY_ID WHERE UN
         FormData:JSON.stringify(Objem)
       },
     success: function (retDat) {
-      //  console.log(retDat);
+        closeBoxDraggable(modal_id)
+        //  console.log(retDat);
      // getProjectProducts(projectId);
     },
   });  
