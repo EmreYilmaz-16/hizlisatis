@@ -14,7 +14,7 @@
                 <div style="display:flex;flex-wrap: wrap;">
                 <cfloop query="getO">
                     <cfquery name="gets" datasource="#dsn#">
-                        select top 1 * from USER_GROUP_OBJECT where USER_GROUP_ID=(select USER_GROUP_ID from EMPLOYEE_POSITIONS where EMPLOYEE_ID=#session.ep.userid#) AND OBJECT_NAME='#FULL_FUSEACTION#'
+                        select  * from USER_GROUP_OBJECT where USER_GROUP_ID=(select top 1 USER_GROUP_ID from EMPLOYEE_POSITIONS where EMPLOYEE_ID=#session.ep.userid#) AND OBJECT_NAME='#FULL_FUSEACTION#'
                     </cfquery>
                     <cfif NOT gets.recordCount>
                     <cfoutput><a href="/index.cfm?fuseaction=#FULL_FUSEACTION#"  style="margin-right:2px;margin-top:1px;width: 20%;display: block;padding: 10px;text-align: center;border: solid;border-radius: 10px;"><img src="/images/e-pd/#ICON#" style="width:35px"><br>#HEAD#</cfoutput></a>
