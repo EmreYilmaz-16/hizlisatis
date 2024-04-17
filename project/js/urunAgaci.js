@@ -331,8 +331,10 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var prcs = parseFloat(arr[i].PRICE);
     var MNYX = moneyArr.findIndex((p) => p.MONEY == arr[i].MONEY);
-    var RATE2MNY =1
-    try{ moneyArr[MNYX].RATE2;}catch{}
+    var RATE2MNY = 1;
+    try {
+      moneyArr[MNYX].RATE2;
+    } catch {}
     RATE2MNY = parseFloat(RATE2MNY);
     var dpx = prcs - (prcs * arr[i].DISCOUNT) / 100;
     var nttl = dpx * arr[i].AMOUNT * RATE2MNY;
@@ -403,7 +405,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
-     // btn2.setAttribute("disabled", "true");
+      // btn2.setAttribute("disabled", "true");
       btn3.setAttribute("disabled", "true");
     }
 
@@ -1618,7 +1620,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     var sssx = makeFiyatSpan(arr[i].PRICE, arr[i].MONEY, "fiyatimis_" + idB);
     spn.innerHTML =
       arr[i].PRODUCT_NAME + "-" + sssx + " " + qname + " " + dName;
-/*
+    /*
     li.setAttribute("data-product_id", arr[i].PRODUCT_ID);
     li.setAttribute("data-stock_id", arr[i].STOCK_ID);
     li.setAttribute("data-price", arr[i].PRICE);
@@ -1686,7 +1688,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     if (upProduct == "OFF" && arr[i].IS_VIRTUAL != 1) {
       inp.setAttribute("readonly", "true");
       btn.setAttribute("disabled", "true");
-     // btn2.setAttribute("disabled", "true");
+      // btn2.setAttribute("disabled", "true");
       btn3.setAttribute("disabled", "true");
     }
 
@@ -2007,35 +2009,33 @@ function MaliyetHesapla() {
 
 function GercekKontrol(id) {
   var PROJECT_ID = getParameterByName("project_id");
-  var q = wrk_query("SELECT COUNT(*) AS OFPOR FROM PBS_OFFER INNER JOIN PBS_OFFER_ROW ON PBS_OFFER_ROW.OFFER_ID=PBS_OFFER.OFFER_ID WHERE PBS_OFFER.PROJECT_ID="+PROJECT_ID+"AND PBS_OFFER_ROW.STOCK_ID=0 AND PBS_OFFER_ROW.PRODUCT_ID="+id,"DSN3")
-  var ex = q.OFPOR[0]
-  if (q.recordcount > 0) {
-  //  console.log(q.IS_CONVERT_REAL[0]);
-   
+  var q = wrk_query(
+    "SELECT COUNT(*) AS OFPOR FROM PBS_OFFER INNER JOIN PBS_OFFER_ROW ON PBS_OFFER_ROW.OFFER_ID=PBS_OFFER.OFFER_ID WHERE PBS_OFFER.PROJECT_ID=" +
+      PROJECT_ID,
+    "DSN3"
+  );
+  var ex = q.OFPOR[0];
+  
+    //  console.log(q.IS_CONVERT_REAL[0]);
+
     ex = parseInt(ex);
     console.log(ex);
-    if (ex >= 1) {
-      var b = document.getElementById("teklifButton");
-      b.removeAttribute("class");
-      b.setAttribute("class", "btn btn-outline-warning");
-      b.innerText = "Teklif Verildi";
-       b.setAttribute("disabled", "disabled");
-      var c = document.getElementById("silButon");
-      c.setAttribute("disabled", "disabled");
-    } else {
-      var b = document.getElementById("teklifButton");
-      b.removeAttribute("class");
-      b.setAttribute("class", "btn btn-outline-secondary");
-      b.innerText = "Teklif Ver";
-       b.removeAttribute("disabled");
-      var c = document.getElementById("silButon");
-      c.removeAttribute("disabled");
-    }
+
+    var b = document.getElementById("teklifButton");
+    b.removeAttribute("class");
+    b.setAttribute("class", "btn btn-outline-secondary");
+    b.innerText = "Teklif Ver";
+    b.removeAttribute("disabled");
+    var c = document.getElementById("silButon");
+    c.removeAttribute("disabled");
+    if (q.recordcount > 0) { $("#relb").show();
     return ex;
   }
   return 0;
 }
-
+function openRelatedDocuments(prid){
+  openBoxDraggable("index.cfm?fuseaction=project.emptypopup_related_project_documents&project_id="+prid)
+}
 function updateStage(el, projectId) {
   console.log(arguments);
   var vp_id = document.getElementById("vp_id").value;
