@@ -72,7 +72,7 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
 					<a href="/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#V_P_ORDER_ID#" target="_blank">#V_P_ORDER_NO#</a>
 				</td>
 				<td>#PRODUCT_NAME#</td>
-				<td>#listFindNoCase(TSLIST,PRODUCT_TYPE)#</td>
+				<td>listGetAt(TSLISTA,#listFindNoCase(TSLIST,PRODUCT_TYPE))#</td>
 				<td>#NICKNAME#</td>
 				
 				<td>#QUANTITY#</td>
