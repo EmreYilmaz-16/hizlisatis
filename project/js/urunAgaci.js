@@ -2034,7 +2034,7 @@ function GercekKontrol(id) {
   return 0;
 }
 function openRelatedDocuments(prid){
-  openBoxDraggable("index.cfm?fuseaction=project.emptypopup_related_project_documents&project_id="+prid)
+  windowopen("index.cfm?fuseaction=project.emptypopup_related_project_documents&project_id="+prid)
 }
 function updateStage(el, projectId) {
   console.log(arguments);
