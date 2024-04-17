@@ -3,12 +3,13 @@
 </cfquery>
 <cf_box title="Üretim Emirleri">
 	<cfquery name="getEmpStation" datasource="#dsn3#">
-		SELECT CONVERT(INT,COMMENT) COMMENT,EMP_ID FROM #DSN3#.WORKSTATIONS WHERE COMMENT IS NOT NULL AND EMP_ID LIKE '%#session.ep.userid#%'
+		SELECT CONVERT(INT,COMMENT) COMMENT,EMP_ID,STATION_NAME FROM #DSN3#.WORKSTATIONS WHERE COMMENT IS NOT NULL AND EMP_ID LIKE '%#session.ep.userid#%'
 	</cfquery>
 		<cfquery name="getEmpStation2" datasource="#dsn3#">
-			SELECT STATION_ID,EMP_ID FROM #DSN3#.WORKSTATIONS WHERE 1=1 AND EMP_ID LIKE '%#session.ep.userid#%'
+			SELECT STATION_ID,EMP_ID,STATION_NAME FROM #DSN3#.WORKSTATIONS WHERE 1=1 AND EMP_ID LIKE '%#session.ep.userid#%'
 		</cfquery>
 	<CFSET TSLIST=valueList(getEmpStation.COMMENT)>
+	<CFSET TSLISTA=valueList(getEmpStation.STATION_NAME)>
 	<CFSET TSLIS2T=valueList(getEmpStation2.STATION_ID)>
 	<cfif getEmpStation.recordCount and len(getEmpStation.COMMENT)>	
 		<cfquery name="getProductionOrders" datasource="#dsn3#">			
@@ -52,6 +53,9 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
 					Ürün
 				</th>
 				<th>
+					İstasyon
+				</th>
+				<th>
 					Müşteri
 				</th>
 				<th>
@@ -68,8 +72,11 @@ LEFT JOIN ( SELECT PORS.P_ORDER_ID,SUM(PORRA.AMOUNT) AS AMOUNT FROM #dsn3#.PRODU
 					<a href="/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&VP_ORDER_ID=#V_P_ORDER_ID#" target="_blank">#V_P_ORDER_NO#</a>
 				</td>
 				<td>#PRODUCT_NAME#</td>
+				<td>#listFindNoCase(TSLIST,PRODUCT_TYPE)#</td>
 				<td>#NICKNAME#</td>
+				
 				<td>#QUANTITY#</td>
+
 			</tr>
 		</cfoutput>
 		</cfif>
