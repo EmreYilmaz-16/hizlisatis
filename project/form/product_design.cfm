@@ -282,7 +282,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
           </cfoutput>
       </select>
       <button onclick="Kaydet()" style="margin-left:5px"  class="btn btn-outline-primary">Kaydet</button>
-      <button onclick="convertToOffer()" style="margin-left:5px" id="teklifButton"  class="btn btn-outline-secondary">Teklif Ver</button>
+      <button onclick="convertToOffer()" style="margin-left:5px" id="teklifButton"  class="btn btn-outline-secondary">Teklif Ver</button>A
       <button onclick="openRelatedDocuments(<cfoutput>#attributes.project_id#</cfoutput>)" style="margin-left:5px" id="relb" style="display:none"  class="btn btn-outline-danger">İ.Belgeler</button>
       <input type="hidden" name="vp_id" id="vp_id" value="0">
       <input type="hidden" name="is_virtual" id="is_virtual" value="1">
