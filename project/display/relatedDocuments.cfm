@@ -9,6 +9,7 @@
         ,OFFER_DATE AS ACTION_DATE
         ,PRICE AS ACTION_VALUE
         ,PURCHASE_SALES 
+        ,'index.cfm?fuseaction=sales.list_pbs_offer&event=upd&offer_id=' AS PAGE_ACTION
         ,CASE
         WHEN PURCHASE_SALES = 1
         THEN 'Satış Teklifi'
@@ -26,6 +27,11 @@
         ,ORDER_DATE AS ACTION_DATE
         ,NETTOTAL AS ACTION_VALUE
         ,PURCHASE_SALES
+        ,CASE WHEN PURCHASE_SALES =1
+        THEN 'index.cfm?fuseaction=sales.list_order&event=upd&order_id='
+        ELSE 
+        'purchase.list_order&event=upd&order_id='
+        END AS PAGE_ACTION
         ,CASE
         WHEN PURCHASE_SALES = 1
         THEN 'Satış Siparişi'
@@ -43,6 +49,11 @@
         ,INVOICE_DATE AS ACTION_DATE
         ,NETTOTAL AS ACTION_VALUE
         ,PURCHASE_SALES
+        ,CASE WHEN PURCHASE_SALES =1
+        THEN 'index.cfm?fuseaction=invoice.form_add_bill&event=upd&iid='
+        ELSE 
+        'index.cfm?fuseaction=invoice.form_add_bill_purchase&event=upd&iid='
+        END AS PAGE_ACTION
         ,CASE
         WHEN PURCHASE_SALES = 1
         THEN 'Satış Faturası'
@@ -60,6 +71,11 @@
         ,SHIP_DATE AS ACTION_DATE
         ,NETTOTAL AS ACTION_VALUE
         ,PURCHASE_SALES
+        ,CASE WHEN PURCHASE_SALES =1
+        THEN 'index.cfm?fuseaction=stock.form_add_sale&event=upd&ship_id='
+        ELSE 
+        'index.cfm?fuseaction=stock.form_add_purchase&event=upd&ship_id='
+        END AS PAGE_ACTION
         ,CASE
         WHEN PURCHASE_SALES = 1
         THEN 'Satış İrsaliyesi'
@@ -79,6 +95,7 @@
         ,CASE WHEN (ACTION_FROM_COMPANY_ID IS NOT NULL
         OR ACTION_FROM_EMPLOYEE_ID IS NOT NULL)
         THEN 1 ELSE 0 END AS PURCHASE_SALES
+        ,'' AS PAGE_ACTION
         ,CASE
         WHEN (
         ACTION_FROM_COMPANY_ID IS NOT NULL
@@ -110,6 +127,7 @@
         THEN 1
         ELSE 0
         END AS PURCHASE_SALES
+        ,'' AS PAGE_ACTION
         ,CASE
         WHEN (
         CASH_ACTION_FROM_CASH_ID IS NOT NULL
@@ -139,7 +157,7 @@
         <tr>
             
             <td>#TIP#</td>        
-            <td>#ACTION_NUMBER#</td>
+            <td><a onclick="windowopen('#PAGE_ACTION#','page')">#ACTION_NUMBER#</a></td>
             <td>#ACTION_HEAD#</td>
             <td>#ACTION_DATE#</td>
             <td>#ACTION_VALUE#</td>
