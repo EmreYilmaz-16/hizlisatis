@@ -157,7 +157,7 @@
         <tr>
             
             <td>#TIP#</td>        
-            <td><a onclick="windowopen('#PAGE_ACTION#','page')">#ACTION_NUMBER#</a></td>
+            <td><a onclick="windowopen('#PAGE_ACTION##ACTION_ID#','page')">#ACTION_NUMBER#</a></td>
             <td>#ACTION_HEAD#</td>
             <td>#ACTION_DATE#</td>
             <td>#ACTION_VALUE#</td>
