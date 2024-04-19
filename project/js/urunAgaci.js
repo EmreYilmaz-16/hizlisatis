@@ -2028,7 +2028,7 @@ function GercekKontrol(id) {
     b.removeAttribute("disabled");
     var c = document.getElementById("silButon");
     c.removeAttribute("disabled");
-    if (q.recordcount > 0) { $("#relb").show();
+    if (ex > 0) { $("#relb").show();
     return ex;
   }
   return 0;
