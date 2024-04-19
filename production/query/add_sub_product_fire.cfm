@@ -21,7 +21,7 @@
 							form_spect_id_exit = '';
 						form_product_id_exit = evaluate("attributes.product_id_exit#st#");
 						form_stock_id_exit = evaluate("attributes.stock_id_exit#st#");
-						form_amount_exit = filternum(evaluate("attributes.amount_exit#st#"),8);
+						form_amount_exit = evaluate("attributes.amount_exit#st#");
 						form_unit_id_exit = evaluate("attributes.unit_id_exit#st#");
 						form_is_phantom_exit = evaluate("attributes.is_phantom_exit#st#");
 						form_is_sevk_exit = evaluate("attributes.is_sevk_exit#st#");
