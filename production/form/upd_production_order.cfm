@@ -1,3 +1,9 @@
+<cfif isDefined("attributes.sil") and len(attributes.P_ORDER_RESULT_ID)>
+    <cfquery name="delete" datasource="#dsn3#">
+        DELETE FROM 
+        VIRTUAL_PRODUCTION_ORDERS_RESULT WHERE P_ORDER_RESULT_ID=#attributes.P_ORDER_RESULT_ID#
+    </cfquery>
+</cfif>
 <cfinclude template="/AddOns/Partner/satis/Includes/virtual_offer_parameters.cfm">
 <cfquery name="getMoney" datasource="#dsn#">
    SELECT 
@@ -112,6 +118,7 @@ SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTU
 				<th>Miktar</th>
                 <th>Kaydeden</th>
                 <th>Kayıt Tarihi</th>
+                <th></th>
 			</tr>
 	<cfquery name="GETrES" datasource="#DSN3#">
          SELECT POR.RESULT_NO,POR.RESULT_NUMBER,POR.RECORD_DATE,#dsn#.getEmployeeWithId(POR.RECORD_EMP) RECORD_EMP,VPOR.P_ORDER_RESULT_ID,VPOR.RESULT_AMOUNT FROM  #DSN3#.VIRTUAL_PRODUCTION_ORDERS_RESULT  AS VPOR 
@@ -139,6 +146,13 @@ LEFT JOIN #DSN3#.PRODUCTION_ORDER_RESULTS AS POR ON VPOR.REAL_RESULT_ID=POR.PR_O
             </td>
             <td>
                 #dateFormat(RECORD_DATE,"dd/mm/yyyy")#
+            </td>
+            <td>
+                <cfif len(RESULT_NO)>
+                    <span style="color:red">Gerçek Üretim Sonucu Oluşturuldu</span>
+                <cfelse>
+                <button type="button" onclick="SanalUretimSonucuSil(#P_ORDER_RESULT_ID#)">Sanal Üretim Sonucu Sil</button>
+            </cfif>
             </td>
         </tr>
     </cfloop>

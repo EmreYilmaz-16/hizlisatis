@@ -30,6 +30,14 @@ function openProductPopup(
       SIPARIS_MIKTARI
   );
 }
+function SanalUretimSonucuSil(vpor){
+  $.ajax({
+    url:"/index.cfm?fuseaction=production.emptypopup_update_virtual_production_orders&sil=1&P_ORDER_RESULT_ID="+vpor,
+    success:function (params) {
+      window.location.reload();
+    }
+  })
+}
 
 function setRow(
   product_id,
