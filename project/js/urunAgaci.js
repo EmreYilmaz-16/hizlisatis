@@ -1995,7 +1995,7 @@ function MaliyetHesapla() {
     price = parseFloat(price);
     discount = parseFloat(discount);
     miktar = parseFloat(miktar);
-    var Rate2 = moneyArr[moneyArr.findIndex((p) => p.MONEY == money)].RATE2;
+    var Rate2 = moneyArr[moneyArr.findIndex((p) => p.MONEY == money)].RATE2.toFixed(2);
     Rate2 = parseFloat(Rate2);
     var indirimli = price - (price * discount) / 100;
     var Tprice = indirimli * Rate2 * miktar;
