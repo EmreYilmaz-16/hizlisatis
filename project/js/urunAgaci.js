@@ -1963,7 +1963,7 @@ function MaliyetHesapla2() {
     var tutar = Product.getAttribute("data-netTotal");
     TTutar = TTutar + parseFloat(tutar);
     console.table({
-      satir: 1859,
+      satir: 1966,
       tutar: tutar,
       TTutar: TTutar,
     });
@@ -1999,7 +1999,7 @@ function MaliyetHesapla() {
     Rate2 = parseFloat(Rate2);
     var indirimli = price - (price * discount) / 100;
     var Tprice = indirimli * Rate2 * miktar;
-    Product.setAttribute("data-netTotal", Tprice); //DIKKAT BU METODA BAK
+    Product.setAttribute("data-netTotal", Tprice.toFixed(2)); //DIKKAT BU METODA BAK
     //console.log(Tprice);
     TotalPrice += Tprice;
   });
