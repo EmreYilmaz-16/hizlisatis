@@ -39,7 +39,40 @@
 
 </cffunction>
 
+<script>
+	$(document).ready(function (params) {
+		var tlc=0;
+var tempMax=0;
+var sifirbin=[];
+var binikibin=[];
+var ikibinucbin=[];
+var buyukucbin=[];
+for(let i=0;i<e.length;i++){
+    var tv=parseFloat(e[i].innerText)
+   // console.log(tv)
+    tlc+=tv
+    if(tv>tempMax && tv!=4533 && tv != 3274){
+        tempMax=tv
+    }
+   if(tv<1000){
+       sifirbin.push(tv);
+   }else if(tv>=1000 && tv<2000){
+       binikibin.push(tv);
+   }else if(tv>=2000 && tv<3000){
+       ikibinucbin.push(tv);
+   }else if(tv>=3000 ){
+       buyukucbin.push(tv);
+   }
+}
+console.warn("Total Line Count : "+tlc)
+console.warn("Max Line Count : "+tempMax)
+console.table(sifirbin)
+console.table(binikibin)
+console.table(ikibinucbin)
+console.table(buyukucbin)
 
+	})
+</script>
 
 <cfabort>
 
