@@ -5,37 +5,24 @@
 <cfparam name="is_show_detail_variation" default="1">
 <cfdirectory action="list" directory="#expandPath("./#attributes.DosyaAd#")#" recurse="false" name="myLists">
 <cfset myList=directoryList(expandPath("./#attributes.DosyaAd#"),false,"query","","type asc")>
-<div id="silinecek">
-	<cfdump var="#myList#">
-<cfset TotalLineCount=0>
-<cfloop query="myList">
-	<cfif type eq "dir">
-		<cfset myList2=directoryList("#Directory#\#Name#",false,"query","","type asc")>
-		<cfloop query="myList2">
-			<cftry>	
-				<cfif myList2.type neq "dir">
-				<cfset myfile = FileRead("#myList2.Directory#\#myList2.Name#")>                  
-				<cfset linecount = ListLen(myfile,chr(10),true)>			  
-				<cfset TotalLineCount=TotalLineCount+linecount>
-			</cfif>
-				<cfif myList2.type eq "dir">
-					<cfset myList3=directoryList("#myList2.Directory#\#myList2.Name#",false,"query","","type asc")>
-					<cfloop query="myList3">
-					<cfif myList3.type neq "dir">
-						<cfset myfile2 = FileRead("#myList3.Directory#\#myList3.Name#")>                  
-						<cfset linecount2 = ListLen(myfile2,chr(10),true)>			  
-						<cfset TotalLineCount=TotalLineCount+linecount2>
-					</cfif>
-					</cfloop>
-				</cfif>
-			<cfcatch></cfcatch>
-			</cftry>
-		</cfloop>
-	</cfif>
-</cfloop>
 
-<span style="color:red"><cfoutput>#TotalLineCount#</cfoutput></span>
-</div>
+<cfoutput>
+	#getDd(myList)#
+</cfoutput>
+
+<cffunction name="getDd" returntype="any" returnformat="plain">
+<cfargument name="FL">
+<cfsavecontent variable="RES">
+	<ul>
+<cfloop query="arguments.FL">
+	<li><cfoutput>#Name#</cfoutput></li>
+</cfloop>
+</ul>
+</cfsavecontent>
+<cfreturn RES>
+
+</cffunction>
+
 
 
 <cfabort>
