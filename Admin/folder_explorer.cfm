@@ -16,7 +16,7 @@
                
               <cfset linecount = ListLen(myfile,chr(10),true)>
 			  <cfoutput>
-				#myList2.Name# -- #linecount#
+				#myList2.Name# -- #linecount# <br>
 			  </cfoutput>
 			  <cfcatch></cfcatch>
 			</cftry>
