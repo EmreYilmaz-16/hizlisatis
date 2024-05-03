@@ -19,6 +19,14 @@
 	<cfif type eq "dir">
 		<cfset myList=directoryList("#directory#\#name#",false,"query","","type asc")>
 		<cfoutput>#getDd(myList)#</cfoutput>
+	<cfelse>
+		<cftry>
+			<cfset myfile = FileRead("#directory#\#name#")>   
+               
+              <cfset linecount = ListLen(myfile,chr(10),true)>
+			  <cfoutput>#linecount#</cfoutput>
+			<cfcatch></cfcatch>
+		</cftry>
 	</cfif>
 	</li>
 </cfloop>
