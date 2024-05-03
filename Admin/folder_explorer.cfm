@@ -18,9 +18,10 @@
 			  <cfoutput>
 				#myList2.Name# -- #linecount#
 			  </cfoutput>
+			  <cfcatch></cfcatch>
+			</cftry>
 		</cfloop>
-		<cfcatch></cfcatch>
-	</cftry>
+	
 
 	</cfif>
 </cfloop>
