@@ -5,6 +5,11 @@
 <cfparam name="is_show_detail_variation" default="1">
 <cfdirectory action="list" directory="#expandPath("./#attributes.DosyaAd#")#" recurse="false" name="myLists">
 <cfset myList=directoryList(expandPath("./#attributes.DosyaAd#"),false,"query","","type asc")>
+<div id="silinecek">
+	<cfdump var="#myList#">
+</div>
+<cfabort>
+
 
 <!---<cfdump var="#myLists#">
 <cfdump var="#expandPath(".")#">
