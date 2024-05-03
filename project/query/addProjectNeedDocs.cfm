@@ -36,6 +36,14 @@
             <cfset attributes.department_id=listGetAt(DEPO,1,"-")>
             <cfset txt_departman_=listGetAt(DEPO,1,"-")>
             <cfset attributes.location_id=listGetAt(DEPO,2,"-")>
+            <cfset attributes.FROM_PROJE=1>
+            <cfset attributes.DELIVER_STATUS=0>
+            <cfset attributes.OCC=1>
+            <!---------------------------
+                <cfif isDefined("attributes.FROM_PROJE") and len(attributes.FROM_PROJE)>#attributes.FROM_PROJE#<cfelse>0</cfif>,
+						<cfif isDefined("attributes.DELIVER_STATUS") and len(attributes.DELIVER_STATUS)>#attributes.DELIVER_STATUS#<cfelse>0</cfif>,
+							<cfif isDefined("attributes.OCC") and len(attributes.OCC)>#attributes.OCC#<cfelse>NULL</cfif>
+                ------------->
             <cfset i=0>
             <cfloop>
                 <cfset i=i+1>
@@ -76,6 +84,9 @@
         <cfset attributes.emp_department_id=listGetAt(session.ep.USER_LOCATION,1,"-")>
         <cfset attributes.emp_department=listGetAt(session.ep.USER_LOCATION,1,"-")>     
     </cfif>
+    <cfset attributes.FROM_PROJE=1>
+            <cfset attributes.DELIVER_STATUS=0>
+            <cfset attributes.OCC=2>
     <cfset attributes.rows_=arrayLen(FormData.TEDARIK)>
     <cfset i=1>
     <cfloop array="#FormData.TEDARIK#" item="it">

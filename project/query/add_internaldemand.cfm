@@ -85,6 +85,9 @@
 						FROM_CONSUMER_ID,
 						PROCESS_CAT,
 						DEPARTMENT_ID
+						FROM_PROJE ,
+						DELIVER_STATUS ,
+						OCC
 				)
 					VALUES
 				(
@@ -130,8 +133,10 @@
 						<cfif isdefined("attributes.from_partner_id") and len(attributes.from_partner_id)>#attributes.from_partner_id#<cfelse>NULL</cfif>,
 						<cfif isdefined("attributes.from_consumer_id") and len(attributes.from_consumer_id)>#attributes.from_consumer_id#<cfelse>NULL</cfif>,
 						<cfif isdefined("attributes.process_cat") and len(attributes.process_cat)>#attributes.process_cat#<cfelse>NULL</cfif>,
-						<cfif isdefined('attributes.emp_department_id') and len(attributes.emp_department_id) and len(emp_department)><cfqueryparam cfsqltype="cf_sql_integer" value="#attributes.emp_department_id#"><cfelse>NULL</cfif>
-	
+						<cfif isdefined('attributes.emp_department_id') and len(attributes.emp_department_id) and len(emp_department)><cfqueryparam cfsqltype="cf_sql_integer" value="#attributes.emp_department_id#"><cfelse>NULL</cfif>,
+						<cfif isDefined("attributes.FROM_PROJE") and len(attributes.FROM_PROJE)>#attributes.FROM_PROJE#<cfelse>0</cfif>,
+						<cfif isDefined("attributes.DELIVER_STATUS") and len(attributes.DELIVER_STATUS)>#attributes.DELIVER_STATUS#<cfelse>0</cfif>,
+							<cfif isDefined("attributes.OCC") and len(attributes.OCC)>#attributes.OCC#<cfelse>NULL</cfif>
 				)
 			</cfquery>
 			<cfif attributes.rows_  neq 0>

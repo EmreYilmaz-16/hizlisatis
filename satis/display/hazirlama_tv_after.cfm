@@ -22,6 +22,9 @@
        <cf_grid_list id="grdTbl">
 
        </cf_grid_list> 
+       <cf_grid_list id="grdTbl2">
+
+       </cf_grid_list> 
 </cf_box>
 
 <script src="/AddOns/Partner/satis/js/hazirlama.js"></script>

@@ -183,6 +183,9 @@ WHERE DEMAND_TYPE=0 AND IR.PREPARE_PERSONAL IS NULL AND I.DEPARTMENT_OUT=#argume
 
         <cfreturn Replace(SerializeJSON(workArr),'//','')>
     </cffunction>
+    <cffunction name="getDepartmentWorks2" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
+
+    </cffunction>
     <cffunction name="setWorkEmployee" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
         <cfset dataSources=deserializeJSON(arguments.dataSources)>
       <cfset arguments.ship_id=listGetAt(arguments.empo,2,"-")>
