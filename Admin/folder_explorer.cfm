@@ -7,7 +7,7 @@
 <cfset myList=directoryList(expandPath("./#attributes.DosyaAd#"),false,"query","","type asc")>
 <div id="silinecek">
 	<cfdump var="#myList#">
-
+<cfset TotalLineCount=0>
 <cfloop query="myList">
 	<cfif type eq "dir">
 		<cfset myList2=directoryList("#Directory#\#Name#",false,"query","","type asc")>
@@ -17,6 +17,7 @@
               <cfset linecount = ListLen(myfile,chr(10),true)>
 			  <cfoutput>
 				#myList2.Name# -- #linecount# <br>
+				<cfset TotalLineCount=TotalLineCount+linecount>
 			  </cfoutput>
 			  <cfcatch></cfcatch>
 			</cftry>
@@ -26,6 +27,7 @@
 	</cfif>
 </cfloop>
 
+<span style="color:red"><cfoutput>#TotalLineCount#</cfoutput></span>
 </div>
 
 
