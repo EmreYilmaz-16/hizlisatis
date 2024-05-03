@@ -1,10 +1,12 @@
-﻿<cfloop list="#attributes.ROWW#" item="li" index="ix">
+﻿<cfset attributes.rows_=0>
+<cfloop list="#attributes.ROWW#" item="li" index="ix">
     <cfset STOCK_ID=evaluate("attributes.STOCK_ID#li#")>
     <cfset AMOUNT=filternum(evaluate("attributes.QUANTITY#li#"))>
     <cfset SHELF_NUMBER=evaluate("attributes.PRODUCT_PLACE_ID#li#")>
     <cfset SHELF_NUMBER_TXT=evaluate("attributes.SHELFCODE#li#")>
     <cfset WRK_ROW_ID=evaluate("attributes.WRK_ROW_ID#li#")>
-    <cfset attributes.rows_=0>
+    
+    
     <cfquery name="getSinfo" datasource="#dsn3#">                            
         select PRODUCT_UNIT.MAIN_UNIT,STOCKS.PRODUCT_UNIT_ID,STOCKS.TAX,STOCKS.PRODUCT_ID,STOCKS.IS_INVENTORY,STOCKS.PRODUCT_NAME from #dsn3#.STOCKS 
         left join #dsn3#.PRODUCT_UNIT on PRODUCT_UNIT.PRODUCT_ID=STOCKS.PRODUCT_ID and IS_MAIN=1                            
