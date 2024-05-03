@@ -178,7 +178,7 @@ WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#'
 <input type="hidden" name="is_submit" value="1">
 <input type="hidden" name="IS_SVK" value="1">
 </cfform>
-<input type="button" onclick="windowopen('index.cfm?fuseaction=stock.add_ship_dispatch&internal_demand_id=<cfoutput>#attributes.SHIP_ID#</cfoutput>')">
+<input type="button" onclick="windowopen('index.cfm?fuseaction=stock.add_ship_dispatch&internal_demand_id=<cfoutput>#attributes.SHIP_ID#</cfoutput>')" value="Sevk İrsaliyesi Oluştur">
 <cfif isDefined("attributes.is_submit") >
     <cfquery name="getMx" datasource="#dsn2#">
         SELECT 'SI-'+CONVERT(VARCHAR,MAX(SHIP_ID)) AS MAX_ID FROM SHIP
