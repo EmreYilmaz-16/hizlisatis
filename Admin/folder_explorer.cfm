@@ -13,15 +13,19 @@
 		<cfset myList2=directoryList("#Directory#\#Name#",false,"query","","type asc")>
 		<cfloop query="myList2">
 			<cftry>	
+				<cfif myList2.type neq "dir">
 				<cfset myfile = FileRead("#myList2.Directory#\#myList2.Name#")>                  
 				<cfset linecount = ListLen(myfile,chr(10),true)>			  
 				<cfset TotalLineCount=TotalLineCount+linecount>
+			</cfif>
 				<cfif myList2.type eq "dir">
 					<cfset myList3=directoryList("#myList2.Directory#\#myList2.Name#",false,"query","","type asc")>
 					<cfloop query="myList3">
+					<cfif myList3.type neq "dir">
 						<cfset myfile2 = FileRead("#myList3.Directory#\#myList3.Name#")>                  
 						<cfset linecount2 = ListLen(myfile2,chr(10),true)>			  
 						<cfset TotalLineCount=TotalLineCount+linecount2>
+					</cfif>
 					</cfloop>
 				</cfif>
 			<cfcatch></cfcatch>
