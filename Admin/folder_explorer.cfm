@@ -15,7 +15,12 @@
 <cfsavecontent variable="RES">
 	<ul>
 <cfloop query="arguments.FL">
-	<li><cfoutput>#Name#</cfoutput></li>
+	<li><cfoutput>#Name#</cfoutput>
+	<cfif type eq "dir">
+		<cfset myList=directoryList("#directory#\#name#",false,"query","","type asc")>
+		<cfoutput>#getDd(myList)#</cfoutput>
+	</cfif>
+	</li>
 </cfloop>
 </ul>
 </cfsavecontent>
