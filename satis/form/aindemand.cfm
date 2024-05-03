@@ -64,4 +64,3 @@ SELECT 'TL' MONEY ,1 AS RATE1,1 AS RATE2
 <cfset attributes.BASKET_MONEY="TL">
 
 <cfdump var="#attributes#">
-<cfabort>
