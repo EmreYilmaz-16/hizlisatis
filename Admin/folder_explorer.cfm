@@ -41,6 +41,7 @@
 
 <script>
 	$(document).ready(function (params) {
+		var e=document.getElementsByClassName("LineCount")
 		var tlc=0;
 var tempMax=0;
 var sifirbin=[];
