@@ -11,7 +11,16 @@
 <cfloop query="myList">
 	<cfif type eq "dir">
 		<cfset myList2=directoryList("#Directory#\#Name#",false,"query","","type asc")>
-		<cfdump var="#myList2#">
+		<cfloop query="myList2">
+			<cfset myfile = FileRead("#myList2.Directory#\#myList2.Name#")>   
+               
+              <cfset linecount = ListLen(myfile,chr(10),true)>
+			  <cfoutput>
+				#myList2.Name# -- #linecount#
+			  </cfoutput>
+		</cfloop>
+
+
 	</cfif>
 </cfloop>
 
