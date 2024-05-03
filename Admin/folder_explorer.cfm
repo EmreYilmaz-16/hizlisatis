@@ -7,7 +7,17 @@
 <cfset myList=directoryList(expandPath("./#attributes.DosyaAd#"),false,"query","","type asc")>
 <div id="silinecek">
 	<cfdump var="#myList#">
+
+<cfloop query="myList">
+	<cfif type eq "dir">
+		<cfset myList2=directoryList("#Directory#\#Name#",false,"query","","type asc")>
+		<cfdump var="#myList2#">
+	</cfif>
+</cfloop>
+
 </div>
+
+
 <cfabort>
 
 
