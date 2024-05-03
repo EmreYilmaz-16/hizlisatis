@@ -84,7 +84,7 @@
 						FROM_PARTNER_ID,
 						FROM_CONSUMER_ID,
 						PROCESS_CAT,
-						DEPARTMENT_ID
+						DEPARTMENT_ID,
 						FROM_PROJE ,
 						DELIVER_STATUS ,
 						OCC
