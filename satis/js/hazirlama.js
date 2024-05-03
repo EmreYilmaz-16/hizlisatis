@@ -89,6 +89,21 @@ function getDepartmentWorks() {
     },
   });
 }
+function getDemands() {
+  var tbl = document.getElementById("grdTbl2");
+  tbl.innerHTML = "";
+  $.ajax({
+    url: "/AddOns/Partner/Satis/cfc/depo.cfc?method=getDepartmentWorks2",
+    data: {
+      department_id: deparmanData.department_id,
+      location_id: deparmanData.location_id,
+      dataSources: JSON.stringify(generalParamsSatis.dataSources),
+    },
+    success: function (returnData) {
+      console.log(returnData);
+    },
+  });
+}
 function setEmpToWork(workI, SVK) {
   $.ajax({
     url: "/AddOns/Partner/Satis/cfc/depo.cfc?method=setWorkEmployee",
@@ -101,4 +116,3 @@ function setEmpToWork(workI, SVK) {
     },
   });
 }
-

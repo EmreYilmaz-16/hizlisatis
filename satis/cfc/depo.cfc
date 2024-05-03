@@ -184,7 +184,27 @@ WHERE DEMAND_TYPE=0 AND IR.PREPARE_PERSONAL IS NULL AND I.DEPARTMENT_OUT=#argume
         <cfreturn Replace(SerializeJSON(workArr),'//','')>
     </cffunction>
     <cffunction name="getDepartmentWorks2" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
-
+        <cfset dataSources=deserializeJSON(arguments.dataSources)>
+        <cfquery name="GETWORKS" datasource="#DSN3#">
+            SELECT INTERNAL_ID,INTERNAL_NUMBER,PP.PROJECT_HEAD,EP.EMPLOYEE_NAME,EP.EMPLOYEE_SURNAME FROM #datasources.DSN3#.INTERNALDEMAND 
+LEFT JOIN #datasources.DSN#.PRO_PROJECTS AS PP ON PP.PROJECT_ID=INTERNALDEMAND.PROJECT_ID
+LEFT JOIN #datasources.DSN#.EMPLOYEE_POSITIONS AS EP ON EP.POSITION_CODE=INTERNALDEMAND.FROM_POSITION_CODE
+WHERE FROM_PROJE=1
+AND DEPARTMENT_OUT=#arguments.DEPARTMENT_ID# AND LOCATION_OUT=#arguments.LOCATION_ID# AND OCC=1 AND INTERNALDEMAND.PREPARE_PERSONAL IS NULL
+<CFSET returnArr=arrayNew()>
+<cfloop query="GETWORKS">
+    <cfscript>
+        Obje={
+            INTERNAL_ID:INTERNAL_ID,
+            INTERNAL_NUMBER:INTERNAL_NUMBER,
+            PROJECT_HEAD:PROJECT_HEAD,
+            EMPLOYEE_NAME:"#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#",
+        };
+        arrayAppend(returnArr,Obje);
+    </cfscript>
+</cfloop>
+<cfreturn Replace(SerializeJSON(workArr),'//','')>
+        </cfquery>
     </cffunction>
     <cffunction name="setWorkEmployee" httpMethod="POST" access="remote" returntype="any" returnFormat="json">
         <cfset dataSources=deserializeJSON(arguments.dataSources)>
