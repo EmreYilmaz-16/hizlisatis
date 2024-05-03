@@ -1,3 +1,5 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <cfparam name="attributes.DosyaAd" default="" />
 <cfparam name="product_cat_id" default="">
 <cfparam name="PRODUCT_CATID" default="">
@@ -13,9 +15,9 @@
 <cffunction name="getDd" returntype="any" returnformat="plain">
 <cfargument name="FL">
 <cfsavecontent variable="RES">
-	<ul>
+	<ul class="list-group">
 <cfloop query="arguments.FL">
-	<li><cfoutput>#Name#</cfoutput>
+	<li class="list-group-item"><cfoutput>#Name#</cfoutput>
 	<cfif type eq "dir">
 		<cfset myList=directoryList("#directory#\#name#",false,"query","","type asc")>
 		<cfoutput>#getDd(myList)#</cfoutput>
@@ -24,7 +26,8 @@
 			<cfset myfile = FileRead("#directory#\#name#")>   
                
               <cfset linecount = ListLen(myfile,chr(10),true)>
-			  <cfoutput>#linecount#</cfoutput>
+			  <cfoutput>
+				<span class="LineCount badge text-bg-primary rounded-pill">#linecount#</span></cfoutput>
 			<cfcatch></cfcatch>
 		</cftry>
 	</cfif>
