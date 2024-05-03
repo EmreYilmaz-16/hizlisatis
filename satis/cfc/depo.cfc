@@ -198,7 +198,7 @@ AND DEPARTMENT_OUT=#arguments.DEPARTMENT_ID# AND LOCATION_OUT=#arguments.LOCATIO
             INTERNAL_ID:INTERNAL_ID,
             INTERNAL_NUMBER:INTERNAL_NUMBER,
             PROJECT_HEAD:PROJECT_HEAD,
-            EMPLOYEE_NAME:"#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#",
+            EMPLOYEE_NAME:"#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#"
         };
         arrayAppend(returnArr,Obje);
     </cfscript>
