@@ -59,15 +59,20 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                 <CFELSE>
                     <CFSET IHSQ=0>
                 </CFIF>
+                <CFIF LEN(ihes.ISLEM)>
+                    <CFSET ISLEMCIM=ihes.ISLEM>
+                <CFELSE>
+                    <CFSET ISLEMCIM=-1>
+                </CFIF>
                 <cfset IHTIYAC=(BAKIYE-AMOUNT)+IHSQ>                
-                <td><input <cfif ihes.islem neq -1 >readonly="yes"</cfif>  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
+                <td><input <cfif ISLEMCIM neq -1 >readonly="yes"</cfif>  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
                 <td> <span onclick="">#ihes.QUANTITY#</span></td>
                 <td>
                     <select name="orderrow_currency_#currentrow#"  id="orderrow_currency_#currentrow#">
-                        <option <cfif ihes.islem eq -1>selected</cfif> value="-1">Açık</option>
-                        <option <cfif ihes.islem eq 1>selected</cfif> value="-2">Tedarik</option>
+                        <option <cfif ISLEMCIM eq -1>selected</cfif> value="-1">Açık</option>
+                        <option <cfif ISLEMCIM eq 1>selected</cfif> value="-2">Tedarik</option>
                         
-                        <option <cfif ihes.islem eq 0>selected</cfif> value="-6">Sevk</option>                                        
+                        <option <cfif ISLEMCIM eq 0>selected</cfif> value="-6">Sevk</option>                                        
                         
                     </select>
                     <input type="hidden" name="product_id_#currentrow#" id="product_id_#currentrow#" value="#PRODUCT_ID#">
