@@ -52,7 +52,7 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                 </cfquery>
                 <cfelse>
                     <cfset ihes.QUANTITY=0>
-                    <cfset ihes.ISLEM=0>
+                    <cfset ihes.ISLEM=-1>
                 </cfif>
                 <CFIF LEN(ihes.QUANTITY)>
                     <CFSET IHSQ=ihes.QUANTITY>
