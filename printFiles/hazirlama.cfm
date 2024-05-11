@@ -125,11 +125,13 @@
                     <th>
                         Açıklama
                     </th>
-                    <td colspan="10">
+                    <td colspan="10"
+                    <cfif len(getS.OFFER_ID)>
                             <cfquery name="getOfferDes" datasource="#dsn3#">
                                 SELECT OFFER_DESCRIPTION FROM PBS_OFFER WHERE OFFER_ID=#getS.OFFER_ID#
                             </cfquery>
                             <cfoutput>#getOfferDes.OFFER_DESCRIPTION#</cfoutput>
+                        </cfif>
                     </td>
                 </tr>
                 <tr>
