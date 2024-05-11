@@ -59,7 +59,10 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                 <CFELSE>
                     <CFSET IHSQ=0>
                 </CFIF>
-                <cfset IHTIYAC=(BAKIYE-AMOUNT)+IHSQ>                
+                <cfset IHTIYAC=(BAKIYE-AMOUNT)+IHSQ>  
+                <cfif IHTIYAC lt 0>
+                    <cfset IHTIYAC=(IHTIYAC*-1)>
+                </cfif>              
                 <td><input <cfif ihes.islem neq -1 ><cfif  IHTIYAC lt ihes.QUANTITY>readonly="yes"</cfif></cfif>  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
                 <td> <span onclick="">#ihes.QUANTITY#</span></td>
                 <td>
