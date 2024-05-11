@@ -63,7 +63,7 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                 <td><input <cfif ihes.islem neq -1 >readonly="yes"</cfif>  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
                 <td> <span onclick="">#ihes.QUANTITY#</span></td>
                 <td>
-                    <select name="orderrow_currency_#currentrow#" id="orderrow_currency_#currentrow#">
+                    <select name="orderrow_currency_#currentrow#" <cfif ihes.islem neq -1 >disabled="yes"</cfif> id="orderrow_currency_#currentrow#">
                         <option <cfif ihes.islem eq -1>selected</cfif> value="-1">Açık</option>
                         <option <cfif ihes.islem eq 1>selected</cfif> value="-2">Tedarik</option>
                         
