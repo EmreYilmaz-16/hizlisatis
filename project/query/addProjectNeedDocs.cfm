@@ -112,4 +112,6 @@
  
 </cfif>
 
-project\query\addProjectNeedDocs.cfm
+<script>
+    window.opener.location.reload();
+</script>
