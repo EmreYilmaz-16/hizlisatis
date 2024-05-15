@@ -137,6 +137,7 @@ ORDER BY O.RECORD_DATE
                 AND ORR.DELIVER_LOCATION IN (#arguments.LOCATION_ID#)
                 AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
                 AND SRR.PREPARE_PERSONAL IS NULL
+                AND SR.DELIVER_PAPER_NO NOT LIKE '%PSVK%'
                 ORDER BY O.RECORD_DATE
         </cfquery>
          <cfsavecontent  variable="control5">
