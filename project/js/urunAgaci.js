@@ -24,7 +24,8 @@ function ngetTree(
   li = "",
   pna = "",
   stg = "",
-  idba = ""
+  idba = "",
+  tipo=1
 ) {
   //console.log(arguments);
   if (tip == 1) {
@@ -54,7 +55,7 @@ function ngetTree(
 
     $.ajax({
       url:
-        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&tipo="+tipo+"&product_id=" +
         product_id +
         "&isVirtual=" +
         is_virtual +

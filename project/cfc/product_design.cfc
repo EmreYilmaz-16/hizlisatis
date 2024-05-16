@@ -20,11 +20,12 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             <cfargument name="company_id">
             <cfargument name="price_catid">
             <cfargument name="stock_id" default="">
+            <cfargument name="tipo" default="1">
             <cfset TreeArr="">
             <cfif arguments.isVirtual eq 1>                
-                <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3,product_id,company_id,price_catid)>
+                <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3,product_id,company_id,price_catid,tipo)>
             <cfelse>               
-                <cfset TreeArr=getTrees(product_id,0,ddsn3,stock_id,company_id,price_catid)>
+                <cfset TreeArr=getTrees(product_id,0,ddsn3,stock_id,company_id,price_catid,tipo)>
             </cfif>
             <cfreturn replace(TreeArr,"//","")>
         </cffunction>    
@@ -108,6 +109,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
         <cfargument name="sid">
         <cfargument name="company_id">
         <cfargument name="price_catid">
+        <cfargument name="tipo" default="1">
         <cfset dsn3=arguments.ddsn3>
         <cfquery name="getTree" datasource="#dsn3#">
             <cfif arguments.isVirtual eq 1>
@@ -120,7 +122,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
       </cfsavecontent>
       <cffile action="write" file = "c:\PBS\hizlisatiscfc_saveVirtualTube00#arguments.pid#.html" output="#test1#"></cffile>
             <cfset say=0> 
-       <cfsavecontent variable="myV">[<cfloop query="getTree"><CFIF  NOT LEN (PRICE) AND PRICE EQ 0><cfset priceData=getPriceFunk(PRODUCT_ID=PRODUCT_ID,IS_VIRTUAL=IS_VIRTUAL,COMPANY_ID=arguments.company_id,PRICE_CATID=arguments.price_catid,ddsn3=arguments.ddsn3)><CFELSE><cfset priceData=getPriceFunk(PRODUCT_ID=PRODUCT_ID,IS_VIRTUAL=IS_VIRTUAL,COMPANY_ID=arguments.company_id,PRICE_CATID=arguments.price_catid,ddsn3=arguments.ddsn3)><!---<cfset priceData.PRICE=PRICE><cfset priceData.DISCOUNT=DISCOUNT><cfset priceData.MONEY=MONEY><cfset priceData.PRICE=PRICE>---></CFIF> <cfset say=say+1><cfset O=structNew()><cfif IS_VIRTUAL eq 1><cfset O.STOCK_ID=STOCK_ID><CFELSE><CFSET O.STOCK_ID=RELATED_ID></cfif><cfset O.PRICE=priceData.PRICE><cfset O.STANDART_PRICE=priceData.STANDART_PRICE><cfset O.MONEY=priceData.MONEY><cfset O.DISCOUNT=priceData.DISCOUNT><cfset O.IS_VIRTUAL=IS_VIRTUAL><cfset O.VIRTUAL_PRODUCT_TREE_ID=0><CFSET O.PRODUCT_TREE_ID=PRODUCT_TREE_ID><cfset O.DISPLAY_NAME=DISPLAY_NAME><cfset O.PRODUCT_ID=PRODUCT_ID><cfquery name="getSInfo" datasource="#dsn3#"><cfif IS_VIRTUAL EQ 1>SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#PRODUCT_ID#<cfelse>SELECT * FROM STOCKS AS S WHERE PRODUCT_ID=#PRODUCT_ID#</cfif></cfquery><cfset O.PRODUCT_NAME=getSInfo.PRODUCT_NAME><cfset O.AMOUNT=AMOUNT><cfquery name="ishvTree" datasource="#dsn3#"><cfif IS_VIRTUAL EQ 1>SELECT * FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#PRODUCT_ID#<cfelse>SELECT * FROM PRODUCT_TREE AS S WHERE STOCK_ID=(SELECT STOCK_ID FROM STOCKS WHERE PRODUCT_ID=#PRODUCT_ID# AND STOCK_STATUS=1)</cfif></cfquery><cfoutput>{"PRODUCT_ID":#O.PRODUCT_ID#,"PRODUCT_NAME":"#O.PRODUCT_NAME#","AMOUNT":#O.AMOUNT#,"STOCK_ID":#O.STOCK_ID#,"DISPLAYNAME":"#O.DISPLAY_NAME#","IS_VIRTUAL":"#O.IS_VIRTUAL#","PRICE":"#O.PRICE#","STANDART_PRICE":"#O.STANDART_PRICE#","MONEY":"#O.MONEY#","DISCOUNT":"#O.DISCOUNT#","VIRTUAL_PRODUCT_TREE_ID":#O.VIRTUAL_PRODUCT_TREE_ID#,"PRODUCT_TREE_ID":"#O.PRODUCT_TREE_ID#","QUESTION_ID":"#QUESTION_ID#","QUESTION_NAME":"#getQuestionData(QUESTION_ID).QUESTION_NAME#","RNDM_ID":#GetRndmNmbr()#,"AGAC":<cfif ishvTree.recordCount><cfscript>writeOutput(getTrees(pid=O.PRODUCT_ID,isVirtual=IS_VIRTUAL,ddsn3=dsn3,sid=ishvTree.STOCK_ID,company_id=arguments.company_id,PRICE_CATID=arguments.price_catid))</cfscript><cfelse>""</cfif>,"ASDF":#say#},</cfoutput></cfloop>]</cfsavecontent>
+       <cfsavecontent variable="myV">[<cfloop query="getTree"><CFIF  NOT LEN (PRICE) AND PRICE EQ 0><cfset priceData=getPriceFunk(PRODUCT_ID=PRODUCT_ID,IS_VIRTUAL=IS_VIRTUAL,COMPANY_ID=arguments.company_id,PRICE_CATID=arguments.price_catid,ddsn3=arguments.ddsn3)><CFELSE><cfif arguments.tipo eq 1><cfset priceData=getPriceFunk(PRODUCT_ID=PRODUCT_ID,IS_VIRTUAL=IS_VIRTUAL,COMPANY_ID=arguments.company_id,PRICE_CATID=arguments.price_catid,ddsn3=arguments.ddsn3)><cfset priceData.PRICE=PRICE><cfset priceData.DISCOUNT=DISCOUNT><cfset priceData.MONEY=MONEY><cfset priceData.PRICE=PRICE><cfelse><cfset priceData=getPriceFunk(PRODUCT_ID=PRODUCT_ID,IS_VIRTUAL=IS_VIRTUAL,COMPANY_ID=arguments.company_id,PRICE_CATID=arguments.price_catid,ddsn3=arguments.ddsn3)></cfif><!---<cfset priceData.PRICE=PRICE><cfset priceData.DISCOUNT=DISCOUNT><cfset priceData.MONEY=MONEY><cfset priceData.PRICE=PRICE>---></CFIF> <cfset say=say+1><cfset O=structNew()><cfif IS_VIRTUAL eq 1><cfset O.STOCK_ID=STOCK_ID><CFELSE><CFSET O.STOCK_ID=RELATED_ID></cfif><cfset O.PRICE=priceData.PRICE><cfset O.STANDART_PRICE=priceData.STANDART_PRICE><cfset O.MONEY=priceData.MONEY><cfset O.DISCOUNT=priceData.DISCOUNT><cfset O.IS_VIRTUAL=IS_VIRTUAL><cfset O.VIRTUAL_PRODUCT_TREE_ID=0><CFSET O.PRODUCT_TREE_ID=PRODUCT_TREE_ID><cfset O.DISPLAY_NAME=DISPLAY_NAME><cfset O.PRODUCT_ID=PRODUCT_ID><cfquery name="getSInfo" datasource="#dsn3#"><cfif IS_VIRTUAL EQ 1>SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#PRODUCT_ID#<cfelse>SELECT * FROM STOCKS AS S WHERE PRODUCT_ID=#PRODUCT_ID#</cfif></cfquery><cfset O.PRODUCT_NAME=getSInfo.PRODUCT_NAME><cfset O.AMOUNT=AMOUNT><cfquery name="ishvTree" datasource="#dsn3#"><cfif IS_VIRTUAL EQ 1>SELECT * FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#PRODUCT_ID#<cfelse>SELECT * FROM PRODUCT_TREE AS S WHERE STOCK_ID=(SELECT STOCK_ID FROM STOCKS WHERE PRODUCT_ID=#PRODUCT_ID# AND STOCK_STATUS=1)</cfif></cfquery><cfoutput>{"PRODUCT_ID":#O.PRODUCT_ID#,"PRODUCT_NAME":"#O.PRODUCT_NAME#","AMOUNT":#O.AMOUNT#,"STOCK_ID":#O.STOCK_ID#,"DISPLAYNAME":"#O.DISPLAY_NAME#","IS_VIRTUAL":"#O.IS_VIRTUAL#","PRICE":"#O.PRICE#","STANDART_PRICE":"#O.STANDART_PRICE#","MONEY":"#O.MONEY#","DISCOUNT":"#O.DISCOUNT#","VIRTUAL_PRODUCT_TREE_ID":#O.VIRTUAL_PRODUCT_TREE_ID#,"PRODUCT_TREE_ID":"#O.PRODUCT_TREE_ID#","QUESTION_ID":"#QUESTION_ID#","QUESTION_NAME":"#getQuestionData(QUESTION_ID).QUESTION_NAME#","RNDM_ID":#GetRndmNmbr()#,"AGAC":<cfif ishvTree.recordCount><cfscript>writeOutput(getTrees(pid=O.PRODUCT_ID,isVirtual=IS_VIRTUAL,ddsn3=dsn3,sid=ishvTree.STOCK_ID,company_id=arguments.company_id,PRICE_CATID=arguments.price_catid))</cfscript><cfelse>""</cfif>,"ASDF":#say#},</cfoutput></cfloop>]</cfsavecontent>
         <cfset MyS=deserializeJSON(Replace(myV,",]","]","all"))>
         <cfsavecontent variable="test1">
             <style>
@@ -461,6 +463,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             <cfset MyS=deserializeJSON(Replace(myV,",]","]","all"))>
             <cfdump var="#MyS#">
             <cfdump var="#arguments#">
+            <cfdump var="#getTree#">
           </cfsavecontent>
           <cffile action="write" file = "c:\PBS\UrunGetir_#arguments.pid#.html" output="#test1#"></cffile>
           <cfreturn replace(serializeJSON(MyS),"//","")>

@@ -25,7 +25,7 @@ WHERE PTW>0
         <tbody>
             <cfloop query="getVP">                
                 <tr>
-                    <td><a href="##" onclick='ngetTree(#VIRTUAL_PRODUCT_ID#,1,"#dsn3#",0,#attributes.type#,0,0,"",#attributes.idb#)'>#PRODUCT_NAME#</a></td>
+                    <td><a href="##" onclick='ngetTree(#VIRTUAL_PRODUCT_ID#,1,"#dsn3#",0,#attributes.type#,0,0,"",#attributes.idb#,2)'>#PRODUCT_NAME#</a></td>
                     <td>#PROJECT_HEAD#</td>
                     <td>#STAGE#</td>
                 </tr>                
