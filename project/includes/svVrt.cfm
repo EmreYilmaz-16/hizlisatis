@@ -188,7 +188,7 @@ Giriş 1
                 </cfscript>
                 <cfoutput>
                     <span style="color:red">POS: 00004</span><br/>
-                    InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,#Ait.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#);<br/>
+                    InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,#Ait.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#prcex#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#);<br/>
                 </cfoutput>
             </cfif>
         </cfloop>
