@@ -19,6 +19,7 @@ Giriş 1
     <!----//BILGI SANAL ÜRÜN OLUŞTUMU KONTROLÜ ---->
     
     <CFIF AktifUrun.PRODUCT_ID neq 0 and len(AktifUrun.PRODUCT_ID) gt 0> <!----//BILGI Bu Ürün Sanal Olarak Eklenmiş Mi ----->        
+        <cfdump var="#AktifUrun#">
         <cfscript>
             UpdateVirtualProduct_NEW(VP_ID=AktifUrun.PRODUCT_ID,PRICE=AktifUrun.PRICE,Discount=AktifUrun.DISCOUNT,OtherMoney='#AktifUrun.MONEY#',DisplayName='#AktifUrun.DISPLAY_NAME#',ProductStage=AktifUrun.PRODUCT_STAGE)
             ClearVirtualTree(AktifUrun.PRODUCT_ID);            
