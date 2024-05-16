@@ -125,6 +125,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
         <cfsavecontent variable="test1">
             <cfset MyS=deserializeJSON(Replace(myV,",]","]","all"))>
             <cfdump var="#MyS#">
+            <cfdump var="#arguments#">
           </cfsavecontent>
           <cffile action="write" file = "c:\PBS\UrunGetir_#arguments.pid#.html" output="#test1#"></cffile>
           <cfreturn replace(serializeJSON(MyS),"//","")>
