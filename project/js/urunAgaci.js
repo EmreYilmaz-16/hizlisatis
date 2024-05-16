@@ -1970,7 +1970,7 @@ function MaliyetHesapla2() {
   });
   TTutar = commaSplit(TTutar);
   $("#maliyet").val(TTutar);
-MaliyetHesapla();
+//MaliyetHesapla();
 }
 function MaliyetHesapla() {
   var TotalPrice = 0;
