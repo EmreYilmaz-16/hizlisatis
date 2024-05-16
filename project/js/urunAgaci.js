@@ -170,7 +170,7 @@ console.log("Satir 72");
   } else if (tip == 4) {
     $.ajax({
       url:
-        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&product_id=" +
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&tipo="+tipo+"&product_id=" +
         product_id +
         "&isVirtual=" +
         is_virtual +
