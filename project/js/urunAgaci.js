@@ -69,6 +69,8 @@ function ngetTree(
       success: function (asd) {
         // var jsonStr = strToJson(asd);
         o = JSON.parse(asd);
+console.log("Satir 72");
+        console.log(o)
         // console.log(o);
         AgaciYaz(o, 0, "0", 1);
         var esd = document.getElementById("TreeArea");
