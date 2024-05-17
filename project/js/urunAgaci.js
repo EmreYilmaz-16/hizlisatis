@@ -2000,10 +2000,10 @@ function MaliyetHesapla() {
     discount = parseFloat(discount);
     miktar = parseFloat(miktar);
     var Rate2 = moneyArr[moneyArr.findIndex((p) => p.MONEY == money)].RATE2;
-    Rate2 = parseFloat(Rate2).toFixed(2);
+    Rate2 = parseFloat(Rate2).toFixed(3);
     var indirimli = price - (price * discount) / 100;
     var Tprice = indirimli * Rate2 * miktar;
-    Product.setAttribute("data-netTotal", Tprice.toFixed(2)); //DIKKAT BU METODA BAK
+    Product.setAttribute("data-netTotal", Tprice.toFixed(3)); //DIKKAT BU METODA BAK
     //console.log(Tprice);
     TotalPrice += Tprice;
   });
