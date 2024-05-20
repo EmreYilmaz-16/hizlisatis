@@ -205,7 +205,7 @@ LÜTFEN BU SAYFADA YAPTIĞINIZ DEĞİŞİKLİKLERİ ORDA DA YAPINIZ !!!!!!!!!!!!
 				<cfif isdefined('attributes.consumer_reference_code') and len(attributes.consumer_reference_code)><cfqueryparam cfsqltype="cf_sql_varchar" value="#attributes.consumer_reference_code#"><cfelse>NULL</cfif>,
 				<cfif isdefined('attributes.partner_reference_code') and len(attributes.partner_reference_code)><cfqueryparam cfsqltype="cf_sql_varchar" value="#attributes.partner_reference_code#"><cfelse>NULL</cfif>,
 					<cfqueryparam cfsqltype="cf_sql_varchar" value="#paper_full#">,
-					#attributes.process_stage#,
+					19,
 				<cfif len(attributes.order_date)>#attributes.order_date#<cfelse>NULL</cfif>,
 					1,
 				<cfif isdefined("attributes.priority_id")>#attributes.priority_id#<cfelse>NULL</cfif>, 
