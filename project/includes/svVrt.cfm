@@ -81,7 +81,10 @@ Giriş 1
                         ClearVirtualTree(#Ait.PRODUCT_ID#);<br/>
                         InsertedItem=InsertTree(#AktifUrun.PRODUCT_ID#,#Ait.PRODUCT_ID#,#Ait.STOCK_ID#,#Ait.AMOUNT#,#aiq#,#aip#,#aid#,#aim#,#Ait.IS_VIRTUAL#,#dName#);<br/>
                     </cfoutput>
-
+                    <cfif isDefined("ait.AGAC")>
+                    <cfelse>
+                        <cfset ait.AGAC=arrayNew(1)>
+                    </cfif>
                     <CFIF arrayLen(ait.AGAC)>
                         <cfset Ait.PRODUCT_STAGE =FormData.PRODUCT_STAGE>
                          <cfscript>   UrunParse(Ait);</cfscript>
