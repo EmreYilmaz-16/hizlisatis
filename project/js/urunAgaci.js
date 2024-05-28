@@ -991,6 +991,7 @@ var span = document.createElement("span");
     div.appendChild(div2);
     li.appendChild(div);
     e.appendChild(li);
+    ngetTree(PRODUCT_ID, 1, "workcube_metosan_1", "", 2, li,"");
   } else {
     var e = document.getElementById(COLUMNSA);
     var li = document.createElement("li");
