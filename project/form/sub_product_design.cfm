@@ -173,7 +173,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
         </div>
     </cf_box>
     </div>
-    <div class="col col-7 col-md-7 col-sm-7 col-xs-12" >
+    <div class="col col-9 col-md-9 col-sm-9 col-xs-12" >
 <cf_box title="Ürün Ağacı">
     <div style="display:flex;margin-bottom:5px">
         <button class="btn btn-outline-success" onclick="OpenBasketProducts(0,5)">RP</button>
@@ -199,26 +199,9 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
 
 </div>
 </cf_box>
+<input type="text" class="form-control" id="maliyet" name="maliyet" style="text-align:right" value="<cfoutput>#tlformat(0)#</cfoutput>">
 </div>
-<div class="col col-2 col-md-2 col-sm-2 col-xs-12" >
-    <cf_box title="....">
-        <div  style="height:79vh" id="settingsArea">
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
-              </div>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
-                <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
-              </div>
-        </div>
-    </cf_box>
-    
-        <cf_box title="Maliyet">
-            <input type="text" class="form-control" id="maliyet" name="maliyet" style="text-align:right" value="<cfoutput>#tlformat(0)#</cfoutput>">
-        </cf_box>
-        
-</div>
+
 
 </div>
 
