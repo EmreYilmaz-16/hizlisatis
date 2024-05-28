@@ -919,7 +919,7 @@ function AddRowItemVirtual(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
-
+    var AMOUNT=1;
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
     var RATE2MNY = moneyArr[MNYX].RATE2MNY;
