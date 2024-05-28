@@ -934,7 +934,19 @@ function AddRowItemVirtual(
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
     var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB);
-    span.innerHtml = PRODUCT_NAME + "-" + soxx;
+    span.innerText = PRODUCT_NAME;
+    span.appendChild(soxx);
+
+/*
+var span = document.createElement("span");
+    span.setAttribute("name", "product_name_");
+    span.setAttribute("style", "display:inline-grid");
+    var soxx = makeFiyatSpan(PRICE, MONEY, "fiyatimis_" + idB, 1);
+    span.innerText = PRODUCT_NAME;
+    span.appendChild(soxx);
+
+*/
+
     idB++;
     div.appendChild(span);
     var div2 = document.createElement("div");
