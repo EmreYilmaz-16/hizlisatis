@@ -34,8 +34,13 @@ Giriş 1
                 <cfif Ait.PRODUCT_ID neq 0 and len(Ait.PRODUCT_ID) gt 0> <!--- //BILGI ürün Eklenmiş mi ? ---->
                     <!---- //BILGI Ürün Eklenmişse  ---->
                     <cfoutput>
+                        <cfif isDefined("Ait.DISPLAY_NAME") and len(Ait.DISPLAY_NAME)>
+                            <cfset DBNAMEP="#Ait.DISPLAY_NAME#">
+                        <cfelse>
+                            <cfset DBNAMEP="">
+                        </cfif>
                         <span style="color:red">POS: 00001-A</span><br/>
-                        UpdateVirtualProduct_NEW(VP_ID=#Ait.PRODUCT_ID#,PRICE=#Ait.PRICE#,Discount=#Ait.DISCOUNT#,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="");
+                        UpdateVirtualProduct_NEW(VP_ID=#Ait.PRODUCT_ID#,PRICE=#Ait.PRICE#,Discount=#Ait.DISCOUNT#,OtherMoney='#Ait.MONEY#',DisplayName='#DBNAMEP#',ProductStage="");
                         ClearVirtualTree(#Ait.PRODUCT_ID#);            
                     </cfoutput>
                     <cfif isDefined("Ait.QUESTION_ID")><cfset aiq=Ait.QUESTION_ID><cfelse><cfset aiq="NULL"></cfif>
@@ -43,7 +48,7 @@ Giriş 1
                             <cfif isDefined("ait.DISCOUNT")><cfset aid=Ait.DISCOUNT><cfelse><cfset aid="0"></cfif>
                             <cfif isDefined("ait.MONEY")><cfset aim=Ait.MONEY><cfelse><cfset aim="TL"></cfif>
                    <cfscript>
-                        UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#Ait.DISPLAY_NAME#',ProductStage="#FormData.PRODUCT_STAGE#");
+                        UpdateVirtualProduct_NEW(VP_ID=Ait.PRODUCT_ID,PRICE=Ait.PRICE,Discount=Ait.DISCOUNT,OtherMoney='#Ait.MONEY#',DisplayName='#DBNAMEP#',ProductStage="#FormData.PRODUCT_STAGE#");
                         ClearVirtualTree(Ait.PRODUCT_ID);            
                         
                         if(isDefined("Ait.price")){
