@@ -122,9 +122,10 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
         <cf_box title="Ürünler">
             
        <div style="height:90vh">
-    <div>
-        <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
-    </div>
+        <div style="display:flex;justify-content: flex-start;align-items: stretch;">
+            <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
+            <button type="button" style="margin-left: auto" onclick="OpenSearchVP()" class="btn btn-outline-warning"><span class="icn-md icon-search pull-right"></span></button>
+        </div>
     <div class="list-group" id="leftMenuProject">
 
    
