@@ -121,7 +121,7 @@ SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
     <div class="col col-3 col-md-3 col-sm-3 col-xs-12" style="border-right: solid 1px ##E08283;">
         <cf_box title="Ürünler">
             
-       <div style="height:90vh">
+       <div style="height:85vh">
     <div>
         <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
     </div>
