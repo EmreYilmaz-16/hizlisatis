@@ -2093,9 +2093,9 @@
                     for(s=1;s lte arguments.spec_row_count;s=s+1)
                     {//product_id 0 dan fakli ise fiyati alinir degilse 0 atiyoz
                         if(listgetat(arguments.product_id_list,s,',') gt 0 and isdefined("attributes.price_catid") and len(attributes.price_catid))
-                            GET_PRICE_PROD = cfquery(SQLString:"SELECT * FROM GET_PRICE WHERE PRODUCT_ID=#listgetat(arguments.product_id_list,s,',')#",Datasource:dsn3,dbtype:1,is_select:1);	
+                            GET_PRICE_PROD = workcube_query(SQLString:"SELECT * FROM GET_PRICE WHERE PRODUCT_ID=#listgetat(arguments.product_id_list,s,',')#",Datasource:dsn3,dbtype:1,is_select:1);	
                         if(listgetat(arguments.product_id_list,s,',') gt 0 and (not isdefined("GET_PRICE_PROD") or GET_PRICE_PROD.RECORDCOUNT eq 0) and isdefined("cfquery"))
-                            GET_PRICE_PROD = cfquery(SQLString:"SELECT * FROM GET_PRICE_STANDART WHERE PRODUCT_ID=#listgetat(arguments.product_id_list,s,',')#",Datasource:dsn3,dbtype:1,is_select:1);	
+                            GET_PRICE_PROD = workcube_query(SQLString:"SELECT * FROM GET_PRICE_STANDART WHERE PRODUCT_ID=#listgetat(arguments.product_id_list,s,',')#",Datasource:dsn3,dbtype:1,is_select:1);	
                         if(isdefined('GET_PRICE_PROD') and len(GET_PRICE_PROD.PRICE))
                         {
                             arguments.product_price_list=listappend(arguments.product_price_list,GET_PRICE_PROD.PRICE,',');
@@ -2131,9 +2131,9 @@
                     if(listlen(arguments.money_list,',') eq 0 or listlen(arguments.money_rate1_list,',') or listlen(arguments.money_rate2_list,',') eq 0)
                     {
                         if(isdefined("session.ep.company_id"))
-                            GET_MONEY_SPEC = cfquery(SQLString:'SELECT MONEY AS MONEY_TYPE,RATE2,RATE1 FROM #dsn_alias#.SETUP_MONEY SETUP_MONEY WHERE COMPANY_ID=#session.ep.company_id# AND PERIOD_ID=#session_base.period_id# AND MONEY_STATUS=1',Datasource:arguments.dsn_type,is_select:1);	
+                            GET_MONEY_SPEC = workcube_query(SQLString:'SELECT MONEY AS MONEY_TYPE,RATE2,RATE1 FROM #dsn_alias#.SETUP_MONEY SETUP_MONEY WHERE COMPANY_ID=#session.ep.company_id# AND PERIOD_ID=#session_base.period_id# AND MONEY_STATUS=1',Datasource:arguments.dsn_type,is_select:1);	
                         else
-                            GET_MONEY_SPEC = cfquery(SQLString:'SELECT MONEY AS MONEY_TYPE,RATE2,RATE1 FROM #dsn_alias#.SETUP_MONEY SETUP_MONEY WHERE COMPANY_ID=#session_base.our_company_id# AND PERIOD_ID=#session_base.period_id# AND MONEY_STATUS=1',Datasource:arguments.dsn_type,is_select:1);	
+                            GET_MONEY_SPEC = workcube_query(SQLString:'SELECT MONEY AS MONEY_TYPE,RATE2,RATE1 FROM #dsn_alias#.SETUP_MONEY SETUP_MONEY WHERE COMPANY_ID=#session_base.our_company_id# AND PERIOD_ID=#session_base.period_id# AND MONEY_STATUS=1',Datasource:arguments.dsn_type,is_select:1);	
                         
                         for(a=1;a lte GET_MONEY_SPEC.RECORDCOUNT;a=a+1)
                         {
@@ -2260,9 +2260,9 @@
                         arguments.diff_price_list=listappend(arguments.diff_price_list,0,',');
         
                         if(len(GET_MAIN_SPEC.PRODUCT_ID[s]) and isdefined("attributes.price_catid") and len(attributes.price_catid))
-                            GET_PRICE_PROD = cfquery(SQLString:'SELECT * FROM GET_PRICE WHERE PRODUCT_ID=#GET_MAIN_SPEC.PRODUCT_ID[s]#',Datasource:dsn3,dbtype:1,is_select:1);	
+                            GET_PRICE_PROD = workcube_query(SQLString:'SELECT * FROM GET_PRICE WHERE PRODUCT_ID=#GET_MAIN_SPEC.PRODUCT_ID[s]#',Datasource:dsn3,dbtype:1,is_select:1);	
                         if(len(GET_MAIN_SPEC.PRODUCT_ID[s]) and (not isdefined("GET_PRICE_PROD") or GET_PRICE_PROD.RECORDCOUNT eq 0))
-                            GET_PRICE_PROD = cfquery(SQLString:'SELECT * FROM GET_PRICE_STANDART WHERE PRODUCT_ID=#GET_MAIN_SPEC.PRODUCT_ID[s]#',Datasource:dsn3,dbtype:1,is_select:1);	
+                            GET_PRICE_PROD = workcube_query(SQLString:'SELECT * FROM GET_PRICE_STANDART WHERE PRODUCT_ID=#GET_MAIN_SPEC.PRODUCT_ID[s]#',Datasource:dsn3,dbtype:1,is_select:1);	
                         if(isdefined('GET_PRICE_PROD') and len(GET_PRICE_PROD.PRICE))
                         {
                             arguments.product_price_list=listappend(arguments.product_price_list,GET_PRICE_PROD.PRICE,',');

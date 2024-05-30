@@ -277,7 +277,7 @@
 				form_exit_unit = MAIN_UNIT;
 				if(form_spec_main_id_exit gt 0){
 				specNameSqlStr="SELECT SPECT_MAIN_NAME FROM SPECT_MAIN  WHERE SPECT_MAIN_ID =#form_spec_main_id_exit#";
-				specNameSqlQuery = cfquery(SQLString : specNameSqlStr, Datasource : dsn3);
+				specNameSqlQuery = workcube_query(SQLString : specNameSqlStr, Datasource : dsn3);
 					if(specNameSqlQuery.recordcount)
 						form_spect_name_exit = specNameSqlQuery.SPECT_MAIN_NAME;
 					else
@@ -438,7 +438,7 @@
 			form_spect_id = SPECT_VAR_ID;
 			if(form_spec_main_id gt 0){
 			specNameSqlStr="SELECT SPECT_MAIN_NAME FROM SPECT_MAIN  WHERE SPECT_MAIN_ID =#form_spec_main_id#";
-			specNameSqlQuery = cfquery(SQLString : specNameSqlStr, Datasource : dsn3);
+			specNameSqlQuery = workcube_query(SQLString : specNameSqlStr, Datasource : dsn3);
 				if(specNameSqlQuery.recordcount)
 					form_spect_name = specNameSqlQuery.SPECT_MAIN_NAME;
 				else

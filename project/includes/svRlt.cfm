@@ -321,7 +321,7 @@
                         SPECT_MAIN_ID = #spect_id#
                         AND IS_PHANTOM = 1
                 ";
-            query1 = cfquery(SQLString : SQLStr, Datasource : new_dsn3);
+            query1 = workcube_query(SQLString : SQLStr, Datasource : new_dsn3);
             stock_id_ary='';
             for (str_i=1; str_i lte query1.recordcount; str_i = str_i+1)
             {
