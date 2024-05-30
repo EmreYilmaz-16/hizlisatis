@@ -577,7 +577,7 @@
 			<cfscript>
 				if( len(attributes.location_in_id) and len(attributes.department_in_id)) //giris deposu kontrol ediliyor
 				{
-					LOCATION_IN=cfquery(datasource:"#new_dsn2#",sqlstring:"SELECT SL.LOCATION_TYPE,D.BRANCH_ID,IS_SCRAP FROM #dsn_alias#.STOCKS_LOCATION SL, #dsn_alias#.DEPARTMENT D WHERE D.DEPARTMENT_ID=SL.DEPARTMENT_ID AND SL.DEPARTMENT_ID=#attributes.department_in_id# AND SL.LOCATION_ID=#attributes.location_in_id#");
+					LOCATION_IN=workcube_query(datasource:"#new_dsn2#",sqlstring:"SELECT SL.LOCATION_TYPE,D.BRANCH_ID,IS_SCRAP FROM #dsn_alias#.STOCKS_LOCATION SL, #dsn_alias#.DEPARTMENT D WHERE D.DEPARTMENT_ID=SL.DEPARTMENT_ID AND SL.DEPARTMENT_ID=#attributes.department_in_id# AND SL.LOCATION_ID=#attributes.location_in_id#");
 					location_type_in = LOCATION_IN.LOCATION_TYPE;
 					is_scrap_in = LOCATION_IN.IS_SCRAP;
 					branch_id_in=LOCATION_IN.BRANCH_ID;
@@ -588,7 +588,7 @@
 				}
 				if( len(attributes.location_id) and len(attributes.department_id)) //cikis deposu kontrol ediliyor
 				{	
-					LOCATION_OUT=cfquery(datasource:"#new_dsn2#",sqlstring:"SELECT SL.LOCATION_TYPE,D.BRANCH_ID,IS_SCRAP FROM #dsn_alias#.STOCKS_LOCATION SL, #dsn_alias#.DEPARTMENT D WHERE D.DEPARTMENT_ID=SL.DEPARTMENT_ID AND SL.DEPARTMENT_ID=#attributes.department_id# AND SL.LOCATION_ID=#attributes.location_id#");
+					LOCATION_OUT=workcube_query(datasource:"#new_dsn2#",sqlstring:"SELECT SL.LOCATION_TYPE,D.BRANCH_ID,IS_SCRAP FROM #dsn_alias#.STOCKS_LOCATION SL, #dsn_alias#.DEPARTMENT D WHERE D.DEPARTMENT_ID=SL.DEPARTMENT_ID AND SL.DEPARTMENT_ID=#attributes.department_id# AND SL.LOCATION_ID=#attributes.location_id#");
 					location_type_out = LOCATION_OUT.LOCATION_TYPE;
 					is_scrap_out = LOCATION_OUT.IS_SCRAP;
 					branch_id_out= LOCATION_OUT.BRANCH_ID;
