@@ -99,7 +99,7 @@
         if(el.value.length==0){
             el.value=0;
         }
-         el.value=commaSplit(filterNum(el.value))
+         el.value=commaSplit(filterNum(el.value),4)
          var SP_SelectedMoney=document.getElementById("SP_SelectedMoney").value;
         var SP_Fiyat=document.getElementById("SP_Fiyat").value;        
         var SP_Miktar=document.getElementById("SP_Miktar").value;
@@ -124,8 +124,8 @@
             RATE2:RATE2,
         }
         console.table(SP_FIYAT_HESAP_SONUC);
-        Sp_Tutar=commaSplit(Sp_Tutar);
-        Sp_Indirimli_Fiyat=commaSplit(Sp_Indirimli_Fiyat);
+        Sp_Tutar=commaSplit(Sp_Tutar,4);
+        Sp_Indirimli_Fiyat=commaSplit(Sp_Indirimli_Fiyat,4);
         document.getElementById("SP_NetPrice").value=Sp_Indirimli_Fiyat;
         document.getElementById("SP_NetTutar").value=Sp_Tutar;
 
