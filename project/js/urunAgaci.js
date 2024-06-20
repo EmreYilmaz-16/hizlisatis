@@ -1984,8 +1984,8 @@ function MaliyetHesapla2() {
       TTutar: TTutar,
     });
   });
-  TTutar = commaSplit(TTutar);
-  $("#maliyet").val(TTutar);
+  TTutar = commaSplit(TTutar,4);
+  $("#maliyet").val(TTutar,4);
 MaliyetHesapla();
 }
 function MaliyetHesapla() {
@@ -2020,7 +2020,7 @@ function MaliyetHesapla() {
     //console.log(Tprice);
     TotalPrice += Tprice;
   });
-  var Mn = commaSplit(TotalPrice);
+  var Mn = commaSplit(TotalPrice,4);
   $("#maliyet").val(Mn);
 }
 
@@ -2383,7 +2383,7 @@ function SetPrice2(idb, modal_id) {
     .setAttribute("data-netTotal", SP_FIYAT_HESAP_SONUC.Sp_Tutar);
 
   document.getElementById("fiyatimis_" + idb).innerText =
-    commaSplit(SP_FIYAT_HESAP_SONUC.SP_Fiyat) +
+    commaSplit(SP_FIYAT_HESAP_SONUC.SP_Fiyat,4) +
     " " +
     SP_FIYAT_HESAP_SONUC.SP_SelectedMoney;
   $(document.getElementByIdb(idb))
