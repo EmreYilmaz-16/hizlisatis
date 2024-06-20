@@ -99,17 +99,17 @@
         if(el.value.length==0){
             el.value=0;
         }
-         el.value=commaSplit(filterNum(el.value),4)
+         el.value=commaSplit(filterNum(el.value,4),4)
          var SP_SelectedMoney=document.getElementById("SP_SelectedMoney").value;
         var SP_Fiyat=document.getElementById("SP_Fiyat").value;        
         var SP_Miktar=document.getElementById("SP_Miktar").value;
         var SP_Discount=document.getElementById("SP_Discount").value;
         var RATE2=document.getElementById("RATE2_"+SP_SelectedMoney).value
         
-        SP_Fiyat=parseFloat(filterNum(SP_Fiyat));
-        SP_Miktar=parseFloat(filterNum(SP_Miktar));
-        SP_Discount=parseFloat(filterNum(SP_Discount));
-        RATE2=parseFloat(filterNum(RATE2));
+        SP_Fiyat=parseFloat(filterNum(SP_Fiyat,4));
+        SP_Miktar=parseFloat(filterNum(SP_Miktar,4));
+        SP_Discount=parseFloat(filterNum(SP_Discount,4));
+        RATE2=parseFloat(filterNum(RATE2,4));
         
         var Sp_Indirimli_Fiyat=SP_Fiyat-((SP_Fiyat*SP_Discount)/100)
         var Sp_Tutar=Sp_Indirimli_Fiyat*SP_Miktar*RATE2
