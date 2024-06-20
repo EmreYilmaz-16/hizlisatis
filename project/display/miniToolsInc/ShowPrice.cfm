@@ -12,7 +12,7 @@
                 </td>
                 <td>
                     <div class="input-group">
-                    <input type="text" class="form-control" name="SP_Fiyat" id="SP_Fiyat" onchange="spHesaplayalim(this)" value="<cfoutput>#tlformat(FData.Price)#</cfoutput>">
+                    <input type="text" class="form-control" name="SP_Fiyat" id="SP_Fiyat" onchange="spHesaplayalim(this)" value="<cfoutput>#tlformat(FData.Price,4)#</cfoutput>">
                     <span class="input-group-text"><cfoutput>#FData.OtherMoney#</cfoutput></span>   
                 </div>
                 </td>
