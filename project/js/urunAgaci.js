@@ -1858,7 +1858,7 @@ function UrunKaydet() {
   var project_id = $("#project_id").val();
   var stg = $("#pstage").val();
   var prc = $("#maliyet").val();
-  prc = filterNum(prc);
+  prc = filterNum(prc,4);
   /*
    <cfargument name="VP_ID">
     <cfargument name="PRICE" default="">
@@ -2116,7 +2116,7 @@ function convertToOffer() {
   var price_catid = _priceCatId;
   var vp_id = document.getElementById("vp_id").value;
   var project_id = document.getElementById("project_id").value;
-  Maliyet = filterNum(Maliyet);
+  Maliyet = filterNum(Maliyet,4);
   var q =
     "select PROJECT_NUMBER+'-'+PROJECT_HEAD as PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where PROJECT_ID=" +
     project_id;
