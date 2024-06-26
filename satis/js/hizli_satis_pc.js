@@ -422,22 +422,22 @@ function TabCntFunction(a, b, c, d, e, f) {
 
 function add_adress() {
   if (
-    !(hizliForm.company_id.value == "") ||
-    !(hizliForm.consumer_id.value == "")
+    !(product_form.company_id.value == "") ||
+    !(product_form.consumer_id.value == "")
   ) {
-    if (hizliForm.company_id.value != "") {
+    if (product_form.company_id.value != "") {
       str_adrlink =
-        "&field_long_adres=hizliForm.ship_address&field_adress_id=hizliForm.ship_address_id";
-      if (hizliForm.city_id != undefined)
-        str_adrlink = str_adrlink + "&field_city=hizliForm.city_id";
-      if (hizliForm.county_id != undefined)
-        str_adrlink = str_adrlink + "&field_county=hizliForm.county_id";
+        "&field_long_adres=product_form.ship_address&field_adress_id=product_form.ship_address_id";
+      if (product_form.city_id != undefined)
+        str_adrlink = str_adrlink + "&field_city=product_form.city_id";
+      if (product_form.county_id != undefined)
+        str_adrlink = str_adrlink + "&field_county=product_form.county_id";
       member_type_ = "partner";
       openBoxDraggable(
         "index.cfm?fuseaction=objects.popup_list_member_address&is_comp=1&company_id=" +
-          hizliForm.company_id.value +
+          product_form.company_id.value +
           "&member_name=" +
-          hizliForm.company_name.value +
+          product_form.company_name.value +
           "&member_type=" +
           member_type_ +
           "" +
@@ -447,16 +447,16 @@ function add_adress() {
     } else {
       str_adrlink =
         "&field_long_adres=form_basket.ship_address&field_adress_id=form_basket.ship_address_id";
-      if (hizliForm.city_id != undefined)
+      if (product_form.city_id != undefined)
         str_adrlink = str_adrlink + "&field_city=form_basket.city_id";
-      if (hizliForm.county_id != undefined)
+      if (product_form.county_id != undefined)
         str_adrlink = str_adrlink + "&field_county=form_basket.county_id";
       member_type_ = "consumer";
       openBoxDraggable(
         "index.cfm?fuseaction=objects.popup_list_member_address&is_comp=0&consumer_id=" +
-          hizliForm.consumer_id.value +
+          product_form.consumer_id.value +
           "&member_name=" +
-          hizliForm.partner_name.value +
+          product_form.partner_name.value +
           "&member_type=" +
           member_type_ +
           "" +
