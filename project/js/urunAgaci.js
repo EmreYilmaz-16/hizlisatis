@@ -2179,7 +2179,7 @@ function convertToOffer() {
 
   map = window.open(
     "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert",
-    "Map",
+    "MapS",
     "status=0,title=0,height=600,width=800,scrollbars=1"
   );
 
