@@ -51,7 +51,7 @@
 			,PS.PRICE
 			,0 as MARJ
 			,PRODUCT_DETAIL AS PRODUCT_DESCRIPTION
-			,PC.DETAIL AS PRODUCT_TYPE
+			,ISNULL(PC.DETAIL,"0") AS PRODUCT_TYPE
 			,1 AS IS_CONVERT_REAL
 			,#dsn#.getEmployeeWithId(S.RECORD_EMP) RECORD_EMP
 			,S.RECORD_DATE
@@ -128,6 +128,8 @@
 			<cfelseif gets.PRODUCT_TYPE eq 3>
 				<cfset hide_buttons=1>
 				<cfinclude template="../includes/virman_sh.cfm">
+			<cfelse>
+				<cfinclude template="../includes/agac_normal.cfm">
 			</cfif>
 			
 		</cf_grid_list>
