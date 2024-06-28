@@ -104,7 +104,7 @@ SELECT SUM(RESULT_AMOUNT) RESULT_AMOUNT,P_ORDER_ID FROM workcube_metosan_1.VIRTU
                 <cfinclude template="../includes/basket_pump.cfm">
             </cfif>
         <cfelse>
-            
+            dasdas
             <cfinclude template="../includes/basket_normal.cfm">
         </cfif>     
 <input type="hidden" name="total_price" id="total_price">
