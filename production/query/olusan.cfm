@@ -13,8 +13,7 @@
    };       
    queryAddRow(wrq_Sarf_4,O);
 </cfscript>
-EMRE YILMAZ
-<cfdump var="#wrq_Sarf_4#">
+
 <cfif wrq_Sarf_4.recordCount gt 0>
     <cfscript>
         AddSayimFis(wrq_Sarf_4,243,attributes.V_P_ORDER_ID,listGetAt(MainSL,1,"-"),listGetAt(MainSL,2,"-"));

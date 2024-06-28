@@ -17,7 +17,7 @@
 
 </cfif>
 <cfparam name="attributes.PRODUCT_AMOUNT_1_0" default="">
-<cfdump var="#attributes#">
+
 <cfquery name="getVirtualProductionOrder" datasource="#dsn3#">
 	SELECT * FROM VIRTUAL_PRODUCTION_ORDERS where V_P_ORDER_ID=#attributes.V_P_ORDER_ID#
 </cfquery>

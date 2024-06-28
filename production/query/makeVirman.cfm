@@ -7,7 +7,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
 </cfquery>
 
 <cfset fr_data=deserializeJSON(replace(getData.JSON_DATA,"//",""))>
-<cfdump var="#fr_data#">
+
 
 
 <cfoutput>
@@ -25,7 +25,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
      LEFT JOIN PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
      WHERE STOCK_ID= <cfif getData.CREATED_SID neq 0>#getData.CREATED_SID# <cfelse>#fr_data.OlusacakUrun.STOCK_ID#</cfif>
  </cfquery>
- <cfdump var="#getRaf12#">
+
 <cfquery name="getS12" datasource="#dsn3#">
     select STORE_ID,LOCATION_ID,PRODUCT_PLACE_ID from PRODUCT_PLACE where SHELF_CODE='#getRaf12.shelf_code#'
 </cfquery>
@@ -104,7 +104,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
             left join #dsn3#.PRODUCT_UNIT on PRODUCT_UNIT.PRODUCT_ID=STOCKS.PRODUCT_ID and IS_MAIN=1                            
             where STOCK_ID=#STOCK_ID#
         </cfquery>
-        <cfdump var="#getSinfo#">
+
         <cfset attributes.rows_=attributes.rows_+1>
 
         <cfset 'attributes.SHELF_NUMBER_TXT_#ix#' = SHELF_NUMBER_TXT> 
@@ -155,8 +155,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
     <cfargument name="ioopt">
     <cfargument name="DOut" default="">
     <cfargument name="LOut" default="">
-    <cfdump var="#arguments#">
-    <cfdump var="#arguments.ResQuery#">
+
     <cfloop query="ResQuery" group="LOCATION_ID">               
         <cfset ix=1>      
         <cfset attributes.active_period=session.ep.period_id> 
@@ -243,7 +242,7 @@ WHERE VPO.V_P_ORDER_ID = #attributes.V_P_ORDER_ID#
                   
             <cfset ix=ix+1>                        
         </cfloop>
-        <cfdump var="#attributes#">
+       
         <cfinclude template="/v16/stock/query/add_ship_fis_1_PBS.cfm">    
         <cfinclude template="/v16/stock/query/add_ship_fis_2_PBS.cfm">
         <cfif isdefined("attributes.rows_")>            

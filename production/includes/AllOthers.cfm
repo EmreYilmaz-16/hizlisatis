@@ -4,8 +4,7 @@ INNER JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID
 INNER JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND IS_MAIN=1
   WHERE PT.STOCK_ID=#gets.STOCK_ID#
 </cfquery>
-<cfdump var="#getPo#">
-<cfdump var="#gets#">
+
 <cf_box title="Üretim Emri #getPo.V_P_ORDER_NO#">
     <cfoutput>
         <table style="width:100%">

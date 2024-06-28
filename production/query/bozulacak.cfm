@@ -38,8 +38,7 @@
         queryAddRow(wrq_Sarf_1,O);
     </cfscript>
 </cfloop>
-<cfdump var="#WRQ_AMBAR_1#">
-<cfdump var="#MainSL#">
+
 
 <cfif WRQ_AMBAR_1.recordCount gt 0>
     <cfscript>

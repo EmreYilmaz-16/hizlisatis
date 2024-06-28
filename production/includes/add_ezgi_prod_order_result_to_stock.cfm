@@ -432,7 +432,7 @@
 		</cfif>
 		<cfsavecontent  variable="control5">
 			
-			<cfdump var="#getShelvesStc#">
+			
 			
 		   </cfsavecontent>
 		   <cffile action="write" file = "c:\PBS\getShelvesStc_#currentrow#.html" output="#control5#"></cffile>
