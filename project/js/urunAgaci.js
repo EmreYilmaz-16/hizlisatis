@@ -2176,13 +2176,14 @@ function convertToOffer() {
   mapForm.appendChild(mapInput);
 
   document.body.appendChild(mapForm);
-
+/*
   map = window.open(
     "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert",
     "MapS",
     "status=0,title=0,height=600,width=800,scrollbars=1"
   );
-
+*/
+var map=true;
   if (map) {
     mapForm.submit();
   } else {
