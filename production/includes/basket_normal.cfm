@@ -7,7 +7,7 @@
         ,PS.PRICE
         ,0 as MARJ
         ,PRODUCT_DETAIL AS PRODUCT_DESCRIPTION
-        ,PC.DETAIL AS PRODUCT_TYPE
+        ,ISNULL(PC.DETAIL,'0') AS PRODUCT_TYPE
         ,1 AS IS_CONVERT_REAL
         ,#dsn#.getEmployeeWithId(S.RECORD_EMP) RECORD_EMP
         ,S.RECORD_DATE
