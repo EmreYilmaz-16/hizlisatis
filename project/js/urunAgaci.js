@@ -2164,7 +2164,7 @@ function convertToOffer() {
     ProductList: ProductList,
   };
   var mapForm = document.createElement("form");
-  mapForm.target = "Map";
+  mapForm.target = "PencereUrunDesign";
   mapForm.method = "POST"; // or "post" if appropriate
   mapForm.action =
     "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert&is_from_project=1";
