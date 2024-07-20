@@ -864,7 +864,7 @@ SHIP_RESULT_ID
         </CFTRY>
         </td>
     <cfelse>
-        <td></td>
+        <td>********</td>
     </cfif>
     <td>#get_emp_info(DELIVER_EMP,0,0)#</td>
     <td>#SHIP_METHOD#
