@@ -863,6 +863,8 @@ SHIP_RESULT_ID
             <cfcatch></cfcatch>
         </CFTRY>
         </td>
+    <cfelse>
+        <td></td>
     </cfif>
     <td>#get_emp_info(DELIVER_EMP,0,0)#</td>
     <td>#SHIP_METHOD#
