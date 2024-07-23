@@ -232,6 +232,7 @@
       	</td>
   	</tr>
 </table>
+sdnakd
 <form name="aktar_form" method="post">
     <input type="hidden" name="convert_stocks_id" id="convert_stocks_id" value="">
 	<input type="hidden" name="convert_amount_stocks_id" id="convert_amount_stocks_id" value="">
