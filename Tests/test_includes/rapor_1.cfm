@@ -19,10 +19,25 @@ where COMPANY_ID=13205
 
 <cfdump var="#getc#">
 
+
+
 <cfoutput query="getc">
 <cfquery name="GETAF" datasource="#DSN2#">
-    SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID#
+    SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID# ORDER BY ACTION_DATE
 </cfquery>
-<cfdump var="#GETAF#">
+<CFSET SIRA=1>
+<cfquery name="GETSF" datasource="#DSN2#">
+    SELECT TOP 10 * FROM CARI_ROWS WHERE TO_CMP_ID=#COMPANY_ID# ORDER BY ACTION_DATE
+</cfquery>
+<CFSET AF_TUTAR=GETAF[SIRA].ACTION_VALUE>
+
+
+<cfloop query="GETSF">
+   #AF_TUTAR# -- #ACTION_VALUE# <BR>
+
+
+</cfloop>
+
+
 
 </cfoutput>
