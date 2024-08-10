@@ -25,10 +25,22 @@ where COMPANY_ID=13205
             #NICKNAME#
         </td>
         <td>
+            #BORC#
+        </td>
+        <td>
+            #ALACAK#
+        </td>
+        <td>
+            #BAKIYE#
+        </td>
+        <td>
+            #BA#
+        </td>
+        <td>
             <cfset attributes.date1="01/01/#year(now())#">
             <cfset attributes.date2="31/12/#year(now())#">
             <cfset attributes.company_id=COMPANY_ID>
-            <cfinclude template="/V16/objects/display/dsp_make_age.cfm">
+            <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
         </td>
     </tr>
 </cfoutput>
