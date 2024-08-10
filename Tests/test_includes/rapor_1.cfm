@@ -16,9 +16,32 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
 ) AS TT 
 --where COMPANY_ID=13205
 </cfquery>
+<cf_big_list>
+    <thead>
+    <tr>
+        <th>
+            Cari
+        </th>
+        <th>
+            Borç
+        </th>
+        <th>
+            Alacak
+        </th>
+        <th>
+            Bakiye
+        </th>
+        <th>
+            B/A
+        </th>
+        <th>
+            Ortalama Ödeme Vade
+        </th>
+    </tr>
 
-<cfdump var="#getc#">
 
+</thead>
+<tbody>
 <cfoutput query="getc">
     <tr>
         <td>
@@ -44,3 +67,5 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
         </td>
     </tr>
 </cfoutput>
+</tbody>
+</cf_big_list>
