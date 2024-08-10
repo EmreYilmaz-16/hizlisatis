@@ -33,6 +33,12 @@ where COMPANY_ID=13205
             <td>
                 Kapanan
             </td>
+            <td>
+                AF
+            </td>
+            <TD>
+                SF
+            </TD>
         </tr>
     
     
@@ -72,6 +78,10 @@ where COMPANY_ID=13205
     <td>
         #KT#
     </td>
+    <td>#AF#</td>
+    <TD>
+        #SF#
+    </TD>
 </tr>
  
 
