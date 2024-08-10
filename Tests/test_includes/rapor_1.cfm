@@ -35,12 +35,12 @@ where COMPANY_ID=13205
 
 <cfloop query="GETSF">
     <CFSET KAPANAN=AF_TUTAR-ACTION_VALUE>
-    #AF_TUTAR# -- #ACTION_VALUE# ---- #KAPANAN#<BR>
+  <cfoutput>  #AF_TUTAR# -- #ACTION_VALUE# ---- #KAPANAN#<BR></cfoutput>
    <CFIF KAPANAN GT 0>
     <CFSET AF_TUTAR=KAPANAN>
    <CFELSE>
     <CFSET SIRA=SIRA+1>
-    <cfbreak>
+    <cfcontinue>
    </CFIF>
 
 
