@@ -22,30 +22,24 @@ where COMPANY_ID=13205
 
 <CFSET SIRA=1>
 <cfloop query="getc">
-    <CFSET AF_TUTAR=0>
-<cfquery name="GETAF" datasource="#DSN2#">
-    SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID# ORDER BY ACTION_DATE
+<cfquery name="GETA" datasource="#DSN2#">
+    SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID#
 </cfquery>
-
-<cfquery name="GETSF" datasource="#DSN2#">
-    SELECT TOP 10 * FROM CARI_ROWS WHERE TO_CMP_ID=#COMPANY_ID# ORDER BY ACTION_DATE
-</cfquery>
-<CFSET AF_TUTAR=AF_TUTAR+GETAF.ACTION_VALUE[SIRA]>
-
-
-<cfloop query="GETSF">
-    <CFSET KAPANAN=AF_TUTAR-ACTION_VALUE>
-  <cfoutput>  #AF_TUTAR# -- #ACTION_VALUE# ---- #KAPANAN#<BR></cfoutput>
-   <CFIF KAPANAN GT 0>
-    <CFSET AF_TUTAR=KAPANAN>
-   <CFELSE>
-    <CFSET SIRA=SIRA+1>
-    <cfbreak>
-   </CFIF>
+<CFSET SF=0>
+<CFLOOP query="GETA">
+    <CFSET SF=SF+GETA.ACTION_VALUE>
+<cfoutput>
+    #SF# <BR>
+</cfoutput>
 
 
-</cfloop>
 
-<cfcontinue>
+</CFLOOP>
+
+
+
+
+
+
 
 </cfloop>
