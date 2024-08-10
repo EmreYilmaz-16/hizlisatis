@@ -65,7 +65,7 @@ where COMPANY_ID=13205
 <CFELSE>
 <CFSET KT=AF>
 <CFSET SF=SF-AF>
-<cfcontinue>
+<cfbreak>
 
 </CFIF>
 <tr>
