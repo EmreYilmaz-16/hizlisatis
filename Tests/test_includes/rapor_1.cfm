@@ -14,7 +14,7 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
 
 ) AS TF
 ) AS TT 
-where COMPANY_ID=13205
+--where COMPANY_ID=13205
 </cfquery>
 
 <cfdump var="#getc#">
