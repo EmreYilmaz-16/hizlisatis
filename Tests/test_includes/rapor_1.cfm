@@ -25,11 +25,15 @@ where COMPANY_ID=13205
 <cfquery name="GETA" datasource="#DSN2#">
     SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID#
 </cfquery>
-
+<CFSET AF=0>
 <CFLOOP from="1" to="#GETA.recordCount#" index="I">
-<cfoutput>
-    #GETA.ACTION_VALUE[I]#
+    <CFSET AF=AF+GETA.ACTION_VALUE[I]>
+    <cfoutput>
+    #GETA.ACTION_VALUE[I]# ---- #AF#<BR>
 </cfoutput>
+
+
+
 
 
 
