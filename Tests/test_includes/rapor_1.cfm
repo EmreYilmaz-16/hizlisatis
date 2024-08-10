@@ -53,7 +53,7 @@ where COMPANY_ID=13205
 
 
 </CFLOOP>
-</cfoutput>
+
 
 
 
@@ -63,3 +63,4 @@ where COMPANY_ID=13205
 
 
 </cfloop>
+</cfoutput>
