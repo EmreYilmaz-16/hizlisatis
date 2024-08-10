@@ -31,7 +31,17 @@ where COMPANY_ID=13205
 <cfoutput>
     #SF# <BR>
 </cfoutput>
+<cfquery name="GETS" datasource="#DSN2#">
+    SELECT * FROM CARI_ROWS WHERE TO_CMP_ID=#getc.COMPANY_ID#
+</cfquery>
+<cfloop query="GETS">
+<CFSET AF=GETS.ACTION_VALUE>
+<CFIF SF GT AF>
+    <CFSET KT=AF>
+    <CFSET SF=SF-AF>
+</CFIF>
 
+</cfloop>
 
 
 </CFLOOP>
