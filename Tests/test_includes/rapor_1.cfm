@@ -21,7 +21,7 @@ where COMPANY_ID=13205
 
 
 
-<cfoutput query="getc">
+<cfloop query="getc">
     <CFSET AF_TUTAR=0>
 <cfquery name="GETAF" datasource="#DSN2#">
     SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID# ORDER BY ACTION_DATE
@@ -48,4 +48,4 @@ where COMPANY_ID=13205
 
 
 
-</cfoutput>
+</cfloop>
