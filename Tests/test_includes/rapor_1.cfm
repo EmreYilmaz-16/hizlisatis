@@ -40,12 +40,12 @@ where COMPANY_ID=13205
     <CFSET AF_TUTAR=KAPANAN>
    <CFELSE>
     <CFSET SIRA=SIRA+1>
-    <cfcontinue>
+    <cfbreak>
    </CFIF>
 
 
 </cfloop>
 
-
+<cfcontinue>
 
 </cfloop>
