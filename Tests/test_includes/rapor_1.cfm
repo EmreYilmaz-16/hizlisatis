@@ -20,5 +20,9 @@ where COMPANY_ID=13205
 <cfdump var="#getc#">
 
 <cfoutput query="getc">
+<cfquery name="GETAF" datasource="#DSN2#">
+    SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID#
+</cfquery>
+<cfdump var="#GETAF#">
 
 </cfoutput>
