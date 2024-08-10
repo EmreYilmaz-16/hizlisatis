@@ -48,7 +48,7 @@ where COMPANY_ID=13205
 
 
 </CFIF>
-#GETS.PAPER_NUMBER[J]# --- #GETS.ACTION_VALUE[J]# --- #KT# <HR>
+#GETS.PAPER_NO[J]# --- #GETS.ACTION_VALUE[J]# --- #KT# <HR>
 
 </cfloop>
 
