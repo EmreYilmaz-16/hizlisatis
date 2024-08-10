@@ -39,6 +39,7 @@ where COMPANY_ID=13205
    <CFIF KAPANAN GT 0>
     <CFSET AF_TUTAR=KAPANAN>
    <CFELSE>
+    <CFSET SIRA=SIRA+1>
     <cfbreak>
    </CFIF>
 
