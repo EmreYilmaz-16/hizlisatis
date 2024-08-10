@@ -19,89 +19,16 @@ where COMPANY_ID=13205
 
 <cfdump var="#getc#">
 
-
-<CFSET SIRA=1>    <cfoutput>
-<cfloop query="getc">
-    <table>
-        <tr>
-            <td>
-                Belge No
-            </td>
-            <td>
-                Belge Tutarı
-            </td>
-            <td>
-                Kapanan
-            </td>
-            <td>
-                AF
-            </td>
-            <TD>
-                SF
-            </TD>
-        </tr>
-    
-    
-<cfquery name="GETA" datasource="#DSN2#">
-    SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#getc.COMPANY_ID# ORDER BY ACTION_DATE ASC
-</cfquery>
-<CFSET AF=0>
-<CFSET SF=0>
-<CFSET NOTINLIST="">
-<CFLOOP from="1" to="#GETA.recordCount#" index="I">
-    <CFSET AF=AF+GETA.ACTION_VALUE[I]>
-
-
-
-    
-<cfquery name="GETS" datasource="#DSN2#">
-    SELECT * FROM CARI_ROWS WHERE TO_CMP_ID=#getc.COMPANY_ID# <CFIF listLen(NOTINLIST)>AND CARI_ACTION_ID NOT IN (#NOTINLIST#)</CFIF> ORDER BY ACTION_DATE ASC
-</cfquery>
-<cfloop from="1" to="#GETS.recordCount#" index="J">
-<CFSET SF=SF+GETS.ACTION_VALUE[J]>
-<CFSET CA_V=GETS.CARI_ACTION_ID[J]>
-<CFIF AF GT SF>
-    <CFSET KT=SF>
-    <CFSET AF=AF-SF>
-    <CFSET NOTINLIST=listAppend(NOTINLIST,CA_V)>
-<CFELSE>
-<CFSET KT=AF>
-<CFSET SF=SF-AF>
-
-
-</CFIF>
-<tr>
-    <td>
-        #GETS.PAPER_NO[J]#
-    </td>
-    <td>
-        #GETS.ACTION_VALUE[J]#
-    </td>
-    <td>
-        #KT#
-    </td>
-    <td>#AF#</td>
-    <TD>
-        #SF#
-    </TD>
-</tr>
- <cfif AF gt SF>
-    <cfcontinue>
- </cfif>
-
-</cfloop>
-
-
-
-</CFLOOP>
-
-
-
-
-
-
-
-
-</table>
-</cfloop>
+<cfoutput query="getc">
+    <tr>
+        <td>
+            #NICKNAME#
+        </td>
+        <td>
+            <cfset attributes.date1="01/01/#year(now())#">
+            <cfset attributes.date2="31/12/#year(now())#">
+            <cfset attributes.company_id=COMPANY_ID>
+            <cfinclude template="V16\objects\display\dsp_make_age.cfm">
+        </td>
+    </tr>
 </cfoutput>
