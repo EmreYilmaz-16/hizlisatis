@@ -45,7 +45,7 @@ where COMPANY_ID=13205
 <CFELSE>
 <CFSET KT=AF>
 <CFSET SF=SF-AF>
-
+<cfcontinue>
 
 </CFIF>
 #GETS.PAPER_NO[J]# --- #GETS.ACTION_VALUE[J]# --- #KT# <HR>
