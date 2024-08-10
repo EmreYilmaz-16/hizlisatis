@@ -65,7 +65,7 @@ where COMPANY_ID=13205
 <CFELSE>
 <CFSET KT=AF>
 <CFSET SF=SF-AF>
-<cfbreak>
+
 
 </CFIF>
 <tr>
@@ -83,7 +83,9 @@ where COMPANY_ID=13205
         #SF#
     </TD>
 </tr>
- 
+ <cfif AF gt SF>
+    <cfcontinue>
+ </cfif>
 
 </cfloop>
 
