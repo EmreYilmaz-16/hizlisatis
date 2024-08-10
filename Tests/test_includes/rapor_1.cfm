@@ -23,7 +23,7 @@ where COMPANY_ID=13205
 <CFSET SIRA=1>
 <cfloop query="getc">
 <cfquery name="GETA" datasource="#DSN2#">
-    SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID#
+    SELECT * FROM CARI_ROWS WHERE FROM_CMP_ID=#COMPANY_ID# ORDER BY ACTION_DATE
 </cfquery>
 <CFSET AF=0>
 <CFLOOP from="1" to="#GETA.recordCount#" index="I">
@@ -31,6 +31,21 @@ where COMPANY_ID=13205
     <cfoutput>
     #GETA.ACTION_VALUE[I]# ---- #AF#<BR>
 </cfoutput>
+    <CFSET SF=0>
+<cfquery name="GETS" datasource="#DSN2#">
+    SELECT * FROM CARI_ROWS WHERE TO_CMP_ID=#COMPANY_ID# ORDER BY ACTION_DATE
+</cfquery>
+<cfloop from="1" to="#GETS.recordCount#" index="J">
+<CFSET SF=GETS.ACTION_VALUE[J]>
+
+<CFIF AF GT SF>
+    <CFSET KT=SF>
+    <CFSET AF=AF-SF>
+</CFIF>
+
+
+</cfloop>
+
 
 
 
