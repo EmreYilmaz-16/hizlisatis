@@ -63,6 +63,7 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
             <cfset attributes.date1="01/01/#year(now())#">
             <cfset attributes.date2="31/12/#year(now())#">
             <cfset attributes.company_id=COMPANY_ID>
+            <cfset attributes.is_ajax_popup=1>
             <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
         </td>
     </tr>
