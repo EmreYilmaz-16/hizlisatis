@@ -38,6 +38,8 @@ where COMPANY_ID=13205
     #AF_TUTAR# -- #ACTION_VALUE# ---- #KAPANAN#<BR>
    <CFIF KAPANAN GT 0>
     <CFSET AF_TUTAR=KAPANAN>
+   <CFELSE>
+    <cfbreak>
    </CFIF>
 
 
