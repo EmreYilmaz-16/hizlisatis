@@ -117,7 +117,7 @@
     <input type="submit">
 </cfform>
 <cfquery name="getc" datasource="#dsn#">
-    select TOP 100 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
+    select TOP 20 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
 OUTER APPLY(
     SELECT SUM(ISNULL(BR,0)) ALACAK,SUM(ISNULL(AR,0)) BORC,CONVERT(DECIMAL(18,2),SUM(ISNULL(AR,0)-ISNULL(BR,0))) AS BAKIYE,
 CASE WHEN SUM(ISNULL(BR,0))>SUM(ISNULL(AR,0)) THEN 'A' ELSE 'B' END AS BA
