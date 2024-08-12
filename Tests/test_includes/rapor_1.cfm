@@ -1,4 +1,5 @@
 ﻿<cfparam name="attributes.customer_value" default="">
+<cfparam name="attributes.zone_id" default="">
 <cfparam name="attributes.duty_claim" default="">
 <cfparam name="attributes.buy_status" default="">
 <cfparam name="attributes.member_cat_type" default="">
@@ -23,8 +24,8 @@
         <label class="col col-12">Müşteri Temsilcisi </label>
         <div class="col col-12 col-xs-12">
             <div class="input-group">
-                <input type="hidden" name="pos_code" id="pos_code" value="">
-                <input type="text" name="pos_code_text" id="pos_code_text" style="width:110px;" value="" onfocus="AutoComplete_Create('pos_code_text','FULLNAME','FULLNAME','get_emp_pos','','POSITION_CODE','pos_code','','3','130');" autocomplete="off"><div id="pos_code_text_div_2" name="pos_code_text_div_2" class="completeListbox" autocomplete="on" style="width: 605px; max-height: 150px; overflow: auto; position: absolute; left: 35px; top: 172px; z-index: 159; display: none;"></div>
+                <input type="hidden" name="pos_code" id="pos_code" value="<cfoutput>#attributes.pos_code#</cfoutput>">
+                <input type="text" name="pos_code_text" id="pos_code_text" style="width:110px;" value="<cfoutput>#attributes.pos_code_text#</cfoutput>" onfocus="AutoComplete_Create('pos_code_text','FULLNAME','FULLNAME','get_emp_pos','','POSITION_CODE','pos_code','','3','130');" autocomplete="off"><div id="pos_code_text_div_2" name="pos_code_text_div_2" class="completeListbox" autocomplete="on" style="width: 605px; max-height: 150px; overflow: auto; position: absolute; left: 35px; top: 172px; z-index: 159; display: none;"></div>
                 <span class="input-group-addon btnPointer icon-ellipsis" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_positions&field_code=rapor.pos_code&field_name=rapor.pos_code_text&select_list=1,9','list')"></span>
             </div>
         </div>
@@ -35,19 +36,19 @@
             <select name="zone_id" id="zone_id">
                 <option value="">Seçiniz </option>
                 
-                    <option value="3">AKDENİZ</option>
+                    <option <cfif attributes.zone_id eq 3>selected</cfif> value="3">AKDENİZ</option>
                 
-                    <option value="4">DOĞU ANADOLU</option>
+                    <option <cfif attributes.zone_id eq 4>selected</cfif> value="4">DOĞU ANADOLU</option>
                 
-                    <option value="1">EGE</option>
+                    <option <cfif attributes.zone_id eq 1>selected</cfif> value="1">EGE</option>
                 
-                    <option value="7">GÜNEYDOĞU ANADOLU</option>
+                    <option <cfif attributes.zone_id eq 7>selected</cfif> value="7">GÜNEYDOĞU ANADOLU</option>
                 
-                    <option value="2">İÇ ANADOLU</option>
+                    <option <cfif attributes.zone_id eq 2>selected</cfif> value="2">İÇ ANADOLU</option>
                 
-                    <option value="6">KARADENİZ</option>
+                    <option <cfif attributes.zone_id eq 6>selected</cfif> value="6">KARADENİZ</option>
                 
-                    <option value="5">MARMARA</option>
+                    <option <cfif attributes.zone_id eq 5>selected</cfif> value="5">MARMARA</option>
                 
             </select>	
         </div>
@@ -163,7 +164,15 @@ WHERE BORC IS NOT NULL
 <cfif isDefined("attributes.customer_value") and len(attributes.customer_value)>
     AND C.COMPANY_VALUE_ID=#attributes.customer_value#
 </cfif>
-
+<cfif isDefined("attributes.zone_id") and len(attributes.zone_id)>
+    AND C.SALES_COUNTY=#attributes.zone_id#
+</cfif>
+<cfif isDefined("attributes.pos_code_text") and len(attributes.pos_code_text)>
+    AND C.POS_CODE=#attributes.pos_code#
+</cfif>
+<cfif isDefined("attributes.company") and len(attributes.company)>
+    AND C.COMPANY_ID=#attributes.company_id#
+</cfif>
 </cfquery>
 <cf_big_list>
     <thead>
