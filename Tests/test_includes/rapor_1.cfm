@@ -1,4 +1,12 @@
-﻿<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=11" name="rapor" id="rapor">
+﻿<cfparam name="attributes.customer_value" default="">
+<cfparam name="attributes.duty_claim" default="">
+<cfparam name="attributes.buy_status" default="">
+<cfparam name="attributes.member_cat_type" default="">
+<cfparam name="attributes.company_id" default="">
+<cfparam name="attributes.company" default="">
+<cfparam name="attributes.pos_code" default="">
+<cfparam name="attributes.pos_code_text" default="">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=11" name="rapor" id="rapor">
     <div class="form-group">
         <label class="col col-12"> Cari Hesap </label>
         <div class="col col-12 col-xs-12">
