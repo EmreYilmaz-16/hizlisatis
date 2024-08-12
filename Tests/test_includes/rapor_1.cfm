@@ -1,4 +1,5 @@
-﻿<cfparam name="attributes.customer_value" default="">
+﻿
+<cfparam name="attributes.customer_value" default="">
 <cfparam name="attributes.zone_id" default="">
 <cfparam name="attributes.duty_claim" default="">
 <cfparam name="attributes.buy_status" default="">
@@ -7,6 +8,7 @@
 <cfparam name="attributes.company" default="">
 <cfparam name="attributes.pos_code" default="">
 <cfparam name="attributes.pos_code_text" default="">
+<cf_box title="Cari Ödeme Ve Tahsilat Raporu">
 <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=11" name="rapor" id="rapor">
     <cf_big_list>
         <tr>
@@ -279,3 +281,4 @@ WHERE BORC IS NOT NULL
 </cfoutput>
 </tbody>
 </cf_big_list>
+</cf_box>
