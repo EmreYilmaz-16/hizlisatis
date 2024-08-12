@@ -284,6 +284,7 @@ ORDER BY PROJECT_ID------->
                     <cfset attributes.is_ajax_popup=1>
                     <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
                     <tr>
+                        <td>#PROJECT_NUMBER#- #PROJECT_HEAD#</td>
                     <td>
                         #TLFORMAT(PBS_REPORT.PBS_TAF)#
                     </td>
