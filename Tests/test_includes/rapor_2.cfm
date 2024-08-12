@@ -4,8 +4,8 @@
 <cfparam name="attributes.duty_claim" default="">
 <cfparam name="attributes.buy_status" default="">
 <cfparam name="attributes.member_cat_type" default="">
-<cfparam name="attributes.company_id" default="">
-<cfparam name="attributes.company" default="">
+<cfparam name="attributes.company_id" default="14154">
+<cfparam name="attributes.company" default="sa">
 <cfparam name="attributes.pos_code" default="">
 <cfparam name="attributes.pos_code_text" default="">
 <cf_box title="Cari Ödeme Ve Tahsilat Raporu">
