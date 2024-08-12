@@ -8,122 +8,156 @@
 <cfparam name="attributes.pos_code" default="">
 <cfparam name="attributes.pos_code_text" default="">
 <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=11" name="rapor" id="rapor">
-    <div class="form-group">
-        <label class="col col-12"> Cari Hesap </label>
-        <div class="col col-12 col-xs-12">
-            <div class="input-group">
-                <input type="hidden" name="company_id" id="company_id" value="<cfoutput>#attributes.company_id#</cfoutput>" >
-                <input type="hidden" name="consumer_id" id="consumer_id" value="">
-                <input type="hidden" name="employee_id" id="employee_id" value="">
-                <input type="text" name="company" id="company" value="<cfoutput>#attributes.company#</cfoutput>" onfocus="AutoComplete_Create('company','MEMBER_NAME,MEMBER_PARTNER_NAME','MEMBER_NAME,MEMBER_PARTNER_NAME','get_member_autocomplete','\'1,2\',0,0,0','COMPANY_ID,CONSUMER_ID','company_id,consumer_id','','3','250',true,'fill_country(0,0)');" autocomplete="off"><div id="company_div_2" name="company_div_2" class="completeListbox" autocomplete="on" style="width: 605px; max-height: 150px; overflow: auto; position: absolute; left: 35px; top: 113px; z-index: 159; display: none;"></div>
-                <span class="input-group-addon btnPointer icon-ellipsis" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_pars&field_comp_name=rapor.company&field_comp_id=rapor.company_id&field_consumer=rapor.consumer_id&field_member_name=rapor.company&field_emp_id=rapor.employee_id&field_name=rapor.company&select_list=1,2,3,9','list');"></span>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col col-12">Müşteri Temsilcisi </label>
-        <div class="col col-12 col-xs-12">
-            <div class="input-group">
-                <input type="hidden" name="pos_code" id="pos_code" value="<cfoutput>#attributes.pos_code#</cfoutput>">
-                <input type="text" name="pos_code_text" id="pos_code_text" style="width:110px;" value="<cfoutput>#attributes.pos_code_text#</cfoutput>" onfocus="AutoComplete_Create('pos_code_text','FULLNAME','FULLNAME','get_emp_pos','','POSITION_CODE','pos_code','','3','130');" autocomplete="off"><div id="pos_code_text_div_2" name="pos_code_text_div_2" class="completeListbox" autocomplete="on" style="width: 605px; max-height: 150px; overflow: auto; position: absolute; left: 35px; top: 172px; z-index: 159; display: none;"></div>
-                <span class="input-group-addon btnPointer icon-ellipsis" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_positions&field_code=rapor.pos_code&field_name=rapor.pos_code_text&select_list=1,9','list')"></span>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col col-12">Satış Bölgesi </label>
-        <div class="col col-12 col-xs-12">
-            <select name="zone_id" id="zone_id">
-                <option value="">Seçiniz </option>
-                
-                    <option <cfif attributes.zone_id eq 3>selected</cfif> value="3">AKDENİZ</option>
-                
-                    <option <cfif attributes.zone_id eq 4>selected</cfif> value="4">DOĞU ANADOLU</option>
-                
-                    <option <cfif attributes.zone_id eq 1>selected</cfif> value="1">EGE</option>
-                
-                    <option <cfif attributes.zone_id eq 7>selected</cfif> value="7">GÜNEYDOĞU ANADOLU</option>
-                
-                    <option <cfif attributes.zone_id eq 2>selected</cfif> value="2">İÇ ANADOLU</option>
-                
-                    <option <cfif attributes.zone_id eq 6>selected</cfif> value="6">KARADENİZ</option>
-                
-                    <option <cfif attributes.zone_id eq 5>selected</cfif> value="5">MARMARA</option>
-                
-            </select>	
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col col-12">Müşteri Değeri </label>
-        <div class="col col-12 col-xs-12">
-            <select name="customer_value" id="customer_value">
-                <option   value="">Seçiniz </option>
-                
-                    <option <cfif attributes.customer_value eq 2>selected</cfif> value="2">A</option>
-                
-                    <option <cfif attributes.customer_value eq 4>selected</cfif> value="4">B</option>
-                
-                    <option <cfif attributes.customer_value eq 5>selected</cfif> value="5">C</option>
-                
-                    <option <cfif attributes.customer_value eq 6>selected</cfif> value="6">D</option>
-                
-                    <option <cfif attributes.customer_value eq 7>selected</cfif> value="7">E</option>
-                
-            </select>
-        </div>
-    </div>
+    <table>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label class="col col-12"> Cari Hesap </label>
+                    <div class="col col-12 col-xs-12">
+                        <div class="input-group">
+                            <input type="hidden" name="company_id" id="company_id" value="<cfoutput>#attributes.company_id#</cfoutput>" >
+                            <input type="hidden" name="consumer_id" id="consumer_id" value="">
+                            <input type="hidden" name="employee_id" id="employee_id" value="">
+                            <input type="text" name="company" id="company" value="<cfoutput>#attributes.company#</cfoutput>" onfocus="AutoComplete_Create('company','MEMBER_NAME,MEMBER_PARTNER_NAME','MEMBER_NAME,MEMBER_PARTNER_NAME','get_member_autocomplete','\'1,2\',0,0,0','COMPANY_ID,CONSUMER_ID','company_id,consumer_id','','3','250',true,'fill_country(0,0)');" autocomplete="off"><div id="company_div_2" name="company_div_2" class="completeListbox" autocomplete="on" style="width: 605px; max-height: 150px; overflow: auto; position: absolute; left: 35px; top: 113px; z-index: 159; display: none;"></div>
+                            <span class="input-group-addon btnPointer icon-ellipsis" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_pars&field_comp_name=rapor.company&field_comp_id=rapor.company_id&field_consumer=rapor.consumer_id&field_member_name=rapor.company&field_emp_id=rapor.employee_id&field_name=rapor.company&select_list=1,2,3,9','list');"></span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="col col-12">Müşteri Temsilcisi </label>
+                    <div class="col col-12 col-xs-12">
+                        <div class="input-group">
+                            <input type="hidden" name="pos_code" id="pos_code" value="<cfoutput>#attributes.pos_code#</cfoutput>">
+                            <input type="text" name="pos_code_text" id="pos_code_text" style="width:110px;" value="<cfoutput>#attributes.pos_code_text#</cfoutput>" onfocus="AutoComplete_Create('pos_code_text','FULLNAME','FULLNAME','get_emp_pos','','POSITION_CODE','pos_code','','3','130');" autocomplete="off"><div id="pos_code_text_div_2" name="pos_code_text_div_2" class="completeListbox" autocomplete="on" style="width: 605px; max-height: 150px; overflow: auto; position: absolute; left: 35px; top: 172px; z-index: 159; display: none;"></div>
+                            <span class="input-group-addon btnPointer icon-ellipsis" onclick="windowopen('index.cfm?fuseaction=objects.popup_list_positions&field_code=rapor.pos_code&field_name=rapor.pos_code_text&select_list=1,9','list')"></span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label class="col col-12">Satış Bölgesi </label>
+                    <div class="col col-12 col-xs-12">
+                        <select name="zone_id" id="zone_id">
+                            <option value="">Seçiniz </option>
+                            
+                                <option <cfif attributes.zone_id eq 3>selected</cfif> value="3">AKDENİZ</option>
+                            
+                                <option <cfif attributes.zone_id eq 4>selected</cfif> value="4">DOĞU ANADOLU</option>
+                            
+                                <option <cfif attributes.zone_id eq 1>selected</cfif> value="1">EGE</option>
+                            
+                                <option <cfif attributes.zone_id eq 7>selected</cfif> value="7">GÜNEYDOĞU ANADOLU</option>
+                            
+                                <option <cfif attributes.zone_id eq 2>selected</cfif> value="2">İÇ ANADOLU</option>
+                            
+                                <option <cfif attributes.zone_id eq 6>selected</cfif> value="6">KARADENİZ</option>
+                            
+                                <option <cfif attributes.zone_id eq 5>selected</cfif> value="5">MARMARA</option>
+                            
+                        </select>	
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="col col-12">Müşteri Değeri </label>
+                    <div class="col col-12 col-xs-12">
+                        <select name="customer_value" id="customer_value">
+                            <option   value="">Seçiniz </option>
+                            
+                                <option <cfif attributes.customer_value eq 2>selected</cfif> value="2">A</option>
+                            
+                                <option <cfif attributes.customer_value eq 4>selected</cfif> value="4">B</option>
+                            
+                                <option <cfif attributes.customer_value eq 5>selected</cfif> value="5">C</option>
+                            
+                                <option <cfif attributes.customer_value eq 6>selected</cfif> value="6">D</option>
+                            
+                                <option <cfif attributes.customer_value eq 7>selected</cfif> value="7">E</option>
+                            
+                        </select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label class="col col-12">Borç /Alacak </label>
+                    <div class="col col-12 col-xs-12">
+                        <select name="duty_claim" id="duty_claim">
+                            <option value="">Seçiniz </option>
+                            <option <cfif attributes.duty_claim eq 1>selected</cfif> value="1">Borçlu Üyeler </option>
+                            <option <cfif attributes.duty_claim eq 2>selected</cfif> value="2">Alacaklı Üyeler </option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="col col-12" id="buy_status1">Alıcı  / Satıcı </label>
+                    <div class="col col-12 col-xs-12" id="buy_status2">
+                        <select name="buy_status" id="buy_status" style="width:150px;">
+                            <option value="">Seçiniz </option>
+                            <option <cfif attributes.buy_status eq 1>selected</cfif> value="1">Alıcı </option>
+                            <option <cfif attributes.buy_status eq 2>selected</cfif> value="2">Satıcı </option>
+                            <option <cfif attributes.buy_status eq 3>selected</cfif> value="3">Potansiyel </option>								
+                        </select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">									
+                    <label class="col col-12" id="cat_">Üye Kategorisi </label>
+                    <div class="col col-12 col-xs-12" id="comp_cat">
+                        <select name="member_cat_type" id="member_cat_type" style="height:75px;" multiple="">
+                            
+                                <option <cfif attributes.member_cat_type eq 13>selected</cfif>  value="13">İMALATÇI</option>
+                            
+                                <option <cfif attributes.member_cat_type eq 20>selected</cfif> value="20">JOHN DEERE</option>
+                            
+                                <option <cfif attributes.member_cat_type eq 14>selected</cfif> value="14">KAMU</option>
+                            
+                                <option <cfif attributes.member_cat_type eq 15>selected</cfif> value="15">KARA LİSTE</option>
+                            
+                                <option <cfif attributes.member_cat_type eq 16>selected</cfif> value="16">OEM</option>
+                            
+                                <option <cfif attributes.member_cat_type eq 17>selected</cfif> value="17">PERAKENDE</option>
+                            
+                                <option <cfif attributes.member_cat_type eq 18>selected</cfif> value="18">SATICI</option>
+                            
+                                <option <cfif attributes.member_cat_type eq 19>selected</cfif> value="19">TEDARIKÇİ</option>
+                                                    
+                        </select>
+                    </div>
+                    <div class="col col-12" id="cons_cat" style="display:none;">
+                        <select name="consumer_cat_type" id="consumer_cat_type" multiple="">
+                                                    
+                        </select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <td>
+            <input type="submit">
+        </td>
+    </table>
+  
+   
+   
+ 
 
-    <div class="form-group">
-        <label class="col col-12">Borç /Alacak </label>
-        <div class="col col-12 col-xs-12">
-            <select name="duty_claim" id="duty_claim">
-                <option value="">Seçiniz </option>
-                <option <cfif attributes.duty_claim eq 1>selected</cfif> value="1">Borçlu Üyeler </option>
-                <option <cfif attributes.duty_claim eq 2>selected</cfif> value="2">Alacaklı Üyeler </option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col col-12" id="buy_status1">Alıcı  / Satıcı </label>
-        <div class="col col-12 col-xs-12" id="buy_status2">
-            <select name="buy_status" id="buy_status" style="width:150px;">
-                <option value="">Seçiniz </option>
-                <option <cfif attributes.buy_status eq 1>selected</cfif> value="1">Alıcı </option>
-                <option <cfif attributes.buy_status eq 2>selected</cfif> value="2">Satıcı </option>
-                <option <cfif attributes.buy_status eq 3>selected</cfif> value="3">Potansiyel </option>								
-            </select>
-        </div>
-    </div>
-    <div class="form-group">									
-        <label class="col col-12" id="cat_">Üye Kategorisi </label>
-        <div class="col col-12 col-xs-12" id="comp_cat">
-            <select name="member_cat_type" id="member_cat_type" style="height:75px;" multiple="">
-                
-                    <option <cfif attributes.member_cat_type eq 13>selected</cfif>  value="13">İMALATÇI</option>
-                
-                    <option <cfif attributes.member_cat_type eq 20>selected</cfif> value="20">JOHN DEERE</option>
-                
-                    <option <cfif attributes.member_cat_type eq 14>selected</cfif> value="14">KAMU</option>
-                
-                    <option <cfif attributes.member_cat_type eq 15>selected</cfif> value="15">KARA LİSTE</option>
-                
-                    <option <cfif attributes.member_cat_type eq 16>selected</cfif> value="16">OEM</option>
-                
-                    <option <cfif attributes.member_cat_type eq 17>selected</cfif> value="17">PERAKENDE</option>
-                
-                    <option <cfif attributes.member_cat_type eq 18>selected</cfif> value="18">SATICI</option>
-                
-                    <option <cfif attributes.member_cat_type eq 19>selected</cfif> value="19">TEDARIKÇİ</option>
-                                        
-            </select>
-        </div>
-        <div class="col col-12" id="cons_cat" style="display:none;">
-            <select name="consumer_cat_type" id="consumer_cat_type" multiple="">
-                                        
-            </select>
-        </div>
-    </div>
-    <input type="submit">
+   
+ 
+  
+    
 </cfform>
 <cfquery name="getc" datasource="#dsn#">
     select TOP 20 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
