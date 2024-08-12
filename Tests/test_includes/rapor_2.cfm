@@ -4,12 +4,12 @@
 <cfparam name="attributes.duty_claim" default="">
 <cfparam name="attributes.buy_status" default="">
 <cfparam name="attributes.member_cat_type" default="">
-<cfparam name="attributes.company_id" default="14154">
-<cfparam name="attributes.company" default="sa">
+<cfparam name="attributes.company_id" default="">
+<cfparam name="attributes.company" default="">
 <cfparam name="attributes.pos_code" default="">
 <cfparam name="attributes.pos_code_text" default="">
-<cf_box title="Cari Ödeme Ve Tahsilat Raporu">
-<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=11" name="rapor" id="rapor">
+<cf_box title="Cari Ödeme Ve Tahsilat Raporu (Proje Bazlı)">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=12" name="rapor" id="rapor">
     <cf_big_list>
         <tr>
             <td>
@@ -222,7 +222,9 @@ WHERE BORC IS NOT NULL
         <th>
             B/A
         </th>
-        
+        <th>
+            Proje
+        </th>
        
     </tr>
 
@@ -253,6 +255,7 @@ ORDER BY PROJECT_ID------->
         </td>
         <td>
             <cf_grid_list>
+                <thead>
                 <tr>
                     <th>
                         Proje No
@@ -269,6 +272,8 @@ ORDER BY PROJECT_ID------->
                     <th>Peşine Dönen Açık Fatura Toplamı</th>
                     <th>Peşine Düşen Açık Fatura Gün</th>
                 </tr>
+            </thead>
+            <tbody>
                 <cfquery name="getpp" datasource="#dsn#">
                      select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=#getc.COMPANY_ID#
                         UNION ALL
@@ -299,6 +304,7 @@ ORDER BY PROJECT_ID------->
                     </td>
                     </tr>
                 </cfloop>
+            </tbody>
             </cf_grid_list>
        
             
