@@ -36,8 +36,7 @@
                     </div>
                 </div>
             </td>
-        </tr>
-        <tr>
+    
             <td>
                 <div class="form-group">
                     <label class="col col-12">Satış Bölgesi </label>
@@ -84,8 +83,7 @@
                     </div>
                 </div>
             </td>
-        </tr>
-        <tr>
+      
             <td>
                 <div class="form-group">
                     <label class="col col-12">Borç /Alacak </label>
@@ -111,8 +109,7 @@
                     </div>
                 </div>
             </td>
-        </tr>
-        <tr>
+       
             <td>
                 <div class="form-group">									
                     <label class="col col-12" id="cat_">Üye Kategorisi </label>
@@ -144,10 +141,11 @@
                     </div>
                 </div>
             </td>
-        </tr>
+    
         <td>
             <input type="submit">
         </td>
+    </tr>
     </table>
   
    
