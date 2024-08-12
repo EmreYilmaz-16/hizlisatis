@@ -278,7 +278,7 @@ ORDER BY PROJECT_ID------->
                 <cfloop query="getpp">
                     <cfset attributes.date1="01/01/#year(now())#">
                     <cfset attributes.date2="31/12/#year(now())#">
-                    <cfset attributes.company_id=COMPANY_ID>
+                    <cfset attributes.company_id=getc.COMPANY_ID>
                     <cfset attributes.project_id=PROJECT_ID>
                     <cfset attributes.is_project_group=1>
                     <cfset attributes.is_ajax_popup=1>
