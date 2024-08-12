@@ -149,16 +149,10 @@
         </td>
     </tr>
     </cf_big_list>
-  
-   
-   
- 
 
-   
- 
-  
-    
 </cfform>
+
+
 <cfquery name="getc" datasource="#dsn#">
     select TOP 20 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
 OUTER APPLY(
@@ -250,13 +244,13 @@ WHERE BORC IS NOT NULL
             #NICKNAME#
         </td>
         <td>
-            #BORC#
+            #tlformat(BORC)#
         </td>
         <td>
-            #ALACAK#
+            #tlformat(ALACAK)#
         </td>
         <td>
-            #BAKIYE#
+            #tlformat(BAKIYE)#
         </td>
         <td>
             #BA#
