@@ -1,5 +1,5 @@
 ﻿<cfquery name="getc" datasource="#dsn#">
-    select TOP 100 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
+    select TOP 250 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
 OUTER APPLY(
     SELECT SUM(ISNULL(BR,0)) ALACAK,SUM(ISNULL(AR,0)) BORC,CONVERT(DECIMAL(18,2),SUM(ISNULL(AR,0)-ISNULL(BR,0))) AS BAKIYE,
 CASE WHEN SUM(ISNULL(BR,0))>SUM(ISNULL(AR,0)) THEN 'A' ELSE 'B' END AS BA
@@ -13,8 +13,9 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
  GROUP BY FROM_CMP_ID,TO_CMP_ID
 
 ) AS TF
-) AS TT 
-where COMPANY_ID=13205
+) AS TT
+WHERE BORC IS NOT NULL 
+
 </cfquery>
 <cf_big_list>
     <thead>
@@ -37,6 +38,14 @@ where COMPANY_ID=13205
         <th>
             Ortalama Ödeme Vade
         </th>
+        <th>
+            Kalan Bakiye GÜn Ortalaması
+        </th>
+        <th>
+            Kalan Bakiye Tarih Ortalaması
+        </th>
+        <th>Peşine Dönen Açık Fatura Toplamı</th>
+        <th>Peşine Düşen Açık Fatura Gün</th>
     </tr>
 
 
@@ -63,8 +72,19 @@ where COMPANY_ID=13205
             <cfset attributes.date1="01/01/#year(now())#">
             <cfset attributes.date2="31/12/#year(now())#">
             <cfset attributes.company_id=COMPANY_ID>
-            
+            <cfset attributes.is_ajax_popup=1>
             <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
+            
+            #TLFORMAT(PBS_REPORT.PBS_TAF)#
+        </td>
+        <td>#tlformat(PBS_REPORT.PBS_FAF)#</td>
+        <td>#dateFormat(PBS_REPORT.PBS_FAT,dateformat_style)#</td>
+        <td>#tlformat(PBS_REPORT.PBS_KAF)#</td>
+        <td>
+            <cfquery name="GETO" dbtype="query">
+                SELECT AVG(D_VALUE) AS DV FROM PBS_REPORT.DS_QUERY
+            </cfquery>
+            #GETO.DV#
         </td>
     </tr>
 </cfoutput>
