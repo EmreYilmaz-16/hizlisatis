@@ -48,17 +48,17 @@
         <label class="col col-12">Müşteri Değeri </label>
         <div class="col col-12 col-xs-12">
             <select name="customer_value" id="customer_value">
-                <option value="">Seçiniz </option>
+                <option   value="">Seçiniz </option>
                 
-                    <option value="2">A</option>
+                    <option <cfif attributes.customer_value eq 2>selected</cfif> value="2">A</option>
                 
-                    <option value="4">B</option>
+                    <option <cfif attributes.customer_value eq 4>selected</cfif> value="4">B</option>
                 
-                    <option value="5">C</option>
+                    <option <cfif attributes.customer_value eq 5>selected</cfif> value="5">C</option>
                 
-                    <option value="6">D</option>
+                    <option <cfif attributes.customer_value eq 6>selected</cfif> value="6">D</option>
                 
-                    <option value="7">E</option>
+                    <option <cfif attributes.customer_value eq 7>selected</cfif> value="7">E</option>
                 
             </select>
         </div>
@@ -90,21 +90,21 @@
         <div class="col col-12 col-xs-12" id="comp_cat">
             <select name="member_cat_type" id="member_cat_type" style="height:75px;" multiple="">
                 
-                    <option value="13">İMALATÇI</option>
+                    <option <cfif attributes.member_cat_type eq 13>selected</cfif>  value="13">İMALATÇI</option>
                 
-                    <option value="20">JOHN DEERE</option>
+                    <option <cfif attributes.member_cat_type eq 20>selected</cfif> value="20">JOHN DEERE</option>
                 
-                    <option value="14">KAMU</option>
+                    <option <cfif attributes.member_cat_type eq 14>selected</cfif> value="14">KAMU</option>
                 
-                    <option value="15">KARA LİSTE</option>
+                    <option <cfif attributes.member_cat_type eq 15>selected</cfif> value="15">KARA LİSTE</option>
                 
-                    <option value="16">OEM</option>
+                    <option <cfif attributes.member_cat_type eq 16>selected</cfif> value="16">OEM</option>
                 
-                    <option value="17">PERAKENDE</option>
+                    <option <cfif attributes.member_cat_type eq 17>selected</cfif> value="17">PERAKENDE</option>
                 
-                    <option value="18">SATICI</option>
+                    <option <cfif attributes.member_cat_type eq 18>selected</cfif> value="18">SATICI</option>
                 
-                    <option value="19">TEDARIKÇİ</option>
+                    <option <cfif attributes.member_cat_type eq 19>selected</cfif> value="19">TEDARIKÇİ</option>
                                         
             </select>
         </div>
@@ -148,6 +148,12 @@ WHERE BORC IS NOT NULL
     <cfelseif attributes.buy_status EQ 3>
         AND C.ISPOTANTIAL=1    
     </cfif>
+</cfif>
+<cfif isDefined("attributes.member_cat_type") and len(attributes.member_cat_type)>
+    AND C.COMPANYCAT_ID=#attributes.member_cat_type#
+</cfif>
+<cfif isDefined("attributes.customer_value") and len(attributes.customer_value)>
+    AND C.COMPANY_VALUE_ID=#attributes.customer_value#
 </cfif>
 
 </cfquery>
