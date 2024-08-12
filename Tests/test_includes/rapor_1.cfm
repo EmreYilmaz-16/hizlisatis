@@ -69,8 +69,8 @@
         <div class="col col-12 col-xs-12">
             <select name="duty_claim" id="duty_claim">
                 <option value="">Seçiniz </option>
-                <option value="1">Borçlu Üyeler </option>
-                <option value="2">Alacaklı Üyeler </option>
+                <option <cfif attributes.duty_claim eq 1>selected</cfif> value="1">Borçlu Üyeler </option>
+                <option <cfif attributes.duty_claim eq 2>selected</cfif> value="2">Alacaklı Üyeler </option>
             </select>
         </div>
     </div>
@@ -79,9 +79,9 @@
         <div class="col col-12 col-xs-12" id="buy_status2">
             <select name="buy_status" id="buy_status" style="width:150px;">
                 <option value="">Seçiniz </option>
-                <option value="1">Alıcı </option>
-                <option value="2">Satıcı </option>
-                <option value="3">Potansiyel </option>								
+                <option <cfif attributes.buy_status eq 1>selected</cfif> value="1">Alıcı </option>
+                <option <cfif attributes.buy_status eq 2>selected</cfif> value="2">Satıcı </option>
+                <option <cfif attributes.buy_status eq 3>selected</cfif> value="3">Potansiyel </option>								
             </select>
         </div>
     </div>
@@ -140,6 +140,16 @@ WHERE BORC IS NOT NULL
         AND BA='A'
     </cfif>
 </cfif>
+<cfif isDefined("attributes.buy_status")  and len(attributes.buy_status)>
+    <cfif attributes.buy_status eq 1>
+        AND C.IS_BUYER=1
+    <cfelseif attributes.buy_status EQ 2>
+        AND C.IS_SELLER=1
+    <cfelseif attributes.buy_status EQ 3>
+        AND C.ISPOTANTIAL=1    
+    </cfif>
+</cfif>
+
 </cfquery>
 <cf_big_list>
     <thead>
