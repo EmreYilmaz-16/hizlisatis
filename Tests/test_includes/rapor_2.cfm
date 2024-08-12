@@ -270,7 +270,7 @@ ORDER BY PROJECT_ID------->
                     <th>Peşine Düşen Açık Fatura Gün</th>
                 </tr>
                 <cfquery name="getpp" datasource="#dsn#">
-                     select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=#COMPANY_ID#
+                     select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=#getc.COMPANY_ID#
                         UNION ALL
                         SELECT NULL AS PROJECT_ID,'' AS PROJECT_NUMBER,'PROJESIZ' AS PROJECT_HEAD                            
                         ORDER BY PROJECT_ID
