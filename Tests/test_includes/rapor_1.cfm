@@ -8,7 +8,7 @@
 <cfparam name="attributes.pos_code" default="">
 <cfparam name="attributes.pos_code_text" default="">
 <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=11" name="rapor" id="rapor">
-    <table>
+    <cf_grid_list>
         <tr>
             <td>
                 <div class="form-group">
@@ -146,7 +146,7 @@
             <input type="submit">
         </td>
     </tr>
-    </table>
+    </cf_grid_list>
   
    
    
