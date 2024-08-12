@@ -208,6 +208,8 @@ WHERE BORC IS NOT NULL
     AND C.COMPANY_ID=#attributes.company_id#
 </cfif>
 </cfquery>
+</cf_box>
+<cf_box >
 <cf_big_list>
     <thead>
     <tr>
