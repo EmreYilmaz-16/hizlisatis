@@ -9,9 +9,9 @@ var tempProductData = "";
 var selectedArr = [];
 var selectedMoney = "";
 var CompanyData = new Object();
-var Yuvarlama = 8;
-var FiyatYuvarlama = 8;
-var ToplamYuvarlama = 8;
+var Yuvarlama = 4;
+var FiyatYuvarlama = 4;
+var ToplamYuvarlama = 4;
 $(document).ready(function () {
   setDoom();
   if (getParameterByName("event") == "upd") {
