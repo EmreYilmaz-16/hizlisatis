@@ -4,6 +4,13 @@
 <cfset attributes.type_id=FormData.company_id>
 <cfset attributes.q_type="CompanyInfo">
 <cfinclude template="../includes/getCompInfoQuery.cfm">
+<cfif isDefined("attributes.is_multi")>
+    <cfdump var="#FormData#">
+    
+    <cfabort>
+</cfif>
+
+
 
 <cfset FirmaDatasi=InfoArray[1]>
 <cfquery name="getProductData" datasource="#dsn3#">
