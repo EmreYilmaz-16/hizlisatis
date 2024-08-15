@@ -20,7 +20,37 @@
 <cfdump var="#getParams#">
 <cfscript>
     ClearVirtualTree_1453(FormData.PRODUCT_ID);
+    Obj={
+        PRODUCT_CATID= getFr.PRODUCT_CATID,
+        MARJ=0,
+        PRODUCT_TYPE=0,
+        IS_PRODUCTION=1,
+        PRODUCT_DESCRIPTION='',
+        PRODUCT_UNIT='Adet',
+        PROJECT_ID=FormData.PROJECT_ID,
+        PRODUCT_VERSION=1,
+        PRODUCT_STAGE=FormData.PRODUCT_STAGE,
+        PORCURRENCY="TL",
+        VIRTUAL_PRODUCT_ID=FormData.PRODUCT_ID,
+        PRODUCT_NAME=FormData.PRODUCT_NAME
+    };
+    UpdateVirtualProduct_1453(Obj)
 </cfscript>
+<!------------
+     <cfargument name="PRODUCT_CATID">
+        <cfargument name="PRICE">
+        <cfargument name="MARJ">
+        <cfargument name="PRODUCT_TYPE">
+        <cfargument name="IS_PRODUCTION">
+        <cfargument name="PRODUCT_DESCRIPTION">
+        <cfargument name="PRODUCT_UNIT">
+        <cfargument name="PROJECT_ID">
+        <cfargument name="PRODUCT_VERSION">
+        <cfargument name="PRODUCT_STAGE">
+        <cfargument name="PORCURRENCY">
+        <cfargument name="VIRTUAL_PRODUCT_ID">------------>
+
+
 <cfset MS_ID=FormData.PRODUCT_ID>
 <cfloop array="#FormData.PRODUCT_TREE#" item="SV_01_ITEM"> <!---- 1.SEVİYE AĞAÇTA DÖNÜYORUM ---->
     <CFIF SV_01_ITEM.IS_VIRTUAL EQ 0> <!----- Ürün Sanalmı ---->
@@ -237,7 +267,30 @@
     </cfquery>
     <cfreturn res>
     </cffunction>
-
+    <cffunction name="UpdateVirtualProduct_1453">
+        <cfargument name="OBJEM">
+       
+        <cfquery name="UPD" datasource="#DSN3#">
+        UPDATE VIRTUAL_PRODUCTS_PRT
+        SET PRODUCT_NAME = '#arguments.OBJEM.PRODUCT_NAME#'
+        ,PRODUCT_CATID = #arguments.OBJEM.PRODUCT_CATID#
+        ,PRICE = #arguments.OBJEM.PRICE#
+        ,MARJ = #arguments.OBJEM.MARJ#
+        ,PRODUCT_TYPE = #arguments.OBJEM.PRODUCT_TYPE#
+        ,IS_CONVERT_REAL = 0 
+        ,IS_PRODUCTION = #arguments.OBJEM.IS_PRODUCTION#
+        ,UPDATE_EMP = #session.ep.userid#
+        ,UPDATE_DATE = GETDATE()
+        ,PRODUCT_DESCRIPTION = '#arguments.OBJEM.PRODUCT_DESCRIPTION#'
+        ,PRODUCT_UNIT = '#arguments.OBJEM.PRODUCT_UNIT#'
+        ,PROJECT_ID = #arguments.OBJEM.PROJECT_ID#
+        ,PRODUCT_VERSION = '#arguments.OBJEM.PRODUCT_VERSION#'
+        ,PRODUCT_STAGE = #arguments.OBJEM.PRODUCT_STAGE#
+        ,PORCURRENCY = #arguments.OBJEM.PORCURRENCY#
+        WHERE VIRTUAL_PRODUCT_ID=#arguments.OBJEM.VIRTUAL_PRODUCT_ID#
+        
+        </cfquery>
+        
     <script>
         window.opener.ngetTree(<cfoutput>#FormData.PRODUCT_ID#</cfoutput>,1,'<cfoutput>#dsn3#</cfoutput>',"",1,'','<cfoutput>#FormData.PRODUCT_NAME#</cfoutput>','<cfoutput>#FormData.PRODUCT_STAGE#</cfoutput>')
     this.close();
