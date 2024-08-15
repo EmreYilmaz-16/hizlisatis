@@ -25,7 +25,7 @@ function ngetTree(
   pna = "",
   stg = "",
   idba = "",
-  tipo=1
+  tipo = 1
 ) {
   //console.log(arguments);
   if (tip == 1) {
@@ -55,7 +55,9 @@ function ngetTree(
 
     $.ajax({
       url:
-        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&tipo="+tipo+"&product_id=" +
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&tipo=" +
+        tipo +
+        "&product_id=" +
         product_id +
         "&isVirtual=" +
         is_virtual +
@@ -70,8 +72,8 @@ function ngetTree(
       success: function (asd) {
         // var jsonStr = strToJson(asd);
         o = JSON.parse(asd);
-console.log("Satir 72");
-        console.log(o)
+        console.log("Satir 72");
+        console.log(o);
         // console.log(o);
         AgaciYaz(o, 0, "0", 1);
         var esd = document.getElementById("TreeArea");
@@ -170,7 +172,9 @@ console.log("Satir 72");
   } else if (tip == 4) {
     $.ajax({
       url:
-        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&tipo="+tipo+"&product_id=" +
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&tipo=" +
+        tipo +
+        "&product_id=" +
         product_id +
         "&isVirtual=" +
         is_virtual +
@@ -516,12 +520,11 @@ $(document).ready(function () {
   _compId = cp_id;
   AjaxPageLoad(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=LeftMenu&PROJECT_ID=" +
-    PROJECT_ID,
+      PROJECT_ID,
     "leftMenuProject",
     1,
     "Yükleniyor"
   );
-
 });
 function makeFiyatSpan(itext, itext2, iid, tip = 0) {
   var spn = "";
@@ -927,7 +930,7 @@ function AddRowItemVirtual(
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
-    var AMOUNT=1;
+    var AMOUNT = 1;
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
     var RATE2MNY = moneyArr[MNYX].RATE2MNY;
@@ -945,7 +948,7 @@ function AddRowItemVirtual(
     span.innerText = PRODUCT_NAME;
     span.appendChild(soxx);
 
-/*
+    /*
 var span = document.createElement("span");
     span.setAttribute("name", "product_name_");
     span.setAttribute("style", "display:inline-grid");
@@ -999,7 +1002,7 @@ var span = document.createElement("span");
     div.appendChild(div2);
     li.appendChild(div);
     e.appendChild(li);
-    ngetTree(PRODUCT_ID, 1, "workcube_metosan_1", "", 2, li,"");
+    ngetTree(PRODUCT_ID, 1, "workcube_metosan_1", "", 2, li, "");
   } else {
     var e = document.getElementById(COLUMNSA);
     var li = document.createElement("li");
@@ -1866,7 +1869,7 @@ function UrunKaydet() {
   var project_id = $("#project_id").val();
   var stg = $("#pstage").val();
   var prc = $("#maliyet").val();
-  prc = filterNum(prc,4);
+  prc = filterNum(prc, 4);
   /*
    <cfargument name="VP_ID">
     <cfargument name="PRICE" default="">
@@ -1992,9 +1995,9 @@ function MaliyetHesapla2() {
       TTutar: TTutar,
     });
   });
-  TTutar = commaSplit(TTutar,4);
-  $("#maliyet").val(TTutar,4);
-MaliyetHesapla();
+  TTutar = commaSplit(TTutar, 4);
+  $("#maliyet").val(TTutar, 4);
+  MaliyetHesapla();
 }
 function MaliyetHesapla() {
   var TotalPrice = 0;
@@ -2028,7 +2031,7 @@ function MaliyetHesapla() {
     //console.log(Tprice);
     TotalPrice += Tprice;
   });
-  var Mn = commaSplit(TotalPrice,4);
+  var Mn = commaSplit(TotalPrice, 4);
   $("#maliyet").val(Mn);
 }
 
@@ -2040,26 +2043,30 @@ function GercekKontrol(id) {
     "DSN3"
   );
   var ex = q.OFPOR[0];
-  
-    //  console.log(q.IS_CONVERT_REAL[0]);
 
-    ex = parseInt(ex);
-    console.log(ex);
+  //  console.log(q.IS_CONVERT_REAL[0]);
 
-    var b = document.getElementById("teklifButton");
-    b.removeAttribute("class");
-    b.setAttribute("class", "btn btn-outline-secondary");
-    b.innerText = "Teklif Ver";
-    b.removeAttribute("disabled");
-    var c = document.getElementById("silButon");
-    c.removeAttribute("disabled");
-    if (ex > 0) { $("#relb").show();
+  ex = parseInt(ex);
+  console.log(ex);
+
+  var b = document.getElementById("teklifButton");
+  b.removeAttribute("class");
+  b.setAttribute("class", "btn btn-outline-secondary");
+  b.innerText = "Teklif Ver";
+  b.removeAttribute("disabled");
+  var c = document.getElementById("silButon");
+  c.removeAttribute("disabled");
+  if (ex > 0) {
+    $("#relb").show();
     return ex;
   }
   return 0;
 }
-function openRelatedDocuments(prid){
-  windowopen("index.cfm?fuseaction=project.emptypopup_related_project_documents&project_id="+prid)
+function openRelatedDocuments(prid) {
+  windowopen(
+    "index.cfm?fuseaction=project.emptypopup_related_project_documents&project_id=" +
+      prid
+  );
 }
 function updateStage(el, projectId) {
   console.log(arguments);
@@ -2105,7 +2112,7 @@ function getProjectProducts(projectId) {
   // });
   AjaxPageLoad(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=LeftMenu&PROJECT_ID=" +
-    projectId,
+      projectId,
     "leftMenuProject",
     1,
     "Yükleniyor"
@@ -2131,7 +2138,7 @@ function convertToOffer() {
   var price_catid = _priceCatId;
   var vp_id = document.getElementById("vp_id").value;
   var project_id = document.getElementById("project_id").value;
-  Maliyet = filterNum(Maliyet,4);
+  Maliyet = filterNum(Maliyet, 4);
   var q =
     "select PROJECT_NUMBER+'-'+PROJECT_HEAD as PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where PROJECT_ID=" +
     project_id;
@@ -2191,14 +2198,14 @@ function convertToOffer() {
   mapForm.appendChild(mapInput);
 
   document.body.appendChild(mapForm);
-/*
+  /*
   map = window.open(
     "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert",
     "MapS",
     "status=0,title=0,height=600,width=800,scrollbars=1"
   );
 */
-var map=true;
+  var map = true;
   if (map) {
     mapForm.submit();
   } else {
@@ -2399,7 +2406,7 @@ function SetPrice2(idb, modal_id) {
     .setAttribute("data-netTotal", SP_FIYAT_HESAP_SONUC.Sp_Tutar);
 
   document.getElementById("fiyatimis_" + idb).innerText =
-    commaSplit(SP_FIYAT_HESAP_SONUC.SP_Fiyat,4) +
+    commaSplit(SP_FIYAT_HESAP_SONUC.SP_Fiyat, 4) +
     " " +
     SP_FIYAT_HESAP_SONUC.SP_SelectedMoney;
   $(document.getElementByIdb(idb))
@@ -2483,4 +2490,103 @@ function openPriceList(
   openBoxDraggable(
     "index.cfm?fuseaction=objects.popup_extra_product_prices" + price_params
   );
+}
+
+function AddMultiOffer() {
+  var Maliyet = document.getElementById("maliyet").value;
+  var company_id = _compId;
+  var price_catid = _priceCatId;
+  var vp_id = document.getElementById("vp_id").value;
+  var project_id = document.getElementById("project_id").value;
+  var cbx = document.getElementsByClassName("vpchx");
+  var GidenArr = [];
+  for (let i = 0; i < cbx.length; i++) {
+    var C = cbx[i];
+    if ($(C).is(":checked")) {
+      console.log(C.value);
+      var q = wrk_query(
+        "SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=" +
+          C.value,
+        "dsn3"
+      );
+      console.log(q);
+      var O = {
+        VPID: C.value,
+        PRC: q.PRICE[0],
+        OTHER_MONEY: q.OTHER_MONEY[0],
+      };
+      GidenArr.push(O);
+    }
+  }
+  console.log(GidenArr);
+  var q =
+    "select PROJECT_NUMBER+'-'+PROJECT_HEAD as PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where PROJECT_ID=" +
+    project_id;
+  var res = wrk_query(q, "dsn");
+  var project_name = res.PROJECT_HEAD[0];
+  var BasketData = {
+    company_id: company_id,
+    price_catid: price_catid,
+    project_id: project_id,
+    project_name: project_name,
+    ProductList: GidenArr,
+  };
+  /*  Maliyet = filterNum(Maliyet,4);
+ 
+  var pro = $("#ppidarea *li");
+  var ProductList = new Array();
+  for (let i = 0; i < pro.length; i++) {
+    var prod = pro[i];
+    var productName = $(prod.firstChild)
+      .find("span[name='product_name_']")
+      .text();
+    var amount = $(prod.firstChild.lastChild)
+      .find("input[name='amount']")
+      .val();
+    var pid = prod.getAttribute("data-product_id");
+    var isVirtual = prod.getAttribute("data-is_virtual");
+    var price = prod.getAttribute("data-price");
+    var money = prod.getAttribute("data-money");
+    var discount = prod.getAttribute("data-discount");
+    var sett = getsettingByName("is_show_tree").paramValue;
+
+    var O = {
+      product_id: pid,
+      isVirtual: isVirtual,
+      price: price,
+      money: money,
+      discount: discount,
+      productName: productName,
+      amount: amount,
+    };
+    ProductList.push(O);
+    //console.log(O);
+  }*/
+
+  var mapForm = document.createElement("form");
+  mapForm.target = "PencereUrunDesign";
+  mapForm.method = "POST"; // or "post" if appropriate
+  mapForm.action =
+    "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert&is_multi=1&is_from_project=1";
+
+  var mapInput = document.createElement("input");
+  mapInput.type = "hidden";
+  mapInput.name = "data";
+  mapInput.value = JSON.stringify(BasketData);
+  mapForm.appendChild(mapInput);
+
+  document.body.appendChild(mapForm); /**/
+  /*
+  map = window.open(
+    "/index.cfm?fuseaction=sales.list_pbs_offer&event=add&act=convert",
+    "MapS",
+    "status=0,title=0,height=600,width=800,scrollbars=1"
+  );
+*/
+  var map = true;
+  if (map) {
+    mapForm.submit();
+  } else {
+    alert("You must allow popups for this map to work.");
+  } /**/
 }
