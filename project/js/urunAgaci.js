@@ -2531,38 +2531,7 @@ function AddMultiOffer() {
     project_name: project_name,
     ProductList: GidenArr,
   };
-  /*  Maliyet = filterNum(Maliyet,4);
- 
-  var pro = $("#ppidarea *li");
-  var ProductList = new Array();
-  for (let i = 0; i < pro.length; i++) {
-    var prod = pro[i];
-    var productName = $(prod.firstChild)
-      .find("span[name='product_name_']")
-      .text();
-    var amount = $(prod.firstChild.lastChild)
-      .find("input[name='amount']")
-      .val();
-    var pid = prod.getAttribute("data-product_id");
-    var isVirtual = prod.getAttribute("data-is_virtual");
-    var price = prod.getAttribute("data-price");
-    var money = prod.getAttribute("data-money");
-    var discount = prod.getAttribute("data-discount");
-    var sett = getsettingByName("is_show_tree").paramValue;
-
-    var O = {
-      product_id: pid,
-      isVirtual: isVirtual,
-      price: price,
-      money: money,
-      discount: discount,
-      productName: productName,
-      amount: amount,
-    };
-    ProductList.push(O);
-    //console.log(O);
-  }*/
-
+  
   var mapForm = document.createElement("form");
   mapForm.target = "PencereUrunDesign";
   mapForm.method = "POST"; // or "post" if appropriate
