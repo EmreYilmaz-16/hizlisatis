@@ -30,7 +30,7 @@
         PROJECT_ID=FormData.PROJECT_ID,
         PRODUCT_VERSION=1,
         PRODUCT_STAGE=FormData.PRODUCT_STAGE,
-        PORCURRENCY=FormData.MONEY,
+        PORCURRENCY=-6,
         VIRTUAL_PRODUCT_ID=FormData.PRODUCT_ID,
         PRODUCT_NAME=FormData.PRODUCT_NAME,
         PRICE=FormData.PRICE
