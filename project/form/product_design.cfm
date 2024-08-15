@@ -173,6 +173,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       <cfoutput query="getP">      
           <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" >
               <input type="checkbox" name="crs_0#VIRTUAL_PRODUCT_ID#" class="vpchx" value="#VIRTUAL_PRODUCT_ID#">#PRODUCT_NAME#
+              <button onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')" class="btn btn-sm btn-outline-primary"><span class="icn-md fa fa-arrow-right"></span></button>    
               <cfif PRODUCT_STAGE eq 339>
                   <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
               <cfelseif PRODUCT_STAGE eq 340>
@@ -182,7 +183,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
               <cfelse>
                   <span style="float:right;font-size:11pt" class="badge bg-dark rounded-pill">0</span>
               </cfif>   
-              <button onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')" class="btn btn-sm btn-outline-primary"><span class="icn-md fa fa-arrow-right"></span></button>           
+                     
           </a>     
 
       </cfoutput>
