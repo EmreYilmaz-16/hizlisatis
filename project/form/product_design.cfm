@@ -160,6 +160,7 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
      <div style="height:85vh">
   <div style="display:flex;justify-content: flex-start;align-items: stretch;">
       <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
+      <button type="button" style="margin-left: auto" onclick="AddMultiOffer()" class="btn btn-outline-success">Toplu Teklif Ver</button>
       <button type="button" style="margin-left: auto" onclick="OpenSearchVP()" class="btn btn-outline-warning"><span class="icn-md icon-search pull-right"></span></button>
   </div>
   <div class="list-group" id="leftMenuProject"> 
