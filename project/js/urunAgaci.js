@@ -2093,16 +2093,23 @@ function updateStage(el, projectId) {
 
 function getProjectProducts(projectId) {
   // var vp_id = document.getElementById("vp_id").value;
-  $.ajax({
-    url:
-      "/AddOns/Partner/project/cfc/product_design.cfc?method=getProjectProducts&PROJECT_ID=" +
-      projectId +
-      "&ddsn3=workcube_metosan_1",
-    success: function (retDat) {
-      //  console.log(retDat);
-      $("#leftMenuProject").html(retDat);
-    },
-  });
+  // $.ajax({
+  //   url:
+  //     "/AddOns/Partner/project/cfc/product_design.cfc?method=getProjectProducts&PROJECT_ID=" +
+  //     projectId +
+  //     "&ddsn3=workcube_metosan_1",
+  //   success: function (retDat) {
+  //     //  console.log(retDat);
+  //     $("#leftMenuProject").html(retDat);
+  //   },
+  // });
+  AjaxPageLoad(
+    "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=LeftMenu&PROJECT_ID=" +
+    projectId,
+    "leftMenuProject",
+    1,
+    "Yükleniyor"
+  );
 }
 
 /*
