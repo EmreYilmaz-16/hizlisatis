@@ -5,10 +5,10 @@
 <cfset attributes.q_type="CompanyInfo">
 <cfinclude template="../includes/getCompInfoQuery.cfm">
 <cfif isDefined("attributes.is_multi")>
-    <cfdump var="#FormData#">
+     <cfoutput>
     <script>
     $(document).ready(function(){
-        <cfoutput>
+     
             setCompany(#FormData.COMPANY_ID#, '#FirmaDatasi.FULLNAME#',#FirmaDatasi.MANAGER_PARTNER_ID#,'#FirmaDatasi.MANAGER#')       
             setProjects('#FormData.project_id#','#FormData.project_name#')
             <cfif FirmaDatasi.PAYMETHOD_ID neq 0 and len(FirmaDatasi.PAYMETHOD_ID)>
@@ -20,7 +20,7 @@
     setSevkYontem(sm[0].SHIP_METHOD_ID, sm[0].SHIP_METHOD)
 
 </cfif>
-        </cfoutput>
+        
     <cfloop array="#FormData.ProductList#" item="it">
         <cfquery name="getProductData" datasource="#dsn3#">
             SELECT VP.VIRTUAL_PRODUCT_ID
@@ -40,10 +40,6 @@
             LEFT JOIN #DSN3#.PRODUCT_CAT_PRODUCT_PARAM_SETTINGS AS PCP ON PCP.PRODUCT_CATID = VP.PRODUCT_CATID
             WHERE VP.VIRTUAL_PRODUCT_ID = #it.VPID#
             </cfquery>
-<cfoutput>
-
-
-
 
 AddRow(
                     #getProductData.VIRTUAL_PRODUCT_ID#,
@@ -74,12 +70,13 @@ AddRow(
                     ''
 
 )
-</cfoutput>
+
 
 
     </cfloop>
 }
 </script>
+</cfoutput>
     <cfelse>
 
 
