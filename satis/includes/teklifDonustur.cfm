@@ -1,9 +1,10 @@
 ﻿
 <cfset FormData=deserializeJSON(attributes.data)>
-
+<cfdump var="#attributes#">
 <cfset attributes.type_id=FormData.company_id>
 <cfset attributes.q_type="CompanyInfo">
 <cfinclude template="../includes/getCompInfoQuery.cfm">
+<cfset FirmaDatasi=InfoArray[1]>
 <cfif isDefined("attributes.is_multi")>
      <cfoutput>
     <script>
