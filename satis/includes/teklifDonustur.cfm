@@ -80,8 +80,9 @@ AddRow(
     </cfloop>
 }
 </script>
-    <cfabort>
-</cfif>
+    <cfelse>
+
+
 
 
 
@@ -253,3 +254,4 @@ WHERE S.PRODUCT_ID=#it.product_id#
 </script>
 
 
+</cfif>
