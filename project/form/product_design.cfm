@@ -102,9 +102,7 @@ FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
   text-decoration: none;
 }
   </style>
-<cfquery name="relProjects" datasource="#dsn#">
-SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
-</cfquery>
+
 <!-----
 <cfquery name="getP" datasource="#dsn3#">
   SELECT VP.*,1 AS IS_MAIN,PTR.STAGE FROM VIRTUAL_PRODUCTS_PRT  AS VP

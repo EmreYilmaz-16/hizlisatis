@@ -1,4 +1,7 @@
-﻿
+﻿<cfquery name="relProjects" datasource="#dsn#">
+    SELECT * FROM PRO_PROJECTS WHERE RELATED_PROJECT_ID=#attributes.PROJECT_ID#
+    </cfquery>
+
 <cfquery name="getP" datasource="#dsn3#">
     SELECT VP.*,1 AS IS_MAIN,PTR.STAGE FROM VIRTUAL_PRODUCTS_PRT  AS VP
         LEFT JOIN #dsn#.PROCESS_TYPE_ROWS AS PTR ON PTR.PROCESS_ROW_ID=VP.PRODUCT_STAGE
