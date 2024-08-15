@@ -74,7 +74,7 @@ AddRow(
 
 
     </cfloop>
-}
+})
 </script>
 </cfoutput>
     <cfelse>
