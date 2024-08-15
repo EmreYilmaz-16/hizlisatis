@@ -30,9 +30,10 @@
         PROJECT_ID=FormData.PROJECT_ID,
         PRODUCT_VERSION=1,
         PRODUCT_STAGE=FormData.PRODUCT_STAGE,
-        PORCURRENCY="TL",
+        PORCURRENCY=FormData.MONEY,
         VIRTUAL_PRODUCT_ID=FormData.PRODUCT_ID,
-        PRODUCT_NAME=FormData.PRODUCT_NAME
+        PRODUCT_NAME=FormData.PRODUCT_NAME,
+        PRICE=FormData.PRICE
     };
     UpdateVirtualProduct_1453(Obj)
 </cfscript>
