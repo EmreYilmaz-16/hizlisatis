@@ -514,6 +514,14 @@ $(document).ready(function () {
   let compInfo = GetAjaxQuery("CompanyInfo", cp_id);
   _priceCatId = compInfo.PRICE_LISTS.find((p) => p.IS_DEFAULT == 1).PRICE_CATID;
   _compId = cp_id;
+  AjaxPageLoad(
+    "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=LeftMenu&PROJECT_ID=" +
+    PROJECT_ID,
+    "leftMenuProject",
+    1,
+    "Yükleniyor"
+  );
+
 });
 function makeFiyatSpan(itext, itext2, iid, tip = 0) {
   var spn = "";

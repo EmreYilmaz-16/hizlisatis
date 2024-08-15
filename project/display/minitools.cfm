@@ -20,6 +20,8 @@
     <cf_box title="Alış Fiyat Tarihçesi" scroll="1" collapsable="1" resize="1" popup_box="1">
     <cfinclude template="miniToolsInc/AddPurchasePriceHistory.cfm">
     </cf_box>
+<cfelseif attributes.tool_type eq 'LeftMenu'>
+    <cfinclude template="leftMenuAjax.cfm">
 <cfelse> 
     Sistem Yönetici
 </cfif>
