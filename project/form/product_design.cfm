@@ -158,17 +158,21 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
       <cf_box title="Ürünler">
           
      <div style="height:85vh">
-  <div style="display:flex;justify-content: flex-start;align-items: stretch;">
-      <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
-      <button type="button" style="margin-left: auto" onclick="AddMultiOffer()" class="btn btn-outline-success">Toplu Teklif Ver</button>
-      <button type="button" style="margin-left: auto" onclick="OpenSearchVP()" class="btn btn-outline-warning"><span class="icn-md icon-search pull-right"></span></button>
-  </div>
+        <div style="display:flex;align-items: stretch;padding: 0;justify-content: space-between;">
+          <div style="width: 67%;">     
+            <button type="button" onclick="newDraft()" class="btn btn-outline-primary">Yeni Taslak</button>
+          </div>
+          <div>
+            <button type="button"onclick="AddMultiOffer()" class="btn btn-outline-success">Toplu Teklif Ver</button>
+            <button type="button" style="" onclick="OpenSearchVP()" class="btn btn-outline-warning"><span class="icn-md icon-search pull-right"></span></button>
+          </div>
+        </div>
   <div class="list-group" id="leftMenuProject"> 
     <cf_seperator id="getP" header="Ürünler"  style="display:none;">
       <div id="getP" style="display:none">
       <cfoutput query="getP">      
           <a class="list-group-item list-group-item-action" id="VP_#VIRTUAL_PRODUCT_ID#" onclick="ngetTree(#VIRTUAL_PRODUCT_ID#,1,'#dsn3#',this,1,'','#PRODUCT_NAME#','#PRODUCT_STAGE#')">
-              #PRODUCT_NAME#
+              <input type="checkbox" name="crs_0#VIRTUAL_PRODUCT_ID#" class="vpchx" value="#VIRTUAL_PRODUCT_ID#">#PRODUCT_NAME#
               <cfif PRODUCT_STAGE eq 339>
                   <span style="float:right;font-size:11pt" class="badge bg-danger rounded-pill">#STAGE#</span>
               <cfelseif PRODUCT_STAGE eq 340>
