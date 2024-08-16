@@ -314,5 +314,5 @@ ORDER BY PROJECT_ID------->
 </cfoutput>
 </tbody>
 </cf_big_list>
-</cf_box>
 </cfif>
+</cf_box>
