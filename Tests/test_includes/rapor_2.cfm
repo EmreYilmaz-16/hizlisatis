@@ -150,10 +150,10 @@
         </td>
     </tr>
     </cf_big_list>
-</cf_box>
+
 </cfform>
 
-<cfif isDefined("attributes.is_submit")>
+</cf_box>
 <cfquery name="getc" datasource="#dsn#">
     select TOP 20 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
 OUTER APPLY(
@@ -314,5 +314,4 @@ ORDER BY PROJECT_ID------->
 </cfoutput>
 </tbody>
 </cf_big_list>
-</cfif>
 </cf_box>
