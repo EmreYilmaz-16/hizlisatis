@@ -9,7 +9,8 @@
 <cfparam name="attributes.pos_code" default="">
 <cfparam name="attributes.pos_code_text" default="">
 <cf_box title="Cari Ödeme Ve Tahsilat Raporu">
-<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=11" name="rapor" id="rapor">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=11&event=det&report_id=47" name="rapor" id="rapor">
+    <input type="hidden" name="is_submit">
     <cf_big_list>
         <tr>
             <td>
@@ -151,7 +152,7 @@
     </cf_big_list>
 
 </cfform>
-
+<cfif isDefined("attributes.is_submit")>
 
 <cfquery name="getc" datasource="#dsn#">
     select TOP 20 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
@@ -278,3 +279,4 @@ WHERE BORC IS NOT NULL
 </tbody>
 </cf_big_list>
 </cf_box>
+</cfif>

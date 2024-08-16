@@ -12,6 +12,8 @@
       <cfcase value="10"><cfinclude template="test_includes/ihtiyac_test.cfm"></cfcase>
       <CFCASE value="11"><cfinclude template="test_includes/RAPOR_1.cfm"></CFCASE>
       <CFCASE value="12"><cfinclude template="test_includes/RAPOR_2.cfm"></CFCASE>
+
+      <CFCASE value="13"><cfinclude template="test_includes/RAPOR_3.cfm"></CFCASE>
       
   </cfswitch>
 </cfif>

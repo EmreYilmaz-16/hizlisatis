@@ -9,7 +9,8 @@
 <cfparam name="attributes.pos_code" default="">
 <cfparam name="attributes.pos_code_text" default="">
 <cf_box title="Cari Ödeme Ve Tahsilat Raporu (Proje Bazlı)">
-<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=12" name="rapor" id="rapor">
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=12&event=det&report_id=48" name="rapor" id="rapor">
+    <input type="hidden" name="is_submit">
     <cf_big_list>
         <tr>
             <td>
@@ -152,7 +153,7 @@
 
 </cfform>
 
-
+<cfif isDefined("attributes.is_submit")>
 <cfquery name="getc" datasource="#dsn#">
     select TOP 20 NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
 OUTER APPLY(
@@ -314,3 +315,4 @@ ORDER BY PROJECT_ID------->
 </tbody>
 </cf_big_list>
 </cf_box>
+</cfif>
