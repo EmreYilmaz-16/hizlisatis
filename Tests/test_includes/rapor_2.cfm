@@ -11,7 +11,7 @@
 <cf_box title="Cari Ödeme Ve Tahsilat Raporu (Proje Bazlı)">
 <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#&page=12&event=det&report_id=48" name="rapor" id="rapor">
     <input type="hidden" name="is_submit">
-    <cf_big_list>
+    <table class="table">
         <tr>
             <td>
                 <div class="form-group">
@@ -149,7 +149,7 @@
             <input type="submit">
         </td>
     </tr>
-    </cf_big_list>
+</table>
 
 </cfform>
 
