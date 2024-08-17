@@ -262,6 +262,10 @@ ORDER BY PROJECT_ID------->
                     <th>
                         Proje No
                     </th>
+                    <th>Borç</th>
+                    <th>Alacak</th>
+                    <th>Bakiye</th>
+                    <th>B/A</th>
                     <th>
                         Ortalama Ödeme Vade
                     </th>
@@ -277,7 +281,8 @@ ORDER BY PROJECT_ID------->
             </thead>
             <tbody>
                 <cfquery name="getpp" datasource="#dsn#">
-                     SELECT * FROM (
+                   
+                   SELECT * FROM (
                      select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=#getc.COMPANY_ID#
                      UNION ALL
                      SELECT PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD FROM workcube_metosan.PRO_PROJECTS                         
@@ -285,10 +290,23 @@ ORDER BY PROJECT_ID------->
                             SELECT PROJECT_ID FROM workcube_metosan_2024_1.CARI_ROWS WHERE FROM_CMP_ID=#getc.COMPANY_ID# OR TO_CMP_ID=#getc.COMPANY_ID#
                         )
                         UNION ALL
-                        SELECT NULL AS PROJECT_ID,'' AS PROJECT_NUMBER,'PROJESIZ' AS PROJECT_HEAD                            
+                        SELECT 0 AS PROJECT_ID,'' AS PROJECT_NUMBER,'PROJESIZ' AS PROJECT_HEAD                            
                      )
                         AS TF
+                        OUTER APPLY(
+                              SELECT SUM(ISNULL(BR,0)) ALACAK,SUM(ISNULL(AR,0)) BORC,CONVERT(DECIMAL(18,2),SUM(ISNULL(AR,0)-ISNULL(BR,0))) AS BAKIYE,
+CASE WHEN SUM(ISNULL(BR,0))>SUM(ISNULL(AR,0)) THEN 'A' ELSE 'B' END AS BA
+ FROM (
+SELECT 
+ISNULL(FROM_CMP_ID,TO_CMP_ID) CMP,
+CASE WHEN FROM_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS BR,
+CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
+,PROJECT_ID
+ FROM workcube_metosan_2024_1.CARI_ROWS WHERE (FROM_CMP_ID=#getc.COMPANY_ID# OR TO_CMP_ID=#getc.COMPANY_ID# )and ISNULL(PROJECT_ID,0)=TF.PROJECT_ID
+ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
+ ) as t
 
+                        ) AS TQ
                         ORDER BY PROJECT_ID
                 </cfquery>
                 <cfloop query="getpp">
@@ -301,6 +319,10 @@ ORDER BY PROJECT_ID------->
                     <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
                     <tr>
                         <td>#PROJECT_NUMBER#- #PROJECT_HEAD#</td>
+                        <td>#getpp.BORC#</td>
+                        <td>#getpp.ALACAK#</td>
+                        <td>#getpp.BAKIYE#</td>
+                        <td>#getpp.BA#</td>
                     <td>
                         #TLFORMAT(PBS_REPORT.PBS_TAF)#
                     </td>
