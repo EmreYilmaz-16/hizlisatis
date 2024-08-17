@@ -324,9 +324,9 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
                     <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
                     <tr>
                         <td>#PROJECT_NUMBER#- #PROJECT_HEAD#</td>
-                        <td>#getpp.BORC#</td>
-                        <td>#getpp.ALACAK#</td>
-                        <td>#getpp.BAKIYE#</td>
+                        <td>#TLFORMAT(getpp.BORC)#</td>
+                        <td>#TLFORMAT(getpp.ALACAK)#</td>
+                        <td>#TLFORMAT(getpp.BAKIYE)#</td>
                         <td>#getpp.BA#</td>
                     <td>
                         #TLFORMAT(PBS_REPORT.PBS_TAF)#
