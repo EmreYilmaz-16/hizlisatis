@@ -280,7 +280,7 @@ ORDER BY PROJECT_ID------->
                      SELECT * FROM (
                      select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=#getc.COMPANY_ID#
                      UNION ALL
-                     SELECT * FROM workcube_metosan.PRO_PROJECTS                         
+                     SELECT PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD FROM workcube_metosan.PRO_PROJECTS                         
                         WHERE PROJECT_ID IN (
                             SELECT PROJECT_ID FROM workcube_metosan_2024_1.CARI_ROWS WHERE FROM_CMP_ID=#getc.COMPANY_ID# OR TO_CMP_ID=#getc.COMPANY_ID#
                         )
