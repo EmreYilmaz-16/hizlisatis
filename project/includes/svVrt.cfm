@@ -28,7 +28,7 @@
         PRODUCT_DESCRIPTION='',
         PRODUCT_UNIT='Adet',
         PROJECT_ID=FormData.PROJECT_ID,
-        PRODUCT_VERSION=1,
+        PRODUCT_VERSION='',
         PRODUCT_STAGE=FormData.PRODUCT_STAGE,
         PORCURRENCY=-6,
         VIRTUAL_PRODUCT_ID=FormData.PRODUCT_ID,
