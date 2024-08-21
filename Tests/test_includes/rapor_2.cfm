@@ -189,7 +189,7 @@ WHERE BORC IS NOT NULL
     </cfif>
 </cfif>
 <cfif isDefined("attributes.member_cat_type") and len(attributes.member_cat_type)>
-    AND C.COMPANYCAT_ID=#attributes.member_cat_type#
+    AND C.COMPANYCAT_ID IN(#attributes.member_cat_type#)
 </cfif>
 <cfif isDefined("attributes.customer_value") and len(attributes.customer_value)>
     AND C.COMPANY_VALUE_ID=#attributes.customer_value#
