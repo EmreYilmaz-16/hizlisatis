@@ -154,9 +154,21 @@
 </cfform>
 </cf_box>
 <cfif isDefined("attributes.is_submit")>
+<cfquery name="GETPM" datasource="#DSN3#">
+    
+SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
+</cfquery>
+
+<cfloop query="GETPM">
+    <CFSET "PAYMETHOD_#PAYMETHOD_ID#.PAYMETHOD"=PAYMETHOD>
+    <CFSET "PAYMETHOD_#PAYMETHOD_ID#.DUE_DAY"=DUE_DAY>
+</cfloop>
 
 <cfquery name="getc" datasource="#dsn#">
-    select NICKNAME,C.COMPANY_ID,TT.* from workcube_metosan.COMPANY as C
+    select NICKNAME,C.COMPANY_ID,TT.*,PMS.* from workcube_metosan.COMPANY as C
+    OUTER APPLY(
+        SELECT PAYMETHOD_ID,REVMETHOD_ID FROM workcube_metosan.COMPANY_CREDIT where COMPANY_ID=C.COMPANY_ID
+    ) as PMS
 OUTER APPLY(
     SELECT SUM(ISNULL(BR,0)) ALACAK,SUM(ISNULL(AR,0)) BORC,CONVERT(DECIMAL(18,2),SUM(ISNULL(AR,0)-ISNULL(BR,0))) AS BAKIYE,
 CASE WHEN SUM(ISNULL(BR,0))>SUM(ISNULL(AR,0)) THEN 'A' ELSE 'B' END AS BA
@@ -214,6 +226,10 @@ WHERE BORC IS NOT NULL
         <th>Alacak</th>
         <th>Bakiye</th>
         <th>B/A</th>
+        <th>Satış Ödeme Yöntemi</th>
+        <th>Satış Vade Gün</th>
+        <th>Alış Ödeme Yöntemi</th>
+        <th>Alış Vade Gün</th>
         <th>Ortalama Ödeme Vade</th>
         <th>Kalan Bakiye GÜn Ortalaması</th>
         <th>Kalan Bakiye Tarih Ortalaması</th>
@@ -241,6 +257,28 @@ WHERE BORC IS NOT NULL
         <td>
             #BA#
         </td>
+        <cfif LEN(REVMETHOD_ID)>
+            <td>
+                #evaluate("PAYMETHOD_#REVMETHOD_ID#.PAYMETHOD")#
+            </td>
+            <td>
+                #evaluate("PAYMETHOD_#REVMETHOD_ID#.DUE_DAY")#
+            </td>
+        <cfelse>
+            <td></td>
+            <td></td>
+        </cfif>
+        <cfif LEN(PAYMETHOD_ID)>
+            <td>
+                #evaluate("PAYMETHOD_#PAYMETHOD_ID#.PAYMETHOD")#
+            </td>
+            <td>
+                #evaluate("PAYMETHOD_#PAYMETHOD_ID#.DUE_DAY")#
+            </td>
+        <cfelse>
+            <td></td>
+            <td></td>
+        </cfif>
         <td>
             <cfset attributes.date1="01/01/#year(now())#">
             <cfset attributes.date2="31/12/#year(now())#">
