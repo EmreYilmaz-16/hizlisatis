@@ -206,7 +206,7 @@ WHERE BORC IS NOT NULL
 </cfquery>
 
 <cf_box >
-<cf_big_list>
+<cf_big_list id="table_id">
     <thead>
     <tr>
         <th>
@@ -281,3 +281,24 @@ WHERE BORC IS NOT NULL
 </cf_big_list>
 </cf_box>
 </cfif>
+
+<script>
+    $(document).ready( function () {
+    $('#table_id').DataTable({
+        dom: 'Bfrtip',
+		   lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        buttons: [
+        'copy','excel', 'pdf', 'print','pageLength'
+        ],
+        "scrollX": true,
+		"scrollY": true,
+             columnDefs: [ {
+            orderable: false,
+            targets:   29
+        } ],
+    } );
+} );
+</script>
