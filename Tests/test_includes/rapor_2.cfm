@@ -336,6 +336,14 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
 </table>
 </cf_box>
 </cfif>
+<script type="text/javascript" charset="utf8" src="/js/datatables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="/js/datatables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/datatables/Buttons-1.6.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/datatables/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/datatables/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/datatables/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="/JS/DataTables/datatables.js"></script>
 <script>
     $(document).ready( function () {
