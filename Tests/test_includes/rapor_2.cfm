@@ -1,4 +1,5 @@
-﻿
+﻿<link rel="stylesheet" type="text/css" href="/JS/DataTables/datatables.css"/>
+
 <cfparam name="attributes.customer_value" default="">
 <cfparam name="attributes.zone_id" default="">
 <cfparam name="attributes.duty_claim" default="">
@@ -353,6 +354,7 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
 </cf_big_list>
 </cf_box>
 </cfif>
+<script type="text/javascript" src="/JS/DataTables/datatables.js"></script>
 <script>
     $(document).ready( function () {
     $('#table_id').DataTable({

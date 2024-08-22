@@ -1,4 +1,4 @@
-﻿
+﻿<link rel="stylesheet" type="text/css" href="/JS/DataTables/datatables.css"/>
 <cfparam name="attributes.customer_value" default="">
 <cfparam name="attributes.zone_id" default="">
 <cfparam name="attributes.duty_claim" default="">
@@ -282,6 +282,7 @@ WHERE BORC IS NOT NULL
 </cf_box>
 </cfif>
 
+<script type="text/javascript" src="/JS/DataTables/datatables.js"></script>
 <script>
     $(document).ready( function () {
     $('#table_id').DataTable({
