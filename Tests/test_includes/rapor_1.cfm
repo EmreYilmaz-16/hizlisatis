@@ -206,7 +206,7 @@ WHERE BORC IS NOT NULL
 </cfquery>
 
 <cf_box >
-<cf_big_list id="table_id">
+<table  id="table_id">
     <thead>
     <tr>
         <th>
@@ -278,7 +278,7 @@ WHERE BORC IS NOT NULL
     </tr>
 </cfoutput>
 </tbody>
-</cf_big_list>
+</table>
 </cf_box>
 </cfif>
 
