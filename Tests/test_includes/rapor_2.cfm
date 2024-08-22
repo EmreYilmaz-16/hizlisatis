@@ -272,22 +272,22 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
              ORDER BY PROJECT_ID
      </cfquery>
     <tr>
-        <td rowspan="#getpp.recordCount+1#">
+        <td >
             #NICKNAME#
         </td>
-        <td rowspan="#getpp.recordCount+1#">
+        <td >
             #tlformat(BORC)#
         </td>
-        <td rowspan="#getpp.recordCount+1#">
+        <td >
             #tlformat(ALACAK)#
         </td>
-        <td rowspan="#getpp.recordCount+1#">
+        <td >
             #tlformat(BAKIYE)#
         </td>
-        <td rowspan="#getpp.recordCount+1#">
+        <td >
             #BA#
         </td>
-    </tr>
+   
        
            
                 <cfloop query="getpp">
@@ -303,7 +303,7 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
                     <cfset attributes.is_project_group=1>
                     <cfset attributes.is_ajax_popup=1>
                     <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
-                    <tr>
+                   
                         <td>#PROJECT_NUMBER#- #PROJECT_HEAD#</td>
                         <td>#TLFORMAT(getpp.BORC)#</td>
                         <td>#TLFORMAT(getpp.ALACAK)#</td>
