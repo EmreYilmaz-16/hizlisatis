@@ -210,24 +210,27 @@ WHERE BORC IS NOT NULL
 <table  class="table" id="table_id">
     <thead>
     <tr>
-        <th rowspan="">
+        <th rowspan="2">
             Cari
         </th>
-        <th rowspan="">
+        <th rowspan="2">
             Borç
         </th>
-        <th rowspan="">
+        <th rowspan="2">
             Alacak
         </th>
-        <th rowspan="">
+        <th rowspan="2">
             Bakiye
         </th>
-        <th rowspan="">
+        <th rowspan="2">
             B/A
         </th>
-        
+        <th colspan="10">
+            Proje
+        </th>
        
-    
+    </tr>
+    <tr>
         <th>Proje No</th>
         <th>Borç</th>
         <th>Alacak</th>
@@ -272,22 +275,22 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
              ORDER BY PROJECT_ID
      </cfquery>
     <tr>
-        <td >
+        <td rowspan="#getpp.recordCount+1#">
             #NICKNAME#
         </td>
-        <td >
+        <td rowspan="#getpp.recordCount+1#">
             #tlformat(BORC)#
         </td>
-        <td >
+        <td rowspan="#getpp.recordCount+1#">
             #tlformat(ALACAK)#
         </td>
-        <td >
+        <td rowspan="#getpp.recordCount+1#">
             #tlformat(BAKIYE)#
         </td>
-        <td >
+        <td rowspan="#getpp.recordCount+1#">
             #BA#
         </td>
-   
+    </tr>
        
            
                 <cfloop query="getpp">
@@ -303,7 +306,7 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
                     <cfset attributes.is_project_group=1>
                     <cfset attributes.is_ajax_popup=1>
                     <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
-                   
+                    <tr>
                         <td>#PROJECT_NUMBER#- #PROJECT_HEAD#</td>
                         <td>#TLFORMAT(getpp.BORC)#</td>
                         <td>#TLFORMAT(getpp.ALACAK)#</td>
