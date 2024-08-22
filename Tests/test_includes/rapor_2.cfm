@@ -333,7 +333,7 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
 <script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.print.min.js"></script>---->
 <script type="text/javascript" src="/JS/DataTables/datatables.js"></script>
-<!---<script>
+<script>
     $(document).ready( function () {
     $('#table_id').DataTable({
         dom: 'Bfrtip',
@@ -349,4 +349,4 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
             
     } );
 } );
-</script>--->
+</script>
