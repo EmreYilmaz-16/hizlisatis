@@ -207,7 +207,7 @@ WHERE BORC IS NOT NULL
 </cfquery>
 
 <cf_box >
-<cf_big_list id="table_id">
+<table  class="table" id="table_id">
     <thead>
     <tr>
         <th>
@@ -257,7 +257,7 @@ ORDER BY PROJECT_ID------->
             #BA#
         </td>
         <td>
-            <cf_grid_list>
+            <table >
                 <thead>
                 <tr>
                     <th>
@@ -344,14 +344,14 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
                     </tr>
                 </cfloop>
             </tbody>
-            </cf_grid_list>
+        </table>
        
             
        </td>
     </tr>
 </cfoutput>
 </tbody>
-</cf_big_list>
+</table>
 </cf_box>
 </cfif>
 <script type="text/javascript" src="/JS/DataTables/datatables.js"></script>
@@ -368,10 +368,7 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
         ],
         "scrollX": true,
 		"scrollY": true,
-             columnDefs: [ {
-            orderable: false,
-            targets:   29
-        } ],
+            
     } );
 } );
 </script>
