@@ -296,10 +296,7 @@ WHERE BORC IS NOT NULL
         ],
         "scrollX": true,
 		"scrollY": true,
-             columnDefs: [ {
-            orderable: false,
-            targets:   29
-        } ],
+             
     } );
 } );
 </script>
