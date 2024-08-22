@@ -275,19 +275,19 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
              ORDER BY PROJECT_ID
      </cfquery>
     <tr>
-        <td rowspan="#getpp.recordCount#">
+        <td rowspan="#getpp.recordCount+1#">
             #NICKNAME#
         </td>
-        <td rowspan="#getpp.recordCount#">
+        <td rowspan="#getpp.recordCount+1#">
             #tlformat(BORC)#
         </td>
-        <td rowspan="#getpp.recordCount#">
+        <td rowspan="#getpp.recordCount+1#">
             #tlformat(ALACAK)#
         </td>
-        <td rowspan="#getpp.recordCount#">
+        <td rowspan="#getpp.recordCount+1#">
             #tlformat(BAKIYE)#
         </td>
-        <td rowspan="#getpp.recordCount#">
+        <td rowspan="#getpp.recordCount+1#">
             #BA#
         </td>
     </tr>
