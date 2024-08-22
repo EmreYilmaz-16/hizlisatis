@@ -210,27 +210,24 @@ WHERE BORC IS NOT NULL
 <table  class="table" id="table_id">
     <thead>
     <tr>
-        <th rowspan="2">
+        <th rowspan="">
             Cari
         </th>
-        <th rowspan="2">
+        <th rowspan="">
             Borç
         </th>
-        <th rowspan="2">
+        <th rowspan="">
             Alacak
         </th>
-        <th rowspan="2">
+        <th rowspan="">
             Bakiye
         </th>
-        <th rowspan="2">
+        <th rowspan="">
             B/A
         </th>
-        <th colspan="10">
-            Proje
-        </th>
+        
        
-    </tr>
-    <tr>
+    
         <th>Proje No</th>
         <th>Borç</th>
         <th>Alacak</th>
