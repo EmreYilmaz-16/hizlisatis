@@ -210,106 +210,89 @@ WHERE BORC IS NOT NULL
 <table  class="table" id="table_id">
     <thead>
     <tr>
-        <th>
+        <th rowspan="2">
             Cari
         </th>
-        <th>
+        <th rowspan="2">
             Borç
         </th>
-        <th>
+        <th rowspan="2">
             Alacak
         </th>
-        <th>
+        <th rowspan="2">
             Bakiye
         </th>
-        <th>
+        <th rowspan="2">
             B/A
         </th>
-        <th>
+        <th colspan="10">
             Proje
         </th>
        
     </tr>
-
-<!--------
-    select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=14154
-UNION ALL
-SELECT NULL AS PROJECT_ID,'' AS PROJECT_NUMBER,'PROJESIZ' AS PROJECT_HEAD
-
-ORDER BY PROJECT_ID------->
+    <tr>
+        <th>Proje No</th>
+        <th>Borç</th>
+        <th>Alacak</th>
+        <th>Bakiye</th>
+        <th>B/A</th>
+        <th>Ortalama Ödeme Vade</th>
+        <th>Kalan Bakiye GÜn Ortalaması</th>
+        <th>Kalan Bakiye Tarih Ortalaması</th>
+        <th>Peşine Dönen Açık Fatura Toplamı</th>
+        <th>Peşine Düşen Açık Fatura Gün</th>
+    </tr>
 </thead>
 <tbody>
 <cfoutput query="getc">
-    <tr>
-        <td>
-            #NICKNAME#
-        </td>
-        <td>
-            #tlformat(BORC)#
-        </td>
-        <td>
-            #tlformat(ALACAK)#
-        </td>
-        <td>
-            #tlformat(BAKIYE)#
-        </td>
-        <td>
-            #BA#
-        </td>
-        <td>
-            <table >
-                <thead>
-                <tr>
-                    <th>
-                        Proje No
-                    </th>
-                    <th>Borç</th>
-                    <th>Alacak</th>
-                    <th>Bakiye</th>
-                    <th>B/A</th>
-                    <th>
-                        Ortalama Ödeme Vade
-                    </th>
-                    <th>
-                        Kalan Bakiye GÜn Ortalaması
-                    </th>
-                    <th>
-                        Kalan Bakiye Tarih Ortalaması
-                    </th>
-                    <th>Peşine Dönen Açık Fatura Toplamı</th>
-                    <th>Peşine Düşen Açık Fatura Gün</th>
-                </tr>
-            </thead>
-            <tbody>
-                <cfquery name="getpp" datasource="#dsn#">
+    <cfquery name="getpp" datasource="#dsn#">
                    
-                   SELECT * FROM (
-                     select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=#getc.COMPANY_ID#
-                     UNION ALL
-                     SELECT PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD FROM workcube_metosan.PRO_PROJECTS                         
-                        WHERE PROJECT_ID IN (
-                            SELECT PROJECT_ID FROM workcube_metosan_2024_1.CARI_ROWS WHERE FROM_CMP_ID=#getc.COMPANY_ID# OR TO_CMP_ID=#getc.COMPANY_ID#
-                        )
-                        UNION ALL
-                        SELECT 0 AS PROJECT_ID,'' AS PROJECT_NUMBER,'PROJESIZ' AS PROJECT_HEAD                            
-                     )
-                        AS TF
-                        OUTER APPLY(
-                              SELECT SUM(ISNULL(BR,0)) ALACAK,SUM(ISNULL(AR,0)) BORC,CONVERT(DECIMAL(18,2),SUM(ISNULL(AR,0)-ISNULL(BR,0))) AS BAKIYE,
+        SELECT * FROM (
+          select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=#getc.COMPANY_ID#
+          UNION ALL
+          SELECT PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD FROM workcube_metosan.PRO_PROJECTS                         
+             WHERE PROJECT_ID IN (
+                 SELECT PROJECT_ID FROM workcube_metosan_2024_1.CARI_ROWS WHERE FROM_CMP_ID=#getc.COMPANY_ID# OR TO_CMP_ID=#getc.COMPANY_ID#
+             )
+             UNION ALL
+             SELECT 0 AS PROJECT_ID,'' AS PROJECT_NUMBER,'PROJESIZ' AS PROJECT_HEAD                            
+          )
+             AS TF
+             OUTER APPLY(
+                   SELECT SUM(ISNULL(BR,0)) ALACAK,SUM(ISNULL(AR,0)) BORC,CONVERT(DECIMAL(18,2),SUM(ISNULL(AR,0)-ISNULL(BR,0))) AS BAKIYE,
 CASE WHEN SUM(ISNULL(BR,0))>SUM(ISNULL(AR,0)) THEN 'A' ELSE 'B' END AS BA
- FROM (
+FROM (
 SELECT 
 ISNULL(FROM_CMP_ID,TO_CMP_ID) CMP,
 CASE WHEN FROM_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS BR,
 CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
 ,PROJECT_ID
- FROM workcube_metosan_2024_1.CARI_ROWS WHERE (FROM_CMP_ID=#getc.COMPANY_ID# OR TO_CMP_ID=#getc.COMPANY_ID# )and ISNULL(PROJECT_ID,0)=TF.PROJECT_ID
- GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
- ) as t
+FROM workcube_metosan_2024_1.CARI_ROWS WHERE (FROM_CMP_ID=#getc.COMPANY_ID# OR TO_CMP_ID=#getc.COMPANY_ID# )and ISNULL(PROJECT_ID,0)=TF.PROJECT_ID
+GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
+) as t
 
-                        ) AS TQ
-                        ORDER BY PROJECT_ID
-                </cfquery>
+             ) AS TQ
+             ORDER BY PROJECT_ID
+     </cfquery>
+    <tr>
+        <td rowspan="#getpp.recordCount#">
+            #NICKNAME#
+        </td>
+        <td rowspan="#getpp.recordCount#">
+            #tlformat(BORC)#
+        </td>
+        <td rowspan="#getpp.recordCount#">
+            #tlformat(ALACAK)#
+        </td>
+        <td rowspan="#getpp.recordCount#">
+            #tlformat(BAKIYE)#
+        </td>
+        <td rowspan="#getpp.recordCount#">
+            #BA#
+        </td>
+    </tr>
+       
+           
                 <cfloop query="getpp">
                     <cfset attributes.date1="01/01/#year(now())#">
                     <cfset attributes.date2="31/12/#year(now())#">
@@ -343,12 +326,11 @@ CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
                     </td>
                     </tr>
                 </cfloop>
-            </tbody>
-        </table>
+        
        
             
-       </td>
-    </tr>
+       
+    
 </cfoutput>
 </tbody>
 </table>
