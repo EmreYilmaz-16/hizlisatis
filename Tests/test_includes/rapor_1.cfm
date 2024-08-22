@@ -206,33 +206,17 @@ WHERE BORC IS NOT NULL
 </cfquery>
 
 <cf_box >
-<table  id="table_id">
+<table  class="table"  id="table_id">
     <thead>
     <tr>
-        <th>
-            Cari
-        </th>
-        <th>
-            Borç
-        </th>
-        <th>
-            Alacak
-        </th>
-        <th>
-            Bakiye
-        </th>
-        <th>
-            B/A
-        </th>
-        <th>
-            Ortalama Ödeme Vade
-        </th>
-        <th>
-            Kalan Bakiye GÜn Ortalaması
-        </th>
-        <th>
-            Kalan Bakiye Tarih Ortalaması
-        </th>
+        <th>Cari</th>
+        <th>Borç</th>
+        <th>Alacak</th>
+        <th>Bakiye</th>
+        <th>B/A</th>
+        <th>Ortalama Ödeme Vade</th>
+        <th>Kalan Bakiye GÜn Ortalaması</th>
+        <th>Kalan Bakiye Tarih Ortalaması</th>
         <th>Peşine Dönen Açık Fatura Toplamı</th>
         <th>Peşine Düşen Açık Fatura Gün</th>
     </tr>
