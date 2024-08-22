@@ -312,25 +312,13 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
                         <td>#TLFORMAT(getpp.ALACAK)#</td>
                         <td>#TLFORMAT(getpp.BAKIYE)#</td>
                         <td>#getpp.BA#</td>
-                    <td>
-                        #TLFORMAT(PBS_REPORT.PBS_TAF)#
-                    </td>
-                    <td>#tlformat(PBS_REPORT.PBS_FAF)#</td>
-                    <td>#dateFormat(PBS_REPORT.PBS_FAT,dateformat_style)#</td>
-                    <td>#tlformat(PBS_REPORT.PBS_KAF)#</td>
-                    <td>
-                        <cfquery name="GETO" dbtype="query">
-                            SELECT AVG(D_VALUE) AS DV FROM PBS_REPORT.DS_QUERY
-                        </cfquery>
-                        #GETO.DV#
-                    </td>
+                        <td>#TLFORMAT(PBS_REPORT.PBS_TAF)#</td>
+                        <td>#tlformat(PBS_REPORT.PBS_FAF)#</td>
+                        <td>#dateFormat(PBS_REPORT.PBS_FAT,dateformat_style)#</td>
+                        <td>#tlformat(PBS_REPORT.PBS_KAF)#</td>
+                        <td><cfquery name="GETO" dbtype="query">SELECT AVG(D_VALUE) AS DV FROM PBS_REPORT.DS_QUERY</cfquery>#GETO.DV#</td>
                     </tr>
                 </cfloop>
-        
-       
-            
-       
-    
 </cfoutput>
 </tbody>
 </table>
