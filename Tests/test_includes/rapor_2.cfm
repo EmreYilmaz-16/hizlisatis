@@ -270,10 +270,11 @@ WHERE BORC IS NOT NULL
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,8,8);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,9,9);
                   spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,10,19);
+                  spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                   SatirSayaci=SatirSayaci+1;
                   spreadsheetAddRow(theSheet,"Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün",SatirSayaci,10);
                spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
-
+               SatirSayaci=SatirSayaci+1;
                
            </cfscript>
     </cfif>
@@ -388,6 +389,52 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
         </cfif>
     </tr>
        
+    <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
+        <cfscript>
+            hucre=1;
+            spreadsheetSetCellValue(theSheet,NICKNAME,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,BORC,SatirSayaci,hucre);
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,ALACAK,SatirSayaci,hucre);
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,BAKIYE,SatirSayaci,hucre);   
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);         
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,BA,SatirSayaci,hucre);        
+            if(len(REVMETHOD_ID)){
+                hucre=hucre+1; 
+                spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#REVMETHOD_ID#.PAYMETHOD"),SatirSayaci,hucre);
+                hucre=hucre+1; 
+                spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#REVMETHOD_ID#.DUE_DAY"),SatirSayaci,hucre);
+            }else{
+                hucre=hucre+2;
+            }
+            if(len(PAYMETHOD_ID)){
+                hucre=hucre+1; 
+                spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#PAYMETHOD_ID#.PAYMETHOD"),SatirSayaci,hucre);
+                hucre=hucre+1; 
+                spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#PAYMETHOD_ID#.DUE_DAY"),SatirSayaci,hucre);
+            }else{
+                hucre=hucre+2;
+            }
+            
+            if(getpp.recordCount gt 1){
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,1,1);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,2,2);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,3,3);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,4,4);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,5,5);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,6,6);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,7,7);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,8,8);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,9,9);
+            }
+           SatirSayaci=SatirSayaci+1;
+        </cfscript>
+    </cfif>
            
                 <cfloop query="getpp">
                     <cfset attributes.date1="01/01/#year(now())#">
@@ -414,6 +461,31 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
                         <td>#tlformat(PBS_REPORT.PBS_KAF)#</td>
                         <td><cfquery name="GETO" dbtype="query">SELECT AVG(D_VALUE) AS DV FROM PBS_REPORT.DS_QUERY</cfquery>#GETO.DV#</td>
                     </tr>
+                    <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
+                        <cfscript>
+                            hucre=10;
+                            spreadsheetSetCellValue(theSheet,"#PROJECT_NUMBER# - #PROJECT_HEAD#",SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,getpp.BORC,SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,getpp.ALACAK,SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,getpp.BAKIYE,SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,getpp.BA,SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_TAF,SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAF,SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAT,SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_KAF,SatirSayaci,hucre);
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,GETO.DV,SatirSayaci,hucre);
+                            SatirSayaci=SatirSayaci+1
+                        </cfscript>
+                    </cfif>
                 </cfloop>
 </cfoutput>
 </tbody>
