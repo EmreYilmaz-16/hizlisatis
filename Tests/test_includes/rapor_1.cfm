@@ -193,7 +193,7 @@
            SatirSayaci=SatirSayaci+1;
            hucre=1;
               SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Ortalama Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Dönen Açık Fatura Top.,Peşine Dönen Açık Fatura Gün",SatirSayaci,hucre);
-           
+              SatirSayaci=SatirSayaci+1;
            spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
            
        </cfscript>
