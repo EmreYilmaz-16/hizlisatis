@@ -186,6 +186,10 @@
            myFormatFatura=structNew();
            myFormatFatura.color="dark_teal";
            myFormatFatura.bold="true";
+
+           numberFrm=structNew();
+           numberFrm.dataformat="##,####0.00";
+
            hucre=1;
            spreadsheetAddRow(theSheet,"Cari Ödeme ve Tahsilat Raporu  (#dateFormat(now(),'dd.mm.yyyy')#)",SatirSayaci,hucre);
            spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,1,20);
@@ -377,7 +381,7 @@ WHERE BORC IS NOT NULL
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAF,SatirSayaci,hucre);
             hucre=hucre+1;
-            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAT,SatirSayaci,hucre);
+            spreadsheetSetCellValue(theSheet,dateformat(PBS_REPORT.PBS_FAT,"dd.mm.yyyy"),SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_KAF,SatirSayaci,hucre);
             hucre=hucre+1;
