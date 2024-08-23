@@ -255,7 +255,7 @@ WHERE BORC IS NOT NULL
     
                hucre=1;
                spreadsheetAddRow(theSheet,"Cari Ödeme ve Tahsilat Raporu  (#dateFormat(now(),'dd.mm.yyyy')#)",SatirSayaci,hucre);
-               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,1,20);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,1,19);
                spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                SatirSayaci=SatirSayaci+1;
                hucre=1;
@@ -272,7 +272,7 @@ WHERE BORC IS NOT NULL
                   spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,10,19);
                   spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                   SatirSayaci=SatirSayaci+1;
-                  spreadsheetAddRow(theSheet,"Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün",SatirSayaci,10);
+                  spreadsheetAddRow(theSheet,"Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün",SatirSayaci,10);
                spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                SatirSayaci=SatirSayaci+1;
                
