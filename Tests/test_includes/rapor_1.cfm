@@ -377,6 +377,8 @@ WHERE BORC IS NOT NULL
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAF,SatirSayaci,hucre);
             hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAT,SatirSayaci,hucre);
+            hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_KAF,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,GETO.DV,SatirSayaci,hucre);
