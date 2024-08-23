@@ -432,7 +432,7 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
                 spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,8,8);
                 spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,9,9);
             }
-           SatirSayaci=SatirSayaci+1;
+           
         </cfscript>
     </cfif>
            
