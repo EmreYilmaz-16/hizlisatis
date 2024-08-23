@@ -413,7 +413,7 @@ WHERE BORC IS NOT NULL
 <script type="text/javascript" language="javascript" src="/js/datatables/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.html5.min.js"></script>
-<script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.print.min.js"></script>---->
+<script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="/JS/DataTables/datatables.js"></script>
 <script>
     $(document).ready( function () {
@@ -431,4 +431,4 @@ WHERE BORC IS NOT NULL
              
     } );
 } );
-</script>
+</script>---->
