@@ -1,5 +1,5 @@
 ﻿<link rel="stylesheet" type="text/css" href="/JS/DataTables/datatables.css"/>
-
+<cfparam name="attributes.isexpbx" default="0">
 <cfparam name="attributes.customer_value" default="">
 <cfparam name="attributes.zone_id" default="">
 <cfparam name="attributes.duty_claim" default="">
@@ -145,7 +145,11 @@
                     </div>
                 </div>
             </td>
-    
+            <td>
+                <label>
+                    <input type="checkbox" name="isexpbx" value="1"> Excell
+                </label>
+            </td>
         <td>
             <input type="submit">
         </td>
@@ -219,6 +223,60 @@ WHERE BORC IS NOT NULL
 </cfquery>
 
 <cf_box >
+    <cfif isDefined("attributes.isexpbx") and  attributes.isexpbx eq 1>
+        <cfscript>
+            theSheet = SpreadsheetNew("CariEkstre");
+            SatirSayaci=1;
+               myFormatRed=StructNew();
+               myFormatRed.color="red";
+               myFormatRed.bold="true";
+           
+               myFormatGreen=StructNew();
+               myFormatGreen.color="green";
+               myFormatGreen.bold="true";
+           
+               myformatBold=structNew();
+               myformatBold.bold="true";
+           
+               myFormatBlue=StructNew();
+               myFormatBlue.color="blue";
+               myFormatBlue.bold="true";
+           
+               myformatSon=structNew();
+               myformatSon.bold="true";
+               myformatSon.bottomborder="medium";
+           
+               myFormatFatura=structNew();
+               myFormatFatura.color="dark_teal";
+               myFormatFatura.bold="true";
+    
+               numberFrm=structNew();
+               numberFrm.dataformat="##,####0.00";
+    
+               hucre=1;
+               spreadsheetAddRow(theSheet,"Cari Ödeme ve Tahsilat Raporu  (#dateFormat(now(),'dd.mm.yyyy')#)",SatirSayaci,hucre);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,1,20);
+               spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
+               SatirSayaci=SatirSayaci+1;
+               hucre=1;
+                  SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Proje",SatirSayaci,hucre);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,1,1);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,2,2);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,3,3);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,4,4);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,5,5);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,6,6);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,7,7);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,8,8);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,9,9);
+                  spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,10,19);
+                  SatirSayaci=SatirSayaci+1;
+                  spreadsheetAddRow(theSheet,"Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün",SatirSayaci,10);
+               spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
+
+               
+           </cfscript>
+    </cfif>
 <table  class="table" id="table_id">
     <thead>
     <tr>
@@ -361,6 +419,22 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
 </tbody>
 </table>
 </cf_box>
+<cfif  attributes.isexpbx eq 1>
+    <cfset file_name = "CariFaliyetOzeti_#dateformat(now(),'ddmmyyyy')#.xls">
+       <cfset drc_name_ = "#dateformat(now(),'yyyymmdd')#">
+       <cfif not directoryexists("#upload_folder#reserve_files#dir_seperator##drc_name_#")>
+       <cfdirectory action="create" directory="#upload_folder#reserve_files#dir_seperator##drc_name_#">
+       </cfif>
+   <cfspreadsheet action="write" filename="#upload_folder#reserve_files#dir_seperator##drc_name_#/#file_name#" name="theSheet"
+       sheetname="MinumumMaximumStok" overwrite=true>
+   
+      <script type="text/javascript">
+       <cfoutput>
+       get_wrk_message_div("Excel","Excel","documents/reserve_files/#drc_name_#/#file_name#");
+       </cfoutput>
+       </script>
+   
+   </cfif>
 </cfif>
 <!----<script type="text/javascript" charset="utf8" src="/js/datatables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
