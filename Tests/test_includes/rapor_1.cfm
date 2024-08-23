@@ -353,7 +353,8 @@ WHERE BORC IS NOT NULL
             spreadsheetSetCellValue(theSheet,ALACAK,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,BAKIYE,SatirSayaci,hucre);            
-                       
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,BA,SatirSayaci,hucre);        
             if(len(REVMETHOD_ID)){
                 hucre=hucre+1; 
                 spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#REVMETHOD_ID#.PAYMETHOD"),SatirSayaci,hucre);
