@@ -467,20 +467,26 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
                             spreadsheetSetCellValue(theSheet,"#PROJECT_NUMBER# - #PROJECT_HEAD#",SatirSayaci,hucre);
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,getpp.BORC,SatirSayaci,hucre);
+                            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);  
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,getpp.ALACAK,SatirSayaci,hucre);
+                            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);  
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,getpp.BAKIYE,SatirSayaci,hucre);
+                            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);  
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,getpp.BA,SatirSayaci,hucre);
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_TAF,SatirSayaci,hucre);
+                            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);  
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAF,SatirSayaci,hucre);
+                            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);  
                             hucre=hucre+1;
-                            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAT,SatirSayaci,hucre);
+                            spreadsheetSetCellValue(theSheet,dateformat(PBS_REPORT.PBS_FAT,"dd.mm.yyyy"),SatirSayaci,hucre);
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_KAF,SatirSayaci,hucre);
+                            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);  
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,GETO.DV,SatirSayaci,hucre);
                             SatirSayaci=SatirSayaci+1
