@@ -422,17 +422,17 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
             }
             
             if(getpp.recordCount gt 1){
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,1,1);
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,2,2);
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,3,3);
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,4,4);
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,5,5);
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,6,6);
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,7,7);
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,8,8);
-                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount,9,9);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,1,1);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,2,2);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,3,3);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,4,4);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,5,5);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,6,6);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,7,7);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,8,8);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,9,9);
             }
-           SatirSayaci=SatirSayaci+1;
+           //SatirSayaci=SatirSayaci+1;
         </cfscript>
     </cfif>
            
