@@ -148,7 +148,7 @@
             </td>
     <td>
         <label>
-            <input type="checkbox" name="isexpbx" value="1">
+            <input type="checkbox" name="isexpbx" value="1"> Excell
         </label>
     </td>
         <td>
