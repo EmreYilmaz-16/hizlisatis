@@ -144,7 +144,11 @@
                     </div>
                 </div>
             </td>
-    
+    <td>
+        <label>
+            <input type="checkbox" name="isexpbx">
+        </label>
+    </td>
         <td>
             <input type="submit">
         </td>
@@ -154,6 +158,45 @@
 </cfform>
 </cf_box>
 <cfif isDefined("attributes.is_submit")>
+<cfif isDefined("attributes.isexpbx")>
+    <cfscript>
+        theSheet = SpreadsheetNew("CariEkstre");
+        SatirSayaci=1;
+           myFormatRed=StructNew();
+           myFormatRed.color="red";
+           myFormatRed.bold="true";
+       
+           myFormatGreen=StructNew();
+           myFormatGreen.color="green";
+           myFormatGreen.bold="true";
+       
+           myformatBold=structNew();
+           myformatBold.bold="true";
+       
+           myFormatBlue=StructNew();
+           myFormatBlue.color="blue";
+           myFormatBlue.bold="true";
+       
+           myformatSon=structNew();
+           myformatSon.bold="true";
+           myformatSon.bottomborder="medium";
+       
+           myFormatFatura=structNew();
+           myFormatFatura.color="dark_teal";
+           myFormatFatura.bold="true";
+           hucre=1;
+           spreadsheetAddRow(theSheet,"Cari Ödeme ve Tahsilat Raporu  (#dateFormat(now(),'dd.mm.yyyy')#)",SatirSayaci,hucre);
+           spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,1,20);
+           spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
+           SatirSayaci=SatirSayaci+1;
+           hucre=1;
+              SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Ortalama Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Dönen Açık Fatura Top.,Peşine Dönen Açık Fatura Gün",SatirSayaci,hucre);
+           
+           spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
+           
+       </cfscript>
+</cfif>
+
 <cfquery name="GETPM" datasource="#DSN3#">
     
 SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
@@ -298,10 +341,66 @@ WHERE BORC IS NOT NULL
             #GETO.DV#
         </td>
     </tr>
+    <cfif isDefined("attributes.isexpbx")>
+        <cfscript>
+            hucre=1;
+            spreadsheetSetCellValue(theSheet,NICKNAME,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,BORC,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,ALACAK,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,BAKIYE,SatirSayaci,hucre);            
+                       
+            if(len(REVMETHOD_ID)){
+                hucre=hucre+1; 
+                spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#REVMETHOD_ID#.PAYMETHOD"),SatirSayaci,hucre);
+                hucre=hucre+1; 
+                spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#REVMETHOD_ID#.DUE_DAY"),SatirSayaci,hucre);
+            }else{
+                hucre=hucre+2;
+            }
+            if(len(PAYMETHOD_ID)){
+                hucre=hucre+1; 
+                spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#PAYMETHOD_ID#.PAYMETHOD"),SatirSayaci,hucre);
+                hucre=hucre+1; 
+                spreadsheetSetCellValue(theSheet,evaluate("PAYMETHOD_#PAYMETHOD_ID#.DUE_DAY"),SatirSayaci,hucre);
+            }else{
+                hucre=hucre+2;
+            }
+            
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_TAF,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAF,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_KAF,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,GETO.DV,SatirSayaci,hucre);
+            SatirSayaci=SatirSayaci+1;
+           
+        </cfscript>
+    </cfif>
 </cfoutput>
 </tbody>
 </table>
 </cf_box>
+<cfif attributes.isexpbx eq 1>
+    <cfset file_name = "CariFaliyetOzeti_#dateformat(now(),'ddmmyyyy')#.xls">
+       <cfset drc_name_ = "#dateformat(now(),'yyyymmdd')#">
+       <cfif not directoryexists("#upload_folder#reserve_files#dir_seperator##drc_name_#")>
+       <cfdirectory action="create" directory="#upload_folder#reserve_files#dir_seperator##drc_name_#">
+       </cfif>
+   <cfspreadsheet action="write" filename="#upload_folder#reserve_files#dir_seperator##drc_name_#/#file_name#" name="theSheet"
+       sheetname="MinumumMaximumStok" overwrite=true>
+   
+      <script type="text/javascript">
+       <cfoutput>
+       get_wrk_message_div("Excel","Excel","documents/reserve_files/#drc_name_#/#file_name#");
+       </cfoutput>
+       </script>
+   
+   </cfif>
 </cfif>
 <script type="text/javascript" charset="utf8" src="/js/datatables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
