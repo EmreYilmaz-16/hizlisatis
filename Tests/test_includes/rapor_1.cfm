@@ -1,5 +1,7 @@
-﻿<link rel="stylesheet" type="text/css" href="/JS/DataTables/datatables.css"/>
+﻿
+<link rel="stylesheet" type="text/css" href="/JS/DataTables/datatables.css"/>
 <cfparam name="attributes.customer_value" default="">
+<cfparam name="attributes.isexpbx" default="0">
 <cfparam name="attributes.zone_id" default="">
 <cfparam name="attributes.duty_claim" default="">
 <cfparam name="attributes.buy_status" default="">
@@ -146,7 +148,7 @@
             </td>
     <td>
         <label>
-            <input type="checkbox" name="isexpbx">
+            <input type="checkbox" name="isexpbx" value="1">
         </label>
     </td>
         <td>
@@ -158,7 +160,7 @@
 </cfform>
 </cf_box>
 <cfif isDefined("attributes.is_submit")>
-<cfif isDefined("attributes.isexpbx")>
+<cfif isDefined("attributes.isexpbx") and  attributes.isexpbx eq 1>
     <cfscript>
         theSheet = SpreadsheetNew("CariEkstre");
         SatirSayaci=1;
@@ -341,7 +343,7 @@ WHERE BORC IS NOT NULL
             #GETO.DV#
         </td>
     </tr>
-    <cfif isDefined("attributes.isexpbx")>
+    <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
         <cfscript>
             hucre=1;
             spreadsheetSetCellValue(theSheet,NICKNAME,SatirSayaci,hucre);
@@ -385,7 +387,7 @@ WHERE BORC IS NOT NULL
 </tbody>
 </table>
 </cf_box>
-<cfif attributes.isexpbx eq 1>
+<cfif  attributes.isexpbx eq 1>
     <cfset file_name = "CariFaliyetOzeti_#dateformat(now(),'ddmmyyyy')#.xls">
        <cfset drc_name_ = "#dateformat(now(),'yyyymmdd')#">
        <cfif not directoryexists("#upload_folder#reserve_files#dir_seperator##drc_name_#")>
@@ -402,6 +404,7 @@ WHERE BORC IS NOT NULL
    
    </cfif>
 </cfif>
+<!---
 <script type="text/javascript" charset="utf8" src="/js/datatables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/Buttons-1.6.1/js/buttons.flash.min.js"></script>
@@ -409,7 +412,7 @@ WHERE BORC IS NOT NULL
 <script type="text/javascript" language="javascript" src="/js/datatables/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.html5.min.js"></script>
-<script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.print.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/datatables/buttons/1.5.6/js/buttons.print.min.js"></script>---->
 <script type="text/javascript" src="/JS/DataTables/datatables.js"></script>
 <script>
     $(document).ready( function () {
