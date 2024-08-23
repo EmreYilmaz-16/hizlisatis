@@ -353,10 +353,13 @@ WHERE BORC IS NOT NULL
             spreadsheetSetCellValue(theSheet,NICKNAME,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,BORC,SatirSayaci,hucre);
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,ALACAK,SatirSayaci,hucre);
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
             hucre=hucre+1;
-            spreadsheetSetCellValue(theSheet,BAKIYE,SatirSayaci,hucre);            
+            spreadsheetSetCellValue(theSheet,BAKIYE,SatirSayaci,hucre);   
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);         
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,BA,SatirSayaci,hucre);        
             if(len(REVMETHOD_ID)){
@@ -378,12 +381,15 @@ WHERE BORC IS NOT NULL
             
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_TAF,SatirSayaci,hucre);
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_FAF,SatirSayaci,hucre);
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,dateformat(PBS_REPORT.PBS_FAT,"dd.mm.yyyy"),SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,PBS_REPORT.PBS_KAF,SatirSayaci,hucre);
+            spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,GETO.DV,SatirSayaci,hucre);
             SatirSayaci=SatirSayaci+1;
