@@ -2685,7 +2685,7 @@ function CheckSatilabilir() {
     var q = wrk_query(
       "SELECT ISNULL(" +
         generalParamsSatis.dataSources.dsn2 +
-        ".GET_SATILABILIR_STOCK(" +
+        ".GET_S_DEPO_STOK(" +
         sidArr[i].STOCK_ID +
         "),0) as SATILABILIR",
       "dsn2"
