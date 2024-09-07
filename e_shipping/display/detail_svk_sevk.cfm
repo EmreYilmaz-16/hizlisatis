@@ -38,7 +38,7 @@ WHERE PSR.SHIP_RESULT_ID = #attributes.iid# AND ORR.ORDER_ROW_CURRENCY NOT IN (#
     <cfdump var="#GetSiparisData#">
 </cfif>
 <cf_box title="Faturalanabilir">
-<cfform method="post" id="frm1" action="">   
+<cfform method="post" id="frm1" target="_blank" action="">   
      
     <cf_grid_list>
     <thead>
