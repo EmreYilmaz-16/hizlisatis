@@ -564,7 +564,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             <cfset ReturnData.DISCOUNT=getDiscount.DISCOUNT_RATE>
             <cfreturn ReturnData>
         <cfelse>
-            <cfquery name="getvpprc" datasource="#arguments.dsn3#" >
+            <cfquery name="getvpprc" datasource="#arguments.ddsn3#" >
                 SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=#arguments.PRODUCT_ID# 
             </cfquery>
             <cfset ReturnData.PRICE=getvpprc.PRICE>
