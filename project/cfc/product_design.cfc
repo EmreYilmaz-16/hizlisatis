@@ -569,7 +569,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             </cfquery>
             <cfset ReturnData.PRICE=getvpprc.PRICE>
             <cfset ReturnData.STANDART_PRICE=getvpprc.PRICE>
-            <cfset ReturnData.MONEY="TL">
+            <cfset ReturnData.MONEY="amerTL">
             <cfset ReturnData.DISCOUNT=0>
             <cfreturn ReturnData>
         </cfif>
