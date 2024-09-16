@@ -2045,6 +2045,13 @@ function MaliyetHesapla() {
       Product.setAttribute("data-price", SprodTotalPrice.toFixed(4));
       Product.setAttribute("is_etki", 1);
     } else {
+      var pse=Product.getAttribute("is_etki");
+      if(pse=="0"){
+
+      }else{
+        Product.setAttribute("is_etki",1);
+        
+      }
     }
     //console.log($(Product).find("input[name='amount']"))
     var miktar = $(Product).find("input[name='amount']").val();
