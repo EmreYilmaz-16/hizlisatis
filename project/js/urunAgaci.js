@@ -2003,7 +2003,49 @@ function MaliyetHesapla() {
   var TotalPrice = 0;
   var Products = $("#ppidarea *li");
   Products.each(function (ix, Product) {
-    console.log(Product);
+    //console.log(Product);
+
+    var SPP = $(Product).find("ul");
+    // console.log(SPP)
+    if (SPP.length > 0) {
+      var SYP = SPP.children();
+      //console.log(SYP)
+      var SprodTotal = 0;
+      var SprodTotalPrice = 0;
+      for (let i = 0; i < SYP.length; i++) {
+        var SProd = SYP[i];
+        //console.log(SProd)
+        var Miktar_ = $(SProd).find("input[name='amount']").val();
+
+        $(SProd).find("input[name='amount']")[0].value = commaSplit(
+          filterNum(commaSplit(Miktar_))
+        );
+        Miktar_ = filterNum(Miktar_);
+        console.log(Miktar_);
+        var price_ = SProd.getAttribute("data-price");
+        var tutar_ = SProd.getAttribute("data-netTotal");
+        var money_ = SProd.getAttribute("data-other_money");
+        var discount_ = SProd.getAttribute("data-discount");
+        if (price_ == undefined || price_.length == 0) price_ = 0;
+        if (money_ == undefined || money_.trim().length == 0) money_ = "TL";
+        if (discount_ == undefined || discount_.length == 0) discount_ = 0;
+        price_ = parseFloat(price_);
+        discount_ = parseFloat(discount_);
+        Miktar_ = parseFloat(Miktar_);
+        var Rate2 =
+          moneyArr[moneyArr.findIndex((p) => p.MONEY == money_)].RATE2;
+        Rate2 = parseFloat(Rate2).toFixed(4);
+        var indirimli = price_ - (price_ * discount_) / 100;
+        var Tprice = indirimli * Rate2 * Miktar_;
+        SprodTotalPrice += Tprice;
+
+        SProd.setAttribute("is_etki", 0);
+      }
+      console.log(SprodTotalPrice);
+      Product.setAttribute("data-price", SprodTotalPrice.toFixed(4));
+      Product.setAttribute("is_etki", 1);
+    } else {
+    }
     //console.log($(Product).find("input[name='amount']"))
     var miktar = $(Product).find("input[name='amount']").val();
     $(Product).find("input[name='amount']")[0].value = commaSplit(
@@ -2029,7 +2071,9 @@ function MaliyetHesapla() {
     var Tprice = indirimli * Rate2 * miktar;
     Product.setAttribute("data-netTotal", Tprice.toFixed(4)); //DIKKAT BU METODA BAK
     //console.log(Tprice);
-    TotalPrice += Tprice;
+    if (Product.getAttribute("is_etki") == 1) {
+      TotalPrice += Tprice;
+    }
   });
   var Mn = commaSplit(TotalPrice, 4);
   $("#maliyet").val(Mn);
@@ -2531,7 +2575,7 @@ function AddMultiOffer() {
     project_name: project_name,
     ProductList: GidenArr,
   };
-  
+
   var mapForm = document.createElement("form");
   mapForm.target = "PencereUrunDesign";
   mapForm.method = "POST"; // or "post" if appropriate
