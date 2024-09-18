@@ -124,6 +124,32 @@ FROM (
     </tr>
 </cf_ajax_list>
 </cfoutput>
+<cf_seperator title="Ürün Ağacı" id="Agac" is_closed="0">
+	<div id="Agac">
+		<cfquery name="getPT" datasource="#dsn3#">
+			SELECT S.PRODUCT_CODE,S.PRODUCT_NAME,PT.AMOUNT FROM PRODUCT_TREE AS PT INNER JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID
+		</cfquery>
+		<cf_grid_list>
+			<tr>
+				<th>
+					Ürün K
+				</th>
+				<th>
+					Ürün
+				</th>
+				<th>
+					Miktar
+				</th>
+			</tr>
+			<cfoutput query="getPT">
+				<tr>
+					<td>#PRODUCT_CODE#</td>
+					<td>#PRODUCT_NAME#</td>
+					<td>#tlformat(AMOUNT)#</td>
+				</tr>
+			</cfoutput>
+		</cf_grid_list>
+	</div>
 
 <form name="add_production_order" id="add_production_order" action="index.cfm?fuseaction=production.emptypopup_upd_prtotm_real_po" method="post" >
 
