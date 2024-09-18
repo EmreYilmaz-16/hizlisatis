@@ -127,7 +127,7 @@ FROM (
 <cf_seperator title="Ürün Ağacı" id="Agac" is_closed="0">
 	<div id="Agac">
 		<cfquery name="getPT" datasource="#dsn3#">
-			SELECT S.PRODUCT_CODE,S.PRODUCT_NAME,PT.AMOUNT FROM PRODUCT_TREE AS PT INNER JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID
+			SELECT S.PRODUCT_CODE,S.PRODUCT_NAME,PT.AMOUNT FROM PRODUCT_TREE AS PT INNER JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#attributes.stock_id#
 		</cfquery>
 		<cf_grid_list>
 			<tr>
