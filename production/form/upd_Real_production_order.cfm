@@ -130,6 +130,7 @@ FROM (
 			SELECT S.PRODUCT_CODE,S.PRODUCT_NAME,PT.AMOUNT FROM PRODUCT_TREE AS PT INNER JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#attributes.stock_id#
 		</cfquery>
 		<cf_grid_list>
+			<thead>
 			<tr>
 				<th>
 					Ürün K
@@ -141,6 +142,7 @@ FROM (
 					Miktar
 				</th>
 			</tr>
+		</thead>
 			<cfoutput query="getPT">
 				<tr>
 					<td>#PRODUCT_CODE#</td>
