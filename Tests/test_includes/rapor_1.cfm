@@ -214,7 +214,7 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
 </cfloop>
 
 <cfquery name="getc" datasource="#dsn#">
-    select NICKNAME,C.COMPANY_ID,TT.*,PMS.* from workcube_metosan.COMPANY as C
+    select FULLNAME AS NICKNAME,C.COMPANY_ID,TT.*,PMS.* from workcube_metosan.COMPANY as C
     OUTER APPLY(
         SELECT PAYMETHOD_ID,REVMETHOD_ID FROM workcube_metosan.COMPANY_CREDIT where COMPANY_ID=C.COMPANY_ID
     ) as PMS
