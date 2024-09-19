@@ -4,10 +4,38 @@
 
     <cfquery name="getProjectNeeds" datasource="#dsn3#">
      <CFIF attributes.IS_VIRTUAL EQ 1>   EXEC GET_VIRTUAL_PRODUCT_NEED_PBS #attributes.PRODUCT_ID# <CFELSE>
-        EXEC GET_REAL_PRODUCT_NEED_PBS #attributes.PRODUCT_ID#
+       WITH  UA AS (
+SELECT PT.STOCK_ID, PT.RELATED_ID, PT.AMOUNT, PT.AMOUNT * 1 AS BOM_AMOUNT,1 AS SV
+  FROM workcube_metosan_1.PRODUCT_TREE PT(NOLOCK)
+ WHERE PT.STOCK_ID in (#attributes.PRODUCT_ID#)
+ 
+ UNION ALL
+   
+SELECT PT.STOCK_ID, PT.RELATED_ID, PT.AMOUNT, PT.AMOUNT * UA.BOM_AMOUNT,UA.SV+1 AS SV
+  FROM workcube_metosan_1.PRODUCT_TREE PT(NOLOCK), UA
+  where UA.RELATED_ID = PT.STOCK_ID
+)
+select UA.AMOUNT AS AMOUNT_1,UA.BOM_AMOUNT AS AMOUNT,S.PRODUCT_NAME,S.PRODUCT_CODE,CONVERT(DECIMAL(18,2),ISNULL(RAF.BAKIYE,0)) AS BAKIYE,0 AS IS_VIRTUAL,S.STOCK_ID,S.PRODUCT_ID,PU.MAIN_UNIT,PC.PRODUCT_CAT,PU.PRODUCT_UNIT_ID,RAF.DEF_DEPO,UA.BOM_AMOUNT,RAF.SHELF_CODE
+,UA.SV
+    
+ FROM UA
+LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=UA.RELATED_ID
+LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID=S.PRODUCT_ID AND PU.IS_MAIN=1
+LEFT JOIN workcube_metosan_product.PRODUCT_CAT AS PC ON PC.PRODUCT_CATID=S.PRODUCT_CATID
+OUTER APPLY
+(
+    SELECT TOP 1 SHELF_CODE,(SELECT SUM(CONVERT(DECIMAL(18,2),STOCK_IN)-CONVERT(DECIMAL(18,2),STOCK_OUT)) FROM workcube_metosan_2024_1.STOCKS_ROW WHERE 1=1 
+    --AND STORE=PP.STORE_ID AND STORE_LOCATION=PP.LOCATION_ID 
+    AND STOCK_ID=S.STOCK_ID) AS BAKIYE,
+    CONVERT(varchar,PP.STORE_ID)+'-'+CONVERT(varchar,PP.LOCATION_ID) AS DEF_DEPO
+     FROM workcube_metosan_1.PRODUCT_PLACE_ROWS AS PPR 
+    LEFT JOIN workcube_metosan_1.PRODUCT_PLACE AS PP ON PP.PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
+    WHERE PPR.STOCK_ID=S.STOCK_ID
+) AS RAF 
     </CFIF>
     </cfquery>
     
+
     <cf_grid_list>
         <thead>
         <tr>
@@ -16,8 +44,9 @@
             </th>
             <th>Ürün Kategorisi</th>
             <th>Bakiye</th>
+            <th>B.Miktar</th>
             <th>
-                Miktar 
+               T. Miktar 
             </th>
             <th>İhtiyaç</th>
             <th>Bekleyen</th>
@@ -39,6 +68,7 @@
                     #PRODUCT_CAT#
                 </td>
                 <td style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
+                <td style="text-align:right">#tlformat(AMOUNT_1)# #MAIN_UNIT#</td>
                 <td style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
                 <cfif attributes.IS_VIRTUAL EQ 0>
                 <cfquery name="ihes" datasource="#dsn3#">
@@ -66,7 +96,8 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                 </CFIF>
                 <cfset IHTIYAC=(BAKIYE-AMOUNT)+IHSQ>                
                 <td><input <cfif ISLEMCIM neq -1 >readonly="yes"</cfif>  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
-                <td> <span onclick="">#ihes.QUANTITY#</span></td>
+                
+                    <td><span onclick="">#ihes.QUANTITY#</span></td>
                 <td>
                     <select name="orderrow_currency_#currentrow#"  id="orderrow_currency_#currentrow#">
                         <option <cfif ISLEMCIM eq -1>selected</cfif> value="-1">Açık</option>
