@@ -5,7 +5,7 @@
 <cfdump var="#FormData#">
 
 <cfif arrayLen(FormData.SEVK)>
-    <cfset newQ=queryNew("DEPO,PRODUCT_ID,PRODUCT_NAME,PRODUCT_NEED,PRODUCT_UNIT,PRODUCT_UNIT_ID,STOCK_ID","VARCHAR,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER,INTEGER")>
+    <cfset newQ=queryNew("DEPO,PRODUCT_ID,PRODUCT_NAME,PRODUCT_NEED,PRODUCT_UNIT,PRODUCT_UNIT_ID,STOCK_ID,FOR_PRODUCT_ID","VARCHAR,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER,INTEGER,INTEGER")>
     <cfscript>
         queryAddRow(newQ,FormData.SEVK);
     </cfscript>
@@ -13,7 +13,7 @@
         SELECT * FROM newQ ORDER BY DEPO
     </cfquery>
     <cfdump var="#newQ2#">
-    <cfabort>
+
     <cfoutput>
         <cfloop query="newQ" group="DEPO">
             <cfset attributes.from_position_code=session.ep.POSITION_CODE>
@@ -41,6 +41,7 @@
             <cfset attributes.FROM_PROJE=1>
             <cfset attributes.DELIVER_STATUS=0>
             <cfset attributes.OCC=1>
+            <cfset attributes.ref_no=
             <!---------------------------
                 <cfif isDefined("attributes.FROM_PROJE") and len(attributes.FROM_PROJE)>#attributes.FROM_PROJE#<cfelse>0</cfif>,
 						<cfif isDefined("attributes.DELIVER_STATUS") and len(attributes.DELIVER_STATUS)>#attributes.DELIVER_STATUS#<cfelse>0</cfif>,

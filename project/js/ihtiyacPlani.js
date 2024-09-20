@@ -26,7 +26,7 @@
     item.PRODUCT_NEED = ihtiyac;
     item.PRODUCT_NAME = product_name;
     item.DEPO = def_depo;
-    item.ForProductId = list_getat(EX, 2, "_");
+    item.FOR_PRODUCT_ID = list_getat(EX, 2, "_");
     console.log(orderrow_currency);
 
     if (parseFloat(ihtiyac) > 0) {
