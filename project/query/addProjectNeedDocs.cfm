@@ -2,13 +2,15 @@
 
 <cfset FormData=deserializeJSON(attributes.data)>
 
-<cfdump var="#FormData#">
 
 <cfif arrayLen(FormData.SEVK)>
     <cfset newQ=queryNew("DEPO,PRODUCT_ID,PRODUCT_NAME,PRODUCT_NEED,PRODUCT_UNIT,PRODUCT_UNIT_ID,STOCK_ID,FOR_PRODUCT_ID","VARCHAR,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER,INTEGER,INTEGER")>
     <cfscript>
         queryAddRow(newQ,FormData.SEVK);
     </cfscript>
+    <cfdump var="#newQ#">
+
+
     <cfquery name="newQ2" dbtype="query">
         SELECT * FROM newQ ORDER BY DEPO
     </cfquery>
@@ -41,7 +43,7 @@
             <cfset attributes.FROM_PROJE=1>
             <cfset attributes.DELIVER_STATUS=0>
             <cfset attributes.OCC=1>
-            <cfset attributes.ref_no=
+            <cfset attributes.ref_no=FOR_PRODUCT_ID>
             <!---------------------------
                 <cfif isDefined("attributes.FROM_PROJE") and len(attributes.FROM_PROJE)>#attributes.FROM_PROJE#<cfelse>0</cfif>,
 						<cfif isDefined("attributes.DELIVER_STATUS") and len(attributes.DELIVER_STATUS)>#attributes.DELIVER_STATUS#<cfelse>0</cfif>,
