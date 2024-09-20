@@ -68,7 +68,9 @@ OUTER APPLY
                     #PRODUCT_CAT#
                 </td>
                 <td style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
-                <td style="text-align:right">#tlformat(AMOUNT_1)# #MAIN_UNIT#</td>
+                <td style="text-align:right">
+                    <cfif attributes.IS_VIRTUAL eq 1><cfelse>
+                    #tlformat(AMOUNT_1)# #MAIN_UNIT#</cfif></td>
                 <td style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
                 <cfif attributes.IS_VIRTUAL EQ 0>
                 <cfquery name="ihes" datasource="#dsn3#">
