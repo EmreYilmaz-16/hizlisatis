@@ -1,5 +1,6 @@
 ﻿function saveIhtiyac() {
   var eee = document.getElementById("rowws");
+  var EX = document.getElementById("PRODUCT").value;
   var ix = eee.children.length;
   var SevkArr = new Array();
   var TedarikArr = new Array();
@@ -25,6 +26,7 @@
     item.PRODUCT_NEED = ihtiyac;
     item.PRODUCT_NAME = product_name;
     item.DEPO = def_depo;
+    item.ForProductId = list_getat(EX, 2, "_");
     console.log(orderrow_currency);
 
     if (parseFloat(ihtiyac) > 0) {
@@ -61,7 +63,7 @@
           var d = prompt(str);
           item.DEPO = d;
           SevkArr.push(item);
-        }else{
+        } else {
           SevkArr.push(item);
         }
       }
@@ -101,4 +103,3 @@
     alert("You must allow popups for this map to work.");
   }
 }
-
