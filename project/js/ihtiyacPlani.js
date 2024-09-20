@@ -1,6 +1,6 @@
 ﻿function saveIhtiyac() {
   var eee = document.getElementById("rowws");
-  var EX = document.getElementById("PRODUCT").value;
+  var EX = document.getElementsByName("PRODUCT")[0].value;
   var ix = eee.children.length;
   var SevkArr = new Array();
   var TedarikArr = new Array();
