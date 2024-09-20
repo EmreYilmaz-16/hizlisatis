@@ -12,6 +12,7 @@
     <cfquery name="newQ2" dbtype="query">
         SELECT * FROM newQ ORDER BY DEPO
     </cfquery>
+    <cfdump var="#newQ2#">
     <cfoutput>
         <cfloop query="newQ" group="DEPO">
             <cfset attributes.from_position_code=session.ep.POSITION_CODE>
