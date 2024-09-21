@@ -83,6 +83,7 @@
 					<cfif isdefined('attributes.webService')>1<cfelse>0</cfif>
 				)
 			</cfquery>
+			<CFSET TTT_IIID=MAX_ID.IDENTITYCOL>
 			<cfloop from="1" to="#attributes.rows_#" index="i">
 				<div class="alert  alert-danger">
 					<cfoutput>#i#</cfoutput> Satirlarda <br>
