@@ -9,10 +9,16 @@
 
 <cfset attributes.pr_order_id =ADD_PRODUCTION_ORDER.MAX_ID>
 <cfinclude template="/AddOns/Partner/production/Includes/add_ezgi_prod_order_result_stock.cfm">
+<cfquery name="Q1" datasource="#DSN3#">
+
+EXEC workcube_metosan_1.TEKLIF_SATIR_SEVK #attributes.p_order_id#
+</cfquery> 
+
 <script>
     window.opener.location.reload();
     this.close();
 </script>
+
 <cfabort>
 
 </cfif>
