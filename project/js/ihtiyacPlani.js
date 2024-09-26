@@ -116,7 +116,7 @@ function ihtiyacKontrol(el, rw) {
   b = parseFloat(filterNum(b.split(" ")[0]));
   console.log(b);
 
-  if (el.value + i + b <= w) {
+  if (parseFloat(el.value) + i + b <= w) {
     $("#buton1").show();
   } else {
     $("#buton1").hide();
