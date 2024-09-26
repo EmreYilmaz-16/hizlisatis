@@ -106,20 +106,19 @@
 }
 
 function ihtiyacKontrol(el, rw) {
- 
   var i = document.getElementById("tms_" + rw).innerText;
-  i = parseFloat(filterNum(i))
-  console.log(i)
-  var w = document.getElementById("TMK_" + rw).innerText
-  w = parseFloat(filterNum(w.split(" ")[0]))
-  console.log(w)
-  var b = document.getElementById("bky_" + rw).innerText
-  b = parseFloat(filterNum(b.split(" ")[0]))
-  console.log(b)
+  i = parseFloat(filterNum(i));
+  console.log(i);
+  var w = document.getElementById("TMK_" + rw).innerText;
+  w = parseFloat(filterNum(w.split(" ")[0]));
+  console.log(w);
+  var b = document.getElementById("bky_" + rw).innerText;
+  b = parseFloat(filterNum(b.split(" ")[0]));
+  console.log(b);
 
-  if ((el.value + i + b) <= w) {
-    $("#buton1").show()
+  if (el.value + i + b <= w) {
+    $("#buton1").show();
   } else {
-    $("#buton1").hide()
+    $("#buton1").hide();
   }
 }
