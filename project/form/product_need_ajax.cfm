@@ -50,6 +50,8 @@ OUTER APPLY
             </th>
             <th>İhtiyaç</th>
             <th>Bekleyen</th>
+            <th>Sevk Bekleyen</th>
+            <th>Tedarik Bekleyen</th>
             <th>Aşama</th>
         </tr>
     </thead>
@@ -67,11 +69,11 @@ OUTER APPLY
                 <td>
                     #PRODUCT_CAT#
                 </td>
-                <td style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
+                <td id="bky_#currentrow#" style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
                 <td style="text-align:right">
                     <cfif attributes.IS_VIRTUAL eq 1><cfelse>
                     #tlformat(AMOUNT_1)# #MAIN_UNIT#</cfif></td>
-                <td style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
+                <td id="TMK_#currentrow#" style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
                 <cfif attributes.IS_VIRTUAL EQ 0>
                 <cfquery name="ihes" datasource="#dsn3#">
                     SELECT * FROM (
@@ -82,6 +84,18 @@ UNION
 SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosan_1.PRODUCTION_ORDERS WHERE PROJECT_ID=#attributes.PROJECT_ID#
 ) AS T  WHERE STOCK_ID =#STOCK_ID#
                 </cfquery>
+                <cfset OSFFF=0>
+                <cfset OSFFFST=0>
+                <cfset OSFFFIC=0>
+                <cfloop query="ihes">
+                    <cfset OSFFF=OSFFF+QUANTITY>
+                    <CFIF ISLEM EQ 0>
+                        <CFSET OSFFFIC=OSFFFIC+QUANTITY>
+                    <cfelse>   
+                        <CFSET OSFFFST=OSFFFST+QUANTITY>
+                    </CFIF>
+                </cfloop>
+                
                 <cfelse>
                     <cfset ihes.QUANTITY=0>
                     <cfset ihes.ISLEM=-1>
@@ -96,10 +110,13 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                 <CFELSE>
                     <CFSET ISLEMCIM=-1>
                 </CFIF>
-                <cfset IHTIYAC=(BAKIYE-AMOUNT)+IHSQ>                
-                <td><input <cfif ISLEMCIM neq -1 >readonly="yes"</cfif>  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
                 
-                    <td><span onclick="">#ihes.QUANTITY#</span></td>
+                <cfset IHTIYAC=(BAKIYE-AMOUNT)+OSFFF>                
+                <td><input onchange="ihtiyacKontrol(this,#currentrow#)"  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
+                
+                    <td style="text-align:right"><span id="tms_#currentrow#" onclick="">#tlformat(OSFFF)#</span></td>
+                    <td style="text-align:right"><span onclick="">#tlformat(OSFFFIC)#</span></td>
+                    <td style="text-align:right"><span onclick="">#tlformat(OSFFFST)#</span></td>
                 <td>
                     <select name="orderrow_currency_#currentrow#"  id="orderrow_currency_#currentrow#">
                         <option <cfif ISLEMCIM eq -1>selected</cfif> value="-1">Açık</option>
@@ -129,6 +146,6 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
     </tbody>
     </cf_grid_list>
     <cfif attributes.IS_VIRTUAL eq 0>
-        <button type="button" class="btn btn-success" onclick="saveIhtiyac()">Kaydet</button>
+        <button id="buton1" type="button" class="btn btn-success" onclick="saveIhtiyac()">Kaydet</button>
     </cfif>
     

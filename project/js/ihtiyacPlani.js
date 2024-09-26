@@ -73,6 +73,7 @@
   DataObject.TEDARIK = TedarikArr;
   DataObject.URETIM = UretimArr;
   DataObject.PROJECT_ID = PROJECT_ID;
+  DataObject.FOR_PRODUCT_ID = list_getat(EX, 2, "_");
   var JsonString = JSON.stringify(DataObject);
 
   console.log(DataObject);
@@ -101,5 +102,26 @@
     mapForm.submit();
   } else {
     alert("You must allow popups for this map to work.");
+  }
+}
+
+function ihtiyacKontrol(el, rw) {
+  rw = 1
+  el = new Object()
+  el.value = 12
+  var i = document.getElementById("tms_" + rw).innerText;
+  i = parseFloat(filterNum(i))
+  console.log(i)
+  var w = document.getElementById("TMK_" + rw).innerText
+  w = parseFloat(filterNum(w.split(" ")[0]))
+  console.log(w)
+  var b = document.getElementById("bky_" + rw).innerText
+  b = parseFloat(filterNum(b.split(" ")[0]))
+  console.log(b)
+
+  if ((el.value + i + b) <= w) {
+    $("#buton1").show()
+  } else {
+    $("#buton1").hide()
   }
 }

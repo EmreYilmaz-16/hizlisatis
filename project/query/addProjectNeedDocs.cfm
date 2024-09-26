@@ -85,7 +85,7 @@
     <cfset attributes.BASKET_DISCOUNT_TOTAL=0>
     <cfset attributes.OTHER_MONEY_VALUE =0>
     <cfset attributes.from_position_name=session.ep.POSITION_NAME>
-    <cfset attributes.ref_no=FOR_PRODUCT_ID>
+    <cfset attributes.ref_no=FormData.FOR_PRODUCT_ID>
     <cfif len(session.ep.USER_LOCATION) and listlen(session.ep.USER_LOCATION) eq 2>
         <cfset attributes.emp_department_id=listGetAt(session.ep.USER_LOCATION,1,"-")>
         <cfset attributes.emp_department=listGetAt(session.ep.USER_LOCATION,1,"-")>     
