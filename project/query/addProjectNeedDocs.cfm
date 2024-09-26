@@ -18,7 +18,7 @@
 
     <cfoutput>
         <cfloop query="newQ" group="DEPO">
-            <cfset attributes.from_position_name="admin"
+            <cfset attributes.from_position_name="admin">
             <cfset attributes.from_position_code=1>
             <cfset attributes.TO_POSITION_CODE=session.ep.POSITION_CODE>
             <cfset attributes.is_demand=0>
@@ -74,7 +74,7 @@
 </cfif>
 <cfif arrayLen(FormData.TEDARIK)>
     <cfset attributes.is_demand=1>
-    <cfset attributes.from_position_name="admin"
+    <cfset attributes.from_position_name="admin">
     <cfset attributes.from_position_code=1>
     <cfset attributes.TO_POSITION_CODE=session.ep.POSITION_CODE>
     <cfset attributes.subject="Satınalma Talebi">
