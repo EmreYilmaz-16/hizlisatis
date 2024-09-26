@@ -106,9 +106,7 @@
 }
 
 function ihtiyacKontrol(el, rw) {
-  rw = 1
-  el = new Object()
-  el.value = 12
+ 
   var i = document.getElementById("tms_" + rw).innerText;
   i = parseFloat(filterNum(i))
   console.log(i)
