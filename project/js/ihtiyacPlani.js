@@ -119,6 +119,6 @@ function ihtiyacKontrol(el, rw) {
   if (parseFloat(el.value) + i + b <= w) {
     $("#buton1").show();
   } else {
-    $("#buton1").hide();
+    $("#buton1").show();
   }
 }
