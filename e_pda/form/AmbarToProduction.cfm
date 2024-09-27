@@ -86,6 +86,7 @@ $("#add_production_order").on("submit",function (ev){
                 success:function(retDat){
                     console.log(retDat);
                     alert("Başarılı")
+                    $(document.getElementsByName("Barcode")[0]).val("").focus()
                 }
                })
             }
