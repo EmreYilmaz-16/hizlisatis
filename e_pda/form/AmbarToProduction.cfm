@@ -85,6 +85,7 @@ $("#add_production_order").on("submit",function (ev){
                 data:str,
                 success:function(retDat){
                     console.log(retDat);
+                    alert("Başarılı")
                 }
                })
             }
