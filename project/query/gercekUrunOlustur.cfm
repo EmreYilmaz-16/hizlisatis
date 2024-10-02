@@ -242,7 +242,7 @@
             dimention = "";
             volume = "";
             weight = "";
-            surec_id=1;
+            surec_id=29;
             fiyat_yetkisi = PROD_COMPETITIVE;
             uretici_urun_kodu="";
             brand_id=BRAND_ID;

@@ -121,7 +121,7 @@
 		<cfif len(is_internet)>#is_internet#<cfelse>0</cfif>,
         <cfif len(is_extranet)>#is_extranet#<cfelse>0</cfif>,
 		1,			
-		<cfif len(surec_id)>#surec_id#<cfelse>1</cfif>,
+		<cfif len(surec_id)>#surec_id#<cfelse>29</cfif>,
 		<cfif birim is "KG">1<cfelse>0</cfif>,
 		0,
 		<cfif len(is_zero_stock)>#is_zero_stock#<cfelse>0</cfif>,
