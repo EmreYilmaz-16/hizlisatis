@@ -22,7 +22,7 @@
             ,POR.QUANTITY
             ,POR.OTHER_MONEY_VALUE
             ,POR.PBS_OFFER_ROW_CURRENCY
-            ,POR.OTHER_MONEY
+            ,GPA.MONEY
             ,POR.DISCOUNT_1 AS DISCOUNT_1_
             ,S.STOCK_ID
             ,S.PRODUCT_CODE
