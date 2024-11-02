@@ -352,9 +352,17 @@ WHERE BORC IS NOT NULL
             </cfquery>
             #GETO.DV#
         </td>
-        <cfquery name="getO" datasource="#dsn2#">
-            SELECT * FROM workcube_metosan_2024_1.COMPANY_RISK_2 WHERE COMPANY_ID=#COMPANY_ID#
+        <cfquery name="getOx" datasource="#dsn2#">
+            SELECT * FROM COMPANY_RISK_2 WHERE COMPANY_ID=#COMPANY_ID#
         </cfquery>
+        <CFSET "M_CEK_RISKI_#COMPANY_ID#_1"=0>
+        <CFSET "M_CEK_RISKI_#COMPANY_ID#_0"=0>
+        <cfloop query="getOx">
+            <CFSET "M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.CEK_ODENMEDI>
+        </cfloop>
+        <td>
+            #evaluate("M_CEK_RISKI_#COMPANY_ID#_1")#
+        </td>
     </tr>
     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
         <cfscript>
