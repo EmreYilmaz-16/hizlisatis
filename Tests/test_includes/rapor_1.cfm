@@ -361,7 +361,7 @@ WHERE BORC IS NOT NULL
         <CFSET "M_SENET_RISKI_#COMPANY_ID#_0"=0>
         <cfloop query="getOx">
             <CFSET "M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.CEK_ODENMEDI>
-            <CFSET "M_SENET_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.SENET_ODENMEDI>
+            <CFSET "M_SENET_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_SENET_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.SENET_ODENMEDI>
         </cfloop>
         <td></td>
         <td>
