@@ -284,6 +284,12 @@ WHERE BORC IS NOT NULL
         <th>Kalan Bakiye Tarih Ortalaması</th>
         <th>Peşine Dönen Açık Fatura Toplamı</th>
         <th>Peşine Düşen Açık Fatura Gün</th>
+        <th>Müşteri Temsilcisi</th>
+        <th>Müşteri Çek Riski</th>
+        <th>Müşteri Senet Riski</th>
+        <th>Müşteri Toplam Risk</th>
+        <th>Müşteri Ciro Ödenmemiş Evrak Toplamı</th>
+
     </tr>
 
 
@@ -346,6 +352,9 @@ WHERE BORC IS NOT NULL
             </cfquery>
             #GETO.DV#
         </td>
+        <cfquery name="getO" datasource="#dsn2#">
+            SELECT * FROM workcube_metosan_2024_1.COMPANY_RISK_2 WHERE COMPANY_ID=#COMPANY_ID#
+        </cfquery>
     </tr>
     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
         <cfscript>
