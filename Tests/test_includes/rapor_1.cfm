@@ -357,12 +357,21 @@ WHERE BORC IS NOT NULL
         </cfquery>
         <CFSET "M_CEK_RISKI_#COMPANY_ID#_1"=0>
         <CFSET "M_CEK_RISKI_#COMPANY_ID#_0"=0>
+        <CFSET "M_SENET_RISKI_#COMPANY_ID#_1"=0>
+        <CFSET "M_SENET_RISKI_#COMPANY_ID#_0"=0>
         <cfloop query="getOx">
             <CFSET "M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.CEK_ODENMEDI>
+            <CFSET "M_SENET_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.SENET_ODENMEDI>
         </cfloop>
+        <td></td>
         <td>
-            #evaluate("M_CEK_RISKI_#COMPANY_ID#_1")#
+            #TLFORMAT(evaluate("M_CEK_RISKI_#COMPANY_ID#_1"))#
         </td>
+        <td>
+            #TLFORMAT(evaluate("M_SENET_RISKI_#COMPANY_ID#_1"))#
+        </td>
+        <td>#TLFORMAT(evaluate("M_CEK_RISKI_#COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#COMPANY_ID#_1"))#</td>
+        <td>#TLFORMAT(evaluate("M_CEK_RISKI_#COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#COMPANY_ID#_0"))#</td>
     </tr>
     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
         <cfscript>
