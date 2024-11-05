@@ -356,6 +356,7 @@ WHERE BORC IS NOT NULL
             SELECT * FROM COMPANY_RISK_2 WHERE COMPANY_ID=#COMPANY_ID#
         </cfquery>
         <cfset "M_CEK_RISKI_#COMPANY_ID#_"=0>
+        <cfset "M_SENET_RISKI_#COMPANY_ID#_"=0>
         <CFSET "M_CEK_RISKI_#COMPANY_ID#_1"=0>
         <CFSET "M_CEK_RISKI_#COMPANY_ID#_0"=0>
         <CFSET "M_SENET_RISKI_#COMPANY_ID#_1"=0>
