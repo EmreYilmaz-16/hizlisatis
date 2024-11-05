@@ -259,8 +259,9 @@ WHERE BORC IS NOT NULL
                spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                SatirSayaci=SatirSayaci+1;
                hucre=1;
+               SatirSayaci=2
                   SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Proje",SatirSayaci,hucre);
-               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,1,1);
+              /* spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,1,1);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,2,2);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,3,3);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,4,4);
@@ -268,7 +269,7 @@ WHERE BORC IS NOT NULL
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,6,6);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,7,7);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,8,8);
-               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,9,9);
+               spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,9,9);*/
                   spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,10,19);
                   spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                   SatirSayaci=SatirSayaci+1;
