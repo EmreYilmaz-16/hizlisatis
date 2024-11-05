@@ -368,10 +368,11 @@ WHERE BORC IS NOT NULL
             <cfloop query="getOx">
             <CFSET "M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.CEK_ODENMEDI>
             <CFSET "M_SENET_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_SENET_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.SENET_ODENMEDI>
-            <cfcatch>
-                #COMPANY_ID# Hatalı
-            </cfcatch>
+            
         </cfloop>
+        <cfcatch>
+            #COMPANY_ID# Hatalı
+        </cfcatch>
     </cftry>
     </cfif>
         <td></td>
