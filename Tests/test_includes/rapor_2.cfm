@@ -322,7 +322,7 @@ WHERE BORC IS NOT NULL
 <cfoutput query="getc">
     <cfquery name="getpp" datasource="#dsn#">
                    
-        SELECT * FROM (
+        SELECT DISTINCT * FROM (
           select PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD from workcube_metosan.PRO_PROJECTS where COMPANY_ID=#getc.COMPANY_ID#
           UNION ALL
           SELECT PROJECT_ID,PROJECT_NUMBER,PROJECT_HEAD FROM workcube_metosan.PRO_PROJECTS                         
@@ -349,7 +349,7 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
              ) AS TQ
              ORDER BY PROJECT_ID
      </cfquery>
-     <cfdump var="#getpp#">
+     
     <tr>
         <td rowspan="#getpp.recordCount+1#">
             #NICKNAME#
