@@ -359,6 +359,7 @@ WHERE BORC IS NOT NULL
         <CFSET "M_CEK_RISKI_#COMPANY_ID#_0"=0>
         <CFSET "M_SENET_RISKI_#COMPANY_ID#_1"=0>
         <CFSET "M_SENET_RISKI_#COMPANY_ID#_0"=0>
+        <cfdump var="#getOx#">
         <cfif getOx.recordCount>
         <cfloop query="getOx">
             <CFSET "M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.CEK_ODENMEDI>
