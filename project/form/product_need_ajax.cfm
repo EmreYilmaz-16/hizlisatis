@@ -81,6 +81,9 @@ OUTER APPLY
                     <cfif attributes.IS_VIRTUAL eq 1><cfelse>
                     #tlformat(AMOUNT_1)# #MAIN_UNIT#</cfif></td>
                 <td id="TMK_#currentrow#" style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
+                <cfset OSFFF=0>
+                <cfset OSFFFST=0>
+                <cfset OSFFFIC=0>
                 <cfif attributes.IS_VIRTUAL EQ 0>
                 <cfquery name="ihes" datasource="#dsn3#">
                     SELECT * FROM (
@@ -91,9 +94,7 @@ UNION
 SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosan_1.PRODUCTION_ORDERS WHERE PROJECT_ID=#attributes.PROJECT_ID#
 ) AS T  WHERE STOCK_ID =#STOCK_ID#
                 </cfquery>
-                <cfset OSFFF=0>
-                <cfset OSFFFST=0>
-                <cfset OSFFFIC=0>
+                
                 <cfloop query="ihes">
                     <cfset OSFFF=OSFFF+QUANTITY>
                     <CFIF ISLEM EQ 0>
