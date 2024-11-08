@@ -80,8 +80,8 @@ OUTER APPLY
                 <td id="bky_#currentrow#" style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
                 <td style="text-align:right">
                     <cfif attributes.IS_VIRTUAL eq 1><cfelse>
-                    #tlformat(AMOUNT_1)# #MAIN_UNIT#</cfif></td>
-                <td id="TMK_#currentrow#" style="text-align:right">#tlformat(AMOUNT)# #MAIN_UNIT#</td>
+                    #tlformat(GETKO.QUANTITY*AMOUNT_1)# #MAIN_UNIT#</cfif></td>
+                <td id="TMK_#currentrow#" style="text-align:right">#tlformat(GETKO.QUANTITY*AMOUNT)# #MAIN_UNIT#</td>
                 <cfset OSFFF=0>
                 <cfset OSFFFST=0>
                 <cfset OSFFFIC=0>
