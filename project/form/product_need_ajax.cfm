@@ -10,6 +10,8 @@
 <CFSET SIP_MIKTAR=1>
 <CFIF GETKO.recordCount>
     <CFSET SIP_MIKTAR=GETKO.QUANTITY>
+<cfelse>
+    <code>! Ürün Kolay Satışta Bu Proje Id'si İle Bulunmamaktadır İhtiyaçlar 1 Adede Göre Gelecektir</code>
 </CFIF>
     <cfquery name="getProjectNeeds" datasource="#dsn3#">
      <CFIF attributes.IS_VIRTUAL EQ 1>   EXEC GET_VIRTUAL_PRODUCT_NEED_PBS #attributes.PRODUCT_ID# <CFELSE>
