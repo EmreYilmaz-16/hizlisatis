@@ -26,7 +26,7 @@
             <cfset attributes.priority=1>
             <cfset attributes.is_active=1>
             <cfset attributes.project_id=FormData.PROJECT_ID>
-            <cfset attributes.process_stage=277>
+            <cfset attributes.process_stage=352>
             <cfset attributes.notes="">
             <cfset attributes.BASKET_DISCOUNT_TOTAL=0>
             <cfset attributes.OTHER_MONEY_VALUE =0>
@@ -73,7 +73,7 @@
     </cfoutput>
 </cfif>
 <cfif arrayLen(FormData.TEDARIK)>
-    <cfset attributes.is_demand=1>
+    <cfset attributes.is_demand=0>
     <cfset attributes.from_position_name="admin">
     <cfset attributes.from_position_code=1>
     <cfset attributes.TO_POSITION_CODE=session.ep.POSITION_CODE>
@@ -81,8 +81,8 @@
     <cfset attributes.priority=1>
     <cfset attributes.is_active=1>
     <cfset attributes.project_id=FormData.PROJECT_ID>
-    <cfset attributes.process_stage=345>
-    <CFSET attributes.process_cat=164>
+    <cfset attributes.process_stage=353>
+    
     <cfset attributes.notes="">
     <cfset attributes.BASKET_DISCOUNT_TOTAL=0>
     <cfset attributes.OTHER_MONEY_VALUE =0>
