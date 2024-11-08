@@ -38,7 +38,7 @@ OUTER APPLY
 <cfquery name="GETKO" datasource="#DSN3#">
     SELECT * FROM PBS_OFFER AS PO 
     LEFT JOIN PBS_OFFER_ROW AS POR ON POR.OFFER_ID=PO.OFFER_ID 
-    WHERE PROJECT_ID=#attributes.PROJECT_ID# AND POR.PRODUCT_ID=attributes.PRODUCT_ID
+    WHERE PROJECT_ID=#attributes.PROJECT_ID# AND POR.PRODUCT_ID=#attributes.PRODUCT_ID#
 </cfquery>
 <cfdump var="#GETKO#">
 
