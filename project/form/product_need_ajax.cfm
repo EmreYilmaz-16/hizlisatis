@@ -75,7 +75,7 @@ OUTER APPLY
                 </cfif>
                 <td id="product_name_#currentrow#">#PRODUCT_NAME#</td>
                 <td>
-                    #PRODUCT_CAT# #GETKO.QUANTITY#
+                    #PRODUCT_CAT# 
                 </td>
                 <td id="bky_#currentrow#" style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
                 <td style="text-align:right">
@@ -120,7 +120,7 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                     <CFSET ISLEMCIM=-1>
                 </CFIF>
                 
-                <cfset IHTIYAC=(BAKIYE-AMOUNT)+OSFFF>                
+                <cfset IHTIYAC=(BAKIYE-GETKO.QUANTITY*AMOUNT)+OSFFF>                
                 <td><input onchange="ihtiyacKontrol(this,#currentrow#)"  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
                 
                     <td style="text-align:right"><span id="tms_#currentrow#" onclick="">#tlformat(OSFFF)#</span></td>
