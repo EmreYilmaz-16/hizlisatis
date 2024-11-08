@@ -7,7 +7,10 @@
     LEFT JOIN PBS_OFFER_ROW AS POR ON POR.OFFER_ID=PO.OFFER_ID 
     WHERE PROJECT_ID=#attributes.PROJECT_ID# AND POR.STOCK_ID=#attributes.PRODUCT_ID#
 </cfquery>
-
+<CFSET SIP_MIKTAR=1>
+<CFIF GETKO.recordCount>
+    <CFSET SIP_MIKTAR=GETKO.QUANTITY>
+</CFIF>
     <cfquery name="getProjectNeeds" datasource="#dsn3#">
      <CFIF attributes.IS_VIRTUAL EQ 1>   EXEC GET_VIRTUAL_PRODUCT_NEED_PBS #attributes.PRODUCT_ID# <CFELSE>
        WITH  UA AS (
@@ -41,7 +44,7 @@ OUTER APPLY
     </CFIF>
     </cfquery>
 
-<cfdump var="#getProjectNeeds#">
+
 
 
     <cf_grid_list>
@@ -80,8 +83,8 @@ OUTER APPLY
                 <td id="bky_#currentrow#" style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
                 <td style="text-align:right">
                     <cfif attributes.IS_VIRTUAL eq 1><cfelse>
-                    #tlformat(GETKO.QUANTITY*AMOUNT_1)# #MAIN_UNIT#</cfif></td>
-                <td id="TMK_#currentrow#" style="text-align:right">#tlformat(GETKO.QUANTITY*AMOUNT)# #MAIN_UNIT#</td>
+                    #tlformat(SIP_MIKTAR*AMOUNT_1)# #MAIN_UNIT#</cfif></td>
+                <td id="TMK_#currentrow#" style="text-align:right">#tlformat(SIP_MIKTAR*AMOUNT)# #MAIN_UNIT#</td>
                 <cfset OSFFF=0>
                 <cfset OSFFFST=0>
                 <cfset OSFFFIC=0>
@@ -120,7 +123,7 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                     <CFSET ISLEMCIM=-1>
                 </CFIF>
                 
-                <cfset IHTIYAC=(BAKIYE-GETKO.QUANTITY*AMOUNT)+OSFFF>                
+                <cfset IHTIYAC=(BAKIYE-SIP_MIKTAR*AMOUNT)+OSFFF>                
                 <td><input onchange="ihtiyacKontrol(this,#currentrow#)"  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
                 
                     <td style="text-align:right"><span id="tms_#currentrow#" onclick="">#tlformat(OSFFF)#</span></td>
