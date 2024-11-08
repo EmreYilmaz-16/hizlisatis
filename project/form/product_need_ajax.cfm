@@ -75,7 +75,7 @@ OUTER APPLY
                 </cfif>
                 <td id="product_name_#currentrow#">#PRODUCT_NAME#</td>
                 <td>
-                    #PRODUCT_CAT#
+                    #PRODUCT_CAT# #GETKO.QUANTITY#
                 </td>
                 <td id="bky_#currentrow#" style="text-align:right">#tlformat(BAKIYE)# #MAIN_UNIT#</td>
                 <td style="text-align:right">
