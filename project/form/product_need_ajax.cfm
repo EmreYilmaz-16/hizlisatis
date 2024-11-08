@@ -2,6 +2,11 @@
 <cfset attributes.PRODUCT_ID=listGetAt(attributes.pidow,2,"_")>
 <cfset attributes.IS_VIRTUAL=listGetAt(attributes.pidow,1,"_")>
 <cfset attributes.PROJECT_ID=listGetAt(attributes.pidow,3,"_")>
+<cfquery name="GETKO" datasource="#DSN3#">
+    SELECT * FROM PBS_OFFER AS PO 
+    LEFT JOIN PBS_OFFER_ROW AS POR ON POR.OFFER_ID=PO.OFFER_ID 
+    WHERE PROJECT_ID=#attributes.PROJECT_ID# AND POR.STOCK_ID=#attributes.PRODUCT_ID#
+</cfquery>
 
     <cfquery name="getProjectNeeds" datasource="#dsn3#">
      <CFIF attributes.IS_VIRTUAL EQ 1>   EXEC GET_VIRTUAL_PRODUCT_NEED_PBS #attributes.PRODUCT_ID# <CFELSE>
@@ -35,12 +40,8 @@ OUTER APPLY
 ) AS RAF 
     </CFIF>
     </cfquery>
-<cfquery name="GETKO" datasource="#DSN3#">
-    SELECT * FROM PBS_OFFER AS PO 
-    LEFT JOIN PBS_OFFER_ROW AS POR ON POR.OFFER_ID=PO.OFFER_ID 
-    WHERE PROJECT_ID=#attributes.PROJECT_ID# AND POR.STOCK_ID=#attributes.PRODUCT_ID#
-</cfquery>
-<cfdump var="#GETKO#">
+
+<cfdump var="#getProjectNeeds#">
 
 
     <cf_grid_list>
