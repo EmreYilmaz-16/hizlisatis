@@ -4,7 +4,7 @@
 
 
 <cfif arrayLen(FormData.SEVK)>
-    <cfset newQ=queryNew("DEPO,PRODUCT_ID,PRODUCT_NAME,PRODUCT_NEED,PRODUCT_UNIT,PRODUCT_UNIT_ID,STOCK_ID,FOR_PRODUCT_ID","VARCHAR,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER,INTEGER,INTEGER")>
+    <cfset newQ=queryNew("DEPO,PRODUCT_ID,PRODUCT_NAME,PRODUCT_NEED,PRODUCT_UNIT,PRODUCT_UNIT_ID,STOCK_ID,FOR_PRODUCT_ID,DESCRIPTION","VARCHAR,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER,INTEGER,INTEGER,VARCHAR")>
     <cfscript>
         queryAddRow(newQ,FormData.SEVK);
     </cfscript>
@@ -59,6 +59,8 @@
                 <cfset "attributes.unit#i#"=PRODUCT_UNIT>
                 <cfset "attributes.unit_id#i#"=PRODUCT_UNIT_ID>
                 <cfset "attributes.product_name#i#"=PRODUCT_NAME>
+                <cfset "attributes.product_name_other#i#"=DESCRIPTION>
+                
                 <cfset "attributes.tax#i#"=0>
                 <cfset "attributes.row_activity_id#i#"="">
                 <cfset "attributes.row_nettotal#i#"=0>
@@ -104,6 +106,7 @@
         <cfset "attributes.unit#i#"=it.PRODUCT_UNIT>
         <cfset "attributes.unit_id#i#"=it.PRODUCT_UNIT_ID>
         <cfset "attributes.product_name#i#"=it.PRODUCT_NAME>
+        <cfset "attributes.product_name_other#i#"=it.DESCRIPTION>
         <cfset "attributes.tax#i#"=0>
         <cfset "attributes.row_activity_id#i#"="">
         <cfset "attributes.row_nettotal#i#"=0>
