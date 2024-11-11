@@ -18,6 +18,7 @@
       "orderrow_currency_" + i
     ).value;
     var ihtiyac = document.getElementById("IHTIYAC_" + i).value;
+    var descr = document.getElementById("ACIKLAMA_" + i).value;
     var item = new Object();
     item.PRODUCT_ID = pid;
     item.STOCK_ID = stock_id;
@@ -27,6 +28,8 @@
     item.PRODUCT_NAME = product_name;
     item.DEPO = def_depo;
     item.FOR_PRODUCT_ID = list_getat(EX, 2, "_");
+    item.DESCRIPTION=descr
+
     console.log(orderrow_currency);
 
     if (parseFloat(ihtiyac) > 0) {
