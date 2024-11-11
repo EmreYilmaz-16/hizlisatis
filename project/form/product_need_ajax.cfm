@@ -65,6 +65,7 @@ OUTER APPLY
             <th>Bekleyen</th>
             <th>Sevk Bekleyen</th>
             <th>Tedarik Bekleyen</th>
+            <th>Açıklama</th>
             <th>Aşama</th>
         </tr>
     </thead>
@@ -131,6 +132,7 @@ SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosa
                     <td style="text-align:right"><span id="tms_#currentrow#" onclick="">#tlformat(OSFFF)#</span></td>
                     <td style="text-align:right"><span onclick="">#tlformat(OSFFFIC)#</span></td>
                     <td style="text-align:right"><span onclick="">#tlformat(OSFFFST)#</span></td>
+                    <td><input type="text" name="ACIKLAMA_#currentrow#" id="ACIKLAMA_#currentrow#"></td>
                 <td>
                     <select name="orderrow_currency_#currentrow#"  id="orderrow_currency_#currentrow#">
                         <option <cfif ISLEMCIM eq -1>selected</cfif> value="-1">Açık</option>
