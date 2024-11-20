@@ -319,6 +319,9 @@ WHERE BORC IS NOT NULL
         <th>Kalan Bakiye Tarih Ortalaması</th>
         <th>Peşine Dönen Açık Fatura Toplamı</th>
         <th>Peşine Düşen Açık Fatura Gün</th>
+        <th>Müşteri Çek Riski</th>
+        <th>Müşteri Senet Riski</th>
+        <th>Müşteri Ciro Ödenmemiş Evrak Toplamı</th>
     </tr>
 </thead>
 <tbody>
@@ -368,7 +371,7 @@ GROUP BY COMPANY_ID,PROJECT_ID,SC
 
 ORDER BY COMPANY_ID
      </cfquery>
-<cfdump var="#get_pp_risk#">
+
 <CFIF get_pp_risk.recordCount>
 <cfloop query="get_pp_risk">
    <CFIF isDefined("M_CEK_RISKI_#COMPANY_ID#_#SC#_#PROJECT_ID#")> <CFSET "M_CEK_RISKI_#COMPANY_ID#_#SC#_#PROJECT_ID#"=EVALUATE("M_CEK_RISKI_#COMPANY_ID#_#SC#_#PROJECT_ID#")+CEK_ODENMEDI> <CFELSE> <CFSET "M_CEK_RISKI_#COMPANY_ID#_#SC#_#PROJECT_ID#"=CEK_ODENMEDI></CFIF>
@@ -380,7 +383,7 @@ ORDER BY COMPANY_ID
 </cfloop>
 
 </CFIF>
-<cfdump var="#MTXC#">
+
 
     <tr>
         <td rowspan="#getpp.recordCount+1#">
@@ -495,12 +498,12 @@ ORDER BY COMPANY_ID
                         <td><cfquery name="GETO" dbtype="query">SELECT AVG(D_VALUE) AS DV FROM PBS_REPORT.DS_QUERY</cfquery>#GETO.DV#</td>
                         <td>
                             <cfif isDefined("M_CEK_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")>
-                                #evaluate("M_CEK_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#")#
+                                #tlformat(evaluate("M_CEK_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#"))#
                             </cfif>
                         </td>
                         <td>
                             <cfif isDefined("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")>
-                                #evaluate("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")#
+                                #tlformat(evaluate("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#"))#
                             </cfif>
                         </td>
                         <td>
@@ -512,7 +515,7 @@ ORDER BY COMPANY_ID
                             <cfif isDefined("M_SENET_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
                                 <cfset deger2=evaluate("M_SENET_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
                             </cfif>
-                            #deger1+deger2#
+                            #tlformat(deger1+deger2)#
                         </td>
                     </tr>
                     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
