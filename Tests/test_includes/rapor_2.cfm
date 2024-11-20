@@ -368,7 +368,7 @@ GROUP BY COMPANY_ID,PROJECT_ID,SC
 
 ORDER BY COMPANY_ID
      </cfquery>
-
+<cfdump var="#get_pp_risk#">
 <CFIF get_pp_risk.recordCount>
 <cfloop query="get_pp_risk">
     <CFSET "M_CEK_RISKI_#COMPANY_ID#_#SC#_#PROJECT_ID#"=CEK_ODENMEDI>
