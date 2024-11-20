@@ -352,7 +352,33 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
              ) AS TQ
              ORDER BY PROJECT_ID
      </cfquery>
-     
+     <cfquery name="get_pp_risk" datasource="#dsn2#">
+        SELECT SUM(CEK_ODENMEDI) CEK_ODENMEDI,SUM(CEK_ODENMEDI2) CEK_ODENMEDI2,SUM(CEK_KARSILIKSIZ) CEK_KARSILIKSIZ,SUM(CEK_KARSILIKSIZ2) CEK_KARSILIKSIZ2,
+SUM(SENET_ODENMEDI) SENET_ODENMEDI,SUM(SENET_ODENMEDI2) SENET_ODENMEDI2,SUM(SENET_KARSILIKSIZ) SENET_KARSILIKSIZ,SUM(SENET_KARSILIKSIZ2) SENET_KARSILIKSIZ2,
+COMPANY_ID,ISNULL(PROJECT_ID,0) PROJECT_ID,ISNULL(SC,0) SC
+ FROM (
+SELECT * FROM workcube_metosan_2024_1.CEK_RISKI
+UNION ALL
+SELECT * FROM workcube_metosan_2024_1.SENET_RISKI
+
+) AS T 
+WHERE COMPANY_ID=#getc.COMPANY_ID#
+
+GROUP BY COMPANY_ID,PROJECT_ID,SC
+
+ORDER BY COMPANY_ID
+     </cfquery>
+
+<CFIF get_pp_risk.recordCount>
+<cfloop query="get_pp_risk">
+    <CFSET "M_CEK_RISKI_#COMPANY_ID#_#SC#_#PROJECT_ID#"=CEK_ODENMEDI>
+    <CFSET "M_SENET_RISKI_#COMPANY_ID#_#SC#_#PROJECT_ID#"=SENET_ODENMEDI>
+
+</cfloop>
+
+</CFIF>
+
+
     <tr>
         <td rowspan="#getpp.recordCount+1#">
             #NICKNAME#
@@ -464,6 +490,27 @@ GROUP BY FROM_CMP_ID,TO_CMP_ID,PROJECT_ID
                         <td>#dateFormat(PBS_REPORT.PBS_FAT,dateformat_style)#</td>
                         <td>#tlformat(PBS_REPORT.PBS_KAF)#</td>
                         <td><cfquery name="GETO" dbtype="query">SELECT AVG(D_VALUE) AS DV FROM PBS_REPORT.DS_QUERY</cfquery>#GETO.DV#</td>
+                        <td>
+                            <cfif isDefined("M_CEK_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")>
+                                #evaluate("M_CEK_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#")#
+                            </cfif>
+                        </td>
+                        <td>
+                            <cfif isDefined("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")>
+                                #evaluate("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")#
+                            </cfif>
+                        </td>
+                        <td>
+                            <cfset deger1=0>
+                            <cfset deger2=0>
+                            <cfif isDefined("M_CEK_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
+                                <cfset deger1=evaluate("M_CEK_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
+                            </cfif>
+                            <cfif isDefined("M_SENET_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
+                                <cfset deger2=evaluate("M_SENET_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
+                            </cfif>
+                            #deger1+deger2#
+                        </td>
                     </tr>
                     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
                         <cfscript>
