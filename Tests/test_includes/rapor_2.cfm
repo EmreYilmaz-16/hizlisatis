@@ -561,6 +561,22 @@ ORDER BY COMPANY_ID
                             spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);  
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,GETO.DV,SatirSayaci,hucre);
+                            if(isDefined("M_CEK_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")){
+                                hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,evaluate("M_CEK_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#"),SatirSayaci,hucre);
+                            }else{
+                                hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,0,SatirSayaci,hucre);
+                            }
+                            if(isDefined("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")){
+                                hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,evaluate("M_SENET_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#"),SatirSayaci,hucre);
+                            }else{
+                                hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,0,SatirSayaci,hucre);
+                            }
+                            hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,PP_BKY+deger1+deger2,SatirSayaci,hucre);
                             SatirSayaci=SatirSayaci+1
                         </cfscript>
                     </cfif>
