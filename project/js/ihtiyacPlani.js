@@ -2,6 +2,7 @@
   var eee = document.getElementById("rowws");
   var EX = document.getElementsByName("PRODUCT")[0].value;
   var ix = eee.children.length;
+  var ws_id=document.getElementById("wsid").value
   var SevkArr = new Array();
   var TedarikArr = new Array();
   var UretimArr = new Array();
@@ -77,6 +78,7 @@
   DataObject.URETIM = UretimArr;
   DataObject.PROJECT_ID = PROJECT_ID;
   DataObject.FOR_PRODUCT_ID = list_getat(EX, 2, "_");
+  DataObject.SEVK_DEPO=ws_id;
   var JsonString = JSON.stringify(DataObject);
 
   console.log(DataObject);

@@ -45,7 +45,14 @@ OUTER APPLY
 ) AS RAF 
     </CFIF>
     </cfquery>
-
+<CFSET WS_DEPO=0>
+<CFIF attributes.IS_VIRTUAL EQ 0>
+    <cfquery name="GETWS" datasource="#DSN3#">
+        SELECT EXIT_DEP_ID,EXIT_LOC_ID FROM workcube_metosan_1.WORKSTATIONS WHERE STATION_ID=(SELECT WS_ID FROM workcube_metosan_1.WORKSTATIONS_PRODUCTS WHERE STOCK_ID=#attributes.PRODUCT_ID#)
+    </cfquery>
+<CFSET WS_DEPO="#GETWS.EXIT_DEP_ID#-#GETWS.EXIT_LOC_ID#">
+</CFIF>
+<input type="hidden" name="wsid" id="wsid">
 
 
 
@@ -69,6 +76,7 @@ OUTER APPLY
             <th>Aşama</th>
         </tr>
     </thead>
+    
     <tbody id="rowws">
         <cfoutput query="getProjectNeeds">
             <tr style="<cfif IS_VIRTUAL eq 1>background:##ff00006b<cfelse></cfif>">
@@ -91,17 +99,19 @@ OUTER APPLY
                 <cfset OSFFF=0>
                 <cfset OSFFFST=0>
                 <cfset OSFFFIC=0>
+                
                 <cfif attributes.IS_VIRTUAL EQ 0>
                 <cfquery name="ihes" datasource="#dsn3#">
                     SELECT * FROM (
-SELECT IR.STOCK_ID,IR.QUANTITY,CASE WHEN INTERNALDEMAND_STAGE =353 THEN 1 ELSE 0 END AS ISLEM,I.INTERNAL_NUMBER AS PP_NUMBER FROM workcube_metosan_1.INTERNALDEMAND_ROW AS IR
-	LEFT JOIN workcube_metosan_1.INTERNALDEMAND AS I ON I.INTERNAL_ID=IR.I_ID		
-	WHERE 1=1 AND I.PROJECT_ID=#attributes.PROJECT_ID# AND I.REF_NO='#attributes.PRODUCT_ID#'
-UNION	
-SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosan_1.PRODUCTION_ORDERS WHERE PROJECT_ID=#attributes.PROJECT_ID#
-) AS T  WHERE STOCK_ID =#STOCK_ID#
+                    SELECT IR.STOCK_ID,IR.QUANTITY,CASE WHEN INTERNALDEMAND_STAGE =353 THEN 1 ELSE 0 END AS ISLEM,I.INTERNAL_NUMBER AS PP_NUMBER FROM workcube_metosan_1.INTERNALDEMAND_ROW AS IR
+	                LEFT JOIN workcube_metosan_1.INTERNALDEMAND AS I ON I.INTERNAL_ID=IR.I_ID		
+	                WHERE 1=1 AND I.PROJECT_ID=#attributes.PROJECT_ID# AND I.REF_NO='#attributes.PRODUCT_ID#'
+                    UNION	
+                    SELECT STOCK_ID,QUANTITY,2 AS ISLEM,P_ORDER_NO AS PP_NUMBER FROM workcube_metosan_1.PRODUCTION_ORDERS WHERE PROJECT_ID=#attributes.PROJECT_ID#
+                    ) AS T  WHERE STOCK_ID =#STOCK_ID#
                 </cfquery>
-                
+              
+
                 <cfloop query="ihes">
                     <cfset OSFFF=OSFFF+QUANTITY>
                     <CFIF ISLEM EQ 0>
