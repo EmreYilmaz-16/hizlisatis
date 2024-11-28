@@ -24,7 +24,7 @@
                 ,D.DEPARTMENT_HEAD
                 ,SL.COMMENT
                 ,I.DEPARTMENT_IN 
-                ,I.LOCATION_IN=1
+                ,I.LOCATION_IN
                 FROM #DSN3#.INTERNALDEMAND AS I
                 LEFT JOIN #DSN3#.INTERNALDEMAND_ROW AS IR ON IR.I_ID = I.INTERNAL_ID
                 LEFT JOIN (
