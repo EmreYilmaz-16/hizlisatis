@@ -52,7 +52,7 @@ OUTER APPLY
     </cfquery>
 <CFSET WS_DEPO="#GETWS.EXIT_DEP_ID#-#GETWS.EXIT_LOC_ID#">
 </CFIF>
-<input type="hidden" name="wsid" id="wsid">
+<input type="hidden" name="wsid" id="wsid" value="<cfoutput>#WS_DEPO#</cfoutput>">
 
 
 
