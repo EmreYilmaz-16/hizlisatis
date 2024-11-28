@@ -460,7 +460,8 @@ ORDER BY COMPANY_ID
             }else{
                 hucre=hucre+2;
             }
-            
+            hucre=hucre+1; 
+            spreadsheetSetCellValue(theSheet,"#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#",SatirSayaci,hucre);
             if(getpp.recordCount gt 1){
                 spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,1,1);
                 spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,2,2);
