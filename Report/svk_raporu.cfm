@@ -81,6 +81,7 @@
             <th>Sevk Yöntemi</th>
             <th>Sevk Tipi</th>
             <th>Açıklama</th>
+            <th>Sevkiyat Açıklama</th>
             <th>Faturalanabilir Miktar</th>
         </tr>
     </thead>
@@ -124,6 +125,7 @@
                         ,PSR.DELIVER_PAPER_NO
                         ,ISNULL(STOK_FIS.READY_AMOUNT, 0) READY_AMOUNT
                         ,PSR.SHIP_RESULT_ID
+                        ,PSRR.ROW_DETAIL
                         ,ORR.ORDER_ROW_CURRENCY
                         ,CASE 
                             WHEN ISNULL(PSR.IS_PARCALI, 0) = 0
@@ -202,7 +204,7 @@
                 </cfif>
                 ORDER BY SHIP_RESULT_ID
                 </cfquery>
-                
+                <cfdump var="#GETD#">
                 <cfoutput query="getd">
                     <tr>
                         <td>#NICKNAME#</td>
