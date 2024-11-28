@@ -23,6 +23,8 @@
                 ,I.INTERNAL_ID
                 ,D.DEPARTMENT_HEAD
                 ,SL.COMMENT
+                ,I.DEPARTMENT_IN 
+                ,I.LOCATION_IN=1
                 FROM #DSN3#.INTERNALDEMAND AS I
                 LEFT JOIN #DSN3#.INTERNALDEMAND_ROW AS IR ON IR.I_ID = I.INTERNAL_ID
                 LEFT JOIN (
@@ -58,6 +60,7 @@
                 AND LOCATION_OUT = #attributes.DELIVER_LOCATION#
                 AND I.INTERNAL_ID = #attributes.SHIP_ID#
             </cfquery>
+            <cfdump var="#GETS#">
             <div style="height:60vh">
                 <cfform action="#request.self#?fuseaction=#attributes.fuseaction#">
                     <cfoutput>
