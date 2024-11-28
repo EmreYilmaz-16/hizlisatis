@@ -14,7 +14,7 @@
     <cfquery name="newQ2" dbtype="query">
         SELECT * FROM newQ ORDER BY DEPO
     </cfquery>
-    <cfdump var="#newQ2#">
+    <cfdump var="#FormData#">
 <cfabort>
     <cfoutput>
         <cfloop query="newQ" group="DEPO">
