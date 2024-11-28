@@ -351,7 +351,8 @@ END AS ASAMA,
 					<th style="text-align:right; width:60px"><cf_get_lang_main no='199.Sipariş'></th>
 					<th width="70"style="text-align:right;">Sevk Planlanan</th>
 					<th style="text-align:right; width:50px"><cf_get_lang_main no='1032.Kalan'></th>
-                    <th style="text-align:center; width:15px">&nbsp;
+                    <th>Açıklama</th>
+						<th style="text-align:center; width:15px">&nbsp;
                     	<input type="checkbox" name="all_conv_product" id="all_conv_product" onClick="javascript: wrk_select_all2('all_conv_product','_conversion_product_',<cfoutput>#get_order_det.recordcount#</cfoutput>);">
                    </th>
 				</tr>
@@ -389,6 +390,9 @@ END AS ASAMA,
                                 </cfif>
                                 <input type="text" style="text-align:right; width:40px" readonly="readonly" name="row_amount_#ORDER_ROW_ID#" value="#amountformat(row_amount)#" />
                             </td>
+							<td>
+								<input type="text" name="detail_#ORDER_ROW_ID#">
+							</td>
                             
                             <td style="text-align:center;">
                             	<cfif not isdefined('ORDER_ROW_AMOUNT_#ORDER_ROW_ID#')>

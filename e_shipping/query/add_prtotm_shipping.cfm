@@ -1,4 +1,6 @@
-﻿<cf_date tarih='attributes.order_date'>
+﻿<cfdump var="#attributes#">
+<cfabort>
+<cf_date tarih='attributes.order_date'>
 <cfif (not len(attributes.process_stage))>
 	<script type="text/javascript">
 		alert("Lütfen Yetki Tanımlayınız!");
