@@ -170,7 +170,9 @@
             <CFSET "PAYMETHOD_#PAYMETHOD_ID#.DUE_DAY"=DUE_DAY>
         </cfloop>
 <cfquery name="getc" datasource="#dsn#">
-      select NICKNAME,C.COMPANY_ID,TT.*,PMS.* from workcube_metosan.COMPANY as C
+      select NICKNAME,C.COMPANY_ID,TT.*,PMS.*,EP.EMPLOYEE_NAME
+      ,EP.EMPLOYEE_SURNAME from workcube_metosan.COMPANY as C
+      LEFT JOIN workcube_metosan.EMPLOYEE_POSITIONS AS EP ON EP.POSITION_CODE=C.POS_CODE
     OUTER APPLY(
         SELECT PAYMETHOD_ID,REVMETHOD_ID FROM workcube_metosan.COMPANY_CREDIT where COMPANY_ID=C.COMPANY_ID
     ) as PMS
@@ -260,7 +262,7 @@ WHERE BORC IS NOT NULL
                SatirSayaci=SatirSayaci+1;
                hucre=1;
                SatirSayaci=3
-                  SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün",SatirSayaci,hucre);
+                  SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Müşteri Temsilcisi",SatirSayaci,hucre);
               /* spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,1,1);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,2,2);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,3,3);
@@ -275,7 +277,7 @@ WHERE BORC IS NOT NULL
                   spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,10,19);
                   spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                   SatirSayaci=SatirSayaci+1;
-                  spreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün",SatirSayaci,1);
+                  spreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Ciro Ödenmemiş Çek Senetlerin Toplamı",SatirSayaci,1);
                spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                SatirSayaci=SatirSayaci+1;
                
@@ -303,6 +305,7 @@ WHERE BORC IS NOT NULL
         <th rowspan="2">Satış Vade Gün</th>
         <th rowspan="2">Alış Ödeme Yöntemi</th>
         <th rowspan="2">Alış Vade Gün</th>
+        <th rowspan="2">Müşteri Temsilcisi</th>
         <th colspan="10">
             Proje
         </th>
@@ -423,6 +426,7 @@ ORDER BY COMPANY_ID
             <td rowspan="#getpp.recordCount+1#"></td>
             <td rowspan="#getpp.recordCount+1#"></td>
         </cfif>
+        <td rowspan="#getpp.recordCount+1#">#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#</td>
     </tr>
        
     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
@@ -500,14 +504,19 @@ ORDER BY COMPANY_ID
                         <td>#dateFormat(PBS_REPORT.PBS_FAT,dateformat_style)#</td>
                         <td>#tlformat(PBS_REPORT.PBS_KAF)#</td>
                         <td><cfquery name="GETO" dbtype="query">SELECT AVG(D_VALUE) AS DV FROM PBS_REPORT.DS_QUERY</cfquery>#GETO.DV#</td>
+                        
                         <td>
                             <cfif isDefined("M_CEK_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")>
                                 #tlformat(evaluate("M_CEK_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#"))#
+                            <cfelse>
+                                #TLFORMAT(0)#
                             </cfif>
                         </td>
                         <td>
                             <cfif isDefined("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")>
                                 #tlformat(evaluate("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#"))#
+                            <cfelse>
+                                #TLFORMAT(0)#
                             </cfif>
                         </td>
                         <td>
