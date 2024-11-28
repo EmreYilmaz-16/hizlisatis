@@ -196,7 +196,7 @@
            spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
            SatirSayaci=SatirSayaci+1;
            hucre=1;
-              SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Ortalama Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Dönen Açık Fatura Top.,Peşine Dönen Açık Fatura Gün",SatirSayaci,hucre);
+              SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Ortalama Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Dönen Açık Fatura Top.,Peşine Dönen Açık Fatura Gün,Müşteri Temsilcisi,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Toplam Risk,Müşteri Ciro Ödenmemiş Çek-Senetlerin Toplamı",SatirSayaci,hucre);
               SatirSayaci=SatirSayaci+1;
            spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
            
@@ -441,6 +441,16 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
             spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,GETO.DV,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,"#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#",SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,evaluate("M_CEK_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,evaluate("M_SENET_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,evaluate("M_CEK_RISKI_#COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,BAKIYE+(evaluate("M_CEK_RISKI_#COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#COMPANY_ID#_0")),SatirSayaci,hucre);
             SatirSayaci=SatirSayaci+1;
            
         </cfscript>
