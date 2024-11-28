@@ -277,7 +277,7 @@ WHERE BORC IS NOT NULL
                   spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,11,19);
                   spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                   SatirSayaci=SatirSayaci+1;
-                  spreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Ciro Ödenmemiş Çek Senetlerin Toplamı",SatirSayaci,1);
+                  spreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Müşteri Temsilcisi,Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Ciro Ödenmemiş Çek Senetlerin Toplamı",SatirSayaci,1);
                spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                SatirSayaci=SatirSayaci+1;
                
@@ -472,6 +472,7 @@ ORDER BY COMPANY_ID
                 spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,7,7);
                 spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,8,8);
                 spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,9,9);
+                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+getpp.recordCount-1,10,10);
             }
            //SatirSayaci=SatirSayaci+1;
         </cfscript>
