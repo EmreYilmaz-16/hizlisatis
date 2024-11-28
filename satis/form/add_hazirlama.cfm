@@ -60,7 +60,7 @@
                 AND LOCATION_OUT = #attributes.DELIVER_LOCATION#
                 AND I.INTERNAL_ID = #attributes.SHIP_ID#
             </cfquery>
-            <cfdump var="#GETS#">
+            
             <div style="height:60vh">
                 <cfform action="#request.self#?fuseaction=#attributes.fuseaction#">
                     <cfoutput>
