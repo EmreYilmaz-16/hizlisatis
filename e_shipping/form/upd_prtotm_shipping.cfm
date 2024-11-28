@@ -71,7 +71,8 @@
             ESRR.ORDER_ROW_AMOUNT,
             ESRR.SHIP_RESULT_ID,
             ESRR.SHIP_RESULT_ROW_ID,
-            ORR.ORDER_ROW_CURRENCY
+            ORR.ORDER_ROW_CURRENCY,
+			ESRR.ROW_DETAIL
 		FROM         
         	ORDER_ROW AS ORR INNER JOIN
             ORDERS AS ORD ON ORR.ORDER_ID = ORD.ORDER_ID INNER JOIN
@@ -255,6 +256,7 @@ SELECT DISTINCT ORDER_ID FROM #DSN3#.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID
 					<th style="width:60px"><cf_get_lang_main no='377.Özel Kod'></th>
 					<th style="width:80px"><cf_get_lang_main no='235.Spec'></th>
 					<th style="text-align:right; width:60px"><cf_get_lang_main no='199.Sipariş'></th>
+						<th>Açıklama</th>
                     <th style="text-align:center; width:15px">&nbsp;</th>
 				</tr>
 			</thead>
@@ -278,6 +280,7 @@ SELECT DISTINCT ORDER_ID FROM #DSN3#.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID
 								</cfif>
                             </td>
                             <td style="text-align:right;">#AmountFormat(get_order_det.QUANTITY)#</td>
+							<td>#get_order_det.ROW_DETAIL#</td>
                             <td style="text-align:center;">
                             	<cfif (isdefined('attributes.order_id') and attributes.order_id eq get_order_det.order_id) or not isdefined('attributes.order_id')>
 									<cfif order_row_currency eq -8 or order_row_currency eq -9 or order_row_currency eq -10 or order_row_currency eq -3>
