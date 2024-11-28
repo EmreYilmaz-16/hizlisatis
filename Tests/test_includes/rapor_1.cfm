@@ -214,56 +214,66 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
 </cfloop>
 
 <cfquery name="getc" datasource="#dsn#">
-    select FULLNAME AS NICKNAME,C.COMPANY_ID,TT.*,PMS.* from workcube_metosan.COMPANY as C
-    OUTER APPLY(
-        SELECT PAYMETHOD_ID,REVMETHOD_ID FROM workcube_metosan.COMPANY_CREDIT where COMPANY_ID=C.COMPANY_ID
-    ) as PMS
-OUTER APPLY(
-    SELECT SUM(ISNULL(BR,0)) ALACAK,SUM(ISNULL(AR,0)) BORC,CONVERT(DECIMAL(18,2),SUM(ISNULL(AR,0)-ISNULL(BR,0))) AS BAKIYE,
-CASE WHEN SUM(ISNULL(BR,0))>SUM(ISNULL(AR,0)) THEN 'A' ELSE 'B' END AS BA
- FROM (
-SELECT 
-ISNULL(FROM_CMP_ID,TO_CMP_ID) CMP,
-CASE WHEN FROM_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS BR,
-CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
-
- FROM workcube_metosan_2024_1.CARI_ROWS WHERE FROM_CMP_ID=C.COMPANY_ID OR TO_CMP_ID=C.COMPANY_ID
- GROUP BY FROM_CMP_ID,TO_CMP_ID
-
-) AS TF
-) AS TT
-WHERE BORC IS NOT NULL 
-<cfif isDefined("attributes.duty_claim") and len(attributes.duty_claim)>
-    <cfif attributes.duty_claim eq 1>
-        AND BA='B'
-    <CFELSE>
-        AND BA='A'
+    SELECT FULLNAME AS NICKNAME
+        ,C.COMPANY_ID
+        ,EP.EMPLOYEE_NAME
+        ,EP.EMPLOYEE_SURNAME
+        ,TT.*
+        ,PMS.*
+    FROM workcube_metosan.COMPANY AS C
+    LEFT JOIN workcube_metosan.EMPLOYEE_POSITIONS AS EP ON EP.POSITION_CODE=C.POS_CODE
+    OUTER APPLY (
+        SELECT PAYMETHOD_ID
+            ,REVMETHOD_ID
+        FROM workcube_metosan.COMPANY_CREDIT
+        WHERE COMPANY_ID = C.COMPANY_ID
+        ) AS PMS
+    OUTER APPLY (
+        SELECT SUM(ISNULL(BR, 0)) ALACAK
+            ,SUM(ISNULL(AR, 0)) BORC
+            ,CONVERT(DECIMAL(18, 2), SUM(ISNULL(AR, 0) - ISNULL(BR, 0))) AS BAKIYE
+            ,CASE WHEN SUM(ISNULL(BR, 0)) > SUM(ISNULL(AR, 0)) THEN 'A' ELSE 'B' END AS BA
+        FROM (
+            SELECT ISNULL(FROM_CMP_ID, TO_CMP_ID) CMP
+                ,CASE WHEN FROM_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS BR
+                ,CASE WHEN TO_CMP_ID IS NOT NULL THEN SUM(ACTION_VALUE) END AS AR
+            FROM workcube_metosan_2024_1.CARI_ROWS
+            WHERE FROM_CMP_ID = C.COMPANY_ID OR TO_CMP_ID = C.COMPANY_ID
+            GROUP BY FROM_CMP_ID
+                ,TO_CMP_ID
+            ) AS TF
+        ) AS TT
+    WHERE BORC IS NOT NULL 
+    <cfif isDefined("attributes.duty_claim") AND len(attributes.duty_claim)> 
+        <cfif attributes.duty_claim eq 1 > 
+            AND BA = 'B' 
+        <CFELSE> 
+            AND BA = 'A' 
+        </cfif> 
+    </cfif> 
+    <cfif isDefined("attributes.buy_status") AND len(attributes.buy_status)> 
+        <cfif attributes.buy_status eq 1 > 
+            AND C.IS_BUYER = 1 
+        <cfelseif attributes.buy_status EQ 2 > 
+            AND C.IS_SELLER = 1 
+        <cfelseif attributes.buy_status EQ 3 > 
+            AND C.ISPOTANTIAL = 1 
+        </cfif> 
+    </cfif> 
+    <cfif isDefined("attributes.member_cat_type") AND len(attributes.member_cat_type) > 
+        AND C.COMPANYCAT_ID IN (#attributes.member_cat_type#) 
+    </cfif> 
+    <cfif isDefined("attributes.customer_value") AND len(attributes.customer_value) > 
+        AND C.COMPANY_VALUE_ID = #attributes.customer_value# 
+    </cfif> 
+    <cfif isDefined("attributes.zone_id") AND len(attributes.zone_id) > 
+        AND C.SALES_COUNTY = #attributes.zone_id# 
+    </cfif> <cfif isDefined("attributes.pos_code_text") AND len(attributes.pos_code_text) > 
+        AND C.POS_CODE = #attributes.pos_code# 
+    </cfif> 
+    <cfif isDefined("attributes.company") AND len(attributes.company) > 
+        AND C.COMPANY_ID = #attributes.company_id# 
     </cfif>
-</cfif>
-<cfif isDefined("attributes.buy_status")  and len(attributes.buy_status)>
-    <cfif attributes.buy_status eq 1>
-        AND C.IS_BUYER=1
-    <cfelseif attributes.buy_status EQ 2>
-        AND C.IS_SELLER=1
-    <cfelseif attributes.buy_status EQ 3>
-        AND C.ISPOTANTIAL=1    
-    </cfif>
-</cfif>
-<cfif isDefined("attributes.member_cat_type") and len(attributes.member_cat_type)>
-    AND C.COMPANYCAT_ID IN(#attributes.member_cat_type#)
-</cfif>
-<cfif isDefined("attributes.customer_value") and len(attributes.customer_value)>
-    AND C.COMPANY_VALUE_ID=#attributes.customer_value#
-</cfif>
-<cfif isDefined("attributes.zone_id") and len(attributes.zone_id)>
-    AND C.SALES_COUNTY=#attributes.zone_id#
-</cfif>
-<cfif isDefined("attributes.pos_code_text") and len(attributes.pos_code_text)>
-    AND C.POS_CODE=#attributes.pos_code#
-</cfif>
-<cfif isDefined("attributes.company") and len(attributes.company)>
-    AND C.COMPANY_ID=#attributes.company_id#
-</cfif>
 </cfquery>
 
 <cf_box >
@@ -284,6 +294,7 @@ WHERE BORC IS NOT NULL
         <th>Kalan Bakiye Tarih Ortalaması</th>
         <th>Peşine Dönen Açık Fatura Toplamı</th>
         <th>Peşine Düşen Açık Fatura Gün</th>
+        
         <th>Müşteri Temsilcisi</th>
         <th>Müşteri Çek Riski</th>
         <th>Müşteri Senet Riski</th>
@@ -375,7 +386,7 @@ WHERE BORC IS NOT NULL
         </cfcatch>
     </cftry>
     </cfif>
-        <td></td>
+        <td>#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#</td>
         <td>
             #TLFORMAT(evaluate("M_CEK_RISKI_#COMPANY_ID#_1"))#
         </td>
@@ -383,7 +394,7 @@ WHERE BORC IS NOT NULL
             #TLFORMAT(evaluate("M_SENET_RISKI_#COMPANY_ID#_1"))#
         </td>
         <td>#TLFORMAT(evaluate("M_CEK_RISKI_#COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#COMPANY_ID#_1"))#</td>
-        <td>#TLFORMAT(evaluate("M_CEK_RISKI_#COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#COMPANY_ID#_0"))#</td>
+        <td>#TLFORMAT(BAKIYE+evaluate("M_CEK_RISKI_#COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#COMPANY_ID#_0"))#</td>
     </tr>
     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
         <cfscript>

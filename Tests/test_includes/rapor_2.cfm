@@ -515,7 +515,7 @@ ORDER BY COMPANY_ID
                             <cfif isDefined("M_SENET_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
                                 <cfset deger2=evaluate("M_SENET_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
                             </cfif>
-                            #tlformat(deger1+deger2)#
+                            #tlformat(getpp.BAKIYE+deger1+deger2)#
                         </td>
                     </tr>
                     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
