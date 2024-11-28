@@ -15,7 +15,7 @@
         SELECT * FROM newQ ORDER BY DEPO
     </cfquery>
     <cfdump var="#newQ2#">
-
+<cfabort>
     <cfoutput>
         <cfloop query="newQ" group="DEPO">
             <cfset attributes.from_position_name="admin">
@@ -35,9 +35,11 @@
                 <cfset attributes.emp_department_id=listGetAt(session.ep.USER_LOCATION,1,"-")>
                 <cfset attributes.emp_department=listGetAt(session.ep.USER_LOCATION,1,"-")>
             </cfif>
+         
             <cfset attributes.department_in_id=45>
             <cfset department_in_txt="45">
             <cfset attributes.location_in_id=1>
+         
             <cfset attributes.department_id=listGetAt(DEPO,1,"-")>
             <cfset txt_departman_=listGetAt(DEPO,1,"-")>
             <cfset attributes.location_id=listGetAt(DEPO,2,"-")>
