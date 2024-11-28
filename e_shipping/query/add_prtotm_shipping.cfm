@@ -1,5 +1,5 @@
-﻿<cfdump var="#attributes#">
-<cfabort>
+﻿
+
 <cf_date tarih='attributes.order_date'>
 <cfif (not len(attributes.process_stage))>
 	<script type="text/javascript">
@@ -103,7 +103,8 @@
                     SHIP_RESULT_ID,
                     ORDER_ID, 
                     ORDER_ROW_ID, 
-                    ORDER_ROW_AMOUNT
+                    ORDER_ROW_AMOUNT,
+					ROW_DETAIL
                 )
                 VALUES
                 (
@@ -111,6 +112,7 @@
                     #attributes.order_id#,
                     #i#,
                     #Filternum(Evaluate('attributes.row_amount_#i#'))#
+					'#evaluate("attributes.DETAIL_#i#")#'
                 )
             </cfquery>
             <cfquery name="UPD_ORDER_ROW_DELIVER_DATE" datasource="#DSN3#">
