@@ -1,7 +1,8 @@
 ﻿<cfdump var="#attributes#">
 
 <cfset FormData=deserializeJSON(attributes.data)>
-
+<cfdump var="#FormData#">
+<cfabort>
 
 <cfif arrayLen(FormData.SEVK)>
     <cfset newQ=queryNew("DEPO,PRODUCT_ID,PRODUCT_NAME,PRODUCT_NEED,PRODUCT_UNIT,PRODUCT_UNIT_ID,STOCK_ID,FOR_PRODUCT_ID,DESCRIPTION","VARCHAR,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER,INTEGER,INTEGER,VARCHAR")>
@@ -14,8 +15,7 @@
     <cfquery name="newQ2" dbtype="query">
         SELECT * FROM newQ ORDER BY DEPO
     </cfquery>
-    <cfdump var="#FormData#">
-<cfabort>
+
     <cfoutput>
         <cfloop query="newQ" group="DEPO">
             <cfset attributes.from_position_name="admin">
