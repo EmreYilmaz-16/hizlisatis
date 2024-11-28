@@ -111,7 +111,7 @@
                     #MAX_ID.IDENTITYCOL#,
                     #attributes.order_id#,
                     #i#,
-                    #Filternum(Evaluate('attributes.row_amount_#i#'))#
+                    #Filternum(Evaluate('attributes.row_amount_#i#'))#,
 					'#evaluate("attributes.DETAIL_#i#")#'
                 )
             </cfquery>
