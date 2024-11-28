@@ -1,8 +1,7 @@
 ﻿<cfdump var="#attributes#">
 
 <cfset FormData=deserializeJSON(attributes.data)>
-<cfdump var="#FormData#">
-<cfabort>
+
 
 <cfif arrayLen(FormData.SEVK)>
     <cfset newQ=queryNew("DEPO,PRODUCT_ID,PRODUCT_NAME,PRODUCT_NEED,PRODUCT_UNIT,PRODUCT_UNIT_ID,STOCK_ID,FOR_PRODUCT_ID,DESCRIPTION","VARCHAR,INTEGER,VARCHAR,DECIMAL,VARCHAR,INTEGER,INTEGER,INTEGER,VARCHAR")>
@@ -35,11 +34,17 @@
                 <cfset attributes.emp_department_id=listGetAt(session.ep.USER_LOCATION,1,"-")>
                 <cfset attributes.emp_department=listGetAt(session.ep.USER_LOCATION,1,"-")>
             </cfif>
-         
+         <cfif len(FormData.SEVK_DEPO)>
+            <cfset attributes.department_in_id=listGetAt(FormData.SEVK_DEPO,1,"-")>
+            <cfset department_in_txt="#listGetAt(FormData.SEVK_DEPO,1,"-")#">
+            <cfset attributes.location_in_id=listGetAt(FormData.SEVK_DEPO,2,"-")>
+
+         <cfelse>
             <cfset attributes.department_in_id=45>
             <cfset department_in_txt="45">
             <cfset attributes.location_in_id=1>
-         
+        </cfif>
+
             <cfset attributes.department_id=listGetAt(DEPO,1,"-")>
             <cfset txt_departman_=listGetAt(DEPO,1,"-")>
             <cfset attributes.location_id=listGetAt(DEPO,2,"-")>
