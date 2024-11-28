@@ -273,8 +273,8 @@ WHERE BORC IS NOT NULL
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,8,8);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,9,9);*/
                SatirSayaci=2
-                spreadsheetSetCellValue(theSheet,"Proje",SatirSayaci,10)
-                  spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,10,19);
+                spreadsheetSetCellValue(theSheet,"Proje",SatirSayaci,11)
+                  spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,11,19);
                   spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                   SatirSayaci=SatirSayaci+1;
                   spreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Ciro Ödenmemiş Çek Senetlerin Toplamı",SatirSayaci,1);
@@ -534,7 +534,7 @@ ORDER BY COMPANY_ID
                     </tr>
                     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
                         <cfscript>
-                            hucre=10;
+                            hucre=11;
                             spreadsheetSetCellValue(theSheet,"#PROJECT_NUMBER# - #PROJECT_HEAD#",SatirSayaci,hucre);
                             hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,getpp.BORC,SatirSayaci,hucre);
