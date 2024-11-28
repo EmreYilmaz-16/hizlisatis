@@ -92,7 +92,7 @@
                     theSheet=spreadsheetNew("the sheet");
                     satir =1;
                     sutun=1;
-                    spreadsheetAddRow(theSheet,"Müşteri,Teklif No,Satış Çalışanı,SVK No,Sipraiş No,Sipariş Tarihi,Aşama,Ürün Kodu,Ürün Adı,Teklif Miktarı,Sipariş Miktarı,Hazırlanan Miktar,Faturalanan Miktar,Depo Miktarı,Depo,Sevk Yöntemi,Sevk Tipi,Açıklama,Faturalanabilir Miktar",satir);
+                    spreadsheetAddRow(theSheet,"Müşteri,Teklif No,Satış Çalışanı,SVK No,Sipraiş No,Sipariş Tarihi,Aşama,Ürün Kodu,Ürün Adı,Teklif Miktarı,Sipariş Miktarı,Hazırlanan Miktar,Faturalanan Miktar,Depo Miktarı,Depo,Sevk Yöntemi,Sevk Tipi,Açıklama,Sevkiyat Açıklaması,Faturalanabilir Miktar",satir);
                     satir=satir+1;
                 </cfscript>
                 
@@ -204,7 +204,7 @@
                 </cfif>
                 ORDER BY SHIP_RESULT_ID
                 </cfquery>
-                <cfdump var="#GETD#">
+                
                 <cfoutput query="getd">
                     <tr>
                         <td>#NICKNAME#</td>
@@ -259,6 +259,7 @@
                         <td>#PSK#</td>
                         <td>#SEVK_TIPI#</td>
                         <td>#DESCRIPTION#</td>
+                        <td>#ROW_DETAIL#</td>
                         <td><a href="javascript:;" onclick="windowopen('/index.cfm?fuseaction=eshipping.emptypopup_list_e_shipping_status_info&iid=#SHIP_RESULT_ID#')">#FATURALANABILIR#</a></td>
                         <cfif isDefined("attributes.excell") and attributes.excell eq 1>
                             <cfscript>
@@ -299,6 +300,8 @@
                              spreadsheetSetCellValue(theSheet,"#SEVK_TIPI#",satir,sutun)
                              sutun=sutun+1;
                              spreadsheetSetCellValue(theSheet,"#DESCRIPTION#",satir,sutun)
+                             sutun=sutun+1;
+                             spreadsheetSetCellValue(theSheet,"#ROW_DETAIL#",satir,sutun)
                              sutun=sutun+1;
                              spreadsheetSetCellValue(theSheet,"#FATURALANABILIR#",satir,sutun)
                              
