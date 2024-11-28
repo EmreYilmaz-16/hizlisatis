@@ -195,8 +195,8 @@
     <CFSET attributes.department_id=attributes.DELIVER_DEPT>
     <CFSET attributes.location_id=attributes.DELIVER_LOCATION>
     <cfset attributes.active_period=session.ep.period_id>
-    <CFSET attributes.department_in_id=45>
-    <CFSET attributes.location_in_id=1>
+    <CFSET attributes.department_in_id=GETS.DEPARTMENT_IN>
+    <CFSET attributes.location_in_id=GETS.LOCATION_IN>
     <CFSET attributes.ref_no=GETS.INTERNAL_NUMBER>
     <cfset attributes.project_id_in=GETS.PROJECT_ID>
     <cfset attributes.webService=1>
