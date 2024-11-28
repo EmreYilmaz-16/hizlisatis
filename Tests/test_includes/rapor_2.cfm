@@ -486,6 +486,10 @@ ORDER BY COMPANY_ID
                     <cfset attributes.is_ajax_popup=1>
                     <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
                     <tr>
+                        <CFSET PP_BKY=0>
+                        <cfif len(getpp.BAKIYE)>
+                            <CFSET PP_BKY=getpp.BAKIYE>
+                        </cfif>
                         <td>#PROJECT_NUMBER#- #PROJECT_HEAD#</td>
                         <td>#TLFORMAT(getpp.BORC)#</td>
                         <td>#TLFORMAT(getpp.ALACAK)#</td>
@@ -515,7 +519,7 @@ ORDER BY COMPANY_ID
                             <cfif isDefined("M_SENET_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
                                 <cfset deger2=evaluate("M_SENET_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
                             </cfif>
-                            #tlformat(getpp.BAKIYE+deger1+deger2)#
+                            #tlformat(PP_BKY+deger1+deger2)#
                         </td>
                     </tr>
                     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
