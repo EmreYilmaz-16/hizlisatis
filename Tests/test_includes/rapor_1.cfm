@@ -448,7 +448,7 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,evaluate("M_SENET_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
             hucre=hucre+1;
-            spreadsheetSetCellValue(theSheet,evaluate(BAKIYE+"M_CEK_RISKI_#COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
+            spreadsheetSetCellValue(theSheet,BAKIYE+evaluate("M_CEK_RISKI_#COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,(evaluate("M_CEK_RISKI_#COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#COMPANY_ID#_0")),SatirSayaci,hucre);
             SatirSayaci=SatirSayaci+1;
