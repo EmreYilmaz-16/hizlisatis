@@ -277,7 +277,7 @@ WHERE BORC IS NOT NULL
                   spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci,11,19);
                   spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                   SatirSayaci=SatirSayaci+1;
-                  spreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Müşteri Temsilcisi,Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Ciro Ödenmemiş Çek Senetlerin Toplamı",SatirSayaci,1);
+                  spreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Müşteri Temsilcisi,Proje No,Borç,Alacak,Bakiye,B/A,Ort. Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Düşen Açık Fatura Topl,Peşine Düşen Açık Fatura Gün,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Toplam Risk,Müşteri Ciro Ödenmemiş Çek Senetlerin Toplamı",SatirSayaci,1);
                spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
                SatirSayaci=SatirSayaci+1;
                
@@ -306,7 +306,7 @@ WHERE BORC IS NOT NULL
         <th rowspan="2">Alış Ödeme Yöntemi</th>
         <th rowspan="2">Alış Vade Gün</th>
         <th rowspan="2">Müşteri Temsilcisi</th>
-        <th colspan="10">
+        <th colspan="14">
             Proje
         </th>
        
@@ -324,6 +324,7 @@ WHERE BORC IS NOT NULL
         <th>Peşine Düşen Açık Fatura Gün</th>
         <th>Müşteri Çek Riski</th>
         <th>Müşteri Senet Riski</th>
+        <th>Müşteri Toplam Risk</th>
         <th>Müşteri Ciro Ödenmemiş Evrak Toplamı</th>
     </tr>
 </thead>
@@ -522,6 +523,14 @@ ORDER BY COMPANY_ID
                             </cfif>
                         </td>
                         <td>
+                            <cfif isDefined("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#") and isDefined("M_CEK_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")>
+                                #TLFORMAT((evaluate("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")+evaluate("M_CEK_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#"))+getpp.BAKIYE)#
+                            <cfelse>
+                                #TLFORMAT(0)#
+                            </cfif>
+
+                        </td>
+                        <td>
                             <cfset deger1=0>
                             <cfset deger2=0>
                             <cfif isDefined("M_CEK_RISKI_#COMPANY_ID#_0_#PROJECT_ID#")>
@@ -571,6 +580,13 @@ ORDER BY COMPANY_ID
                             if(isDefined("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")){
                                 hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,evaluate("M_SENET_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#"),SatirSayaci,hucre);
+                            }else{
+                                hucre=hucre+1;
+                            spreadsheetSetCellValue(theSheet,0,SatirSayaci,hucre);
+                            }
+                            if(isDefined("M_CEK_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#") and isDefined("M_SENET_RISKI_#COMPANY_ID#_1_#PROJECT_ID#")){
+                                hucre=hucre+1;
+                                spreadsheetSetCellValue(theSheet,PP_BKY+evaluate("M_CEK_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#")+evaluate("M_SENET_RISKI_#COMPANY_ID#_#1#_#PROJECT_ID#"),SatirSayaci,hucre);
                             }else{
                                 hucre=hucre+1;
                             spreadsheetSetCellValue(theSheet,0,SatirSayaci,hucre);
