@@ -364,7 +364,7 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
             #GETO.DV#
         </td>
         <cfquery name="getOx" datasource="#dsn2#">
-            SELECT * FROM COMPANY_RISK_2 WHERE COMPANY_ID=#COMPANY_ID#
+            SELECT *,CASE WHEN LEN(CEK_ODENMEDI)>0 THEN CEK_ODENMEDI ELSE 0 END AS CODM  FROM COMPANY_RISK_2 WHERE COMPANY_ID=#COMPANY_ID#
         </cfquery>
         
         
@@ -377,7 +377,7 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
         <cfif getOx.recordCount>
         <cftry>
             <cfloop query="getOx">
-            <CFSET "M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.CEK_ODENMEDI>
+            <CFSET "M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_CEK_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.CODM>
             <CFSET "M_SENET_RISKI_#getOx.COMPANY_ID#_#getOx.SC#"=evaluate("M_SENET_RISKI_#getOx.COMPANY_ID#_#getOx.SC#")+getOx.SENET_ODENMEDI>
             
         </cfloop>
