@@ -367,7 +367,7 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
             SELECT *,CASE WHEN LEN(CEK_ODENMEDI)>0 THEN CEK_ODENMEDI ELSE 0 END AS CODM  FROM COMPANY_RISK_2 WHERE COMPANY_ID=#COMPANY_ID#
         </cfquery>
         <cfdump var="#GETOX#">
-        
+        <cfabort>
         
         <CFSET "M_CEK_RISKI_#COMPANY_ID#_1"=0>
         <CFSET "M_CEK_RISKI_#COMPANY_ID#_0"=0>
