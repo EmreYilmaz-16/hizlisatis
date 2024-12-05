@@ -318,7 +318,29 @@ SELECT DISTINCT ORDER_ID FROM #DSN3#.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID
 	{	
 		window.location ='<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_del_PRTOTM_shipping&ship_result_row_id='+ship_result_row_id+'&ship_result_id='+ship_result_id+'&type='+type;
 	}
-	function SaveDescription(params) {
-		
-	}
+	function SaveDescription() {
+    var elems=document.getElementsByClassName("aciklama")
+console.log(elems)
+var SatirArray=[]
+for(let i=0;i<elems.length;i++){
+    var Satir=new Object();
+    Satir.ROW_ID=elems[i].getAttribute("data-rowid")
+    Satir.DESCRIPTION=elems[i].value
+    console.log(Satir)
+    SatirArray.push(Satir)
+}
+$.ajax({
+    url:"/index.cfm?fuseaction=eshipping.emptypopup_upd_prtotm_shipping&opsiyon=1",
+    data:{"Rows":JSON.stringify(SatirArray)}
+  
+})  .done(function() {
+    window.location.reload()
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    alert( "Kayıt Edildi" );
+  })
+}
 </script>
