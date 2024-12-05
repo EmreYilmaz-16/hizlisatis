@@ -1,5 +1,11 @@
 ﻿<cfif isDefined("attributes.opsiyon")>
 	<cfdump var="#attributes#">
+	<cfset Rows=deserializeJSON(attributes.Rows)>
+	<cfloop array="#Rows#" item="it">
+		<cfquery name="up" datasource="#dsn3#">
+			UPDATE PRTOTM_SHIP_RESULT_ROW SET ROW_DETAIL='#it.DESCRIPTION#' WHERE SHIP_RESULT_ROW_ID=#it.ROW_ID#
+		</cfquery>
+	</cfloop>
 	<cfabort>
 </cfif>
 <cfparam name="attributes.reference_no" default="">
