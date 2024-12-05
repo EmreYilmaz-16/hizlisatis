@@ -1,4 +1,8 @@
-﻿<cfparam name="attributes.reference_no" default="">
+﻿<cfif isDefined("attributes.opsiyon")>
+	<cfdump var="#attributes#">
+	<cfabort>
+</cfif>
+<cfparam name="attributes.reference_no" default="">
 <cfset module_name="sales">
 <cfquery name="get_shippng_plan" datasource="#dsn3#">
 	SELECT     
