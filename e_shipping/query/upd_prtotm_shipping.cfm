@@ -1,4 +1,5 @@
-﻿<cfinclude template="LogKaydet.cfm">
+﻿
+<cfinclude template="LogKaydet.cfm">
 <!---<cfdump expand="yes" var="#attributes#">
 <cfabort>--->
 <cfif isdefined("attributes.action_date") and len(attributes.action_date)><cf_date tarih='attributes.action_date'></cfif>

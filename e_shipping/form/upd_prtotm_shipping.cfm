@@ -280,7 +280,7 @@ SELECT DISTINCT ORDER_ID FROM #DSN3#.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID
 								</cfif>
                             </td>
                             <td style="text-align:right;">#AmountFormat(get_order_det.QUANTITY)#</td>
-							<td>#get_order_det.ROW_DETAIL#</td>
+							<td><input type="text" class="aciklama"  name="SHIP_RESULT_ROW_ID_#SHIP_RESULT_ROW_ID#" value="#get_order_det.ROW_DETAIL#"></td>
                             <td style="text-align:center;">
                             	<cfif (isdefined('attributes.order_id') and attributes.order_id eq get_order_det.order_id) or not isdefined('attributes.order_id')>
 									<cfif order_row_currency eq -8 or order_row_currency eq -9 or order_row_currency eq -10 or order_row_currency eq -3>
@@ -298,6 +298,7 @@ SELECT DISTINCT ORDER_ID FROM #DSN3#.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID
                     </cfoutput>
 				</cfif>
             </tbody>
+			<button type="button" onclick="SaveDescription()">Açıklamaları Kaydet</button>
 		</cf_form_list>
 		
 	</cfform>  
@@ -306,5 +307,8 @@ SELECT DISTINCT ORDER_ID FROM #DSN3#.PRTOTM_SHIP_RESULT_ROW WHERE SHIP_RESULT_ID
 	function sil(type,ship_result_row_id,ship_result_id)
 	{	
 		window.location ='<cfoutput>#request.self#</cfoutput>?fuseaction=sales.emptypopup_del_PRTOTM_shipping&ship_result_row_id='+ship_result_row_id+'&ship_result_id='+ship_result_id+'&type='+type;
+	}
+	function SaveDescription(params) {
+		
 	}
 </script>
