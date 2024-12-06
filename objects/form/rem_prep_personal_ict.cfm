@@ -3,7 +3,7 @@
         <table>
             <tr>
                 <td>
-                    SVK No
+                    İç Talep No
                 </td>
                 <td>
                     <div class="form-group">
