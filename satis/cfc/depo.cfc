@@ -174,6 +174,7 @@ LEFT JOIN #datasources.dsn#.EMPLOYEE_POSITIONS AS EP ON EP.POSITION_CODE=I.FROM_
 WHERE DEMAND_TYPE=0 AND IR.PREPARE_PERSONAL IS NULL AND I.DEPARTMENT_OUT=#arguments.DEPARTMENT_ID# AND I.LOCATION_OUT=#arguments.LOCATION_ID# AND IR.QUANTITY-ISNULL(S.AMOUNT,0)>0 AND I.PROJECT_ID IS NOT NULL
 AND INTERNALDEMAND_STAGE <> 353
 </cfquery>
+<cffile action="write" file = "c:\PBS\getDemands2.html" output="#control5#"></cffile>
 <cfloop query="getDemands">
     <cfscript> aWork={
         DELIVER_PAPER_NO=INTERNAL_NUMBER,
