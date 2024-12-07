@@ -57,13 +57,14 @@ function getDepartmentWorks() {
       }
       lastRc = obj.length;
       for (let i = 0; i < obj.length; i++) {
+        
+        var o = obj[i];
         var ix = LocationArr.findIndex(
           (p) =>
             (p.DEPARTMENT_ID == o.DELIVERT_DEPT) &
             (p.LOCATION_ID == o.DELIVER_LOCATION)
         );
         var Depocu = LocationArr[ix];
-        var o = obj[i];
         var tr = document.createElement("tr");
         var td = document.createElement("td");
         td.innerText = i + 1;
