@@ -1,6 +1,8 @@
 var employeeArr = [];
 var interval;
 var lastRc = 0;
+var LocationArr = [];
+
 $(document).ready(function () {
   $.ajax({
     url:
@@ -13,6 +15,19 @@ $(document).ready(function () {
       var obj = JSON.parse(returnData);
       console.log(obj);
       employeeArr = obj.EMPLOYEES;
+      var Qr = wrk_query(
+        "SELECT D.DEPARTMENT_HEAD,SL.COMMENT,D.DEPARTMENT_ID,SL.LOCATION_ID FROM STOCKS_LOCATION AS SL LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID =SL.DEPARTMENT_ID"
+      );
+      var LocationArr = [];
+      for (let i = 0; i < Qr.recordcount; i++) {
+        var O = {
+          DEPARTMENT_HEAD: Qr.DEPARTMENT_HEAD[i],
+          COMMENT: Qr.COMMENT[i],
+          DEPARTMENT_ID: Qr.DEPARTMENT_ID[i],
+          LOCATION_ID: Qr.LOCATION_ID[i],
+        };
+        LocationArr.push(O);
+      }
       getDepartmentWorks();
       interval = setInterval(getDepartmentWorks, 20000);
     },
@@ -41,6 +56,12 @@ function getDepartmentWorks() {
       }
       lastRc = obj.length;
       for (let i = 0; i < obj.length; i++) {
+        var ix = LocationArr.findIndex(
+          (p) =>
+            (p.DEPARTMENT_ID == o.DELIVERT_DEPT) &
+            (p.LOCATION_ID == o.DELIVER_LOCATION)
+        );
+        var Depocu = LocationArr[ix];
         var o = obj[i];
         var tr = document.createElement("tr");
         var td = document.createElement("td");
@@ -57,6 +78,9 @@ function getDepartmentWorks() {
         tr.appendChild(td);
         var td = document.createElement("td");
         td.innerText = o.KAYDEDEN;
+        tr.appendChild(td);
+        var td = document.createElement("td");
+        td.innerText = Depocu.DEPARTMENT_HEAD+"-"+Depocu.COMMENT;
         tr.appendChild(td);
 
         var sel = document.createElement("select");
