@@ -150,8 +150,8 @@ ORDER BY O.RECORD_DATE
         <cfloop query="getDepWorks">
             <cfscript> aWork={
                 DELIVER_PAPER_NO=DELIVER_PAPER_NO,
-                DELIVERT_DEPT=DELIVER_DEPT,
-                DELIVER_LOCATION=DELIVER_LOCATION,
+                DELIVERT_DEPT=44,
+                DELIVER_LOCATION=8,
                 NICKNAME=NICKNAME,
                 SHIP_RESULT_ID=SHIP_RESULT_ID,
                 TTS=TTS,
