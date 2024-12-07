@@ -4,6 +4,19 @@ var lastRc = 0;
 var LocationArr = [];
 
 $(document).ready(function () {
+  var Qr = wrk_query(
+    "SELECT D.DEPARTMENT_HEAD,SL.COMMENT,D.DEPARTMENT_ID,SL.LOCATION_ID FROM STOCKS_LOCATION AS SL LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID =SL.DEPARTMENT_ID"
+  );
+
+  for (let i = 0; i < Qr.recordcount; i++) {
+    var O = {
+      DEPARTMENT_HEAD: Qr.DEPARTMENT_HEAD[i],
+      COMMENT: Qr.COMMENT[i],
+      DEPARTMENT_ID: Qr.DEPARTMENT_ID[i],
+      LOCATION_ID: Qr.LOCATION_ID[i],
+    };
+    LocationArr.push(O);
+  }
   $.ajax({
     url:
       "/AddOns/Partner/Satis/cfc/depo.cfc?method=getDepartmentEmployees&DEPARTMENT_ID=" +
@@ -15,19 +28,7 @@ $(document).ready(function () {
       var obj = JSON.parse(returnData);
       console.log(obj);
       employeeArr = obj.EMPLOYEES;
-      var Qr = wrk_query(
-        "SELECT D.DEPARTMENT_HEAD,SL.COMMENT,D.DEPARTMENT_ID,SL.LOCATION_ID FROM STOCKS_LOCATION AS SL LEFT JOIN DEPARTMENT AS D ON D.DEPARTMENT_ID =SL.DEPARTMENT_ID"
-      );
-      var LocationArr = [];
-      for (let i = 0; i < Qr.recordcount; i++) {
-        var O = {
-          DEPARTMENT_HEAD: Qr.DEPARTMENT_HEAD[i],
-          COMMENT: Qr.COMMENT[i],
-          DEPARTMENT_ID: Qr.DEPARTMENT_ID[i],
-          LOCATION_ID: Qr.LOCATION_ID[i],
-        };
-        LocationArr.push(O);
-      }
+     
       getDepartmentWorks();
       interval = setInterval(getDepartmentWorks, 20000);
     },
