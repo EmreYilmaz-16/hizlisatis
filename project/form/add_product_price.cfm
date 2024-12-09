@@ -31,7 +31,7 @@
 <cfif isDefined("attributes.is_submit")>
     <cfdump var="#attributes#">
 <cfquery name="getTreeLevel1" datasource="#dsn3#">
-    SELECT * FROM PRODUCT_TREE AS PT LEFT JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE STOCK_ID=#attributes.PRODUCT#
+    SELECT * FROM PRODUCT_TREE AS PT LEFT JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#attributes.PRODUCT#
 </cfquery>
 
 
