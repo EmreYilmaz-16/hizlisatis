@@ -30,6 +30,11 @@
 </cf_box>
 <cfif isDefined("attributes.is_submit")>
     <cfdump var="#attributes#">
+<cfquery name="getTreeLevel1" datasource="#dsn3#">
+    SELECT * FROM PRODUCT_TREE AS PT LEFT JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE STOCK_ID=#attributes.PRODUCT#
+</cfquery>
+
+
 </cfif>
 
 
@@ -40,7 +45,7 @@ function getProjectProducts(el,ev) {
         
 var project_number=el.value
 var ProjectResult=wrk_query("SELECT TOP 10 PROJECT_ID,PROJECT_NUMBER FROM PRO_PROJECTS WHERE PROJECT_HEAD='"+project_number+"'","DSN")
-var Products=wrk_query("SELECT TOP 5 PRODUCT_ID,PRODUCT_NAME FROM PRODUCT WHERE PROJECT_ID="+ProjectResult.PROJECT_ID[0],"DSN1")
+var Products=wrk_query("SELECT TOP 5 PRODUCT_ID,PRODUCT_NAME,STOCK_ID FROM STOCKS WHERE PROJECT_ID="+ProjectResult.PROJECT_ID[0],"DSN3")
 if(Products.recordcount>0){
     console.log("Kayıt Var")
     document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productFound")
@@ -50,7 +55,7 @@ if(Products.recordcount>0){
 $("#ProductOptGroup").html("")
 for(let i=0;i<Products.recordcount;i++){
     var opt=document.createElement("option")
-    opt.value=Products.PRODUCT_ID[i]
+    opt.value=Products.STOCK_ID[i]
     opt.innerText=Products.PRODUCT_NAME[i]
     document.getElementById("ProductOptGroup").appendChild(opt)
 }
