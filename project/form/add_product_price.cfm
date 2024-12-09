@@ -17,7 +17,10 @@
     <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#"><div class="form-group">
         <select name="product">
             <option value="">Ürün</option>
-            <optgroup label="Ürünler" id="ProductOptGroup">
+            <optgroup label="Gerçek Ürünler" id="ProductrRealOptGroup">
+
+            </optgroup>
+            <optgroup label="Sanal Ürünler" id="ProductrVirtualOptGroup">
 
             </optgroup>
         </select>
@@ -31,7 +34,7 @@
 <cfif isDefined("attributes.is_submit")>
     <cfdump var="#attributes#">
 <cfquery name="getTreeLevel1" datasource="#dsn3#">
-    SELECT * FROM PRODUCT_TREE AS PT LEFT JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#attributes.PRODUCT#
+    SELECT PT.PRODUCT_TREE_ID,S.PRODUCT_NAME,S.PRODUCT_CODE FROM PRODUCT_TREE AS PT LEFT JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#attributes.PRODUCT#
 </cfquery>
 
 
@@ -39,30 +42,4 @@
 
 
 
-<script>
-function getProjectProducts(el,ev) {
-    if(ev.keyCode==13){
-        
-var project_number=el.value
-var ProjectResult=wrk_query("SELECT TOP 10 PROJECT_ID,PROJECT_NUMBER FROM PRO_PROJECTS WHERE PROJECT_HEAD='"+project_number+"'","DSN")
-var Products=wrk_query("SELECT TOP 5 PRODUCT_ID,PRODUCT_NAME,STOCK_ID FROM STOCKS WHERE PROJECT_ID="+ProjectResult.PROJECT_ID[0],"DSN3")
-if(Products.recordcount>0){
-    console.log("Kayıt Var")
-    document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productFound")
-}else{
-    document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productNotFound")
-}
-$("#ProductOptGroup").html("")
-for(let i=0;i<Products.recordcount;i++){
-    var opt=document.createElement("option")
-    opt.value=Products.STOCK_ID[i]
-    opt.innerText=Products.PRODUCT_NAME[i]
-    document.getElementById("ProductOptGroup").appendChild(opt)
-}
-
-    }else{
-       // document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productDefault")
-    }
-}
-
-</script>
+<script src="/AddOns/Partner/Project/js/fiyat_gir.js"></script>
