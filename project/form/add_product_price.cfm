@@ -1,4 +1,12 @@
-﻿<cf_box title="Ürün Fiyat Girişi">
+﻿<style>
+    .productFound{
+        border: solid 4px #00800061;
+    }
+    .productNotFound{
+        border: solid 4px #ff000061;
+    }
+</style>
+<cf_box title="Ürün Fiyat Girişi">
 
     <div class="form-group">
         <input type="text" name="project_no" placeholder="Proje No" id="project_no" onkeydown="getProjectProducts(this,event)">
@@ -30,6 +38,11 @@ function getProjectProducts(el,ev) {
 var project_number=el.value
 var ProjectResult=wrk_query("SELECT TOP 10 PROJECT_ID,PROJECT_NUMBER FROM PRO_PROJECTS WHERE PROJECT_HEAD='"+project_number+"'","DSN")
 var Products=wrk_query("SELECT TOP 5 PRODUCT_ID,PRODUCT_NAME FROM PRODUCT WHERE PROJECT_ID="+ProjectResult.PROJECT_ID[0],"DSN1")
+if(Products.recordcount>0){
+    document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productFound")
+}else{
+    document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productNotFound")
+}
 $("#ProductOptGroup").html("")
 for(let i=0;i<Products.recordcount;i++){
     var opt=document.createElement("option")
@@ -37,6 +50,7 @@ for(let i=0;i<Products.recordcount;i++){
     opt.innerText=Products.PRODUCT_NAME[i]
     document.getElementById("ProductOptGroup").appendChild(opt)
 }
+
     }
 }
 
