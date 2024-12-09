@@ -45,6 +45,7 @@ LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.STOCK_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_ID=PT.PRODUCT_ID
  WHERE VP_ID=#MAIN_PRODUCT_ID#
    </cfquery>
+   <cfdump var="#SEVIYE_1#">
     <ul>
     <cfoutput query="SEVIYE_1">
         <CFSET SEVIYE_2=getTree(SEVIYE_1.SIDO,SEVIYE_1.IS_VIRTUAL)>
