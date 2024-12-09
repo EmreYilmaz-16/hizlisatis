@@ -19,6 +19,9 @@
         <a class="list-group-item list-group-item-action">
             <img src="/images/e-pd/rprt.png">
             Proje Raporları</a>
+            <a onclick="window.location.href=index.cfm?fuseaction=project.emptypopup_add_product_price" class="list-group-item list-group-item-action">
+                <img src="/images/e-pd/money.png">
+                Proje Ürün Fiyat Girişi</a>
         <a class="list-group-item list-group-item-action">
             <img src="/images/e-pd/prp.png">
             Proje Ürünleri</a>
