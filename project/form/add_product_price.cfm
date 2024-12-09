@@ -40,25 +40,30 @@
 <cfset MAIN_PRODUCT_ID=listGetAt(attributes.PRODUCT,1,"**")>
 <cfif IS_VIRTUAL EQ 1>
    <cfquery name="SEVIYE_1" datasource="#DSN3#">
-    SELECT PT.*,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS PT  --WHERE IS_VIRTUAL=1
+    SELECT PT.*,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS SIDO FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS PT  --WHERE IS_VIRTUAL=1
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.STOCK_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_ID=PT.PRODUCT_ID
  WHERE VP_ID=#MAIN_PRODUCT_ID#
    </cfquery>
     <ul>
     <cfoutput query="SEVIYE_1">
-        <cfquery name="SEVIYE_2" datasource="#DSN3#">
-            <cfif SEVIYE_1.IS_VIRTUAL EQ 1>
-                SELECT PT.*,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS PT  --WHERE IS_VIRTUAL=1
-                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.STOCK_ID
-                LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_ID=PT.PRODUCT_ID
-                WHERE VP_ID=#SEVIYE_1.PRODUCT_ID#
-            <CFELSE>
-                SELECT S.PRODUCT_ID,S.STOCK_ID,AMOUNT,PRICE_PBS AS PRICE,DISCOUNT_PBS AS DISCOUNT ,OTHER_MONEY_PBS AS MONEY ,S.PRODUCT_NAME,0 AS IS_VIRTUAL FROM workcube_metosan_1.PRODUCT_TREE AS PT LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#SEVIYE_1.STOCK_ID#
-            </cfif>
-        </cfquery>
+        <CFSET SEVIYE_2=getTree(SEVIYE_1.SIDO,SEVIYE_1.IS_VIRTUAL)>
         <li>
-            #PRODUCT_NAME#  <table><tr><th>Fiyat</th><th>İndirim</th></tr><tr><td><input <cfif SEVIYE_2.recordCount>disabled=""</cfif> type="text" value="#SEVIYE_1.PRICE#"></td><td><input type="text" <cfif SEVIYE_2.recordCount>disabled=""</cfif> value="#SEVIYE_1.DISCOUNT#"></td></tr></table>
+            <div style="display:flex">
+           <span> #PRODUCT_NAME#</span>  <table><tr><th>Fiyat</th><th>İndirim</th></tr><tr><td><input <cfif SEVIYE_2.recordCount>disabled=""</cfif> type="text" value="#SEVIYE_1.PRICE#"></td><td><input type="text" <cfif SEVIYE_2.recordCount>disabled=""</cfif> value="#SEVIYE_1.DISCOUNT#"></td></tr></table>
+        </div>
+        <cfif SEVIYE_2.recordCount>
+            <ul>
+                <cfloop query="SEVIYE_2">
+                    <CFSET SEVIYE_3=getTree(SEVIYE_1.SIDO,SEVIYE_1.IS_VIRTUAL)>
+                    <li>
+                        <div style="display:flex">
+                            <span> #SEVIYE_2.PRODUCT_NAME#</span>  <table><tr><th>Fiyat</th><th>İndirim</th></tr><tr><td><input <cfif SEVIYE_2.recordCount>disabled=""</cfif> type="text" value="#SEVIYE_2.PRICE#"></td><td><input type="text" <cfif SEVIYE_2.recordCount>disabled=""</cfif> value="#SEVIYE_1.DISCOUNT#"></td></tr></table>
+                         </div>
+                    </li>
+                </cfloop>
+            </ul>
+        </cfif>
         </li>
 
     </cfoutput>
@@ -68,6 +73,23 @@ LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_
 </cfif>
 
 </cfif>
+<cffunction name="getTree">
+    <cfargument name="STOCK_ID">
+    <cfargument name="IS_VIRTUAL">
+    <cfquery name="SEVIYE_2" datasource="#DSN3#">
+        <cfif arguments.IS_VIRTUAL EQ 1>
+            SELECT PT.*,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS SIDO FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS PT  --WHERE IS_VIRTUAL=1
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.STOCK_ID
+            LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_ID=PT.PRODUCT_ID
+            WHERE VP_ID=#ARGUMENTS.PRODUCT_ID#
+        <CFELSE>
+            SELECT S.PRODUCT_ID,S.STOCK_ID SIDO ,AMOUNT,PRICE_PBS AS PRICE,DISCOUNT_PBS AS DISCOUNT ,OTHER_MONEY_PBS AS MONEY ,S.PRODUCT_NAME,0 AS IS_VIRTUAL FROM workcube_metosan_1.PRODUCT_TREE AS PT LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#arguments.STOCK_ID#
+        </cfif>
+    </cfquery>
+    <cfreturn SEVIYE_2>
+</cffunction>
+
+
 <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
         
 
