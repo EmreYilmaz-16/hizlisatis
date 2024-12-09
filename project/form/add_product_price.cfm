@@ -1,6 +1,6 @@
 ﻿<cf_box title="Ürün Fiyat Girişi">
     <div class="form-group">
-        <input type="text" name="project_no" placeholder="Proje No" id="project_no" onchange="getProjectProducts(this)">
+        <input type="text" name="project_no" placeholder="Proje No" id="project_no" onkeydown="getProjectProducts(this,event)">
     </div>
     <div class="form-group">
         <select name="product">
@@ -17,8 +17,10 @@
 
 
 <script>
-function getProjectProducts(el) {
-    
+function getProjectProducts(el,ev) {
+    if(ev.keyCode==13){
+        console.log(el.value)
+    }
 }
 
 </script>
