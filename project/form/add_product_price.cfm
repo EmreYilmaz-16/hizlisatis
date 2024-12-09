@@ -55,7 +55,7 @@ LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_
         <cfif SEVIYE_2.recordCount>
             <ul>
                 <cfloop query="SEVIYE_2">
-                    <CFSET SEVIYE_3=getTree(SEVIYE_1.SIDO,SEVIYE_1.IS_VIRTUAL)>
+                    <CFSET SEVIYE_3=getTree(SEVIYE_2.SIDO,SEVIYE_2.IS_VIRTUAL)>
                     <li>
                         <div style="display:flex">
                             <span> #SEVIYE_2.PRODUCT_NAME#</span>  <table><tr><th>Fiyat</th><th>İndirim</th></tr><tr><td><input <cfif SEVIYE_2.recordCount>disabled=""</cfif> type="text" value="#SEVIYE_2.PRICE#"></td><td><input type="text" <cfif SEVIYE_2.recordCount>disabled=""</cfif> value="#SEVIYE_1.DISCOUNT#"></td></tr></table>
