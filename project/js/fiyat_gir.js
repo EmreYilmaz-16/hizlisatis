@@ -15,14 +15,15 @@
     if (Products.recordcount > 0) {
       console.log("Kayıt Var");
       document
-        .getElementById("ProductOptGroup")
+        .getElementById("product")
         .parentElement.setAttribute("class", "productFound");
     } else {
       document
-        .getElementById("ProductOptGroup")
+        .getElementById("product")
         .parentElement.setAttribute("class", "productNotFound");
     }
-    $("#ProductOptGroup").html("");
+    $("#ProductrVirtualOptGroup").html("");
+    $("#ProductrRealOptGroup").html("");
     for (let i = 0; i < Products.recordcount; i++) {
       var opt = document.createElement("option");
       opt.value = Products.STOCK_ID[i];

@@ -15,7 +15,7 @@
         <input type="text" name="project_no" placeholder="Proje No" id="project_no" onkeydown="getProjectProducts(this,event)">
     </div>
     <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#"><div class="form-group">
-        <select name="product">
+        <select name="product" id="product">
             <option value="">Ürün</option>
             <optgroup label="Gerçek Ürünler" id="ProductrRealOptGroup">
 
