@@ -26,7 +26,7 @@
     $("#ProductrRealOptGroup").html("");
     for (let i = 0; i < Products.recordcount; i++) {
       var opt = document.createElement("option");
-      opt.value = Products.STOCK_ID[i];
+      opt.value = Products.STOCK_ID[i]+"**"+Products.IS_VIRTUAL[i];
       opt.innerText = Products.PRODUCT_NAME[i];
       if (Products.IS_VIRTUAL[i] == 1) {
         document.getElementById("ProductrVirtualOptGroup").appendChild(opt);
