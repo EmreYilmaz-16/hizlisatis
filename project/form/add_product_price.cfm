@@ -55,7 +55,7 @@ for(let i=0;i<Products.recordcount;i++){
 }
 
     }else{
-        document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productDefault")
+       // document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productDefault")
     }
 }
 
