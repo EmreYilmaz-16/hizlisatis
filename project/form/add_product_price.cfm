@@ -1,9 +1,9 @@
 ﻿<cf_box title="Ürün Fiyat Girişi">
-<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
+
     <div class="form-group">
         <input type="text" name="project_no" placeholder="Proje No" id="project_no" onkeydown="getProjectProducts(this,event)">
     </div>
-    <div class="form-group">
+    <cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#"><div class="form-group">
         <select name="product">
             <option value="">Ürün</option>
             <optgroup label="Ürünler" id="ProductOptGroup">
