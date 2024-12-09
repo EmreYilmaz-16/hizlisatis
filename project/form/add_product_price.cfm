@@ -1,12 +1,12 @@
 ﻿<style>
     .productFound{
-        border: solid 4px #00800061;
+        border: solid 4px #00800061 !important;
     }
     .productNotFound{
-        border: solid 4px #ff000061;
+        border: solid 4px #ff000061 !important;
     }
     .productDefault{
-    border: 1px solid #ccc;
+    border: 1px solid #ccc !important;
     }
 </style>
 <cf_box title="Ürün Fiyat Girişi">
