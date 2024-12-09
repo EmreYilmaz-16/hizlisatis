@@ -5,6 +5,9 @@
     .productNotFound{
         border: solid 4px #ff000061;
     }
+    .productDefault{
+    border: 1px solid #ccc;
+    }
 </style>
 <cf_box title="Ürün Fiyat Girişi">
 
@@ -51,6 +54,8 @@ for(let i=0;i<Products.recordcount;i++){
     document.getElementById("ProductOptGroup").appendChild(opt)
 }
 
+    }else{
+        document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productDefault")
     }
 }
 
