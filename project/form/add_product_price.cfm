@@ -27,18 +27,52 @@
     </div>
     <div class="form-group">
         <input type="submit">
-        <input type="hidden" name="is_submit">
+        <input type="hidden" name="is_submit" value="1">
     </div>
 </cfform>
 </cf_box>
-<cfif isDefined("attributes.is_submit")>
+<cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
     <cfdump var="#attributes#">
-<cfquery name="getTreeLevel1" datasource="#dsn3#">
-    SELECT PT.PRODUCT_TREE_ID,S.PRODUCT_NAME,S.PRODUCT_CODE FROM PRODUCT_TREE AS PT LEFT JOIN STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#attributes.PRODUCT#
-</cfquery>
 
+    
+
+<cfset IS_VIRTUAL=listGetAt(attributes.PRODUCT,2,"**")>
+<cfset MAIN_PRODUCT_ID=listGetAt(attributes.PRODUCT,1,"**")>
+<cfif IS_VIRTUAL EQ 1>
+   <cfquery name="SEVIYE_1" datasource="#DSN3#">
+    SELECT PT.*,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS PT  --WHERE IS_VIRTUAL=1
+LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.STOCK_ID
+LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_ID=PT.PRODUCT_ID
+ WHERE VP_ID=#MAIN_PRODUCT_ID#
+   </cfquery>
+    <ul>
+    <cfoutput query="SEVIYE_1">
+        <cfquery name="SEVIYE_2" datasource="#DSN3#">
+            <cfif SEVIYE_1.IS_VIRTUAL EQ 1>
+                SELECT PT.*,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS PT  --WHERE IS_VIRTUAL=1
+                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.STOCK_ID
+                LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_ID=PT.PRODUCT_ID
+                WHERE VP_ID=#SEVIYE_1.PRODUCT_ID#
+            <CFELSE>
+                SELECT S.PRODUCT_ID,S.STOCK_ID,AMOUNT,PRICE_PBS AS PRICE,DISCOUNT_PBS AS DISCOUNT ,OTHER_MONEY_PBS AS MONEY ,S.PRODUCT_NAME,0 AS IS_VIRTUAL FROM workcube_metosan_1.PRODUCT_TREE AS PT LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID WHERE PT.STOCK_ID=#SEVIYE_1.STOCK_ID#
+            </cfif>
+        </cfquery>
+        <li>
+            #PRODUCT_NAME#  <table><tr><th>Fiyat</th><th>İndirim</th></tr><tr><td><input <cfif SEVIYE_2.recordCount>disabled=""</cfif> type="text" value="#SEVIYE_1.PRICE#"></td><td><input type="text" <cfif SEVIYE_2.recordCount>disabled=""</cfif> value="#SEVIYE_1.DISCOUNT#"></td></tr></table>
+        </li>
+
+    </cfoutput>
+</ul>
+
+<cfelseif IS_VIRTUAL EQ 0>
+</cfif>
 
 </cfif>
+<cfform method="post" action="#request.self#?fuseaction=#attributes.fuseaction#">
+        
+
+
+</cfform>
 
 
 
