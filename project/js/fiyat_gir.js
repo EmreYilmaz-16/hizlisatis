@@ -16,11 +16,11 @@
       console.log("Kayıt Var");
       document
         .getElementById("product")
-        .parentElement.setAttribute("class", "productFound");
+        .setAttribute("class", "productFound");
     } else {
       document
         .getElementById("product")
-        .parentElement.setAttribute("class", "productNotFound");
+        .setAttribute("class", "productNotFound");
     }
     $("#ProductrVirtualOptGroup").html("");
     $("#ProductrRealOptGroup").html("");
