@@ -42,6 +42,7 @@ var project_number=el.value
 var ProjectResult=wrk_query("SELECT TOP 10 PROJECT_ID,PROJECT_NUMBER FROM PRO_PROJECTS WHERE PROJECT_HEAD='"+project_number+"'","DSN")
 var Products=wrk_query("SELECT TOP 5 PRODUCT_ID,PRODUCT_NAME FROM PRODUCT WHERE PROJECT_ID="+ProjectResult.PROJECT_ID[0],"DSN1")
 if(Products.recordcount>0){
+    console.log("Kayıt Var")
     document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productFound")
 }else{
     document.getElementById("ProductOptGroup").parentElement.setAttribute("class","productNotFound")
