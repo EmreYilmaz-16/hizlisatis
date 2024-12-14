@@ -804,7 +804,7 @@ VALUES (
         </cfquery>
         <cfdump var="#res#">
         <cfloop array="#FORM_DATA.PRODUCT_TREE#" item="it">
-          <cfif FORM_DATA.IS_VIRTUAL EQ 0>
+          <cfif IS_VIRTUAL EQ 0>
           <cfquery name="ins2" datasource="#dsn3#">
                INSERT INTO PROJECT_REAL_PRODUCTS_TREE_PRICES(PROJECT_ID,MAIN_PRODUCT_ID ,PRODUCT_TREE_ID ,UPPER_TRERE_ID ,AMOUNT ,PRICE ,OTHER_MONEY ,DISCOUNT ,MAIN_ID )
                VALUES (#FORM_DATA.PROJECT_ID#,#MAIN_PRODUCT_ID#,#it.PRODUCT_TREE_ID#,#it.UPPER_PRODUCT_TREE_ID#,#it.AMOUNT#,#it.PRICE#,'#it.OTHER_MONEY#',#it.DISCOUNT#,#res.IDENTITYCOL#)
