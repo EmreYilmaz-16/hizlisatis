@@ -22,18 +22,24 @@ PROJECT_ID =#attributes.PROJECT_ID# AND MAIN_PRODUCT_ID=#attributes.MAIN_PRODUCT
             <th>
                 Ürün Tutarı
             </th>
+            <th>
+                
+            </th>
         </tr>
     </thead>
     <tbody>
         <cfoutput query="getMains">
             <tr>
                 <td>
-                    #dateformat(RECORD_DATE)#
+                    #dateformat(RECORD_DATE,"dd/mm/yyyy")#
                 </td>
                 <td>
                     #KAYDEDEN#
                 </td>
                 <TD>#TLFORMAT(TUTAR)#</TD>
+                <td>
+                    <button onclick="FiyatlariYukle(#MAIN_ID#)">Fiyatları Yükle</button>
+                </td>
             </tr>
         </cfoutput>
     </tbody>
