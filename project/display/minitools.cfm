@@ -22,6 +22,10 @@
     </cf_box>
 <cfelseif attributes.tool_type eq 'LeftMenu'>
     <cfinclude template="leftMenuAjax.cfm">
+<cfelseif attributes.tool_type eq 'ShowSavedPriceMain'>
+    <cf_box title="Kaydedilmiş Fiyatlar" scroll="1" collapsable="1" resize="1" popup_box="1">
+        <cfinclude template="miniToolsInc/ShowSavedPricesMain.cfm">
+    </cf_box>
 <cfelse> 
     Sistem Yönetici
 </cfif>

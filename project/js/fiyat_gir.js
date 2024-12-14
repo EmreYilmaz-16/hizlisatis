@@ -320,5 +320,7 @@ function KaydetCanim() {
 
 
 function OpenPricesInte(){
-  
+  var ProductId=list_getat(ProjectData.PRODUCT,1,"**")
+  var IS_VIRTUAL=list_getat(ProjectData.PRODUCT,2,"**")
+  openBoxDraggable("index.cfm?fuseaction=project.emptypopup_mini_tools&project_id="+ProjectData+PROJECT_ID+"&main_product_id="+ProductId+"&tool_type=ShowSavedPriceMain")
 }
