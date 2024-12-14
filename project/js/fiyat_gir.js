@@ -326,7 +326,14 @@ function OpenPricesInte() {
 }
 
 function FiyatlariYukle(MAIN_ID,modalid) {
-  var Prices = wrk_query("SELECT  * FROM PROJECT_REAL_PRODUCTS_TREE_PRICES WHERE MAIN_ID="+MAIN_ID, "DSN3")
+  var ProductId = list_getat(ProjectData.PRODUCT, 1, "**")
+  var IS_VIRTUAL = list_getat(ProjectData.PRODUCT, 2, "**")
+  
+  if(parseInt(IS_VIRTUAL)==0){
+    var Prices = wrk_query("SELECT  * FROM PROJECT_REAL_PRODUCTS_TREE_PRICES WHERE MAIN_ID="+MAIN_ID, "DSN3")
+  }else {
+    var Prices = wrk_query("SELECT  * FROM PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE MAIN_ID="+MAIN_ID, "DSN3")
+  }
   for (let i = 0; i < Prices.recordcount; i++) {
     var PRICE = Prices.PRICE[i];
     var DISCOUNT = Prices.DISCOUNT[i];
