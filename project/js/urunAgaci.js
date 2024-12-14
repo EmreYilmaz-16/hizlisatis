@@ -35,13 +35,13 @@ function ngetTree(
     if (is_virtual == 1) {
       var qqq = wrk_query(
         "SELECT PRODUCT_NAME FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=" +
-          product_id,
+        product_id,
         "DSN3"
       );
     } else {
       var qqq = wrk_query(
         "SELECT PRODUCT_NAME,STOCK_ID FROM STOCKS WHERE PRODUCT_ID=" +
-          product_id,
+        product_id,
         "DSN3"
       );
       sida = qqq.STOCK_ID[0];
@@ -341,7 +341,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     var RATE2MNY = 1;
     try {
       moneyArr[MNYX].RATE2;
-    } catch {}
+    } catch { }
     RATE2MNY = parseFloat(RATE2MNY);
     var dpx = prcs - (prcs * arr[i].DISCOUNT) / 100;
     var nttl = dpx * arr[i].AMOUNT * RATE2MNY;
@@ -520,7 +520,7 @@ $(document).ready(function () {
   _compId = cp_id;
   AjaxPageLoad(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=LeftMenu&PROJECT_ID=" +
-      PROJECT_ID,
+    PROJECT_ID,
     "leftMenuProject",
     1,
     "Yükleniyor"
@@ -630,19 +630,19 @@ function OpenBasketProducts(col = "", actType = "5") {
   var p_cat_id = _priceCatId;
   openBoxDraggable(
     "http://erp.metosan.com.tr/index.cfm?fuseaction=objects.emptypopup_list_products_partner&price_cat=" +
-      p_cat +
-      "&PRICE_CATID=" +
-      p_cat_id +
-      "&company_id=" +
-      cp_id +
-      "&company_name=" +
-      cp_name +
-      "&columnsa=" +
-      col +
-      "&actType=" +
-      actType +
-      "&question_id=" +
-      ""
+    p_cat +
+    "&PRICE_CATID=" +
+    p_cat_id +
+    "&company_id=" +
+    cp_id +
+    "&company_name=" +
+    cp_name +
+    "&columnsa=" +
+    col +
+    "&actType=" +
+    actType +
+    "&question_id=" +
+    ""
   );
 }
 
@@ -1106,7 +1106,7 @@ function AgacGetir(agacim, sx = 0) {
     var exh = $(obj).find("span[name='product_name_']")[0].cloneNode(true);
     try {
       exh.children[0].remove();
-    } catch {}
+    } catch { }
     var pname = exh.innerText;
     var agacItem = new Object();
     agacItem.PRODUCT_ID = pid;
@@ -1421,10 +1421,10 @@ function getCats(el, ev) {
   if (bul) {
     var q = wrk_query(
       "SELECT * FROM PRODUCT_CAT WHERE PRODUCT_CAT LIKE '%" +
-        el.value +
-        "%' OR HIERARCHY LIKE '%" +
-        el.value +
-        "%'",
+      el.value +
+      "%' OR HIERARCHY LIKE '%" +
+      el.value +
+      "%'",
       "dsn3"
     );
     if (q.recordcount > 0) {
@@ -1434,10 +1434,10 @@ function getCats(el, ev) {
       for (let i = 0; i < q.recordcount; i++) {
         var q2 = wrk_query(
           "select * from PRODUCT_CAT where HIERARCHY like '" +
-            q.HIERARCHY[i] +
-            "%' and HIERARCHY <>'" +
-            q.HIERARCHY[i] +
-            "'",
+          q.HIERARCHY[i] +
+          "%' and HIERARCHY <>'" +
+          q.HIERARCHY[i] +
+          "'",
           "dsn3"
         );
         var cid = q.PRODUCT_CATID[i];
@@ -1934,11 +1934,11 @@ function setQuestion(el) {
   //console.log(ev);
   openBoxDraggable(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=alternativeQuestion&idb=" +
-      ev +
-      "&question_id=" +
-      question_id +
-      "&displayName=" +
-      displayName
+    ev +
+    "&question_id=" +
+    question_id +
+    "&displayName=" +
+    displayName
   );
 }
 
@@ -2045,12 +2045,12 @@ function MaliyetHesapla() {
       Product.setAttribute("data-price", SprodTotalPrice.toFixed(4));
       Product.setAttribute("is_etki", 1);
     } else {
-      var pse=Product.getAttribute("is_etki");
-      if(pse=="0"){
+      var pse = Product.getAttribute("is_etki");
+      if (pse == "0") {
 
-      }else{
-        Product.setAttribute("is_etki",1);
-        
+      } else {
+        Product.setAttribute("is_etki", 1);
+
       }
     }
     //console.log($(Product).find("input[name='amount']"))
@@ -2090,7 +2090,7 @@ function GercekKontrol(id) {
   var PROJECT_ID = getParameterByName("project_id");
   var q = wrk_query(
     "SELECT COUNT(*) AS OFPOR FROM PBS_OFFER INNER JOIN PBS_OFFER_ROW ON PBS_OFFER_ROW.OFFER_ID=PBS_OFFER.OFFER_ID WHERE PBS_OFFER.PROJECT_ID=" +
-      PROJECT_ID,
+    PROJECT_ID,
     "DSN3"
   );
   var ex = q.OFPOR[0];
@@ -2116,7 +2116,7 @@ function GercekKontrol(id) {
 function openRelatedDocuments(prid) {
   windowopen(
     "index.cfm?fuseaction=project.emptypopup_related_project_documents&project_id=" +
-      prid
+    prid
   );
 }
 function updateStage(el, projectId) {
@@ -2126,8 +2126,8 @@ function updateStage(el, projectId) {
   if (parseInt(el.value) == 340) {
     var vq = wrk_query(
       "select COUNT(*) as SCOUNT from VIRTUAL_PRODUCTS_PRT where PROJECT_ID =" +
-        projectId +
-        " AND PRODUCT_STAGE=340",
+      projectId +
+      " AND PRODUCT_STAGE=340",
       "dsn3"
     );
     if (vq.SCOUNT[0] > 0) {
@@ -2163,7 +2163,7 @@ function getProjectProducts(projectId) {
   // });
   AjaxPageLoad(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&tool_type=LeftMenu&PROJECT_ID=" +
-      projectId,
+    projectId,
     "leftMenuProject",
     1,
     "Yükleniyor"
@@ -2305,7 +2305,7 @@ function remVirtualProd(el) {
         "/AddOns/Partner/project/cfc/product_design.cfc?method=DELVP&vp_id=" +
         vp_id +
         "&ddsn3=workcube_metosan_1",
-      success: function () {},
+      success: function () { },
     });
   } else {
     alert("Gerçek Ürünü Silemezsiniz !");
@@ -2319,9 +2319,9 @@ function remItem(params) {
 function OpenSearchVP(ppd = 0, tip = 4) {
   openBoxDraggable(
     "index.cfm?fuseaction=product.emptypopup_list_virtualproducts&idb=" +
-      ppd +
-      "&type=" +
-      tip
+    ppd +
+    "&type=" +
+    tip
   );
 }
 
@@ -2403,7 +2403,7 @@ function LoadTree(el) {
   //tool_type eq 'ShowPrice
   openBoxDraggable(
     "index.cfm?fuseaction=project.emptypopup_mini_tools&autoComplete=1&tool_type=ShowPrice&Data=" +
-      Str
+    Str
   );
 }
 
@@ -2557,7 +2557,7 @@ function AddMultiOffer() {
       console.log(C.value);
       var q = wrk_query(
         "SELECT * FROM VIRTUAL_PRODUCTS_PRT WHERE VIRTUAL_PRODUCT_ID=" +
-          C.value,
+        C.value,
         "dsn3"
       );
       console.log(q);
@@ -2611,10 +2611,15 @@ function AddMultiOffer() {
   } /**/
 }
 
-function OpenFiyatGir(){
-  var is_virtual= document.getElementById("is_virtual").value
-var product=document.getElementById("vp_id").value
-var p=product+"**"+is_virtual
-windowopen("/index.cfm?fuseaction=project.emptypopup_add_product_price&product="+product)
+function OpenFiyatGir() {
+  var is_virtual = document.getElementById("is_virtual").value
+  var product = document.getElementById("vp_id").value
+  var project_id = document.getElementById("project_id").value
+  var p = product + "**" + is_virtual
+  var Str = product
+  console.log(Str)
+  var Str2 = urlencode(Str)
+  console.log(Str2)
+  windowopen("/index.cfm?fuseaction=project.emptypopup_add_product_price&product=" + p + "&project_id=" + project_id)
 
 }
