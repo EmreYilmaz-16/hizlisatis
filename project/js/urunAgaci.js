@@ -2614,6 +2614,11 @@ function AddMultiOffer() {
 function OpenFiyatGir() {
   var is_virtual = document.getElementById("is_virtual").value
   var product = document.getElementById("vp_id").value
+  if(parseInt(is_virtual)==1){
+   var x= wrk_query("SELECT STOCK_ID FROM STOCKS WHERE PRODUCT_ID=60237","DSN3")
+   var product = x.STOCK_ID[0]
+  }
+  
   var project_id = document.getElementById("project_id").value
   var p = product + "**" + is_virtual
   var Str = product
