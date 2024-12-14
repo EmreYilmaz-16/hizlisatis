@@ -64,7 +64,7 @@
 
 
 <cf_box title="Ürün Fiyat Girişi">
-
+<cfif isDefined("from_project") and attributes.from_project eq 1>
     <div class="form-group">
         <input type="text" name="project_no" placeholder="Proje No" id="project_no" onkeydown="getProjectProducts(this,event)">
     </div>
@@ -89,20 +89,32 @@
         <input type="hidden" name="is_submit" value="1">
     </div>
 </cfform>
+<cfelse>
+    <cfset attributes.is_submit=1>
+    <cfquery name="getProjectC" datasource="#dsn#">
+    SELECT PROJECT_ID,COMPANY_ID,(SELECT PRICE_CAT FROM workcube_metosan.COMPANY_CREDIT WHERE COMPANY_ID=PRO_PROJECTS.COMPANY_ID) AS PRICE_CAT  FROM workcube_metosan.PRO_PROJECTS WHERE PROJECT_ID=#attributes.PROJECT_ID#       
+    </cfquery>
+<CFSET attributes.COMPANY_ID=getProjectC.COMPANY_ID>
+<CFSET attributes.PRICE_CAT=getProjectC.PRICE_CAT>
+<CFSET attributes.RECORD_EMP=session.ep.userid>
+
+</cfif>
+
 
 <cfif isDefined("attributes.is_submit") and attributes.is_submit eq 1>
-    <cfdump var="#form#">
+    
 
 
     
 <button type="button" onclick="FiyatlariGetir()">Standart Fiyatları Getir ve Hesapla</button>
 <button type="button" onclick="FiyatlariHesapla()">Hesapla</button>
 <button type="button" onclick="OpenPricesInte()">Geçmiş Fiyat Girişleri</button>
+<button type="button" onclick="KaydetCanim()">Fiyat Girişini Kaydet</button>
 <cfset IS_VIRTUAL=listGetAt(attributes.PRODUCT,2,"**")>
 <cfset MAIN_PRODUCT_ID=listGetAt(attributes.PRODUCT,1,"**")>
 <cfoutput>
 <script>
-        ProjectData=#replace(serializeJSON(form),"//","")#
+        ProjectData=#replace(serializeJSON(attributes),"//","")#
 </script>
 </cfoutput>
    <CFSET SEVIYE_1=getTree(MAIN_PRODUCT_ID,IS_VIRTUAL)>

@@ -2610,3 +2610,11 @@ function AddMultiOffer() {
     alert("You must allow popups for this map to work.");
   } /**/
 }
+
+function OpenFiyatGir(){
+  var is_virtual= document.getElementById("is_virtual").value
+var product=document.getElementById("vp_id").value
+var p=product+"**"+is_virtual
+windowopen("/index.cfm?fuseaction=project.emptypopup_add_product_price&product="+product)
+
+}
