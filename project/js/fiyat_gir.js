@@ -319,8 +319,27 @@ function KaydetCanim() {
 }
 
 
-function OpenPricesInte(){
-  var ProductId=list_getat(ProjectData.PRODUCT,1,"**")
-  var IS_VIRTUAL=list_getat(ProjectData.PRODUCT,2,"**")
-  openBoxDraggable("index.cfm?fuseaction=project.emptypopup_mini_tools&project_id="+ProjectData.PROJECT_ID+"&main_product_id="+ProductId+"&tool_type=ShowSavedPriceMain")
+function OpenPricesInte() {
+  var ProductId = list_getat(ProjectData.PRODUCT, 1, "**")
+  var IS_VIRTUAL = list_getat(ProjectData.PRODUCT, 2, "**")
+  openBoxDraggable("index.cfm?fuseaction=project.emptypopup_mini_tools&project_id=" + ProjectData.PROJECT_ID + "&main_product_id=" + ProductId + "&tool_type=ShowSavedPriceMain")
+}
+
+function FiyatlariYukle(MAIN_ID,modalid) {
+  var Prices = wrk_query("SELECT  * FROM PROJECT_REAL_PRODUCTS_TREE_PRICES WHERE MAIN_ID="+MAIN_ID, "DSN3")
+  for (let i = 0; i < Prices.recordcount; i++) {
+    var PRICE = Prices.PRICE[i];
+    var DISCOUNT = Prices.DISCOUNT[i];
+    var PRODUCT_TREE_ID = Prices.PRODUCT_TREE_ID[i];
+    document.getElementsByName("PRICE_" + PRODUCT_TREE_ID)[0].value = commaSplit(PRICE)
+    document.getElementsByName("DISCOUNT_" + PRODUCT_TREE_ID)[0].value = commaSplit(DISCOUNT)
+  }
+  var Rows = document.getElementsByClassName("basket_row")
+  for (let Row of Rows) {
+    var RowId = Row.getAttribute("pit_id")
+    var e = document.getElementsByName("PRICE_" + RowId)[0]
+    satirHesapla(e)
+  }
+  alert("Fiyatlar Yüklendi");
+  closeBoxDraggable(modalid)
 }

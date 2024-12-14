@@ -38,7 +38,7 @@ PROJECT_ID =#attributes.PROJECT_ID# AND MAIN_PRODUCT_ID=#attributes.MAIN_PRODUCT
                 </td>
                 <TD>#TLFORMAT(TUTAR)#</TD>
                 <td>
-                    <button onclick="FiyatlariYukle(#MAIN_ID#)">Fiyatları Yükle</button>
+                    <button onclick="FiyatlariYukle(#MAIN_ID#,'#attributes.modal_id#')">Fiyatları Yükle</button>
                 </td>
             </tr>
         </cfoutput>
