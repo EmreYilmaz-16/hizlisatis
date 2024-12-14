@@ -98,6 +98,7 @@
 <CFSET attributes.PRICE_CAT=getProjectC.PRICE_CAT>
 <CFSET attributes.RECORD_EMP=session.ep.userid>
 
+
 </cfif>
 
 

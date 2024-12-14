@@ -2620,6 +2620,6 @@ function OpenFiyatGir() {
   console.log(Str)
   var Str2 = urlencode(Str)
   console.log(Str2)
-  windowopen("/index.cfm?fuseaction=project.emptypopup_add_product_price&product=" + p + "&project_id=" + project_id)
+  windowopen("/index.cfm?fuseaction=project.emptypopup_add_product_price&PRODUCT=" + p + "&PROJECT_ID=" + project_id)
 
 }
