@@ -163,8 +163,8 @@ function FiyatlariGetir() {
         data: {
           PRODUCT_ID: PRODUCT_ID,
           IS_VIRTUAL: IS_VIRTUAL,
-          COMPANY_ID: 21488,
-          PRICE_CATID: 19,
+          COMPANY_ID: ProjectData.COMPANY_ID,
+          PRICE_CATID: ProjectData.PRICE_CAT,
           ddsn3: "workcube_metosan_1",
           ROW_ID: RowId
         },
@@ -187,7 +187,7 @@ function FiyatlariGetir() {
           }
 
 
-          document.getElementsByName("PRICE_" + PriceObject.ROW_ID)[0].value = PriceObject.PRICE
+          document.getElementsByName("PRICE_" + PriceObject.ROW_ID)[0].value = commaSplit(PriceObject.PRICE)
           var ix = moneyArr.findIndex(p => p.MONEY == PriceObject.MONEY)
           var Rate2 = moneyArr[ix].RATE2
           console.log(Rate2)
@@ -208,8 +208,8 @@ function FiyatlariGetir() {
         data: {
           PRODUCT_ID: PRODUCT_ID,
           IS_VIRTUAL: IS_VIRTUAL,
-          COMPANY_ID: 21488,
-          PRICE_CATID: 19,
+          COMPANY_ID: ProjectData.COMPANY_ID,
+          PRICE_CATID: ProjectData.PRICE_CAT,
           ddsn3: "workcube_metosan_1",
           ROW_ID: RowId
         },
