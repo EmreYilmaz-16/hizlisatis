@@ -419,7 +419,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     diva.appendChild(inp);
     diva.appendChild(btn);
     diva.appendChild(btn3);
-    diva.appendChild(btn5);
+   // diva.appendChild(btn5);
     diva.appendChild(btn2);
     var divb = document.createElement("div");
     divb.setAttribute("style", "display:flex");
@@ -1254,7 +1254,7 @@ function addProdMain_(idb, modal_id) {
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
-  div2.appendChild(btn5);
+  //div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -1387,7 +1387,7 @@ function addProdSub_(el) {
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
-  div2.appendChild(btn5);
+ // div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -1722,7 +1722,7 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     diva.appendChild(inp);
     diva.appendChild(btn);
     diva.appendChild(btn3);
-    diva.appendChild(btn5);
+    //diva.appendChild(btn5);
     diva.appendChild(btn2);
     var divb = document.createElement("div");
     divb.setAttribute("style", "display:flex");
