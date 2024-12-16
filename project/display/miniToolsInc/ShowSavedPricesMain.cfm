@@ -28,9 +28,9 @@ PROJECT_ID =#attributes.PROJECT_ID# AND MAIN_PRODUCT_ID=#attributes.MAIN_PRODUCT
             <th>
                 Ürün Tutarı
             </th>
-            <th>
+         <!----<th>
                 
-            </th>
+            </th>----->
         </tr>
     </thead>
     <tbody>
@@ -43,9 +43,9 @@ PROJECT_ID =#attributes.PROJECT_ID# AND MAIN_PRODUCT_ID=#attributes.MAIN_PRODUCT
                     #KAYDEDEN#
                 </td>
                 <TD>#TLFORMAT(TUTAR)#</TD>
-                <td>
+                <!----<td>
                     <button onclick="FiyatlariYukle(#MAIN_ID#,'#attributes.modal_id#')">Fiyatları Yükle</button>
-                </td>
+                </td>---->
             </tr>
         </cfoutput>
     </tbody>

@@ -107,9 +107,9 @@
 
 
     
-<button type="button" onclick="FiyatlariGetir()">Standart Fiyatları Getir ve Hesapla</button>
-<button type="button" onclick="FiyatlariHesapla()">Hesapla</button>
-<button type="button" onclick="OpenPricesInte()">Geçmiş Fiyat Girişleri</button>
+<!----<button type="button" onclick="FiyatlariGetir()">Standart Fiyatları Getir ve Hesapla</button>
+<button type="button" onclick="FiyatlariHesapla()">Hesapla</button>---->
+<button type="button" onclick="OpenPricesInte()">Fiyat Girişleri</button>
 <button type="button" onclick="KaydetCanim()">Fiyat Girişini Kaydet</button>
 <cfset IS_VIRTUAL=listGetAt(attributes.PRODUCT,2,"**")>
 <cfset MAIN_PRODUCT_ID=listGetAt(attributes.PRODUCT,1,"**")>
