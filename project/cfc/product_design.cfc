@@ -114,6 +114,11 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
         <cfquery name="getTree" datasource="#dsn3#">
             <cfif arguments.isVirtual eq 1>
             SELECT *,STOCK_ID AS RELATED_ID,VPT_ID AS PRODUCT_TREE_ID,PRICE,DISCOUNT,MONEY FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.pid# AND PRODUCT_ID <>0
+            SELECT VPT_ID,VP_ID,PRODUCT_ID,STOCK_ID,VPT.AMOUNT,QUESTION_ID,IS_VIRTUAL,DISPLAY_NAME,PEPS.PRICE,PEPS.DISCOUNT,PEPS.OTHER_MONEY AS MONEY ,PEPS.MAIN_PRODUCT_ID,STOCK_ID AS RELATED_ID,VPT_ID AS PRODUCT_TREE_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT  AS VPT
+LEFT JOIN workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES PEPS ON PEPS.PRODUCT_TREE_ID=VPT.VPT_ID
+
+WHERE VP_ID=#arguments.pid# AND PRODUCT_ID <>0
+
             <cfelse>
             select *,0 AS IS_VIRTUAL,(SELECT PROPERTY3 FROM PRODUCT_INFO_PLUS WHERE PRODUCT_ID=PRODUCT_TREE.PRODUCT_ID AND PRO_INFO_ID=2) AS DISPLAY_NAME,PRICE_PBS AS PRICE,OTHER_MONEY_PBS AS MONEY,DISCOUNT_PBS AS DISCOUNT from PRODUCT_TREE WHERE STOCK_ID=#arguments.sid# </cfif>
             </cfquery>       
@@ -798,7 +803,7 @@ VALUES (
         <cfset IS_VIRTUAL=listGetAt(FORM_DATA.PRODUCT,2,"**")>
         <cfset MAIN_PRODUCT_ID=listGetAt(FORM_DATA.PRODUCT,1,"**")>
       
-
+<CFSET R=price_to_history(MAIN_PRODUCT_ID,IS_VIRTUAL)>
       <cfquery name="ins" datasource="#dsn3#" result="res">
           INSERT INTO PROJECT_PRODUCTS_TREE_PRICES_MAIN(RECORD_DATE,RECORD_EMP,MAIN_PRODUCT_ID,PROJECT_ID,IS_VIRTUAL) VALUES (GETDATE(),#FORM_DATA.RECORD_EMP#,#MAIN_PRODUCT_ID#,#FORM_DATA.PROJECT_ID#,#IS_VIRTUAL#)
         </cfquery>
@@ -822,5 +827,42 @@ VALUES (
         </cfquery>
         </cfloop>
     </cffunction>
+
+    <cffunction name="price_to_history">
+        <cfargument name="MAIN_PRODUCT_ID">
+        <cfargument name="IS_VIRTUAL">
+
+        <cfquery name="getMain" datasource="#dsn3#">
+            SELECT * FROM PROJECT_PRODUCTS_TREE_PRICES_MAIN WHERE MAIN_PRODUCT_ID=#ARGUMENTS.MAIN_PRODUCT_ID# AND IS_VIRTUAL=#ARGUMENTS.IS_VIRTUAL#
+        </cfquery>
+        <cfif getMain.recordCount>
+            <cfloop query="getMain">
+            <cfquery name="getRows" datasource="#dsn3#">
+                SELECT * FROM <CFIF ARGUMENTS.IS_VIRTUAL EQ 1>
+                    PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES
+                <CFELSE>
+                    PROJECT_REAL_PRODUCTS_TREE_PRICES
+                </CFIF>
+                WHERE MAIN_ID=#getMain.MAIN_ID#                
+            </cfquery>
+            <cfloop query="getRows">
+                <cfquery name="SEDEC" datasource="#DSN3#">
+                    UPDATE <CFIF ARGUMENTS.IS_VIRTUAL EQ 1>
+                    PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES
+                <CFELSE>
+                    PROJECT_REAL_PRODUCTS_TREE_PRICES
+                </CFIF>
+                SET IS_ACTIVE=0 WHERE MAIN_ID=#getMain.MAIN_ID#
+                </cfquery>
+            </cfloop>
+            <cfquery name="SEDC2" datasource="#DSN3#">
+                UPDATE PROJECT_PRODUCTS_TREE_PRICES_MAIN SET IS_AKTIF=0 WHERE MAIN_ID=#GETMAIN.MAIN_ID#
+            </cfquery>
+        </cfloop>
+        </cfif>
+        <cfreturn "Başarılı">
+
+    </cffunction>
+
 
 </cfcomponent>
