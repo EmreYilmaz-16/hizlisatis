@@ -63,6 +63,7 @@
 
 
 
+
 <cf_box title="Ürün Fiyat Girişi">
 <cfif isDefined("from_project") and attributes.from_project eq 1>
     <div class="form-group">

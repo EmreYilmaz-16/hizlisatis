@@ -1,7 +1,10 @@
 ﻿$(document).ready(function () {
   SetEventListeners()
   FiyatlariGetir()
-
+  var RR=wrk_query("SELECT * FROM PROJECT_PRODUCTS_TREE_PRICES_MAIN WHERE IS_AKTIF=1 AND  PROJECT_ID="+ProjectData.PROJECT_ID+"AND IS_VIRTUAL="+list_getat(ProjectData.PRODUCT,2,"**")+" AND  MAIN_PRODUCT_ID="+list_getat(ProjectData.PRODUCT,1,"**"),"DSN3")
+  if(RR.recordcount>0){
+    FiyatlariYukle(list_getat(ProjectData.PRODUCT,1,"**"),"")
+  }
 })
 function getProjectProducts(el, ev) {
   if (ev.keyCode == 13) {
