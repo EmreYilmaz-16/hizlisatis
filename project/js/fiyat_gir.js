@@ -1,11 +1,16 @@
 ﻿$(document).ready(function () {
   SetEventListeners()
-  var RR=wrk_query("SELECT * FROM PROJECT_PRODUCTS_TREE_PRICES_MAIN WHERE IS_AKTIF=1 AND  PROJECT_ID="+ProjectData.PROJECT_ID+"AND IS_VIRTUAL="+list_getat(ProjectData.PRODUCT,2,"**")+" AND  MAIN_PRODUCT_ID="+list_getat(ProjectData.PRODUCT,1,"**"),"DSN3")
-  
-  
-  if(RR.recordcount>0){
-    //FiyatlariYukle(RR.MAIN_ID,"")
-  }else{
+  var RR = wrk_query("SELECT * FROM PROJECT_PRODUCTS_TREE_PRICES_MAIN WHERE IS_AKTIF=1 AND  PROJECT_ID=" + ProjectData.PROJECT_ID + "AND IS_VIRTUAL=" + list_getat(ProjectData.PRODUCT, 2, "**") + " AND  MAIN_PRODUCT_ID=" + list_getat(ProjectData.PRODUCT, 1, "**"), "DSN3")
+
+
+  if (RR.recordcount > 0) {
+    var Rows = document.getElementsByClassName("basket_row")
+    for (let Row of Rows) {
+      var RowId = Row.getAttribute("pit_id")
+      var e = document.getElementsByName("PRICE_" + RowId)[0]
+      satirHesapla2(e)
+    }
+  } else {
     FiyatlariGetir()
   }
 })
@@ -65,10 +70,14 @@ function FiyatlariHesapla() {
 
     var Rows = document.getElementsByClassName("basket_row")
     for (let Row of Rows) {
+
       //console.log(Row)
       var UpperRowId = Row.getAttribute("upper_ptid")
       //console.log(UpperRowId)
       var RowId = Row.getAttribute("pit_id")
+      var OTHER_MONEY = document.getElementsByName("OTHER_MONEY_" + RowId)[0].innerText
+      var ix = moneyArr.findIndex(p => p.MONEY == OTHER_MONEY)
+      var Rate2 = moneyArr[ix].RATE2
       // console.log(RowId)
       var x = document.getSubElementsByRowId(RowId)
       document.getElementsByName("PRICETL_" + RowId)[0].setAttribute("style", "color:red !important;background:#80808045 !important;text-align:right")
@@ -154,6 +163,36 @@ function FiyatlariHesapla() {
 
 }
 
+function satirHesapla2(e) {
+  //  debugger;
+  var RowId = e.getAttribute("data-rowid")
+  console.log(RowId)
+  var PRICE = document.getElementsByName("PRICE_" + RowId)[0].value
+  document.getElementsByName("PRICE_" + RowId)[0].value = commaSplit(PRICE)
+  var PRICE = document.getElementsByName("PRICE_" + RowId)[0].value;
+  PRICE = parseFloat(filterNum(PRICE))
+  var OTHER_MONEY = document.getElementsByName("OTHER_MONEY_" + RowId)[0].innerText
+  //var DISCOUNT=document.getElementsByName("DISCOUNT_"+RowId).value
+
+  var DISCOUNT = document.getElementsByName("DISCOUNT_" + RowId)[0].value
+  document.getElementsByName("DISCOUNT_" + RowId)[0].value = commaSplit(DISCOUNT)
+  var DISCOUNT = document.getElementsByName("DISCOUNT_" + RowId)[0].value;
+  DISCOUNT = parseFloat(filterNum(DISCOUNT))
+
+  var AMOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value
+  document.getElementsByName("AMOUNT_" + RowId)[0].value = commaSplit(AMOUNT)
+  var DISCOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value;
+  DISCOUNT = parseFloat(filterNum(AMOUNT))
+
+  var ix = moneyArr.findIndex(p => p.MONEY == OTHER_MONEY)
+  var Rate2 = moneyArr[ix].RATE2
+  console.log(Rate2)
+  var TlFiyat = PRICE * Rate2
+
+  document.getElementsByName("PRICETL_" + RowId)[0].value = commaSplit(TlFiyat)
+
+  FiyatlariHesapla()
+}
 
 
 function FiyatlariGetir() {
@@ -328,17 +367,17 @@ function KaydetCanim() {
 function OpenPricesInte() {
   var ProductId = list_getat(ProjectData.PRODUCT, 1, "**")
   var IS_VIRTUAL = list_getat(ProjectData.PRODUCT, 2, "**")
-  openBoxDraggable("index.cfm?fuseaction=project.emptypopup_mini_tools&project_id=" + ProjectData.PROJECT_ID + "&is_virtual="+IS_VIRTUAL+"&main_product_id=" + ProductId + "&tool_type=ShowSavedPriceMain")
+  openBoxDraggable("index.cfm?fuseaction=project.emptypopup_mini_tools&project_id=" + ProjectData.PROJECT_ID + "&is_virtual=" + IS_VIRTUAL + "&main_product_id=" + ProductId + "&tool_type=ShowSavedPriceMain")
 }
 
-function FiyatlariYukle(MAIN_ID,modalid) {
+function FiyatlariYukle(MAIN_ID, modalid) {
   var ProductId = list_getat(ProjectData.PRODUCT, 1, "**")
   var IS_VIRTUAL = list_getat(ProjectData.PRODUCT, 2, "**")
-  
-  if(parseInt(IS_VIRTUAL)==0){
-    var Prices = wrk_query("SELECT  * FROM PROJECT_REAL_PRODUCTS_TREE_PRICES WHERE MAIN_ID="+MAIN_ID, "DSN3")
-  }else {
-    var Prices = wrk_query("SELECT  * FROM PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE MAIN_ID="+MAIN_ID, "DSN3")
+
+  if (parseInt(IS_VIRTUAL) == 0) {
+    var Prices = wrk_query("SELECT  * FROM PROJECT_REAL_PRODUCTS_TREE_PRICES WHERE MAIN_ID=" + MAIN_ID, "DSN3")
+  } else {
+    var Prices = wrk_query("SELECT  * FROM PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE MAIN_ID=" + MAIN_ID, "DSN3")
   }
   for (let i = 0; i < Prices.recordcount; i++) {
     var PRICE = Prices.PRICE[i];
