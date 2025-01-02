@@ -821,13 +821,18 @@ VALUES (
                INSERT INTO PROJECT_REAL_PRODUCTS_TREE_PRICES(PROJECT_ID,MAIN_PRODUCT_ID ,PRODUCT_TREE_ID ,UPPER_TRERE_ID ,AMOUNT ,PRICE ,OTHER_MONEY ,DISCOUNT ,MAIN_ID,IS_ACTIVE )
                VALUES (#FORM_DATA.PROJECT_ID#,#MAIN_PRODUCT_ID#,#it.PRODUCT_TREE_ID#,#it.UPPER_PRODUCT_TREE_ID#,#it.AMOUNT#,#it.PRICE#,'#it.OTHER_MONEY#',#it.DISCOUNT#,#res.IDENTITYCOL#,1)
             </cfquery>
+
             <CFELSE>
                 <cfquery name="ins2" datasource="#dsn3#">
                     INSERT INTO PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES(PROJECT_ID,MAIN_PRODUCT_ID ,PRODUCT_TREE_ID ,UPPER_TRERE_ID ,AMOUNT ,PRICE ,OTHER_MONEY ,DISCOUNT ,MAIN_ID,IS_ACTIVE )
                     VALUES (#FORM_DATA.PROJECT_ID#,#MAIN_PRODUCT_ID#,#it.PRODUCT_TREE_ID#,#it.UPPER_PRODUCT_TREE_ID#,#it.AMOUNT#,#it.PRICE#,'#it.OTHER_MONEY#',#it.DISCOUNT#,#res.IDENTITYCOL#,1)
                  </cfquery>
+                 
             </cfif>
         </cfloop>
+        <cfquery name="up" datasource="#dsn3#">
+            UPDATE workcube_metosan_1.VIRTUAL_PRODUCTS_PRT SET PRICE=#FORM_DATA.GENEL_TOPLAM# WHERE VIRTUAL_PRODUCT_ID=#MAIN_PRODUCT_ID#
+         </cfquery>
         <cfloop array="#FORM_DATA.KURLAR#" item="kur">
         <cfquery name="INSKUR" datasource="#DSN3#">
             INSERT INTO PROJECT_PRODUCTS_TREE_PRICES_MAIN_MONEY(MAIN_ID,MONEY,RATE2) VALUES(#res.IDENTITYCOL#,'#kur.MONEY#',#kur.RATE2#)

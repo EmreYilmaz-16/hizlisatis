@@ -9,10 +9,12 @@
       var RowId = Row.getAttribute("pit_id")
       var e = document.getElementsByName("PRICE_" + RowId)[0]
       satirHesapla2(e)
+      
     }
   } else {
     FiyatlariGetir()
   }
+  disableyap()
 })
 function getProjectProducts(el, ev) {
   if (ev.keyCode == 13) {
@@ -66,8 +68,8 @@ document.getSubElementsByRowId = function (idb) {
   return el;
 };
 function FiyatlariHesapla() {
-  for (let i = 0; i < 10; i++) {
-
+  for (let i = 0; i < 5; i++) {
+    console.log("FiyatlariHesapla")
     var Rows = document.getElementsByClassName("basket_row")
     for (let Row of Rows) {
 
@@ -80,14 +82,9 @@ function FiyatlariHesapla() {
       var Rate2 = moneyArr[ix].RATE2
       // console.log(RowId)
       var x = document.getSubElementsByRowId(RowId)
-      document.getElementsByName("PRICETL_" + RowId)[0].setAttribute("style", "color:red !important;background:#80808045 !important;text-align:right")
-      document.getElementsByName("PRICETL_" + RowId)[0].setAttribute("disabled", "disabled")
-      document.getElementsByName("AMOUNT_" + RowId)[0].setAttribute("style", "color:red !important;background:#80808045 !important;text-align:right")
-      document.getElementsByName("AMOUNT_" + RowId)[0].setAttribute("disabled", "disabled")
-      document.getElementsByName("PRICE_" + RowId)[0].setAttribute("style", "color:green !important;background:#80808045 !important;text-align:right")
+      
       if (x.length > 0) {
-        document.getElementsByName("PRICE_" + RowId)[0].setAttribute("style", "color:red !important;background:#80808045 !important;text-align:right")
-        document.getElementsByName("PRICE_" + RowId)[0].setAttribute("disabled", "disabled")
+        
 
         var Tf = 0;
         for (let XX of x) {
@@ -111,7 +108,7 @@ function FiyatlariHesapla() {
         DISM = parseFloat(filterNum(DISM))
         var TY = Tf * MMIK
         TY = TY - ((TY * DISM) / 100)
-        document.getElementsByName("TOTAL_" + RowId)[0].setAttribute("value", commaSplit(TY))
+        document.getElementsByName("TOTAL_" + RowId)[0].setAttribute("value", commaSplit(TY))/**/
 
       } else {
         var Miktar = document.getElementsByName("AMOUNT_" + RowId)[0].value
@@ -125,11 +122,41 @@ function FiyatlariHesapla() {
         var Tf = 0
         Tf = Tf + (Miktar * Fiyat)
         Tf = Tf - ((Tf * Discount) / 100)
-        document.getElementsByName("TOTAL_" + RowId)[0].setAttribute("value", commaSplit(Tf))
+        document.getElementsByName("TOTAL_" + RowId)[0].setAttribute("value", commaSplit(Tf))/**/
       }
     }
 
   }
+
+  toplamHesapla()
+}
+function disableyap() {
+  var Rows = document.getElementsByClassName("basket_row")
+  for (let Row of Rows) {
+
+    //console.log(Row)
+    var UpperRowId = Row.getAttribute("upper_ptid")
+    //console.log(UpperRowId)
+    var RowId = Row.getAttribute("pit_id")
+    var OTHER_MONEY = document.getElementsByName("OTHER_MONEY_" + RowId)[0].innerText
+    var ix = moneyArr.findIndex(p => p.MONEY == OTHER_MONEY)
+    var Rate2 = moneyArr[ix].RATE2
+    // console.log(RowId)
+    var x = document.getSubElementsByRowId(RowId)
+    document.getElementsByName("PRICETL_" + RowId)[0].setAttribute("style", "color:red !important;background:#80808045 !important;text-align:right")
+    document.getElementsByName("PRICETL_" + RowId)[0].setAttribute("disabled", "disabled")
+    document.getElementsByName("AMOUNT_" + RowId)[0].setAttribute("style", "color:red !important;background:#80808045 !important;text-align:right")
+    document.getElementsByName("AMOUNT_" + RowId)[0].setAttribute("disabled", "disabled")
+    document.getElementsByName("PRICE_" + RowId)[0].setAttribute("style", "color:green !important;background:#80808045 !important;text-align:right")
+    if (x.length > 0) {
+      document.getElementsByName("PRICE_" + RowId)[0].setAttribute("style", "color:red !important;background:#80808045 !important;text-align:right")
+      document.getElementsByName("PRICE_" + RowId)[0].setAttribute("disabled", "disabled")
+    }
+  }
+}
+
+function toplamHesapla() {
+  var Rows = document.getElementsByClassName("basket_row")
   var GenelToplam = 0;
   for (let Row of Rows) {
     var UpperRowId = Row.getAttribute("upper_ptid")
@@ -160,11 +187,10 @@ function FiyatlariHesapla() {
     }
 
   }
-
 }
 
 function satirHesapla2(e) {
-  //  debugger;
+  console.log("satirHesapla2")
   var RowId = e.getAttribute("data-rowid")
   console.log(RowId)
   var PRICE = document.getElementsByName("PRICE_" + RowId)[0].value
@@ -181,8 +207,8 @@ function satirHesapla2(e) {
 
   var AMOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value
   document.getElementsByName("AMOUNT_" + RowId)[0].value = commaSplit(AMOUNT)
-  var DISCOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value;
-  DISCOUNT = parseFloat(filterNum(AMOUNT))
+  var DISCOUNT = document.getElementsByName("DISCOUNT_" + RowId)[0].value;
+  DISCOUNT = parseFloat(filterNum(DISCOUNT))
 
   var ix = moneyArr.findIndex(p => p.MONEY == OTHER_MONEY)
   var Rate2 = moneyArr[ix].RATE2
@@ -190,12 +216,13 @@ function satirHesapla2(e) {
   var TlFiyat = PRICE * Rate2
 
   document.getElementsByName("PRICETL_" + RowId)[0].value = commaSplit(TlFiyat)
-
-  FiyatlariHesapla()
+  document.getElementsByName("TOTAL_" + RowId)[0].value = commaSplit(TlFiyat - ((TlFiyat * DISCOUNT) / 100))
+  toplamHesapla()
 }
 
 
 function FiyatlariGetir() {
+  console.log("FiyatlariGetir")
   var Rows = document.getElementsByClassName("basket_row")
   for (let Row of Rows) {
     var RowId = Row.getAttribute("pit_id")
@@ -315,8 +342,7 @@ function satirHesapla(e) {
 
   var AMOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value
   document.getElementsByName("AMOUNT_" + RowId)[0].value = commaSplit(AMOUNT)
-  var DISCOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value;
-  DISCOUNT = parseFloat(filterNum(AMOUNT))
+
 
   var ix = moneyArr.findIndex(p => p.MONEY == OTHER_MONEY)
   var Rate2 = moneyArr[ix].RATE2
@@ -325,7 +351,9 @@ function satirHesapla(e) {
 
   document.getElementsByName("PRICETL_" + RowId)[0].value = commaSplit(TlFiyat)
 
-  FiyatlariHesapla()
+  document.getElementsByName("TOTAL_" + RowId)[0].value = commaSplit(TlFiyat - ((TlFiyat * DISCOUNT) / 100))
+
+  toplamHesapla()
 }
 
 function KaydetCanim() {
@@ -354,12 +382,16 @@ function KaydetCanim() {
   }
   ProjectData.PRODUCT_TREE = ProductTreeArray
   ProjectData.KURLAR = moneyArr
+  var GenelToplam=document.querySelector("#BasketForm > tfoot > tr > td:nth-child(2) > input[type=text]").value 
+  ProjectData.GENEL_TOPLAM= parseFloat(filterNum(GenelToplam))
   console.log(ProjectData)
   $.ajax({
     url: "/AddOns/Partner/project/cfc/product_design.cfc?method=SaveTreePrices",
     data: { FORM_DATA: JSON.stringify(ProjectData) },
     method: "POST"
 
+  }).done(function(){
+    alert("Kayıt Tamamlanmıştır !")
   })
 }
 
