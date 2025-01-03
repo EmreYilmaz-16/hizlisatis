@@ -132,12 +132,12 @@
                                         SELECT SUM(AMOUNT) AMOUNT,UNIQUE_RELATION_ID FROM (
 SELECT sum(SFR.AMOUNT) AS AMOUNT
                                             ,UNIQUE_RELATION_ID
-                                        FROM workcube_metosan_2025_1.STOCK_FIS_ROW AS SFR
+                                        FROM #DSN2#.STOCK_FIS_ROW AS SFR
                                         GROUP BY UNIQUE_RELATION_ID
                                         UNION ALL
                                         SELECT sum(SFR.AMOUNT) AS AMOUNT
                                             ,UNIQUE_RELATION_ID
-                                        FROM workcube_metosan_2024_1.STOCK_FIS_ROW AS SFR
+                                        FROM #DSN#_#YEAR(NOW())-1#_1.STOCK_FIS_ROW AS SFR
                                         GROUP BY UNIQUE_RELATION_ID
 ) T GROUP BY UNIQUE_RELATION_ID
                                     ) AS SF ON SF.UNIQUE_RELATION_ID = PORK.UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
