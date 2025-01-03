@@ -129,17 +129,10 @@
                                     LEFT JOIN #dsn3#.PRODUCT_PLACE AS PP ON PP .PRODUCT_PLACE_ID=PPR.PRODUCT_PLACE_ID
                                     LEFT JOIN #dsn3#.PRODUCT_BRANDS AS PB ON PB.BRAND_ID=S.BRAND_ID 
                                     LEFT JOIN (
-                                        SELECT SUM(AMOUNT) AMOUNT,UNIQUE_RELATION_ID FROM (
-SELECT sum(SFR.AMOUNT) AS AMOUNT
-                                            ,UNIQUE_RELATION_ID
-                                        FROM #DSN2#.STOCK_FIS_ROW AS SFR
-                                        GROUP BY UNIQUE_RELATION_ID
-                                        UNION ALL
                                         SELECT sum(SFR.AMOUNT) AS AMOUNT
                                             ,UNIQUE_RELATION_ID
-                                        FROM #DSN#_#YEAR(NOW())-1#_1.STOCK_FIS_ROW AS SFR
+                                        FROM #dsn2#.STOCK_FIS_ROW AS SFR
                                         GROUP BY UNIQUE_RELATION_ID
-) T GROUP BY UNIQUE_RELATION_ID
                                     ) AS SF ON SF.UNIQUE_RELATION_ID = PORK.UNIQUE_RELATION_ID COLLATE SQL_Latin1_General_CP1_CI_AS
                                     WHERE PORK.REL_UNIQUE_RELATION_ID='#UNIQUE_RELATION_ID#' 
                                 </cfquery>
