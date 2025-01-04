@@ -99,6 +99,7 @@
         <CFSET attributes.KDV_TOTAL_AMOUNT=0>
         <CFSET attributes.LOCATION_ID="">
         <CFSET attributes.MEMBER_ID1="">
+        <CFSET attributes.MEMBER_TYPE1="">
 
         <CFSET attributes.OIV_TOTAL_AMOUNT=0>
         <CFSET attributes.OPP_HEAD1="">
