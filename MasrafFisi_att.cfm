@@ -50,7 +50,7 @@
         <cfset attributes.CH_PARTNER="#GETINVOICE.PARTNER_ID#">
         <cfset attributes.CH_PARTNER_ID="#GETINVOICE.PARTNER_ID#">
 
-
+<CFSET attributes.RD_MONEY="TL,1,1,1,1">
 
         
         <cfset attributes.ACCOUNT_ACC_CODE="">
