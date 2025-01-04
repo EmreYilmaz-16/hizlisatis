@@ -49,6 +49,7 @@
         <cfset attributes.CH_MEMBER_TYPE="partner">
         <cfset attributes.CH_PARTNER="#GETINVOICE.PARTNER_ID#">
         <cfset attributes.CH_PARTNER_ID="#GETINVOICE.PARTNER_ID#">
+        <cfset attributes.EMP_ID ="#session.ep.userid#">
         <cfset attributes.DETAIL ="#GETINVOICE.INVOICE_ID#'li faturadan puan kullanımı">
 
 <CFSET attributes.RD_MONEY="TL,1,1,1,1">
