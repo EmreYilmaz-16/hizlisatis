@@ -56,6 +56,7 @@
         <cfset attributes.ACCOUNT_ACC_CODE="">
         <cfset attributes.ACCOUNT_CODE1="760.01.03.0020">
         <cfset attributes.ACTIVE_PERIOD=session.ep.PERIOD_ID>
+        <cfset FORM.ACTIVE_PERIOD=session.ep.PERIOD_ID>
         <cfset attributes.ACTIVITY_TYPE1="">
         <cfset attributes.ADRES="">
         <cfset attributes.ASSET1="">
