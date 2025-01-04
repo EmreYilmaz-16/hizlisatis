@@ -29,7 +29,7 @@
         <cfquery name="GETPAPER" datasource="#DSN3#">
             SELECT EXPENSE_COST_NO,EXPENSE_COST_NUMBER FROM GENERAL_PAPERS WHERE EXPENSE_COST_NO IS NOT NULL
         </cfquery>
-        <cfquery name="GETINVOICE" datasource="#DSN3#">
+        <cfquery name="GETINVOICE" datasource="#DSN2#">
             select COMPANY_ID,PARTNER_ID,INVOICE_ID,SALE_EMP from INVOICE WHERE INVOICE_ID=#attributes.action_id#
         </cfquery>
 
