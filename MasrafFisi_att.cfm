@@ -65,7 +65,7 @@
         <cfset attributes.BANK_CODE="">
         <cfset attributes.BANK_NAME="">
         <cfset attributes.BASKET_DUE_VALUE=0>
-        <cfset attributes.BASKET_DUE_VALUE_DATE_="#dateFormat(now(),"dd/>mm/yyyy")#">
+        <cfset attributes.BASKET_DUE_VALUE_DATE_="#dateFormat(now(),"dd/mm/yyyy")#">
         <cfset attributes.BRANCH_ID="">
         <cfset attributes.BSMV_TOTAL_AMOUNT=0>
         <cfset attributes.BUDGET_PERIOD="">
@@ -82,8 +82,8 @@
         <cfset attributes.EXPENSE_CENTER_ID1=7>
         <cfset attributes.EXPENSE_CENTER_NAME1='SATIŞ VE PAZARLAMA'>
         <cfset attributes.EXPENSE_COST_TYPE=120>
-        <cfset attributes.EXPENSE_DATE="#dateFormat(now(),"dd/>mm/yyyy")#">
-        <cfset attributes.EXPENSE_DATE1="#dateFormat(now(),"dd/>mm/yyyy")#">
+        <cfset attributes.EXPENSE_DATE="#dateFormat(now(),"dd/mm/yyyy")#">
+        <cfset attributes.EXPENSE_DATE1="#dateFormat(now(),"dd/mm/yyyy")#">
         <cfset attributes.EXPENSE_DATE_H=timeformat(now(),"HH")>
         <cfset attributes.EXPENSE_DATE_M=timeformat(now(),"mm")>
         <cfset attributes.EXPENSE_EMPLOYEE="#session.ep.NAME# #session.ep.SURNAME#">
@@ -112,7 +112,7 @@
         <CFSET attributes.PAYMETHOD_NAME="NAKİT">
         <CFSET attributes.PBS_DESCRIPTION_PBS="">
         <CFSET attributes.PROCESS_CAT=215>
-        <cfset attributes.PROCESS_DATE="#dateFormat(now(),"dd/>mm/yyyy")#">
+        <cfset attributes.PROCESS_DATE="#dateFormat(now(),"dd/mm/yyyy")#">
         <cfset attributes.PRODUCT_ID1="">
         <cfset attributes.PRODUCT_NAME1="">
         <cfset attributes.PROJECT1="">
@@ -150,7 +150,7 @@
         <CFSET attributes.TAX_CODE="">
         <CFSET attributes.TAX_CODE1="">
         <CFSET attributes.TAX_RATE1=0>
-        <CFSET attributes.TEMP_DATE="#dateFormat(now(),"dd/>mm/yyyy")#">
+        <CFSET attributes.TEMP_DATE="#dateFormat(now(),"dd/mm/yyyy")#">
         <CFSET attributes.TEVKIFAT_ID="">
         <CFSET attributes.TEVKIFAT_ORAN="">
         <CFSET attributes.TL_VALUE1="USD">
