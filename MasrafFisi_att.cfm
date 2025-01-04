@@ -174,22 +174,6 @@
 
 
 
-        <CFSET attributes.WRK_ROW_ID1=""><!----TODO: WRK_ROW ID--->
-        <CFSET attributes.TOTAL1=1000><!----TODO: NET TOTAL--->
-        <CFSET attributes.TOTAL_AMOUNT=1000><!---TODO: NET TOTAL--->
-        <CFSET attributes.SERIAL_NO=18902><!----TODO: SERIAL NO--->
-        <CFSET attributes.SERIAL_NUMBER="MF"><!----TODO: SERIAL NO--->
-        <CFSET attributes.OTHER_TOTAL_AMOUNT=28.27><!----TODO: KUR--->
-        <CFSET attributes.OTHER_NET_TOTAL1=1000><!----TODO: NET TOTAL--->
-        <CFSET attributes.OTHER_NET_TOTAL_AMOUNT=28.27><!----TODO: KUR--->
-        <CFSET attributes.OTHER_NET_TOTAL_KDVSIZ1=1000><!----TODO: NET TOTAL--->
-        <CFSET attributes.NET_TOTAL1=1000><!----TODO: NET TOTAL--->
-        <CFSET attributes.NET_TOTAL_AMOUNT=1000><!----TODO: NET TOTAL--->
-        <cfset attributes.CH_COMPANY=""> <!---TODO: Company ID --->
-        <cfset attributes.CH_COMPANY_ID=""> <!---TODO: Company ID --->
-        <cfset attributes.CH_MEMBER_TYPE=""> <!---TODO: Company ID --->
-        <cfset attributes.CH_PARTNER=""> <!--- TODO:Müşteri ID --->
-        <cfset attributes.CH_PARTNER_ID=""> <!--- TODO:Müşteri ID --->
 <CFSET PAPER_CONTROL_ = 0>
 
     <cfinclude template="/V16/objects/query/add_collacted_expense_cost_pbs.cfm">
