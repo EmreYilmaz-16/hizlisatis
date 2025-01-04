@@ -186,6 +186,9 @@
         <cfset attributes.CH_PARTNER=""> <!--- TODO:Müşteri ID --->
         <cfset attributes.CH_PARTNER_ID=""> <!--- TODO:Müşteri ID --->
 
+
+    <cfinclude template="/V16/objects/query/add_collacted_expense_cost.cfm">
+
 </cfif>
 
 
