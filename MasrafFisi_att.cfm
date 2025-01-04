@@ -186,7 +186,7 @@
         <cfset attributes.CH_MEMBER_TYPE=""> <!---TODO: Company ID --->
         <cfset attributes.CH_PARTNER=""> <!--- TODO:Müşteri ID --->
         <cfset attributes.CH_PARTNER_ID=""> <!--- TODO:Müşteri ID --->
-
+<CFSET PAPER_CONTROL_ = 0>
 
     <cfinclude template="/V16/objects/query/add_collacted_expense_cost.cfm">
 
