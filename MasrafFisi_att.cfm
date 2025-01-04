@@ -192,7 +192,7 @@
         <cfset attributes.CH_PARTNER_ID=""> <!--- TODO:Müşteri ID --->
 <CFSET PAPER_CONTROL_ = 0>
 
-    <cfinclude template="/V16/objects/query/add_collacted_expense_cost.cfm">
+    <cfinclude template="/V16/objects/query/add_collacted_expense_cost_pbs.cfm">
 
 </cfif>
 
