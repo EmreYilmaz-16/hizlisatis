@@ -1,6 +1,7 @@
 
 <cfscript>
-	dsn2 = caller.dsn2;
+	dsn = caller.dsn;
+    dsn2 = caller.dsn2;
 	dsn_alias = caller.dsn_alias;
 	dsn3 = caller.dsn3;
 	dsn3_alias = caller.dsn3_alias;

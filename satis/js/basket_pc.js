@@ -1398,7 +1398,7 @@ function getRafSml(stock_id, rafcode) {
     ".STOCKS_LOCATION AS SL ON SL.LOCATION_ID=PP.LOCATION_ID AND SL.DEPARTMENT_ID=PP.STORE_ID";
   q +=
     " LEFT JOIN " +
-    generalParamsSatis.dataSources.dsn3 +
+    generalParamsSatis.dataSources.dsn +
     ".DEPARTMENT AS D ON D.DEPARTMENT_ID=SL.DEPARTMENT_ID";
   q +=
     " WHERE PPR.STOCK_ID=" + stock_id + " AND PP.SHELF_CODE='" + rafcode + "'";
