@@ -215,8 +215,8 @@
     <cfif len(arguments.OBJEM.discount)>#arguments.OBJEM.DISCOUNT#<cfelse>0</cfif>,
     <cfif len(arguments.OBJEM.money)>'#arguments.OBJEM.MONEY#'<cfelse>'TL'</cfif>,
                                             #arguments.OBJEM.IS_VIRTUAL#,
-    <cfif len(arguments.OBJEM.DISPLAY_NAME)>'     #arguments.OBJEM.DISPLAY_NAME#'<CFELSE>NULL</cfif>,
-        <cfif len(arguments.OBJEM.PBS_ROW_ID)>'     #arguments.OBJEM.PBS_ROW_ID#'<CFELSE>NULL</cfif>
+    <cfif len(arguments.OBJEM.DISPLAY_NAME)>'#arguments.OBJEM.DISPLAY_NAME#'<CFELSE>NULL</cfif>,
+        <cfif len(arguments.OBJEM.PBS_ROW_ID)>'#arguments.OBJEM.PBS_ROW_ID#'<CFELSE>NULL</cfif>
     )
     
     </cfquery>
