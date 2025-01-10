@@ -1038,6 +1038,7 @@ var span = document.createElement("span");
     li.setAttribute("data-other_money", MONEY);
     li.setAttribute("data-discount", DISCOUNT_RATE);
     li.setAttribute("class", "list-group-item");
+    li.setAttribute("data-pbs_row_id", generateUUID());
     li.setAttribute("data-idb", idB);
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var MNYX = moneyArr.findIndex((p) => p.MONEY == MONEY);
