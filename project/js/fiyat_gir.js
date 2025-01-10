@@ -368,6 +368,8 @@ function KaydetCanim() {
     var AMOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value
     var DISCOUNT = document.getElementsByName("DISCOUNT_" + RowId)[0].value
     var OTHER_MONEY = document.getElementsByName("OTHER_MONEY_" + RowId)[0].innerText
+    var PBS_ROW_ID = document.getElementsByName("PBS_ROW_ID" + RowId)[0].value
+   // 21600
     var O = {
       PRODUCT_TREE_ID: RowId,
       UPPER_PRODUCT_TREE_ID: UPPER_TREE_ID,
@@ -376,6 +378,7 @@ function KaydetCanim() {
       PRICE: parseFloat(filterNum(PRICE)),
       DISCOUNT: parseFloat(filterNum(DISCOUNT)),
       AMOUNT: parseFloat(filterNum(AMOUNT)),
+      PBS_ROW_ID: PBS_ROW_ID,
       OTHER_MONEY
     }
     ProductTreeArray.push(O)
