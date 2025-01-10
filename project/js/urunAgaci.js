@@ -335,6 +335,12 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     li.setAttribute("data-PRODUCT_TREE_ID", arr[i].PRODUCT_TREE_ID);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
     li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
+    if (arr[i].PBS_ROW_ID.length > 0) {
+      li.setAttribute("data-pbs_row_id", arr[i].PBS_ROW_ID);
+    }
+    else {
+      li.setAttribute("data-pbs_row_id", generateUUID());
+    }
     //TESTET BURASI SATIR TUTARINI HESAPLAMAK İÇİN KONDU VERİ GELMEZSE NE OLUR KONTROL ET
     var prcs = parseFloat(arr[i].PRICE);
     var MNYX = moneyArr.findIndex((p) => p.MONEY == arr[i].MONEY);
@@ -419,7 +425,7 @@ function AgaciYaz(arr, isoq, address = "0", vrt = "1") {
     diva.appendChild(inp);
     diva.appendChild(btn);
     diva.appendChild(btn3);
-   // diva.appendChild(btn5);
+    // diva.appendChild(btn5);
     diva.appendChild(btn2);
     var divb = document.createElement("div");
     divb.setAttribute("style", "display:flex");
@@ -472,6 +478,23 @@ function inputCreator(type, name, ev, evl, cls, style, vl) {
   inp.setAttribute("name", name);
   return inp;
 }
+
+function generateUUID() { // Public Domain/MIT
+  var d = new Date().getTime();//Timestamp
+  var d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now() * 1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16;//random number between 0 and 16
+    if (d > 0) {//Use timestamp until depleted
+      r = (d + r) % 16 | 0;
+      d = Math.floor(d / 16);
+    } else {//Use microseconds since page-load if supported
+      r = (d2 + r) % 16 | 0;
+      d2 = Math.floor(d2 / 16);
+    }
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+}
+
 
 function getitem(el) {
   sonEleman = el;
@@ -1098,7 +1121,15 @@ function AgacGetir(agacim, sx = 0) {
     var money = agacim[i].getAttribute("data-other_money");
     var discount = agacim[i].getAttribute("data-discount");
     var displayName = agacim[i].getAttribute("data-displayName");
-
+    var pbs_row_id = agacim[i].getAttribute("data-pbs_row_id");
+    /**
+     *   if (length(arr[i].PBS_ROW_ID) > 0) {
+      li.setAttribute("data-pbs_row_id", arr[i].PBS_ROW_ID);
+    }
+    else {
+      li.setAttribute("data-pbs_row_id", generateUUID());
+    }
+     */
     //console.log(agacim[i])
     obj = agacim[i];
     var amount = $(obj).find("input[name='amount']")[0].value;
@@ -1120,6 +1151,7 @@ function AgacGetir(agacim, sx = 0) {
     agacItem.MONEY = money;
     agacItem.DISCOUNT = discount;
     agacItem.DISPLAY_NAME = displayName;
+    agacItem.PBS_ROW_ID = pbs_row_id;
     if (p_cat_id != undefined) {
       agacItem.PRODUCT_CATID = p_cat_id;
     } else {
@@ -1189,6 +1221,7 @@ function addProdMain_(idb, modal_id) {
   li.setAttribute("data-discount", 0);
   li.setAttribute("data-other_money", "TL");
   li.setAttribute("data-displayName", "");
+  li.setAttribute("data-pbs_row_id", generateUUID());
   li.setAttribute("data-question_id", "");
   li.setAttribute("data-sta", 0);
   li.setAttribute("class", "list-group-item");
@@ -1387,7 +1420,7 @@ function addProdSub_(el) {
   div2.appendChild(button);
   div2.appendChild(btn3);
   div2.appendChild(btn4);
- // div2.appendChild(btn5);
+  // div2.appendChild(btn5);
   div2.appendChild(btn2);
   div.appendChild(div2);
   li.appendChild(div);
@@ -1668,6 +1701,14 @@ function AgaciYaz_12(arr, isoq, address = "0", vrt = "1", li) {
     li.setAttribute("data-other_money", arr[i].MONEY);
     li.setAttribute("data-question_id", arr[i].QUESTION_ID);
     li.setAttribute("data-displayName", arr[i].DISPLAYNAME);
+
+    if (arr[i].PBS_ROW_ID.length > 0) {
+      li.setAttribute("data-pbs_row_id", arr[i].PBS_ROW_ID);
+    }
+    else {
+      li.setAttribute("data-pbs_row_id", generateUUID());
+    }
+
     li.setAttribute("data-idb", idB);
     idB++;
     var diva = document.createElement("div");
@@ -1928,6 +1969,7 @@ function setQuestion(el) {
   var ev = e.getAttribute("data-idb");
   var question_id = e.getAttribute("data-question_id");
   var displayName = e.getAttribute("data-displayname");
+  var pbs_row_id = e.getAttribute("data-pbs_row_id");
   if (displayName == null) {
     displayName = "";
   }
@@ -2614,11 +2656,11 @@ function AddMultiOffer() {
 function OpenFiyatGir() {
   var is_virtual = document.getElementById("is_virtual").value
   var product = document.getElementById("vp_id").value
-  if(parseInt(is_virtual)==0){
-   var x= wrk_query("SELECT STOCK_ID FROM STOCKS WHERE PRODUCT_ID="+product,"DSN3")
-   var product = x.STOCK_ID[0]
+  if (parseInt(is_virtual) == 0) {
+    var x = wrk_query("SELECT STOCK_ID FROM STOCKS WHERE PRODUCT_ID=" + product, "DSN3")
+    var product = x.STOCK_ID[0]
   }
-  
+
   var project_id = document.getElementById("project_id").value
   var p = product + "**" + is_virtual
   var Str = product

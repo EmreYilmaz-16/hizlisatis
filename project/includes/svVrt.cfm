@@ -69,7 +69,8 @@
                     DISCOUNT=SV_01_ITEM.DISCOUNT,
                     MONEY=SV_01_ITEM.MONEY,
                     IS_VIRTUAL=SV_01_ITEM.IS_VIRTUAL,
-                    DISPLAY_NAME=SV_01_ITEM.DISPLAY_NAME
+                    DISPLAY_NAME=SV_01_ITEM.DISPLAY_NAME,
+                    PBS_ROW_ID=SV_01_ITEM.PBS_ROW_ID
                 }
             InsertTreeNew_1453(Obj);
         </cfscript>
@@ -117,7 +118,8 @@
                     DISCOUNT=SV_01_ITEM.DISCOUNT,
                     MONEY=SV_01_ITEM.MONEY,
                     IS_VIRTUAL=SV_01_ITEM.IS_VIRTUAL,
-                    DISPLAY_NAME=SV_01_ITEM.DISPLAY_NAME
+                    DISPLAY_NAME=SV_01_ITEM.DISPLAY_NAME,
+                    PBS_ROW_ID=SV_01_ITEM.PBS_ROW_ID
                 }
             InsertTreeNew_1453(Obj2);
         </cfscript>
@@ -137,7 +139,8 @@
                                 DISCOUNT=SV_02_ITEM.DISCOUNT,
                                 MONEY=SV_02_ITEM.MONEY,
                                 IS_VIRTUAL=SV_02_ITEM.IS_VIRTUAL,
-                                DISPLAY_NAME=SV_02_ITEM.DISPLAY_NAME
+                                DISPLAY_NAME=SV_02_ITEM.DISPLAY_NAME,
+                                PBS_ROW_ID=SV_02_ITEM.PBS_ROW_ID
                             }
                         InsertTreeNew_1453(Obj);
                     </cfscript>
@@ -199,7 +202,8 @@
     DISCOUNT,
     MONEY,
     IS_VIRTUAL,
-    DISPLAY_NAME
+    DISPLAY_NAME,
+    PBS_ROW_ID
     )
     VALUES(
         #arguments.OBJEM.VP_ID#,
@@ -211,7 +215,8 @@
     <cfif len(arguments.OBJEM.discount)>#arguments.OBJEM.DISCOUNT#<cfelse>0</cfif>,
     <cfif len(arguments.OBJEM.money)>'#arguments.OBJEM.MONEY#'<cfelse>'TL'</cfif>,
                                             #arguments.OBJEM.IS_VIRTUAL#,
-    <cfif len(arguments.OBJEM.DISPLAY_NAME)>'     #arguments.OBJEM.DISPLAY_NAME#'<CFELSE>NULL</cfif>
+    <cfif len(arguments.OBJEM.DISPLAY_NAME)>'     #arguments.OBJEM.DISPLAY_NAME#'<CFELSE>NULL</cfif>,
+        <cfif len(arguments.OBJEM.PBS_ROW_ID)>'     #arguments.OBJEM.PBS_ROW_ID#'<CFELSE>NULL</cfif>
     )
     
     </cfquery>
