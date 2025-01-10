@@ -951,6 +951,7 @@ function AddRowItemVirtual(
     li.setAttribute("data-price", PRICE);
     li.setAttribute("data-other_money", MONEY);
     li.setAttribute("data-discount", DISCOUNT_RATE);
+    li.setAttribute("data-pbs_row_id", generateUUID());
     li.setAttribute("class", "list-group-item");
     li.setAttribute("data-idb", idB);
     var AMOUNT = 1;
