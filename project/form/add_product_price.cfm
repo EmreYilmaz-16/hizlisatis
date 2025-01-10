@@ -145,6 +145,7 @@
                     <input style="text-align:right;padding-right:3px" type="text" name="AMOUNT_#SEVIYE_1.PTID#" data-rowid="#SEVIYE_1.PTID#" value="#TLFORMAT(SEVIYE_1.AMOUNT)#">
                     <input type="hidden" name="PRODUCT_ID#SEVIYE_1.PTID#" value="#SEVIYE_1.PRODUCT_ID#">
                     <input type="hidden" name="IS_VIRTUAL#SEVIYE_1.PTID#" value="#SEVIYE_1.IS_VIRTUAL#">
+                    <input type="hidden" name="PBS_ROW_ID#SEVIYE_1.PTID#" value="#SEVIYE_1.IS_VIRTUAL#">
                 </div>
             </td>
             <td class="satirNormal">
@@ -189,6 +190,7 @@
                                             <input style="text-align:right;padding-right:3px" type="text" name="AMOUNT_#evaluate("SEVIYE_2_#I#").PTID#" data-rowid="#evaluate("SEVIYE_2_#I#").PTID#" value="#TLFORMAT(evaluate("SEVIYE_2_#I#").AMOUNT)#">
                                             <input type="hidden" name="PRODUCT_ID#evaluate("SEVIYE_2_#I#").PTID#" value="#evaluate("SEVIYE_2_#I#").PRODUCT_ID#">
                                             <input type="hidden" name="IS_VIRTUAL#evaluate("SEVIYE_2_#I#").PTID#" value="#evaluate("SEVIYE_2_#I#").IS_VIRTUAL#">
+                                            <input type="hidden" name="PBS_ROW_ID#evaluate("SEVIYE_2_#I#").PTID#" value="#evaluate("SEVIYE_2_#I#").IS_VIRTUAL#">
                                         </div>
                                     </td>
                                     <td class="satirNormal">
@@ -235,6 +237,7 @@
                                                                         <input style="text-align:right;padding-right:3px" type="text" name="AMOUNT_#evaluate("SEVIYE_3_#J#").PTID#" data-rowid="#evaluate("SEVIYE_3_#J#").PTID#" value="#TLFORMAT(evaluate("SEVIYE_3_#J#").AMOUNT)#">
                                                                         <input type="hidden" name="PRODUCT_ID#evaluate("SEVIYE_3_#J#").PTID#" value="#evaluate("SEVIYE_3_#J#").PRODUCT_ID#">
                                                                         <input type="hidden" name="IS_VIRTUAL#evaluate("SEVIYE_3_#J#").PTID#" value="#evaluate("SEVIYE_3_#J#").IS_VIRTUAL#">
+                                                                        <input type="hidden" name="PBS_ROW_ID#evaluate("SEVIYE_3_#J#").PTID#" value="#evaluate("SEVIYE_3_#J#").IS_VIRTUAL#">
                                                                     </div>
                                                                 </td>
                                                                 <td class="satirNormal">
@@ -282,6 +285,7 @@
                                                                                                 <input style="text-align:right;padding-right:3px" type="text" name="AMOUNT_#evaluate("SEVIYE_4_#K#").PTID#" data-rowid="#evaluate("SEVIYE_4_#K#").PTID#" value="#TLFORMAT(evaluate("SEVIYE_4_#K#").AMOUNT)#">
                                                                                                 <input type="hidden" name="PRODUCT_ID#evaluate("SEVIYE_4_#K#").PTID#" value="#evaluate("SEVIYE_4_#K#").PRODUCT_ID#">
                                                                                                 <input type="hidden" name="IS_VIRTUAL#evaluate("SEVIYE_4_#K#").PTID#" value="#evaluate("SEVIYE_4_#K#").IS_VIRTUAL#">
+                                                                                                <input type="hidden" name="PBS_ROW_ID#evaluate("SEVIYE_4_#K#").PTID#" value="#evaluate("SEVIYE_4_#K#").IS_VIRTUAL#">
                                                                                             </div>
                                                                                         </td>
                                                                                         <td class="satirNormal">
@@ -356,13 +360,16 @@
     <cfquery name="SEVIYE_2" datasource="#DSN3#">
         <cfif arguments.IS_VIRTUAL EQ 1>
             SELECT PT.VPT_ID AS PTID , PT.PRODUCT_ID ,CASE WHEN PT.IS_VIRTUAL =1 THEN VPT.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS SIDO,PT.AMOUNT,ISNULL(ISNULL(PEPS.PRICE,PT.PRICE),0) PRICE,ISNULL(ISNULL(PEPS.DISCOUNT,PT.DISCOUNT),0) DISCOUNT,ISNULL(ISNULL(PEPS.OTHER_MONEY,PT.MONEY),'TL') MONEY,CASE WHEN PT.IS_VIRTUAL =1 THEN ISNULL(VPT.PRODUCT_NAME,PT.DISPLAY_NAME) ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,PT.IS_VIRTUAL,0 AS PRODUCT_UNIT_ID 
+            ,PT.PBS_ROW_ID
             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT AS PT  
             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.STOCK_ID
             LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VPT ON VPT.VIRTUAL_PRODUCT_ID=PT.PRODUCT_ID
             LEFT JOIN workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES PEPS ON PEPS.PRODUCT_TREE_ID=PT.VPT_ID AND IS_ACTIVE=1
             WHERE VP_ID=#ARGUMENTS.STOCK_ID#
         <CFELSE>
-            SELECT PT.PRODUCT_TREE_ID AS PTID, S.PRODUCT_ID,S.STOCK_ID SIDO ,ISNULL(PT.AMOUNT,0) AMOUNT,ISNULL(ISNULL(PEPS.PRICE,PRICE_PBS),0) AS PRICE,ISNULL(ISNULL(PEPS.DISCOUNT,DISCOUNT_PBS),0) AS DISCOUNT ,ISNULL(ISNULL(PEPS.OTHER_MONEY,OTHER_MONEY_PBS),'TL') AS MONEY ,S.PRODUCT_NAME,0 AS IS_VIRTUAL,PRODUCT_UNIT_ID FROM workcube_metosan_1.PRODUCT_TREE AS PT 
+            SELECT PT.PRODUCT_TREE_ID AS PTID, S.PRODUCT_ID,S.STOCK_ID SIDO ,ISNULL(PT.AMOUNT,0) AMOUNT,ISNULL(ISNULL(PEPS.PRICE,PRICE_PBS),0) AS PRICE,ISNULL(ISNULL(PEPS.DISCOUNT,DISCOUNT_PBS),0) AS DISCOUNT ,ISNULL(ISNULL(PEPS.OTHER_MONEY,OTHER_MONEY_PBS),'TL') AS MONEY ,S.PRODUCT_NAME,0 AS IS_VIRTUAL,PRODUCT_UNIT_ID 
+            ,PT.PBS_ROW_ID
+            FROM workcube_metosan_1.PRODUCT_TREE AS PT 
             INNER JOIN workcube_metosan_1.STOCKS AS S ON S.STOCK_ID=PT.RELATED_ID 
             LEFT JOIN workcube_metosan_1.PROJECT_REAL_PRODUCTS_TREE_PRICES PEPS ON PEPS.PRODUCT_TREE_ID=PT.PRODUCT_TREE_ID AND IS_ACTIVE=1
             WHERE PT.STOCK_ID=#arguments.STOCK_ID#
