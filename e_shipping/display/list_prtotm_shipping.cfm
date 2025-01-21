@@ -70,78 +70,13 @@
 <cfset cat_criter1 = '01.152.'>
 <cfset cat_criter2 = '01.153.'>
 <cfset lnk_str = '#cat_criter1#,#cat_criter2#'>
-<cfif len(attributes.SHIP_METHOD_ID)>
-	<cfset lnk_str = lnk_str &',#attributes.SHIP_METHOD_ID#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif> 
-<cfif len(attributes.city_name)>
-	<cfset lnk_str = lnk_str &',#attributes.city_name#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.sales_departments)>
-	<cfset lnk_str = lnk_str &',#attributes.sales_departments#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif> 
-<cfif len(attributes.prod_cat)>
-	<cfset lnk_str = lnk_str &',#attributes.prod_cat#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif> 
-<cfif len(attributes.product_id)>
-	<cfset lnk_str = lnk_str &',#attributes.product_id#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.consumer_id)>
-	<cfset lnk_str = lnk_str &',#attributes.consumer_id#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.company_id)>
-	<cfset lnk_str = lnk_str &',#attributes.company_id#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.order_employee_id)>
-	<cfset lnk_str = lnk_str &',#attributes.order_employee_id#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.finish_date)>
-	<cfset lnk_str = lnk_str &',#attributes.finish_date#'>
-
-
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.start_date)>
-	<cfset lnk_str = lnk_str &',#attributes.start_date#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.listing_type)>
-	<cfset lnk_str = lnk_str &',#attributes.listing_type#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.sort_type)>
-	<cfset lnk_str = lnk_str &',#attributes.sort_type#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.branch_id)>
-	<cfset lnk_str = lnk_str &',#attributes.branch_id#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
-<cfif len(attributes.zone_id)>
-	<cfset lnk_str = lnk_str &',#attributes.zone_id#'>
-<cfelse>
-	<cfset lnk_str = lnk_str &','&' '>
-</cfif>
+<cfloop list="SHIP_METHOD_ID,city_name,sales_departments,prod_cat,product_id,consumer_id,company_id,order_employee_id,finish_date,start_date,listing_type,sort_type,branch_id,zone_id" index="attr">
+	<cfif len(attributes[attr])>
+		<cfset lnk_str = lnk_str &',#attributes[attr]#'>
+	<cfelse>
+		<cfset lnk_str = lnk_str &','&' '>
+	</cfif>
+</cfloop>
 <cfif isdefined("attributes.form_varmi")>
 	<cfset lnk_str = lnk_str & ",1">
 <cfelse>
@@ -329,28 +264,32 @@
     <cfelse>
         <cfquery name="GET_SHIPPING" datasource="#dsn3#"><!---Sevk Planları ve Sevk Talepleri Listeleniyor--->
             SELECT 
-                *,
+                TBL.*,
                 CASE
                     WHEN TBL.COMPANY_ID IS NOT NULL THEN
                         (
-                        SELECT     
-                            NICKNAME
-                            FROM         
-                                #dsn_alias#.COMPANY
-                            WHERE     
-                                COMPANY_ID = TBL.COMPANY_ID
+                        SELECT NICKNAME
+                        FROM #dsn_alias#.COMPANY
+                        WHERE COMPANY_ID = TBL.COMPANY_ID
                         )
                     WHEN TBL.CONSUMER_ID IS NOT NULL THEN      
                         (	
-                            SELECT     
-                                CONSUMER_NAME + ' ' + CONSUMER_SURNAME AS ISIM
-                            FROM         
-                                #dsn_alias#.CONSUMER
-                            WHERE     
-                                CONSUMER_ID = TBL.CONSUMER_ID
+                        SELECT CONSUMER_NAME + ' ' + CONSUMER_SURNAME AS ISIM
+                        FROM #dsn_alias#.CONSUMER
+                        WHERE CONSUMER_ID = TBL.CONSUMER_ID
                         )
-                END
-                    AS UNVAN
+                END AS UNVAN,
+                ISNULL(SUM(ORR.QUANTITY), 0) AS AMOUNT,
+                ISNULL(MAX(ORDERS.IS_INSTALMENT), 0) AS IS_INSTALMENT,
+                SUM(CASE 
+                    WHEN ORR.ORDER_ROW_CURRENCY IN (-1, -2, -4, -5, -6, -7) THEN 1 
+                    WHEN ORR.ORDER_ROW_CURRENCY IN (-3, -8, -9, -10) THEN 2 
+                    WHEN O.RESERVED = 0 THEN 0 
+                END) AS DURUM,
+                SUM(CASE 
+                    WHEN ORR.ORDER_ROW_CURRENCY IN (-3, -6, -8, -9, -10) THEN 1 
+                    ELSE 2 
+                END) AS SEVK_DURUM
             FROM
                 (
                 <cfif listing_type neq 3>
@@ -377,140 +316,25 @@
                             E.EMPLOYEE_NAME, 
                             E.EMPLOYEE_SURNAME, 
                             D.DEPARTMENT_HEAD,
-                            ISNULL((
-                                SELECT DISTINCT 
-                                    SC.CITY_NAME
-                                FROM         
-                                    PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                                    ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                    ORDERS AS O ON ORR.ORDER_ID = O.ORDER_ID INNER JOIN
-                                    #dsn_alias#.SETUP_CITY AS SC ON O.CITY_ID = SC.CITY_ID
-                                WHERE     
-                                    ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID
-                            ),'') AS SEHIR,
-                            ISNULL((
-                                SELECT DISTINCT 
-                                    SCO.COUNTY_NAME
-                                FROM         
-                                    PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                                    ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                    ORDERS AS O ON ORR.ORDER_ID = O.ORDER_ID INNER JOIN
-                                    #dsn_alias#.SETUP_COUNTY AS SCO ON O.COUNTY_ID = SCO.COUNTY_ID
-                                WHERE     
-                                    ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID
-                            ),'') AS ILCE,
-                            (
-                             SELECT     
-                                ISNULL(SUM(ORR.QUANTITY), 0) AS AMOUNT
-                            FROM         
-                                PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                                ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                ORDERS ON ORR.ORDER_ID = ORDERS.ORDER_ID
-                            WHERE     
-                                ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID 
-                            ) AS AMOUNT,
-                            (
-                            	SELECT   DISTINCT     
-                                	ISNULL(ORDERS.IS_INSTALMENT, 0) AS IS_INSTALMENT
-								FROM         
-                                	PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                         			ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                       				ORDERS ON ORR.ORDER_ID = ORDERS.ORDER_ID
-								WHERE        
-                                	ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID 
-                            ) AS IS_INSTALMENT,
-                            (
-                            SELECT     
-                                SUM(DURUM) AS DURUM
-                            FROM         
-                                (
-                                SELECT     
-                                    DURUM
-                                FROM          
-                                    (
-                                    SELECT     
-                                        CASE 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 1 THEN 1 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 2 THEN 1 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 3 THEN 2 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 4 THEN 1 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 5 THEN 1 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 6 THEN 1 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 7 THEN 1 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 8 THEN 2 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 9 THEN 2 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 10 THEN 2 
-                                            WHEN O.RESERVED = 0 THEN 0 
-                                        END AS DURUM
-                                    FROM          
-                                        PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                                        ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                        ORDERS AS O ON ORR.ORDER_ID = O.ORDER_ID
-                                    WHERE      
-                                        ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID
-                                    ) AS TBL2
-                                GROUP BY DURUM
-                                ) AS TBL3
-                            ) AS DURUM,
-                            (
-                            SELECT     
-                                SUM(SEVK_DURUM) AS SEVK_DURUM
-                            FROM         
-                                (
-                                SELECT     
-                                    SEVK_DURUM
-                                FROM          
-                                    (
-                                    SELECT     
-                                        CASE 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 3 THEN 1 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 6 THEN 4
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 8 THEN 1 
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 9 THEN 1
-                                            WHEN ORR.ORDER_ROW_CURRENCY = - 10 THEN 1
-                                            ELSE 2
-                                        END AS SEVK_DURUM
-                                    FROM          
-                                        PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                                        ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                        ORDERS AS O ON ORR.ORDER_ID = O.ORDER_ID
-                                    WHERE      
-                                        ESRR.SHIP_RESULT_ID = ESR.SHIP_RESULT_ID
-                                    ) AS TBL2
-                                GROUP BY SEVK_DURUM
-                                ) AS TBL3
-                            ) AS SEVK_DURUM
+                            ISNULL(SC.CITY_NAME, '') AS SEHIR,
+                            ISNULL(SCO.COUNTY_NAME, '') AS ILCE
                         FROM       	
-                            PRTOTM_SHIP_RESULT AS ESR INNER JOIN
-                            #dsn_alias#.SHIP_METHOD AS SM ON ESR.SHIP_METHOD_TYPE = SM.SHIP_METHOD_ID INNER JOIN
-                            #dsn_alias#.EMPLOYEES AS E ON ESR.DELIVER_EMP = E.EMPLOYEE_ID INNER JOIN
-                            #dsn_alias#.DEPARTMENT AS D ON ESR.DEPARTMENT_ID = D.DEPARTMENT_ID
+                            PRTOTM_SHIP_RESULT AS ESR 
+                            INNER JOIN #dsn_alias#.SHIP_METHOD AS SM ON ESR.SHIP_METHOD_TYPE = SM.SHIP_METHOD_ID 
+                            INNER JOIN #dsn_alias#.EMPLOYEES AS E ON ESR.DELIVER_EMP = E.EMPLOYEE_ID 
+                            INNER JOIN #dsn_alias#.DEPARTMENT AS D ON ESR.DEPARTMENT_ID = D.DEPARTMENT_ID
+                            LEFT JOIN PRTOTM_SHIP_RESULT_ROW AS ESRR ON ESR.SHIP_RESULT_ID = ESRR.SHIP_RESULT_ID
+                            LEFT JOIN ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID
+                            LEFT JOIN ORDERS AS O ON ORR.ORDER_ID = O.ORDER_ID
+                            LEFT JOIN #dsn_alias#.SETUP_CITY AS SC ON O.CITY_ID = SC.CITY_ID
+                            LEFT JOIN #dsn_alias#.SETUP_COUNTY AS SCO ON O.COUNTY_ID = SCO.COUNTY_ID
                         WHERE 
-                            IS_TYPE = 1
+                            ESR.IS_TYPE = 1
                             <cfif isdefined('attributes.product_id') and len(attributes.product_id)>
-                                AND ESR.SHIP_RESULT_ID IN
-                                                    (
-                                                    SELECT DISTINCT 
-                                                        ESRR.SHIP_RESULT_ID
-                                                    FROM          
-                                                        PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                                                        ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID
-                                                    WHERE      
-                                                        ORR.PRODUCT_ID = #attributes.product_id#
-                                                    )
+                                AND ORR.PRODUCT_ID = #attributes.product_id#
                             </cfif>
                             <cfif isdefined('attributes.prod_cat') and len(attributes.prod_cat)>
-                                AND ESR.SHIP_RESULT_ID IN
-                                                        (
-                                                        SELECT DISTINCT 
-                                                            ESRR.SHIP_RESULT_ID
-                                                        FROM          
-                                                            PRTOTM_SHIP_RESULT_ROW AS ESRR INNER JOIN
-                                                            ORDER_ROW AS ORR ON ESRR.ORDER_ROW_ID = ORR.ORDER_ROW_ID INNER JOIN
-                                                            STOCKS AS S ON ORR.STOCK_ID = S.STOCK_ID
-                                                        WHERE      
-                                                            S.STOCK_CODE LIKE N'#attributes.prod_cat#%'
-                                                        )                          
+                                AND S.STOCK_CODE LIKE N'#attributes.prod_cat#%'
                             </cfif>
                             <cfif isdefined('attributes.SALES_DEPARTMENTS') and Listlen(attributes.SALES_DEPARTMENTS,'-') eq 2>
                                 AND ESR.DEPARTMENT_ID = #listgetat(attributes.SALES_DEPARTMENTS,1,'-')# 
@@ -529,18 +353,15 @@
                 </cfif>
                 <cfif listing_type neq 2>
                     SELECT
-                        SI.DISPATCH_SHIP_ID SHIP_RESULT_ID,
+                        SI.DISPATCH_SHIP_ID AS SHIP_RESULT_ID,
                         (
-                        SELECT     
-                            ORDER_DETAIL
-                        FROM          
-                            ORDERS
-                        WHERE      
-                            ORDER_ID = O.ORDER_ID
+                        SELECT ORDER_DETAIL
+                        FROM ORDERS
+                        WHERE ORDER_ID = O.ORDER_ID
                         ) AS NOTE,
                         SI.SEVK_EMIR_DATE,
-                       	ISNULL(SI.IS_SEVK_EMIR,0) AS IS_SEVK_EMIR,
-                        ISNULL(SI.SEVK_EMP,0) as SEVK_EMP,
+                        ISNULL(SI.IS_SEVK_EMIR,0) AS IS_SEVK_EMIR,
+                        ISNULL(SI.SEVK_EMP,0) AS SEVK_EMP,
                         O.ORDER_NUMBER AS SHIP_FIS_NO,
                         CAST(SI.DISPATCH_SHIP_ID AS VARCHAR(50)) AS DELIVER_PAPER_NO,
                         SI.DELIVER_EMP,
@@ -557,94 +378,36 @@
                         E.EMPLOYEE_NAME, 
                         E.EMPLOYEE_SURNAME,
                         D.DEPARTMENT_HEAD,
-                        ISNULL(SC.CITY_NAME,0) AS SEHIR,
-                        ISNULL(SCO.COUNTY_NAME,'') ILCE,
-                        ISNULL(SUM(SIR.AMOUNT),'') AS AMOUNT,
+                        ISNULL(SC.CITY_NAME, '') AS SEHIR,
+                        ISNULL(SCO.COUNTY_NAME, '') AS ILCE,
+                        ISNULL(SUM(SIR.AMOUNT), '') AS AMOUNT,
                         O.IS_INSTALMENT,
                         CASE
                             WHEN S.SHIP_ID IS NOT NULL THEN 2
                             WHEN S.SHIP_ID IS NULL THEN 1
-                            END
-                        AS DURUM,
-                        (
-                        	SELECT     
-                              	SUM(SEVK_DURUM) AS SEVK_DURUM
-                         	FROM         
-                            	(
-                                    SELECT     
-                                        SEVK_DURUM
-                                    FROM          
-                                        (
-                                        	SELECT        
-                                            	CASE 
-                                                	WHEN ORDER_ROW_CURRENCY = - 6 THEN 4 
-                                                    WHEN ORDER_ROW_CURRENCY = - 9 THEN 1 
-                                                    WHEN ORDER_ROW_CURRENCY = - 8 THEN 1 
-                                                    WHEN ORDER_ROW_CURRENCY = - 3 THEN 1 
-                                                    WHEN ORDER_ROW_CURRENCY = - 10 THEN 1 
-                                              		ELSE 2 
-                                              	END AS SEVK_DURUM
-											FROM            
-                                            	ORDER_ROW AS ORR_ INNER JOIN
-                         						#dsn2_alias#.SHIP_INTERNAL_ROW AS SIR_ ON ORR_.ORDER_ROW_ID = SIR_.ROW_ORDER_ID
-											WHERE        
-                                            	SIR_.DISPATCH_SHIP_ID = SI.DISPATCH_SHIP_ID
-                                        ) AS TBL1
-                                    GROUP BY 
-                                        SEVK_DURUM
-                           		) AS TBL2
-                        ) AS SEVK_DURUM
+                        END AS DURUM,
+                        SUM(CASE 
+                            WHEN ORR.ORDER_ROW_CURRENCY IN (-3, -6, -8, -9, -10) THEN 1 
+                            ELSE 2 
+                        END) AS SEVK_DURUM
                     FROM         
-                       	#dsn2_alias#.SHIP_INTERNAL AS SI INNER JOIN
-                     	#dsn2_alias#.SHIP_INTERNAL_ROW AS SIR ON SI.DISPATCH_SHIP_ID = SIR.DISPATCH_SHIP_ID INNER JOIN
-                    	ORDER_ROW AS ORW ON SIR.ROW_ORDER_ID = ORW.ORDER_ROW_ID INNER JOIN
-                     	ORDERS AS O ON ORW.ORDER_ID = O.ORDER_ID INNER JOIN
-                    	#dsn_alias#.DEPARTMENT AS D ON SI.DEPARTMENT_IN = D.DEPARTMENT_ID LEFT OUTER JOIN
-                     	#dsn_alias#.SETUP_COUNTY AS SCO ON O.COUNTY_ID = SCO.COUNTY_ID LEFT OUTER JOIN
-                      	#dsn_alias#.SHIP_METHOD AS SM ON SI.SHIP_METHOD = SM.SHIP_METHOD_ID LEFT OUTER JOIN
-                     	#dsn_alias#.EMPLOYEES AS E ON SI.RECORD_EMP = E.EMPLOYEE_ID LEFT OUTER JOIN
-                    	#dsn_alias#.SETUP_CITY AS SC ON O.CITY_ID = SC.CITY_ID LEFT OUTER JOIN
-                     	#dsn2_alias#.SHIP AS S ON SI.DISPATCH_SHIP_ID = S.DISPATCH_SHIP_ID
+                        #dsn2_alias#.SHIP_INTERNAL AS SI 
+                        INNER JOIN #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR ON SI.DISPATCH_SHIP_ID = SIR.DISPATCH_SHIP_ID 
+                        INNER JOIN ORDER_ROW AS ORW ON SIR.ROW_ORDER_ID = ORW.ORDER_ROW_ID 
+                        INNER JOIN ORDERS AS O ON ORW.ORDER_ID = O.ORDER_ID 
+                        INNER JOIN #dsn_alias#.DEPARTMENT AS D ON SI.DEPARTMENT_IN = D.DEPARTMENT_ID 
+                        LEFT OUTER JOIN #dsn_alias#.SETUP_COUNTY AS SCO ON O.COUNTY_ID = SCO.COUNTY_ID 
+                        LEFT OUTER JOIN #dsn_alias#.SHIP_METHOD AS SM ON SI.SHIP_METHOD = SM.SHIP_METHOD_ID 
+                        LEFT OUTER JOIN #dsn_alias#.EMPLOYEES AS E ON SI.RECORD_EMP = E.EMPLOYEE_ID 
+                        LEFT OUTER JOIN #dsn_alias#.SETUP_CITY AS SC ON O.CITY_ID = SC.CITY_ID 
+                        LEFT OUTER JOIN #dsn2_alias#.SHIP AS S ON SI.DISPATCH_SHIP_ID = S.DISPATCH_SHIP_ID
                     WHERE
                         1=1
                         <cfif isdefined('attributes.product_id') and len(attributes.product_id)>
-                            AND SI.DISPATCH_SHIP_ID IN
-                                                    (
-                                                    SELECT     
-
-
-
-                                                        SI.DISPATCH_SHIP_ID
-                                                    FROM         
-                                                        #dsn2_alias#.SHIP_INTERNAL AS SI INNER JOIN
-                                                        #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR ON SI.DISPATCH_SHIP_ID = SIR.DISPATCH_SHIP_ID INNER JOIN
-                                                        STOCKS AS S ON SIR.STOCK_ID = S.STOCK_ID
-                                                    WHERE     
-                                                        S.PRODUCT_ID = #attributes.product_id#
-                                                    GROUP BY 
-                                                        SI.DISPATCH_SHIP_ID
-                                                    ) 
+                            AND SIR.STOCK_ID = #attributes.product_id#
                         </cfif>
                         <cfif isdefined('attributes.prod_cat') and len(attributes.prod_cat)>
-                            AND SI.DISPATCH_SHIP_ID IN
-                                                    (
-                                                    SELECT     
-                                                        SI.DISPATCH_SHIP_ID
-                                                    FROM         
-                                                        #dsn2_alias#.SHIP_INTERNAL AS SI INNER JOIN
-                                                        #dsn2_alias#.SHIP_INTERNAL_ROW AS SIR ON SI.DISPATCH_SHIP_ID = SIR.DISPATCH_SHIP_ID INNER JOIN
-                                                        STOCKS AS S ON SIR.STOCK_ID = S.STOCK_ID
-                                                    WHERE     
-
-
-
-
-
-
-                                                        S.STOCK_CODE LIKE N'#attributes.prod_cat#%'
-                                                    GROUP BY 
-                                                        SI.DISPATCH_SHIP_ID
-                                                    )                          
+                            AND S.STOCK_CODE LIKE N'#attributes.prod_cat#%'
                         </cfif>
                         <cfif isdefined('attributes.SALES_DEPARTMENTS') and len(attributes.SALES_DEPARTMENTS)>
                             AND SI.DEPARTMENT_OUT = #listgetat(attributes.SALES_DEPARTMENTS,1,'-')# 
@@ -658,21 +421,18 @@
                         </cfif>
                         <cfif isdefined('attributes.branch_id') and len(attributes.branch_id)>
                             AND SI.DEPARTMENT_IN IN
-                                                    (
-                                                    SELECT     
-                                                        DEPARTMENT_ID
-                                                    FROM         
-                                                        #dsn_alias#.DEPARTMENT
-                                                    WHERE     
-                                                        BRANCH_ID = #attributes.branch_id#
-                                                    )
+                                (
+                                SELECT DEPARTMENT_ID
+                                FROM #dsn_alias#.DEPARTMENT
+                                WHERE BRANCH_ID = #attributes.branch_id#
+                                )
                         </cfif>      
                     GROUP BY 
                         SI.DISPATCH_SHIP_ID,
                         O.ORDER_NUMBER, 
                         O.IS_INSTALMENT,
                         SI.SEVK_EMIR_DATE,
-                       	SI.IS_SEVK_EMIR,
+                        SI.IS_SEVK_EMIR,
                         SI.SEVK_EMP,
                         SI.DELIVER_DATE, 
                         SI.DELIVER_EMP,
@@ -694,80 +454,87 @@
             WHERE
                 AMOUNT > 0
                 <cfif isdefined('attributes.city_name') and len(attributes.city_name)>
-                    AND SEHIR ='#attributes.city_name#' 
+                    AND SEHIR = '#attributes.city_name#' 
                 </cfif>
                 <cfif isdefined('attributes.SHIP_METHOD_ID') and len(attributes.SHIP_METHOD_ID)>
-                    AND SHIP_METHOD_TYPE ='#attributes.SHIP_METHOD_ID#' 
+                    AND SHIP_METHOD_TYPE = '#attributes.SHIP_METHOD_ID#' 
                 </cfif>
                 <cfif isdefined('attributes.member_name') and len(attributes.member_name)>
-					<cfif isdefined('attributes.company_id') and len(attributes.company_id)>
-                        AND COMPANY_ID =#attributes.company_id#
+                    <cfif isdefined('attributes.company_id') and len(attributes.company_id)>
+                        AND COMPANY_ID = #attributes.company_id#
                     </cfif>
                     <cfif isdefined('attributes.consumer_id') and len(attributes.consumer_id)>
-                        AND CONSUMER_ID =#attributes.consumer_id# 
+                        AND CONSUMER_ID = #attributes.consumer_id# 
                     </cfif>
                 </cfif>
                 <cfif len(attributes.keyword)>
-                    AND 
-                    	(
-                        REFERENCE_NO LIKE '%#attributes.keyword#%' OR
-                        DELIVER_PAPER_NO LIKE '%#attributes.keyword#%'
-                        )
+                    AND (REFERENCE_NO LIKE '%#attributes.keyword#%' OR DELIVER_PAPER_NO LIKE '%#attributes.keyword#%')
                 </cfif>
                 <cfif len(attributes.order_employee_id) and len(attributes.order_employee)>
-                	AND DELIVER_EMP = #attributes.order_employee_id#
+                    AND DELIVER_EMP = #attributes.order_employee_id#
                 </cfif>
-              	<cfif len(attributes.zone_id)>  
-                	AND (
-                    	COMPANY_ID IN 	
-                    				(
-                                        SELECT     
-                                        	COMPANY_ID
-										FROM         
-                                        	#dsn_alias#.COMPANY
-										WHERE     
-                                        	SALES_COUNTY IN
-                          									(
-                                                            	SELECT     
-                                                                	SZ_ID
-                            									FROM          
-                                                                	#dsn_alias#.SALES_ZONES
-                            									WHERE      
-                                                                	SZ_HIERARCHY LIKE '#attributes.zone_id#%'
-                                                           	) 
-                                   	)
-                       	OR
-                   		CONSUMER_ID IN 	
-                    				(
-                                        SELECT     
-                                        	CONSUMER_ID
-										FROM         
-                                        	#dsn_alias#.CONSUMER
-										WHERE     
-                                        	SALES_COUNTY IN
-                          									(
-                                                            	SELECT     
-                                                                	SZ_ID
-                            									FROM          
-                                                                	#dsn_alias#.SALES_ZONES
-                            									WHERE      
-                                                                	SZ_HIERARCHY LIKE '#attributes.zone_id#%'
-                                                           	) 
-                                   	)
-                                    
-                  		)  
-              	</cfif>
-    			<cfif attributes.report_type_id eq 1>
-                	AND DURUM = 1
+                <cfif len(attributes.zone_id)>  
+                    AND (
+                        COMPANY_ID IN (
+                            SELECT COMPANY_ID
+                            FROM #dsn_alias#.COMPANY
+                            WHERE SALES_COUNTY IN (
+                                SELECT SZ_ID
+                                FROM #dsn_alias#.SALES_ZONES
+                                WHERE SZ_HIERARCHY LIKE '#attributes.zone_id#%'
+                            )
+                        )
+                        OR
+                        CONSUMER_ID IN (
+                            SELECT CONSUMER_ID
+                            FROM #dsn_alias#.CONSUMER
+                            WHERE SALES_COUNTY IN (
+                                SELECT SZ_ID
+                                FROM #dsn_alias#.SALES_ZONES
+                                WHERE SZ_HIERARCHY LIKE '#attributes.zone_id#%'
+                            )
+                        )
+                    )  
+                </cfif>
+                <cfif attributes.report_type_id eq 1>
+                    AND DURUM = 1
                 <cfelseif attributes.report_type_id eq 2>
-                	AND DURUM = 2
+                    AND DURUM = 2
                 <cfelseif attributes.report_type_id eq 3>
-                	AND SEVK_DURUM = 4
-               	 <cfelseif attributes.report_type_id eq 4>
-                	AND SEVK_DURUM = 6
+                    AND SEVK_DURUM = 4
+                <cfelseif attributes.report_type_id eq 4>
+                    AND SEVK_DURUM = 6
                 </cfif>
+            GROUP BY
+                TBL.SHIP_RESULT_ID,
+                TBL.NOTE,
+                TBL.SEVK_EMIR_DATE,
+                TBL.IS_SEVK_EMIR,
+                TBL.SEVK_EMP,
+                TBL.SHIP_FIS_NO,
+                TBL.DELIVER_PAPER_NO,
+                TBL.DELIVER_EMP,
+                TBL.REFERENCE_NO,
+                TBL.DELIVERY_DATE,
+                TBL.DEPARTMENT_ID,
+                TBL.COMPANY_ID,
+                TBL.CONSUMER_ID,
+                TBL.OUT_DATE,
+                TBL.IS_TYPE,
+                TBL.LOCATION_ID,
+                TBL.SHIP_METHOD_TYPE,
+                TBL.SHIP_METHOD,
+                TBL.EMPLOYEE_NAME,
+                TBL.EMPLOYEE_SURNAME,
+                TBL.DEPARTMENT_HEAD,
+                TBL.SEHIR,
+                TBL.ILCE,
+                TBL.ORDER_NUMBER,
+                TBL.IS_INSTALMENT,
+                TBL.ORDER_ID,
+                TBL.SHIP_ID
             ORDER BY
-            SHIP_RESULT_ID
+                TBL.SHIP_RESULT_ID
         </cfquery>
         <cfset arama_yapilmali = 0>
         <cfset attributes.totalrecords = GET_SHIPPING.recordcount>
@@ -1760,11 +1527,11 @@ windowopen("index.cfm?fuseaction=objects.popup_print_files&print_type=79&action_
                                                     TYPE = 2 AND 
                                                     STOCK_ID = TBL.PAKET_ID AND 
                                                     SHIPPING_ID = TBL.SHIP_RESULT_ID
-                                                ) AS CONTROL_AMOUNT, SHIP_RESULT_ID
+                                                ) AS CONTROL_AMOUNT
                                             FROM         
                                                 (
                                                 SELECT     
-                                                    SUM(PAKET_SAYISI) AS PAKET_SAYISI, 
+                                                    SUM(PAKET_SAYISI) AS PAKETSAYISI, 
                                                     PAKET_ID, 
                                                     BARCOD, 
                                                     STOCK_CODE, 
