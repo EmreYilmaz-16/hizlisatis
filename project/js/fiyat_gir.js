@@ -395,6 +395,7 @@ function KaydetCanim() {
 
   }).done(function(){
     alert("Kayıt Tamamlanmıştır !")
+    window.opener.location.reload();
   })
 }
 
