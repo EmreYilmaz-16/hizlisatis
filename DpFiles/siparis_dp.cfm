@@ -3,6 +3,48 @@
 INNER JOIN workcube_metosan.DEPARTMENT AS D ON D.DEPARTMENT_ID=EP.DEPARTMENT_ID
 WHERE D.BRANCH_ID=4 AND EMPLOYEE_ID=#session.EP.USERID#
 </cfquery>
+<cfquery name="mc" datasource="#dsn3#">
+    select sum(MONEY_CREDIT) MONEY_CREDIT,sum(USE_CREDIT) USE_CREDIT,
+    (SELECT SUM(MONEY_CREDIT-USE_CREDIT) FROM workcube_metosan_1.ORDER_MONEY_CREDITS where COMPANY_ID=(
+        SELECT COMPANY_ID FROM workcube_metosan_1.ORDERS WHERE ORDER_ID=#attributes.ORDER_ID#
+    )) CREADIT
+    
+     from workcube_metosan_1.ORDER_MONEY_CREDITS where ORDER_ID=#attributes.ORDER_ID#
+    </cfquery>
+    <div class="row">
+    <div class="col col-3 col-sm-12 col-lg-1">
+        
+        <table border="1" cellspacing="0" style="background: #2ab4c040">
+            <thead>
+                <tr>
+                    <th onclick="$('.tbd').toggle()" style="background: #2ab4c0;text-decoration: underline;color: white;cursor: pointer;padding:5px;border:none" colspan="3">
+                        Puan
+                    </th>
+                </tr>
+            <tr style="display:none" class="tbd">
+                <th>
+                    Kazanılan Puan
+                </th>
+                <th>
+                    Kullanıan Puan
+                </th>
+                <th>
+                    Müşteri Puan Bakiyesi
+                </th>
+              
+            </tr>
+        </thead>
+            <tr style="display:none" class="tbd">
+                <cfoutput>
+                    <td style="text-align:right">#tlformat(mc.MONEY_CREDIT)#</td>
+                    <td style="text-align:right">#tlformat(mc.USE_CREDIT)#</td>
+                    <td style="text-align:right">#tlformat(mc.CREADIT)#</td>
+                </cfoutput>
+            </tr>
+        </table>
+    
+    </div>
+    </div>
 
 <script>
 $(document).on('ready',function(){
