@@ -9,7 +9,7 @@
       var RowId = Row.getAttribute("pit_id")
       var e = document.getElementsByName("PRICE_" + RowId)[0]
       satirHesapla2(e)
-      
+
     }
   } else {
     FiyatlariGetir()
@@ -82,9 +82,9 @@ function FiyatlariHesapla() {
       var Rate2 = moneyArr[ix].RATE2
       // console.log(RowId)
       var x = document.getSubElementsByRowId(RowId)
-      
+
       if (x.length > 0) {
-        
+
 
         var Tf = 0;
         for (let XX of x) {
@@ -206,6 +206,7 @@ function satirHesapla2(e) {
   DISCOUNT = parseFloat(filterNum(DISCOUNT))
 
   var AMOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value
+  AMOUNT = parseFloat(filterNum(AMOUNT));
   document.getElementsByName("AMOUNT_" + RowId)[0].value = commaSplit(AMOUNT)
   var DISCOUNT = document.getElementsByName("DISCOUNT_" + RowId)[0].value;
   DISCOUNT = parseFloat(filterNum(DISCOUNT))
@@ -216,7 +217,7 @@ function satirHesapla2(e) {
   var TlFiyat = PRICE * Rate2
 
   document.getElementsByName("PRICETL_" + RowId)[0].value = commaSplit(TlFiyat)
-  document.getElementsByName("TOTAL_" + RowId)[0].value = commaSplit(TlFiyat - ((TlFiyat * DISCOUNT) / 100))
+  document.getElementsByName("TOTAL_" + RowId)[0].value = commaSplit((TlFiyat * AMOUNT) - (((TlFiyat * AMOUNT) * DISCOUNT) / 100))
   toplamHesapla()
 }
 
@@ -369,7 +370,7 @@ function KaydetCanim() {
     var DISCOUNT = document.getElementsByName("DISCOUNT_" + RowId)[0].value
     var OTHER_MONEY = document.getElementsByName("OTHER_MONEY_" + RowId)[0].innerText
     var PBS_ROW_ID = document.getElementsByName("PBS_ROW_ID" + RowId)[0].value
-   // 21600
+    // 21600
     var O = {
       PRODUCT_TREE_ID: RowId,
       UPPER_PRODUCT_TREE_ID: UPPER_TREE_ID,
@@ -385,15 +386,15 @@ function KaydetCanim() {
   }
   ProjectData.PRODUCT_TREE = ProductTreeArray
   ProjectData.KURLAR = moneyArr
-  var GenelToplam=document.querySelector("#BasketForm > tfoot > tr > td:nth-child(2) > input[type=text]").value 
-  ProjectData.GENEL_TOPLAM= parseFloat(filterNum(GenelToplam))
+  var GenelToplam = document.querySelector("#BasketForm > tfoot > tr > td:nth-child(2) > input[type=text]").value
+  ProjectData.GENEL_TOPLAM = parseFloat(filterNum(GenelToplam))
   console.log(ProjectData)
   $.ajax({
     url: "/AddOns/Partner/project/cfc/product_design.cfc?method=SaveTreePrices",
     data: { FORM_DATA: JSON.stringify(ProjectData) },
     method: "POST"
 
-  }).done(function(){
+  }).done(function () {
     alert("Kayıt Tamamlanmıştır !")
     window.opener.location.reload();
   })
