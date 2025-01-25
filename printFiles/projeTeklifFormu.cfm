@@ -112,7 +112,7 @@
     </cfquery>
     <cfif Get_Offer_Rows.IS_VIRTUAL EQ 1>
         <cfquery name="Get_Offer_Rows2" datasource="#dsn3#">
-        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS 2443,0
+        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS #Get_Offer_Rows.PRODUCT_ID#,0
         </cfquery>
     <cfelse>
         <cfquery name="Get_Offer_Rows2" datasource="#dsn3#">
@@ -467,6 +467,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
         sepet_net_total_2 = 0;
     </cfscript>
     <cfif isdefined("attributes.method")>
+        <cfdump var="#attributes#">
         <form method="post" name="siparis_etiket">
             <table class="etiketForm">
                 <tr>
