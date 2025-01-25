@@ -342,6 +342,7 @@ function satirHesapla(e) {
   DISCOUNT = parseFloat(filterNum(DISCOUNT))
 
   var AMOUNT = document.getElementsByName("AMOUNT_" + RowId)[0].value
+  AMOUNT = parseFloat(filterNum(AMOUNT));
   document.getElementsByName("AMOUNT_" + RowId)[0].value = commaSplit(AMOUNT)
 
 
@@ -352,8 +353,8 @@ function satirHesapla(e) {
 
   document.getElementsByName("PRICETL_" + RowId)[0].value = commaSplit(TlFiyat)
 
-  document.getElementsByName("TOTAL_" + RowId)[0].value = commaSplit(TlFiyat - ((TlFiyat * DISCOUNT) / 100))
-
+  //document.getElementsByName("TOTAL_" + RowId)[0].value = commaSplit(TlFiyat - ((TlFiyat * DISCOUNT) / 100))
+  document.getElementsByName("TOTAL_" + RowId)[0].value = commaSplit((TlFiyat * AMOUNT) - (((TlFiyat * AMOUNT) * DISCOUNT) / 100))
   toplamHesapla()
 }
 
