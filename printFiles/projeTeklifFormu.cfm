@@ -467,7 +467,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
         sepet_net_total_2 = 0;
     </cfscript>
     <cfif isdefined("attributes.method")>
-        <cfdump var="#attributes#">
+        
         <form method="post" name="siparis_etiket">
             <table class="etiketForm">
                 <tr>
