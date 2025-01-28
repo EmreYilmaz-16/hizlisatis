@@ -262,7 +262,7 @@ WHERE BORC IS NOT NULL
                SatirSayaci=SatirSayaci+1;
                hucre=1;
                SatirSayaci=3
-                  SpreadsheetAddRow(theSheet,"Cari,Cari Kod,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Müşteri Temsilcisi",SatirSayaci,hucre);
+                  SpreadsheetAddRow(theSheet,"Cari Kod,Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Müşteri Temsilcisi",SatirSayaci,hucre);
               /* spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,1,1);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,2,2);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,3,3);
@@ -287,9 +287,9 @@ WHERE BORC IS NOT NULL
     <thead>
     <tr>
         <th rowspan="2">
-            Cari
+            Cari Kod
         </th>
-        <th rowspan="2">Cari Kod</th>
+        <th rowspan="2">Cari </th>
         <th rowspan="2">
             Borç
         </th>
@@ -392,10 +392,10 @@ ORDER BY COMPANY_ID
 
     <tr>
         <td rowspan="#getpp.recordCount+1#">
-            #NICKNAME#
+            #MEMBER_CODE#
         </td>
         <td rowspan="#getpp.recordCount+1#">
-            #MEMBER_CODE#
+            #NICKNAME#
         </td>
         <td rowspan="#getpp.recordCount+1#">
             #tlformat(BORC)#
@@ -437,9 +437,9 @@ ORDER BY COMPANY_ID
     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
         <cfscript>
             hucre=1;
-            spreadsheetSetCellValue(theSheet,NICKNAME,SatirSayaci,hucre);
-            hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,MEMBER_CODE,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,NICKNAME,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,BORC,SatirSayaci,hucre);
             spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
