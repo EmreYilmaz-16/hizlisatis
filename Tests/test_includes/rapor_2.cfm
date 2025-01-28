@@ -170,7 +170,7 @@
             <CFSET "PAYMETHOD_#PAYMETHOD_ID#.DUE_DAY"=DUE_DAY>
         </cfloop>
 <cfquery name="getc" datasource="#dsn#">
-      select NICKNAME,C.COMPANY_ID,TT.*,PMS.*,EP.EMPLOYEE_NAME
+      select NICKNAME,C.COMPANY_ID,C.MEMBER_CODE,TT.*,PMS.*,EP.EMPLOYEE_NAME
       ,EP.EMPLOYEE_SURNAME from workcube_metosan.COMPANY as C
       LEFT JOIN workcube_metosan.EMPLOYEE_POSITIONS AS EP ON EP.POSITION_CODE=C.POS_CODE
     OUTER APPLY(
@@ -262,7 +262,7 @@ WHERE BORC IS NOT NULL
                SatirSayaci=SatirSayaci+1;
                hucre=1;
                SatirSayaci=3
-                  SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Müşteri Temsilcisi",SatirSayaci,hucre);
+                  SpreadsheetAddRow(theSheet,"Cari,Cari Kod,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Müşteri Temsilcisi",SatirSayaci,hucre);
               /* spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,1,1);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,2,2);
                spreadsheetMergeCells(theSheet,SatirSayaci,SatirSayaci+1,3,3);
@@ -289,6 +289,7 @@ WHERE BORC IS NOT NULL
         <th rowspan="2">
             Cari
         </th>
+        <th rowspan="2">Cari Kod</th>
         <th rowspan="2">
             Borç
         </th>
@@ -394,6 +395,9 @@ ORDER BY COMPANY_ID
             #NICKNAME#
         </td>
         <td rowspan="#getpp.recordCount+1#">
+            #MEMBER_CODE#
+        </td>
+        <td rowspan="#getpp.recordCount+1#">
             #tlformat(BORC)#
         </td>
         <td rowspan="#getpp.recordCount+1#">
@@ -434,6 +438,8 @@ ORDER BY COMPANY_ID
         <cfscript>
             hucre=1;
             spreadsheetSetCellValue(theSheet,NICKNAME,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,MEMBER_CODE,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,BORC,SatirSayaci,hucre);
             spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);

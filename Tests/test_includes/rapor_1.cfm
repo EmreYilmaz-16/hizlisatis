@@ -196,7 +196,7 @@
            spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
            SatirSayaci=SatirSayaci+1;
            hucre=1;
-              SpreadsheetAddRow(theSheet,"Cari,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Ortalama Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Dönen Açık Fatura Top.,Peşine Dönen Açık Fatura Gün,Müşteri Temsilcisi,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Toplam Risk,Müşteri Ciro Ödenmemiş Çek-Senetlerin Toplamı",SatirSayaci,hucre);
+              SpreadsheetAddRow(theSheet,"Cari,Cari Kod,Borç,Alacak,Bakiye,B/A,Satış Ödeme Yöntemi,Satış Vade Gün,Alış Ödeme Yöntemi,Alış Vade Gün,Ortalama Ödeme Vade,Kalan Bakiye Gün Ort.,Kalan Bakiye Tarih Ort.,Peşine Dönen Açık Fatura Top.,Peşine Dönen Açık Fatura Gün,Müşteri Temsilcisi,Müşteri Çek Riski,Müşteri Senet Riski,Müşteri Toplam Risk,Müşteri Ciro Ödenmemiş Çek-Senetlerin Toplamı",SatirSayaci,hucre);
               SatirSayaci=SatirSayaci+1;
            spreadsheetFormatRow(theSheet, myformatBold, SatirSayaci);
            
@@ -216,6 +216,7 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
 <cfquery name="getc" datasource="#dsn#">
     SELECT FULLNAME AS NICKNAME
         ,C.COMPANY_ID
+        ,C.MEMBER_CODE
         ,EP.EMPLOYEE_NAME
         ,EP.EMPLOYEE_SURNAME
         ,TT.*
@@ -281,6 +282,7 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
     <thead>
     <tr>
         <th>Cari</th>
+        <TH>Cari Kod</TH>
         <th>Borç</th>
         <th>Alacak</th>
         <th>Bakiye</th>
@@ -310,6 +312,9 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
     <tr>
         <td>
             #NICKNAME#
+        </td>
+        <td>
+            #MEMBER_CODE#
         </td>
         <td>
             #tlformat(BORC)#
@@ -399,6 +404,8 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
         <cfscript>
             hucre=1;
             spreadsheetSetCellValue(theSheet,NICKNAME,SatirSayaci,hucre);
+            hucre=hucre+1;
+            spreadsheetSetCellValue(theSheet,MEMBER_CODE,SatirSayaci,hucre);
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,BORC,SatirSayaci,hucre);
             spreadsheetFormatCell(theSheet,numberFrm,SatirSayaci,hucre);
