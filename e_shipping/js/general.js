@@ -27,6 +27,23 @@ function parcaliKontrol(iid) {
       belgeId,
     "dsn3"
   );
+     var rows = document.getElementsByClassName("rows");
+     var hd = 0;
+    for (let i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var cbx = $(row).find("input[type='checkbox']").is(":checked");
+        var OrderQuantity = trim($(row).find(".order_quantity").text());
+         OrderQuantity = parseFloat(OrderQuantity);
+           var ready_quantity = trim($(row).find(".ready_quantity").text());
+         ready_quantity = parseFloat(ready_quantity);
+      if (cbx) {   if(ready_quantity>OrderQuantity){
+            hd++
+        }}
+    }
+    if(hd>0){
+        alert("Hazırlama Miktarı Fatura Miktarından Fazla Fatura Kesemezsiniz")
+        return false
+    }
   //var rowX = 21;
   console.log(q);
   var hata = false;
