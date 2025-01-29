@@ -80,6 +80,7 @@ function parcaliKontrol(iid) {
       return false; //Sonra Açılacak
     }
   }
+  var rt=0;
   for (let i = 0; i < rows.length; i++) {
     var row = rows[i];
     var OrderQuantity = trim($(row).find(".order_quantity").text());
@@ -88,11 +89,16 @@ function parcaliKontrol(iid) {
     SevkQuantity = parseFloat(SevkQuantity);
     var cbx = $(row).find("input[type='checkbox']").is(":checked");
     if (cbx) {
+      rt++;
       if (SevkQuantity == 0) {
         alert("Miktar 0 Olamaz");
         return false;
       }
     }
+  }
+  if(rt==0){
+    alert("Ürün Seçmediniz");
+    return false;
   }
   return true;
 }
