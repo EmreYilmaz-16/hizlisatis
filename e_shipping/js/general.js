@@ -70,6 +70,11 @@ function parcaliKontrol(iid) {
         }
       }
     }
+    if(rowY==0){
+      alert("Ürün Seçmediniz");
+      return false;
+    }
+
     if (rowX != rowY) {
       alert("Eksik Ürün Seçimi !");
       return false; //Sonra Açılacak
