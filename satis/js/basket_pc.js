@@ -1604,6 +1604,7 @@ function GetBasketData() {
     var price = document.getElementById("price_" + Old_rw_id).value;
     var other_money = document.getElementById("other_money_" + Old_rw_id).value;
     var is_karma = document.getElementById("is_karma_" + Old_rw_id).value;
+    var main_unit = document.getElementById("main_unit_" + Old_rw_id).value;
     var row_nettotal = document.getElementById(
       "row_nettotal_" + Old_rw_id
     ).value;
@@ -1662,6 +1663,7 @@ function GetBasketData() {
       description: description,
       converted_sid: converted_sid,
       is_karma: is_karma,
+      main_unit: main_unit
     };
     OrderRows.push(Obj);
   }
