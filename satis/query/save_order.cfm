@@ -120,7 +120,7 @@ PROJECT_NAME
 <cfloop array="#BasketRows#" item="it" index="i">
     
     <cfif it.is_virtual eq 1>
-        <CFSET getUnit.MAIN_UNIT="Adet">
+        <CFSET getUnit.MAIN_UNIT="#it.main_unit#">
         <CFSET getUnit.PRODUCT_UNIT_ID=1>
     <cfelse>
     
