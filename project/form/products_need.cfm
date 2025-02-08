@@ -44,35 +44,35 @@ var PROJECT_ID=<cfoutput>#attributes.PROJECT_ID#</cfoutput>
 </script>
 <script>
     function SevkeCek(){
-   
         var rows=document.getElementById("rowws").children
-        var row_count=document.getElementById("rowws").children.length
-        for(let i=1;i<=row_count;i++){
-    var Bky_element=document.getElementById("bky_"+i).innerText
-    var Bky=Bky_element.split(" ")[0]
-
-    var t_element=document.getElementById("TMK_"+i).innerText
-    var TMK=t_element.split(" ")[0]
-    var svbekleyen_element=document.getElementById("svbekleyen_"+i).innerText
-    var svbekleyen=svbekleyen_element.split(" ")[0]
-    console.log(svbekleyen)
-     svbekleyen=parseFloat(filterNum(svbekleyen))
-     var tmk_=parseFloat(filterNum(TMK))
-    if(svbekleyen>=tmk_){}else{
-    if(Bky>(TMK-svbekleyen)){
-        document.getElementById("IHTIYAC_"+i).value=parseFloat(filterNum(TMK-svbekleyen))
-         document.getElementById("orderrow_currency_"+i).value=-6
-         rows[i-1].style.backgroundColor="#00800054"
-    }else{
+    var row_count=document.getElementById("rowws").children.length
+    for(let i=1;i<=3;i++){
+        var Bky_element=document.getElementById("bky_"+i).innerText
+        var Bky=Bky_element.split(" ")[0]
+        var t_element=document.getElementById("TMK_"+i).innerText
+        var TMK=t_element.split(" ")[0]
+        var svbekleyen_element=document.getElementById("svbekleyen_"+i).innerText
+        var svbekleyen=svbekleyen_element.split(" ")[0]
+        //console.log(svbekleyen)
+        svbekleyen=parseFloat(filterNum(svbekleyen))
+        var tmk_=parseFloat(filterNum(TMK))
+        var Bky_=parseFloat(filterNum(Bky))
+        console.log(svbekleyen)
+        console.log(tmk_)
+        console.log(Bky)
+        if(svbekleyen>=tmk_){
+            console.log("O1")
+        }else{
+            console.log("O2")
+            if(Bky_>(tmk_-svbekleyen)){
+                
+                document.getElementById("IHTIYAC_"+i).value=parseFloat(filterNum(TMK))-svbekleyen
+                 document.getElementById("orderrow_currency_"+i).value=-6
+                 rows[i-1].style.backgroundColor="#00800054"
+            }
         
-    }}
-   // console.log(b1) orderrow_currency_1 IHTIYAC_1
-    var O={
-        bky:parseFloat(filterNum(Bky)),
-        tmk:parseFloat(filterNum(TMK))
+        }
     }
-    //console.log(O)
-}
     }
 </script>
 
