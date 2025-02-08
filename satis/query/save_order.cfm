@@ -83,6 +83,10 @@ PROJECT_NAME
 <cfset attributes.ship_address_id=FormData.OrderHeader.SHIP_ADDRESS_ID>
 <cfset attributes.city_id=FormData.OrderHeader.CITY_ID>
 <cfset attributes.county_id=FormData.OrderHeader.COUNTY_ID>
+
+<CFSET attributes.ship_address_city_id=FormData.OrderHeader.CITY_ID>
+<CFSET attributes.ship_address_county_id=FormData.OrderHeader.COUNTY_ID>
+
 <cfset attributes.commission_rate="">
 
 <cfset attributes.sales_add_option="">

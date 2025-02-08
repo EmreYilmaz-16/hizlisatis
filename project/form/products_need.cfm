@@ -4,6 +4,7 @@
 
 <cf_box title="Malzeme İhtiyaçları">
     <div class="form-group">
+        <div class="input-group" style="display: flex;flex-wrap: nowrap;">  
         <select name="PRODUCT" onchange="getIcerik(this.value)">
             <option value="">Seçiniz</option>
             <cfquery name="getVP" datasource="#dsn3#">
@@ -28,6 +29,8 @@ Where PROJECT_ID=#attributes.PROJECT_ID# ) AS T WHERE RC=0
             </optgroup>
             </cfoutput>
         </select>
+        <span class="input-group-text">Sevk Kontrol</span>
+    </div>
     </div>
     <div id="productNeed">
         
@@ -39,7 +42,33 @@ var PROJECT_ID=<cfoutput>#attributes.PROJECT_ID#</cfoutput>
             "index.cfm?fuseaction=project.emptypopup_list_project_product_needs_ajax&project_id="+PROJECT_ID+"&pidow=" +ela,"productNeed",1,"Yükleniyor");
     }
 </script>
+<script>
+    function SevkeCek(){
+        var rows=document.getElementById("rowws").children
+        var row_count=document.getElementById("rowws").children.length
+        for(let i=1;i<=row_count;i++){
+    var Bky_element=document.getElementById("bky_"+i).innerText
+    var Bky=Bky_element.split(" ")[0]
 
+    var t_element=document.getElementById("TMK_"+i).innerText
+    var TMK=t_element.split(" ")[0]
+
+    if(Bky>TMK){
+        document.getElementById("IHTIYAC_"+i).value=parseFloat(filterNum(TMK))
+         document.getElementById("orderrow_currency_"+i).value=-6
+         rows[i-1].style.backgroundColor="#00800054"
+    }else{
+        
+    }
+   // console.log(b1) orderrow_currency_1 IHTIYAC_1
+    var O={
+        bky:parseFloat(filterNum(Bky)),
+        tmk:parseFloat(filterNum(TMK))
+    }
+    //console.log(O)
+}
+    }
+</script>
 
 
 
