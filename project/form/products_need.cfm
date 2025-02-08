@@ -29,7 +29,7 @@ Where PROJECT_ID=#attributes.PROJECT_ID# ) AS T WHERE RC=0
             </optgroup>
             </cfoutput>
         </select>
-        <span class="input-group-text">Sevk Kontrol</span>
+        <span style="cursor: pointer;" onclick="SevkeCek()" class="input-group-text">Sevk Kontrol</span>
     </div>
     </div>
     <div id="productNeed">
