@@ -46,7 +46,7 @@ var PROJECT_ID=<cfoutput>#attributes.PROJECT_ID#</cfoutput>
     function SevkeCek(){
         var rows=document.getElementById("rowws").children
     var row_count=document.getElementById("rowws").children.length
-    for(let i=1;i<=3;i++){
+    for(let i=1;i<=row_count;i++){
         var Bky_element=document.getElementById("bky_"+i).innerText
         var Bky=Bky_element.split(" ")[0]
         var t_element=document.getElementById("TMK_"+i).innerText
