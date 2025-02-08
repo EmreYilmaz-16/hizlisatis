@@ -140,7 +140,7 @@ OUTER APPLY
                 <td><input onchange="ihtiyacKontrol(this,#currentrow#)"  type="text" value="<cfif IHTIYAC lt 0>#IHTIYAC*-1#<cfelse><cfif IHTIYAC gt 0>0<cfelse>#IHTIYAC#</cfif></cfif>" name="IHTIYAC_#currentrow#" id="IHTIYAC_#currentrow#"></td>
                 
                     <td style="text-align:right"><span id="tms_#currentrow#" onclick="">#tlformat(OSFFF)#</span></td>
-                    <td style="text-align:right"><span onclick="">#tlformat(OSFFFIC)#</span></td>
+                    <td style="text-align:right"><span onclick="" id="svbekleyen_#currentrow#">#tlformat(OSFFFIC)#</span></td>
                     <td style="text-align:right"><span onclick="">#tlformat(OSFFFST)#</span></td>
                     <td><input type="text" name="ACIKLAMA_#currentrow#" id="ACIKLAMA_#currentrow#"></td>
                 <td>
