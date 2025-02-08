@@ -57,7 +57,8 @@ var PROJECT_ID=<cfoutput>#attributes.PROJECT_ID#</cfoutput>
     var svbekleyen=svbekleyen_element.split(" ")[0]
     console.log(svbekleyen)
      svbekleyen=parseFloat(filterNum(svbekleyen))
-    if(svbekleyen>=TMK){}else{
+     var tmk_=parseFloat(filterNum(TMK))
+    if(svbekleyen>=tmk_){}else{
     if(Bky>(TMK-svbekleyen)){
         document.getElementById("IHTIYAC_"+i).value=parseFloat(filterNum(TMK-svbekleyen))
          document.getElementById("orderrow_currency_"+i).value=-6
