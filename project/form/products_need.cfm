@@ -52,9 +52,12 @@ var PROJECT_ID=<cfoutput>#attributes.PROJECT_ID#</cfoutput>
 
     var t_element=document.getElementById("TMK_"+i).innerText
     var TMK=t_element.split(" ")[0]
-
-    if(Bky>TMK){
-        document.getElementById("IHTIYAC_"+i).value=parseFloat(filterNum(TMK))
+    var svbekleyen_element=document.getElementById("svbekleyen_"+i).innerText
+    var svbekleyen=svbekleyen_element.split(" ")[0]
+    console.log(svbekleyen)
+     svbekleyen=parseFloat(filterNum(svbekleyen))
+    if(Bky>(TMK-svbekleyen)){
+        document.getElementById("IHTIYAC_"+i).value=parseFloat(filterNum(TMK-svbekleyen))
          document.getElementById("orderrow_currency_"+i).value=-6
          rows[i-1].style.backgroundColor="#00800054"
     }else{
