@@ -667,7 +667,11 @@ LEFT JOIN workcube_metosan_1.PROJECT_REAL_PRODUCTS_TREE_PRICES PEPS ON PEPS.PBS_
             <cfset ReturnData.STANDART_PRICE=getPrice.PRICE>
             <cfset ReturnData.PRICE=getPrice.PRICE>
             <cfset ReturnData.MONEY=getPrice.MONEY>
+            <cfif getDiscount.recordCount>
             <cfset ReturnData.DISCOUNT=getDiscount.DISCOUNT_RATE>
+        <cfelse>
+            <cfset ReturnData.DISCOUNT=0>
+        </cfif>
             <CFSET ReturnData.ROW_ID=arguments.ROW_ID>
             <cfreturn ReturnData>
         <cfelse>
