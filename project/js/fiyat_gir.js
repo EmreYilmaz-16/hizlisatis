@@ -1,14 +1,14 @@
 ﻿$(document).ready(function () {
   SetEventListeners()
   var RR = wrk_query("SELECT * FROM PROJECT_PRODUCTS_TREE_PRICES_MAIN WHERE IS_AKTIF=1 AND  PROJECT_ID=" + ProjectData.PROJECT_ID + "AND IS_VIRTUAL=" + list_getat(ProjectData.PRODUCT, 2, "**") + " AND  MAIN_PRODUCT_ID=" + list_getat(ProjectData.PRODUCT, 1, "**"), "DSN3")
-
+console.log(RR);
 
   if (RR.recordcount > 0) {
     var Rows = document.getElementsByClassName("basket_row")
     for (let Row of Rows) {
       var RowId = Row.getAttribute("pit_id")
       var e = document.getElementsByName("PRICE_" + RowId)[0]
-      satirHesapla2(e)
+     // satirHesapla2(e)
 
     }
   } else {
