@@ -8,7 +8,7 @@ console.log(RR);
     for (let Row of Rows) {
       var RowId = Row.getAttribute("pit_id")
       var e = document.getElementsByName("PRICE_" + RowId)[0]
-     // satirHesapla2(e)
+      satirHesapla2(e)
 
     }
   } else {
@@ -194,7 +194,7 @@ function satirHesapla2(e) {
   var RowId = e.getAttribute("data-rowid")
   console.log(RowId)
   var PRICE = document.getElementsByName("PRICE_" + RowId)[0].value
-  document.getElementsByName("PRICE_" + RowId)[0].value = commaSplit(PRICE)
+  document.getElementsByName("PRICE_" + RowId)[0].value = commaSplit(filterNum(PRICE))
   var PRICE = document.getElementsByName("PRICE_" + RowId)[0].value;
   PRICE = parseFloat(filterNum(PRICE))
   var OTHER_MONEY = document.getElementsByName("OTHER_MONEY_" + RowId)[0].innerText
