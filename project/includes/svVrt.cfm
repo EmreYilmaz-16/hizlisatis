@@ -123,7 +123,7 @@
                 }
             InsertTreeNew_1453(Obj2);
         </cfscript>
-        <CFIF ARRAYLEN(SV_01_ITEM.AGAC)>
+        <CFIF isDefined("SV_01_ITEM.AGAC") and ARRAYLEN(SV_01_ITEM.AGAC)>
             <cfloop array="#SV_01_ITEM.AGAC#" item="SV_02_ITEM">
                 <cfif isDefined("SV_02_ITEM.QUESTION_ID")><cfelse><cfset SV_02_ITEM.QUESTION_ID=""></cfif>
                     <cfif isDefined("SV_02_ITEM.DISPLAY_NAME")><cfelse><cfset SV_02_ITEM.DISPLAY_NAME=""></cfif>
