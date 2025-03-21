@@ -21,11 +21,13 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             <cfargument name="price_catid">
             <cfargument name="stock_id" default="">
             <cfargument name="tipo" default="1">
+            <cfargument name="from_copy" default="0">
             <cfset TreeArr="">
+            
             <cfif arguments.isVirtual eq 1>                
-                <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3,product_id,company_id,price_catid,tipo)>
+                <cfset TreeArr=getTrees(product_id,isVirtual,ddsn3,product_id,company_id,price_catid,tipo,from_copy)>
             <cfelse>               
-                <cfset TreeArr=getTrees(product_id,0,ddsn3,stock_id,company_id,price_catid,tipo)>
+                <cfset TreeArr=getTrees(product_id,0,ddsn3,stock_id,company_id,price_catid,tipo,from_copy)>
             </cfif>
             <cfreturn replace(TreeArr,"//","")>
         </cffunction>    
@@ -110,19 +112,20 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
         <cfargument name="company_id">
         <cfargument name="price_catid">
         <cfargument name="tipo" default="1">
+        <cfargument name="from_copy" default="0">
         <cfset dsn3=arguments.ddsn3>
         <cfquery name="getTree" datasource="#dsn3#">
             <cfif arguments.isVirtual eq 1>
           <!----  SELECT *,STOCK_ID AS RELATED_ID,VPT_ID AS PRODUCT_TREE_ID,PRICE,DISCOUNT,MONEY FROM VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID=#arguments.pid# AND PRODUCT_ID <>0------>
             
-            SELECT VPT_ID,VP_ID,PRODUCT_ID,STOCK_ID,VPT.AMOUNT,QUESTION_ID,IS_VIRTUAL,DISPLAY_NAME,PEPS.PRICE,PEPS.DISCOUNT,PEPS.OTHER_MONEY AS MONEY ,PEPS.MAIN_PRODUCT_ID,STOCK_ID AS RELATED_ID,VPT_ID AS PRODUCT_TREE_ID ,VPT.PBS_ROW_ID
+            SELECT VPT_ID,VP_ID,PRODUCT_ID,STOCK_ID,VPT.AMOUNT,QUESTION_ID,IS_VIRTUAL,DISPLAY_NAME,PEPS.PRICE,PEPS.DISCOUNT,PEPS.OTHER_MONEY AS MONEY ,PEPS.MAIN_PRODUCT_ID,STOCK_ID AS RELATED_ID,VPT_ID AS PRODUCT_TREE_ID ,<cfif arguments.from_copy eq 0>VPT.PBS_ROW_ID<cfelse>'' as PBS_ROW_ID </cfif>
             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT  AS VPT
             LEFT JOIN workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES PEPS ON PEPS.PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1
 
 WHERE VP_ID=#arguments.pid# AND PRODUCT_ID <>0
 
             <cfelse>
-                select *,0 AS IS_VIRTUAL,(SELECT PROPERTY3 FROM workcube_metosan_1.PRODUCT_INFO_PLUS WHERE PRODUCT_ID=PT.PRODUCT_ID AND PRO_INFO_ID=2) AS DISPLAY_NAME,PEPS.PRICE AS PRICE,PEPS.OTHER_MONEY AS MONEY,PEPS.DISCOUNT AS DISCOUNT,PT.PBS_ROW_ID from workcube_metosan_1.PRODUCT_TREE
+                select *,0 AS IS_VIRTUAL,(SELECT PROPERTY3 FROM workcube_metosan_1.PRODUCT_INFO_PLUS WHERE PRODUCT_ID=PT.PRODUCT_ID AND PRO_INFO_ID=2) AS DISPLAY_NAME,PEPS.PRICE AS PRICE,PEPS.OTHER_MONEY AS MONEY,PEPS.DISCOUNT AS DISCOUNT,<cfif arguments.from_copy eq 0>PT.PBS_ROW_ID <cfelse>'' as PBS_ROW_ID</cfif> from workcube_metosan_1.PRODUCT_TREE
 AS PT
 LEFT JOIN workcube_metosan_1.PROJECT_REAL_PRODUCTS_TREE_PRICES PEPS ON PEPS.PBS_ROW_ID=PT.PBS_ROW_ID AND IS_ACTIVE=1
  WHERE STOCK_ID=#arguments.sid# 

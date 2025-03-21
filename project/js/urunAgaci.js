@@ -28,6 +28,7 @@ function ngetTree(
   tipo = 1
 ) {
   //console.log(arguments);
+ // debugger;
   if (tip == 1) {
     /* var pn = btn.parentElement.children[0].innerText;
     var */
@@ -172,7 +173,7 @@ function ngetTree(
   } else if (tip == 4) {
     $.ajax({
       url:
-        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&tipo=" +
+        "/AddOns/Partner/project/cfc/product_design.cfc?method=getTree&from_copy=1&tipo=" +
         tipo +
         "&product_id=" +
         product_id +
@@ -186,7 +187,11 @@ function ngetTree(
         _priceCatId,
       success: function (asd) {
         //   var jsonStr = strToJson(asd);
+        
         o = JSON.parse(asd);
+        console.log("Gelen Obje",o[0])
+        o[0].PBS_ROW_ID="";
+        console.log("Değiştikten Sonra",o[0])
         // console.log(o);
         //  console.log("Buradayım");
         //   partnerEkle(o);
