@@ -8,7 +8,9 @@
 <cfinclude template="/AddOns/Partner/production/Includes/add_prod_order_result.cfm">
 
 <cfset attributes.pr_order_id =ADD_PRODUCTION_ORDER.MAX_ID>
-<cfinclude template="/AddOns/Partner/production/Includes/add_ezgi_prod_order_result_stock.cfm">
+<cfset is_demontaj=0>
+<cfinclude template="/V16/production_plan/query/add_production_result_to_stock.cfm">
+<!----<cfinclude template="/AddOns/Partner/production/Includes/add_ezgi_prod_order_result_stock.cfm">**----->
 <cfquery name="Q1" datasource="#DSN3#">
 
 EXEC workcube_metosan_1.TEKLIF_SATIR_SEVK #attributes.p_order_id#
