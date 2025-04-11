@@ -1,43 +1,77 @@
 ﻿<cftry>
-<cfquery name="qProductTree" datasource="#dsn3#">
-    WITH ProductTreeCTE AS (
+    <cfquery name="qProductTree" datasource="#dsn3#">
+        WITH ProductTreeCTE AS (
+            SELECT 
+                PT.STOCK_ID,
+                PT.RELATED_ID,
+                PRICE_PBS AS PRICE,
+                OTHER_MONEY_PBS AS MONEY,
+                1 AS LEVEL
+            FROM PRODUCT_TREE PT
+            WHERE PT.STOCK_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#url.stockId#">
+        
+            UNION ALL
+        
+            SELECT 
+                PT.STOCK_ID,
+                PT.RELATED_ID,
+                PRICE_PBS AS PRICE,
+                OTHER_MONEY_PBS AS MONEY,
+                CTE.LEVEL + 1
+            FROM PRODUCT_TREE PT
+            INNER JOIN ProductTreeCTE CTE ON PT.STOCK_ID = CTE.RELATED_ID
+            WHERE CTE.LEVEL < 5
+        )
+        
         SELECT 
-            PT.STOCK_ID,
-            PT.RELATED_ID,
-            PT.PRICE_PBS AS PRICE,
-            PT.OTHER_MONEY_PBS AS MONEY,
+            T.STOCK_ID AS ParentID,
+            T.RELATED_ID AS ID,
+            S.PRODUCT_NAME,
+            PRICE,
+            MONEY,
+            T.LEVEL
+        FROM ProductTreeCTE T
+        INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
+        ORDER BY T.LEVEL
+        </cfquery>
+<cfscript>
+    // Sorgu sonuçlarını diziye aktar
+treeData = [];
 
-            1 AS LEVEL
-        FROM PRODUCT_TREE PT
-        WHERE PT.STOCK_ID = 48335
-    
-        UNION ALL
-    
-        SELECT 
-            PT.STOCK_ID,
-            PT.RELATED_ID,
-            PT.PRICE_PBS AS PRICE,
-            PT.OTHER_MONEY_PBS AS MONEY,
-            CTE.LEVEL + 1
-        FROM PRODUCT_TREE PT
-        INNER JOIN ProductTreeCTE CTE ON PT.STOCK_ID = CTE.RELATED_ID
-        WHERE CTE.LEVEL < 5
-    )
-    
-    SELECT 
-        T.STOCK_ID AS ParentID,
-        T.RELATED_ID AS ID,
-        S.PRODUCT_NAME,
-        S.PRODUCT_CODE,
-        S.STOCK_ID,
-        S.PRODUCT_ID,
-        PRICE,
-        MONEY,
-        T.LEVEL
-    FROM ProductTreeCTE T
-    INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
-    ORDER BY T.LEVEL, S.PRODUCT_NAME
-    </cfquery>
+for (row in qProductTree) {
+    arrayAppend(treeData, {
+        id: row.ID,
+        parentId: row.ParentID,
+        name: row.PRODUCT_NAME,
+        price: row.PRICE,
+        money: row.MONEY,
+        level: row.LEVEL
+    });
+}
+
+// Alt ürünleri bulmak için yardımcı fonksiyon
+function renderTree(data, parentId, depth = 0) {
+    var html = "";
+
+    for (item in data) {
+        if (item.parentId == parentId) {
+            html &= "<tr>";
+            html &= "<td style='padding-left:#depth * 30#px'>📦 " & item.name & "</td>";
+            html &= "<td>" & item.price & "</td>";
+            html &= "<td>" & item.money & "</td>";
+            html &= "</tr>";
+
+            // Alt çocuklar varsa onları da yaz
+            html &= renderTree(data, item.id, depth + 1);
+        }
+    }
+
+    return html;
+}
+
+treeHtml = renderTree(treeData, url.stockId);
+</cfscript>
+
 <style>
     table.treeview-table {
         width: 100%;
@@ -54,7 +88,7 @@
     }
 </style>
 
-<table class="treeview-table">
+<table border="1" cellpadding="6" cellspacing="0" width="100%">
     <thead>
         <tr>
             <th>Ürün Adı</th>
@@ -63,15 +97,7 @@
         </tr>
     </thead>
     <tbody>
-        <cfoutput query="qProductTree">
-            <tr>
-                <td class="tree-indent" style="padding-left:#(LEVEL-1)*30#px">
-                    <i class="fa fa-box"></i> #PRODUCT_NAME#
-                </td>
-                <td>#PRICE#</td>
-                <td>#MONEY#</td>
-            </tr>
-        </cfoutput>
+        <cfoutput>#treeHtml#</cfoutput>
     </tbody>
 </table>
 <cfcatch>
