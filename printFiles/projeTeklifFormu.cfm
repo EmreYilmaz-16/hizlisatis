@@ -6,7 +6,7 @@
             PT.RELATED_ID,
             1 AS LEVEL
         FROM PRODUCT_TREE PT
-        WHERE PT.STOCK_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#url.stockId#">
+        WHERE PT.STOCK_ID = 68906
     
         UNION ALL
     
