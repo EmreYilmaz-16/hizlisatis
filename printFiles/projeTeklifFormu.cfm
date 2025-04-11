@@ -485,7 +485,19 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                     <td colspan="2" style="text-align:right;">
                         <input type="hidden" name="isSubmit" value="1">
                         <input type="submit" value='Teklif Şablonu Oluştur'>
-                        <button type="button" onclick="$('.FiyatAlan').toggle()">Fiyat Göster/Gizle</button>
+                        <button type="button" onclick="FiyatGosterGizle()">Fiyat Göster/Gizle</button>
+                        <script>
+                            function FiyatGosterGizle(params) {
+                                var elems= document.getElementsByClassName("FiyatAlan");
+                                for (var i = 0; i < elems.length; i++) {
+                                    if (elems[i].style.display == "none") {
+                                        elems[i].style.display = "block";
+                                    } else {
+                                        elems[i].style.display = "none";
+                                    }
+                                }
+                            }
+                        </script>
                     </td>
                 </tr>
             </table>
