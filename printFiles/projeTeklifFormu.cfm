@@ -4,8 +4,9 @@
             SELECT 
                 PT.STOCK_ID,
                 PT.RELATED_ID,
-                PRICE_PBS AS PRICE,
-                OTHER_MONEY_PBS AS MONEY,
+                PT.PRICE_PBS,
+                PT.DISCOUNT_PBS,
+                PT.OTHER_MONEY_PBS,
                 1 AS LEVEL
             FROM PRODUCT_TREE PT
             WHERE PT.STOCK_ID = 48335
@@ -15,8 +16,9 @@
             SELECT 
                 PT.STOCK_ID,
                 PT.RELATED_ID,
-                PRICE_PBS AS PRICE,
-                OTHER_MONEY_PBS AS MONEY,
+                PT.PRICE_PBS,
+                PT.DISCOUNT_PBS,
+                PT.OTHER_MONEY_PBS,
                 CTE.LEVEL + 1
             FROM PRODUCT_TREE PT
             INNER JOIN ProductTreeCTE CTE ON PT.STOCK_ID = CTE.RELATED_ID
@@ -27,49 +29,58 @@
             T.STOCK_ID AS ParentID,
             T.RELATED_ID AS ID,
             S.PRODUCT_NAME,
-            PRICE,
-            MONEY,
+            T.PRICE_PBS AS PRICE,
+            T.OTHER_MONEY_PBS AS MONEY,
+            T.DISCOUNT_PBS AS DISCOUNT,
+            PB.BRAND_NAME,
+            PU.MAIN_UNIT,
             T.LEVEL
         FROM ProductTreeCTE T
         INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
-        ORDER BY T.LEVEL
+        LEFT JOIN PRODUCT_BRANDS PB ON PB.BRAND_ID = S.BRAND_ID
+        LEFT JOIN PRODUCT_UNIT PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
+        ORDER BY T.LEVEL, S.PRODUCT_NAME
         </cfquery>
 <cfscript>
-    // Sorgu sonuçlarını diziye aktar
-treeData = [];
+    treeData = [];
 
-for (row in qProductTree) {
-    arrayAppend(treeData, {
-        id: row.ID,
-        parentId: row.ParentID,
-        name: row.PRODUCT_NAME,
-        price: row.PRICE,
-        money: row.MONEY,
-        level: row.LEVEL
-    });
-}
-
-// Alt ürünleri bulmak için yardımcı fonksiyon
-function renderTree(data, parentId, depth = 0) {
-    var html = "";
-
-    for (item in data) {
-        if (item.parentId == parentId) {
-            html &= "<tr>";
-            html &= "<td style='padding-left:#depth * 30#px'>📦 " & item.name & "</td>";
-            html &= "<td>" & item.price & "</td>";
-            html &= "<td>" & item.money & "</td>";
-            html &= "</tr>";
-
-            // Alt çocuklar varsa onları da yaz
-            html &= renderTree(data, item.id, depth + 1);
-        }
+    for (row in qProductTree) {
+        arrayAppend(treeData, {
+            id: row.ID,
+            parentId: row.ParentID,
+            name: row.PRODUCT_NAME,
+            price: row.PRICE,
+            money: row.MONEY,
+            brand: row.BRAND_NAME,
+            unit: row.MAIN_UNIT,
+            discount: row.DISCOUNT,
+            level: row.LEVEL
+        });
     }
-
-    return html;
-}
-
-treeHtml = renderTree(treeData, 48335);
+    
+    // Ağaç şeklinde renderlayan fonksiyon
+    function renderTree(data, parentId, depth = 0) {
+        var html = "";
+    
+        for (item in data) {
+            if (item.parentId == parentId) {
+                html &= "<tr>";
+                html &= "<td style='padding-left:#depth * 30#px'>📦 " & item.name & "</td>";
+                html &= "<td>" & item.price & "</td>";
+                html &= "<td>" & item.money & "</td>";
+                html &= "<td>" & item.discount & "</td>";
+                html &= "<td>" & item.brand & "</td>";
+                html &= "<td>" & item.unit & "</td>";
+                html &= "</tr>";
+    
+                html &= renderTree(data, item.id, depth + 1);
+            }
+        }
+    
+        return html;
+    }
+    
+    treeHtml = renderTree(treeData, 48335);
 </cfscript>
 
 <style>
@@ -94,6 +105,9 @@ treeHtml = renderTree(treeData, 48335);
             <th>Ürün Adı</th>
             <th>Fiyat</th>
             <th>Para Birimi</th>
+            <th>İndirim (%)</th>
+            <th>Marka</th>
+            <th>Birim</th>
         </tr>
     </thead>
     <tbody>
