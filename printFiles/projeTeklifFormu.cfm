@@ -121,7 +121,7 @@
             T.DISCOUNT_PBS AS DISCOUNT,
             PB.BRAND_NAME,
             PU.MAIN_UNIT,
-            T.LEVEL
+            T.LEVEL,
             T.AMOUNT
         FROM ProductTreeCTE T
         INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
