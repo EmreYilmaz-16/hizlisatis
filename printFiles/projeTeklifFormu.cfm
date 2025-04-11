@@ -31,8 +31,8 @@
         S.PRODUCT_CODE,
         S.STOCK_ID,
         S.PRODUCT_ID,
-        S.PRICE,
-        S.MONEY,
+        PRICE,
+        MONEY,
         T.LEVEL
     FROM ProductTreeCTE T
     INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
