@@ -1,4 +1,5 @@
-﻿<cftry>
+﻿<cfif session.ep.userid eq 1146>
+<cftry>
     <cfquery name="qProductTree" datasource="#dsn3#">
         WITH ProductTreeCTE AS (
             SELECT 
@@ -174,7 +175,7 @@
 </cftry>
 
 <cfabort>
-
+</cfif>
 <cftry>
     <style>
         @media print
