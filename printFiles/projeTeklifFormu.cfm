@@ -485,7 +485,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                     <td colspan="2" style="text-align:right;">
                         <input type="hidden" name="isSubmit" value="1">
                         <input type="submit" value='Teklif Şablonu Oluştur'>
-                        <button type="button" onclick="SatirFiyatGosterGizle()">Fiyat Göster/Gizle</button>
+                        <button type="button" onclick="$('.FiyatAlan').toggle()">Fiyat Göster/Gizle</button>
                     </td>
                 </tr>
             </table>
@@ -600,8 +600,8 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                     <td>#left(Brand_Name,60)#</td>
                                     <td style="text-align:right;">#AMOUNT#</td>
                                     <td>#MAIN_UNIT#</td>  
-                                    <td class="FiyatAlan">#PRICE#</td>                                                          
-                                    <td class="FiyatAlan"><cfif LEN(PRICE)>#PRICE*AMOUNT#<CFELSE>0</cfif></td>
+                                    <td class="FiyatAlan">#tlformat(PRICE)#</td>                                                          
+                                    <td class="FiyatAlan"><cfif LEN(PRICE)>#tlformat(PRICE*AMOUNT)#<CFELSE>#tlformat(0)#</cfif></td>
                                     <td class="FiyatAlan">#MONEY#</td>  
                                 </tr>
                               
