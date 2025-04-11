@@ -1,5 +1,89 @@
 ﻿<cfif session.ep.userid eq 1146>
-<cftry>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; }
+        .header-table td { padding: 5px; vertical-align: top; }
+        .info-table td { border: 1px solid #000; padding: 5px; }
+        .info-table .label { font-weight: bold; background-color: #f5f5f5; width: 100px; }
+        .section-title { font-weight: bold; text-align: center; font-size: 18px; padding: 10px; }
+        .product-table th { background-color: #90ee90; padding: 6px; border: 1px solid #000; }
+        .product-table td { padding: 5px; border: 1px solid #000; }
+        .note-box { border: 1px solid #000; padding: 10px; margin-top: 10px; }
+        .signature-box { padding: 10px; text-align: left; }
+        .footer-contact { text-align: right; font-size: 11px; padding-right: 10px; }
+    </style>
+    <style>
+        .product-table th {
+            background-color: #90ee90;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #000;
+            padding: 6px;
+        }
+    
+        .product-table td {
+            border: 1px solid #000;
+            padding: 6px;
+        }
+    
+        .toggle-icon {
+            font-weight: bold;
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+        }
+    </style>
+     <table class="header-table">
+        <tr>
+            <td width="50%">
+                <img src="https://www.mifasistem.com/metosanlogo.png" width="250">
+            </td>
+            <td align="right" style="font-size: 20px; font-weight: bold;">
+                SATIŞ TEKLİF FORMU
+            </td>
+        </tr>
+    </table>
+
+    <!-- Firma ve Teklif Bilgileri -->
+    <table class="info-table" style="margin-top: 10px;">
+        <tr>
+            <td class="label">Firma</td>
+            <td>Test2</td>
+            <td class="label">Tarih</td>
+            <td>10.04.2025 05:01:57</td>
+        </tr>
+        <tr>
+            <td class="label">Tel/Faks</td>
+            <td></td>
+            <td class="label">Ref. No</td>
+            <td>PBSTV-136629</td>
+        </tr>
+        <tr>
+            <td class="label">E-Posta</td>
+            <td>busraturk@mifasistem.com</td>
+            <td class="label">İlgili</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="label">Konu</td>
+            <td colspan="3">Teklifimiz</td>
+        </tr>
+    </table>
+
+    <!-- Açıklama -->
+    <div class="note-box">
+        Firmamızdan talep etmiş olduğunuz ürünler ile ilgili teklifimiz aşağıda dikkatinize sunulmuştur.
+        Teklifimizin olumlu karşılanacağını ümit eder, çalışmalarınızda başarılar dileriz.<br><br>
+        Saygılarımızla,<br><br>
+        SERHAT ENVER KARAŞ<br>
+        PBS ERP DESTEK UZMANI
+    </div>
+
+    
+    <!-- Ürün Tablosu -->
+
+
+    <cftry>
     <cfquery name="qProductTree" datasource="#dsn3#">
         WITH ProductTreeCTE AS (
             SELECT 
@@ -66,23 +150,22 @@
         for (item in data) {
             if (item.parentId == parentId) {
                 var hasChildren = arrayLen(arrayFilter(data, function(el){ return el.parentId == item.id; }));
-    
                 html &= "<tr class='tree-row' data-id='#item.id#' data-parent='#parentId#' data-level='#depth#'>";
-                html &= "<td style='padding-left:#depth * 20#px'>";
-                
-                if (hasChildren > 0) {
-                    html &= "<span class='toggle-icon' data-toggle='#item.id#' style='cursor:pointer;'>▶</span> ";
-                } else {
-                    html &= "<span style='visibility:hidden'>▶</span> ";
-                }
-    
-                html &= "📦 " & item.name & "</td>";
-                html &= "<td>#item.price#</td>";
-                html &= "<td>#item.money#</td>";
-                html &= "<td>#item.discount#</td>";
-                html &= "<td>#item.brand#</td>";
-                html &= "<td>#item.unit#</td>";
-                html &= "</tr>";
+                    html &= "<td>#serialNumber++#</td>"; // sıra numarası için önceden `serialNumber = 1` tanımlanmalı
+                    html &= "<td style='padding-left:#depth * 20#px'>";
+                    if (hasChildren > 0) {
+                        html &= "<span class='toggle-icon' data-toggle='#item.id#' style='cursor:pointer;'>▶</span> ";
+                    } else {
+                        html &= "<span style='visibility:hidden'>▶</span> ";
+                    }
+                    html &= "📦 " & item.name & "</td>";
+                    html &= "<td>" & item.brand & "</td>";
+                    html &= "<td>1</td>"; // miktar sabit ya da dinamik
+                    html &= "<td>" & numberFormat(item.price, "__,__0.00") & "</td>";
+                    html &= "<td>" & numberFormat(item.price, "__,__0.00") & "</td>"; // toplam örnek olarak aynı
+                    html &= "<td>" & item.money & "</td>";
+                    html &= "<td>" & dateFormat(now(), "dd.mm.yyyy") & "</td>"; // teslim tarihi örnek
+                    html &= "</tr>";
     
                 html &= renderTree(data, item.id, depth + 1);
             }
@@ -109,23 +192,23 @@
         padding-left: 20px;
     }
 </style>
-
-<table border="1" cellpadding="6" cellspacing="0" width="100%" style="font-family: Arial; font-size:14px;">
+<table class="product-table" style="margin-top: 10px; font-size: 12px;">
     <thead>
         <tr>
-            <th>Ürün Adı</th>
-            <th>Fiyat</th>
-            <th>Para</th>
-            <th>İndirim (%)</th>
+            <th>SN</th>
+            <th>Malzeme Adı</th>
             <th>Marka</th>
-            <th>Birim</th>
+            <th>Miktar</th>
+            <th>Net Birim Fiyat</th>
+            <th>Net Toplam Tutar</th>
+            <th>Para Birimi</th>
+            <th>Teslim Tarihi</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tree-table-body">
         <cfoutput>#treeHtml#</cfoutput>
     </tbody>
 </table>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const toggles = document.querySelectorAll('.toggle-icon');
