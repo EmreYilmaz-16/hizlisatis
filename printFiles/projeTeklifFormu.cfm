@@ -69,7 +69,7 @@ function renderTree(data, parentId, depth = 0) {
     return html;
 }
 
-treeHtml = renderTree(treeData, url.stockId);
+treeHtml = renderTree(treeData, 48335);
 </cfscript>
 
 <style>
