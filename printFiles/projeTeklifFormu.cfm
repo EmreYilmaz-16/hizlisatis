@@ -4,6 +4,9 @@
         SELECT 
             PT.STOCK_ID,
             PT.RELATED_ID,
+            PT.PRICE_PBS AS PRICE,
+            PT.OTHER_MONEY_PBS AS MONEY,
+
             1 AS LEVEL
         FROM PRODUCT_TREE PT
         WHERE PT.STOCK_ID = 68906
@@ -13,6 +16,8 @@
         SELECT 
             PT.STOCK_ID,
             PT.RELATED_ID,
+            PT.PRICE_PBS AS PRICE,
+            PT.OTHER_MONEY_PBS AS MONEY,
             CTE.LEVEL + 1
         FROM PRODUCT_TREE PT
         INNER JOIN ProductTreeCTE CTE ON PT.STOCK_ID = CTE.RELATED_ID
