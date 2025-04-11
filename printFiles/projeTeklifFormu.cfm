@@ -146,7 +146,7 @@
     // Ağaç şeklinde renderlayan fonksiyon
     function renderTree(data, parentId, depth = 0) {
         var html = "";
-    
+        serialNumber = 1; // sıra numarası için başlangıç
         for (item in data) {
             if (item.parentId == parentId) {
                 var hasChildren = arrayLen(arrayFilter(data, function(el){ return el.parentId == item.id; }));
