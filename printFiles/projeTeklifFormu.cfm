@@ -161,8 +161,8 @@
                     html &= "📦 " & item.name & "</td>";
                     html &= "<td>" & item.brand & "</td>";
                     html &= "<td>1</td>"; // miktar sabit ya da dinamik
-                    html &= "<td>" & numberFormat(item.price, "__,__0.00") & "</td>";
-                    html &= "<td>" & numberFormat(item.price, "__,__0.00") & "</td>"; // toplam örnek olarak aynı
+                    html &= "<td>" & tlformat(item.price) & "</td>";
+                    html &= "<td>" & tlformat(item.price) & "</td>"; // toplam örnek olarak aynı
                     html &= "<td>" & item.money & "</td>";
                     html &= "<td>" & dateFormat(now(), "dd.mm.yyyy") & "</td>"; // teslim tarihi örnek
                     html &= "</tr>";
