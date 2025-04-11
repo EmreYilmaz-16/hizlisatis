@@ -491,7 +491,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                 var elems= document.getElementsByClassName("FiyatAlan");
                                 for (var i = 0; i < elems.length; i++) {
                                     if (elems[i].style.display == "none") {
-                                        elems[i].style.display = "block";
+                                        elems[i].style.display = "table-cell";
                                     } else {
                                         elems[i].style.display = "none";
                                     }
