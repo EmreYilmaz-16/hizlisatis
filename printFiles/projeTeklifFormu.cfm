@@ -601,7 +601,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                     <td style="text-align:right;">#AMOUNT#</td>
                                     <td>#MAIN_UNIT#</td>  
                                     <td class="FiyatAlan">#PRICE#</td>                                                          
-                                    <td class="FiyatAlan">#AMOUNT*PRICE#</td>
+                                    <td class="FiyatAlan"><cfif LEN(PRICE)>#PRICE*AMOUNT#<CFELSE>0</cfif></td>
                                     <td class="FiyatAlan">#MONEY#</td>  
                                 </tr>
                               
