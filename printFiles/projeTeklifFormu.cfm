@@ -1,4 +1,5 @@
-﻿<cfquery name="qProductTree" datasource="#dsn3#">
+﻿<cftry>
+<cfquery name="qProductTree" datasource="#dsn3#">
     WITH ProductTreeCTE AS (
         SELECT 
             PT.STOCK_ID,
@@ -68,7 +69,10 @@
         </cfoutput>
     </tbody>
 </table>
-
+<cfcatch>
+    <cfdump var="#cfcatch#">
+</cfcatch>
+</cftry>
 
 <cfabort>
 
