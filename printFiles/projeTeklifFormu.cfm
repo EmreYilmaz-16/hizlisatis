@@ -64,13 +64,23 @@
     
         for (item in data) {
             if (item.parentId == parentId) {
-                html &= "<tr>";
-                html &= "<td style='padding-left:#depth * 30#px'>📦 " & item.name & "</td>";
-                html &= "<td>" & item.price & "</td>";
-                html &= "<td>" & item.money & "</td>";
-                html &= "<td>" & item.discount & "</td>";
-                html &= "<td>" & item.brand & "</td>";
-                html &= "<td>" & item.unit & "</td>";
+                var hasChildren = arrayLen(arrayFilter(data, function(el){ return el.parentId == item.id; }));
+    
+                html &= "<tr class='tree-row' data-id='#item.id#' data-parent='#parentId#' data-level='#depth#'>";
+                html &= "<td style='padding-left:#depth * 20#px'>";
+                
+                if (hasChildren > 0) {
+                    html &= "<span class='toggle-icon' data-toggle='#item.id#' style='cursor:pointer;'>▶</span> ";
+                } else {
+                    html &= "<span style='visibility:hidden'>▶</span> ";
+                }
+    
+                html &= "📦 " & item.name & "</td>";
+                html &= "<td>#item.price#</td>";
+                html &= "<td>#item.money#</td>";
+                html &= "<td>#item.discount#</td>";
+                html &= "<td>#item.brand#</td>";
+                html &= "<td>#item.unit#</td>";
                 html &= "</tr>";
     
                 html &= renderTree(data, item.id, depth + 1);
@@ -99,12 +109,12 @@
     }
 </style>
 
-<table border="1" cellpadding="6" cellspacing="0" width="100%">
+<table border="1" cellpadding="6" cellspacing="0" width="100%" style="font-family: Arial; font-size:14px;">
     <thead>
         <tr>
             <th>Ürün Adı</th>
             <th>Fiyat</th>
-            <th>Para Birimi</th>
+            <th>Para</th>
             <th>İndirim (%)</th>
             <th>Marka</th>
             <th>Birim</th>
@@ -114,6 +124,50 @@
         <cfoutput>#treeHtml#</cfoutput>
     </tbody>
 </table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggles = document.querySelectorAll('.toggle-icon');
+
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', function () {
+                const id = this.getAttribute('data-toggle');
+                const rows = document.querySelectorAll(`.tree-row[data-parent='${id}']`);
+                const isOpen = this.textContent === '▼';
+
+                this.textContent = isOpen ? '▶' : '▼';
+
+                rows.forEach(row => {
+                    if (isOpen) {
+                        row.style.display = 'none';
+                        collapseChildren(row.getAttribute('data-id')); // alt dalları da kapat
+                    } else {
+                        row.style.display = 'table-row';
+                    }
+                });
+            });
+        });
+
+        // Alt seviyeleri kapatma fonksiyonu
+        function collapseChildren(parentId) {
+            const children = document.querySelectorAll(`.tree-row[data-parent='${parentId}']`);
+            children.forEach(child => {
+                child.style.display = 'none';
+                const childId = child.getAttribute('data-id');
+                collapseChildren(childId); // recursive kapatma
+                const icon = document.querySelector(`.toggle-icon[data-toggle='${childId}']`);
+                if (icon) icon.textContent = '▶';
+            });
+        }
+
+        // İlk yüklemede tüm satırları gizle (sadece seviye 0 kalsın)
+        document.querySelectorAll('.tree-row').forEach(row => {
+            if (row.getAttribute('data-level') != "0") {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
 <cfcatch>
     <cfdump var="#cfcatch#">
 </cfcatch>
