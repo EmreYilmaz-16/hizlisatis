@@ -9,7 +9,7 @@
 
             1 AS LEVEL
         FROM PRODUCT_TREE PT
-        WHERE PT.STOCK_ID = 22590
+        WHERE PT.STOCK_ID = 48335
     
         UNION ALL
     
