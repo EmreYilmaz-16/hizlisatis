@@ -92,6 +92,7 @@
                 PT.PRICE_PBS,
                 PT.DISCOUNT_PBS,
                 PT.OTHER_MONEY_PBS,
+                PT.AMOUNT,
                 1 AS LEVEL
             FROM PRODUCT_TREE PT
             WHERE PT.STOCK_ID = 48335
@@ -104,6 +105,7 @@
                 PT.PRICE_PBS,
                 PT.DISCOUNT_PBS,
                 PT.OTHER_MONEY_PBS,
+                PT.AMOUNT,
                 CTE.LEVEL + 1
             FROM PRODUCT_TREE PT
             INNER JOIN ProductTreeCTE CTE ON PT.STOCK_ID = CTE.RELATED_ID
@@ -120,6 +122,7 @@
             PB.BRAND_NAME,
             PU.MAIN_UNIT,
             T.LEVEL
+            T.AMOUNT
         FROM ProductTreeCTE T
         INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
         LEFT JOIN PRODUCT_BRANDS PB ON PB.BRAND_ID = S.BRAND_ID
@@ -139,7 +142,8 @@
             brand: row.BRAND_NAME,
             unit: row.MAIN_UNIT,
             discount: row.DISCOUNT,
-            level: row.LEVEL
+            level: row.LEVEL,
+            amount: row.AMOUNT
         });
     }
     
@@ -160,7 +164,7 @@
                     }
                     html &= "📦 " & item.name & "</td>";
                     html &= "<td>" & item.brand & "</td>";
-                    html &= "<td>1</td>"; // miktar sabit ya da dinamik
+                    html &= "<td>#tlformat(item.amount)#</td>"; // miktar sabit ya da dinamik
                     html &= "<td>" & tlformat(item.price) & "</td>";
                     html &= "<td>" & tlformat(item.price) & "</td>"; // toplam örnek olarak aynı
                     html &= "<td>" & item.money & "</td>";
