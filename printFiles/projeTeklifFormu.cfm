@@ -1,4 +1,78 @@
-﻿<cftry>
+﻿<cfquery name="qProductTree" datasource="#dsn3#">
+    WITH ProductTreeCTE AS (
+        SELECT 
+            PT.STOCK_ID,
+            PT.RELATED_ID,
+            1 AS LEVEL
+        FROM PRODUCT_TREE PT
+        WHERE PT.STOCK_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#url.stockId#">
+    
+        UNION ALL
+    
+        SELECT 
+            PT.STOCK_ID,
+            PT.RELATED_ID,
+            CTE.LEVEL + 1
+        FROM PRODUCT_TREE PT
+        INNER JOIN ProductTreeCTE CTE ON PT.STOCK_ID = CTE.RELATED_ID
+        WHERE CTE.LEVEL < 5
+    )
+    
+    SELECT 
+        T.STOCK_ID AS ParentID,
+        T.RELATED_ID AS ID,
+        S.PRODUCT_NAME,
+        S.PRODUCT_CODE,
+        S.STOCK_ID,
+        S.PRODUCT_ID,
+        S.PRICE,
+        S.MONEY,
+        T.LEVEL
+    FROM ProductTreeCTE T
+    INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
+    ORDER BY T.LEVEL, S.PRODUCT_NAME
+    </cfquery>
+<style>
+    table.treeview-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.treeview-table th, table.treeview-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+
+    .tree-indent {
+        padding-left: 20px;
+    }
+</style>
+
+<table class="treeview-table">
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Fiyat</th>
+            <th>Para Birimi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <cfoutput query="qProductTree">
+            <tr>
+                <td class="tree-indent" style="padding-left:#(LEVEL-1)*30#px">
+                    <i class="fa fa-box"></i> #PRODUCT_NAME#
+                </td>
+                <td>#PRICE#</td>
+                <td>#MONEY#</td>
+            </tr>
+        </cfoutput>
+    </tbody>
+</table>
+
+
+<cfabort>
+
+<cftry>
     <style>
         @media print
         {
