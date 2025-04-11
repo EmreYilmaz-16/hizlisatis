@@ -36,7 +36,7 @@
      <table class="header-table">
         <tr>
             <td width="50%">
-                <img src="https://www.mifasistem.com/metosanlogo.png" width="250">
+                <img src="http://erp.metosan.com.tr/documents/settings/3B355075-DEF5-E025-AE27746DDF7BCBF8.png" border="0" style="max-width: 250px;height: 88px;width: 270px;">
             </td>
             <td align="right" style="font-size: 20px; font-weight: bold;">
                 SATIŞ TEKLİF FORMU
