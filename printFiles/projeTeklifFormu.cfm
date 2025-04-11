@@ -112,7 +112,7 @@
     </cfquery>
     <cfif Get_Offer_Rows.IS_VIRTUAL EQ 1>
         <cfquery name="Get_Offer_Rows2" datasource="#dsn3#">
-        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS #Get_Offer_Rows.PRODUCT_ID#,0
+        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS111 #Get_Offer_Rows.PRODUCT_ID#,0
         </cfquery>
     <cfelse>
         <cfquery name="Get_Offer_Rows2" datasource="#dsn3#">
