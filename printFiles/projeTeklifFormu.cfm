@@ -485,6 +485,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                     <td colspan="2" style="text-align:right;">
                         <input type="hidden" name="isSubmit" value="1">
                         <input type="submit" value='Teklif Şablonu Oluştur'>
+                        <button type="button" onclick="alert('hi')">Kapat</button>
                     </td>
                 </tr>
             </table>
