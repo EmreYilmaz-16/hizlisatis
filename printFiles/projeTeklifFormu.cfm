@@ -117,9 +117,9 @@
     <cfelse>
         <cfquery name="Get_Offer_Rows2" datasource="#dsn3#">
          SELECT T.AMOUNT
-	,T.PRICE_PBS
-	,T.OTHER_MONEY_PBS
-	,T.DISCOUNT_PBS
+	,T.PRICE_PBS as PRICE
+	,T.OTHER_MONEY_PBS AS MONEY
+	,T.DISCOUNT_PBS AS DISCOUNT
 	,S.STOCK_ID
 	,S.PRODUCT_CODE
 	,S.PRODUCT_NAME
@@ -485,7 +485,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                     <td colspan="2" style="text-align:right;">
                         <input type="hidden" name="isSubmit" value="1">
                         <input type="submit" value='Teklif Şablonu Oluştur'>
-                        <button type="button" onclick="alert('hi')">Kapat</button>
+                        <button type="button" onclick="SatirFiyatGosterGizle()">Fiyat Göster/Gizle</button>
                     </td>
                 </tr>
             </table>
@@ -581,7 +581,11 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                 <td style="background-color: #79ff79;"><b>SN</b></td>
                                 <td style="background-color: #79ff79; width:45%;"><b>Malzeme Adı</b></td>
                                 <td style="background-color: #79ff79;"><b>Marka</b></td>
-                                <td style="background-color: #79ff79;" colspan="2"><b>Miktar</b></td>                               
+                                <td style="background-color: #79ff79;" colspan="2"><b>Miktar</b></td>  
+                                <td class="FiyatAlan" style="background-color: #79ff79;"><b>Fiyat</b></td>
+                                
+                                <td class="FiyatAlan" style="background-color: #79ff79;"><b>Tutar</b></td>
+                                <td class="FiyatAlan" style="background-color: #79ff79;"><b></b></td>
                             </tr>
                             
                             <cfoutput query="Get_Offer_Rows2" startrow="#Row_Start#" maxrows="#Row_End#">
@@ -595,7 +599,10 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
                                     </td>
                                     <td>#left(Brand_Name,60)#</td>
                                     <td style="text-align:right;">#AMOUNT#</td>
-                                    <td>#MAIN_UNIT#</td>                                
+                                    <td>#MAIN_UNIT#</td>  
+                                    <td class="FiyatAlan">#PRICE#</td>                                                          
+                                    <td class="FiyatAlan">#AMOUNT*PRICE#</td>
+                                    <td class="FiyatAlan">#MONEY#</td>  
                                 </tr>
                               
                             </cfoutput>
