@@ -141,8 +141,6 @@ WHERE VP_ID=3751
         });
     });
 </script>
-</head>
-<body>
 
 <h2>Ürün Ağacı</h2>
 
