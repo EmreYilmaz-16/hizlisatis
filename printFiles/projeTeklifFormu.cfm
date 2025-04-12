@@ -148,7 +148,7 @@ WHERE VP_ID=3751
                         <li>
                             <span class="toggle-icon" data-toggle="#qProductTree2.RELATED_ID#">▶</span>
                             <span style="padding-left: 20px;">#qProductTree2.PRODUCT_NAME#</span>
-                            
+                            </li>
         </cfloop>
         </ul>
     </li>
