@@ -102,12 +102,7 @@ WHERE VP_ID=3751
             <span class="toggle-icon" data-toggle="#qProductTree.RELATED_ID#">▶</span>
             <span style="padding-left: 20px;">#qProductTree.PRODUCT_NAME#</span>
         </li>
-        <ul id="#qProductTree.RELATED_ID#">
-            <!--- Alt ürünleri burada listele --->
-            <cfloop query="qProductTree">
-                <li>#qProductTree.PRODUCT_NAME#</li>
-            </cfloop>
-        </ul>
+      
 
     
 </cfloop>
