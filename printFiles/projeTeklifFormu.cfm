@@ -103,6 +103,11 @@ WHERE VP_ID=3751
         <tr>
             <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
             <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#MONEY#</span></td>
+
         </tr>
         <cfif IS_VIRTUAL EQ 1>
             <cfquery name="qProductTree1" datasource="#dsn3#">
@@ -141,6 +146,10 @@ WHERE VP_ID=3751
             <tr>
                 <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                 <td><span >#PRODUCT_NAME#</span></td>
+                <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#MONEY#</span></td>
             </tr>
             <cfif IS_VIRTUAL EQ 1>
                 <cfquery name="qProductTree2" datasource="#dsn3#">
@@ -178,6 +187,10 @@ WHERE VP_ID=3751
                 <tr>
                     <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                     <td><span >#PRODUCT_NAME#</span></td>
+                    <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#MONEY#</span></td>
                 </tr>
                 <cfif IS_VIRTUAL EQ 1>
                     <cfquery name="qProductTree3" datasource="#dsn3#">
@@ -215,6 +228,10 @@ WHERE VP_ID=3751
                     <tr>
                         <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                         <td><span >#PRODUCT_NAME#</span></td>
+                        <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#MONEY#</span></td>
                     </tr>
                     <cfif IS_VIRTUAL EQ 1>
                         <cfquery name="qProductTree4" datasource="#dsn3#">
@@ -252,6 +269,10 @@ WHERE VP_ID=3751
                         <tr>
                             <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                             <td><span >#PRODUCT_NAME#</span></td>
+                            <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#MONEY#</span></td>
                         </tr>
                     </cfloop>
                 </cfloop>
