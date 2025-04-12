@@ -84,6 +84,38 @@
 
 
     <cftry>
+<cfquery name="qProductTree" datasource="#dsn3#">
+    SELECT 
+CASE WHEN IS_VIRTUAL =1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+CASE WHEN IS_VIRTUAL=1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+IS_VIRTUAL,
+1 AS SVY FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
+LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID=VPT.PRODUCT_ID
+WHERE VP_ID=3751
+</cfquery>
+<cfoutput>
+    <ul>
+<cfloop query="qProductTree">
+    <Lİ>
+        <li>
+            <span class="toggle-icon" data-toggle="#qProductTree.RELATED_ID#">▶</span>
+            <span style="padding-left: 20px;">#qProductTree.PRODUCT_NAME#</span>
+        </li>
+        <ul id="#qProductTree.RELATED_ID#">
+            <!--- Alt ürünleri burada listele --->
+            <cfloop query="qProductTree">
+                <li>#qProductTree.PRODUCT_NAME#</li>
+            </cfloop>
+        </ul>
+
+    
+</cfloop>
+
+</ul>
+<cfabort>
+</cfoutput>
+
     <cfquery name="qProductTree" datasource="#dsn3#">
        /* WITH ProductTreeCTE AS (
             SELECT 
@@ -123,7 +155,7 @@
             PU.MAIN_UNIT,
             T.LEVEL,
             T.AMOUNT
-        FROM ProductTreeCTE T
+        FROM T T
         INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
         LEFT JOIN PRODUCT_BRANDS PB ON PB.BRAND_ID = S.BRAND_ID
         LEFT JOIN PRODUCT_UNIT PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
