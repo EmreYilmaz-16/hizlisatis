@@ -156,7 +156,7 @@ WHERE VP_ID=3751
 </cfloop>
 
 </ul>
-<cfabort>
+
 </cfoutput>
 
     <cfquery name="qProductTree" datasource="#dsn3#">
