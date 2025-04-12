@@ -83,8 +83,9 @@
     <!-- Ürün Tablosu -->
 
 
-    <cftry>
-        <cfquery name="qProductTree" datasource="#dsn3#">
+    <cftry>  <meta charset="UTF-8">
+        <title>Ürün Ağacı</title>
+        <cfquery name="qProductTree" datasource="dsn3">
             SELECT 
                 CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                 CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
