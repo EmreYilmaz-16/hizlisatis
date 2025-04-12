@@ -95,11 +95,12 @@ LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID
 WHERE VP_ID=3751
 </cfquery>
 <table>
-    <cfoutput query="qProductTree"></cfoutput>
+    <cfoutput query="qProductTree">
         <tr>
             <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
             <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
         </tr>
+    </cfoutput>
 </table>
 
 
