@@ -98,7 +98,7 @@ WHERE VP_ID=3751
     <cfoutput query="qProductTree">
         <tr>
             <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
-            <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+            <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
         </tr>
         <cfif IS_VIRTUAL EQ 1>
             <cfquery name="qProductTree1" datasource="#dsn3#">
@@ -126,7 +126,7 @@ WHERE VP_ID=3751
         </cfif>
         <cfloop query="qProductTree1">
             <tr>
-                <td><span class="toggle-icon" style="padding:#SVY*30#px" data-toggle="#RELATED_ID#">▶</span></td>
+                <td><span class="toggle-icon" style="padding-left:#SVY*20#px" data-toggle="#RELATED_ID#">▶</span></td>
                 <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
             </tr>
         </cfloop>
