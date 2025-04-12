@@ -176,7 +176,7 @@ WHERE VP_ID=3751
         <cfquery name="qChild1" datasource="#dsn3#">
             SELECT 
                 CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                CASE WHEN IS_VIRTUAL = 1 THEN 'VP' + CAST(VP.VIRTUAL_PRODUCT_ID AS NVARCHAR) ELSE 'RP' + CAST(S.STOCK_ID AS NVARCHAR) END AS RELATED_ID,
+               CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID  ELSE S.STOCK_ID END AS RELATED_ID,
                 IS_VIRTUAL,
                 2 AS SVY
             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
@@ -197,7 +197,7 @@ WHERE VP_ID=3751
             <cfquery name="qChild2" datasource="#dsn3#">
                 SELECT 
                     CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                    CASE WHEN IS_VIRTUAL = 1 THEN 'VP' + CAST(VP.VIRTUAL_PRODUCT_ID AS NVARCHAR) ELSE 'RP' + CAST(S.STOCK_ID AS NVARCHAR) END AS RELATED_ID,
+                   CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID  ELSE S.STOCK_ID END AS RELATED_ID,
                     IS_VIRTUAL,
                     3 AS SVY
                 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
@@ -218,7 +218,7 @@ WHERE VP_ID=3751
                 <cfquery name="qChild3" datasource="#dsn3#">
                     SELECT 
                         CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                        CASE WHEN IS_VIRTUAL = 1 THEN 'VP' + CAST(VP.VIRTUAL_PRODUCT_ID AS NVARCHAR) ELSE 'RP' + CAST(S.STOCK_ID AS NVARCHAR) END AS RELATED_ID,
+                       CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID  ELSE S.STOCK_ID END AS RELATED_ID,
                         IS_VIRTUAL,
                         4 AS SVY
                     FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
@@ -239,7 +239,7 @@ WHERE VP_ID=3751
                     <cfquery name="qChild4" datasource="#dsn3#">
                         SELECT 
                             CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                            CASE WHEN IS_VIRTUAL = 1 THEN 'VP' + CAST(VP.VIRTUAL_PRODUCT_ID AS NVARCHAR) ELSE 'RP' + CAST(S.STOCK_ID AS NVARCHAR) END AS RELATED_ID,
+                           CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID  ELSE S.STOCK_ID END AS RELATED_ID,
                             IS_VIRTUAL,
                             5 AS SVY
                         FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
