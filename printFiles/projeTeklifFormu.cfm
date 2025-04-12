@@ -123,25 +123,36 @@ WHERE VP_ID=3751
 </style>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        function toggleRows(id, show) {
+            const children = document.querySelectorAll(`tr[data-parent='${id}']`);
+            children.forEach(function (row) {
+                if (show) {
+                    row.classList.remove('hidden-row');
+                } else {
+                    row.classList.add('hidden-row');
+                }
+                const toggleIcon = row.querySelector('.toggle-icon');
+                if (toggleIcon && !show) {
+                    toggleIcon.textContent = '▶'; // collapse icon reset
+                }
+                // recursive hide
+                if (!show) {
+                    const childId = row.getAttribute('data-id');
+                    toggleRows(childId, false);
+                }
+            });
+        }
+
         document.querySelectorAll('.toggle-icon').forEach(function (icon) {
             icon.addEventListener('click', function () {
                 const toggleId = this.getAttribute('data-toggle');
-                const children = document.querySelectorAll(`tr[data-parent='${toggleId}']`);
                 const isOpen = this.textContent === '▼';
                 this.textContent = isOpen ? '▶' : '▼';
-
-                children.forEach(function (row) {
-                    if (isOpen) {
-                        row.classList.add('hidden-row');
-                    } else {
-                        row.classList.remove('hidden-row');
-                    }
-                });
+                toggleRows(toggleId, !isOpen);
             });
         });
     });
 </script>
-
 <h2>Ürün Ağacı</h2>
 
 <table>
