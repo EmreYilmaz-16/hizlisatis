@@ -137,7 +137,7 @@ WHERE VP_ID=3751
         WHERE VP_ID=#qProductTree1.RELATED_ID#
         </cfquery>
         <CFELSE>
-        <cfquery name="qProductTree1" datasource="#dsn3#">
+        <cfquery name="qProductTree2" datasource="#dsn3#">
             SELECT S.PRODUCT_NAME,RELATED_ID,0 AS IS_VIRTUAL,2 AS SVY FROM workcube_metosan_1.PRODUCT_tREE AS VPT 
             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
             WHERE VPT.STOCK_ID=#qProductTree1.RELATED_ID#
