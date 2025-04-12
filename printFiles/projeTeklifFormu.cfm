@@ -97,7 +97,7 @@ AMOUNT,
 1 AS SVY FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID=VPT.PRODUCT_ID
-WHERE VP_ID=7542
+WHERE VP_ID=7366
 </cfquery>
 <table>
     <cfoutput query="qProductTree">
@@ -495,7 +495,7 @@ WHERE VP_ID=7542
         LEFT JOIN PRODUCT_UNIT PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
         ORDER BY T.LEVEL, S.PRODUCT_NAME*/
 
-        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS111 7542,0
+        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS111 7366,0
 
         </cfquery>
 <cfscript>
@@ -547,7 +547,7 @@ WHERE VP_ID=7542
         return html;
     }
     
-    treeHtml = renderTree(treeData, 7542);
+    treeHtml = renderTree(treeData, 7366);
 </cfscript>
 
 <style>
