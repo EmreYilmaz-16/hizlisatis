@@ -228,6 +228,7 @@ WHERE VP_ID=3751
                                                 
                                                 
                                             </li>
+                                        </cfloop>
                                     </li>
                                     </cfloop>
                                     </ul>
