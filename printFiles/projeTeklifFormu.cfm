@@ -322,7 +322,8 @@
                 <cfset prefix = (IS_VIRTUAL EQ 1 ? "VP" : "RP")>
                 <cfset thisId = prefix & RELATED_ID>
                 <cfset parentId = prefix & VP_ID>
-                <tr data-id="#RELATED_ID#" data-parent="#VP_ID#" data-isvirtual="#IS_VIRTUAL#" class="#iif(SVY GT 1, 'hidden-row', '')#">
+                <cfset classHidden = (SVY GT 1 ? "hidden-row" : "")>
+                <tr data-id="#RELATED_ID#" data-parent="#VP_ID#" data-isvirtual="#IS_VIRTUAL#" class="#classHidden#">
                     <td><span class="toggle-icon" data-toggle="#thisId#">▶</span> #PRODUCT_NAME#</td>
                     <td>#SVY#</td>
                     <td>#IS_VIRTUAL#</td>
