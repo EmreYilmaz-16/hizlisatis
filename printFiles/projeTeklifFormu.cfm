@@ -156,7 +156,7 @@ WHERE VP_ID=3751
             <cfloop query="qProductTree2">
                 <tr>
                     <td><span class="toggle-icon" style="padding-left:#SVY*20#px" data-toggle="#RELATED_ID#">▶</span></td>
-                    <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                    <td><span style="padding-left:#SVY*20#px;">#PRODUCT_NAME#</span></td>
                 </tr>
             </cfloop>
         </cfloop>
