@@ -94,150 +94,156 @@ LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID=VPT.PRODUCT_ID
 WHERE VP_ID=3751
 </cfquery>
-<cfoutput>
-    
-        <ul>
-        <cfloop query="qProductTree">
-            <li>
-                <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
-        
-                <!-- Alt seviye sorgu -->
-                <cfif IS_VIRTUAL EQ 1>
-                    <cfquery name="qProductTree1" datasource="#dsn3#">
-                        SELECT 
-                            CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                            CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
-                            IS_VIRTUAL,
-                            2 AS SVY
-                        FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
-                        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                        LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                        WHERE VP_ID = #RELATED_ID#
-                    </cfquery>
-                <cfelse>
-                    <cfquery name="qProductTree1" datasource="#dsn3#">
-                        SELECT 
-                            S.PRODUCT_NAME,
-                            RELATED_ID,
-                            0 AS IS_VIRTUAL,
-                            2 AS SVY
-                        FROM workcube_metosan_1.PRODUCT_TREE AS VPT
-                        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                        WHERE VPT.STOCK_ID = #RELATED_ID#
-                    </cfquery>
-                </cfif>
-        
-                <ul>
-                <cfloop query="qProductTree1">
-                    <li>
-                        <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                        <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
-        
-                        <!-- 3. Seviye -->
-                        <cfif IS_VIRTUAL EQ 1>
-                            <cfquery name="qProductTree2" datasource="#dsn3#">
-                                SELECT 
-                                    CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                                    CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
-                                    IS_VIRTUAL,
-                                    3 AS SVY
-                                FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
-                                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                                LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                                WHERE VP_ID = #RELATED_ID#
-                            </cfquery>
-                        <cfelse>
-                            <cfquery name="qProductTree2" datasource="#dsn3#">
-                                SELECT 
-                                    S.PRODUCT_NAME,
-                                    RELATED_ID,
-                                    0 AS IS_VIRTUAL,
-                                    3 AS SVY
-                                FROM workcube_metosan_1.PRODUCT_TREE AS VPT
-                                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                                WHERE VPT.STOCK_ID = #RELATED_ID#
-                            </cfquery>
-                        </cfif>
-        
-                        <ul>
-                        <cfloop query="qProductTree2">
-                            <li>
-                                <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                                <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
-                                <!-- 4. Seviye -->
-                                <cfif qProductTree2.IS_VIRTUAL eq 1>
-                                    <cfquery name="qProductTree3" datasource="#dsn3#">
-                                        SELECT 
-                                            CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                                            CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
-                                            IS_VIRTUAL,
-                                            4 AS SVY
-                                        FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
-                                        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                                        LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                                        WHERE VP_ID = #qProductTree2.RELATED_ID#
-                                    </cfquery>
-                                <cfelse>
-                                    <cfquery name="qProductTree3" datasource="#dsn3#">
-                                        SELECT 
-                                            S.PRODUCT_NAME,
-                                            RELATED_ID,
-                                            0 AS IS_VIRTUAL,
-                                            4 AS SVY
-                                        FROM workcube_metosan_1.PRODUCT_TREE AS VPT
-                                        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                                        WHERE VPT.STOCK_ID = #qProductTree2.RELATED_ID#
-                                    </cfquery>
-                                </cfif>
-                                <ul>
-                                <cfloop query="qProductTree3">
-                                    <li>
-                                        <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                                        <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
-                                        <!-- 5. Seviye -->
-                                        <cfif qProductTree3.IS_VIRTUAL eq 1>
-                                            <cfquery name="qProductTree4" datasource="#dsn3#">
-                                                SELECT 
-                                                    CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                                                    CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
-                                                    IS_VIRTUAL,
-                                                    5 AS SVY
-                                                FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
-                                                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                                                LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                                                WHERE VP_ID = #qProductTree3.RELATED_ID#
-                                            </cfquery>
-                                        <cfelse>
-                                            <cfquery name="qProductTree4" datasource="#dsn3#">
-                                                SELECT 
-                                                    S.PRODUCT_NAME,
-                                                    RELATED_ID,
-                                                    0 AS IS_VIRTUAL,
-                                                    5 AS SVY
-                                                FROM workcube_metosan_1.PRODUCT_TREE AS VPT
-                                                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                                                WHERE VPT.STOCK_ID = #qProductTree3.RELATED_ID#
-                                            </cfquery>
-                                        </cfif>
-                                    </li>
-                                    </cfloop>
-                                    </ul>
-                                    
-                            </li>
-                        </cfloop>
-                        </ul>
-        
-                    </li>
-                </cfloop>
-                </ul>
-        
-            </li>
-        </cfloop>
-        </ul>
-        </cfoutput>
-             
+<title>Ürün Ağacı</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #90ee90;
+    }
+    .toggle-icon {
+        cursor: pointer;
+        font-weight: bold;
+        display: inline-block;
+        width: 16px;
+        margin-right: 4px;
+    }
+    .hidden-row {
+        display: none;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.toggle-icon').forEach(function (icon) {
+            icon.addEventListener('click', function () {
+                const toggleId = this.getAttribute('data-toggle');
+                const children = document.querySelectorAll(`tr[data-parent='${toggleId}']`);
+                const isOpen = this.textContent === '▼';
+                this.textContent = isOpen ? '▶' : '▼';
 
+                children.forEach(function (row) {
+                    if (isOpen) {
+                        row.classList.add('hidden-row');
+                    } else {
+                        row.classList.remove('hidden-row');
+                    }
+                });
+            });
+        });
+    });
+</script>
+</head>
+<body>
+
+<h2>Ürün Ağacı</h2>
+
+<table>
+<thead>
+    <tr>
+        <th>Ürün Adı</th>
+        <th>Sanal mı?</th>
+        <th>Seviye</th>
+    </tr>
+</thead>
+<tbody>
+<cfoutput query="qProductTree">
+    <tr data-id="#RELATED_ID#" data-parent="" data-level="#SVY#">
+        <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+        <td>#IS_VIRTUAL#</td>
+        <td>#SVY#</td>
+    </tr>
+
+    <cfquery name="qChild" datasource="#dsn3#">
+        SELECT 
+            CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+            CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+            IS_VIRTUAL,
+            2 AS SVY
+        FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+        LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+        WHERE VP_ID = #qProductTree.RELATED_ID#
+    </cfquery>
+
+    <cfloop query="qChild">
+        <tr class="hidden-row" data-id="#RELATED_ID#" data-parent="#qProductTree.RELATED_ID#" data-level="#SVY#">
+            <td style="padding-left:30px"><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+            <td>#IS_VIRTUAL#</td>
+            <td>#SVY#</td>
+        </tr>
+
+        <cfquery name="qChild2" datasource="#dsn3#">
+            SELECT 
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                IS_VIRTUAL,
+                3 AS SVY
+            FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+            LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+            WHERE VP_ID = #qChild.RELATED_ID#
+        </cfquery>
+
+        <cfloop query="qChild2">
+            <tr class="hidden-row" data-id="#RELATED_ID#" data-parent="#qChild.RELATED_ID#" data-level="#SVY#">
+                <td style="padding-left:60px"><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+                <td>#IS_VIRTUAL#</td>
+                <td>#SVY#</td>
+            </tr>
+
+            <cfquery name="qChild3" datasource="#dsn3#">
+                SELECT 
+                    CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+                    CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                    IS_VIRTUAL,
+                    4 AS SVY
+                FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                WHERE VP_ID = #qChild2.RELATED_ID#
+            </cfquery>
+
+            <cfloop query="qChild3">
+                <tr class="hidden-row" data-id="#RELATED_ID#" data-parent="#qChild2.RELATED_ID#" data-level="#SVY#">
+                    <td style="padding-left:90px"><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+                    <td>#IS_VIRTUAL#</td>
+                    <td>#SVY#</td>
+                </tr>
+
+                <cfquery name="qChild4" datasource="#dsn3#">
+                    SELECT 
+                        CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+                        CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                        IS_VIRTUAL,
+                        5 AS SVY
+                    FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+                    LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                    LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                    WHERE VP_ID = #qChild3.RELATED_ID#
+                </cfquery>
+
+                <cfloop query="qChild4">
+                    <tr class="hidden-row" data-id="#RELATED_ID#" data-parent="#qChild3.RELATED_ID#" data-level="#SVY#">
+                        <td style="padding-left:120px"><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+                        <td>#IS_VIRTUAL#</td>
+                        <td>#SVY#</td>
+                    </tr>
+                </cfloop>
+            </cfloop>
+        </cfloop>
+    </cfloop>
+</cfoutput>
+</tbody>
+</table>
 <cfabort>
 
 
