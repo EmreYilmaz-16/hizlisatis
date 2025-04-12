@@ -92,7 +92,8 @@ IS_VIRTUAL,
 VPT.PRICE,
 VPT.DISCOUNT,
 VPT.MONEY,
-                    AMOUNT,
+SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
+AMOUNT,
 1 AS SVY FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID=VPT.PRODUCT_ID
@@ -119,7 +120,7 @@ WHERE VP_ID=7542
                     VPT.DISCOUNT,
                     VPT.MONEY,
                     AMOUNT,
-                    
+                    SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
                     2 AS SVY
                 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -135,8 +136,9 @@ WHERE VP_ID=7542
                     PRICE_PBS PRICE,
                     DISCOUNT_PBS DISCOUNT,
                     OTHER_MONEY_PBS MONEY,
-                    AMOUNT,
+                    AMOUNT,                   
                     2 AS SVY
+                    ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                 FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                 WHERE VPT.STOCK_ID = #RELATED_ID#
@@ -161,6 +163,7 @@ WHERE VP_ID=7542
                         VPT.DISCOUNT,
                         VPT.MONEY,
                         AMOUNT,
+                        SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
                         3 AS SVY
                     FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -178,6 +181,7 @@ WHERE VP_ID=7542
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,
                         3 AS SVY
+                        ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                     FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                     WHERE VPT.STOCK_ID = #RELATED_ID#
@@ -188,7 +192,7 @@ WHERE VP_ID=7542
                     <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                     <td><span >#PRODUCT_NAME#</span></td>
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
             <td><span style="padding-left: 0px;">#MONEY#</span></td>
                 </tr>
@@ -202,6 +206,7 @@ WHERE VP_ID=7542
                             VPT.DISCOUNT,
                             VPT.OTHER_MONEY,
                     AMOUNT,
+                    SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
                             4 AS SVY
                         FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -219,6 +224,7 @@ WHERE VP_ID=7542
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,
                             4 AS SVY
+                            ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                         FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                         WHERE VPT.STOCK_ID = #RELATED_ID#
@@ -243,6 +249,7 @@ WHERE VP_ID=7542
                                 VPT.DISCOUNT,
                                 VPT.OTHER_MONEY,
                     AMOUNT,
+                    SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
                                 5 AS SVY
                             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -259,7 +266,9 @@ WHERE VP_ID=7542
                     DISCOUNT_PBS DISCOUNT,
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,
+                    
                                 5 AS SVY
+                                ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                             FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                             WHERE VPT.STOCK_ID = #RELATED_ID#
