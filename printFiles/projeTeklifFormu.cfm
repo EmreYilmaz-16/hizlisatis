@@ -126,8 +126,8 @@ WHERE VP_ID=3751
         </cfif>
         <cfloop query="qProductTree1">
             <tr>
-                <td><span class="toggle-icon" style="padding-left:#SVY*20#px" data-toggle="#RELATED_ID#">▶</span></td>
-                <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                <td><span class="toggle-icon" style="padding-left:#SVY*10#px" data-toggle="#RELATED_ID#">▶</span></td>
+                <td><span >#PRODUCT_NAME#</span></td>
             </tr>
             <cfif IS_VIRTUAL EQ 1>
                 <cfquery name="qProductTree2" datasource="#dsn3#">
@@ -155,8 +155,8 @@ WHERE VP_ID=3751
             </cfif>
             <cfloop query="qProductTree2">
                 <tr>
-                    <td><span class="toggle-icon" style="padding-left:#SVY*20#px" data-toggle="#RELATED_ID#">▶</span></td>
-                    <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                    <td><span class="toggle-icon" style="padding-left:#SVY*10#px" data-toggle="#RELATED_ID#">▶</span></td>
+                    <td><span >#PRODUCT_NAME#</span></td>
                 </tr>
             </cfloop>
         </cfloop>
@@ -171,7 +171,7 @@ WHERE VP_ID=3751
         <cfloop query="qProductTree">
             <tr>
                 <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
-                <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                <td><span >#PRODUCT_NAME#</span></td>
             </tr>
                 <!-- Alt seviye sorgu -->
                 <cfif IS_VIRTUAL EQ 1>
@@ -203,7 +203,7 @@ WHERE VP_ID=3751
                 <cfloop query="qProductTree1">
                     <tr>
                        <td> <span style="padding:#SVY*30#px" class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
-                        <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                        <td><span >#PRODUCT_NAME#</span></td>
                     </tr>
                         <!-- 3. Seviye -->
                         <cfif IS_VIRTUAL EQ 1>
@@ -235,7 +235,7 @@ WHERE VP_ID=3751
                         <cfloop query="qProductTree2">
                             <tr>
                                 <td><span class="toggle-icon" style="padding:#SVY*30#px" data-toggle="#RELATED_ID#">▶</span></td>
-                                <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                                <td><span >#PRODUCT_NAME#</span></td>
                             </tr>
                                 <!-- 4. Seviye -->
                                 <cfif qProductTree2.IS_VIRTUAL eq 1>
@@ -266,7 +266,7 @@ WHERE VP_ID=3751
                                 <cfloop query="qProductTree3">
                                     <tr>
                                        <td> <span class="toggle-icon" style="padding:#SVY*30#px"  data-toggle="#RELATED_ID#">▶</span></td>
-                                        <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                                        <td><span >#PRODUCT_NAME#</span></td>
                                     </tr>
                                         <!-- 5. Seviye -->
                                         <cfif qProductTree3.IS_VIRTUAL eq 1>
@@ -297,7 +297,7 @@ WHERE VP_ID=3751
                                         <cfloop query="qProductTree4">
                                             <tr>
                                              <td><span class="toggle-icon" style="padding:#SVY*30#px"  data-toggle="#RELATED_ID#">▶</span></td> 
-                                                <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                                                <td><span >#PRODUCT_NAME#</span></td>
                                                                                                 
                                             </tr>
                                         </cfloop>
