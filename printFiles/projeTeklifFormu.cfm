@@ -156,103 +156,113 @@ WHERE VP_ID=3751
 <h2>Ürün Ağacı</h2>
 
 <table>
-<thead>
-    <tr>
-        <th>Ürün Adı</th>
-        <th>Sanal mı?</th>
-        <th>Seviye</th>
-    </tr>
-</thead>
-<tbody>
-<cfoutput query="qProductTree">
-    <tr data-id="#RELATED_ID#" data-parent="" data-level="#SVY#">
-        <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
-        <td>#IS_VIRTUAL#</td>
-        <td>#SVY#</td>
-    </tr>
-
-    <cfquery name="qChild" datasource="#dsn3#">
-        SELECT 
-            CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-            CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
-            IS_VIRTUAL,
-            2 AS SVY
-        FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
-        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-        LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-        WHERE VP_ID = #qProductTree.RELATED_ID#
-    </cfquery>
-
-    <cfloop query="qChild">
-        <tr class="hidden-row" data-id="#RELATED_ID#" data-parent="#qProductTree.RELATED_ID#" data-level="#SVY#">
-            <td style="padding-left:30px"><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Sanal mı?</th>
+            <th>Seviye</th>
+        </tr>
+    </thead>
+    <tbody>
+    <cfoutput query="qProductTree">
+        <cfset thisId = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
+        <tr data-id="#thisId#" data-parent="" data-level="#SVY#">
+            <td><span class="toggle-icon" data-toggle="#thisId#">▶</span> #PRODUCT_NAME#</td>
             <td>#IS_VIRTUAL#</td>
             <td>#SVY#</td>
         </tr>
 
-        <cfquery name="qChild2" datasource="#dsn3#">
+        <cfset parent0 = thisId>
+        <cfquery name="qChild1" datasource="#dsn3#">
             SELECT 
                 CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                CASE WHEN IS_VIRTUAL = 1 THEN 'VP' + CAST(VP.VIRTUAL_PRODUCT_ID AS NVARCHAR) ELSE 'RP' + CAST(S.STOCK_ID AS NVARCHAR) END AS RELATED_ID,
                 IS_VIRTUAL,
-                3 AS SVY
+                2 AS SVY
             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
             LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-            WHERE VP_ID = #qChild.RELATED_ID#
+            WHERE VP_ID = #qProductTree.RELATED_ID#
         </cfquery>
 
-        <cfloop query="qChild2">
-            <tr class="hidden-row" data-id="#RELATED_ID#" data-parent="#qChild.RELATED_ID#" data-level="#SVY#">
-                <td style="padding-left:60px"><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+        <cfloop query="qChild1">
+            <cfset id1 = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
+            <tr class="hidden-row" data-id="#id1#" data-parent="#parent0#" data-level="#SVY#">
+                <td style="padding-left:30px"><span class="toggle-icon" data-toggle="#id1#">▶</span> #PRODUCT_NAME#</td>
                 <td>#IS_VIRTUAL#</td>
                 <td>#SVY#</td>
             </tr>
 
-            <cfquery name="qChild3" datasource="#dsn3#">
+            <cfset parent1 = id1>
+            <cfquery name="qChild2" datasource="#dsn3#">
                 SELECT 
                     CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                    CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                    CASE WHEN IS_VIRTUAL = 1 THEN 'VP' + CAST(VP.VIRTUAL_PRODUCT_ID AS NVARCHAR) ELSE 'RP' + CAST(S.STOCK_ID AS NVARCHAR) END AS RELATED_ID,
                     IS_VIRTUAL,
-                    4 AS SVY
+                    3 AS SVY
                 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                WHERE VP_ID = #qChild2.RELATED_ID#
+                WHERE VP_ID = #qChild1.RELATED_ID#
             </cfquery>
 
-            <cfloop query="qChild3">
-                <tr class="hidden-row" data-id="#RELATED_ID#" data-parent="#qChild2.RELATED_ID#" data-level="#SVY#">
-                    <td style="padding-left:90px"><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+            <cfloop query="qChild2">
+                <cfset id2 = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
+                <tr class="hidden-row" data-id="#id2#" data-parent="#parent1#" data-level="#SVY#">
+                    <td style="padding-left:60px"><span class="toggle-icon" data-toggle="#id2#">▶</span> #PRODUCT_NAME#</td>
                     <td>#IS_VIRTUAL#</td>
                     <td>#SVY#</td>
                 </tr>
 
-                <cfquery name="qChild4" datasource="#dsn3#">
+                <cfset parent2 = id2>
+                <cfquery name="qChild3" datasource="#dsn3#">
                     SELECT 
                         CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                        CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                        CASE WHEN IS_VIRTUAL = 1 THEN 'VP' + CAST(VP.VIRTUAL_PRODUCT_ID AS NVARCHAR) ELSE 'RP' + CAST(S.STOCK_ID AS NVARCHAR) END AS RELATED_ID,
                         IS_VIRTUAL,
-                        5 AS SVY
+                        4 AS SVY
                     FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                     LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                    WHERE VP_ID = #qChild3.RELATED_ID#
+                    WHERE VP_ID = #qChild2.RELATED_ID#
                 </cfquery>
 
-                <cfloop query="qChild4">
-                    <tr class="hidden-row" data-id="#RELATED_ID#" data-parent="#qChild3.RELATED_ID#" data-level="#SVY#">
-                        <td style="padding-left:120px"><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span> #PRODUCT_NAME#</td>
+                <cfloop query="qChild3">
+                    <cfset id3 = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
+                    <tr class="hidden-row" data-id="#id3#" data-parent="#parent2#" data-level="#SVY#">
+                        <td style="padding-left:90px"><span class="toggle-icon" data-toggle="#id3#">▶</span> #PRODUCT_NAME#</td>
                         <td>#IS_VIRTUAL#</td>
                         <td>#SVY#</td>
                     </tr>
+
+                    <cfset parent3 = id3>
+                    <cfquery name="qChild4" datasource="#dsn3#">
+                        SELECT 
+                            CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+                            CASE WHEN IS_VIRTUAL = 1 THEN 'VP' + CAST(VP.VIRTUAL_PRODUCT_ID AS NVARCHAR) ELSE 'RP' + CAST(S.STOCK_ID AS NVARCHAR) END AS RELATED_ID,
+                            IS_VIRTUAL,
+                            5 AS SVY
+                        FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+                        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                        LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                        WHERE VP_ID = #qChild3.RELATED_ID#
+                    </cfquery>
+
+                    <cfloop query="qChild4">
+                        <cfset id4 = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
+                        <tr class="hidden-row" data-id="#id4#" data-parent="#parent3#" data-level="#SVY#">
+                            <td style="padding-left:120px"><span class="toggle-icon" data-toggle="#id4#">▶</span> #PRODUCT_NAME#</td>
+                            <td>#IS_VIRTUAL#</td>
+                            <td>#SVY#</td>
+                        </tr>
+                    </cfloop>
                 </cfloop>
             </cfloop>
         </cfloop>
-    </cfloop>
-</cfoutput>
-</tbody>
+    </cfoutput>
+    </tbody>
 </table>
+
 <cfabort>
 
 
