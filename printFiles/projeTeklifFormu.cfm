@@ -105,9 +105,9 @@ WHERE VP_ID=7542
             <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
             <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#MONEY#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
 
         </tr>
         <cfif IS_VIRTUAL EQ 1>
@@ -138,7 +138,7 @@ WHERE VP_ID=7542
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,                   
                     2 AS SVY
-                    ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
+                    ,(SELECT '' AS PRICE,'' AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                 FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                 WHERE VPT.STOCK_ID = #RELATED_ID#
@@ -149,9 +149,9 @@ WHERE VP_ID=7542
                 <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                 <td><span >#PRODUCT_NAME#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#MONEY#</span></td>
+                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
             </tr>
             <cfif IS_VIRTUAL EQ 1>
                 <cfquery name="qProductTree2" datasource="#dsn3#">
@@ -193,8 +193,9 @@ WHERE VP_ID=7542
                     <td><span >#PRODUCT_NAME#</span></td>
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#MONEY#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
+            
                 </tr>
                 <cfif IS_VIRTUAL EQ 1>
                     <cfquery name="qProductTree3" datasource="#dsn3#">
@@ -235,9 +236,9 @@ WHERE VP_ID=7542
                         <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                         <td><span >#PRODUCT_NAME#</span></td>
                         <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#MONEY#</span></td>
+                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                        <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
                     </tr>
                     <cfif IS_VIRTUAL EQ 1>
                         <cfquery name="qProductTree4" datasource="#dsn3#">
@@ -279,9 +280,9 @@ WHERE VP_ID=7542
                             <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                             <td><span >#PRODUCT_NAME#</span></td>
                             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(PRICE)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(DISCOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#MONEY#</span></td>
+                            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                            <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
                         </tr>
                     </cfloop>
                 </cfloop>
