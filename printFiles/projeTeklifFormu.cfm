@@ -84,186 +84,252 @@
 
 
     <cftry>
-<cfquery name="qProductTree" datasource="#dsn3#">
-    SELECT 
-CASE WHEN IS_VIRTUAL =1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-CASE WHEN IS_VIRTUAL=1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
-IS_VIRTUAL,
-1 AS SVY FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
-LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
-LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID=VPT.PRODUCT_ID
-WHERE VP_ID=3751
-</cfquery>
-<title>Ürün Ağacı</title>
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-    }
-    th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #90ee90;
-    }
-    .toggle-icon {
-        cursor: pointer;
-        font-weight: bold;
-        display: inline-block;
-        width: 16px;
-        margin-right: 4px;
-    }
-    .hidden-row {
-        display: none;
-    }
-</style>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function toggleRows(id, show) {
-        console.log("toggleRows", id, show);
-            const children = document.querySelectorAll(`tr[data-parent='${id}']`);
-            children.forEach(function (row) {
-                if (show) {
-                    row.classList.remove('hidden-row');
-                } else {
-                    row.classList.add('hidden-row');
-                }
-                const toggleIcon = row.querySelector('.toggle-icon');
-                if (toggleIcon && !show) {
-                    toggleIcon.textContent = '▶'; // collapse icon reset
-                }
-                // recursive hide
-                if (!show) {
-                    const childId = row.getAttribute('data-id');
-                    toggleRows(childId, false);
-                }
-            });
-        }
-
-        document.querySelectorAll('.toggle-icon').forEach(function (icon) {
-            icon.addEventListener('click', function () {
-                const toggleId = this.getAttribute('data-toggle');
-                const isOpen = this.textContent === '▼';
-                this.textContent = isOpen ? '▶' : '▼';
-                toggleRows(toggleId, !isOpen);
-            });
-        });
-    });
-</script>
-<h2>Ürün Ağacı</h2>
-
-<table>
-    <thead>
-        <tr>
-            <th>Ürün Adı</th>
-            <th>Sanal mı?</th>
-            <th>Seviye</th>
-        </tr>
-    </thead>
-    <tbody>
-    <cfoutput query="qProductTree">
-        <cfset thisId = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
-        <tr data-id="#thisId#" data-parent="" data-level="#SVY#">
-            <td><span class="toggle-icon" data-toggle="#thisId#">▶</span> #PRODUCT_NAME#</td>
-            <td>#IS_VIRTUAL#</td>
-            <td>#SVY#</td>
-        </tr>
-
-        <cfset parent0 = thisId>
-        <cfquery name="qChild1" datasource="#dsn3#">
+        <cfquery name="qProductTree" datasource="dsn3">
             SELECT 
                 CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-               CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID  ELSE S.STOCK_ID END AS RELATED_ID,
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
                 IS_VIRTUAL,
+                VP_ID,
+                1 AS SVY
+            FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+            LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+            WHERE VP_ID = 3751
+    
+            UNION ALL
+    
+            SELECT 
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                IS_VIRTUAL,
+                VPT.VP_ID,
                 2 AS SVY
             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
             LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-            WHERE VP_ID = #qProductTree.RELATED_ID#
-        </cfquery>
-
-        <cfloop query="qChild1">
-            <cfset id1 = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
-            <tr class="hidden-row" data-id="#id1#" data-parent="#parent0#" data-level="#SVY#">
-                <td style="padding-left:30px"><span class="toggle-icon" data-toggle="#id1#">▶</span> #PRODUCT_NAME#</td>
-                <td>#IS_VIRTUAL#</td>
-                <td>#SVY#</td>
-            </tr>
-
-            <cfset parent1 = id1>
-            <cfquery name="qChild2" datasource="#dsn3#">
-                SELECT 
-                    CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                   CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID  ELSE S.STOCK_ID END AS RELATED_ID,
-                    IS_VIRTUAL,
-                    3 AS SVY
+            WHERE VP_ID IN (
+                SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID = 3751
+            )
+    
+            UNION ALL
+    
+            SELECT 
+                S.PRODUCT_NAME,
+                PT.RELATED_ID,
+                0 AS IS_VIRTUAL,
+                PT.STOCK_ID AS VP_ID,
+                2 AS SVY
+            FROM workcube_metosan_1.PRODUCT_TREE PT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = PT.PRODUCT_ID
+            WHERE PT.STOCK_ID IN (
+                SELECT S.STOCK_ID
                 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                WHERE VP_ID = #qChild1.RELATED_ID#
-            </cfquery>
-
-            <cfloop query="qChild2">
-                <cfset id2 = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
-                <tr class="hidden-row" data-id="#id2#" data-parent="#parent1#" data-level="#SVY#">
-                    <td style="padding-left:60px"><span class="toggle-icon" data-toggle="#id2#">▶</span> #PRODUCT_NAME#</td>
-                    <td>#IS_VIRTUAL#</td>
+                WHERE VPT.VP_ID = 3751 AND IS_VIRTUAL = 0
+            )
+    
+            UNION ALL
+    
+            SELECT 
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                IS_VIRTUAL,
+                VPT.VP_ID,
+                3 AS SVY
+            FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+            LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+            WHERE VP_ID IN (
+                SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                    SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID = 3751
+                )
+            )
+    
+            UNION ALL
+    
+            SELECT 
+                S.PRODUCT_NAME,
+                PT.RELATED_ID,
+                0 AS IS_VIRTUAL,
+                PT.STOCK_ID AS VP_ID,
+                3 AS SVY
+            FROM workcube_metosan_1.PRODUCT_TREE PT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = PT.PRODUCT_ID
+            WHERE PT.STOCK_ID IN (
+                SELECT S.STOCK_ID
+                FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                WHERE VPT.VP_ID IN (
+                    SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID = 3751
+                ) AND IS_VIRTUAL = 0
+            )
+            
+            UNION ALL
+    
+            SELECT 
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                IS_VIRTUAL,
+                VPT.VP_ID,
+                4 AS SVY
+            FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+            LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+            WHERE VP_ID IN (
+                SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                    SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                        SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID = 3751
+                    )
+                )
+            )
+    
+            UNION ALL
+    
+            SELECT 
+                S.PRODUCT_NAME,
+                PT.RELATED_ID,
+                0 AS IS_VIRTUAL,
+                PT.STOCK_ID AS VP_ID,
+                4 AS SVY
+            FROM workcube_metosan_1.PRODUCT_TREE PT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = PT.PRODUCT_ID
+            WHERE PT.STOCK_ID IN (
+                SELECT S.STOCK_ID
+                FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                WHERE VPT.VP_ID IN (
+                    SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                        SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID = 3751
+                    )
+                ) AND IS_VIRTUAL = 0
+            )
+    
+            UNION ALL
+    
+            SELECT 
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
+                CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                IS_VIRTUAL,
+                VPT.VP_ID,
+                5 AS SVY
+            FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+            LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+            WHERE VP_ID IN (
+                SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                    SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                        SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                            SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID = 3751
+                        )
+                    )
+                )
+            )
+    
+            UNION ALL
+    
+            SELECT 
+                S.PRODUCT_NAME,
+                PT.RELATED_ID,
+                0 AS IS_VIRTUAL,
+                PT.STOCK_ID AS VP_ID,
+                5 AS SVY
+            FROM workcube_metosan_1.PRODUCT_TREE PT
+            LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = PT.PRODUCT_ID
+            WHERE PT.STOCK_ID IN (
+                SELECT S.STOCK_ID
+                FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
+                LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                WHERE VPT.VP_ID IN (
+                    SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                        SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID IN (
+                            SELECT PRODUCT_ID FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT WHERE VP_ID = 3751
+                        )
+                    )
+                ) AND IS_VIRTUAL = 0
+            )
+        </cfquery>
+    
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .toggle-icon {
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .hidden-row {
+            display: none;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("tr[data-id]").forEach(row => {
+                const isVirtual = row.getAttribute("data-isvirtual") === "1";
+                const prefix = isVirtual ? "VP" : "RP";
+                const id = prefix + row.getAttribute("data-id");
+                const parent = prefix + row.getAttribute("data-parent");
+                row.setAttribute("data-id", id);
+                if (row.getAttribute("data-parent")) row.setAttribute("data-parent", parent);
+                const toggle = row.querySelector(".toggle-icon");
+                if (toggle) toggle.setAttribute("data-toggle", id);
+            });
+    
+            function toggleChildren(id, show) {
+                const children = document.querySelectorAll(`tr[data-parent='${id}']`);
+                children.forEach(row => {
+                    row.classList.toggle("hidden-row", !show);
+                    const childId = row.getAttribute("data-id");
+                    if (!show) toggleChildren(childId, false);
+                });
+            }
+    
+            document.querySelectorAll(".toggle-icon").forEach(icon => {
+                icon.addEventListener("click", function () {
+                    const id = this.getAttribute("data-toggle");
+                    const open = this.textContent === "▼";
+                    this.textContent = open ? "▶" : "▼";
+                    toggleChildren(id, !open);
+                });
+            });
+        });
+    </script>
+    
+    <h2>Ürün Ağacı</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Seviye</th>
+                <th>Sanal Mı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <cfoutput query="qProductTree">
+                <cfset prefix = (IS_VIRTUAL EQ 1 ? "VP" : "RP")>
+                <cfset thisId = prefix & RELATED_ID>
+                <cfset parentId = prefix & VP_ID>
+                <tr data-id="#RELATED_ID#" data-parent="#VP_ID#" data-isvirtual="#IS_VIRTUAL#" class="#iif(SVY GT 1, 'hidden-row', '')#">
+                    <td><span class="toggle-icon" data-toggle="#thisId#">▶</span> #PRODUCT_NAME#</td>
                     <td>#SVY#</td>
+                    <td>#IS_VIRTUAL#</td>
                 </tr>
-
-                <cfset parent2 = id2>
-                <cfquery name="qChild3" datasource="#dsn3#">
-                    SELECT 
-                        CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                       CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID  ELSE S.STOCK_ID END AS RELATED_ID,
-                        IS_VIRTUAL,
-                        4 AS SVY
-                    FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
-                    LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                    LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                    WHERE VP_ID = #qChild2.RELATED_ID#
-                </cfquery>
-
-                <cfloop query="qChild3">
-                    <cfset id3 = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
-                    <tr class="hidden-row" data-id="#id3#" data-parent="#parent2#" data-level="#SVY#">
-                        <td style="padding-left:90px"><span class="toggle-icon" data-toggle="#id3#">▶</span> #PRODUCT_NAME#</td>
-                        <td>#IS_VIRTUAL#</td>
-                        <td>#SVY#</td>
-                    </tr>
-
-                    <cfset parent3 = id3>
-                    <cfquery name="qChild4" datasource="#dsn3#">
-                        SELECT 
-                            CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
-                           CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID  ELSE S.STOCK_ID END AS RELATED_ID,
-                            IS_VIRTUAL,
-                            5 AS SVY
-                        FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
-                        LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                        LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                        WHERE VP_ID = #qChild3.RELATED_ID#
-                    </cfquery>
-
-                    <cfloop query="qChild4">
-                        <cfset id4 = (IS_VIRTUAL EQ 1 ? "VP" : "RP") & RELATED_ID>
-                        <tr class="hidden-row" data-id="#id4#" data-parent="#parent3#" data-level="#SVY#">
-                            <td style="padding-left:120px"><span class="toggle-icon" data-toggle="#id4#">▶</span> #PRODUCT_NAME#</td>
-                            <td>#IS_VIRTUAL#</td>
-                            <td>#SVY#</td>
-                        </tr>
-                    </cfloop>
-                </cfloop>
-            </cfloop>
-        </cfloop>
-    </cfoutput>
-    </tbody>
-</table>
-
+            </cfoutput>
+        </tbody>
+    </table>
+    
 <cfabort>
 
 
