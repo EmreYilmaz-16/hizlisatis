@@ -85,7 +85,7 @@
 
     <cftry>
     <cfquery name="qProductTree" datasource="#dsn3#">
-        WITH ProductTreeCTE AS (
+       /* WITH ProductTreeCTE AS (
             SELECT 
                 PT.STOCK_ID,
                 PT.RELATED_ID,
@@ -127,7 +127,10 @@
         INNER JOIN STOCKS S ON S.STOCK_ID = T.RELATED_ID
         LEFT JOIN PRODUCT_BRANDS PB ON PB.BRAND_ID = S.BRAND_ID
         LEFT JOIN PRODUCT_UNIT PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
-        ORDER BY T.LEVEL, S.PRODUCT_NAME
+        ORDER BY T.LEVEL, S.PRODUCT_NAME*/
+
+        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS111 7542,0
+
         </cfquery>
 <cfscript>
     treeData = [];
