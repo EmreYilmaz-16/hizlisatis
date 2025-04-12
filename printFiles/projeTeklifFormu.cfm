@@ -124,6 +124,7 @@ WHERE VP_ID=3751
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         function toggleRows(id, show) {
+        console.log("toggleRows", id, show);
             const children = document.querySelectorAll(`tr[data-parent='${id}']`);
             children.forEach(function (row) {
                 if (show) {
