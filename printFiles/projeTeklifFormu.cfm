@@ -129,7 +129,7 @@
         LEFT JOIN PRODUCT_UNIT PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
         ORDER BY T.LEVEL, S.PRODUCT_NAME*/
 
-        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS111 7542,0
+        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS111 3751,0
 
         </cfquery>
 <cfscript>
@@ -181,7 +181,7 @@
         return html;
     }
     
-    treeHtml = renderTree(treeData, 7542);
+    treeHtml = renderTree(treeData, 3751);
 </cfscript>
 
 <style>
