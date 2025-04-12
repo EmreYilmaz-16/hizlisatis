@@ -96,12 +96,12 @@ WHERE VP_ID=3751
 </cfquery>
 <cfoutput>
     
-        <ul>
+        <table>
         <cfloop query="qProductTree">
-            <li>
-                <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
-        
+            <tr>
+                <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
+                <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+            </tr>
                 <!-- Alt seviye sorgu -->
                 <cfif IS_VIRTUAL EQ 1>
                     <cfquery name="qProductTree1" datasource="#dsn3#">
@@ -128,12 +128,12 @@ WHERE VP_ID=3751
                     </cfquery>
                 </cfif>
         
-                <ul>
+                
                 <cfloop query="qProductTree1">
-                    <li>
-                        <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                        <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
-        
+                    <tr>
+                       <td> <span style="padding:#SVY*30#px" class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
+                        <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                    </tr>
                         <!-- 3. Seviye -->
                         <cfif IS_VIRTUAL EQ 1>
                             <cfquery name="qProductTree2" datasource="#dsn3#">
@@ -160,11 +160,12 @@ WHERE VP_ID=3751
                             </cfquery>
                         </cfif>
         
-                        <ul>
+                        
                         <cfloop query="qProductTree2">
-                            <li>
-                                <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                                <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
+                            <tr>
+                                <td><span class="toggle-icon" style="padding:#SVY*30#px" data-toggle="#RELATED_ID#">▶</span></td>
+                                <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                            </tr>
                                 <!-- 4. Seviye -->
                                 <cfif qProductTree2.IS_VIRTUAL eq 1>
                                     <cfquery name="qProductTree3" datasource="#dsn3#">
@@ -190,11 +191,12 @@ WHERE VP_ID=3751
                                         WHERE VPT.STOCK_ID = #qProductTree2.RELATED_ID#
                                     </cfquery>
                                 </cfif>
-                                <ul>
+                                
                                 <cfloop query="qProductTree3">
-                                    <li>
-                                        <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                                        <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
+                                    <tr>
+                                       <td> <span class="toggle-icon" style="padding:#SVY*30#px"  data-toggle="#RELATED_ID#">▶</span></td>
+                                        <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                                    </tr>
                                         <!-- 5. Seviye -->
                                         <cfif qProductTree3.IS_VIRTUAL eq 1>
                                             <cfquery name="qProductTree4" datasource="#dsn3#">
@@ -220,30 +222,29 @@ WHERE VP_ID=3751
                                                 WHERE VPT.STOCK_ID = #qProductTree3.RELATED_ID#
                                             </cfquery>
                                         </cfif>
-                                        <ul>
+                                        
                                         <cfloop query="qProductTree4">
-                                            <li>
-                                                <span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span>
-                                                <span style="padding-left: 20px;">#PRODUCT_NAME#</span>
-                                                
-                                                
-                                            </li>
+                                            <tr>
+                                             <td><span class="toggle-icon" style="padding:#SVY*30#px"  data-toggle="#RELATED_ID#">▶</span></td> 
+                                                <td><span style="padding-left: 20px;">#PRODUCT_NAME#</span></td>
+                                                                                                
+                                            </tr>
                                         </cfloop>
-                                    </li>
-                                    </cfloop>
-                                    </ul>
                                     
-                            </li>
+                                    </cfloop>
+                                    
+                                    
+                            
                         </cfloop>
-                        </ul>
+                        
         
-                    </li>
+                    
                 </cfloop>
-                </ul>
+                
         
-            </li>
+            
         </cfloop>
-        </ul>
+        </table>
         </cfoutput>
              
 
