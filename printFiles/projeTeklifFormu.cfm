@@ -89,6 +89,10 @@
 CASE WHEN IS_VIRTUAL =1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
 CASE WHEN IS_VIRTUAL=1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
 IS_VIRTUAL,
+PRICE,
+DISCOUNT,
+  OTHER_MONEY,
+                    AMOUNT,
 1 AS SVY FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID=VPT.PRODUCT_ID
@@ -106,6 +110,11 @@ WHERE VP_ID=3751
                     CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                     CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
                     IS_VIRTUAL,
+                    PRICE,
+                    DISCOUNT,
+                      OTHER_MONEY,
+                    AMOUNT,
+                    
                     2 AS SVY
                 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -118,6 +127,10 @@ WHERE VP_ID=3751
                     S.PRODUCT_NAME,
                     RELATED_ID,
                     0 AS IS_VIRTUAL,
+                    PRICE_PBS PRICE,
+                    DISCOUNT_PBS DISCOUNT,
+                    OTHER_MONEY_PBS MONEY,
+                    AMOUNT,
                     2 AS SVY
                 FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -135,6 +148,10 @@ WHERE VP_ID=3751
                         CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                         CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
                         IS_VIRTUAL,
+                        PRICE,
+                        DISCOUNT,
+                        MONEY,
+                        AMOUNT,
                         3 AS SVY
                     FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -164,6 +181,10 @@ WHERE VP_ID=3751
                             CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                             CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
                             IS_VIRTUAL,
+                            PRICE,
+                            DISCOUNT,
+                              OTHER_MONEY,
+                    AMOUNT,
                             4 AS SVY
                         FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -193,6 +214,10 @@ WHERE VP_ID=3751
                                 CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                                 CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
                                 IS_VIRTUAL,
+                                PRICE,
+                                DISCOUNT,
+                                  OTHER_MONEY,
+                    AMOUNT,
                                 5 AS SVY
                             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
