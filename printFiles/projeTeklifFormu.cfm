@@ -14,7 +14,12 @@
 </cfif>
 <CFSET attributes.offer_id = getOfferRow.OFFER_ID>
 <cfinclude template="teklif_header.cfm">
+<cftry>
 <cfinclude template="teklif_header_table.cfm">
+<cfcatch>
+    <cfdump var="#cfcatch#" abort="true">
+</cfcatch>
+</cftry>
 
 
 <!-------------------
