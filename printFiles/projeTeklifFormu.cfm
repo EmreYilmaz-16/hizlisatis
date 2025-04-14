@@ -16,6 +16,14 @@
 <cfinclude template="teklif_header.cfm">
 <cftry>
 <cfinclude template="teklif_header_table.cfm">
+<cfif PRINT_TYPE eq 'VIRTUAL'>
+    <cfinclude template="virtual_teklif_print.cfm">
+<cfelseif PRINT_TYPE eq 'NORMAL'>
+    <cfinclude template="normal_teklif_print.cfm">
+<cfelseif PRINT_TYPE eq 'MULTI'>
+    <cfinclude template="multi_teklif_print.cfm">
+</cfif>
+
 <cfdump var="#PRINT_TYPE#" abort="true">
 <cfcatch>
     <cfdump var="#cfcatch#" abort="true">
