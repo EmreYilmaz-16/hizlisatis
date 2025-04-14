@@ -33,6 +33,40 @@
             text-align: center;
         }
     </style>
+      <form method="post" name="siparis_etiket">
+        <table class="etiketForm">
+            <tr>
+                <th class="formbold" style="text-align:left;">Ürün Özel Kodu</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="offer_type">
+                        <option value="0" <cfif isDefined("form.offer_type") and form.offer_type eq 0>selected</cfif>>Açık Teklif</option>
+                        <option value="1" <cfif isDefined("form.offer_type") and form.offer_type eq 1>selected</cfif>>Kapalı Teklif</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:right;">
+                    <input type="hidden" name="isSubmit" value="1">
+                    <input type="submit" value='Teklif Şablonu Oluştur'>
+                    <button type="button" onclick="FiyatGosterGizle()">Fiyat Göster/Gizle</button>
+                    <script>
+                        function FiyatGosterGizle(params) {
+                            var elems= document.getElementsByClassName("FiyatAlan");
+                            for (var i = 0; i < elems.length; i++) {
+                                if (elems[i].style.display == "none") {
+                                    elems[i].style.display = "table-cell";
+                                } else {
+                                    elems[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </form>
      <table class="header-table">
         <tr>
             <td width="50%">
@@ -128,16 +162,16 @@ WHERE VP_ID=7542
         <th colspan="2">
             <span style="padding-left: 0px;">Miktar</span>
         </th>
-        <th colspan="">
+        <th class="FiyatAlan"  colspan="">
             <span style="padding-left: 0px;">Fiyat</span>
         </th>
-        <th colspan="">
+        <th class="FiyatAlan" colspan="">
             <span style="padding-left: 0px;">İndirim</span>
         </th>
-        <th colspan="">
+        <th  class="FiyatAlan" colspan="">
             <span style="padding-left: 0px;">İndirimli Fiyat</span>
         </th>
-        <th colspan="">
+        <th class="FiyatAlan" colspan="">
             <span style="padding-left: 0px;">Para Birimi</span>
         </th>
         
@@ -154,10 +188,10 @@ WHERE VP_ID=7542
             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
             <td><span style="padding-left: 0px;">#BIRIM#</span></td>
             <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
-            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
-            <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+            <td class="FiyatAlan"> <span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
             <CFIF deserializeJSON(PRICEJSON)[1].OTHER_MONEY EQ 'USD'>
                 <CFSET USD_TOPLAM=USD_TOPLAM+INDIRIMSIZ_FIYAT*AMOUNT>
             <CFELSEIF deserializeJSON(PRICEJSON)[1].OTHER_MONEY EQ 'TL'>
@@ -227,10 +261,10 @@ WHERE VP_ID=7542
                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                 <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                 <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
-                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
-                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
-                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
-                <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
+                <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
+                <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                <td class="FiyatAlan"><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
             </tr>
             <cfif IS_VIRTUAL EQ 1>
                 <cfquery name="qProductTree2" datasource="#dsn3#">
@@ -291,11 +325,11 @@ WHERE VP_ID=7542
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                     <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                     <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
-                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
+                <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
             
-            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
-            <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
             
                 </tr>
                 <cfif IS_VIRTUAL EQ 1>
@@ -355,11 +389,11 @@ WHERE VP_ID=7542
                         <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                         <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                         <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
-                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
+                        <tdclass="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                         
-                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
-                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
-                        <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
+                        <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                        <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                        <td class="FiyatAlan"><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
                     </tr>
                     <cfif IS_VIRTUAL EQ 1>
                         <cfquery name="qProductTree4" datasource="#dsn3#">
@@ -421,11 +455,11 @@ WHERE VP_ID=7542
                             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                             <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                             <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
-                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
+                        <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                             
-                            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
-                            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
-                            <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
+                            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                            <td class="FiyatAlan"><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
                         </tr>
                     </cfloop>
                 </cfloop>
