@@ -9,7 +9,7 @@
             PT.AMOUNT,
             1 AS LEVEL
         FROM PRODUCT_TREE PT
-        WHERE PT.STOCK_ID = 48335
+        WHERE PT.STOCK_ID = #getOfferRow.STOCK_ID#
     
         UNION ALL
     
@@ -94,7 +94,7 @@ function renderTree(data, parentId, depth = 0) {
     return html;
 }
 
-treeHtml = renderTree(treeData, 7542);
+treeHtml = renderTree(treeData, getOfferRow.STOCK_ID, 0); // başlangıçta ana düğümün ID'si ile çağırıyoruz
 </cfscript>
 
 <style>
