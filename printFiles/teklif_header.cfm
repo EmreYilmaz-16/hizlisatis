@@ -134,7 +134,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
         <cfset getProject.PROJECT_HEAD = "">
         <cfset getProject.MAIN_PROCESS_CAT = "">
         <cfset getProject.PROJECT_EMP_ID = "">
-        
+
     </cfif>
     <cfif isdefined("Get_Member_Info") and Get_Member_Info.RecordCount>
         <cfset Member_Code = Get_Member_Info.Member_Code>
@@ -223,6 +223,13 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
             WHERE
                 E.EMPLOYEE_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProject.PROJECT_EMP_ID#">
         </cfquery>
+        <cfelse>
+        <cfset Get_Offer_Sales_Member.FULLNAME = "">
+        <cfset Get_Offer_Sales_Member.POSITION_NAME = "">
+        <cfset Get_Offer_Sales_Member.EMPLOYEE_EMAIL = "">
+        <cfset Get_Offer_Sales_Member.MOBILTEL = "">
+        <cfset Get_Offer_Sales_Member.MOBILCODE = "">
+        
     </cfif>
 
     <cfquery name="Get_Money" datasource="#dsn3#">
