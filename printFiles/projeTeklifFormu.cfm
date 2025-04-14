@@ -1,10 +1,15 @@
 ﻿
+<cfquery name="getOfferRow" datasource="#DSN3#">
+    SELECT * FROM PBS_OFFER_ROW WHERE OFFER_ID=#attributes.ACTION_ID#
+</cfquery>
+<cfif getOfferRow.recordCount eq 1>
+    <cfif getOfferRow.IS_VIRTUAL eq 1>
+    </cfif>
+</cfif>
 
 <cfif  1 eq 1>
     <cftry>
-    <cfquery name="getOfferRow" datasource="#DSN3#">
-        SELECT * FROM PBS_OFFER_ROW WHERE OFFER_ID=#attributes.ACTION_ID#
-    </cfquery>
+ 
     <CFSET attributes.offer_id = getOfferRow.OFFER_ID>
     <cfquery name="Our_Company" datasource="#dsn#">
         SELECT 
