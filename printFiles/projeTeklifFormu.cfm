@@ -5,7 +5,11 @@
 <cfif getOfferRow.recordCount eq 1>
     <cfif getOfferRow.IS_VIRTUAL eq 1>
         <CFSET PRINT_TYPE = 'VIRTUAL'>
+    <cfelse>
+        <CFSET PRINT_TYPE = 'NORMAL'>
     </cfif>
+<cfelseif getOfferRow.recordCount gt 1>
+    <CFSET PRINT_TYPE = 'MULTI'>
 </cfif>
 
 <cfif  1 eq 1>
@@ -398,6 +402,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
 </cftry>
     <!-- Ürün Tablosu -->
 <cftry>
+
 <cfif PRINT_TYPE eq 'VIRTUAL'>
     <cfinclude template="virtual_teklif_print.cfm">
 <cfelseif PRINT_TYPE eq 'NORMAL'>
