@@ -416,5 +416,7 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
 </cfcatch>
 
 </cftry>
-<cfdump var="#cfcatch#">
+<cfcatch>
+    <cfdump var="#cfcatch#">
+</cfcatch>
 </cftry>
