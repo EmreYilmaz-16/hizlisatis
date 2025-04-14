@@ -92,11 +92,18 @@ IS_VIRTUAL,
 VPT.PRICE,
 VPT.DISCOUNT,
 VPT.MONEY,
+PB.BRAND_NAME,
 (SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
 AMOUNT,
 1 AS SVY FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID=VPT.PRODUCT_ID
+LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB 
+    ON PB.BRAND_ID = 
+        CASE 
+            WHEN IS_VIRTUAL = 1 THEN 1 
+            ELSE S.BRAND_ID 
+        END
 WHERE VP_ID=7366
 </cfquery>
 <table>
@@ -120,11 +127,18 @@ WHERE VP_ID=7366
                     VPT.DISCOUNT,
                     VPT.MONEY,
                     AMOUNT,
+                    PB.BRAND_NAME,
                     (SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
                     2 AS SVY
                 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB 
+    ON PB.BRAND_ID = 
+        CASE 
+            WHEN IS_VIRTUAL = 1 THEN 1 
+            ELSE S.BRAND_ID 
+        END
                 WHERE VP_ID = #RELATED_ID#
             </cfquery>
         <cfelse>
@@ -136,11 +150,15 @@ WHERE VP_ID=7366
                     PRICE_PBS PRICE,
                     DISCOUNT_PBS DISCOUNT,
                     OTHER_MONEY_PBS MONEY,
-                    AMOUNT,                   
+                    AMOUNT,    
+                    PB.BRAND_NAME,               
                     2 AS SVY
                     ,(SELECT '' AS PRICE,'' AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                 FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
+                    ON PB.BRAND_ID = S.BRAND_ID
+                        
                 WHERE VPT.STOCK_ID = #RELATED_ID#
             </cfquery>
         </cfif>
@@ -163,11 +181,18 @@ WHERE VP_ID=7366
                         VPT.DISCOUNT,
                         VPT.MONEY,
                         AMOUNT,
+                        PB.BRAND_NAME,
                         (SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
                         3 AS SVY
                     FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                     LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                    LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB
+                        ON PB.BRAND_ID = 
+                            CASE 
+                                WHEN IS_VIRTUAL = 1 THEN 1 
+                                ELSE S.BRAND_ID 
+                            END
                     WHERE VP_ID = #RELATED_ID#
                 </cfquery>
             <cfelse>
@@ -184,6 +209,8 @@ WHERE VP_ID=7366
                         ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                     FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                    LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB 
+                        ON PB.BRAND_ID = S.BRAND_ID
                     WHERE VPT.STOCK_ID = #RELATED_ID#
                 </cfquery>
             </cfif>
@@ -206,12 +233,19 @@ WHERE VP_ID=7366
                             VPT.PRICE,
                             VPT.DISCOUNT,
                             VPT.OTHER_MONEY,
+                            PB.BRAND_NAME,
                     AMOUNT,
                     (SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
                             4 AS SVY
                         FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                         LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                        LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB
+                            ON PB.BRAND_ID = 
+                                CASE 
+                                    WHEN IS_VIRTUAL = 1 THEN 1 
+                                    ELSE S.BRAND_ID 
+                                END
                         WHERE VP_ID = #RELATED_ID#
                     </cfquery>
                 <cfelse>
@@ -224,7 +258,8 @@ WHERE VP_ID=7366
                     DISCOUNT_PBS DISCOUNT,
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,
-                            4 AS SVY
+                            4 AS SVY,
+                            PB.BRAND_NAME
                             ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                         FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
@@ -250,11 +285,18 @@ WHERE VP_ID=7366
                                 VPT.DISCOUNT,
                                 VPT.OTHER_MONEY,
                     AMOUNT,
+                                PB.BRAND_NAME,
                     (SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
                                 5 AS SVY
                             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                             LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                            LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB
+                                ON PB.BRAND_ID = 
+                                    CASE 
+                                        WHEN IS_VIRTUAL = 1 THEN 1 
+                                        ELSE S.BRAND_ID 
+                                    END
                             WHERE VP_ID = #RELATED_ID#
                         </cfquery>
                     <cfelse>
@@ -267,11 +309,14 @@ WHERE VP_ID=7366
                     DISCOUNT_PBS DISCOUNT,
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,
+                    PB.BRAND_NAME,
                     
                                 5 AS SVY
                                 ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                             FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                            LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB 
+                                ON PB.BRAND_ID = S.BRAND_ID
                             WHERE VPT.STOCK_ID = #RELATED_ID#
                         </cfquery>
                     </cfif>
@@ -279,6 +324,7 @@ WHERE VP_ID=7366
                         <tr>
                             <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                             <td><span >#PRODUCT_NAME#</span></td>
+                            <td><span >#BRAND_NAME#</span></td>
                             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
                             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
