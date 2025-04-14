@@ -1,4 +1,3 @@
-<!---------------
 <style>
     @media print
     {
@@ -7,6 +6,9 @@
         }
     }
 </style>
+<cfabort>
+<!---------------
+
 <!--- Teklif Formu --->
 <cfif isdefined("attributes.action_id")>
     <cfset attributes.offer_id = attributes.action_id>
