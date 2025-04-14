@@ -123,11 +123,19 @@
                 CONSUMER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#Get_Offer.Consumer_Id#">
         </cfquery>
     </cfif>
+    <cfif len(Get_Offer.PROJECT_ID)>
     <cfquery name="getProject" datasource="#dsn#">
         SELECT PROJECT_NUMBER,PROJECT_HEAD,SMC.MAIN_PROCESS_CAT,PP.PROJECT_EMP_ID FROM workcube_metosan.PRO_PROJECTS AS PP
 INNER JOIN workcube_metosan.SETUP_MAIN_PROCESS_CAT AS SMC ON SMC.MAIN_PROCESS_CAT_ID=PP.PROCESS_CAT
 WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
     </cfquery>
+    <cfelse>
+        <cfset getProject.PROJECT_NUMBER = "">
+        <cfset getProject.PROJECT_HEAD = "">
+        <cfset getProject.MAIN_PROCESS_CAT = "">
+        <cfset getProject.PROJECT_EMP_ID = "">
+        
+    </cfif>
     <cfif isdefined("Get_Member_Info") and Get_Member_Info.RecordCount>
         <cfset Member_Code = Get_Member_Info.Member_Code>
         <cfset Member_Name = Get_Member_Info.Member_Name>
