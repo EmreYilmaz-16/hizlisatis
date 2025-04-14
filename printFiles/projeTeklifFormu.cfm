@@ -117,8 +117,10 @@ WHERE VP_ID=7366
             <td><span >#BRAND_NAME#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
             <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+            <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
             <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
 
         </tr>
@@ -173,8 +175,10 @@ WHERE VP_ID=7366
                 <td><span >#PRODUCT_NAME#</span></td>
                 <td><span >#BRAND_NAME#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
                 <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
             </tr>
             <cfif IS_VIRTUAL EQ 1>
@@ -226,8 +230,11 @@ WHERE VP_ID=7366
                     <td><span >#PRODUCT_NAME#</span></td>
                     <td><span >#BRAND_NAME#</span></td>
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                    <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
+            
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
             <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
             
                 </tr>
@@ -279,8 +286,11 @@ WHERE VP_ID=7366
                         <td><span >#PRODUCT_NAME#</span></td>
                         <td><span >#BRAND_NAME#</span></td>
                         <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                        <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
+                        
                         <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
                         <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
                     </tr>
                     <cfif IS_VIRTUAL EQ 1>
@@ -334,8 +344,11 @@ WHERE VP_ID=7366
                             <td><span >#PRODUCT_NAME#</span></td>
                             <td><span >#BRAND_NAME#</span></td>
                             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
-                            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
+                            <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                        <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
+                            
                             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                            <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
                             <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
                         </tr>
                     </cfloop>
