@@ -107,7 +107,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
             ELSE S.BRAND_ID 
         END
 LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
-WHERE VP_ID=7366
+WHERE VP_ID=7542
 </cfquery>
 <table>
     <cfoutput query="qProductTree">
@@ -562,7 +562,7 @@ WHERE VP_ID=7366
         LEFT JOIN PRODUCT_UNIT PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
         ORDER BY T.LEVEL, S.PRODUCT_NAME*/
 
-        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS111 7366,0
+        EXEC workcube_metosan_1.GET_VIRTUAL_PRODUCT_TREE_PBS111 7542,0
 
         </cfquery>
 <cfscript>
@@ -614,7 +614,7 @@ WHERE VP_ID=7366
         return html;
     }
     
-    treeHtml = renderTree(treeData, 7366);
+    treeHtml = renderTree(treeData, 7542);
 </cfscript>
 
 <style>
