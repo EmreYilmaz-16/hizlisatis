@@ -114,6 +114,34 @@ WHERE VP_ID=7542
 <CFSET USD_TOPLAM=0>;
 <CFSET SN=0>
 <table>
+    <tr>
+        <th colspan="2">
+            <span style="padding-left: 0px;">Sıra No</span>
+            
+        </th>
+        <th>
+            <span style="padding-left: 0px;">Ürün Adı</span>
+        </th>
+        <th>
+            <span style="padding-left: 0px;">Marka</span>
+        </th>
+        <th colspan="2">
+            <span style="padding-left: 0px;">Miktar</span>
+        </th>
+        <th colspan="">
+            <span style="padding-left: 0px;">Fiyat</span>
+        </th>
+        <th colspan="">
+            <span style="padding-left: 0px;">İndirim</span>
+        </th>
+        <th colspan="">
+            <span style="padding-left: 0px;">İndirimli Fiyat</span>
+        </th>
+        <th colspan="">
+            <span style="padding-left: 0px;">Para Birimi</span>
+        </th>
+        
+    </tr>
     <cfoutput query="qProductTree">
         <CFSET SN=SN+1>
         <tr>
