@@ -109,9 +109,15 @@ LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
 LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
 WHERE VP_ID=7542
 </cfquery>
+<CFSET EURO_TOPLAM=0>;
+<CFSET TL_TOPLAM=0>;
+<CFSET USD_TOPLAM=0>;
+<CFSET SN=0>
 <table>
     <cfoutput query="qProductTree">
+        <CFSET SN=SN+1>
         <tr>
+            <td>#SN#</td>
             <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
             <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
             <td><span >#BRAND_NAME#</span></td>
@@ -122,7 +128,13 @@ WHERE VP_ID=7542
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
             <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
-
+            <CFIF deserializeJSON(PRICEJSON)[1].OTHER_MONEY EQ 'USD'>
+                <CFSET USD_TOPLAM=USD_TOPLAM+INDIRIMSIZ_FIYAT*AMOUNT>
+            <CFELSEIF deserializeJSON(PRICEJSON)[1].OTHER_MONEY EQ 'TL'>
+                <CFSET TL_TOPLAM=TL_TOPLAM+INDIRIMSIZ_FIYAT*AMOUNT>
+            <CFELSE>
+                <CFSET EURO_TOPLAM=EURO_TOPLAM+INDIRIMSIZ_FIYAT*AMOUNT>
+            </CFIF>
         </tr>
         <cfif IS_VIRTUAL EQ 1>
             <cfquery name="qProductTree1" datasource="#dsn3#">
@@ -175,7 +187,9 @@ WHERE VP_ID=7542
             </cfquery>
         </cfif>
         <cfloop query="qProductTree1">
+            <CFSET SN=SN+1>
             <tr>
+                <td>#SN#</td>
                 <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                 <td><span >#PRODUCT_NAME#</span></td>
                 <td><span >#BRAND_NAME#</span></td>
@@ -236,7 +250,9 @@ WHERE VP_ID=7542
                 </cfquery>
             </cfif>
             <cfloop query="qProductTree2">
-                <tr>
+                <CFSET SN=SN+1>
+        <tr>
+            <td>#SN#</td>
                     <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                     <td><span >#PRODUCT_NAME#</span></td>
                     <td><span >#BRAND_NAME#</span></td>
@@ -297,7 +313,9 @@ WHERE VP_ID=7542
                     </cfquery>
                 </cfif>
                 <cfloop query="qProductTree3">
+                    <CFSET SN=SN+1>
                     <tr>
+                        <td>#SN#</td>
                         <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                         <td><span >#PRODUCT_NAME#</span></td>
                         <td><span >#BRAND_NAME#</span></td>
@@ -360,7 +378,9 @@ WHERE VP_ID=7542
                         </cfquery>
                     </cfif>
                     <cfloop query="qProductTree4">
+                        <CFSET SN=SN+1>
                         <tr>
+                            <td>#SN#</td>
                             <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                             <td><span >#PRODUCT_NAME#</span></td>
                             <td><span >#BRAND_NAME#</span></td>
