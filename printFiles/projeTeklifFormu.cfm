@@ -1,4 +1,77 @@
-﻿<cfif  listFind("1146,1136,47",session.ep.userid)>
+﻿
+
+<cfif  1 eq 1>
+    <cfquery name="getOfferRow" datasource="#DSN3#">
+        SELECT * FROM PBS_OFFER_ROW WHERE OFFER_ID=#attributes.ACTION_ID#
+    </cfquery>
+    <CFSET attributes.offer_id = getOfferRow.OFFER_ID>
+    <cfquery name="Our_Company" datasource="#dsn#">
+        SELECT 
+            ASSET_FILE_NAME3,
+            ASSET_FILE_NAME3_SERVER_ID,
+            COMPANY_NAME,
+            TEL_CODE,
+            TEL,TEL2,
+            TEL3,
+            TEL4,
+            FAX,
+            TAX_OFFICE,
+            TAX_NO,
+            ADDRESS,
+            WEB,
+            EMAIL
+        FROM 
+            OUR_COMPANY 
+        WHERE 
+        <cfif isDefined("SESSION.EP.COMPANY_ID")>
+            COMP_ID = #SESSION.EP.COMPANY_ID#
+        <cfelseif isDefined("SESSION.PP.COMPANY")>	
+            COMP_ID = #SESSION.PP.COMPANY#
+        </cfif>
+    </cfquery>
+    <cfquery name="CHECK" datasource="#DSN#">
+        SELECT 
+            ASSET_FILE_NAME2,
+            ASSET_FILE_NAME2_SERVER_ID,
+            COMPANY_NAME
+        FROM 
+            OUR_COMPANY 
+        WHERE 
+            <cfif isdefined("attributes.our_company_id")>
+                COMP_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#attributes.our_company_id#">
+            <cfelse>
+                <cfif isDefined("session.ep.company_id") and len(session.ep.company_id)>
+                    COMP_ID = #session.ep.company_id#
+                <cfelseif isDefined("session.pp.company_id") and len(session.pp.company_id)>	
+                    COMP_ID = #session.pp.company_id#
+                <cfelseif isDefined("session.ww.our_company_id")>
+                    COMP_ID = #session.ww.our_company_id#
+                <cfelseif isDefined("session.cp.our_company_id")>
+                    COMP_ID = #session.cp.our_company_id#
+                </cfif> 
+            </cfif> 
+    </cfquery>
+    <cfif isDefined('attributes.OFFER_ID')>
+        <cfquery name="Get_Offer" datasource="#DSN#">
+        SELECT
+                E.EMPLOYEE_NAME,
+                E.EMPLOYEE_SURNAME,
+                E.EMPLOYEE_EMAIL,	
+				PP.PROJECT_HEAD,
+				PP.PROJECT_NUMBER,
+                PP.PROJECT_ID,
+                O.*
+            FROM 
+                #DSN3#.PBS_OFFER O , 
+                workcube_metosan.EMPLOYEES E,
+				workcube_metosan.PRO_PROJECTS AS PP 
+            WHERE 
+                O.OFFER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#attributes.offer_id#"> AND
+                E.EMPLOYEE_ID = O.RECORD_MEMBER AND
+				PP.PROJECT_ID=O.PROJECT_ID
+           
+        </cfquery>
+    </cfif>
     <style>
         body { font-family: Arial, sans-serif; font-size: 12px; }
         table { width: 100%; border-collapse: collapse; }
@@ -67,51 +140,87 @@
             </tr>
         </table>
     </form>
-     <table class="header-table">
+    <table>
         <tr>
-            <td width="50%">
-                <img src="http://erp.metosan.com.tr/documents/settings/3B355075-DEF5-E025-AE27746DDF7BCBF8.png" border="0" style="max-width: 250px;height: 88px;width: 270px;">
-            </td>
-            <td align="right" style="font-size: 20px; font-weight: bold;">
-                SATIŞ TEKLİF FORMU
+            <td>
+                <table style="width:100%">
+                    <tr>
+                        <td colspan="2" >
+                            <table style="width:100%;" align="center" border="1">
+                                <tr>
+                                    <td colspan="2" style="text-align:center"><cfif isDefined("attributes.method")><img src="<cfif isdefined("attributes.method")>http://erp.metosan.com.tr/documents/settings/3B355075-DEF5-E025-AE27746DDF7BCBF8.png<cfelse>http://erp.metosan.com.tr/documents/thumbnails/middle/A1A06B48-C977-8625-AA41F2A8941A0F13.PNG</cfif>" border="0" style="max-width: 250px;height: 88px;width: 270px;"></cfif></td>
+                                    <td colspan="4" style="text-align:center;vertical-align:middle;max-width: 300px;width: 300px;"><h2 style="margin-top: 15px;">PROJE TEKLİF FORMU</h2></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table style="width:100%; " align="center" border="1">
+                                <tr>
+                                    <td><b>Firma</b></td>
+                                    <td><b>:</b></td>
+                                    <td colspan="4"><cfoutput>#Member_Name#</cfoutput></td>
+
+                                    <td><b>Tarih</b></td>
+                                    <td><b>:</b></td>
+                                    <td><cfoutput>#dateTimeFormat(Get_Offer.Offer_Date, 'dd.mm.yyyy hh:nn:ss')#</cfoutput></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Tel/Faks</b></td>
+                                    <td><b>:</b></td>
+                                    <td><cfif isDefined("Member_Tel")><cfoutput>#Member_Tel#</cfoutput></cfif></td>
+
+                                    <td><b>E-Posta</b></td>
+                                    <td><b>:</b></td>
+                                    <td><cfoutput>#Get_Offer_Plus.EPOSTA#</cfoutput></td>
+                                    
+                                    <td><b>Ref. No</b></td>
+                                    <td>:</td>
+                                    <td><cfoutput>#Get_Offer.PROJECT_HEAD#<BR>#Get_Offer.PROJECT_NUMBER#</cfoutput></td>
+                                </tr>
+                                <tr>
+                                    <td><b>İlgili</b></td>
+                                    <td><b>:</b></td>
+                                    <td colspan="7"><cfoutput>#Get_Offer_Plus.ILGILI#</cfoutput></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Konu</b></td>
+                                    <td><b>:</b></td>
+                                    <td colspan="7"><cfoutput>#getProject.MAIN_PROCESS_CAT# - #getProject.PROJECT_HEAD# - #getProject.PROJECT_NUMBER#</cfoutput></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <table style="width:99.4%;" align="center" border="1">
+                            <tr>
+                                <td colspan="3">
+                                    <p style="margin-left:20px">
+                                        Firmamızdan talep etmiş olduğunuz <cfoutput>#getProject.MAIN_PROCESS_CAT#</cfoutput> ile ilgili teklifimiz aşağıda dikkatinize sunulmuştur. Teklifimizin olumlu karşılanacağını ümit eder, çalışmalarınızda başarılar dileriz.<br>
+                                        Saygılarımızla,
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center" colspan="2">
+                                    <cfif len(Get_Offer.Sales_Emp_Id)>
+                                        <cfoutput>#Get_Offer_Sales_Member.Fullname#</cfoutput> <br>
+                                        <cfoutput>#Get_Offer_Sales_Member.POSITION_NAME#</cfoutput>
+                                    </cfif>
+                                </td>
+                                <td style="text-align:center">
+                                    <cfoutput>#Get_Offer_Sales_Member.Employee_Email#</cfoutput><br>
+                                    <cfoutput>+90 (#Get_Offer_Sales_Member.MobilCode#) #Get_Offer_Sales_Member.MobilTel#</cfoutput><br>
+                                    www.metosan.com.tr
+                                </td>
+                            </tr>
+                        </table>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>
-
-    <!-- Firma ve Teklif Bilgileri -->
-    <table class="info-table" style="margin-top: 10px;">
-        <tr>
-            <td class="label">Firma</td>
-            <td>Test2</td>
-            <td class="label">Tarih</td>
-            <td>10.04.2025 05:01:57</td>
-        </tr>
-        <tr>
-            <td class="label">Tel/Faks</td>
-            <td></td>
-            <td class="label">Ref. No</td>
-            <td>PBSTV-136629</td>
-        </tr>
-        <tr>
-            <td class="label">E-Posta</td>
-            <td>busraturk@mifasistem.com</td>
-            <td class="label">İlgili</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="label">Konu</td>
-            <td colspan="3">Teklifimiz</td>
-        </tr>
-    </table>
-
-    <!-- Açıklama -->
-    <div class="note-box">
-        Firmamızdan talep etmiş olduğunuz ürünler ile ilgili teklifimiz aşağıda dikkatinize sunulmuştur.
-        Teklifimizin olumlu karşılanacağını ümit eder, çalışmalarınızda başarılar dileriz.<br><br>
-        Saygılarımızla,<br><br>
-        SERHAT ENVER KARAŞ<br>
-        PBS ERP DESTEK UZMANI
-    </div>
 
     
     <!-- Ürün Tablosu -->
