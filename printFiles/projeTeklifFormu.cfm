@@ -103,7 +103,7 @@ LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID
 LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
     ON PB.BRAND_ID = 
         CASE 
-            WHEN IS_VIRTUAL = 1 THEN 1 
+            WHEN IS_VIRTUAL = 1 THEN 491
             ELSE S.BRAND_ID 
         END
 LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
@@ -145,7 +145,7 @@ WHERE VP_ID=7542
                 LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
     ON PB.BRAND_ID = 
         CASE 
-            WHEN IS_VIRTUAL = 1 THEN 1 
+            WHEN IS_VIRTUAL = 1 THEN 491
             ELSE S.BRAND_ID 
         END
         
@@ -208,7 +208,7 @@ WHERE VP_ID=7542
                     LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                         ON PB.BRAND_ID = 
                             CASE 
-                                WHEN IS_VIRTUAL = 1 THEN 1 
+                                WHEN IS_VIRTUAL = 1 THEN 491
                                 ELSE S.BRAND_ID 
                             END
                     WHERE VP_ID = #RELATED_ID#
@@ -271,7 +271,7 @@ WHERE VP_ID=7542
                         LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                             ON PB.BRAND_ID = 
                                 CASE 
-                                    WHEN IS_VIRTUAL = 1 THEN 1 
+                                    WHEN IS_VIRTUAL = 1 THEN 491
                                     ELSE S.BRAND_ID 
                                 END
                         WHERE VP_ID = #RELATED_ID#
@@ -331,7 +331,7 @@ WHERE VP_ID=7542
                             LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                                 ON PB.BRAND_ID = 
                                     CASE 
-                                        WHEN IS_VIRTUAL = 1 THEN 1 
+                                        WHEN IS_VIRTUAL = 1 THEN 491
                                         ELSE S.BRAND_ID 
                                     END
                             WHERE VP_ID = #RELATED_ID#
