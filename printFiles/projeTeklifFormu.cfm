@@ -144,9 +144,9 @@ WHERE VP_ID=7542
     </tr>
     <cfoutput query="qProductTree">
         <CFSET SN=SN+1>
-        <tr  class='tree-row'>
+        <tr>
             <td>#SN#</td>
-            <td><span class="toggle-icon" data-toggle="#STOCK_ID#">▶</span></td>
+            <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
             <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
             <td><span >#BRAND_NAME#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
@@ -216,7 +216,7 @@ WHERE VP_ID=7542
         </cfif>
         <cfloop query="qProductTree1">
             <CFSET SN=SN+1>
-            <tr class='tree-row'>
+            <tr>
                 <td>#SN#</td>
                 <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                 <td><span >#PRODUCT_NAME#</span></td>
