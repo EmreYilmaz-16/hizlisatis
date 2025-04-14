@@ -1,3 +1,4 @@
+<!---------------
 <style>
     @media print
     {
@@ -729,4 +730,4 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
     </table>
     --->
     
-</cfif>
+</cfif>------------->
