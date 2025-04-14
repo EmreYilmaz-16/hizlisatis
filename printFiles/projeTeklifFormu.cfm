@@ -88,11 +88,13 @@
     SELECT 
 CASE WHEN IS_VIRTUAL =1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
 CASE WHEN IS_VIRTUAL=1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+CASE WHEN IS_VIRTUAL=1 THEN VP.PRODUCT_UNIT ELSE PB.MAIN_UNIT END AS BIRIM,
 IS_VIRTUAL,
 VPT.PRICE,
 VPT.DISCOUNT,
 VPT.MONEY,
 PB.BRAND_NAME,
+
 (SELECT TOP 1  CAST(PRICE AS DECIMAL(18,2)) AS PRICE,CAST(DISCOUNT AS DECIMAL(18,2)) AS DISCOUNT,OTHER_MONEY FROM workcube_metosan_1.PROJECT_VIRTUAL_PRODUCTS_TREE_PRICES WHERE PBS_ROW_ID=VPT.PBS_ROW_ID AND IS_ACTIVE=1 FOR JSON AUTO) AS PRICEJSON,
 AMOUNT,
 1 AS SVY FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
@@ -104,6 +106,7 @@ LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
             WHEN IS_VIRTUAL = 1 THEN 1 
             ELSE S.BRAND_ID 
         END
+LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
 WHERE VP_ID=7366
 </cfquery>
 <table>
@@ -113,6 +116,7 @@ WHERE VP_ID=7366
             <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
             <td><span >#BRAND_NAME#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+            <td><span style="padding-left: 0px;">#tlformat(BIRIM)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
             <td><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
