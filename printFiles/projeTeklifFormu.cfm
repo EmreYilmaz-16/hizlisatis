@@ -1,4 +1,4 @@
-﻿<cfif session.ep.userid eq 1146>
+﻿<cfif  listFind("1146,136,47",session.ep.userid)>
     <style>
         body { font-family: Arial, sans-serif; font-size: 12px; }
         table { width: 100%; border-collapse: collapse; }
