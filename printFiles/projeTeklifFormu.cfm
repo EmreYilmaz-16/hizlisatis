@@ -1,6 +1,7 @@
 ﻿
 
 <cfif  1 eq 1>
+    <cftry>
     <cfquery name="getOfferRow" datasource="#DSN3#">
         SELECT * FROM PBS_OFFER_ROW WHERE OFFER_ID=#attributes.ACTION_ID#
     </cfquery>
@@ -221,8 +222,10 @@
             </td>
         </tr>
     </table>
-
-    
+<cfcatch>
+    <cfdump var="#cfcatch#">
+</cfcatch>
+</cftry>
     <!-- Ürün Tablosu -->
 
 
