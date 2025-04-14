@@ -129,6 +129,7 @@ WHERE VP_ID=7542
                 SELECT 
                     CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                     CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                    CASE WHEN IS_VIRTUAL=1 THEN VP.PRODUCT_UNIT ELSE PU.MAIN_UNIT END AS BIRIM,
                     IS_VIRTUAL,
                     VPT.PRICE,
                     VPT.DISCOUNT,
@@ -140,12 +141,14 @@ WHERE VP_ID=7542
                 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
                 LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
     ON PB.BRAND_ID = 
         CASE 
             WHEN IS_VIRTUAL = 1 THEN 1 
             ELSE S.BRAND_ID 
         END
+        
                 WHERE VP_ID = #RELATED_ID#
             </cfquery>
         <cfelse>
@@ -158,11 +161,13 @@ WHERE VP_ID=7542
                     DISCOUNT_PBS DISCOUNT,
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,    
-                    PB.BRAND_NAME,               
+                    PB.BRAND_NAME,
+                    PU.MAIN_UNIT AS BIRIM,               
                     2 AS SVY
                     ,(SELECT '' AS PRICE,'' AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                 FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
                 LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
                     ON PB.BRAND_ID = S.BRAND_ID
                         
@@ -175,6 +180,7 @@ WHERE VP_ID=7542
                 <td><span >#PRODUCT_NAME#</span></td>
                 <td><span >#BRAND_NAME#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+                <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                 <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                 <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
@@ -186,6 +192,7 @@ WHERE VP_ID=7542
                     SELECT 
                         CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                         CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                        CASE WHEN IS_VIRTUAL=1 THEN VP.PRODUCT_UNIT ELSE PU.MAIN_UNIT END AS BIRIM,
                         IS_VIRTUAL,
                         VPT.PRICE,
                         VPT.DISCOUNT,
@@ -197,6 +204,7 @@ WHERE VP_ID=7542
                     FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                     LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                    LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
                     LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                         ON PB.BRAND_ID = 
                             CASE 
@@ -215,10 +223,13 @@ WHERE VP_ID=7542
                     DISCOUNT_PBS DISCOUNT,
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,
+                    PU.MAIN_UNIT AS BIRIM,
+                        PB.BRAND_NAME,
                         3 AS SVY
                         ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                     FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                    LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
                     LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
                         ON PB.BRAND_ID = S.BRAND_ID
                     WHERE VPT.STOCK_ID = #RELATED_ID#
@@ -230,6 +241,7 @@ WHERE VP_ID=7542
                     <td><span >#PRODUCT_NAME#</span></td>
                     <td><span >#BRAND_NAME#</span></td>
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+                    <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                     <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                 <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
             
@@ -243,6 +255,7 @@ WHERE VP_ID=7542
                         SELECT 
                             CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                             CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                            CASE WHEN IS_VIRTUAL=1 THEN VP.PRODUCT_UNIT ELSE PU.MAIN_UNIT END AS BIRIM,
                             IS_VIRTUAL,
                             VPT.PRICE,
                             VPT.DISCOUNT,
@@ -254,6 +267,7 @@ WHERE VP_ID=7542
                         FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                         LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                        LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
                         LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                             ON PB.BRAND_ID = 
                                 CASE 
@@ -274,9 +288,11 @@ WHERE VP_ID=7542
                     AMOUNT,
                             4 AS SVY,
                             PB.BRAND_NAME
+                            ,PU.MAIN_UNIT AS BIRIM,
                             ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                         FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                        LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
                         WHERE VPT.STOCK_ID = #RELATED_ID#
                     </cfquery>
                 </cfif>
@@ -286,6 +302,7 @@ WHERE VP_ID=7542
                         <td><span >#PRODUCT_NAME#</span></td>
                         <td><span >#BRAND_NAME#</span></td>
                         <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+                        <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                         <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                         <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                         
@@ -298,6 +315,7 @@ WHERE VP_ID=7542
                             SELECT 
                                 CASE WHEN IS_VIRTUAL = 1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
                                 CASE WHEN IS_VIRTUAL = 1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
+                                CASE WHEN IS_VIRTUAL=1 THEN VP.PRODUCT_UNIT ELSE PU.MAIN_UNIT END AS BIRIM,
                                 IS_VIRTUAL,
                                 VPT.PRICE,
                                 VPT.DISCOUNT,
@@ -309,6 +327,7 @@ WHERE VP_ID=7542
                             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                             LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
+                            LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
                             LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                                 ON PB.BRAND_ID = 
                                     CASE 
@@ -328,11 +347,13 @@ WHERE VP_ID=7542
                     OTHER_MONEY_PBS MONEY,
                     AMOUNT,
                     PB.BRAND_NAME,
+                                PU.MAIN_UNIT AS BIRIM,
                     
                                 5 AS SVY
                                 ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                             FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
+                            LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
                             LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
                                 ON PB.BRAND_ID = S.BRAND_ID
                             WHERE VPT.STOCK_ID = #RELATED_ID#
@@ -344,6 +365,7 @@ WHERE VP_ID=7542
                             <td><span >#PRODUCT_NAME#</span></td>
                             <td><span >#BRAND_NAME#</span></td>
                             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
+                            <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                             <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                         <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                             
