@@ -427,7 +427,49 @@ WHERE VP_ID=7542
         </cfloop>
     </cfoutput>
 </table>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggles = document.querySelectorAll('.toggle-icon');
 
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', function () {
+                const id = this.getAttribute('data-toggle');
+                const rows = document.querySelectorAll(`.tree-row[data-parent='${id}']`);
+                const isOpen = this.textContent === '▼';
+
+                this.textContent = isOpen ? '▶' : '▼';
+
+                rows.forEach(row => {
+                    if (isOpen) {
+                        row.style.display = 'none';
+                        collapseChildren(row.getAttribute('data-id')); // alt dalları da kapat
+                    } else {
+                        row.style.display = 'table-row';
+                    }
+                });
+            });
+        });
+
+        // Alt seviyeleri kapatma fonksiyonu
+        function collapseChildren(parentId) {
+            const children = document.querySelectorAll(`.tree-row[data-parent='${parentId}']`);
+            children.forEach(child => {
+                child.style.display = 'none';
+                const childId = child.getAttribute('data-id');
+                collapseChildren(childId); // recursive kapatma
+                const icon = document.querySelector(`.toggle-icon[data-toggle='${childId}']`);
+                if (icon) icon.textContent = '▶';
+            });
+        }
+
+        // İlk yüklemede tüm satırları gizle (sadece seviye 0 kalsın)
+        document.querySelectorAll('.tree-row').forEach(row => {
+            if (row.getAttribute('data-level') != "0") {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
 
     <!-------------------
 <cfoutput>
