@@ -144,7 +144,7 @@ WHERE VP_ID=7542
     </tr>
     <cfoutput query="qProductTree">
         <CFSET SN=SN+1>
-        <tr>
+        <tr  class='tree-row' data-id='#item.STOCK_ID#'  data-level='#SVY#'>
             <td>#SN#</td>
             <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
             <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
