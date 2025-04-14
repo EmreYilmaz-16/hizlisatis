@@ -13,7 +13,12 @@
     <CFSET PRINT_TYPE = 'MULTI'>
 </cfif>
 <CFSET attributes.offer_id = getOfferRow.OFFER_ID>
+<cftry>
 <cfinclude template="teklif_header.cfm">
+<cfcatch>
+    <cfdump var="#cfcatch#">
+</cfcatch>
+</cftry>
 <cftry>
 <cfinclude template="teklif_header_table.cfm">
 <cfif PRINT_TYPE eq 'VIRTUAL'>
