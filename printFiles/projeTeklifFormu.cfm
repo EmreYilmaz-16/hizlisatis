@@ -195,7 +195,21 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
             SELECT EMPLOYEE_NAME,EMPLOYEE_SURNAME FROM EMPLOYEE_POSITIONS WHERE POSITION_CODE = <cfqueryparam cfsqltype="cf_sql_integer" value="#Get_Upper_Position.Upper_Position_Code#">
         </cfquery>
     </cfif>
-
+    <cfquery name="Get_Offer_Plus" datasource="#dsn3#">
+        SELECT
+            PROPERTY1 AS EPOSTA,
+            PROPERTY2 AS ILGILI,
+            PROPERTY3 AS NOTLAR,
+            PROPERTY4 AS TESLIM,
+            PROPERTY5 AS ODEME,
+            PROPERTY6 AS OPSIYON,
+            PROPERTY7 AS ACIKLAMA
+            
+        FROM
+            PBS_OFFER_INFO_PLUS
+        WHERE
+            PBS_OFFER_INFO_PLUS.OFFER_ID = <cfqueryparam cfsqltype="cf_sql_integer" value="#attributes.offer_id#">
+    </cfquery>
     <cfif len(Get_Offer.Sales_Emp_Id)>
         <cfquery name="Get_Offer_Sales_Member" datasource="#dsn#">
             SELECT
