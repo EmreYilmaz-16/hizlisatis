@@ -474,6 +474,16 @@ WHERE VP_ID=7542
             </cfloop>
         </cfloop>
     </cfoutput>
+    <cfoutput>
+        <tr>
+            <td colspan="5" style="text-align: right; font-weight: bold;">Toplam</td>
+            <td></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(EURO_TOPLAM)#</span></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(TL_TOPLAM)#</span></td>
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(USD_TOPLAM)#</span></td>
+            <td class="FiyatAlan"></td>
+        </tr>
+    </cfoutput>
 </table>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
