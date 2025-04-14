@@ -1,4 +1,5 @@
-﻿
+﻿<cftry>
+
 <cfquery name="getOfferRow" datasource="#DSN3#">
     SELECT * FROM PBS_OFFER_ROW WHERE OFFER_ID=#attributes.ACTION_ID#
 </cfquery>
@@ -414,4 +415,6 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
     <cfdump var="#cfcatch#">
 </cfcatch>
 
+</cftry>
+<cfdump var="#cfcatch#">
 </cftry>
