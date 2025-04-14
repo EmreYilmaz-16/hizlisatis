@@ -146,7 +146,7 @@ WHERE VP_ID=7542
     <cfoutput query="qProductTree">
         <CFSET SN=SN+1>
         <cfset randomInt = RandRange(1000, 9999)>
-        <tr class="tree-row" data-parent="" data-level="#SVY#">
+        <tr class="tree-row" data-parent="" data-level="#SVY-1#">
             <td>#SN#</td>
             <td><span class="toggle-icon" data-toggle="#randomInt#">▶</span></td>
             <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
@@ -282,7 +282,7 @@ WHERE VP_ID=7542
             </cfif>
             <cfloop query="qProductTree2">
                 <CFSET SN=SN+1>
-        <tr data-parent="#randomInt2#" data-level="#SVY#" class="tree-row">
+        <tr data-parent="#randomInt2#" data-level="#SVY-1#" class="tree-row">
                     <cfset randomInt3 = RandRange(1000, 9999)>
             <td>#SN#</td>
                     <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
@@ -346,7 +346,7 @@ WHERE VP_ID=7542
                 </cfif>
                 <cfloop query="qProductTree3">
                     <CFSET SN=SN+1>
-                    <tr data-parent="#randomInt3#" data-level="#SVY#" class="tree-row">
+                    <tr data-parent="#randomInt3#" data-level="#SVY-1#" class="tree-row">
                     <cfset randomInt4 = RandRange(1000, 9999)>
                         <td>#SN#</td>
                         <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
@@ -412,7 +412,7 @@ WHERE VP_ID=7542
                     </cfif>
                     <cfloop query="qProductTree4">
                         <CFSET SN=SN+1>
-                        <tr data-parent="#randomInt4#" data-level="#SVY#" class="tree-row">
+                        <tr data-parent="#randomInt4#" data-level="#SVY-1#" class="tree-row">
                             
                             <td>#SN#</td>
                             <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
