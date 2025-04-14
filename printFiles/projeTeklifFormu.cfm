@@ -113,7 +113,7 @@ WHERE VP_ID=7542
 <CFSET TL_TOPLAM=0>;
 <CFSET USD_TOPLAM=0>;
 <CFSET SN=0>
-<table>
+<table class="table product-table" style="margin-top: 10px;">
     <tr>
         <th colspan="2">
             <span style="padding-left: 0px;">Sıra No</span>
