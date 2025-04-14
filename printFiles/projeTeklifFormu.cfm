@@ -111,6 +111,7 @@ WHERE VP_ID=7366
         <tr>
             <td><span class="toggle-icon" data-toggle="#RELATED_ID#">▶</span></td>
             <td><span style="padding-left: 0px;">#PRODUCT_NAME#</span></td>
+            <td><span >#BRAND_NAME#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
@@ -166,6 +167,7 @@ WHERE VP_ID=7366
             <tr>
                 <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                 <td><span >#PRODUCT_NAME#</span></td>
+                <td><span >#BRAND_NAME#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
@@ -218,6 +220,7 @@ WHERE VP_ID=7366
                 <tr>
                     <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                     <td><span >#PRODUCT_NAME#</span></td>
+                    <td><span >#BRAND_NAME#</span></td>
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
             <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
@@ -270,6 +273,7 @@ WHERE VP_ID=7366
                     <tr>
                         <td><span class="toggle-icon" style="padding-left:#SVY*15#px" data-toggle="#RELATED_ID#">▶</span></td>
                         <td><span >#PRODUCT_NAME#</span></td>
+                        <td><span >#BRAND_NAME#</span></td>
                         <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                         <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
                         <td><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
