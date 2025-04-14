@@ -477,7 +477,7 @@ WHERE VP_ID=7542
     <cfoutput>
         <tr>
             <td colspan="9" style="text-align: right; font-weight: bold;">Toplam</td>            
-            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(EURO_TOPLAM)# EUR </span>
+            <td colspan="2" class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(EURO_TOPLAM)# EUR </span>
             <br>
             <span style="padding-left: 0px;">#tlformat(TL_TOPLAM)# TL</span>
             <br>
