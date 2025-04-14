@@ -12,7 +12,7 @@
 <cfelseif getOfferRow.recordCount gt 1>
     <CFSET PRINT_TYPE = 'MULTI'>
 </cfif>
-<cfabort>
+
 <cfif  1 eq 1>
     <cftry>
  
@@ -402,6 +402,9 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
 </cfcatch>
 </cftry>
     <!-- Ürün Tablosu -->
+
+
+    <!-----
 <cftry>
 
 <cfif PRINT_TYPE eq 'VIRTUAL'>
@@ -416,3 +419,4 @@ WHERE PP. PROJECT_ID=#Get_Offer.PROJECT_ID#
 </cfcatch>
 
 </cftry>
+----->
