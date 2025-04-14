@@ -22,7 +22,7 @@
                 ELSE S.BRAND_ID 
             END
     LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
-    WHERE VP_ID=7542
+    WHERE VP_ID=#getOfferRow.PRODUCT_ID#
     </cfquery>
     <CFSET EURO_TOPLAM=0>;
     <CFSET TL_TOPLAM=0>;
