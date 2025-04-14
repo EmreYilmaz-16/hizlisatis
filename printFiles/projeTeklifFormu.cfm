@@ -476,12 +476,14 @@ WHERE VP_ID=7542
     </cfoutput>
     <cfoutput>
         <tr>
-            <td colspan="5" style="text-align: right; font-weight: bold;">Toplam</td>
-            <td></td>
-            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(EURO_TOPLAM)# EURO</span></td>
-            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(TL_TOPLAM)# TL</span></td>
-            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(USD_TOPLAM)# USD</span></td>
-            <td class="FiyatAlan"></td>
+            <td colspan="9" style="text-align: right; font-weight: bold;">Toplam</td>            
+            <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(EURO_TOPLAM)# EUR </span>
+            <br>
+            <span style="padding-left: 0px;">#tlformat(TL_TOPLAM)# TL</span>
+            <br>
+            <span style="padding-left: 0px;">#tlformat(USD_TOPLAM)# USD</span>
+            </td>
+            
         </tr>
     </cfoutput>
 </table>
