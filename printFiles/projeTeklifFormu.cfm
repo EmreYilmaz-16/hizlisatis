@@ -98,7 +98,7 @@ AMOUNT,
 1 AS SVY FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID=VPT.PRODUCT_ID
 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID=VPT.PRODUCT_ID
-LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB 
+LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
     ON PB.BRAND_ID = 
         CASE 
             WHEN IS_VIRTUAL = 1 THEN 1 
@@ -133,7 +133,7 @@ WHERE VP_ID=7366
                 FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                 LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                 LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB 
+                LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
     ON PB.BRAND_ID = 
         CASE 
             WHEN IS_VIRTUAL = 1 THEN 1 
@@ -187,7 +187,7 @@ WHERE VP_ID=7366
                     FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                     LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                    LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB
+                    LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                         ON PB.BRAND_ID = 
                             CASE 
                                 WHEN IS_VIRTUAL = 1 THEN 1 
@@ -209,7 +209,7 @@ WHERE VP_ID=7366
                         ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                     FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                    LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB 
+                    LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
                         ON PB.BRAND_ID = S.BRAND_ID
                     WHERE VPT.STOCK_ID = #RELATED_ID#
                 </cfquery>
@@ -240,7 +240,7 @@ WHERE VP_ID=7366
                         FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                         LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                         LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                        LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB
+                        LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                             ON PB.BRAND_ID = 
                                 CASE 
                                     WHEN IS_VIRTUAL = 1 THEN 1 
@@ -291,7 +291,7 @@ WHERE VP_ID=7366
                             FROM workcube_metosan_1.VIRTUAL_PRODUCT_TREE_PRT VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                             LEFT JOIN workcube_metosan_1.VIRTUAL_PRODUCTS_PRT AS VP ON VP.VIRTUAL_PRODUCT_ID = VPT.PRODUCT_ID
-                            LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB
+                            LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB
                                 ON PB.BRAND_ID = 
                                     CASE 
                                         WHEN IS_VIRTUAL = 1 THEN 1 
@@ -315,7 +315,7 @@ WHERE VP_ID=7366
                                 ,(SELECT 0 AS PRICE,0 AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                             FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                             LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
-                            LEFT JOIN workcube_1.PRODUCT_BRANDS AS PB 
+                            LEFT JOIN workcube_metosan_1.PRODUCT_BRANDS AS PB 
                                 ON PB.BRAND_ID = S.BRAND_ID
                             WHERE VPT.STOCK_ID = #RELATED_ID#
                         </cfquery>
