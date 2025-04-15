@@ -71,7 +71,12 @@
                 <td><span >#BRAND_NAME#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                 <td><span style="padding-left: 0px;">#BIRIM#</span></td>
+                <cfif len(PRICEJSON)>
                 <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                <cfelse>
+                <CFSET INDIRIMSIZ_FIYAT=0>
+                PRICEJSON='[{"PRICE":0,"DISCOUNT":0,"OTHER_MONEY":"TL"}]'
+            </cfif>
                 <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                 <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
                 <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
