@@ -150,8 +150,8 @@
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                     <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                     
-                    <cfif len(PRICEJSON) AND isJSON(PRICEJSON)>
-                        <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                    <cfif len(qProductTree1.PRICEJSON) AND isJSON(qProductTree1.PRICEJSON)>
+                        <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(qProductTree1.PRICEJSON)[1].PRICE+(deserializeJSON(qProductTree1.PRICEJSON)[1].DISCOUNT/100*deserializeJSON(qProductTree1.PRICEJSON)[1].PRICE)>
                         
                         <cfelse>
                             
@@ -160,10 +160,10 @@
                     </cfif>
                 
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
-                    <td class="FiyatAlan"><span style="padding-left: 0px;"><cftry>#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#<cfcatch><cfdump var="#qProductTree1#"></cfcatch></cftry></span></td>
-                    <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
-                    <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE*AMOUNT)#</span></td>
-                    <td class="FiyatAlan"><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
+                    <td class="FiyatAlan"><span style="padding-left: 0px;"><cftry>#tlformat(deserializeJSON(qProductTree1.PRICEJSON)[1].DISCOUNT)#<cfcatch><cfdump var="#qProductTree1#"></cfcatch></cftry></span></td>
+                    <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(qProductTree1.PRICEJSON)[1].PRICE)#</span></td>
+                    <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(qProductTree1.PRICEJSON)[1].PRICE*AMOUNT)#</span></td>
+                    <td class="FiyatAlan"><span style="padding-left: 0px;">#deserializeJSON(qProductTree1.PRICEJSON)[1].OTHER_MONEY#</span></td>
                 </tr>
                 <cfif IS_VIRTUAL EQ 1>
                     <cfquery name="qProductTree2" datasource="#dsn3#">
