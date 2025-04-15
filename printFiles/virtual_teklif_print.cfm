@@ -150,7 +150,13 @@
                     <td><span >#BRAND_NAME#</span></td>
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                     <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-                    <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                    
+                    <cfif len(PRICEJSON)>
+                        <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                        <cfelse>
+                        <CFSET INDIRIMSIZ_FIYAT=0>
+                        <CFSET PRICEJSON='[{"PRICE":0,"DISCOUNT":0,"OTHER_MONEY":"TL"}]'>
+                    </cfif>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
@@ -215,7 +221,12 @@
                         <td><span >#BRAND_NAME#</span></td>
                         <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                         <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-                        <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                        <cfif len(PRICEJSON)>
+                            <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                            <cfelse>
+                            <CFSET INDIRIMSIZ_FIYAT=0>
+                            <CFSET PRICEJSON='[{"PRICE":0,"DISCOUNT":0,"OTHER_MONEY":"TL"}]'>
+                        </cfif>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                 
                 <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
@@ -280,7 +291,12 @@
                             <td><span >#BRAND_NAME#</span></td>
                             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                             <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-                            <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                            <cfif len(PRICEJSON)>
+                                <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                                <cfelse>
+                                <CFSET INDIRIMSIZ_FIYAT=0>
+                                <CFSET PRICEJSON='[{"PRICE":0,"DISCOUNT":0,"OTHER_MONEY":"TL"}]'>
+                            </cfif>
                             <tdclass="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                             
                             <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
@@ -347,7 +363,12 @@
                                 <td><span >#BRAND_NAME#</span></td>
                                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                                 <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-                                <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                                <cfif len(PRICEJSON)>
+                                    <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                                    <cfelse>
+                                    <CFSET INDIRIMSIZ_FIYAT=0>
+                                    <CFSET PRICEJSON='[{"PRICE":0,"DISCOUNT":0,"OTHER_MONEY":"TL"}]'>
+                                </cfif>
                             <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                                 
                                 <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
