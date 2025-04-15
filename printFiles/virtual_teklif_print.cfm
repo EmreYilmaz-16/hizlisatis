@@ -129,7 +129,7 @@
                         PB.BRAND_NAME,
                         PU.MAIN_UNIT AS BIRIM,               
                         2 AS SVY
-                        ,(SELECT '' AS PRICE,'' AS DISCOUNT,'' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
+                        ,(SELECT '0' AS PRICE,'0' AS DISCOUNT,'TL' AS OTHER_MONEY FOR JSON PATH) AS PRICEJSON
                     FROM workcube_metosan_1.PRODUCT_TREE AS VPT
                     LEFT JOIN workcube_metosan_1.STOCKS AS S ON S.PRODUCT_ID = VPT.PRODUCT_ID
                     LEFT JOIN workcube_metosan_1.PRODUCT_UNIT AS PU ON PU.PRODUCT_ID = S.PRODUCT_ID AND PU.IS_MAIN = 1
@@ -152,10 +152,13 @@
                     
                     <cfif len(PRICEJSON) AND isJSON(PRICEJSON)>
                         <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
+                        
                         <cfelse>
+                            
                         <CFSET INDIRIMSIZ_FIYAT=0>
                         <CFSET PRICEJSON='[{"PRICE":0,"DISCOUNT":0,"OTHER_MONEY":"TL"}]'>
                     </cfif>
+                
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
