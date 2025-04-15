@@ -160,7 +160,7 @@
                     </cfif>
                 
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(INDIRIMSIZ_FIYAT))#</span></td>
-                    <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#</span></td>
+                    <td class="FiyatAlan"><span style="padding-left: 0px;"><cftry>#tlformat(deserializeJSON(PRICEJSON)[1].DISCOUNT)#<cfcatch><cfdump var="#qProductTree1#"></cfcatch></cftry></span></td>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE)#</span></td>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#tlformat(deserializeJSON(PRICEJSON)[1].PRICE*AMOUNT)#</span></td>
                     <td class="FiyatAlan"><span style="padding-left: 0px;">#deserializeJSON(PRICEJSON)[1].OTHER_MONEY#</span></td>
