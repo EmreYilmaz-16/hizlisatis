@@ -1,5 +1,4 @@
-
-    <cfquery name="qProductTree" datasource="#dsn3#">
+<cfquery name="qProductTree" datasource="#dsn3#">
         SELECT 
     CASE WHEN IS_VIRTUAL =1 THEN VP.PRODUCT_NAME ELSE S.PRODUCT_NAME END AS PRODUCT_NAME,
     CASE WHEN IS_VIRTUAL=1 THEN VP.VIRTUAL_PRODUCT_ID ELSE S.STOCK_ID END AS RELATED_ID,
@@ -71,7 +70,7 @@
                 <td><span >#BRAND_NAME#</span></td>
                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                 <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-                <cfif len(PRICEJSON)>
+                <cfif len(PRICEJSON) AND isJSON(PRICEJSON)>
                 <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                 <cfelse>
                 <CFSET INDIRIMSIZ_FIYAT=0>
@@ -151,7 +150,7 @@
                     <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                     <td><span style="padding-left: 0px;">#BIRIM#</span></td>
                     
-                    <cfif len(PRICEJSON)>
+                    <cfif len(PRICEJSON) AND isJSON(PRICEJSON)>
                         <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                         <cfelse>
                         <CFSET INDIRIMSIZ_FIYAT=0>
@@ -221,7 +220,7 @@
                         <td><span >#BRAND_NAME#</span></td>
                         <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                         <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-                        <cfif len(PRICEJSON)>
+                        <cfif len(PRICEJSON) AND isJSON(PRICEJSON)>
                             <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                             <cfelse>
                             <CFSET INDIRIMSIZ_FIYAT=0>
@@ -291,7 +290,7 @@
                             <td><span >#BRAND_NAME#</span></td>
                             <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                             <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-                            <cfif len(PRICEJSON)>
+                            <cfif len(PRICEJSON) AND isJSON(PRICEJSON)>
                                 <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                                 <cfelse>
                                 <CFSET INDIRIMSIZ_FIYAT=0>
@@ -363,7 +362,7 @@
                                 <td><span >#BRAND_NAME#</span></td>
                                 <td><span style="padding-left: 0px;">#tlformat(AMOUNT)#</span></td>
                                 <td><span style="padding-left: 0px;">#BIRIM#</span></td>
-                                <cfif len(PRICEJSON)>
+                                <cfif len(PRICEJSON) AND isJSON(PRICEJSON)>
                                     <CFSET INDIRIMSIZ_FIYAT=deserializeJSON(PRICEJSON)[1].PRICE+(deserializeJSON(PRICEJSON)[1].DISCOUNT/100*deserializeJSON(PRICEJSON)[1].PRICE)>
                                     <cfelse>
                                     <CFSET INDIRIMSIZ_FIYAT=0>
