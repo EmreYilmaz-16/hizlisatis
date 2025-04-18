@@ -121,7 +121,7 @@
 							<cfif len(form_product_id_exit)>#form_product_id_exit#<cfelse>NULL</cfif>,
 							<cfif len(form_stock_id_exit)>#form_stock_id_exit#<cfelse>NULL</cfif>,
 							<cfif len(form_spec_main_id_exit) and form_spec_main_id_exit gt 0>#form_spec_main_id_exit#<cfelse>NULL</cfif>,
-							<cfif len(form_amount_exit)>#form_amount_exit#<cfelse>NULL</cfif>,
+							<cfif len(form_amount_exit)>#filternum(form_amount_exit)#<cfelse>NULL</cfif>,
 							2,
 							<cfif len(form_unit_id_exit)>#form_unit_id_exit#<cfelse>NULL</cfif>,
 							#session.ep.userid#,
