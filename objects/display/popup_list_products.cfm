@@ -6,9 +6,9 @@
 <div class="row">
     <div class="col col-12 col-md-12 col-sm-12 col-xs-12" style="display: flex;flex-wrap: wrap;align-content: end;justify-content: flex-start;align-items: baseline;">
         <div class="form-group">
-            <input type="text" name="keyword" id="keyword" placeholder="Filtre" onkeyup="Filtrele(this,event)">
+            <input class="form-control" type="text" name="keyword" id="keyword" placeholder="Filtre" onkeyup="Filtrele(this,event)">
         </div>
-        <button type="button" onclick="Filtre()">
+        <button class="btn btn-success" type="button" onclick="Filtre()">
             <span class="icn-md icon-search pull-right"></span>
             Filtrele
         </button>
