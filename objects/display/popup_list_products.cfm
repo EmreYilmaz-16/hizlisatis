@@ -5,7 +5,7 @@
 <cfparam name="attributes.arrayid" default="">
 
 <cfif attributes.actType eq 4 or 0 eq 5>
-    <form name="product_form">
+    <form name="product_form" onsubmit="return false;">
 </cfif>
 <table>
 <tr>
@@ -73,7 +73,7 @@
 </tr>
 
 </table>
-<cfif attributes.actType eq 4>
+<cfif attributes.actType eq 4 or 0 eq 5>
 </form>
 </cfif>
 <div id="product_list"></div>
