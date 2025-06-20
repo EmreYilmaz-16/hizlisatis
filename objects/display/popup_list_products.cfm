@@ -3,6 +3,13 @@
 <cfparam name="attributes.SIPARIS_MIKTARI" default="1">
 <cfparam name="attributes.columnsa" default="">
 <cfparam name="attributes.arrayid" default="">
+<div class="row">
+    <div class="col col-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <input type="text" name="keyword" id="keyword" placeholder="Filtre" onkeyup="Filtrele(this,event)">
+        </div>
+    </div>
+</div>
 
 <cfif attributes.actType eq 4 or attributes.actType eq 5>
     <form name="product_form" onsubmit="event.preventDefault(); return false;">
@@ -24,7 +31,7 @@
     <td>
         <div class="form-group">
             
-            <input type="text" name="keyword" id="keyword" placeholder="Filtre" onkeyup="Filtrele(this,event)">
+            
         </div>
     </td>
     <td><div class="form-group">
