@@ -3,6 +3,7 @@
 <cfparam name="attributes.SIPARIS_MIKTARI" default="1">
 <cfparam name="attributes.columnsa" default="">
 <cfparam name="attributes.arrayid" default="">
+<cfdump var="#attributes#">
 <cfif attributes.actType eq 4>
     <form name="product_form">
 </cfif>
