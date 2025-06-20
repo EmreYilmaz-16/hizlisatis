@@ -218,3 +218,28 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
 <script src="/AddOns/Partner/project/js/urunAgaci.js"></script>
 
 
+<script>
+  function applyFilters(type) {
+  if (
+    !list_find("37,38,39,40", window.event.keyCode) &&
+    (window.event.keyCode == "13" || type > 0) &&
+    $("#company_id_").val() &&
+    $("#price_list").val()
+  ) {
+    $("#product_list").text("");
+    var url_params = "";
+    url_params += "&keyword=" + $("#keyword").val();
+    url_params += "&comp_id=" + $("#company_id_").val();
+    /* if($("#get_comp_name").val() && $("#get_company_id").val())
+             url_params += '&get_company='+$("#get_company_id").val();
+         if($("#product_cat").val() && $("#search_product_catid").val())
+             url_params += '&product_hierarchy='+$("#search_product_catid").val();
+         if($("#brand_name").val() && $("#brand_id").val())
+             url_params += '&brand_id='+$("#brand_id").val();
+         url_params += '&sort_type='+$("#sort_type").val();
+         url_params += '&price_catid='+$("#price_list").val();
+         url_params += '&maxrows='+$("#maxrows").val();*/
+    //loadProductList(url_params);
+  }
+}
+</script>
