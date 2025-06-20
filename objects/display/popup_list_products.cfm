@@ -8,6 +8,10 @@
         <div class="form-group">
             <input type="text" name="keyword" id="keyword" placeholder="Filtre" onkeyup="Filtrele(this,event)">
         </div>
+        <button type="button" onclick="Filtre()">
+            <span class="icn-md icon-search pull-right"></span>
+            Filtrele
+        </button>
     </div>
 </div>
 
@@ -161,6 +165,9 @@ function Filtrele(el, ev) {
     if (ev.keyCode == 13) {
         sayfaYukle();
     }
+}
+function Filtre() {
+    sayfaYukle();
 }
 </script>
 
