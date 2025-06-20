@@ -52,7 +52,7 @@
     </div>
     </td>
     <cfif attributes.actType eq 5>
-        <cfform name="product_form" onsubmit="event.preventDefault(); return false;">
+        <form name="product_form" onsubmit="event.preventDefault(); return false;">
     </cfif>
     <td>
         <div class="form-group">
