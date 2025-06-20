@@ -76,7 +76,7 @@
 </tr>
 
 </table>
-<cfif attributes.actType eq 4 or 0 eq 5>
+<cfif attributes.actType eq 4 or attributes.actType eq 5>
 </form>
 </cfif>
 <div id="product_list"></div>
