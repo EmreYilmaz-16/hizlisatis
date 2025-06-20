@@ -4,8 +4,8 @@
 <cfparam name="attributes.columnsa" default="">
 <cfparam name="attributes.arrayid" default="">
 
-<cfif attributes.actType eq 4 or attributes.actType  eq 5>
-    <form name="product_form" onsubmit="return false;">
+<cfif attributes.actType eq 4 or attributes.actType eq 5>
+    <form name="product_form" onsubmit="event.preventDefault(); return false;">
 </cfif>
 <table>
 <tr>
