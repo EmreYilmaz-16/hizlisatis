@@ -4,7 +4,7 @@
 <cfparam name="attributes.columnsa" default="">
 <cfparam name="attributes.arrayid" default="">
 <cfdump var="#attributes#">
-<cfif attributes.actType eq 4>
+<cfif attributes.actType eq 4 or attributes.actType eq 5>
     <form name="product_form">
 </cfif>
 <table>
