@@ -4,7 +4,7 @@
 <cfparam name="attributes.columnsa" default="">
 <cfparam name="attributes.arrayid" default="">
 
-<cfif attributes.actType eq 4 >
+<cfif attributes.actType eq 4 or attributes.actType eq 5>
     <form name="product_form" onsubmit="event.preventDefault(); return false;">
 </cfif>
 <table>
@@ -51,9 +51,6 @@
         </div>
     </div>
     </td>
-    <cfif attributes.actType eq 5>
-        <form name="product_form" onsubmit="event.preventDefault(); return false;">
-    </cfif>
     <td>
         <div class="form-group">
         <div class="input-group" style="position: static;">		
@@ -76,7 +73,7 @@
 </tr>
 
 </table>
-<cfif attributes.actType eq 4 or attributes.actType eq 5>
+<cfif attributes.actType eq 4 or 0 eq 5>
 </form>
 </cfif>
 <div id="product_list"></div>
