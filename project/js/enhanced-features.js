@@ -885,10 +885,14 @@ class WorkflowAutomationManager {
     // Implementation for workflow automation
 }
 
-// Initialize enhanced features when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    window.enhancedFeatures = new EnhancedFeatureManager();
-});
+// Export classes to global scope
+if (typeof window !== 'undefined') {
+    window.EnhancedFeatureManager = EnhancedFeatureManager;
+    window.WorkflowAutomationManager = WorkflowAutomationManager;
+}
+
+// Note: Manual initialization is handled in product_design.cfm
+// No automatic DOM loading initialization to avoid conflicts
 
 // Export for module systems
 if (typeof module !== 'undefined' && module.exports) {

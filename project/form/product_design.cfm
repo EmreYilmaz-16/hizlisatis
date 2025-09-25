@@ -1011,7 +1011,15 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
 
 <script>
 // Modern UI Integration with Security
-document.addEventListener('DOMContentLoaded', function() {
+function initializeWhenReady() {
+  // Debug: Log what's available in window object
+  console.log('=== Class Availability Debug ===');
+  console.log('window.ProductTreeManager:', typeof window.ProductTreeManager);
+  console.log('window.EnhancedFeatureManager:', typeof window.EnhancedFeatureManager);
+  console.log('window.ProductTreeCache:', typeof window.ProductTreeCache);
+  console.log('window.ProductTreeUI:', typeof window.ProductTreeUI);
+  console.log('window.SecurityManager:', typeof window.SecurityManager);
+  
   // Wait for all required classes to be available
   function checkClassesAvailable() {
     const requiredClasses = ['ProductTreeManager', 'EnhancedFeatureManager', 'ProductTreeCache'];
@@ -1019,53 +1027,89 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (missing.length > 0) {
       console.warn('Waiting for classes to load:', missing);
-      setTimeout(checkClassesAvailable, 100);
+      
+      // Debug: Check if classes exist but with different names
+      console.log('Available window properties:', Object.keys(window).filter(key => key.includes('Tree') || key.includes('Enhanced') || key.includes('Security')));
+      
+      setTimeout(checkClassesAvailable, 50); // Reduced from 100ms to 50ms for faster checking
       return;
     }
     
     try {
+      console.log('✅ All required classes available, initializing...');
+      
       // Initialize modern UI components only after all classes are available
       const treeManager = new ProductTreeManager();
+      console.log('✅ ProductTreeManager initialized');
       
       // Initialize Enhanced Features
       window.enhancedFeatures = new EnhancedFeatureManager();
+      console.log('✅ EnhancedFeatureManager initialized');
+      
       if (typeof window.enhancedFeatures.initialize === 'function') {
         window.enhancedFeatures.initialize();
+        console.log('✅ Enhanced features initialized');
       }
       
       // Initialize security for all forms
       if (typeof initializeSecurity === 'function') {
         initializeSecurity();
+        console.log('✅ Security initialized');
       }
       
       // Initialize search functionality
       if (typeof initializeSearch === 'function') {
         initializeSearch();
+        console.log('✅ Search initialized');
       }
       
       // Initialize tooltips
       if (typeof initializeTooltips === 'function') {
         initializeTooltips();
+        console.log('✅ Tooltips initialized');
       }
       
       // Initialize responsive handlers
       if (typeof initializeResponsiveHandlers === 'function') {
         initializeResponsiveHandlers();
+        console.log('✅ Responsive handlers initialized');
       }
       
       // Initialize performance monitoring
       if (typeof initializePerformanceMonitoring === 'function') {
         initializePerformanceMonitoring();
+        console.log('✅ Performance monitoring initialized');
       }
       
-      console.log('All UI components initialized successfully');
+      console.log('🎉 All UI components initialized successfully');
     } catch (error) {
-      console.error('Error initializing UI components:', error);
+      console.error('❌ Error initializing UI components:', error);
+      console.error('Error details:', error.message, error.stack);
+      // Retry after a short delay in case of temporary issues
+      setTimeout(checkClassesAvailable, 1000);
     }
   }
   
   // Start the initialization check
   checkClassesAvailable();
+}
+
+// Try multiple initialization methods to ensure it works
+document.addEventListener('DOMContentLoaded', function() {
+  // Small delay to ensure all scripts have executed
+  setTimeout(initializeWhenReady, 100);
+});
+
+// Backup initialization in case DOM is already loaded
+if (document.readyState === 'loading') {
+  // DOM hasn't finished loading yet
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initializeWhenReady, 100);
+  });
+} else {
+  // DOM has already loaded
+  setTimeout(initializeWhenReady, 100);
+}
   
   // Initialize cache indicators
   initializeCacheIndicators();
