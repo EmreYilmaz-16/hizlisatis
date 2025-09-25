@@ -2,7 +2,7 @@
 <cfinclude template="../includes/security_include.cfm">
 
 <!--- Initialize audit logger --->
-<cfset auditLogger = createObject("component", "../cfc.AuditLogger")>
+<cfset auditLogger = createObject("component", "AddOns.Partner.project.cfc.AuditLogger")>
 
 <!--- Configure page security --->
 <cfscript>
