@@ -1099,13 +1099,20 @@ function validateSecureOperation(operation, params = {}) {
 async function secureLoadTree(productId) {
   try {
     showTreeLoading();
-    
+      var PROJECT_ID = getParameterByName("project_id");
+  var cp_id = wrk_query(
+    "select COMPANY_ID FROM PRO_PROJECTS WHERE PROJECT_ID=" + PROJECT_ID,
+    "DSN"
+  ).COMPANY_ID[0];
+  let compInfo = GetAjaxQuery("CompanyInfo", cp_id);
+ var _priceCatId = compInfo.PRICE_LISTS.find((p) => p.IS_DEFAULT == 1).PRICE_CATID;
+  var _compId = cp_id;
     const response = await window.SecurityManager.secureRequest('product_design.cfc?method=getTree', {
       product_id: productId,
       isVirtual: document.getElementById('is_virtual').value || '1',
       ddsn3: 'workcube_metosan_1',
-      company_id: '<cfoutput>#session.ep.company_id#</cfoutput>',
-      price_catid: '<cfoutput>#session.ep.price_catid#</cfoutput>',
+      company_id: _compId,
+      price_catid: _priceCatId,
       stock_id: '',
       tipo: '1',
       from_copy: '0'
