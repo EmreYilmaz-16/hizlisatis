@@ -1000,9 +1000,9 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <!--- Modern UI Components and Architecture --->
-<script src="../js/modern-ui-components.js"></script>
-<script src="../js/security-manager.js"></script>
-<script src="../js/enhanced-features.js"></script>
+<script src="/AddOns/Partner/project/js/modern-ui-components.js"></script>
+<script src="/AddOns/Partner/project/js/security-manager.js"></script>
+<script src="/AddOns/Partner/project/js/enhanced-features.js"></script>
 <script src="/AddOns/Partner/project/js/ProductTreeSupport.js"></script>
 <script src="/AddOns/Partner/project/js/ProductTreeManager.js"></script>
 
