@@ -101,8 +101,8 @@ Comprehensive logging and monitoring for user actions and system events
             executionTime: arguments.executionTime,
             recordsProcessed: arguments.recordsProcessed,
             queryCount: arguments.queryCount,
-            memoryUsage: arguments.memoryUsage > 0 ? arguments.memoryUsage : currentMemory,
-            severity: arguments.executionTime > 5000 ? "WARNING" : "INFO",
+            memoryUsage: arguments.memoryUsage gt 0 ? arguments.memoryUsage : currentMemory,
+            severity: arguments.executionTime gt 5000 ? "WARNING" : "INFO",
             userId: structKeyExists(session, "pp") ? session.pp.userid : "SYSTEM",
             timestamp: now(),
             requestUrl: cgi.script_name
