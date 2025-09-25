@@ -597,7 +597,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             </cfcatch>
         </cftry>
     </cffunction>
-    <cffunction name="getTreeFromVirtual_Old" >
+   <!---- <cffunction name="getTreeFromVirtual_Old" >
             <cfset O.PRODUCT_NAME=getSInfo.PRODUCT_NAME>
             <cfset O.AMOUNT=AMOUNT>
             <cfquery name="ishvTree" datasource="#dsn#">
@@ -620,7 +620,7 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
             </cfscript>
         </cfloop>
         <cfreturn ReturnArr>
-    </cffunction>
+    </cffunction>----->
 
 
 
