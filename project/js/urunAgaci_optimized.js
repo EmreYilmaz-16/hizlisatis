@@ -7,8 +7,8 @@ OPTIMIZED Product Tree JavaScript - Performance Enhanced Version
 - Loading states
 */
 
-// Cache and performance optimization
-const ProductTreeCache = {
+// Cache and performance optimization - Now compatible with ProductTreeManager
+const ProductTreeCacheImplImpl = {
     cache: new Map(),
     maxCacheSize: 100,
     pendingRequests: new Map(),
@@ -143,7 +143,7 @@ function makeOptimizedAjaxRequest(options) {
     return new Promise((resolve, reject) => {
         // Check cache first
         if (useCache && cacheKey) {
-            const cached = ProductTreeCache.get(cacheKey);
+            const cached = ProductTreeCacheImpl.get(cacheKey);
             if (cached) {
                 console.log('Cache hit for:', cacheKey);
                 resolve(cached);
@@ -151,13 +151,13 @@ function makeOptimizedAjaxRequest(options) {
             }
             
             // Check if same request is already pending
-            if (ProductTreeCache.pendingRequests.has(cacheKey)) {
-                ProductTreeCache.pendingRequests.get(cacheKey).push({ resolve, reject });
+            if (ProductTreeCacheImpl.pendingRequests.has(cacheKey)) {
+                ProductTreeCacheImpl.pendingRequests.get(cacheKey).push({ resolve, reject });
                 return;
             }
             
             // Mark request as pending
-            ProductTreeCache.pendingRequests.set(cacheKey, [{ resolve, reject }]);
+            ProductTreeCacheImpl.pendingRequests.set(cacheKey, [{ resolve, reject }]);
         }
         
         // Show loading
@@ -186,14 +186,14 @@ function makeOptimizedAjaxRequest(options) {
                     
                     // Cache the response
                     if (useCache && cacheKey) {
-                        ProductTreeCache.set(cacheKey, parsedResponse);
+                        ProductTreeCacheImpl.set(cacheKey, parsedResponse);
                         
                         // Resolve all pending requests with same key
-                        const pending = ProductTreeCache.pendingRequests.get(cacheKey) || [];
+                        const pending = ProductTreeCacheImpl.pendingRequests.get(cacheKey) || [];
                         pending.forEach(({ resolve: pendingResolve }) => {
                             pendingResolve(parsedResponse);
                         });
-                        ProductTreeCache.pendingRequests.delete(cacheKey);
+                        ProductTreeCacheImpl.pendingRequests.delete(cacheKey);
                     }
                     
                     resolve(parsedResponse);
@@ -223,12 +223,12 @@ function makeOptimizedAjaxRequest(options) {
                 ErrorHandler.show(errorMessage);
                 
                 // Handle pending requests
-                if (useCache && cacheKey && ProductTreeCache.pendingRequests.has(cacheKey)) {
-                    const pending = ProductTreeCache.pendingRequests.get(cacheKey) || [];
+                if (useCache && cacheKey && ProductTreeCacheImpl.pendingRequests.has(cacheKey)) {
+                    const pending = ProductTreeCacheImpl.pendingRequests.get(cacheKey) || [];
                     pending.forEach(({ reject: pendingReject }) => {
                         pendingReject(new Error(errorMessage));
                     });
-                    ProductTreeCache.pendingRequests.delete(cacheKey);
+                    ProductTreeCacheImpl.pendingRequests.delete(cacheKey);
                 }
                 
                 reject(new Error(errorMessage));
@@ -297,7 +297,7 @@ async function ngetTreeOptimized(
         if (tip === 4) url += `&from_copy=1`;
         
         // Create cache key
-        const cacheKey = ProductTreeCache.getCacheKey(product_id, is_virtual, tipo, _compId, _priceCatId);
+        const cacheKey = ProductTreeCacheImpl.getCacheKey(product_id, is_virtual, tipo, _compId, _priceCatId);
         
         // Make optimized request
         const treeData = await makeOptimizedAjaxRequest({
@@ -405,10 +405,28 @@ document.addEventListener('DOMContentLoaded', function() {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { 
         ngetTreeOptimized, 
-        ProductTreeCache, 
+        ProductTreeCacheImpl, 
         LoadingManager, 
         ErrorHandler 
     };
 }
+
+// Compatibility bridge for ProductTreeManager
+class ProductTreeCache {
+    constructor(config = {}) {
+        this.config = config;
+        // Delegate to the implementation
+        Object.keys(ProductTreeCacheImpl).forEach(key => {
+            if (typeof ProductTreeCacheImpl[key] === 'function') {
+                this[key] = ProductTreeCacheImpl[key].bind(ProductTreeCacheImpl);
+            } else {
+                this[key] = ProductTreeCacheImpl[key];
+            }
+        });
+    }
+}
+
+// Make it globally available
+window.ProductTreeCache = ProductTreeCache;
 
 console.log('ProductTree optimization loaded successfully');

@@ -7,18 +7,18 @@ cfheader(name="Content-Type", value="application/json");
 
 try {
     // Get the raw POST data (CSP reports are sent as JSON)
-    var rawData = toString(getHttpRequestData().content);
+    rawData = toString(getHttpRequestData().content);
     
     if (len(trim(rawData))) {
         // Parse the CSP violation report
-        var reportData = deserializeJSON(rawData);
+        reportData = deserializeJSON(rawData);
         
         // Extract violation details
         if (structKeyExists(reportData, "csp-report")) {
-            var violation = reportData["csp-report"];
+            violation = reportData["csp-report"];
             
             // Log the violation
-            var logEntry = {
+            logEntry = {
                 "timestamp": dateFormat(now(), "yyyy-mm-dd") & " " & timeFormat(now(), "HH:mm:ss"),
                 "document_uri": structKeyExists(violation, "document-uri") ? violation["document-uri"] : "",
                 "violated_directive": structKeyExists(violation, "violated-directive") ? violation["violated-directive"] : "",

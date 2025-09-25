@@ -255,10 +255,14 @@ if (!structKeyExists(application, "securityLog")) {
         <cfheader name="X-XSS-Protection" value="1; mode=block">
         <cfheader name="Referrer-Policy" value="strict-origin-when-cross-origin">
         <!--- 
-        Secure CSP without unsafe-eval - all eval() usage has been eliminated
-        Added connect-src for AJAX requests and report-uri for CSP violations
+        Updated CSP to handle common application requirements:
+        - Added googleapis.com for Google APIs
+        - Added accounts.google.com for Google Sign-In
+        - Added 'unsafe-eval' for legacy JavaScript libraries
+        - Added data: for fonts and WebSocket support
+        - Added report-uri for violation monitoring
         --->
-        <cfheader name="Content-Security-Policy" value="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https:; report-uri /AddOns/Partner/project/cfc/security_csp_report.cfm;">
+        <cfheader name="Content-Security-Policy" value="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://apis.google.com https://accounts.google.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' data: https://cdnjs.cloudflare.com; connect-src 'self' https: ws: wss:; report-uri /AddOns/Partner/project/cfc/security_csp_report.cfm;">
         <cfheader name="Cache-Control" value="no-store, no-cache, must-revalidate, private">
         <cfheader name="Pragma" value="no-cache">
     </cfif>

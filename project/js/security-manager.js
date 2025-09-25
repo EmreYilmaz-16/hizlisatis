@@ -461,6 +461,36 @@ class SecurityManager {
         });
     }
 
+    // Rate Limiting Initialization
+    initRateLimiting() {
+        this.rateLimiter = {
+            requests: new Map(),
+            maxRequests: 100,
+            timeWindow: 60000, // 1 minute
+            
+            checkLimit: (identifier = 'default') => {
+                const now = Date.now();
+                const userRequests = this.rateLimiter.requests.get(identifier) || [];
+                
+                // Clean old requests outside time window
+                const validRequests = userRequests.filter(time => now - time < this.rateLimiter.timeWindow);
+                
+                if (validRequests.length >= this.rateLimiter.maxRequests) {
+                    console.warn('Rate limit exceeded for:', identifier);
+                    return false;
+                }
+                
+                // Add current request
+                validRequests.push(now);
+                this.rateLimiter.requests.set(identifier, validRequests);
+                
+                return true;
+            }
+        };
+        
+        console.log('Rate limiting initialized');
+    }
+
     // Security Event Logging
     logSecurityEvent(type, details) {
         const logData = {

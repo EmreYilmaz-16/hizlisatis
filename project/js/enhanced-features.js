@@ -61,6 +61,52 @@ class EnhancedFeatureManager {
         }
     }
 
+    applyPreferences(preferences) {
+        try {
+            if (!preferences) return;
+            
+            // Apply UI preferences
+            if (preferences.theme) {
+                document.body.setAttribute('data-theme', preferences.theme);
+            }
+            
+            // Apply filter preferences
+            if (preferences.defaultFilters) {
+                this.filterManager.applyDefaultFilters(preferences.defaultFilters);
+            }
+            
+            // Apply display preferences
+            if (preferences.display) {
+                this.applyDisplayPreferences(preferences.display);
+            }
+            
+            // Apply notification preferences
+            if (preferences.notifications) {
+                this.applyNotificationPreferences(preferences.notifications);
+            }
+            
+            console.log('User preferences applied successfully');
+        } catch (error) {
+            console.error('Error applying preferences:', error);
+        }
+    }
+
+    applyDisplayPreferences(displayPrefs) {
+        if (displayPrefs.compactView) {
+            document.body.classList.add('compact-view');
+        }
+        if (displayPrefs.fontSize) {
+            document.documentElement.style.setProperty('--font-size-base', displayPrefs.fontSize + 'px');
+        }
+    }
+
+    applyNotificationPreferences(notifPrefs) {
+        // Apply notification settings
+        if (notifPrefs.enabled === false) {
+            document.body.classList.add('notifications-disabled');
+        }
+    }
+
     initializeComponents() {
         this.initBulkOperations();
         this.initAdvancedFilters();
