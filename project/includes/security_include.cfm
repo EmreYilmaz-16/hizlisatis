@@ -322,6 +322,6 @@ if (!structKeyExists(application, "securityLog")) {
 <script>
     window.CSRF_TOKEN = '#currentCSRFToken#';
     window.SESSION_TIMEOUT = #securityConfig.sessionTimeout#;
-    window.USER_ID = '#session.pp.userid#';
+    window.USER_ID = '#session.ep.userid#';
 </script>
 </cfoutput>
