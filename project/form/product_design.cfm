@@ -1098,6 +1098,12 @@ function initializeWhenReady() {
 document.addEventListener('DOMContentLoaded', function() {
   // Small delay to ensure all scripts have executed
   setTimeout(initializeWhenReady, 100);
+  
+  // Initialize cache indicators
+  initializeCacheIndicators();
+  
+  // Load initial project stats
+  loadProjectStats();
 });
 
 // Backup initialization in case DOM is already loaded
@@ -1110,14 +1116,9 @@ if (document.readyState === 'loading') {
   // DOM has already loaded
   setTimeout(initializeWhenReady, 100);
 }
-  
-  // Initialize cache indicators
-  initializeCacheIndicators();
-  
-  // Load initial project stats
-  loadProjectStats();
-});
+</script>
 
+<script>
 // Security Initialization
 function initializeSecurity() {
   // Security manager is already initialized globally
