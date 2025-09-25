@@ -1104,8 +1104,8 @@ async function secureLoadTree(productId) {
       product_id: productId,
       isVirtual: document.getElementById('is_virtual').value || '1',
       ddsn3: 'workcube_metosan_1',
-      company_id: '<cfoutput>#session.pp.company_id#</cfoutput>',
-      price_catid: '<cfoutput>#session.pp.price_catid#</cfoutput>',
+      company_id: '<cfoutput>#session.ep.company_id#</cfoutput>',
+      price_catid: '<cfoutput>#session.ep.price_catid#</cfoutput>',
       stock_id: '',
       tipo: '1',
       from_copy: '0'
