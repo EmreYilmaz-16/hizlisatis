@@ -20,6 +20,11 @@ class EnhancedFeatureManager {
         this.initializeComponents();
     }
 
+    // Alias for compatibility
+    initialize() {
+        return this.init();
+    }
+
     setupEventListeners() {
         // Bulk operations events
         document.addEventListener('click', (e) => {
@@ -868,6 +873,11 @@ class UserPreferencesManager {
     savePreference(element) {
         // Implementation for saving individual preference
         console.log('Saving preference:', element.getAttribute('data-preference'), element.value);
+    }
+
+    // Alias method for compatibility
+    initialize() {
+        return this.init();
     }
 }
 

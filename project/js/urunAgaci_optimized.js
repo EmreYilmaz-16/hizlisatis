@@ -8,7 +8,7 @@ OPTIMIZED Product Tree JavaScript - Performance Enhanced Version
 */
 
 // Cache and performance optimization - Now compatible with ProductTreeManager
-const ProductTreeCacheImplImpl = {
+const ProductTreeCacheImpl = {
     cache: new Map(),
     maxCacheSize: 100,
     pendingRequests: new Map(),
@@ -411,22 +411,12 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 }
 
-// Compatibility bridge for ProductTreeManager
-class ProductTreeCache {
-    constructor(config = {}) {
-        this.config = config;
-        // Delegate to the implementation
-        Object.keys(ProductTreeCacheImpl).forEach(key => {
-            if (typeof ProductTreeCacheImpl[key] === 'function') {
-                this[key] = ProductTreeCacheImpl[key].bind(ProductTreeCacheImpl);
-            } else {
-                this[key] = ProductTreeCacheImpl[key];
-            }
-        });
+// Legacy compatibility: Expose ProductTreeCacheImpl as global for backward compatibility
+// Note: ProductTreeCache proper class is defined in ProductTreeSupport.js
+if (typeof window !== 'undefined') {
+    if (!window.ProductTreeCacheImpl) {
+        window.ProductTreeCacheImpl = ProductTreeCacheImpl;
     }
 }
-
-// Make it globally available
-window.ProductTreeCache = ProductTreeCache;
 
 console.log('ProductTree optimization loaded successfully');

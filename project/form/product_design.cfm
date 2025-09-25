@@ -1012,27 +1012,60 @@ LEFT JOIN #dsn#.PROCESS_TYPE_ROWS ON PROCESS_TYPE_ROWS.PROCESS_ROW_ID=VIRTUAL_PR
 <script>
 // Modern UI Integration with Security
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize modern UI components
-  const treeManager = new ProductTreeManager();
+  // Wait for all required classes to be available
+  function checkClassesAvailable() {
+    const requiredClasses = ['ProductTreeManager', 'EnhancedFeatureManager', 'ProductTreeCache'];
+    const missing = requiredClasses.filter(className => !window[className]);
+    
+    if (missing.length > 0) {
+      console.warn('Waiting for classes to load:', missing);
+      setTimeout(checkClassesAvailable, 100);
+      return;
+    }
+    
+    try {
+      // Initialize modern UI components only after all classes are available
+      const treeManager = new ProductTreeManager();
+      
+      // Initialize Enhanced Features
+      window.enhancedFeatures = new EnhancedFeatureManager();
+      if (typeof window.enhancedFeatures.initialize === 'function') {
+        window.enhancedFeatures.initialize();
+      }
+      
+      // Initialize security for all forms
+      if (typeof initializeSecurity === 'function') {
+        initializeSecurity();
+      }
+      
+      // Initialize search functionality
+      if (typeof initializeSearch === 'function') {
+        initializeSearch();
+      }
+      
+      // Initialize tooltips
+      if (typeof initializeTooltips === 'function') {
+        initializeTooltips();
+      }
+      
+      // Initialize responsive handlers
+      if (typeof initializeResponsiveHandlers === 'function') {
+        initializeResponsiveHandlers();
+      }
+      
+      // Initialize performance monitoring
+      if (typeof initializePerformanceMonitoring === 'function') {
+        initializePerformanceMonitoring();
+      }
+      
+      console.log('All UI components initialized successfully');
+    } catch (error) {
+      console.error('Error initializing UI components:', error);
+    }
+  }
   
-  // Initialize Enhanced Features
-  window.enhancedFeatures = new EnhancedFeatureManager();
-  window.enhancedFeatures.initialize();
-  
-  // Initialize security for all forms
-  initializeSecurity();
-  
-  // Initialize search functionality
-  initializeSearch();
-  
-  // Initialize tooltips
-  initializeTooltips();
-  
-  // Initialize responsive handlers
-  initializeResponsiveHandlers();
-  
-  // Initialize performance monitoring
-  initializePerformanceMonitoring();
+  // Start the initialization check
+  checkClassesAvailable();
   
   // Initialize cache indicators
   initializeCacheIndicators();
