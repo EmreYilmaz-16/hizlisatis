@@ -7,7 +7,7 @@ Comprehensive logging and monitoring for user actions and system events
     
     <cfscript>
         // Initialize component properties
-        variables.dsn = application.zeroApp.dsnZero;
+        variables.dsn = "#application.systemparam.dsn#";
         variables.logLevels = {
             INFO: 1,
             WARNING: 2,
