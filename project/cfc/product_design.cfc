@@ -9,8 +9,8 @@ select ID,QUESTION as QUESTION_NAME from workcube_metosan_1.VIRTUAL_PRODUCT_TREE
     QuestionArr=arrayNew(1);
     for(i=1,i<=getQuestions.recordCount,i++){         
       obj={
-        QUESTION_ID=getQuestions.ID[i],
-        QUESTION_NAME=getQuestions.QUESTION_NAME[i]
+        QUESTION_ID:getQuestions.ID[i],
+        QUESTION_NAME:getQuestions.QUESTION_NAME[i]
       };
       arrayAppend(QuestionArr,obj)            
     }    
