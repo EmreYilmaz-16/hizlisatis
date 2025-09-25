@@ -140,7 +140,7 @@ Comprehensive logging and monitoring for user actions and system events
             category: variables.actionCategories.DATA_CHANGE,
             action: arguments.operation,
             details: "Table: #arguments.tableName#, Record: #arguments.recordId#" & 
-                    (arrayLen(changedFields) > 0 ? ", Changed fields: #arrayToList(changedFields)#" : ""),
+                    (arrayLen(changedFields) gt 0 ? ", Changed fields: #arrayToList(changedFields)#" : ""),
             tableName: arguments.tableName,
             recordId: arguments.recordId,
             changedFields: arrayToList(changedFields),
