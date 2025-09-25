@@ -54,7 +54,7 @@ component accessors="true" {
         required string inputValue,
         required string inputType,
         boolean required = false
-    ) {
+    ) access="remote" {
         var result = {
             isValid: true,
             sanitizedValue: arguments.inputValue,
@@ -347,7 +347,7 @@ component accessors="true" {
     /**
      * CSRF Token Management
      */
-    public string function generateCSRFToken() {
+    public string function generateCSRFToken() access="remote" {
         var token = hash(createUUID() & now() & session.sessionid, "SHA-256");
         session.csrfToken = token;
         session.csrfTokenExpiry = dateAdd("n", variables.securityConfig.csrfTokenExpiration, now());
@@ -357,7 +357,7 @@ component accessors="true" {
     /**
      * Validate CSRF Token
      */
-    public boolean function validateCSRFToken(required string token) {
+    public boolean function validateCSRFToken(required string token) access="remote" {
         if (!structKeyExists(session, "csrfToken") || 
             !structKeyExists(session, "csrfTokenExpiry")) {
             return false;
@@ -384,7 +384,7 @@ component accessors="true" {
     /**
      * Rate limiting for security
      */
-    public boolean function checkRateLimit(required string identifier) {
+    public boolean function checkRateLimit(required string identifier) access="remote" {
         var currentTime = now();
         var sessionKey = "rateLimit_" & arguments.identifier;
         
@@ -429,7 +429,7 @@ component accessors="true" {
     /**
      * Session security validation
      */
-    public boolean function validateSession() {
+    public boolean function validateSession() access="remote" {
         if (!structKeyExists(session, "isLoggedIn") || !session.isLoggedIn) {
             return false;
         }
