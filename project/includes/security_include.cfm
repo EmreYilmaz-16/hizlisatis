@@ -26,7 +26,7 @@ if (!structKeyExists(application, "securityLog")) {
     
     <cftry>
         <!--- Check if user is logged in --->
-        <cfif !structKeyExists(session, "pp") OR !structKeyExists(session.pp, "userid") OR !len(session.pp.userid)>
+        <cfif !structKeyExists(session, "ep") OR !structKeyExists(session.ep, "userid") OR !len(session.ep.userid)>
             <cfreturn false>
         </cfif>
         
