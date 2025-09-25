@@ -60,6 +60,7 @@ class ProductTreeManager {
         this.ui = new ProductTreeUI(this);
         this.validator = new ProductTreeValidator();
         this.eventBus = new ProductTreeEventBus();
+        this.httpClient = new ProductTreeHttpClient();
         
         // State management
         this.state = {

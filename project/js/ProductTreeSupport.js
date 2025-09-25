@@ -727,14 +727,8 @@ class ProductTreeHttpClient {
     }
 }
 
-// Assign to ProductTreeManager prototype for dependency injection
+// Export classes to global scope
 if (typeof window !== 'undefined') {
-    window.ProductTreeManager.prototype.cache = null;
-    window.ProductTreeManager.prototype.ui = null;
-    window.ProductTreeManager.prototype.validator = null;
-    window.ProductTreeManager.prototype.eventBus = null;
-    window.ProductTreeManager.prototype.httpClient = new ProductTreeHttpClient();
-
     // Export classes
     window.ProductTreeCache = ProductTreeCache;
     window.ProductTreeUI = ProductTreeUI;
