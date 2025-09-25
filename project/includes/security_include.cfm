@@ -290,7 +290,7 @@ if (!structKeyExists(application, "securityLog")) {
             //window.location.href = '/admin/index.cfm';
         </script>
     </cfoutput>
-    <cfabort>
+    
 </cfif>
 
 <!--- Rate Limiting Check --->
