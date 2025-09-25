@@ -50,11 +50,11 @@ component accessors="true" {
      * @param required Whether the input is required
      * @return struct with isValid flag and sanitizedValue
      */
-    public struct function validateInput(
+    remote struct function validateInput(
         required string inputValue,
         required string inputType,
         boolean required = false
-    ) access="remote" {
+    ) {
         var result = {
             isValid: true,
             sanitizedValue: arguments.inputValue,
@@ -347,7 +347,7 @@ component accessors="true" {
     /**
      * CSRF Token Management
      */
-    public string function generateCSRFToken() access="remote" {
+    remote string function generateCSRFToken() {
         var token = hash(createUUID() & now() & session.sessionid, "SHA-256");
         session.csrfToken = token;
         session.csrfTokenExpiry = dateAdd("n", variables.securityConfig.csrfTokenExpiration, now());
@@ -357,7 +357,7 @@ component accessors="true" {
     /**
      * Validate CSRF Token
      */
-    public boolean function validateCSRFToken(required string token) access="remote" {
+    remote boolean function validateCSRFToken(required string token) {
         if (!structKeyExists(session, "csrfToken") || 
             !structKeyExists(session, "csrfTokenExpiry")) {
             return false;
@@ -384,7 +384,7 @@ component accessors="true" {
     /**
      * Rate limiting for security
      */
-    public boolean function checkRateLimit(required string identifier) access="remote" {
+    remote boolean function checkRateLimit(required string identifier) {
         var currentTime = now();
         var sessionKey = "rateLimit_" & arguments.identifier;
         
@@ -429,7 +429,7 @@ component accessors="true" {
     /**
      * Session security validation
      */
-    public boolean function validateSession() access="remote" {
+    remote boolean function validateSession() {
         if (!structKeyExists(session, "isLoggedIn") || !session.isLoggedIn) {
             return false;
         }
