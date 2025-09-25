@@ -287,7 +287,7 @@ if (!structKeyExists(application, "securityLog")) {
     <cfoutput>
         <script>
             alert('Oturum süreniz dolmuş veya yetkisiz erişim. Lütfen tekrar giriş yapın.');
-            window.location.href = '/admin/index.cfm';
+            //window.location.href = '/admin/index.cfm';
         </script>
     </cfoutput>
     <cfabort>
