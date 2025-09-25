@@ -96,7 +96,7 @@ FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
 <link rel="stylesheet" href="../css/modern-ui.css">
 
 <cfparam name="attributes.project_id" default="2563">
-
+</cfoutput>
 <style>
   /* Legacy compatibility styles */
   .sortable1, #sortable2 {
@@ -676,6 +676,7 @@ FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
     }
   }
 </style>
+<cfoutput>
   </style>
 
 <!-----
