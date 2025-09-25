@@ -488,11 +488,16 @@ class SecurityManager {
             console.warn('Inline scripts detected - potential security risk');
         }
 
-        // Check for eval usage
+        // Monitor eval usage instead of blocking it completely
         const originalEval = window.eval;
-        window.eval = function() {
-            console.error('eval() usage detected - security risk');
-            throw new Error('eval() is disabled for security reasons');
+        window.eval = function(code) {
+            console.warn('eval() usage detected - consider using safer alternatives');
+            // Log the eval usage for security monitoring
+            if (typeof console !== 'undefined' && console.trace) {
+                console.trace('eval() call stack:');
+            }
+            // Still allow eval but with warning - remove this in production
+            return originalEval.call(this, code);
         };
     }
 

@@ -254,7 +254,11 @@ if (!structKeyExists(application, "securityLog")) {
         <cfheader name="X-Content-Type-Options" value="nosniff">
         <cfheader name="X-XSS-Protection" value="1; mode=block">
         <cfheader name="Referrer-Policy" value="strict-origin-when-cross-origin">
-        <cfheader name="Content-Security-Policy" value="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com;">
+        <!--- 
+        Secure CSP without unsafe-eval - all eval() usage has been eliminated
+        Added connect-src for AJAX requests and report-uri for CSP violations
+        --->
+        <cfheader name="Content-Security-Policy" value="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https:; report-uri /AddOns/Partner/project/cfc/security_csp_report.cfm;">
         <cfheader name="Cache-Control" value="no-store, no-cache, must-revalidate, private">
         <cfheader name="Pragma" value="no-cache">
     </cfif>

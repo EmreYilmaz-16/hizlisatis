@@ -1803,8 +1803,6 @@ const styleSheet = document.createElement('style');
 styleSheet.textContent = customStyles;
 document.head.appendChild(styleSheet);
 </script>
-<!--- Original file kept for backward compatibility --->
-<script src="/AddOns/Partner/project/js/urunAgaci.js"></script>
 
 <!--- Modern ProductTree Initialization Script --->
 <script>
