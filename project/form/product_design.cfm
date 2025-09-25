@@ -96,10 +96,10 @@ FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
 <link rel="stylesheet" href="../css/modern-ui.css">
 
 <cfparam name="attributes.project_id" default="2563">
-</cfoutput>
+
 <style>
   /* Legacy compatibility styles */
-  .sortable1, #sortable2 {
+  .sortable1, ##sortable2 {
     border: 1px solid var(--gray-200);
     min-height: 20px;
     list-style-type: none;
@@ -109,7 +109,7 @@ FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
     border-radius: var(--radius-md);
     background: white;
   }
-  .sortable1 li, #sortable2 li {
+  .sortable1 li, ##sortable2 li {
     margin: 0 5px 5px 5px;
     padding: var(--spacing-sm);
     font-size: 1.1em;
@@ -118,7 +118,7 @@ FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
     border: 1px solid var(--gray-200);
     transition: all var(--transition-fast);
   }
-  .sortable1 li:hover, #sortable2 li:hover {
+  .sortable1 li:hover, ##sortable2 li:hover {
     background: var(--primary-50);
     border-color: var(--primary-300);
     transform: translateY(-1px);
@@ -676,7 +676,6 @@ FROM #dsn#.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id#
     }
   }
 </style>
-<cfoutput>
   </style>
 
 <!-----
