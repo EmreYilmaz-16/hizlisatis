@@ -38,7 +38,7 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
     <input type="hidden" id="txt_rate2_#CurrentRow#" name="txt_rate2_#CurrentRow#" value="#RATE2#">
 </cfoutput>
 <div id="basketArea">
-<cf_ajax_list>
+<cf_grid_list>
     <thead>
         <tr style="position: sticky;top: 0;z-index: 1;background: white;">
             <th>#</th>            
@@ -63,7 +63,7 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
             <th>Teslim Tarihi</th>
             <th>Açıklama</th>
         </tr>
-    </thead>A
+    </thead>
     <tbody id="tbl_basket">
     </tbody>
   <tfoot>
@@ -107,7 +107,7 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
         <th><button type="button" id="btnsave2" class="btn btn-success" onclick="SaveOrder(this)">Kaydet</button></th>
     </tr>
   </tfoot>
-</cf_ajax_list>
+</cf_grid_list>
 </div>
 
 <div style="border-top: 1px solid #eaeaea;position: fixed;bottom: 0;width: 100%;margin-left: 0;left: 0;display:none">
