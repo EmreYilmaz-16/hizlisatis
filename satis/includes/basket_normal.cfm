@@ -63,7 +63,7 @@ FROM workcube_metosan.SETUP_MONEY AS SM WHERE SM.PERIOD_ID=#session.ep.period_id
             <th>Teslim Tarihi</th>
             <th>Açıklama</th>
         </tr>
-    </thead>
+    </thead>A
     <tbody id="tbl_basket">
     </tbody>
   <tfoot>
