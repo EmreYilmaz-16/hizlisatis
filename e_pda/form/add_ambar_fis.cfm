@@ -533,5 +533,60 @@ table, td, th, div {
 			window.location.href='<cfoutput>#request.self#</cfoutput>?fuseaction=epda.prtotm_Qadd_ambar_fis&psk=1&dep_in='+form_basket.txt_department_in.value+'&dep_out='+form_basket.txt_department_out.value+'&action_id='+document.getElementById('action_id').value+'&fis_tipi='+form_basket.fis_tipi.value+'&process_cat='+form_basket.process_cat_id.value;
 			}
 	}
+
+	  function wrk_query(str_query, data_source, maxrows) {
+    if (!data_source) data_source = 'dsn';
+    if (!maxrows) maxrows = 0;
+    
+    var new_query = new Object();
+    var req = createXMLHttpRequest();
+    
+    if (req) {
+        req.open("post", '/index.cfm?fuseaction=objects2.emptypopup_get_js_query&isAjax=1&xmlhttp=1', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        req.setRequestHeader('pragma', 'nocache');
+        
+        var queryParam = encodeURI(str_query).indexOf('+') == -1 ? 
+            'str_sql=' + encodeURI(str_query) : 
+            'str_sql=' + encodeURIComponent(str_query);
+            
+        req.send(queryParam + '&data_source=' + data_source + '&maxrows=' + maxrows);
+        
+        if (req.readyState == 4 && req.status == 200) {
+            try {
+                eval(req.responseText.replace(/\u200B/g, ''));
+                new_query = get_js_query;
+            } catch(e) {
+                new_query = false;
+            }
+        }
+    }
+    
+    return new_query;
+}
+function createXMLHttpRequest() {
+    var req = false;
+    
+    if (window.XMLHttpRequest) {
+        try {
+            req = new XMLHttpRequest();
+        } catch(e) {
+            req = false;
+        }
+    } else if (window.ActiveXObject) {
+        try {
+            req = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+            try {
+                req = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch(e) {
+                req = false;
+            }
+        }
+    }
+    
+    return req;
+}
+
 </script>
 </cf_box>
