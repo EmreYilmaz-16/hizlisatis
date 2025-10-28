@@ -353,7 +353,7 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
         <td>
             <cfset attributes.date1="01/01/#year(now())#">
             <cfset attributes.date2="31/12/#year(now())#">
-            <cfset attributes.company_id=COMPANY_ID>
+            <cfset attributes.company_id=getc.COMPANY_ID>
             <cfset attributes.is_ajax_popup=1>
             <cfinclude template="/V16/objects/display/dsp_make_age_pbs.cfm">
             
@@ -369,15 +369,15 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
             #GETO.DV#
         </td>
         <cfquery name="getOx" datasource="#dsn2#">
-            SELECT *,CASE WHEN LEN(CEK_ODENMEDI)>0 THEN CEK_ODENMEDI ELSE 0 END AS CODM  FROM COMPANY_RISK_2 WHERE COMPANY_ID=#COMPANY_ID#
+            SELECT *,CASE WHEN LEN(CEK_ODENMEDI)>0 THEN CEK_ODENMEDI ELSE 0 END AS CODM  FROM COMPANY_RISK_2 WHERE COMPANY_ID=#getc.COMPANY_ID#
         </cfquery>
        
         
-        <CFSET "M_CEK_RISKI_#COMPANY_ID#_1"=0>
-        <CFSET "M_CEK_RISKI_#COMPANY_ID#_0"=0>
-        <CFSET "M_SENET_RISKI_#COMPANY_ID#_1"=0>
-        <CFSET "M_SENET_RISKI_#COMPANY_ID#_0"=0>
-        
+        <CFSET "M_CEK_RISKI_#getc.COMPANY_ID#_1"=0>
+        <CFSET "M_CEK_RISKI_#getc.COMPANY_ID#_0"=0>
+        <CFSET "M_SENET_RISKI_#getc.COMPANY_ID#_1"=0>
+        <CFSET "M_SENET_RISKI_#getc.COMPANY_ID#_0"=0>
+
         <cfif getOx.recordCount>
         <cftry>
             <cfloop query="getOx">
@@ -392,13 +392,13 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
     </cfif>
         <td>#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#</td>
         <td>
-            #TLFORMAT(evaluate("M_CEK_RISKI_#COMPANY_ID#_1"))#
+            #TLFORMAT(evaluate("M_CEK_RISKI_#getc.COMPANY_ID#_1"))#
         </td>
         <td>
-            #TLFORMAT(evaluate("M_SENET_RISKI_#COMPANY_ID#_1"))#
+            #TLFORMAT(evaluate("M_SENET_RISKI_#getc.COMPANY_ID#_1"))#
         </td>
-        <td>#TLFORMAT(BAKIYE+evaluate("M_CEK_RISKI_#COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#COMPANY_ID#_1"))#</td>
-        <td>#TLFORMAT(evaluate("M_CEK_RISKI_#COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#COMPANY_ID#_0"))#</td>
+        <td>#TLFORMAT(BAKIYE+evaluate("M_CEK_RISKI_#getc.COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#getc.COMPANY_ID#_1"))#</td>
+        <td>#TLFORMAT(evaluate("M_CEK_RISKI_#getc.COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#getc.COMPANY_ID#_0"))#</td>
     </tr>
     <cfif isDefined("attributes.isexpbx") and attributes.isexpbx eq 1>
         <cfscript>
@@ -450,13 +450,13 @@ SELECT PAYMETHOD_ID,PAYMETHOD,DUE_DAY FROM workcube_metosan.SETUP_PAYMETHOD
             hucre=hucre+1;
             spreadsheetSetCellValue(theSheet,"#EMPLOYEE_NAME# #EMPLOYEE_SURNAME#",SatirSayaci,hucre);
             hucre=hucre+1;
-            spreadsheetSetCellValue(theSheet,evaluate("M_CEK_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
+            spreadsheetSetCellValue(theSheet,evaluate("M_CEK_RISKI_#getc.COMPANY_ID#_1"),SatirSayaci,hucre);
             hucre=hucre+1;
-            spreadsheetSetCellValue(theSheet,evaluate("M_SENET_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
+            spreadsheetSetCellValue(theSheet,evaluate("M_SENET_RISKI_#getc.COMPANY_ID#_1"),SatirSayaci,hucre);
             hucre=hucre+1;
-            spreadsheetSetCellValue(theSheet,BAKIYE+evaluate("M_CEK_RISKI_#COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#COMPANY_ID#_1"),SatirSayaci,hucre);
+            spreadsheetSetCellValue(theSheet,BAKIYE+evaluate("M_CEK_RISKI_#getc.COMPANY_ID#_1")+evaluate("M_SENET_RISKI_#getc.COMPANY_ID#_1"),SatirSayaci,hucre);
             hucre=hucre+1;
-            spreadsheetSetCellValue(theSheet,(evaluate("M_CEK_RISKI_#COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#COMPANY_ID#_0")),SatirSayaci,hucre);
+            spreadsheetSetCellValue(theSheet,(evaluate("M_CEK_RISKI_#getc.COMPANY_ID#_0")+evaluate("M_SENET_RISKI_#getc.COMPANY_ID#_0")),SatirSayaci,hucre);
             SatirSayaci=SatirSayaci+1;
            
         </cfscript>
