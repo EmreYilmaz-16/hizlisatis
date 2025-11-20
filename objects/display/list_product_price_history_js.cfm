@@ -35,7 +35,7 @@ sales
 	<cfinclude template="/v16/objects/query/get_product_prices_sa_ss.cfm">
 
       <!--- Satış Fiyatları --->
-	  <table>
+	  <cf_medium_list>
             <thead>
               <tr> 
                 <th colspan="5"><cf_get_lang no='627.Listeler'></th>
@@ -111,7 +111,7 @@ sales
 					  </tr>
 				  </cfoutput> 
           </tbody>
-		  </table>
+		  </cf_medium_list>
 		  <!--- // Müşteri Teklif fiyatları ***** --->
       <cfif get_module_user(5)>
 	  <!--- Müşteri Teklif Fiyatları  --->
@@ -134,9 +134,9 @@ sales
 		</cfquery> 
 
 
-  	<table_search title="TEKLİFLER">
-		</table_search>
-		<table>
+  	<cf_medium_list_search title="TEKLİFLER">
+		</cf_medium_list_search>
+		<cf_medium_list>
 			<thead>
 				<tr> 
 					<th width="150">Teklif Tarihi</th>
@@ -168,7 +168,7 @@ sales
 				</tr>
 				</cfoutput>
             </tbody>
-		</table>
+		</cf_medium_list>
       <!--- // son alis fiyatları --->
 	  </cfif>
       <!--- satis fiyatlari --->
@@ -206,9 +206,9 @@ sales
                    ORDER BY 3 DESC                       
 		</cfquery> 
 
-		<table_search title="#getLang('objects',632)#">
-		</table_search>
-		<table>
+		<cf_medium_list_search title="#getLang('objects',632)#">
+		</cf_medium_list_search>
+		<cf_medium_list>
 			<thead>
 				<tr> 
 					<th width="150"><cf_get_lang no='618.satış yapan'></th>
@@ -226,13 +226,13 @@ sales
 					</tr>
 				</cfoutput> 
 			</tbody>
-		</table>
+		</cf_medium_list>
 	  </cfif>
       <!--- // musteri satis Fiyatlari --->	  
 	  <!--- son satis fiyatlari --->
-		<table_search title="#getLang('objects',628)#">
-		</table_search>
-		<table>
+		<cf_medium_list_search title="#getLang('objects',628)#">
+		</cf_medium_list_search>
+		<cf_medium_list>
 			<thead>
 				<tr> 
 					<th width="150"><cf_get_lang no='618.satış yapan'></th>
@@ -282,13 +282,13 @@ sales
 					</tr>
 				</cfoutput>
 			</tbody>
-		</table>
+		</cf_medium_list>
       <!--- // son satis fiyatları --->
       <cfif get_module_user(5)>
 	  <!--- son alis fiyatlari --->
-		<table_search title="#getLang('objects',141)#">
-		</table_search>
-		<table>
+		<cf_medium_list_search title="#getLang('objects',141)#">
+		</cf_medium_list_search>
+		<cf_medium_list>
 			<thead>
 				<tr> 
 					<th width="150"><cf_get_lang_main no='107.Cari Hesap'></th>
@@ -334,13 +334,13 @@ sales
 				</tr>
 				</cfoutput>
             </tbody>
-		</table>
+		</cf_medium_list>
       <!--- // son alis fiyatları --->
 	  </cfif>
       <!--- rakip Fiyatlar --->
-		<table_search title="#getLang('objects',629)#">
-		</table_search>
-		<table>
+		<cf_medium_list_search title="#getLang('objects',629)#">
+		</cf_medium_list_search>
+		<cf_medium_list>
 			<thead>
 				<tr> 
 					<th width="150"><cf_get_lang_main no='1367.Rakip'></th>                
@@ -355,7 +355,7 @@ sales
 					</tr>
 				</cfoutput> 
 			</tbody>
-		</table>
+		</cf_medium_list>
       <!--- rakip Fiyatlar --->
 
       
@@ -368,16 +368,16 @@ sales
 
 
       <!--- Seri No Fiyatları --->
-		<table_search title="#getLang('objects',37)#">
-			<table_search_area>
+		<cf_medium_list_search title="#getLang('objects',37)#">
+			<cf_medium_list_search_area>
 				<table>
 					<tr>
 						<td style="text-align:right;"><input type="text" name="serial_no" id="serial_no" onkeydown="if(event.keyCode == 13) {find_serial_no();return false;}" /></td>
 						<td><cf_wrk_search_button search_function='find_serial_no()' is_excel='0'></td>
 					</tr>
 				</table>
-			</table_search_area>
-		</table_search>
+			</cf_medium_list_search_area>
+		</cf_medium_list_search>
        <div id="serial_no_price"></div>
 </cf_popup_box>
 	<!--- Seri No Fiyatları --->      
@@ -456,7 +456,7 @@ function find_serial_no()
 		var stock_id_ = "";
 	}
 		var page = '<cfoutput>#request.self#</cfoutput>?fuseaction=objects.emptypopup_get_price_from_serial_no&stock_id='+stock_id_+'&serial_no='+serial_no_;
-		AjaxPageLoad(page,'serial_no_price',1);
+		//AjaxPageLoad(page,'serial_no_price',1);
 
 }
 </script>
