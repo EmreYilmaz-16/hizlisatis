@@ -98,7 +98,7 @@ AND SRR.PREPARE_PERSONAL IS NULL
 
 ORDER BY O.RECORD_DATE
         </cfquery>
-        <cfif isDefined (arguments.debug) and arguments.debug eq 1>
+        <cfif isDefined ("arguments.debug") and arguments.debug eq 1>
             <cfdump var="#getDepWorks#">
             <cfabort>
         </cfif>
@@ -146,7 +146,7 @@ ORDER BY O.RECORD_DATE
                 AND SR.DELIVER_PAPER_NO NOT LIKE '%PSVK%'
                 ORDER BY O.RECORD_DATE
         </cfquery>
-           <cfif isDefined (arguments.debug) and arguments.debug eq 1>
+           <cfif isDefined ("arguments.debug") and arguments.debug eq 1>
             <cfdump var="#getDepWorks#">
         </cfif>
          <cfsavecontent  variable="control5">
