@@ -98,7 +98,7 @@ AND SRR.PREPARE_PERSONAL IS NULL
 
 ORDER BY O.RECORD_DATE
         </cfquery>
-        <cfif isDefined arguments.debug and arguments.debug eq 1>
+        <cfif isDefined (arguments.debug) and arguments.debug eq 1>
             <cfdump var="#getDepWorks#">
         </cfif>
           <cfif getEmp.recordcount eq 1>
