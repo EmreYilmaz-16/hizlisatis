@@ -59,7 +59,7 @@
         SELECT PERIOD_YEAR,OUR_COMPANY_ID FROM SETUP_PERIOD WHERE OUR_COMPANY_ID=1 ORDER BY PERIOD_YEAR ASC
       </cfquery>
       <CFSET IIIX=1>
-        <cfquery name="getDepWorks" datasource="#dataSources.dsn#">
+       <!---- <cfquery name="getDepWorks" datasource="#dataSources.dsn#">
             SELECT DISTINCT  O.RECORD_DATE,
 SR.DELIVER_PAPER_NO,SR.COMPANY_ID,C.NICKNAME,SR.DELIVERY_DATE,DEPARTMENT_LOCATION,COMMENT,SR.SHIP_RESULT_ID,DELIVER_DEPT,DELIVER_LOCATION,SRR.PREPARE_PERSONAL,SRR.SHIP_RESULT_ROW_ID
 ,(SELECT COUNT(*) FROM #dataSources.DSN3#.ORDER_ROW where ORDER_ID =O.ORDER_ID AND DELIVER_DEPT=ORR.DELIVER_DEPT AND DELIVER_LOCATION=ORR.DELIVER_LOCATION) AS TTS
@@ -97,18 +97,8 @@ AND ORR.QUANTITY>ISNULL(SF.AMOUNT,0)
 AND SRR.PREPARE_PERSONAL IS NULL
 
 ORDER BY O.RECORD_DATE
-        </cfquery>
-        <cfif isDefined ("arguments.debug") and arguments.debug eq 1>
-            <cfdump var="#getDepWorks#">
-            
-        </cfif>
-          <cfif getEmp.recordcount eq 1>
-            <cfloop query="getDepWorks" >
-                <CFQUERY name="UPDD" datasource='#datasources.dsn3#'>
-                    UPDATE PRTOTM_SHIP_RESULT_ROW SET PREPARE_PERSONAL=#getEmp.EMPLOYEE_ID# where SHIP_RESULT_ROW_ID=#SHIP_RESULT_ROW_ID#
-                </CFQUERY> 
-            </cfloop>
-          </cfif>
+        </cfquery>----->
+    
 <!------	SELECT SUM(AMOUNT) AMOUNT,UNIQUE_RELATION_ID FROM workcube_metosan_2024_1.STOCK_FIS_ROW GROUP BY UNIQUE_RELATION_ID
 	
 	UNION ALL
@@ -149,6 +139,17 @@ ORDER BY O.RECORD_DATE
            <cfif isDefined ("arguments.debug") and arguments.debug eq 1>
             <cfdump var="#getDepWorks#">
         </cfif>
+            <cfif isDefined ("arguments.debug") and arguments.debug eq 1>
+            <cfdump var="#getDepWorks#">
+            
+        </cfif>
+          <cfif getEmp.recordcount eq 1>
+            <cfloop query="getDepWorks" >
+                <CFQUERY name="UPDD" datasource='#datasources.dsn3#'>
+                    UPDATE PRTOTM_SHIP_RESULT_ROW SET PREPARE_PERSONAL=#getEmp.EMPLOYEE_ID# where SHIP_RESULT_ROW_ID=#SHIP_RESULT_ROW_ID#
+                </CFQUERY> 
+            </cfloop>
+          </cfif>
          <cfsavecontent  variable="control5">
             <cfdump  var="#CGI#">                
  
