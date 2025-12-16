@@ -187,7 +187,9 @@ function beforePage(syf) {
 function filtreleriAl() {
   var AddRess = "";
   var kw = document.getElementById("keyword").value;
+  kw = encodeURIComponent(kw);
   console.log(kw);
+
   var cni = document.getElementById("get_company_id").value;
   var cn = document.getElementById("get_comp_name").value;
 
